@@ -1,0 +1,65 @@
+[
+  {
+    "id": "custody.married.default",
+    "inputs": {"married_at_birth": "yes"},
+    "outcome": {
+      "status": "joint_custody_default",
+      "message": "You automatically share custody unless a court has ruled otherwise.",
+      "citations": [
+        {"label": "BGB §1626", "url": "https://gesetze-im-internet.de/bgb/__1626.html"}
+      ]
+    }
+  },
+  {
+    "id": "custody.unmarried.paternity_acknowledged",
+    "inputs": {
+      "married_at_birth": "no",
+      "paternity_ack": "yes",
+      "joint_declaration": "no"
+    },
+    "outcome": {
+      "status": "eligible_joint_custody",
+      "message": "You may apply for joint custody (§1626a BGB).",
+      "actions": ["file_joint_custody_court"],
+      "citations": [
+        {"label": "BGB §1626a", "url": "https://gesetze-im-internet.de/bgb/__1626a.html"}
+      ]
+    }
+  },
+  {
+    "id": "contact.right",
+    "inputs": {"blocked_contact": "yes"},
+    "outcome": {
+      "status": "apply_contact_order",
+      "message": "You can request a visitation order (§1684 BGB).",
+      "actions": ["file_contact_request_court"],
+      "citations": [
+        {"label": "BGB §1684", "url": "https://gesetze-im-internet.de/bgb/__1684.html"}
+      ]
+    }
+  },
+  {
+    "id": "custody.unmarried.path_to_joint",
+    "version": "2025-01-01",
+    "logic": {
+      "all": [
+        {"==": [{"var": "married_at_birth"}, "no"]},
+        {"==": [{"var": "paternity_ack"}, "yes"]},
+        {"==": [{"var": "joint_declaration"}, "no"]},
+        {"==": [{"var": "court_order"}, "none"]}
+      ]
+    },
+    "outcome": {
+      "status": "eligible_joint_custody",
+      "actions": ["file_joint_custody_court"],
+      "citations": [
+        {
+          "label": "BGB §1626a",
+          "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+          "snapshotId": "bgb-1626a-2025-01"
+        }
+      ]
+    }
+  }
+]
+

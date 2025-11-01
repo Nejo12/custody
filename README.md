@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Custody Clarity – prototype PWA for custody and contact rights in Germany. Mobile‑first, i18n, rules‑driven interview, and PDF stubs.
 
-## Getting Started
+Key features
+- Home + interview flow (EN/DE)
+- Rules engine evaluating JSON rules (`src/lib/rules.ts`, `src/data/rules.json`)
+- Result screen with citations and next steps
+- PDF endpoints (serverless) and simple client forms
+- Directory (Berlin sample) with postcode search (`/directory`)
+- Vault for notes/files with local export (`/vault`)
+- Settings with language switch (`/settings`)
 
-First, run the development server:
+Getting started
+- Install: `npm install`
+- Dev: `npm run dev` → http://localhost:3000
+- Test rules: `npm test`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Structure
+- `src/i18n/` – i18n provider + EN/DE dictionaries
+- `src/store/app.ts` – Zustand store with persistence
+- `src/lib/rules.ts` – JSON logic evaluator (minimal)
+- `src/data/` – rules + sample directory data
+- `src/app/api/pdf/*` – PDF generation stubs using `pdf-lib`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Notes
+- Information only. Not individualized legal advice.
+- Data is local‑first; no external tracking. PWA/service worker TBD.

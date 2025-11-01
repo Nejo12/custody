@@ -1,0 +1,23 @@
+[
+  {
+    "id": "jugendamt-mitte",
+    "type": "jugendamt",
+    "name": "Jugendamt Berlin Mitte",
+    "postcode": "10115",
+    "address": "Müllerstraße 146, 13353 Berlin",
+    "phone": "+49 30 9018-0",
+    "url": "https://www.berlin.de/ba-mitte/politik-und-verwaltung/aemter/jugendamt/",
+    "opening": "Mon-Fri 9-12"
+  },
+  {
+    "id": "ag-berlin-mitte",
+    "type": "court",
+    "name": "Amtsgericht Mitte (Familiengericht)",
+    "postcode": "10179",
+    "address": "Littenstr. 12-17, 10179 Berlin",
+    "phone": "+49 30 9014-0",
+    "url": "https://www.berlin.de/gerichte/amtsgericht-mitte/",
+    "opening": "Mon-Fri 9-13"
+  }
+]
+
