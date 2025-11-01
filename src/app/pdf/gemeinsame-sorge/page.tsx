@@ -2,19 +2,36 @@
 import { useState } from 'react';
 import { useI18n } from '@/i18n';
 import rules from '@/data/rules.json';
+import type { SimpleRule, Citation } from '@/lib/rules';
+import type { FormData } from '@/types';
+
+type FormState = {
+  parentA: { fullName?: string; address?: string };
+  parentB: { fullName?: string; address?: string };
+  children: unknown[];
+};
 
 export default function GSPage() {
   const { t, locale } = useI18n();
-  const [form, setForm] = useState<any>({ parentA: {}, parentB: {}, children: [] });
+  const [form, setForm] = useState<FormState>({ parentA: {}, parentB: {}, children: [] });
   const [downloading, setDownloading] = useState(false);
 
   async function onDownload() {
     setDownloading(true);
     try {
+      const rulesArray = rules as SimpleRule[];
+      const citations: Citation[] = rulesArray[1]?.outcome?.citations?.filter((c): c is Citation => 
+        typeof c === 'object' && c !== null && 'url' in c
+      ) || [];
+      const snapshotIds: string[] = (rulesArray[3]?.outcome?.citations || [])
+        .filter((c): c is Citation => typeof c === 'object' && c !== null && 'url' in c)
+        .map((c: Citation) => c.snapshotId)
+        .filter((id): id is string => typeof id === 'string');
+      
       const res = await fetch('/api/pdf/gemeinsame-sorge', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ formData: form, citations: (rules as any[])[1]?.outcome?.citations || [], snapshotIds: ((rules as any[])[3]?.outcome?.citations || []).map((c:any)=>c.snapshotId).filter(Boolean), locale }),
+        body: JSON.stringify({ formData: form as FormData, citations, snapshotIds, locale }),
       });
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);

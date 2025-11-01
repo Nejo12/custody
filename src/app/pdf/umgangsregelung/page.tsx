@@ -1,10 +1,20 @@
 "use client";
 import { useState } from 'react';
 import { useI18n } from '@/i18n';
+import type { FormData } from '@/types';
+
+type ProposalForm = {
+  proposal: {
+    weekday?: { monday?: string };
+    weekend?: { even?: string };
+    holidays?: Record<string, unknown>;
+    handover?: Record<string, unknown>;
+  };
+};
 
 export default function UmgangPage() {
   const { t, locale } = useI18n();
-  const [form, setForm] = useState<any>({ proposal: { weekday: {}, weekend: {}, holidays: {}, handover: {} } });
+  const [form, setForm] = useState<ProposalForm>({ proposal: { weekday: {}, weekend: {}, holidays: {}, handover: {} } });
   const [downloading, setDownloading] = useState(false);
 
   async function onDownload() {
@@ -13,7 +23,7 @@ export default function UmgangPage() {
       const res = await fetch('/api/pdf/umgangsregelung', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ formData: form, citations: [{ label: 'BGB §1684', url: 'https://gesetze-im-internet.de/bgb/__1684.html' }], snapshotIds: [], locale }),
+        body: JSON.stringify({ formData: form as FormData, citations: [{ label: 'BGB §1684', url: 'https://gesetze-im-internet.de/bgb/__1684.html' }], snapshotIds: [], locale }),
       });
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);

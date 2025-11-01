@@ -4,13 +4,16 @@ import { useI18n } from '@/i18n';
 import Progress from '@/components/Progress';
 import { useRouter } from 'next/navigation';
 import { useAppStore } from '@/store/app';
+import type { TranslationDict } from '@/types';
 
 type Q = { id: string; type?: 'yn' | 'enum'; options?: { value: string; label: string }[] };
+
+type QuestionKey = keyof TranslationDict['interview']['questions'];
 
 export default function Interview() {
   const { t } = useI18n();
   const router = useRouter();
-  const { interview, setAnswer } = useAppStore();
+  const { setAnswer } = useAppStore();
   const [step, setStep] = useState(0);
 
   const questions: Q[] = useMemo(() => [
@@ -26,6 +29,8 @@ export default function Interview() {
   ], []);
 
   const current = questions[step];
+  const questionKey = current.id as QuestionKey;
+  const questionData = t.interview.questions[questionKey];
 
   function onSelect(value: string) {
     // Map yn answers
@@ -41,10 +46,10 @@ export default function Interview() {
       <div className="space-y-2">
         <div className="text-sm text-zinc-500">{t.interview.title}</div>
         <h2 className="text-lg font-semibold">
-          {(t.interview.questions as any)[current.id]?.label || current.id}
+          {questionData?.label || current.id}
         </h2>
         <p className="text-sm text-zinc-600">
-          {(t.interview.questions as any)[current.id]?.help || t.interview.help}
+          {questionData?.help || t.interview.help}
         </p>
       </div>
 

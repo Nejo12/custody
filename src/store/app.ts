@@ -7,7 +7,7 @@ export type Entry = {
   type: 'note' | 'file' | 'payment';
   title: string;
   timestamp: number;
-  payload: Record<string, any>;
+  payload: Record<string, unknown>;
 };
 
 export type InterviewState = {

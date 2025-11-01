@@ -4,20 +4,24 @@ import { evaluateRules } from '@/lib/rules';
 import { useAppStore } from '@/store/app';
 import { useI18n } from '@/i18n';
 import Link from 'next/link';
+import type { SimpleRule, Citation } from '@/lib/rules';
+import type { TranslationDict } from '@/types';
+
+type StatusKey = keyof TranslationDict['result']['statuses'];
 
 export default function Result() {
   const { interview } = useAppStore();
   const { t } = useI18n();
-  const { matched, primary } = evaluateRules(rules as any, interview.answers);
+  const { matched, primary } = evaluateRules(rules as SimpleRule[], interview.answers);
 
-  const status = primary?.outcome.status || 'unknown';
-  const citations = primary?.outcome.citations || [];
+  const status = (primary?.outcome.status || 'unknown') as StatusKey;
+  const citations = (primary?.outcome.citations || []) as (Citation | string)[];
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-8 space-y-6">
       <h1 className="text-xl font-semibold">{t.result.title}</h1>
       <div className="rounded-lg border p-4">
-        <div className="text-2xl">{(t.result.statuses as any)[status] || status}</div>
+        <div className="text-2xl">{t.result.statuses[status] || status}</div>
         {primary?.outcome.message && (
           <p className="text-sm text-zinc-600 mt-2">{primary.outcome.message}</p>
         )}
@@ -38,12 +42,17 @@ export default function Result() {
       <div className="space-y-2">
         <h2 className="font-medium">{t.result.sources}</h2>
         <ul className="list-disc pl-5 text-sm">
-          {(citations as any[]).map((c: any, i) => (
-            <li key={i}>
-              <a href={c.url || c} target="_blank" className="underline">{c.label || c.url || c}</a>
-              {c.snapshotId ? <span className="ml-2 text-xs text-zinc-500">({c.snapshotId})</span> : null}
-            </li>
-          ))}
+          {citations.map((c, i) => {
+            const citation: Citation = typeof c === 'string' ? { url: c } : c;
+            return (
+              <li key={i}>
+                <a href={citation.url || ''} target="_blank" rel="noopener noreferrer" className="underline">
+                  {citation.label || citation.url || ''}
+                </a>
+                {citation.snapshotId ? <span className="ml-2 text-xs text-zinc-500">({citation.snapshotId})</span> : null}
+              </li>
+            );
+          })}
         </ul>
       </div>
 

@@ -64,7 +64,9 @@ export default function VaultPage() {
           <div key={e.id} className="rounded-lg border p-4">
             <div className="text-xs text-zinc-500">{new Date(e.timestamp).toLocaleString()}</div>
             <div className="font-medium">{e.title}</div>
-            {e.type === 'file' && <div className="text-xs text-zinc-500">{e.payload?.type}</div>}
+            {e.type === 'file' && typeof e.payload?.type === 'string' && (
+              <div className="text-xs text-zinc-500">{e.payload.type}</div>
+            )}
             <button onClick={() => removeEntry(e.id)} className="mt-2 text-xs underline">Remove</button>
           </div>
         ))}

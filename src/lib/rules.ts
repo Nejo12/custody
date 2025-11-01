@@ -10,36 +10,46 @@ export type Outcome = {
   citations?: Citation[] | string[];
 };
 
+export type JSONLogicExpression =
+  | boolean
+  | string
+  | number
+  | { var: string }
+  | { all: JSONLogicExpression[] }
+  | { any: JSONLogicExpression[] }
+  | { '==': [JSONLogicExpression, JSONLogicExpression] }
+  | { '!=': [JSONLogicExpression, JSONLogicExpression] };
+
 export type SimpleRule = {
   id: string;
   version?: string;
   // Simple rules (v0.1): inputs is a map of key->expected value
   inputs?: Record<string, AnswerValue>;
   // JSON-logic style
-  logic?: any;
+  logic?: JSONLogicExpression;
   outcome: Outcome;
 };
 
 // Minimal JSON-logic evaluator supporting {all:[...]}, {any:[...]}, {"==":[a,b]}, {var:"key"}
-function evalLogic(expr: any, data: Answers): boolean {
+function evalLogic(expr: JSONLogicExpression, data: Answers): boolean {
   if (!expr) return false;
   if (typeof expr === "boolean") return expr;
-  if (Array.isArray(expr)) return expr.every((e) => evalLogic(e, data));
-  if (typeof expr === "object") {
+  if (typeof expr === "string" || typeof expr === "number") return false;
+  if (typeof expr === "object" && !Array.isArray(expr)) {
     if (Object.prototype.hasOwnProperty.call(expr, "all")) {
-      return (expr.all as any[]).every((e) => evalLogic(e, data));
+      return (expr as { all: JSONLogicExpression[] }).all.every((e) => evalLogic(e, data));
     }
     if (Object.prototype.hasOwnProperty.call(expr, "any")) {
-      return (expr.any as any[]).some((e) => evalLogic(e, data));
+      return (expr as { any: JSONLogicExpression[] }).any.some((e) => evalLogic(e, data));
     }
     if (Object.prototype.hasOwnProperty.call(expr, "==")) {
-      const [a, b] = expr["=="]; // eslint-disable-line dot-notation
+      const [a, b] = (expr as { '==': [JSONLogicExpression, JSONLogicExpression] })['=='];
       const av = resolve(a, data);
       const bv = resolve(b, data);
       return av === bv;
     }
     if (Object.prototype.hasOwnProperty.call(expr, "!=")) {
-      const [a, b] = expr["!="]; // eslint-disable-line dot-notation
+      const [a, b] = (expr as { '!=': [JSONLogicExpression, JSONLogicExpression] })['!='];
       const av = resolve(a, data);
       const bv = resolve(b, data);
       return av !== bv;
@@ -48,11 +58,11 @@ function evalLogic(expr: any, data: Answers): boolean {
   return false;
 }
 
-function resolve(node: any, data: Answers): any {
-  if (typeof node === "object" && node && Object.prototype.hasOwnProperty.call(node, "var")) {
-    return data[node.var as string];
+function resolve(node: JSONLogicExpression, data: Answers): AnswerValue | boolean | number | string {
+  if (typeof node === "object" && node && !Array.isArray(node) && Object.prototype.hasOwnProperty.call(node, "var")) {
+    return data[(node as { var: string }).var];
   }
-  return node;
+  return node as AnswerValue | boolean | number | string;
 }
 
 export function matchesSimple(rule: SimpleRule, answers: Answers): boolean {

@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
 import rulesData from '@/data/rules.json';
-import { evaluateRules, Answers } from '../rules';
+import { evaluateRules, Answers, SimpleRule } from '../rules';
 
 describe('rules engine', () => {
   it('detects married default joint custody', () => {
     const answers: Answers = { married_at_birth: 'yes' };
-    const { primary } = evaluateRules(rulesData as any, answers);
+    const { primary } = evaluateRules(rulesData as SimpleRule[], answers);
     expect(primary?.outcome.status).toBe('joint_custody_default');
   });
 
@@ -16,13 +16,13 @@ describe('rules engine', () => {
       joint_declaration: 'no',
       court_order: 'none',
     };
-    const { matched } = evaluateRules(rulesData as any, answers);
+    const { matched } = evaluateRules(rulesData as SimpleRule[], answers);
     expect(matched.some(r => r.outcome.status === 'eligible_joint_custody')).toBe(true);
   });
 
   it('suggests contact order when contact is blocked', () => {
     const answers: Answers = { blocked_contact: 'yes' };
-    const { primary } = evaluateRules(rulesData as any, answers);
+    const { primary } = evaluateRules(rulesData as SimpleRule[], answers);
     expect(primary?.outcome.status).toBe('apply_contact_order');
   });
 });
