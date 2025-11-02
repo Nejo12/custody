@@ -40,6 +40,34 @@ const en = {
         label: "Is your contact with the child blocked or restricted?",
         help: "Courts can set contact (Umgang) arrangements (§1684 BGB).",
       },
+      living_together_currently: {
+        label: "Are you currently living together?",
+        help: "Living together can affect practical arrangements, not legal custody rules.",
+      },
+      child_age_under_three: {
+        label: "Is the child under 3 years old?",
+        help: "Younger children may influence contact schedules, not custody status.",
+      },
+      history_of_violence: {
+        label: "Is there a history of violence or threats?",
+        help: "Safety first. Supervised contact may be appropriate in some cases.",
+      },
+      mediation_tried: {
+        label: "Have you tried mediation through Jugendamt or services?",
+        help: "Mediation can be requested before or alongside court action.",
+      },
+      existing_visitation_plan: {
+        label: "Do you already have a written visitation plan?",
+        help: "Existing plans can be formalized or adjusted by agreement or court.",
+      },
+      distance_km: {
+        label: "Approximate distance between parents?",
+        help: "Distance can shape a realistic schedule (weekday vs. weekend).",
+      },
+      parental_agreement_possible: {
+        label: "Is a mutual agreement likely?",
+        help: "If yes, a joint declaration or mediated plan may be fastest.",
+      },
     },
   },
   result: {
@@ -53,6 +81,7 @@ const en = {
       joint_custody_default: "Joint custody by default",
       eligible_joint_custody: "Eligible for joint custody application",
       apply_contact_order: "You can request a visitation/contact order",
+      consider_supervised_contact: "Consider supervised contact due to safety concerns",
       unknown: "We need more information",
     },
   },
@@ -86,4 +115,3 @@ const en = {
 };
 
 export default en;
-

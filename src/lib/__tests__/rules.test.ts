@@ -208,5 +208,10 @@ describe('rules engine', () => {
       expect(matchesSimple(rule, answers)).toBe(true);
     });
   });
-});
 
+  it('considers supervised contact when safety concerns present', () => {
+    const answers: Answers = { history_of_violence: 'yes' } as Answers;
+    const { matched } = evaluateRules(rulesData as SimpleRule[], answers);
+    expect(matched.some(r => r.outcome.status === 'consider_supervised_contact')).toBe(true);
+  });
+});

@@ -4,6 +4,7 @@ import "./globals.css";
 import { I18nProvider } from "@/i18n";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import ThemeInit from "@/components/ThemeInit";
 
 const geistSans = Geist({
@@ -19,6 +20,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Custody Clarity",
   description: "Guided custody and contact rights information.",
+  manifest: "/manifest.webmanifest",
+  themeColor: "#0a0a0a",
 };
 
 export default function RootLayout({
@@ -34,6 +37,7 @@ export default function RootLayout({
         <ThemeInit />
         <I18nProvider>
           <div className="min-h-screen flex flex-col items-stretch">
+            <ServiceWorkerRegister />
             <Header />
             <main className="flex-1 w-full flex flex-col items-center">
               {children}

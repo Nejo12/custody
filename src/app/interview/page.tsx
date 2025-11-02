@@ -1,9 +1,10 @@
 "use client";
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useI18n } from '@/i18n';
 import Progress from '@/components/Progress';
 import { useRouter } from 'next/navigation';
 import { useAppStore } from '@/store/app';
+import questions from '@/data/questions';
 import type { TranslationDict } from '@/types';
 
 type Q = { id: string; type?: 'yn' | 'enum'; options?: { value: string; label: string }[] };
@@ -16,19 +17,7 @@ export default function Interview() {
   const { setAnswer } = useAppStore();
   const [step, setStep] = useState(0);
 
-  const questions: Q[] = useMemo(() => [
-    { id: 'married_at_birth', type: 'yn' },
-    { id: 'paternity_ack', type: 'yn' },
-    { id: 'joint_declaration', type: 'yn' },
-    { id: 'court_order', type: 'enum', options: [
-      { value: 'none', label: 'No order' },
-      { value: 'exists', label: 'Yes, order exists' },
-      { value: 'unknown', label: 'Not sure' },
-    ] },
-    { id: 'blocked_contact', type: 'yn' },
-  ], []);
-
-  const current = questions[step];
+  const current = (questions as Q[])[step];
   const questionKey = current.id as QuestionKey;
   const questionData = t.interview.questions[questionKey];
 
@@ -93,4 +82,3 @@ export default function Interview() {
     </div>
   );
 }
-

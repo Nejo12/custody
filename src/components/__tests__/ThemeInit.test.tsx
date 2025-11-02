@@ -12,7 +12,7 @@ describe('ThemeInit', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (useAppStore as ReturnType<typeof vi.fn>).mockReturnValue({
+    (useAppStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
       updateResolvedTheme: mockUpdateResolvedTheme,
     });
   });
@@ -32,7 +32,7 @@ describe('ThemeInit', () => {
     expect(mockUpdateResolvedTheme).toHaveBeenCalledTimes(1);
     
     const newMockUpdateResolvedTheme = vi.fn();
-    (useAppStore as ReturnType<typeof vi.fn>).mockReturnValue({
+    (useAppStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
       updateResolvedTheme: newMockUpdateResolvedTheme,
     });
     

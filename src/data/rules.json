@@ -39,6 +39,23 @@
     }
   },
   {
+    "id": "contact.safety.supervised",
+    "version": "2025-01-01",
+    "logic": {
+      "all": [
+        {"==": [{"var": "history_of_violence"}, "yes"]}
+      ]
+    },
+    "outcome": {
+      "status": "consider_supervised_contact",
+      "message": "Due to safety concerns, consider supervised contact and safety planning.",
+      "actions": ["consider_supervised_contact", "seek_legal_advice"],
+      "citations": [
+        {"label": "BGB §1684", "url": "https://gesetze-im-internet.de/bgb/__1684.html", "snapshotId": "bgb-1684-2025-01"}
+      ]
+    }
+  },
+  {
     "id": "custody.unmarried.path_to_joint",
     "version": "2025-01-01",
     "logic": {
@@ -62,4 +79,3 @@
     }
   }
 ]
-

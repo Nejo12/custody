@@ -2,10 +2,11 @@
 import { useMemo, useState } from 'react';
 import { useAppStore, type Entry } from '@/store/app';
 import { useI18n } from '@/i18n';
+import { buildZipExport } from '@/lib/export';
 
 export default function VaultPage() {
   const { t } = useI18n();
-  const { vault, addEntry, removeEntry, exportData } = useAppStore();
+  const { vault, addEntry, removeEntry } = useAppStore();
   const [tab, setTab] = useState<'documents' | 'notes' | 'payments'>('documents');
   const entries = vault.entries;
 
@@ -31,12 +32,20 @@ export default function VaultPage() {
     ev.currentTarget.value = '';
   }
 
-  function downloadExport() {
-    const blob = new Blob([exportData()], { type: 'application/json' });
+  async function downloadExport() {
+    const zipBytes = await buildZipExport({
+      locale: (navigator.language?.startsWith('de') ? 'de' : 'en'),
+      interview: useAppStore.getState().interview,
+      vault: useAppStore.getState().vault,
+    });
+    const buf = new ArrayBuffer(zipBytes.byteLength);
+    const view = new Uint8Array(buf);
+    view.set(zipBytes);
+    const blob = new Blob([buf], { type: 'application/zip' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `custody-clarity-export-${new Date().toISOString().slice(0,10)}.json`;
+    a.download = `custody-clarity-export-${new Date().toISOString().slice(0,10)}.zip`;
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -74,4 +83,3 @@ export default function VaultPage() {
     </div>
   );
 }
-

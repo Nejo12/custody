@@ -40,6 +40,34 @@ const de = {
         label: "Ist dein Umgang mit dem Kind blockiert oder eingeschränkt?",
         help: "Gerichte können Umgang regeln (§1684 BGB).",
       },
+      living_together_currently: {
+        label: "Lebt ihr derzeit zusammen?",
+        help: "Zusammenleben betrifft praktische Regelungen, nicht die Sorgerechtslage.",
+      },
+      child_age_under_three: {
+        label: "Ist das Kind unter 3 Jahren?",
+        help: "Alter kann die Umgangsgestaltung beeinflussen, nicht den Sorgestatus.",
+      },
+      history_of_violence: {
+        label: "Gibt es Gewalt- oder Drohungsvorfälle?",
+        help: "Sicherheit zuerst. Begleiteter Umgang kann passend sein.",
+      },
+      mediation_tried: {
+        label: "Habt ihr Mediation/Jugendamt versucht?",
+        help: "Mediation kann vor oder neben dem Gericht helfen.",
+      },
+      existing_visitation_plan: {
+        label: "Gibt es bereits einen schriftlichen Umgangsplan?",
+        help: "Bestehende Pläne können formalisiert oder angepasst werden.",
+      },
+      distance_km: {
+        label: "Entfernung zwischen den Eltern?",
+        help: "Entfernung beeinflusst realistische Pläne (Wochentag/Wochenende).",
+      },
+      parental_agreement_possible: {
+        label: "Ist eine Einigung wahrscheinlich?",
+        help: "Bei Ja sind gemeinsame Erklärung oder Mediation oft am schnellsten.",
+      },
     },
   },
   result: {
@@ -53,6 +81,7 @@ const de = {
       joint_custody_default: "Gemeinsames Sorgerecht (Standard)",
       eligible_joint_custody: "Antrag auf gemeinsames Sorgerecht möglich",
       apply_contact_order: "Umgangsregelung kann beantragt werden",
+      consider_supervised_contact: "Begleiteter Umgang wegen Sicherheitsbedenken erwägen",
       unknown: "Weitere Angaben erforderlich",
     },
   },
@@ -86,4 +115,3 @@ const de = {
 };
 
 export default de;
-
