@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import en from "./en";
 import de from "./de";
 import ar from "./ar";
@@ -32,18 +32,38 @@ type I18nContextType = {
 const I18nContext = createContext<I18nContextType | null>(null);
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = useState<Locale>(() => {
-    if (typeof window === "undefined") return "en";
-    return (localStorage.getItem("locale") as Locale) || "en";
-  });
+  // Always start with "en" to avoid hydration mismatch
+  const [locale, setLocaleState] = useState<Locale>("en");
+  const hasInitialized = useRef(false);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("locale", locale);
-      document.documentElement.lang = locale;
-      document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
-      document.title = appNames[locale];
+  // Load locale from localStorage after mount (client-side only)
+  // Using useLayoutEffect to avoid hydration mismatch
+  // This is necessary for Next.js hydration - we must load from localStorage after mount
+  useLayoutEffect(() => {
+    if (!hasInitialized.current && typeof window !== "undefined") {
+      hasInitialized.current = true;
+      const savedLocale = (localStorage.getItem("locale") as Locale) || "en";
+      if (savedLocale !== "en") {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setLocaleState(savedLocale);
+      }
     }
+  }, []); // Only run once on mount
+
+  // Update locale and sync to localStorage/DOM
+  const setLocale = (newLocale: Locale) => {
+    setLocaleState(newLocale);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("locale", newLocale);
+    }
+  };
+
+  // Sync locale to DOM attributes
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    document.documentElement.lang = locale;
+    document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
+    document.title = appNames[locale];
   }, [locale]);
 
   const value = useMemo(
