@@ -2,11 +2,26 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import en from "./en";
 import de from "./de";
+import ar from "./ar";
+import pl from "./pl";
+import fr from "./fr";
+import tr from "./tr";
+import ru from "./ru";
 
-type Locale = "en" | "de";
+type Locale = "en" | "de" | "ar" | "pl" | "fr" | "tr" | "ru";
 type Dict = typeof en;
 
-const dictionaries: Record<Locale, Dict> = { en, de };
+const dictionaries: Record<Locale, Dict> = { en, de, ar, pl, fr, tr, ru };
+
+const appNames: Record<Locale, string> = {
+  en: "Custody Clarity",
+  de: "ElternWeg",
+  ar: "وضوح الحضانة",
+  pl: "Jasność Opieki",
+  fr: "Clarté de la Garde",
+  tr: "Vesayet Netliği",
+  ru: "Ясность Опеки",
+};
 
 type I18nContextType = {
   locale: Locale;
@@ -26,7 +41,8 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     if (typeof window !== "undefined") {
       localStorage.setItem("locale", locale);
       document.documentElement.lang = locale;
-      document.title = locale === "de" ? "ElternWeg" : "Custody Clarity";
+      document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
+      document.title = appNames[locale];
     }
   }, [locale]);
 

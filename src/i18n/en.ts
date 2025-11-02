@@ -76,6 +76,10 @@ const en = {
   settings: {
     title: "Settings",
     language: "Language",
+    theme: "Theme",
+    themeLight: "Light",
+    themeDark: "Dark",
+    themeSystem: "System",
     about: "About",
     dataExport: "Data export",
   },

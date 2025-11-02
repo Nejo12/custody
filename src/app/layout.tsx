@@ -4,6 +4,7 @@ import "./globals.css";
 import { I18nProvider } from "@/i18n";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ThemeInit from "@/components/ThemeInit";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,10 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ThemeInit />
         <I18nProvider>
           <div className="min-h-screen flex flex-col items-stretch">
             <Header />

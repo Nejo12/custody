@@ -16,8 +16,13 @@ export type InterviewState = {
 };
 
 type AppState = {
-  locale: 'en' | 'de';
-  setLocale: (l: 'en' | 'de') => void;
+  locale: 'en' | 'de' | 'ar' | 'pl' | 'fr' | 'tr' | 'ru';
+  setLocale: (l: 'en' | 'de' | 'ar' | 'pl' | 'fr' | 'tr' | 'ru') => void;
+
+  theme: 'light' | 'dark' | 'system';
+  setTheme: (t: 'light' | 'dark' | 'system') => void;
+  resolvedTheme: 'light' | 'dark';
+  updateResolvedTheme: () => void;
 
   interview: InterviewState;
   setAnswer: (key: string, value: string) => void;
@@ -29,35 +34,71 @@ type AppState = {
   exportData: () => string;
 };
 
+const getSystemTheme = (): 'light' | 'dark' => {
+  if (typeof window === 'undefined') return 'light';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+};
+
 export const useAppStore = create<AppState>()(
   persist(
-    (set, get) => ({
-      locale: (typeof window !== 'undefined' && (localStorage.getItem('locale') as 'en' | 'de')) || 'en',
-      setLocale: (l) => set({ locale: l }),
-      interview: {
-        version: '2025-01-01',
-        answers: {},
-      },
-      setAnswer: (key, value) => set((s) => ({
-        interview: { ...s.interview, answers: { ...s.interview.answers, [key]: value } },
-      })),
-      resetInterview: () => set({ interview: { version: '2025-01-01', answers: {} } }),
-      vault: { entries: [] },
-      addEntry: (e) => set((s) => ({ vault: { entries: [e, ...s.vault.entries] } })),
-      removeEntry: (id) => set((s) => ({ vault: { entries: s.vault.entries.filter((e) => e.id !== id) } })),
-      exportData: () => {
-        const data = {
-          locale: get().locale,
-          interview: get().interview,
-          vault: get().vault,
-        };
-        return JSON.stringify(data, null, 2);
-      },
-    }),
+    (set, get) => {
+      const getInitialTheme = (): 'light' | 'dark' | 'system' => {
+        if (typeof window === 'undefined') return 'system';
+        return (localStorage.getItem('theme') as 'light' | 'dark' | 'system') || 'system';
+      };
+
+      const computeResolvedTheme = (theme: 'light' | 'dark' | 'system'): 'light' | 'dark' => {
+        return theme === 'system' ? getSystemTheme() : theme;
+      };
+
+      const initialTheme = getInitialTheme();
+      const initialResolvedTheme = computeResolvedTheme(initialTheme);
+
+      return {
+        locale: (typeof window !== 'undefined' && (localStorage.getItem('locale') as AppState['locale'])) || 'en',
+        setLocale: (l) => set({ locale: l }),
+        theme: initialTheme,
+        setTheme: (t) => {
+          set({ theme: t });
+          get().updateResolvedTheme();
+        },
+        resolvedTheme: initialResolvedTheme,
+        updateResolvedTheme: () => {
+          const theme = get().theme;
+          const resolved = computeResolvedTheme(theme);
+          set({ resolvedTheme: resolved });
+          if (typeof window !== 'undefined') {
+            const html = document.documentElement;
+            html.classList.remove('light', 'dark');
+            html.classList.add(resolved);
+          }
+        },
+        interview: {
+          version: '2025-01-01',
+          answers: {},
+        },
+        setAnswer: (key, value) => set((s) => ({
+          interview: { ...s.interview, answers: { ...s.interview.answers, [key]: value } },
+        })),
+        resetInterview: () => set({ interview: { version: '2025-01-01', answers: {} } }),
+        vault: { entries: [] },
+        addEntry: (e) => set((s) => ({ vault: { entries: [e, ...s.vault.entries] } })),
+        removeEntry: (id) => set((s) => ({ vault: { entries: s.vault.entries.filter((e) => e.id !== id) } })),
+        exportData: () => {
+          const data = {
+            locale: get().locale,
+            theme: get().theme,
+            interview: get().interview,
+            vault: get().vault,
+          };
+          return JSON.stringify(data, null, 2);
+        },
+      };
+    },
     {
       name: 'custody-clarity',
       storage: createJSONStorage(() => localStorage),
-      partialize: (s) => ({ locale: s.locale, interview: s.interview, vault: s.vault }),
+      partialize: (s) => ({ locale: s.locale, theme: s.theme, interview: s.interview, vault: s.vault }),
     }
   )
 );

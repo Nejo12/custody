@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import LanguageSwitch from './LanguageSwitch';
+import ThemeSwitch from './ThemeSwitch';
 import { useI18n } from '@/i18n';
 
 export default function Header() {
@@ -12,6 +13,7 @@ export default function Header() {
       </Link>
       <div className="flex items-center gap-3">
         <Link href="/settings" className="text-sm underline decoration-dotted">Settings</Link>
+        <ThemeSwitch />
         <LanguageSwitch />
       </div>
     </header>
