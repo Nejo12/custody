@@ -1,48 +1,91 @@
-import { NextRequest } from 'next/server';
 import { PDFDocument, StandardFonts, PDFFont } from 'pdf-lib';
 import type { Citation, ErrorWithMessage } from '@/types';
 import type { Schedule } from '@/lib/schedule';
 
+type Court = { name?: string; address?: string };
+type PartyRole = 'parentA' | 'parentB';
+type UmgangForm = {
+  proposal?: Schedule;
+  court?: Court;
+  roles?: { applicant?: PartyRole; respondent?: PartyRole };
+  interim?: boolean;
+  place?: string;
+  dateISO?: string;
+} & Record<string, unknown>;
+
 type RequestBody = {
-  formData?: { proposal?: Schedule } & Record<string, unknown>;
+  formData?: UmgangForm;
   citations?: Citation[] | string[];
   snapshotIds?: string[];
   locale?: string;
 };
 
-export async function POST(req: NextRequest) {
+const PAGE_SIZE: [number, number] = [595.28, 841.89];
+const MARGIN_X = 50;
+const MARGIN_Y = 40;
+const Y_START = 800 - MARGIN_Y;
+
+export async function POST(req: Request) {
   try {
     const body: RequestBody = await req.json();
     const { formData = {}, citations = [], snapshotIds = [], locale = 'de' } = body;
     const doc = await PDFDocument.create();
     const font = await doc.embedFont(StandardFonts.Helvetica);
-    let page = doc.addPage([595.28, 841.89]);
+    let page = doc.addPage(PAGE_SIZE);
 
     const title = locale === 'de' ? 'Antrag auf Umgangsregelung' : 'Contact/Visitation order application';
-    page.drawText(title, { x: 50, y: 800, size: 16, font });
+    doc.setTitle(title);
+    doc.setSubject(locale === 'de' ? 'Amtsgericht – Familiengericht; Vorgeschlagener Umgang; Einstweilige Anordnung; Unterschrift' : 'Local Court – Family Court; Proposed schedule; Interim relief; Signature');
+    doc.setKeywords([
+      title,
+      locale === 'de' ? 'Amtsgericht' : 'Court',
+      locale === 'de' ? 'Vorgeschlagener Umgang' : 'Proposed schedule',
+      locale === 'de' ? 'Einstweilige Anordnung' : 'Interim relief',
+      locale === 'de' ? 'Unterschrift' : 'Signature'
+    ]);
 
-    const marginX = 50;
-    const marginY = 40;
-    const yStart = 800 - marginY;
-    let y = yStart;
+    page.drawText(locale === 'de' ? 'An das Amtsgericht – Familiengericht' : 'To the Local Court – Family Court', { x: MARGIN_X, y: 800, size: 10, font });
+    page.drawText(title, { x: MARGIN_X, y: 785, size: 16, font });
+
+    let y = Y_START;
 
     const drawHeading = (text: string) => {
-      if (y < marginY + 20) { page = doc.addPage([595.28, 841.89]); y = yStart; }
-      page.drawText(text, { x: marginX, y, size: 12, font });
+      if (y < MARGIN_Y + 20) {
+        page = doc.addPage(PAGE_SIZE);
+        y = Y_START;
+      }
+      page.drawText(text, { x: MARGIN_X, y, size: 12, font });
       y -= 16;
     };
 
     const drawField = (label: string, value: string) => {
       if (!value) return;
-      const maxWidth = 595.28 - marginX * 2;
+      const maxWidth = PAGE_SIZE[0] - MARGIN_X * 2;
       const lines = wrapText(`${label}: ${value}`, maxWidth, font, 10);
       for (const line of lines) {
-        if (y < marginY + 10) { page = doc.addPage([595.28, 841.89]); y = yStart; }
-        page.drawText(line, { x: marginX + 10, y, size: 10, font });
+        if (y < MARGIN_Y + 10) {
+          page = doc.addPage(PAGE_SIZE);
+          y = Y_START;
+        }
+        page.drawText(line, { x: MARGIN_X + 10, y, size: 10, font });
         y -= 12;
       }
     };
-    // Render schedule if provided
+
+    const court = formData.court || {};
+    const roles = formData.roles || {};
+
+    drawHeading(locale === 'de' ? 'Gericht' : 'Court');
+    if (court.name) drawField(locale === 'de' ? 'Name' : 'Name', court.name);
+    if (court.address) drawField(locale === 'de' ? 'Adresse' : 'Address', court.address);
+
+    if (roles.applicant || roles.respondent) {
+      drawHeading(locale === 'de' ? 'Parteien' : 'Parties');
+      const roleLabel = (r?: PartyRole) => r === 'parentA' ? 'Elternteil A' : r === 'parentB' ? 'Elternteil B' : '';
+      if (roles.applicant) drawField(locale === 'de' ? 'Antragsteller' : 'Applicant', roleLabel(roles.applicant));
+      if (roles.respondent) drawField(locale === 'de' ? 'Antragsgegner' : 'Respondent', roleLabel(roles.respondent));
+    }
+
     const proposal = formData.proposal;
     if (proposal && proposal.weekday) {
       drawHeading(locale === 'de' ? 'Vorgeschlagener Umgang' : 'Proposed schedule');
@@ -55,16 +98,24 @@ export async function POST(req: NextRequest) {
         drawField(label, String(val || '-'));
       }
       const weekend = proposal.weekend || {};
-      drawField(locale==='de'?'Wochenende (gerade)':'Weekend even', String(weekend.even || '-'));
-      drawField(locale==='de'?'Wochenende (ungerade)':'Weekend odd', String(weekend.odd || '-'));
+      drawField(locale === 'de' ? 'Wochenende (gerade)' : 'Weekend even', String(weekend.even || '-'));
+      drawField(locale === 'de' ? 'Wochenende (ungerade)' : 'Weekend odd', String(weekend.odd || '-'));
       const handover = proposal.handover || {};
-      if (handover.location) drawField(locale==='de'?'Übergabe':'Handover', handover.location);
-    } else {
-      const entries = Object.entries(formData);
-      for (const [k, v] of entries.slice(0, 24)) {
-        drawField(k, typeof v === 'string' ? v : JSON.stringify(v));
-      }
+      if (handover.location) drawField(locale === 'de' ? 'Übergabe' : 'Handover', handover.location);
     }
+
+    if (formData.interim) {
+      y -= 6;
+      drawHeading(locale === 'de' ? 'Einstweilige Anordnung' : 'Interim relief');
+      drawField('', locale === 'de' ? 'Es wird hilfsweise die einstweilige Anordnung beantragt.' : 'Applicant also requests interim relief.');
+    }
+
+    y -= 10;
+    drawHeading(locale === 'de' ? 'Unterschrift' : 'Signature');
+    const dateText = formData.dateISO || new Date().toISOString().slice(0, 10);
+    const placeText = formData.place || '';
+    drawField(locale === 'de' ? 'Ort, Datum' : 'Place, Date', `${placeText} ${dateText}`.trim());
+    drawField(locale === 'de' ? 'Unterschrift Antragsteller(in)' : 'Applicant signature', '____________________________');
 
     const date = new Date().toISOString().slice(0, 10);
     const sourcesStr = citations.map((c): string => {
@@ -73,7 +124,7 @@ export async function POST(req: NextRequest) {
     }).join(', ');
     const snapshotStr = snapshotIds.join(', ');
     const footer = `Generated on ${date}. Sources: ${sourcesStr}. Snapshots: ${snapshotStr}. Information, not legal advice.`;
-    page.drawText(footer.slice(0, 240), { x: marginX, y: marginY, size: 8, font });
+    page.drawText(footer.slice(0, 240), { x: MARGIN_X, y: MARGIN_Y, size: 8, font });
 
     const bytes = await doc.save();
     return new Response(Buffer.from(bytes), { headers: { 'Content-Type': 'application/pdf' } });

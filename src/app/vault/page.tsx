@@ -65,7 +65,7 @@ export default function VaultPage() {
           {t.vault.addFile}
           <input type="file" className="hidden" onChange={addFile} />
         </label>
-        <button onClick={downloadExport} className="underline text-sm">{t.vault.exportData}</button>
+        <button onClick={downloadExport} className="underline text-sm hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black rounded px-2 py-1">{t.vault.exportData}</button>
       </div>
 
       <div className="space-y-3">

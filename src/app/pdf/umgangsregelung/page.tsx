@@ -74,7 +74,7 @@ export default function UmgangPage() {
         <div className="font-medium">Preview</div>
         <pre className="whitespace-pre-wrap bg-zinc-50 p-2 rounded border">{JSON.stringify(normalizeSchedule(form.proposal||{}), null, 2)}</pre>
       </div>
-      <button onClick={onDownload} disabled={downloading} className="rounded-lg border px-4 py-2 hover:bg-zinc-50">
+      <button onClick={onDownload} disabled={downloading} className="rounded-lg border px-4 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black">
         {downloading ? '...' : t.common.download}
       </button>
     </div>

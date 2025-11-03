@@ -1,16 +1,31 @@
-import '@testing-library/jest-dom';
 import { vi } from 'vitest';
+import '@testing-library/jest-dom/vitest';
 
-// Mock matchMedia for theme tests
-Object.defineProperty(window, 'matchMedia', {
-  writable: true,
-  value: vi.fn().mockImplementation((query: string) => ({
-    matches: query === '(prefers-color-scheme: dark)',
-    media: query,
-    onchange: null,
-    addEventListener: vi.fn(),
-    removeEventListener: vi.fn(),
-    dispatchEvent: vi.fn(),
-  })),
+vi.mock('next/font/google', () => {
+  return {
+    Geist: () => ({ className: 'geist', variable: '--font-geist-sans' }),
+    Geist_Mono: () => ({ className: 'geist-mono', variable: '--font-geist-mono' }),
+  };
 });
+
+vi.mock('next/link', () => ({ default: ({ href, children }: { href: string; children: React.ReactNode }) => {
+  return { type: 'a', props: { href, children } } as React.ReactElement<{ href: string; children: React.ReactNode }>;
+} }));
+
+// Stub matchMedia for tests
+if (typeof window !== 'undefined') {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: (query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    }),
+  });
+}
 

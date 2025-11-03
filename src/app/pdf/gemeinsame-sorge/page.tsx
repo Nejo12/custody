@@ -53,10 +53,9 @@ export default function GSPage() {
         <label className="block text-sm">Parent A address<input className="mt-1 w-full rounded border px-3 py-2" value={form.parentA?.address||''} onChange={(e)=>setForm({...form, parentA: {...form.parentA, address: e.target.value}})} /></label>
         <label className="block text-sm">Parent B full name<input className="mt-1 w-full rounded border px-3 py-2" value={form.parentB?.fullName||''} onChange={(e)=>setForm({...form, parentB: {...form.parentB, fullName: e.target.value}})} /></label>
       </div>
-      <button onClick={onDownload} disabled={downloading} className="rounded-lg border px-4 py-2 hover:bg-zinc-50">
+      <button onClick={onDownload} disabled={downloading} className="rounded-lg border px-4 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black">
         {downloading ? '...' : t.common.download}
       </button>
     </div>
   );
 }
-

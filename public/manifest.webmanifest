@@ -8,19 +8,8 @@
   "lang": "en",
   "scope": "/",
   "icons": [
-    { "src": "/vercel.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" },
-    { "src": "/next.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" },
-    {
-      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADAAQMAAABrWQ0yAAAABlBMVEUA3v8AqP9y3tHfAAAAA3RSTlMAMK1Cl9c3AAABBUlEQVR4nO3UsQ3CMBQF0XcY0aZ0c9i+gJjBqQ7k+z0J8u2kqVg1WmQnA4qB1b0sm3O2Wg2l8I0vI6z0J7k5m6G7b0m0wQ8mX3e1s+1cQYzqK9R5Ck4m0+Rj2yM3k6pK2gVv1g0S1m9r7aH4d7K9m6+2V3Jm9uWQkqk2rT0V4f1uJ8v3v9Vq7iQvYlS0mWkYbD0Gyzb0hA0nVdY0YbS9v1oQqgJqgRqgZqgZqgRqgJqgRqgZqgZqgRqgJqgRqgZqgZqgRqn7kJ0s1+0f1mJ3h9YH0mQ2b9oGv0Xw7U8m0HkS9GkX9l6C9m2w9s2k3kT9Y8b+VxB8F9D8G8H8C8D8B8A8AAABAgQIECBAwI9wBniy8vW8B5oAAAAASUVORK5CYII=",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIABAMAAABm1t6aAAAABlBMVEUA3v8AqP9y3tHfAAAAA3RSTlMAMK1Cl9c3AAABYklEQVR4nO3SMQ2DMBAF0a3Qq6bB3Yg1sG2cG2bH4j0yHc2aB3T8yJ4mYx8A3x4b3i6N2m9gk3p5Y1n9e2n1oQv8t7r0C3nT5h7b8y9Y8Y4qgZqgRqgJqgRqgZqgZqgRqgJqgRqgZqgZqgRqgJqgRqgZqgZqgRqgJqgRqgZqgZqgRqgJqgRqgZqgZqgRqgJqgRqgZqgZqgRqgJqgRqgZqgZqi7wM1v2k7cP9b4uT5g9n8b0r2z8c2j3Y9n8b0r2z8c2j3Y9n8b0r2z8c2j3Y9n8b0r2z8c2j3a8o4w9E0Jm02tF9Y2J9b3r6y0m0s0GkV9Y0J60Yk0mVY0J60Yk0mVY0J60Yk0mVY0J60Yk0mVY0J6+gP8C8D8B8A8AAABAgQIECBAgE8wBNxFz9mXkWmAAAAAElFTkSuQmCC",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable any"
-    }
+    { "src": "/icons/custody-clarity.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/custody-clarity.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/custody-clarity.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any maskable" }
   ]
 }
