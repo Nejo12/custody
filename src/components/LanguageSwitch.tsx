@@ -1,31 +1,47 @@
 "use client";
 import { useI18n } from '@/i18n';
+import { useState } from 'react';
 
-const languages: { code: 'en' | 'de' | 'ar' | 'pl' | 'fr' | 'tr' | 'ru'; label: string }[] = [
-  { code: 'en', label: 'EN' },
-  { code: 'de', label: 'DE' },
-  { code: 'ar', label: 'AR' },
-  { code: 'pl', label: 'PL' },
-  { code: 'fr', label: 'FR' },
-  { code: 'tr', label: 'TR' },
-  { code: 'ru', label: 'RU' },
+type Locale = 'en'|'de'|'ar'|'pl'|'fr'|'tr'|'ru';
+const locales: Array<{ code: Locale; label: string }> = [
+  { code: 'en', label: 'English' },
+  { code: 'de', label: 'Deutsch' },
+  { code: 'ar', label: 'العربية' },
+  { code: 'pl', label: 'Polski' },
+  { code: 'fr', label: 'Français' },
+  { code: 'tr', label: 'Türkçe' },
+  { code: 'ru', label: 'Русский' },
 ];
 
 export default function LanguageSwitch() {
   const { locale, setLocale } = useI18n();
+  const [open, setOpen] = useState(false);
+  const active = locales.find(l => l.code === (locale as Locale));
   return (
-    <div className="inline-flex rounded-full border border-zinc-300 overflow-hidden text-sm">
-      {languages.map((lang) => (
-        <button
-          key={lang.code}
-          onClick={() => setLocale(lang.code)}
-          className={`px-3 py-1 ${locale === lang.code ? 'bg-black text-white' : 'bg-white text-black'}`}
-          aria-pressed={locale === lang.code}
-        >
-          {lang.label}
-        </button>
-      ))}
+    <div className="relative text-sm" onMouseLeave={() => setOpen(false)}>
+      <button
+        className="rounded-full border px-3 py-1 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={() => setOpen(v => !v)}
+        title="Change language"
+      >
+        {active?.label || (locale.toUpperCase())}
+      </button>
+      {open && (
+        <ul role="listbox" className="absolute right-0 mt-1 w-44 rounded-lg border bg-white shadow-md dark:bg-zinc-900 dark:border-zinc-700 z-50">
+          {locales.map(l => (
+            <li key={l.code} role="option" aria-selected={locale===l.code}>
+              <button
+                onClick={() => { setLocale(l.code); setOpen(false); }}
+                className={`w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${locale===l.code?'font-medium':''}`}
+              >
+                {l.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
-

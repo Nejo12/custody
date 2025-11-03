@@ -110,6 +110,18 @@ export async function POST(req: Request) {
       drawField('', locale === 'de' ? 'Es wird hilfsweise die einstweilige Anordnung beantragt.' : 'Applicant also requests interim relief.');
     }
 
+    // Attachments (checkbox style)
+    const drawCheckbox = (label: string) => {
+      if (y < MARGIN_Y + 12) { page = doc.addPage(PAGE_SIZE); y = Y_START; }
+      page.drawRectangle({ x: MARGIN_X + 10, y: y - 10, width: 10, height: 10, borderWidth: 1 });
+      page.drawText(label, { x: MARGIN_X + 26, y: y - 2, size: 10, font });
+      y -= 14;
+    };
+    y -= 6;
+    drawHeading(locale === 'de' ? 'Anlagen' : 'Attachments');
+    drawCheckbox(locale === 'de' ? 'Kommunikation/Logs' : 'Communications/Logs');
+    drawCheckbox(locale === 'de' ? 'Nachweise Zahlungen' : 'Proof of payments');
+
     y -= 10;
     drawHeading(locale === 'de' ? 'Unterschrift' : 'Signature');
     const dateText = formData.dateISO || new Date().toISOString().slice(0, 10);

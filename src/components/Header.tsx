@@ -18,6 +18,7 @@ export default function Header() {
           <button
             className="text-sm underline decoration-dotted hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black rounded px-2 py-1"
             onClick={() => { void promptInstall(); }}
+            title="Installable on supported mobile browsers"
           >
             Install App
           </button>

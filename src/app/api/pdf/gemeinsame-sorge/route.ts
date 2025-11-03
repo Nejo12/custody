@@ -69,6 +69,12 @@ export async function POST(req: Request) {
         y -= 12;
       }
     };
+    const drawCheckbox = (label: string) => {
+      if (y < marginY + 12) { page = doc.addPage([595.28, 841.89]); y = yStart; }
+      page.drawRectangle({ x: marginX + 10, y: y - 10, width: 10, height: 10, borderWidth: 1 });
+      page.drawText(label, { x: marginX + 26, y: y - 2, size: 10, font });
+      y -= 14;
+    };
 
     // Court block
     drawHeading(locale === 'de' ? 'Gericht' : 'Court');
@@ -85,13 +91,17 @@ export async function POST(req: Request) {
     drawField(locale==='de'?'Name':'Name', String(parentB.fullName || ''));
     drawField(locale==='de'?'Adresse':'Address', String(parentB.address || ''));
 
-    // Roles
+    // Roles (ensure the words appear even if names are empty)
     if (roles.applicant || roles.respondent) {
       y -= 6;
       drawHeading(locale==='de' ? 'Parteien' : 'Parties');
       const roleLabel = (r?: PartyRole) => r === 'parentA' ? (parentA.fullName || 'Elternteil A') : r === 'parentB' ? (parentB.fullName || 'Elternteil B') : '';
       if (roles.applicant) drawField(locale==='de'?'Antragsteller':'Applicant', roleLabel(roles.applicant));
       if (roles.respondent) drawField(locale==='de'?'Antragsgegner':'Respondent', roleLabel(roles.respondent));
+    } else {
+      y -= 6; drawHeading(locale==='de' ? 'Parteien' : 'Parties');
+      drawField(locale==='de'?'Antragsteller':'Applicant', '');
+      drawField(locale==='de'?'Antragsgegner':'Respondent', '');
     }
 
     y -= 6;
@@ -120,7 +130,9 @@ export async function POST(req: Request) {
     // Anlagen (attachments)
     y -= 6;
     drawHeading(locale==='de' ? 'Anlagen' : 'Attachments');
-    drawField('', locale==='de' ? 'Geburtsurkunden, Vaterschaftsanerkennung, Kommunikation/Logs.' : 'Birth certificates, paternity acknowledgement, communications/logs.');
+    drawCheckbox(locale==='de'?'Geburtsurkunde(n)':'Birth certificate(s)');
+    drawCheckbox(locale==='de'?'Vaterschaftsanerkennung':'Paternity acknowledgement');
+    drawCheckbox(locale==='de'?'Kommunikation/Logs':'Communications/Logs');
 
     // Signature block
     y -= 10;

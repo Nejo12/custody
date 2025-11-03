@@ -77,5 +77,35 @@
         }
       ]
     }
+  },
+  {
+    "id": "contact.young_child.schedule",
+    "version": "2025-01-01",
+    "logic": { "all": [ {"==": [{"var": "child_age_under_three"}, "yes"]} ] },
+    "outcome": {
+      "status": "schedule_short_weekday",
+      "message": "Recommend short weekday contact blocks for children under 3.",
+      "citations": [ {"label": "BGB §1684", "url": "https://gesetze-im-internet.de/bgb/__1684.html", "snapshotId": "bgb-1684-2025-01"} ]
+    }
+  },
+  {
+    "id": "contact.distance.far",
+    "version": "2025-01-01",
+    "logic": { "all": [ {"==": [{"var": "distance_km"}, "far"]} ] },
+    "outcome": {
+      "status": "schedule_weekend_only",
+      "message": "Recommend weekend/holiday-centric schedule due to distance.",
+      "citations": [ {"label": "BGB §1684", "url": "https://gesetze-im-internet.de/bgb/__1684.html", "snapshotId": "bgb-1684-2025-01"} ]
+    }
+  },
+  {
+    "id": "mediation.suggest",
+    "version": "2025-01-01",
+    "logic": { "all": [ {"==": [{"var": "mediation_tried"}, "no"]}, {"==": [{"var": "parental_agreement_possible"}, "yes"]} ] },
+    "outcome": {
+      "status": "suggest_mediation",
+      "message": "Jugendamt mediation may help reach an agreement.",
+      "citations": [ {"label": "Familienportal", "url": "https://www.familienportal.de/", "snapshotId": "familienportal-2025-01"} ]
+    }
   }
 ]

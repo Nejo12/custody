@@ -38,5 +38,6 @@ describe('api/pdf/umgangsregelung (DE layout)', () => {
     const kws = keywordsArray.join(' ');
     expect(kws).toContain('Vorgeschlagener Umgang');
     expect(kws).toContain('Einstweilige Anordnung');
+    expect(kws).toContain('Unterschrift');
   });
 });

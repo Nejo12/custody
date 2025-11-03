@@ -41,6 +41,7 @@ describe('api/pdf/gemeinsame-sorge (DE layout)', () => {
     const keywordsArray = Array.isArray(keywords) ? keywords : keywords ? [keywords] : [];
     const kws = keywordsArray.join(' ');
     expect(kws).toContain('Antragsteller');
+    expect(kws).toContain('Antragsgegner');
     expect(kws).toContain('Unterschrift');
   });
 });
