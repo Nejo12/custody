@@ -80,11 +80,15 @@ export function matchesSimple(rule: SimpleRule, answers: Answers): boolean {
 export type Evaluation = {
   matched: SimpleRule[];
   primary?: SimpleRule;
+  confidence: number; // 0..1
 };
 
 export function evaluateRules(rules: SimpleRule[], answers: Answers): Evaluation {
   const matched = rules.filter((r) => matchesSimple(r, answers));
   const primary = matched[0];
-  return { matched, primary };
+  // naive confidence: proportion of known answers vs. 12 baseline
+  const answered = Object.values(answers).filter(v => v !== undefined && v !== 'unsure').length;
+  const baseline = 12;
+  const confidence = Math.min(1, Math.max(0.3, answered / baseline));
+  return { matched, primary, confidence };
 }
-

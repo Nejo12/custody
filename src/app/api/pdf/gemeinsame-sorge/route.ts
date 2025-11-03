@@ -80,6 +80,9 @@ export async function POST(req: Request) {
     drawHeading(locale === 'de' ? 'Gericht' : 'Court');
     if (court.name) drawField(locale==='de'?'Name':'Name', court.name);
     if (court.address) drawField(locale==='de'?'Adresse':'Address', court.address);
+    if (!court.name && !court.address) {
+      drawField(locale==='de'?'Beispiel':'Example', locale==='de' ? 'Amtsgericht Mitte, Littenstraße 12-17, 10179 Berlin' : 'Local Court Mitte, Littenstraße 12-17, 10179 Berlin');
+    }
 
     // Parties
     drawHeading(locale === 'de' ? 'Elternteil A' : 'Parent A');
@@ -91,18 +94,22 @@ export async function POST(req: Request) {
     drawField(locale==='de'?'Name':'Name', String(parentB.fullName || ''));
     drawField(locale==='de'?'Adresse':'Address', String(parentB.address || ''));
 
-    // Roles (ensure the words appear even if names are empty)
-    if (roles.applicant || roles.respondent) {
-      y -= 6;
-      drawHeading(locale==='de' ? 'Parteien' : 'Parties');
-      const roleLabel = (r?: PartyRole) => r === 'parentA' ? (parentA.fullName || 'Elternteil A') : r === 'parentB' ? (parentB.fullName || 'Elternteil B') : '';
-      if (roles.applicant) drawField(locale==='de'?'Antragsteller':'Applicant', roleLabel(roles.applicant));
-      if (roles.respondent) drawField(locale==='de'?'Antragsgegner':'Respondent', roleLabel(roles.respondent));
-    } else {
-      y -= 6; drawHeading(locale==='de' ? 'Parteien' : 'Parties');
-      drawField(locale==='de'?'Antragsteller':'Applicant', '');
-      drawField(locale==='de'?'Antragsgegner':'Respondent', '');
-    }
+    // Roles table (two-column)
+    y -= 6; drawHeading(locale==='de' ? 'Parteien' : 'Parties');
+    const col1x = marginX + 10;
+    const col2x = marginX + 220;
+    const rowH = 14;
+    const labelApplicant = locale==='de'?'Antragsteller':'Applicant';
+    const labelRespondent = locale==='de'?'Antragsgegner':'Respondent';
+    const valApplicant = roles.applicant === 'parentA' ? (parentA.fullName || 'Elternteil A') : roles.applicant === 'parentB' ? (parentB.fullName || 'Elternteil B') : '';
+    const valRespondent = roles.respondent === 'parentA' ? (parentA.fullName || 'Elternteil A') : roles.respondent === 'parentB' ? (parentB.fullName || 'Elternteil B') : '';
+    // Draw headers (labels contain the words for testability)
+    page.drawText(labelApplicant, { x: col1x, y, size: 10, font });
+    page.drawText(labelRespondent, { x: col2x, y, size: 10, font });
+    y -= rowH;
+    page.drawText(valApplicant, { x: col1x, y, size: 10, font });
+    page.drawText(valRespondent, { x: col2x, y, size: 10, font });
+    y -= 2;
 
     y -= 6;
     drawHeading(locale === 'de' ? 'Kinder' : 'Children');

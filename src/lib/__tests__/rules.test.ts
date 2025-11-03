@@ -21,7 +21,7 @@ describe('rules engine', () => {
       expect(matched.some(r => r.outcome.status === 'eligible_joint_custody')).toBe(true);
     });
 
-    it('suggests contact order when contact is blocked', () => {
+  it('suggests contact order when contact is blocked', () => {
       const answers: Answers = { blocked_contact: 'yes' };
       const { primary } = evaluateRules(rulesData as SimpleRule[], answers);
       expect(primary?.outcome.status).toBe('apply_contact_order');
@@ -48,6 +48,24 @@ describe('rules engine', () => {
       const { matched, primary } = evaluateRules(rulesData as SimpleRule[], answers);
       expect(primary).toBe(matched[0]);
     });
+  });
+
+  it('recommends short weekday schedule for children under 3', () => {
+    const answers: Answers = { child_age_under_three: 'yes' } as Answers;
+    const { matched } = evaluateRules(rulesData as SimpleRule[], answers);
+    expect(matched.some(r => r.outcome.status === 'schedule_short_weekday')).toBe(true);
+  });
+
+  it('suggests weekend-only focus for far distance', () => {
+    const answers: Answers = { distance_km: 'far' } as Answers;
+    const { matched } = evaluateRules(rulesData as SimpleRule[], answers);
+    expect(matched.some(r => r.outcome.status === 'schedule_weekend_only')).toBe(true);
+  });
+
+  it('suggests mediation when possible but not tried', () => {
+    const answers: Answers = { mediation_tried: 'no', parental_agreement_possible: 'yes' } as Answers;
+    const { matched } = evaluateRules(rulesData as SimpleRule[], answers);
+    expect(matched.some(r => r.outcome.status === 'suggest_mediation')).toBe(true);
   });
 
   describe('matchesSimple', () => {

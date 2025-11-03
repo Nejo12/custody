@@ -12,7 +12,7 @@ type StatusKey = keyof TranslationDict['result']['statuses'];
 export default function Result() {
   const { interview } = useAppStore();
   const { t } = useI18n();
-  const { matched, primary } = evaluateRules(rules as SimpleRule[], interview.answers);
+  const { matched, primary, confidence } = evaluateRules(rules as SimpleRule[], interview.answers);
 
   const status = (primary?.outcome.status || 'unknown') as StatusKey;
   const citations = (primary?.outcome.citations || []) as (Citation | string)[];
@@ -25,6 +25,7 @@ export default function Result() {
         {primary?.outcome.message && (
           <p className="text-sm text-zinc-600 mt-2">{primary.outcome.message}</p>
         )}
+        <div className="text-xs text-zinc-500 mt-2">Confidence: {(confidence*100).toFixed(0)}%</div>
       </div>
 
       <div className="space-y-2">
@@ -69,4 +70,3 @@ export default function Result() {
     </div>
   );
 }
-

@@ -79,12 +79,19 @@ export async function POST(req: Request) {
     if (court.name) drawField(locale === 'de' ? 'Name' : 'Name', court.name);
     if (court.address) drawField(locale === 'de' ? 'Adresse' : 'Address', court.address);
 
-    if (roles.applicant || roles.respondent) {
-      drawHeading(locale === 'de' ? 'Parteien' : 'Parties');
-      const roleLabel = (r?: PartyRole) => r === 'parentA' ? 'Elternteil A' : r === 'parentB' ? 'Elternteil B' : '';
-      if (roles.applicant) drawField(locale === 'de' ? 'Antragsteller' : 'Applicant', roleLabel(roles.applicant));
-      if (roles.respondent) drawField(locale === 'de' ? 'Antragsgegner' : 'Respondent', roleLabel(roles.respondent));
-    }
+    // Roles table two-column
+    drawHeading(locale === 'de' ? 'Parteien' : 'Parties');
+    const col1x = MARGIN_X + 10;
+    const col2x = MARGIN_X + 220;
+    const rowH = 14;
+    const labelApplicant = locale==='de'?'Antragsteller':'Applicant';
+    const labelRespondent = locale==='de'?'Antragsgegner':'Respondent';
+    const roleLabel = (r?: PartyRole) => r === 'parentA' ? 'Elternteil A' : r === 'parentB' ? 'Elternteil B' : '';
+    page.drawText(labelApplicant, { x: col1x, y, size: 10, font });
+    page.drawText(labelRespondent, { x: col2x, y, size: 10, font });
+    y -= rowH;
+    page.drawText(roleLabel(roles.applicant), { x: col1x, y, size: 10, font });
+    page.drawText(roleLabel(roles.respondent), { x: col2x, y, size: 10, font });
 
     const proposal = formData.proposal;
     if (proposal && proposal.weekday) {
