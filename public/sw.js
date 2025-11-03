@@ -1,4 +1,4 @@
-const CACHE_NAME = 'custody-clarity-v1';
+const CACHE_NAME = 'custody-clarity-v2';
 const CORE_ROUTES = [
   '/',
   '/interview',
@@ -7,6 +7,9 @@ const CORE_ROUTES = [
   '/vault',
   '/settings',
   '/learn',
+  '/manifest.webmanifest',
+  '/data/rules.json',
+  '/data/directory.berlin.json',
   '/next.svg',
   '/vercel.svg',
   '/globe.svg',
@@ -17,7 +20,13 @@ const CORE_ROUTES = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(CORE_ROUTES)).then(() => self.skipWaiting())
+    (async () => {
+      const cache = await caches.open(CACHE_NAME);
+      await cache.addAll(CORE_ROUTES);
+      // Precache Berlin directory
+      try { await cache.add('/api/directory?city=berlin'); } catch {}
+      await self.skipWaiting();
+    })()
   );
 });
 
@@ -33,14 +42,44 @@ function isApi(req) {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  const url = new URL(event.request.url);
+  const isContent = url.pathname.startsWith('/data/') || url.pathname.startsWith('/content/snapshots/');
   if (isApi(event.request)) {
-    // network-first for APIs
+    // Cache-first for directory; network-first otherwise
+    if (url.pathname === '/api/directory') {
+      event.respondWith(
+        caches.match(event.request).then((cached) => {
+          if (cached) return cached;
+          return fetch(event.request).then((res) => {
+            const resClone = res.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, resClone));
+            return res;
+          });
+        })
+      );
+      return;
+    } else {
+      event.respondWith(
+        fetch(event.request).then((res) => {
+          const resClone = res.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, resClone));
+          return res;
+        }).catch(() => caches.match(event.request))
+      );
+      return;
+    }
+  }
+  // Cache-first for content snapshots and data JSON
+  if (isContent) {
     event.respondWith(
-      fetch(event.request).then((res) => {
-        const resClone = res.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, resClone));
-        return res;
-      }).catch(() => caches.match(event.request))
+      caches.match(event.request).then((cached) => {
+        if (cached) return cached;
+        return fetch(event.request).then((res) => {
+          const resClone = res.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, resClone));
+          return res;
+        }).catch(() => cached);
+      })
     );
     return;
   }
@@ -56,4 +95,3 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
-

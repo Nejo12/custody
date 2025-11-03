@@ -1,9 +1,13 @@
 import { NextRequest } from 'next/server';
-import { PDFDocument, StandardFonts } from 'pdf-lib';
+import { PDFDocument, StandardFonts, PDFFont } from 'pdf-lib';
 import type { Citation, FormData, ErrorWithMessage } from '@/types';
 
+type Parent = { fullName?: string; address?: string };
+type Child = { fullName?: string; dob?: string; birthRegistryRef?: string };
+type GSForm = FormData & { parentA?: Parent; parentB?: Parent; children?: Child[] };
+
 type RequestBody = {
-  formData?: FormData;
+  formData?: GSForm;
   citations?: Citation[] | string[];
   snapshotIds?: string[];
   locale?: string;
@@ -14,17 +18,58 @@ export async function POST(req: NextRequest) {
     const body: RequestBody = await req.json();
     const { formData = {}, citations = [], snapshotIds = [], locale = 'de' } = body;
     const doc = await PDFDocument.create();
-    const page = doc.addPage([595.28, 841.89]); // A4
     const font = await doc.embedFont(StandardFonts.Helvetica);
+    let page = doc.addPage([595.28, 841.89]); // A4
 
     const title = locale === 'de' ? 'Antrag auf gemeinsame Sorge' : 'Joint custody application';
-    page.drawText(title, { x: 50, y: 800, size: 16, font });
-    const yStart = 770;
+    const marginX = 50;
+    const marginY = 40;
+    const yStart = 800 - marginY;
+    page.drawText(title, { x: marginX, y: 800 - marginY + 30, size: 16, font });
     let y = yStart;
-    const entries = Object.entries(formData);
-    for (const [k, v] of entries.slice(0, 20)) {
-      page.drawText(`${k}: ${typeof v === 'string' ? v : JSON.stringify(v)}`, { x: 50, y, size: 10, font });
-      y -= 14;
+    // Structured sections
+    const parentA = formData.parentA || {};
+    const parentB = formData.parentB || {};
+    const children = formData.children || [];
+
+    const drawHeading = (text: string) => {
+      if (y < marginY + 20) { page = doc.addPage([595.28, 841.89]); y = yStart; }
+      page.drawText(text, { x: marginX, y, size: 12, font });
+      y -= 16;
+    };
+    const drawField = (label: string, value?: string) => {
+      if (!value) return;
+      const maxWidth = 595.28 - marginX * 2;
+      const lines = wrapText(`${label}: ${value}`, maxWidth, font, 10);
+      for (const line of lines) {
+        if (y < marginY + 10) { page = doc.addPage([595.28, 841.89]); y = yStart; }
+        page.drawText(line, { x: marginX + 10, y, size: 10, font });
+        y -= 12;
+      }
+    };
+
+    drawHeading(locale === 'de' ? 'Elternteil A' : 'Parent A');
+    drawField(locale==='de'?'Name':'Name', String(parentA.fullName || ''));
+    drawField(locale==='de'?'Adresse':'Address', String(parentA.address || ''));
+
+    y -= 6;
+    drawHeading(locale === 'de' ? 'Elternteil B' : 'Parent B');
+    drawField(locale==='de'?'Name':'Name', String(parentB.fullName || ''));
+    drawField(locale==='de'?'Adresse':'Address', String(parentB.address || ''));
+
+    y -= 6;
+    drawHeading(locale === 'de' ? 'Kinder' : 'Children');
+    if (Array.isArray(children) && children.length > 0) {
+      const max = Math.min(children.length, 4);
+      for (let i = 0; i < max; i++) {
+        const ch = children[i] || {};
+        const nm = String(ch.fullName || '');
+        const dob = String(ch.dob || '');
+        const line = `${i+1}. ${nm} ${dob ? '(' + dob + ')' : ''}`;
+        drawField(locale==='de'?'Kind':'Child', line);
+      }
+    } else {
+      drawField('', locale==='de'?'(keine Angaben)':'(no entries)');
     }
 
     // Footer
@@ -35,7 +80,7 @@ export async function POST(req: NextRequest) {
     }).join(', ');
     const snapshotStr = snapshotIds.join(', ');
     const footer = `Generated on ${date}. Sources: ${sourcesStr}. Snapshots: ${snapshotStr}. Information, not legal advice.`;
-    page.drawText(footer.slice(0, 240), { x: 50, y: 40, size: 8, font });
+    page.drawText(footer.slice(0, 240), { x: marginX, y: marginY, size: 8, font });
 
     const bytes = await doc.save();
     return new Response(Buffer.from(bytes), { headers: { 'Content-Type': 'application/pdf' } });
@@ -45,3 +90,20 @@ export async function POST(req: NextRequest) {
   }
 }
 
+function wrapText(text: string, maxWidth: number, font: PDFFont, size: number): string[] {
+  const words = text.split(/\s+/);
+  const lines: string[] = [];
+  let line = '';
+  for (const w of words) {
+    const test = line ? line + ' ' + w : w;
+    const width = font.widthOfTextAtSize(test, size);
+    if (width > maxWidth && line) {
+      lines.push(line);
+      line = w;
+    } else {
+      line = test;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+}

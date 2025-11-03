@@ -12,6 +12,18 @@ export default function Header() {
         {t.appName}
       </Link>
       <div className="flex items-center gap-3">
+        <button
+          className="text-sm underline decoration-dotted"
+          onClick={() => {
+            if (typeof window !== 'undefined') {
+              window.dispatchEvent(new CustomEvent('installapp'));
+              const el = document.getElementById('install');
+              el?.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+        >
+          Install App
+        </button>
         <Link href="/settings" className="text-sm underline decoration-dotted">Settings</Link>
         <ThemeSwitch />
         <LanguageSwitch />
@@ -19,4 +31,3 @@ export default function Header() {
     </header>
   );
 }
-

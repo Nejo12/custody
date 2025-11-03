@@ -5,6 +5,7 @@ import { I18nProvider } from "@/i18n";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+import InstallPrompt from "@/components/InstallPrompt";
 import ThemeInit from "@/components/ThemeInit";
 
 const geistSans = Geist({
@@ -39,6 +40,9 @@ export default function RootLayout({
           <div className="min-h-screen flex flex-col items-stretch">
             <ServiceWorkerRegister />
             <Header />
+            <div id="install" className="w-full max-w-xl mx-auto px-4">
+              <InstallPrompt />
+            </div>
             <main className="flex-1 w-full flex flex-col items-center">
               {children}
             </main>

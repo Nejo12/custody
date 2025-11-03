@@ -6,7 +6,7 @@
       "status": "joint_custody_default",
       "message": "You automatically share custody unless a court has ruled otherwise.",
       "citations": [
-        {"label": "BGB §1626", "url": "https://gesetze-im-internet.de/bgb/__1626.html"}
+        {"label": "BGB §1626", "url": "https://gesetze-im-internet.de/bgb/__1626.html", "snapshotId": "bgb-1626-2025-01"}
       ]
     }
   },
@@ -22,7 +22,7 @@
       "message": "You may apply for joint custody (§1626a BGB).",
       "actions": ["file_joint_custody_court"],
       "citations": [
-        {"label": "BGB §1626a", "url": "https://gesetze-im-internet.de/bgb/__1626a.html"}
+        {"label": "BGB §1626a", "url": "https://gesetze-im-internet.de/bgb/__1626a.html", "snapshotId": "bgb-1626a-2025-01"}
       ]
     }
   },
@@ -34,7 +34,7 @@
       "message": "You can request a visitation order (§1684 BGB).",
       "actions": ["file_contact_request_court"],
       "citations": [
-        {"label": "BGB §1684", "url": "https://gesetze-im-internet.de/bgb/__1684.html"}
+        {"label": "BGB §1684", "url": "https://gesetze-im-internet.de/bgb/__1684.html", "snapshotId": "bgb-1684-2025-01"}
       ]
     }
   },

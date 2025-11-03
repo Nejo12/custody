@@ -36,12 +36,35 @@ export default function UmgangPage() {
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
       <h1 className="text-xl font-semibold">{t.result.generateContactOrder}</h1>
-      <div className="space-y-2">
-        <label className="block text-sm">Weekday proposal (e.g., Mon 16:00-19:00)
-          <input className="mt-1 w-full rounded border px-3 py-2" value={(form.proposal.weekday?.monday)||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, weekday: { ...(form.proposal.weekday||{}), monday: e.target.value }}})} />
+      <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-2">
+          <label className="block text-sm">Mon
+            <input className="mt-1 w-full rounded border px-2 py-2" value={form.proposal.weekday?.monday||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, weekday: { ...(form.proposal.weekday||{}), monday: e.target.value }}})} />
+          </label>
+          <label className="block text-sm">Tue
+            <input className="mt-1 w-full rounded border px-2 py-2" value={form.proposal.weekday?.tuesday||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, weekday: { ...(form.proposal.weekday||{}), tuesday: e.target.value }}})} />
+          </label>
+          <label className="block text-sm">Wed
+            <input className="mt-1 w-full rounded border px-2 py-2" value={form.proposal.weekday?.wednesday||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, weekday: { ...(form.proposal.weekday||{}), wednesday: e.target.value }}})} />
+          </label>
+          <label className="block text-sm">Thu
+            <input className="mt-1 w-full rounded border px-2 py-2" value={form.proposal.weekday?.thursday||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, weekday: { ...(form.proposal.weekday||{}), thursday: e.target.value }}})} />
+          </label>
+          <label className="block text-sm">Fri
+            <input className="mt-1 w-full rounded border px-2 py-2" value={form.proposal.weekday?.friday||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, weekday: { ...(form.proposal.weekday||{}), friday: e.target.value }}})} />
+          </label>
+          <label className="block text-sm">Sat
+            <input className="mt-1 w-full rounded border px-2 py-2" value={form.proposal.weekday?.saturday||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, weekday: { ...(form.proposal.weekday||{}), saturday: e.target.value }}})} />
+          </label>
+          <label className="block text-sm">Sun
+            <input className="mt-1 w-full rounded border px-2 py-2" value={form.proposal.weekday?.sunday||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, weekday: { ...(form.proposal.weekday||{}), sunday: e.target.value }}})} />
+          </label>
+        </div>
+        <label className="block text-sm">Weekend even
+          <input className="mt-1 w-full rounded border px-3 py-2" value={form.proposal.weekend?.even||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, weekend: { ...(form.proposal.weekend||{}), even: e.target.value }}})} />
         </label>
-        <label className="block text-sm">Weekend proposal (e.g., even Fri→Sun)
-          <input className="mt-1 w-full rounded border px-3 py-2" value={(form.proposal.weekend?.even)||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, weekend: { ...(form.proposal.weekend||{}), even: e.target.value }}})} />
+        <label className="block text-sm">Weekend odd
+          <input className="mt-1 w-full rounded border px-3 py-2" value={form.proposal.weekend?.odd||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, weekend: { ...(form.proposal.weekend||{}), odd: e.target.value }}})} />
         </label>
         <label className="block text-sm">Handover location
           <input className="mt-1 w-full rounded border px-3 py-2" value={form.proposal.handover?.location||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, handover: { ...(form.proposal.handover||{}), location: e.target.value }}})} />

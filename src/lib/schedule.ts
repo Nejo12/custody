@@ -3,7 +3,7 @@ export type WeekendSpec = { even?: string; odd?: string };
 export type HolidaysSpec = Record<string, string>; // labels like 'summer', 'christmas'
 
 export type ScheduleInput = {
-  weekday?: Partial<Record<'monday'|'tuesday'|'wednesday'|'thursday'|'friday', DayRange>>;
+  weekday?: Partial<Record<'monday'|'tuesday'|'wednesday'|'thursday'|'friday'|'saturday'|'sunday', DayRange>>;
   weekend?: WeekendSpec;
   holidays?: HolidaysSpec;
   handover?: { location?: string; notes?: string };
@@ -13,11 +13,11 @@ export type Schedule = Required<ScheduleInput>;
 
 export function normalizeSchedule(input: ScheduleInput): Schedule {
   const defaultWeekday: Required<Schedule['weekday']> = {
-    monday: '', tuesday: '', wednesday: '', thursday: '', friday: '',
+    monday: '', tuesday: '', wednesday: '', thursday: '', friday: '', saturday: '', sunday: '',
   };
   const wd: Required<Schedule['weekday']> = {
     ...defaultWeekday,
-    ...input.weekday,
+    ...(input.weekday ?? {}),
   };
   const weekend: WeekendSpec = { even: '', odd: '', ...(input.weekend || {}) };
   const holidays: HolidaysSpec = { ...(input.holidays || {}) };
@@ -25,4 +25,3 @@ export function normalizeSchedule(input: ScheduleInput): Schedule {
 
   return { weekday: wd, weekend, holidays, handover };
 }
-
