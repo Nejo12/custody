@@ -1,6 +1,6 @@
 "use client";
 import { useI18n } from '@/i18n';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 type Locale = 'en'|'de'|'ar'|'pl'|'fr'|'tr'|'ru';
 const locales: Array<{ code: Locale; label: string }> = [
@@ -16,9 +16,22 @@ const locales: Array<{ code: Locale; label: string }> = [
 export default function LanguageSwitch() {
   const { locale, setLocale } = useI18n();
   const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const active = locales.find(l => l.code === (locale as Locale));
+
+  useEffect(() => {
+    if (!open) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [open]);
+
   return (
-    <div className="relative text-sm" onMouseLeave={() => setOpen(false)}>
+    <div ref={containerRef} className="relative text-sm">
       <button
         className="rounded-full border px-3 py-1 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
         aria-haspopup="listbox"
