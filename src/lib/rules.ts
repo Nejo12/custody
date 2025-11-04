@@ -83,8 +83,30 @@ export type Evaluation = {
   confidence: number; // 0..1
 };
 
+function statusPriority(status: string): number {
+  switch (status) {
+    case 'joint_custody_default':
+      return 0;
+    case 'eligible_joint_custody':
+      return 1;
+    case 'apply_contact_order':
+      return 2;
+    case 'consider_supervised_contact':
+      return 3;
+    case 'suggest_mediation':
+      return 10;
+    case 'schedule_short_weekday':
+      return 11;
+    case 'schedule_weekend_only':
+      return 12;
+    default:
+      return 50;
+  }
+}
+
 export function evaluateRules(rules: SimpleRule[], answers: Answers): Evaluation {
   const matched = rules.filter((r) => matchesSimple(r, answers));
+  matched.sort((a, b) => statusPriority(a.outcome.status) - statusPriority(b.outcome.status));
   const primary = matched[0];
   // naive confidence: proportion of known answers vs. 12 baseline
   const answered = Object.values(answers).filter(v => v !== undefined && v !== 'unsure').length;

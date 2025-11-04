@@ -1,4 +1,6 @@
-import data from '@/data/directory.berlin.json';
+import dataBerlin from '@/data/directory.berlin.json';
+import dataHamburg from '@/data/directory.hamburg.json';
+import dataNRW from '@/data/directory.nrw.json';
 
 type DirectoryEntry = {
   name?: string;
@@ -18,7 +20,11 @@ export async function GET(req: Request) {
 
   let items: DirectoryEntry[] = [];
   if (city === 'berlin') {
-    items = Array.isArray(data) ? (data as DirectoryEntry[]) : [];
+    items = Array.isArray(dataBerlin) ? (dataBerlin as DirectoryEntry[]) : [];
+  } else if (city === 'hamburg') {
+    items = Array.isArray(dataHamburg) ? (dataHamburg as DirectoryEntry[]) : [];
+  } else if (city === 'nrw') {
+    items = Array.isArray(dataNRW) ? (dataNRW as DirectoryEntry[]) : [];
   }
   if (type) {
     items = items.filter((i) => i.type === type);
@@ -38,4 +44,3 @@ export async function GET(req: Request) {
 
   return Response.json({ services });
 }
-

@@ -33,6 +33,9 @@ export default function Result() {
   const unclear = status === 'unknown';
   const [helpOpen, setHelpOpen] = useState(false);
   const [postcode, setPostcode] = useState('');
+  const [city, setCity] = useState<'berlin'|'hamburg'|'nrw'>('berlin');
+  const [geoLoading, setGeoLoading] = useState(false);
+  const [geoError, setGeoError] = useState('');
   type Service = { id: string; type: string; name: string; postcode: string; address: string; phone: string; url: string; opening?: string };
   const [services, setServices] = useState<Service[]>([]);
   const filteredServices = useMemo(() => {
@@ -41,11 +44,11 @@ export default function Result() {
   }, [services, postcode]);
   useEffect(() => {
     if (!helpOpen) return;
-    fetch('/api/directory?city=berlin')
+    fetch(`/api/directory?city=${city}`)
       .then(r=>r.json())
       .then(d=> setServices(Array.isArray(d.services)? d.services as Service[]: []))
       .catch(()=> setServices([]));
-  }, [helpOpen]);
+  }, [helpOpen, city]);
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-8 space-y-6">
@@ -179,8 +182,36 @@ export default function Result() {
           <div className="rounded-lg border p-3 space-y-2">
             <div className="text-xs uppercase text-zinc-500">Nearby services</div>
             <div className="flex gap-2 items-center">
+              <select value={city} onChange={(e)=>setCity(e.target.value as 'berlin'|'hamburg'|'nrw')} className="rounded border px-2 py-1 text-sm">
+                <option value="berlin">Berlin</option>
+                <option value="hamburg">Hamburg</option>
+                <option value="nrw">NRW</option>
+              </select>
               <input value={postcode} onChange={(e)=>setPostcode(e.target.value)} placeholder="Postcode (e.g. 10115)" className="flex-1 rounded border px-3 py-1 text-sm" />
+              <button
+                className="rounded border px-2 py-1 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+                onClick={() => {
+                  setGeoError(''); setGeoLoading(true);
+                  if (!('geolocation' in navigator)) { setGeoError('Location unavailable'); setGeoLoading(false); return; }
+                  navigator.geolocation.getCurrentPosition(async (pos) => {
+                    try {
+                      const { latitude, longitude } = pos.coords;
+                      const res = await fetch(`/api/revgeo?lat=${latitude}&lon=${longitude}`);
+                      const j = await res.json() as { postcode?: string; error?: string };
+                      if (j.postcode) setPostcode(j.postcode);
+                      else if (j.error) setGeoError(j.error);
+                    } catch (err) {
+                      console.error(err);
+                      setGeoError('Failed to detect postcode');
+                    } finally {
+                      setGeoLoading(false);
+                    }
+                  }, () => { setGeoError('Permission denied'); setGeoLoading(false); });
+                }}
+              >Use my location</button>
             </div>
+            {geoLoading && <div className="text-xs text-zinc-500">Detecting…</div>}
+            {!!geoError && <div className="text-xs text-red-600">{geoError}</div>}
             <div className="space-y-2 max-h-64 overflow-auto">
               {filteredServices.length===0 && <div className="text-sm text-zinc-500">No services yet. Try a postcode.</div>}
               {filteredServices.slice(0,6).map(s => (

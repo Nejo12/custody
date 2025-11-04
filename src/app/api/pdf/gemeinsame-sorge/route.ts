@@ -185,6 +185,12 @@ function resolveCourt(formData: { court?: Court; courtTemplate?: string }): Cour
       return { name: 'Amtsgericht Essen (Familiengericht)', address: 'Burgplatz 2, 45127 Essen' };
     case 'dortmund':
       return { name: 'Amtsgericht Dortmund (Familiengericht)', address: 'Luisenstraße 2-4, 44135 Dortmund' };
+    case 'bonn':
+      return { name: 'Amtsgericht Bonn (Familiengericht)', address: 'Wilhelmstraße 21, 53111 Bonn' };
+    case 'wuppertal':
+      return { name: 'Amtsgericht Wuppertal (Familiengericht)', address: 'Eiland 10, 42103 Wuppertal' };
+    case 'bochum':
+      return { name: 'Amtsgericht Bochum (Familiengericht)', address: 'Viktoriastraße 14, 44787 Bochum' };
     default:
       return {};
   }

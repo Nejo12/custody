@@ -1,6 +1,7 @@
 "use client";
 import { useState } from 'react';
 import { useI18n } from '@/i18n';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export type EducationItem = {
   title: string;
@@ -15,26 +16,63 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
   const [open, setOpen] = useState(true);
   return (
     <div className="rounded-lg border p-4">
-      <button className="w-full text-left font-medium" onClick={() => setOpen(v => !v)}>
-        {item.title}
+      <button className="w-full text-left font-medium flex items-center justify-between" onClick={() => setOpen(v => !v)}>
+        <span>{item.title}</span>
+        <span aria-hidden className={`transition-transform ${open ? 'rotate-90' : ''}`}>›</span>
       </button>
+      <AnimatePresence initial={false}>
       {open && (
-        <div className="mt-3 space-y-3 text-sm">
+        <motion.div
+          key="content"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.25 }}
+          className="mt-3 space-y-3 text-sm overflow-hidden"
+        >
           <section>
-            <div className="font-medium">{t.education.headings.why}</div>
+            <div className="font-medium flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <circle cx="12" cy="16" r="1" />
+              </svg>
+              {t.education.headings.why}
+            </div>
             <p className="text-zinc-700 dark:text-zinc-300">{item.why}</p>
           </section>
           <section>
-            <div className="font-medium">{t.education.headings.law}</div>
+            <div className="font-medium flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                <path d="M12 1v22" />
+                <path d="M3 8h18" />
+                <path d="M5 8c0 4 3 7 7 7s7-3 7-7" />
+              </svg>
+              {t.education.headings.law}
+            </div>
             <p className="text-zinc-700 dark:text-zinc-300">{item.law}</p>
           </section>
           <section>
-            <div className="font-medium">{t.education.headings.unsure}</div>
+            <div className="font-medium flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6 2h12l-1.5 4H7.5L6 2z" />
+                <path d="M6 2v15" />
+              </svg>
+              {t.education.headings.unsure}
+            </div>
             <p className="text-zinc-700 dark:text-zinc-300">{item.unsure}</p>
           </section>
           {!!item.citations?.length && (
             <section>
-              <div className="font-medium">{t.education.headings.sources}</div>
+              <div className="font-medium flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6 2h9a2 2 0 0 1 2 2v15" />
+                  <path d="M8 6h7" />
+                </svg>
+                {t.education.headings.sources}
+              </div>
               <ul className="list-disc pl-5">
                 {item.citations.map((c, i) => (
                   <li key={i}>
@@ -45,8 +83,9 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
               </ul>
             </section>
           )}
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </div>
   );
 }

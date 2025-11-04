@@ -1,0 +1,43 @@
+[
+  {
+    "id": "jugendamt-hh-mitte",
+    "type": "jugendamt",
+    "name": "Jugendamt Hamburg-Mitte",
+    "postalCode": "20095",
+    "address": "Klosterwall 8, 20095 Hamburg",
+    "phone": "+49 40 42828-0",
+    "website": "https://www.hamburg.de/jugendamt/",
+    "opening": "Mon-Fri 9-12"
+  },
+  {
+    "id": "ag-hamburg",
+    "type": "court",
+    "name": "Amtsgericht Hamburg (Familiengericht)",
+    "postalCode": "20355",
+    "address": "Sievekingplatz 1, 20355 Hamburg",
+    "phone": "+49 40 42828-0",
+    "website": "https://justiz.hamburg.de/amtsgericht/",
+    "opening": "Mon-Fri 9-13"
+  },
+  {
+    "id": "mediation-hh",
+    "type": "mediation",
+    "name": "Mediation Hamburg e.V.",
+    "postalCode": "20354",
+    "address": "Dammtorwall 5, 20354 Hamburg",
+    "phone": "+49 40 1234-5678",
+    "website": "https://www.mediation-hamburg.de",
+    "opening": "Mon-Thu 10-16"
+  },
+  {
+    "id": "legal-aid-hh",
+    "type": "legal_aid",
+    "name": "Rechtsberatung Hamburg",
+    "postalCode": "20095",
+    "address": "Rathausmarkt 1, 20095 Hamburg",
+    "phone": "+49 40 4321-9876",
+    "website": "https://www.rechtsberatung-hamburg.de",
+    "opening": "Tue, Thu 14-18"
+  }
+]
+

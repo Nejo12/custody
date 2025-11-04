@@ -1,0 +1,53 @@
+[
+  {
+    "id": "jugendamt-koeln",
+    "type": "jugendamt",
+    "name": "Jugendamt Köln",
+    "postalCode": "50667",
+    "address": "Willy-Brandt-Platz 2, 50679 Köln",
+    "phone": "+49 221 221-0",
+    "website": "https://www.stadt-koeln.de/service/produkt/jugendamt-koeln",
+    "opening": "Mon-Fri 9-12"
+  },
+  {
+    "id": "ag-koeln",
+    "type": "court",
+    "name": "Amtsgericht Köln (Familiengericht)",
+    "postalCode": "50939",
+    "address": "Luxemburger Straße 101, 50939 Köln",
+    "phone": "+49 221 477-0",
+    "website": "https://www.ag-koeln.nrw.de/",
+    "opening": "Mon-Fri 9-13"
+  },
+  {
+    "id": "ag-bonn",
+    "type": "court",
+    "name": "Amtsgericht Bonn (Familiengericht)",
+    "postalCode": "53111",
+    "address": "Wilhelmstraße 21, 53111 Bonn",
+    "phone": "+49 228 702-0",
+    "website": "https://www.ag-bonn.nrw.de/",
+    "opening": "Mon-Fri 9-13"
+  },
+  {
+    "id": "mediation-nrw",
+    "type": "mediation",
+    "name": "NRW Familienmediation",
+    "postalCode": "40213",
+    "address": "Grabbeplatz 5, 40213 Düsseldorf",
+    "phone": "+49 211 1234-5678",
+    "website": "https://www.familienmediation-nrw.de",
+    "opening": "Mon-Thu 10-16"
+  },
+  {
+    "id": "legal-aid-nrw",
+    "type": "legal_aid",
+    "name": "Rechtsberatung NRW",
+    "postalCode": "44787",
+    "address": "Viktoriastraße 14, 44787 Bochum",
+    "phone": "+49 234 9876-5432",
+    "website": "https://www.rechtsberatung-nrw.de",
+    "opening": "Tue, Thu 14-18"
+  }
+]
+

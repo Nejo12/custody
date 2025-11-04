@@ -53,6 +53,9 @@ export default function UmgangPage() {
               <option value="duesseldorf">Düsseldorf – Amtsgericht Düsseldorf</option>
               <option value="essen">Essen – Amtsgericht Essen</option>
               <option value="dortmund">Dortmund – Amtsgericht Dortmund</option>
+              <option value="bonn">Bonn – Amtsgericht Bonn</option>
+              <option value="wuppertal">Wuppertal – Amtsgericht Wuppertal</option>
+              <option value="bochum">Bochum – Amtsgericht Bochum</option>
             </optgroup>
           </select>
         </label>

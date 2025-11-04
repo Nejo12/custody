@@ -10,7 +10,11 @@ const STATIC_ASSETS = [
   '/favicon.ico',
   '/icons/icon-192-maskable.png',
   '/icons/icon-512-maskable.png',
-  '/icons/custody-clarity.png'
+  '/icons/custody-clarity.png',
+  // Preload directory endpoints for selected cities (best-effort)
+  '/api/directory?city=berlin',
+  '/api/directory?city=hamburg',
+  '/api/directory?city=nrw'
 ];
 
 self.addEventListener('install', (event) => {
