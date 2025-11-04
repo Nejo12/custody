@@ -92,10 +92,13 @@ const fr = {
       joint_custody_default: "Garde partagée par défaut",
       eligible_joint_custody: "Éligible pour une demande de garde partagée",
       apply_contact_order: "Vous pouvez demander un ordre de visite/contact",
-      consider_supervised_contact: "Envisager un contact supervisé en raison de préoccupations de sécurité",
+      consider_supervised_contact:
+        "Envisager un contact supervisé en raison de préoccupations de sécurité",
       suggest_mediation: "Recommandation : Essayer la médiation via Jugendamt ou des services",
-      schedule_short_weekday: "Recommandation : Fenêtres de contact courtes en semaine (enfant de moins de 3 ans)",
-      schedule_weekend_only: "Recommandation : Plan axé sur les week-ends/vacances en raison de la distance",
+      schedule_short_weekday:
+        "Recommandation : Fenêtres de contact courtes en semaine (enfant de moins de 3 ans)",
+      schedule_weekend_only:
+        "Recommandation : Plan axé sur les week-ends/vacances en raison de la distance",
       unknown: "Nous avons besoin de plus d'informations",
     },
   },
@@ -139,16 +142,20 @@ const fr = {
     },
   },
   rules: {
-    "custody.married.default": "Vous partagez automatiquement la garde sauf si un tribunal a statué autrement.",
-    "custody.unmarried.paternity_acknowledged": "Vous pouvez demander la garde partagée (§1626a BGB).",
+    "custody.married.default":
+      "Vous partagez automatiquement la garde sauf si un tribunal a statué autrement.",
+    "custody.unmarried.paternity_acknowledged":
+      "Vous pouvez demander la garde partagée (§1626a BGB).",
     "contact.right": "Vous pouvez demander un ordre de visite/contact (§1684 BGB).",
-    "contact.safety.supervised": "En raison de préoccupations de sécurité, envisagez un contact supervisé et une planification de sécurité.",
+    "contact.safety.supervised":
+      "En raison de préoccupations de sécurité, envisagez un contact supervisé et une planification de sécurité.",
     "custody.unmarried.path_to_joint": "Vous pouvez demander la garde partagée (§1626a BGB).",
-    "contact.young_child.schedule": "Recommandation : Blocs de contact courts en semaine pour les enfants de moins de 3 ans.",
-    "contact.distance.far": "Recommandation : Plan axé sur les week-ends/vacances en raison de la distance.",
+    "contact.young_child.schedule":
+      "Recommandation : Blocs de contact courts en semaine pour les enfants de moins de 3 ans.",
+    "contact.distance.far":
+      "Recommandation : Plan axé sur les week-ends/vacances en raison de la distance.",
     "mediation.suggest": "La médiation par le Jugendamt peut aider à parvenir à un accord.",
   },
 };
 
 export default fr;
-

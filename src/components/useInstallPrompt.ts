@@ -1,20 +1,21 @@
 "use client";
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from "react";
 
 export type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>;
 };
 
 function isMobileUA(): boolean {
-  if (typeof navigator === 'undefined') return false;
+  if (typeof navigator === "undefined") return false;
   return /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
 }
 
 function isStandalone(): boolean {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === "undefined") return false;
   // iOS Safari property is not typed in TS lib
-  const iosStandalone = (window.navigator as unknown as { standalone?: boolean }).standalone === true;
-  const mm = window.matchMedia && window.matchMedia('(display-mode: standalone)').matches;
+  const iosStandalone =
+    (window.navigator as unknown as { standalone?: boolean }).standalone === true;
+  const mm = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches;
   return !!iosStandalone || !!mm;
 }
 
@@ -24,7 +25,7 @@ export function useInstallPrompt() {
   const eventRef = useRef<BeforeInstallPromptEvent | null>(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
     const onBeforeInstall = (e: Event) => {
       e.preventDefault();
       const bip = e as BeforeInstallPromptEvent;
@@ -36,18 +37,21 @@ export function useInstallPrompt() {
       eventRef.current = null;
       setEvent(null);
     };
-    window.addEventListener('beforeinstallprompt', onBeforeInstall);
-    window.addEventListener('appinstalled', onInstalled);
+    window.addEventListener("beforeinstallprompt", onBeforeInstall);
+    window.addEventListener("appinstalled", onInstalled);
     return () => {
-      window.removeEventListener('beforeinstallprompt', onBeforeInstall);
-      window.removeEventListener('appinstalled', onInstalled);
+      window.removeEventListener("beforeinstallprompt", onBeforeInstall);
+      window.removeEventListener("appinstalled", onInstalled);
     };
   }, []);
 
   const mobile = isMobileUA();
   const standalone = isStandalone();
 
-  const canInstall = useMemo(() => !!event && mobile && !standalone && !installed, [event, mobile, standalone, installed]);
+  const canInstall = useMemo(
+    () => !!event && mobile && !standalone && !installed,
+    [event, mobile, standalone, installed]
+  );
 
   const promptInstall = async () => {
     if (eventRef.current) {
@@ -57,4 +61,3 @@ export function useInstallPrompt() {
 
   return { canInstall, promptInstall };
 }
-

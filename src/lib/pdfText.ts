@@ -1,10 +1,10 @@
 // Use legacy build for Node to avoid DOMMatrix issues
-import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist/legacy/build/pdf.mjs';
+import { getDocument, GlobalWorkerOptions } from "pdfjs-dist/legacy/build/pdf.mjs";
 // Attempt to configure worker for Node
 (async () => {
   try {
     // @ts-expect-error - pdfjs-dist worker module lacks type definitions
-    const worker = await import('pdfjs-dist/legacy/build/pdf.worker.mjs');
+    const worker = await import("pdfjs-dist/legacy/build/pdf.worker.mjs");
     GlobalWorkerOptions.workerSrc = (worker.default || worker) as string;
   } catch {
     // ignore
@@ -24,8 +24,10 @@ export async function extractPdfText(bytes: ArrayBuffer): Promise<string> {
   for (let i = 1; i <= pageCount; i++) {
     const page = await pdf.getPage(i);
     const content = await page.getTextContent();
-    const strings = content.items.map((it: TextItem) => ('str' in it ? it.str : '')).filter(Boolean);
-    textParts.push(strings.join(' '));
+    const strings = content.items
+      .map((it: TextItem) => ("str" in it ? it.str : ""))
+      .filter(Boolean);
+    textParts.push(strings.join(" "));
   }
-  return textParts.join('\n');
+  return textParts.join("\n");
 }

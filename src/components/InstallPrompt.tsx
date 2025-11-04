@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useState } from 'react';
-import { useInstallPrompt } from './useInstallPrompt';
+import { useEffect, useState } from "react";
+import { useInstallPrompt } from "./useInstallPrompt";
 
 export default function InstallPrompt() {
   const { canInstall, promptInstall } = useInstallPrompt();

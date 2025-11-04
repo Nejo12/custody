@@ -94,8 +94,10 @@ const pl = {
       apply_contact_order: "Możesz złożyć wniosek o kontakt",
       consider_supervised_contact: "Rozważ nadzorowany kontakt ze względu na obawy bezpieczeństwa",
       suggest_mediation: "Rekomendacja: Spróbuj mediacji przez Jugendamt lub usługi",
-      schedule_short_weekday: "Rekomendacja: Krótkie okna kontaktu w dni powszednie (wiek poniżej 3 lat)",
-      schedule_weekend_only: "Rekomendacja: Plan skupiony na weekendach/świętach ze względu na odległość",
+      schedule_short_weekday:
+        "Rekomendacja: Krótkie okna kontaktu w dni powszednie (wiek poniżej 3 lat)",
+      schedule_weekend_only:
+        "Rekomendacja: Plan skupiony na weekendach/świętach ze względu na odległość",
       unknown: "Potrzebujemy więcej informacji",
     },
   },
@@ -140,15 +142,18 @@ const pl = {
   },
   rules: {
     "custody.married.default": "Automatycznie dzielisz opiekę, chyba że sąd orzekł inaczej.",
-    "custody.unmarried.paternity_acknowledged": "Możesz złożyć wniosek o wspólną opiekę (§1626a BGB).",
+    "custody.unmarried.paternity_acknowledged":
+      "Możesz złożyć wniosek o wspólną opiekę (§1626a BGB).",
     "contact.right": "Możesz złożyć wniosek o kontakt (§1684 BGB).",
-    "contact.safety.supervised": "Ze względu na obawy bezpieczeństwa rozważ nadzorowany kontakt i planowanie bezpieczeństwa.",
+    "contact.safety.supervised":
+      "Ze względu na obawy bezpieczeństwa rozważ nadzorowany kontakt i planowanie bezpieczeństwa.",
     "custody.unmarried.path_to_joint": "Możesz złożyć wniosek o wspólną opiekę (§1626a BGB).",
-    "contact.young_child.schedule": "Rekomendacja: Krótkie bloki kontaktu w dni powszednie dla dzieci poniżej 3 lat.",
-    "contact.distance.far": "Rekomendacja: Plan skupiony na weekendach/świętach ze względu na odległość.",
+    "contact.young_child.schedule":
+      "Rekomendacja: Krótkie bloki kontaktu w dni powszednie dla dzieci poniżej 3 lat.",
+    "contact.distance.far":
+      "Rekomendacja: Plan skupiony na weekendach/świętach ze względu na odległość.",
     "mediation.suggest": "Mediacja przez Jugendamt może pomóc w osiągnięciu porozumienia.",
   },
 };
 
 export default pl;
-

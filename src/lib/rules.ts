@@ -17,8 +17,8 @@ export type JSONLogicExpression =
   | { var: string }
   | { all: JSONLogicExpression[] }
   | { any: JSONLogicExpression[] }
-  | { '==': [JSONLogicExpression, JSONLogicExpression] }
-  | { '!=': [JSONLogicExpression, JSONLogicExpression] };
+  | { "==": [JSONLogicExpression, JSONLogicExpression] }
+  | { "!=": [JSONLogicExpression, JSONLogicExpression] };
 
 export type SimpleRule = {
   id: string;
@@ -43,13 +43,13 @@ function evalLogic(expr: JSONLogicExpression, data: Answers): boolean {
       return (expr as { any: JSONLogicExpression[] }).any.some((e) => evalLogic(e, data));
     }
     if (Object.prototype.hasOwnProperty.call(expr, "==")) {
-      const [a, b] = (expr as { '==': [JSONLogicExpression, JSONLogicExpression] })['=='];
+      const [a, b] = (expr as { "==": [JSONLogicExpression, JSONLogicExpression] })["=="];
       const av = resolve(a, data);
       const bv = resolve(b, data);
       return av === bv;
     }
     if (Object.prototype.hasOwnProperty.call(expr, "!=")) {
-      const [a, b] = (expr as { '!=': [JSONLogicExpression, JSONLogicExpression] })['!='];
+      const [a, b] = (expr as { "!=": [JSONLogicExpression, JSONLogicExpression] })["!="];
       const av = resolve(a, data);
       const bv = resolve(b, data);
       return av !== bv;
@@ -58,8 +58,16 @@ function evalLogic(expr: JSONLogicExpression, data: Answers): boolean {
   return false;
 }
 
-function resolve(node: JSONLogicExpression, data: Answers): AnswerValue | boolean | number | string {
-  if (typeof node === "object" && node && !Array.isArray(node) && Object.prototype.hasOwnProperty.call(node, "var")) {
+function resolve(
+  node: JSONLogicExpression,
+  data: Answers
+): AnswerValue | boolean | number | string {
+  if (
+    typeof node === "object" &&
+    node &&
+    !Array.isArray(node) &&
+    Object.prototype.hasOwnProperty.call(node, "var")
+  ) {
     return data[(node as { var: string }).var];
   }
   return node as AnswerValue | boolean | number | string;
@@ -67,9 +75,9 @@ function resolve(node: JSONLogicExpression, data: Answers): AnswerValue | boolea
 
 export function matchesSimple(rule: SimpleRule, answers: Answers): boolean {
   if (rule.inputs) {
-      for (const [k, v] of Object.entries(rule.inputs)) {
-        if (answers[k] !== v) return false;
-      }
+    for (const [k, v] of Object.entries(rule.inputs)) {
+      if (answers[k] !== v) return false;
+    }
   }
   if (rule.logic) {
     return evalLogic(rule.logic, answers);
@@ -85,19 +93,19 @@ export type Evaluation = {
 
 function statusPriority(status: string): number {
   switch (status) {
-    case 'joint_custody_default':
+    case "joint_custody_default":
       return 0;
-    case 'eligible_joint_custody':
+    case "eligible_joint_custody":
       return 1;
-    case 'apply_contact_order':
+    case "apply_contact_order":
       return 2;
-    case 'consider_supervised_contact':
+    case "consider_supervised_contact":
       return 3;
-    case 'suggest_mediation':
+    case "suggest_mediation":
       return 10;
-    case 'schedule_short_weekday':
+    case "schedule_short_weekday":
       return 11;
-    case 'schedule_weekend_only':
+    case "schedule_weekend_only":
       return 12;
     default:
       return 50;
@@ -109,7 +117,7 @@ export function evaluateRules(rules: SimpleRule[], answers: Answers): Evaluation
   matched.sort((a, b) => statusPriority(a.outcome.status) - statusPriority(b.outcome.status));
   const primary = matched[0];
   // naive confidence: proportion of known answers vs. 12 baseline
-  const answered = Object.values(answers).filter(v => v !== undefined && v !== 'unsure').length;
+  const answered = Object.values(answers).filter((v) => v !== undefined && v !== "unsure").length;
   const baseline = 12;
   const confidence = Math.min(1, Math.max(0.3, answered / baseline));
   return { matched, primary, confidence };

@@ -139,16 +139,19 @@ const tr = {
     },
   },
   rules: {
-    "custody.married.default": "Bir mahkeme aksini kararlaştırmadığı sürece otomatik olarak vesayeti paylaşırsınız.",
-    "custody.unmarried.paternity_acknowledged": "Ortak vesayet başvurusu yapabilirsiniz (§1626a BGB).",
+    "custody.married.default":
+      "Bir mahkeme aksini kararlaştırmadığı sürece otomatik olarak vesayeti paylaşırsınız.",
+    "custody.unmarried.paternity_acknowledged":
+      "Ortak vesayet başvurusu yapabilirsiniz (§1626a BGB).",
     "contact.right": "Ziyaret/iletişim emri talep edebilirsiniz (§1684 BGB).",
-    "contact.safety.supervised": "Güvenlik endişeleri nedeniyle, denetimli iletişim ve güvenlik planlamasını düşünün.",
+    "contact.safety.supervised":
+      "Güvenlik endişeleri nedeniyle, denetimli iletişim ve güvenlik planlamasını düşünün.",
     "custody.unmarried.path_to_joint": "Ortak vesayet başvurusu yapabilirsiniz (§1626a BGB).",
-    "contact.young_child.schedule": "Öneri: 3 yaşın altındaki çocuklar için hafta içi kısa iletişim blokları.",
+    "contact.young_child.schedule":
+      "Öneri: 3 yaşın altındaki çocuklar için hafta içi kısa iletişim blokları.",
     "contact.distance.far": "Öneri: Mesafe nedeniyle hafta sonu/tatil odaklı plan.",
     "mediation.suggest": "Jugendamt arabuluculuğu bir anlaşmaya varmaya yardımcı olabilir.",
   },
 };
 
 export default tr;
-

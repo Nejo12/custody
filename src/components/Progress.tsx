@@ -10,4 +10,3 @@ export default function Progress({ current, total }: { current: number; total: n
     </div>
   );
 }
-

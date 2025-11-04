@@ -34,18 +34,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeInit />
         <I18nProvider>
           <div className="min-h-screen flex flex-col items-stretch">
             <ServiceWorkerRegister />
             <Header />
             {/* InstallPrompt removed: persistent install button lives in Header only on mobile */}
-            <main className="flex-1 w-full flex flex-col items-center">
-              {children}
-            </main>
+            <main className="flex-1 w-full flex flex-col items-center">{children}</main>
             <Footer />
           </div>
         </I18nProvider>

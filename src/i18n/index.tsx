@@ -1,5 +1,13 @@
 "use client";
-import React, { createContext, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import enDict from "./en";
 import de from "./de";
 import ar from "./ar";
@@ -16,7 +24,10 @@ type Dict = TranslationDict;
 
 // Type assertion needed because some locales have partial question sets
 // This is acceptable since the app handles missing properties gracefully
-const dictionaries: Record<Locale, Dict> = { en: enDict, de, ar, pl, fr, tr, ru } as Record<Locale, Dict>;
+const dictionaries: Record<Locale, Dict> = { en: enDict, de, ar, pl, fr, tr, ru } as Record<
+  Locale,
+  Dict
+>;
 
 const appNames: Record<Locale, string> = {
   en: "Custody Clarity",
@@ -71,10 +82,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     document.title = appNames[locale];
   }, [locale]);
 
-  const value = useMemo(
-    () => ({ locale, t: dictionaries[locale], setLocale }),
-    [locale]
-  );
+  const value = useMemo(() => ({ locale, t: dictionaries[locale], setLocale }), [locale]);
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }

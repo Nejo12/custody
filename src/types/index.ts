@@ -1,4 +1,4 @@
-import type en from '@/i18n/en';
+import type en from "@/i18n/en";
 
 export type TranslationDict = typeof en;
 
@@ -13,10 +13,9 @@ export type JSONLogicExpression =
   | { var: string }
   | { all: JSONLogicExpression[] }
   | { any: JSONLogicExpression[] }
-  | { '==': [JSONLogicExpression, JSONLogicExpression] }
-  | { '!=': [JSONLogicExpression, JSONLogicExpression] };
+  | { "==": [JSONLogicExpression, JSONLogicExpression] }
+  | { "!=": [JSONLogicExpression, JSONLogicExpression] };
 
 export type ErrorWithMessage = Error & {
   message: string;
 };
-

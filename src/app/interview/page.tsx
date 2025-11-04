@@ -1,17 +1,17 @@
 "use client";
-import { useEffect, useState } from 'react';
-import { useI18n } from '@/i18n';
-import Progress from '@/components/Progress';
-import { useRouter } from 'next/navigation';
-import { useAppStore } from '@/store/app';
-import questions from '@/data/questions';
-import type { ClarifyResponse } from '@/types/ai';
-import type { TranslationDict } from '@/types';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from "react";
+import { useI18n } from "@/i18n";
+import Progress from "@/components/Progress";
+import { useRouter } from "next/navigation";
+import { useAppStore } from "@/store/app";
+import questions from "@/data/questions";
+import type { ClarifyResponse } from "@/types/ai";
+import type { TranslationDict } from "@/types";
+import { motion, AnimatePresence } from "framer-motion";
 
-type Q = { id: string; type?: 'yn' | 'enum'; options?: { value: string; label: string }[] };
+type Q = { id: string; type?: "yn" | "enum"; options?: { value: string; label: string }[] };
 
-type QuestionKey = keyof TranslationDict['interview']['questions'];
+type QuestionKey = keyof TranslationDict["interview"]["questions"];
 
 export default function Interview() {
   const { t, locale } = useI18n();
@@ -21,42 +21,47 @@ export default function Interview() {
 
   // Deep link support: /interview?q=questionId (useEffect to avoid hydration mismatch)
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const q = new URLSearchParams(window.location.search).get('q');
+    if (typeof window === "undefined") return;
+    const q = new URLSearchParams(window.location.search).get("q");
     if (!q) return;
-    const idx = (questions as Q[]).findIndex(x => x.id === q);
+    const idx = (questions as Q[]).findIndex((x) => x.id === q);
     if (idx >= 0 && idx !== step) setStep(idx);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const current = (questions as Q[])[step];
-  const [clarify, setClarify] = useState<{loading: boolean; data?: ClarifyResponse; error?: string}>({ loading: false });
+  const [clarify, setClarify] = useState<{
+    loading: boolean;
+    data?: ClarifyResponse;
+    error?: string;
+  }>({ loading: false });
   const questionKey = current.id as QuestionKey;
   const questionData = t.interview.questions[questionKey];
 
   function onSelect(value: string) {
     setAnswer(current.id, value);
     if (step < questions.length - 1) setStep(step + 1);
-    else router.push('/result');
+    else router.push("/result");
   }
 
   async function onClarify() {
     setClarify({ loading: true });
     try {
-      const res = await fetch('/api/ai/clarify', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/ai/clarify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           questionId: current.id,
           questionText: questionData?.label || current.id,
           answers: interview.answers,
-          locale: locale === 'de' ? 'de' : 'en',
-          context: questionData?.help || '',
+          locale: locale === "de" ? "de" : "en",
+          context: questionData?.help || "",
         }),
       });
-      const data = await res.json() as ClarifyResponse;
+      const data = (await res.json()) as ClarifyResponse;
       setClarify({ loading: false, data });
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : 'Failed';
+      const msg = e instanceof Error ? e.message : "Failed";
       setClarify({ loading: false, error: msg });
     }
   }
@@ -79,27 +84,23 @@ export default function Interview() {
           initial="hidden"
           animate="visible"
           exit="exit"
-          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
           className="space-y-6"
         >
           <div className="space-y-2">
             <div className="text-sm text-zinc-500">{t.interview.title}</div>
-            <h2 className="text-lg font-semibold">
-              {questionData?.label || current.id}
-            </h2>
-            <p className="text-sm text-zinc-600">
-              {questionData?.help || t.interview.help}
-            </p>
+            <h2 className="text-lg font-semibold">{questionData?.label || current.id}</h2>
+            <p className="text-sm text-zinc-600">{questionData?.help || t.interview.help}</p>
           </div>
 
           <div className="grid grid-cols-1 gap-3">
-            {current.type !== 'enum' && (
+            {current.type !== "enum" && (
               <>
                 <motion.button
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  onClick={() => onSelect('yes')}
+                  onClick={() => onSelect("yes")}
                   className="rounded-lg border p-4 text-left hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
                 >
                   {t.common.yes}
@@ -108,7 +109,7 @@ export default function Interview() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 }}
-                  onClick={() => onSelect('no')}
+                  onClick={() => onSelect("no")}
                   className="rounded-lg border p-4 text-left hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
                 >
                   {t.common.no}
@@ -117,18 +118,20 @@ export default function Interview() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  onClick={() => onSelect('unsure')}
+                  onClick={() => onSelect("unsure")}
                   className="rounded-lg border p-4 text-left hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
                 >
                   {t.common.unsure}
                 </motion.button>
               </>
             )}
-            {current.type === 'enum' && (
+            {current.type === "enum" && (
               <>
                 {current.options?.map((o, i) => {
-                  const questionOptions = questionData && 'options' in questionData ? questionData.options : undefined;
-                  const translatedLabel = questionOptions?.[o.value as keyof typeof questionOptions] || o.label;
+                  const questionOptions =
+                    questionData && "options" in questionData ? questionData.options : undefined;
+                  const translatedLabel =
+                    questionOptions?.[o.value as keyof typeof questionOptions] || o.label;
                   return (
                     <motion.button
                       key={o.value}
@@ -147,7 +150,9 @@ export default function Interview() {
           </div>
 
           <div className="mt-2 flex items-center gap-3">
-            <button onClick={onClarify} className="text-sm underline decoration-dotted">Need help?</button>
+            <button onClick={onClarify} className="text-sm underline decoration-dotted">
+              Need help?
+            </button>
             {clarify.loading && <span className="text-xs text-zinc-500">Thinking…</span>}
           </div>
 
@@ -157,13 +162,32 @@ export default function Interview() {
               animate={{ opacity: 1, y: 0 }}
               className="rounded-lg border p-3 bg-zinc-50 dark:bg-zinc-900"
             >
-              <div className="text-sm">Suggestion: <b>{clarify.data.suggestion}</b> <span className="text-xs text-zinc-500">({Math.round(clarify.data.confidence*100)}%)</span></div>
-              {clarify.data.followup && <div className="text-sm mt-1">Follow‑up: {clarify.data.followup}</div>}
-              <div className="mt-2 flex gap-2">
-                <button onClick={() => onSelect(clarify.data!.suggestion)} className="rounded border px-3 py-1 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black text-sm">Accept</button>
-                <button onClick={() => setClarify({ loading: false })} className="rounded border px-3 py-1 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black text-sm">Dismiss</button>
+              <div className="text-sm">
+                Suggestion: <b>{clarify.data.suggestion}</b>{" "}
+                <span className="text-xs text-zinc-500">
+                  ({Math.round(clarify.data.confidence * 100)}%)
+                </span>
               </div>
-              <div className="text-[11px] text-zinc-500 mt-2">Information only — not individualized legal advice.</div>
+              {clarify.data.followup && (
+                <div className="text-sm mt-1">Follow‑up: {clarify.data.followup}</div>
+              )}
+              <div className="mt-2 flex gap-2">
+                <button
+                  onClick={() => onSelect(clarify.data!.suggestion)}
+                  className="rounded border px-3 py-1 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black text-sm"
+                >
+                  Accept
+                </button>
+                <button
+                  onClick={() => setClarify({ loading: false })}
+                  className="rounded border px-3 py-1 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black text-sm"
+                >
+                  Dismiss
+                </button>
+              </div>
+              <div className="text-[11px] text-zinc-500 mt-2">
+                Information only — not individualized legal advice.
+              </div>
             </motion.div>
           )}
 

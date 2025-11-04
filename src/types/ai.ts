@@ -6,7 +6,7 @@ export type ClarifyRequest = {
   context?: string;
 };
 
-export type ClarifySuggestion = 'yes' | 'no' | 'unsure';
+export type ClarifySuggestion = "yes" | "no" | "unsure";
 
 export type ClarifyResponse = {
   suggestion: ClarifySuggestion;
@@ -14,4 +14,3 @@ export type ClarifyResponse = {
   followup?: string;
   reasoning?: string;
 };
-

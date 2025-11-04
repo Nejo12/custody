@@ -1,14 +1,18 @@
 "use client";
-import { useI18n } from '@/i18n';
+import { useI18n } from "@/i18n";
 
-const languages: { code: 'en' | 'de' | 'ar' | 'pl' | 'fr' | 'tr' | 'ru'; label: string; name: string }[] = [
-  { code: 'en', label: 'EN', name: 'English' },
-  { code: 'de', label: 'DE', name: 'Deutsch' },
-  { code: 'ar', label: 'AR', name: 'العربية' },
-  { code: 'pl', label: 'PL', name: 'Polski' },
-  { code: 'fr', label: 'FR', name: 'Français' },
-  { code: 'tr', label: 'TR', name: 'Türkçe' },
-  { code: 'ru', label: 'RU', name: 'Русский' },
+const languages: {
+  code: "en" | "de" | "ar" | "pl" | "fr" | "tr" | "ru";
+  label: string;
+  name: string;
+}[] = [
+  { code: "en", label: "EN", name: "English" },
+  { code: "de", label: "DE", name: "Deutsch" },
+  { code: "ar", label: "AR", name: "العربية" },
+  { code: "pl", label: "PL", name: "Polski" },
+  { code: "fr", label: "FR", name: "Français" },
+  { code: "tr", label: "TR", name: "Türkçe" },
+  { code: "ru", label: "RU", name: "Русский" },
 ];
 
 export default function SettingsPage() {
@@ -24,7 +28,7 @@ export default function SettingsPage() {
             <button
               key={lang.code}
               onClick={() => setLocale(lang.code)}
-              className={`px-4 py-2 ${locale === lang.code ? 'bg-black text-white' : 'bg-white'}`}
+              className={`px-4 py-2 ${locale === lang.code ? "bg-black text-white" : "bg-white"}`}
             >
               {lang.label}
             </button>
@@ -34,9 +38,11 @@ export default function SettingsPage() {
 
       <div className="space-y-1">
         <div className="text-sm text-zinc-500">{t.settings.about}</div>
-        <p className="text-sm text-zinc-700">Privacy-first, offline-capable prototype. Information only, not individualized legal advice.</p>
+        <p className="text-sm text-zinc-700">
+          Privacy-first, offline-capable prototype. Information only, not individualized legal
+          advice.
+        </p>
       </div>
     </div>
   );
 }
-
