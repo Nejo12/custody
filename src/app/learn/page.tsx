@@ -1,4 +1,5 @@
 "use client";
+import Link from 'next/link';
 import { useI18n } from '@/i18n';
 import explainers from '@/data/explainers.json';
 
@@ -13,7 +14,7 @@ export default function LearnPage() {
       <ul className="space-y-2">
         {items.map((e) => (
           <li key={e.slug} className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-900">
-            <a href={e.url} target="_blank" rel="noopener noreferrer" className="font-medium underline">{e.title}</a>
+            <Link href={`/learn/item?slug=${e.slug}`} className="font-medium underline">{e.title}</Link>
             <div className="text-xs text-zinc-500 mt-1">Last verified: {e.lastVerified} · Snapshot: {e.snapshotId}</div>
           </li>
         ))}

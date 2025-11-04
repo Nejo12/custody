@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/i18n";
@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   title: "Custody Clarity",
   description: "Guided custody and contact rights information.",
   manifest: "/manifest.webmanifest",
+};
+
+export const viewport: Viewport = {
   themeColor: "#0a0a0a",
 };
 

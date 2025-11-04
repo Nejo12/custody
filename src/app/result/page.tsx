@@ -5,6 +5,7 @@ import { useAppStore } from '@/store/app';
 import { useI18n } from '@/i18n';
 import Link from 'next/link';
 import type { SimpleRule, Citation } from '@/lib/rules';
+import StatusCard from '@/components/StatusCard';
 import type { TranslationDict } from '@/types';
 
 type StatusKey = keyof TranslationDict['result']['statuses'];
@@ -20,13 +21,7 @@ export default function Result() {
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-8 space-y-6">
       <h1 className="text-xl font-semibold">{t.result.title}</h1>
-      <div className="rounded-lg border p-4">
-        <div className="text-2xl">{t.result.statuses[status] || status}</div>
-        {primary?.outcome.message && (
-          <p className="text-sm text-zinc-600 mt-2">{primary.outcome.message}</p>
-        )}
-        <div className="text-xs text-zinc-500 mt-2">Confidence: {(confidence*100).toFixed(0)}%</div>
-      </div>
+      <StatusCard title={t.result.statuses[status] || status} message={primary?.outcome.message} confidence={confidence} tone={status==='joint_custody_default'?'success':status==='eligible_joint_custody'?'info':status==='apply_contact_order'?'warn':'info'} />
 
       <div className="space-y-2">
         <h2 className="font-medium">{t.result.nextSteps}</h2>

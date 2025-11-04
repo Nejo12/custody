@@ -52,7 +52,9 @@ export default function Interview() {
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-6">
-      <Progress current={step} total={questions.length} />
+      <div className="sticky top-0 z-10 bg-[var(--background)]/90 backdrop-blur supports-[backdrop-filter]:backdrop-blur-md py-2">
+        <Progress current={step} total={questions.length} />
+      </div>
       <div className="space-y-2">
         <div className="text-sm text-zinc-500">{t.interview.title}</div>
         <h2 className="text-lg font-semibold">
