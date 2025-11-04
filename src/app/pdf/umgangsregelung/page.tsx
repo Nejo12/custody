@@ -10,6 +10,7 @@ type ProposalForm = {
 export default function UmgangPage() {
   const { t, locale } = useI18n();
   const [form, setForm] = useState<ProposalForm>({ proposal: { weekday: {}, weekend: {}, holidays: {}, handover: {} } });
+  const [courtTemplate, setCourtTemplate] = useState<string>('');
   const [downloading, setDownloading] = useState(false);
 
   async function onDownload() {
@@ -19,7 +20,7 @@ export default function UmgangPage() {
       const res = await fetch('/api/pdf/umgangsregelung', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ formData: { ...form, proposal: normalized }, citations: [{ label: 'BGB §1684', url: 'https://gesetze-im-internet.de/bgb/__1684.html' }], snapshotIds: [], locale }),
+        body: JSON.stringify({ formData: { ...form, proposal: normalized, courtTemplate }, citations: [{ label: 'BGB §1684', url: 'https://gesetze-im-internet.de/bgb/__1684.html' }], snapshotIds: [], locale }),
       });
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
@@ -37,6 +38,24 @@ export default function UmgangPage() {
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
       <h1 className="text-xl font-semibold">{t.result.generateContactOrder}</h1>
       <div className="space-y-3">
+        <label className="block text-sm">Court (template)
+          <select className="mt-1 w-full rounded border px-3 py-2" value={courtTemplate} onChange={(e)=>setCourtTemplate(e.target.value)}>
+            <option value="">Custom or none</option>
+            <optgroup label="Berlin">
+              <option value="berlin-mitte">Berlin – Amtsgericht Mitte</option>
+              <option value="berlin-pankow">Berlin – Amtsgericht Pankow/Weißensee</option>
+            </optgroup>
+            <optgroup label="Hamburg">
+              <option value="hamburg">Hamburg – Amtsgericht Hamburg</option>
+            </optgroup>
+            <optgroup label="NRW">
+              <option value="koeln">Köln – Amtsgericht Köln</option>
+              <option value="duesseldorf">Düsseldorf – Amtsgericht Düsseldorf</option>
+              <option value="essen">Essen – Amtsgericht Essen</option>
+              <option value="dortmund">Dortmund – Amtsgericht Dortmund</option>
+            </optgroup>
+          </select>
+        </label>
         <div className="grid grid-cols-2 gap-2">
           <label className="block text-sm">Mon
             <input className="mt-1 w-full rounded border px-2 py-2" value={form.proposal.weekday?.monday||''} onChange={(e)=>setForm({...form, proposal: { ...form.proposal, weekday: { ...(form.proposal.weekday||{}), monday: e.target.value }}})} />

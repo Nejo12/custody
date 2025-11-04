@@ -91,6 +91,10 @@ const en = {
     typeFilter: "Type",
     jugendamt: "Youth Welfare Office (Jugendamt)",
     court: "Family Court",
+    mediation: "Mediation Services",
+    legal_aid: "Legal Aid & Advice",
+    counseling: "Counseling & Therapy",
+    support_group: "Support Groups",
     noResults: "No services found.",
   },
   vault: {

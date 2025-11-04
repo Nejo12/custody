@@ -62,6 +62,10 @@ const pl = {
     typeFilter: "Typ",
     jugendamt: "Urząd ds. Młodzieży (Jugendamt)",
     court: "Sąd Rodzinny",
+    mediation: "Usługi mediacji",
+    legal_aid: "Pomoc prawna i porady",
+    counseling: "Poradnictwo i terapia",
+    support_group: "Grupy wsparcia",
     noResults: "Nie znaleziono usług.",
   },
   vault: {

@@ -62,6 +62,10 @@ const tr = {
     typeFilter: "Tür",
     jugendamt: "Gençlik Dairesi (Jugendamt)",
     court: "Aile Mahkemesi",
+    mediation: "Arabuluculuk Hizmetleri",
+    legal_aid: "Yasal Yardım ve Danışmanlık",
+    counseling: "Danışmanlık ve Terapi",
+    support_group: "Destek Grupları",
     noResults: "Hizmet bulunamadı.",
   },
   vault: {

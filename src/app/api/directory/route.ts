@@ -24,6 +24,18 @@ export async function GET(req: Request) {
     items = items.filter((i) => i.type === type);
   }
 
-  return Response.json({ services: items });
+  // Map data structure to match Service type
+  const services = items.map((item) => ({
+    id: (item as { id?: string }).id || '',
+    type: item.type || '',
+    name: item.name || '',
+    postcode: (item.postalCode || (item as { postcode?: string }).postcode || '').toString(),
+    address: item.address || '',
+    phone: item.phone || '',
+    url: item.website || (item as { url?: string }).url || '',
+    opening: (item as { opening?: string }).opening,
+  }));
+
+  return Response.json({ services });
 }
 

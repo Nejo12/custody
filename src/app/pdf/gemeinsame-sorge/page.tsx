@@ -14,6 +14,7 @@ type FormState = {
 export default function GSPage() {
   const { t, locale } = useI18n();
   const [form, setForm] = useState<FormState>({ parentA: {}, parentB: {}, children: [] });
+  const [courtTemplate, setCourtTemplate] = useState<string>('');
   const [downloading, setDownloading] = useState(false);
 
   async function onDownload() {
@@ -31,7 +32,7 @@ export default function GSPage() {
       const res = await fetch('/api/pdf/gemeinsame-sorge', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ formData: form as FormData, citations, snapshotIds, locale }),
+        body: JSON.stringify({ formData: { ...form, courtTemplate } as FormData, citations, snapshotIds, locale }),
       });
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
@@ -49,6 +50,24 @@ export default function GSPage() {
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
       <h1 className="text-xl font-semibold">{t.result.generateJointCustody}</h1>
       <div className="space-y-2">
+        <label className="block text-sm">Court (template)
+          <select className="mt-1 w-full rounded border px-3 py-2" value={courtTemplate} onChange={(e)=>setCourtTemplate(e.target.value)}>
+            <option value="">Custom or none</option>
+            <optgroup label="Berlin">
+              <option value="berlin-mitte">Berlin – Amtsgericht Mitte</option>
+              <option value="berlin-pankow">Berlin – Amtsgericht Pankow/Weißensee</option>
+            </optgroup>
+            <optgroup label="Hamburg">
+              <option value="hamburg">Hamburg – Amtsgericht Hamburg</option>
+            </optgroup>
+            <optgroup label="NRW">
+              <option value="koeln">Köln – Amtsgericht Köln</option>
+              <option value="duesseldorf">Düsseldorf – Amtsgericht Düsseldorf</option>
+              <option value="essen">Essen – Amtsgericht Essen</option>
+              <option value="dortmund">Dortmund – Amtsgericht Dortmund</option>
+            </optgroup>
+          </select>
+        </label>
         <label className="block text-sm">Parent A full name<input className="mt-1 w-full rounded border px-3 py-2" value={form.parentA?.fullName||''} onChange={(e)=>setForm({...form, parentA: {...form.parentA, fullName: e.target.value}})} /></label>
         <label className="block text-sm">Parent A address<input className="mt-1 w-full rounded border px-3 py-2" value={form.parentA?.address||''} onChange={(e)=>setForm({...form, parentA: {...form.parentA, address: e.target.value}})} /></label>
         <label className="block text-sm">Parent B full name<input className="mt-1 w-full rounded border px-3 py-2" value={form.parentB?.fullName||''} onChange={(e)=>setForm({...form, parentB: {...form.parentB, fullName: e.target.value}})} /></label>

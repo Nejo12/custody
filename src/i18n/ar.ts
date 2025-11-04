@@ -62,6 +62,10 @@ const ar = {
     typeFilter: "النوع",
     jugendamt: "مكتب رعاية الشباب (Jugendamt)",
     court: "محكمة الأسرة",
+    mediation: "خدمات الوساطة",
+    legal_aid: "المساعدة القانونية والنصائح",
+    counseling: "الاستشارة والعلاج",
+    support_group: "مجموعات الدعم",
     noResults: "لم يتم العثور على خدمات.",
   },
   vault: {

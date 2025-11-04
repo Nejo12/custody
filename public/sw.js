@@ -1,30 +1,37 @@
-const CACHE_NAME = 'custody-clarity-v2';
-const CORE_ROUTES = [
+const CACHE_NAME = 'custody-clarity-v3';
+const STATIC_ASSETS = [
   '/',
-  '/interview',
-  '/result',
-  '/directory',
-  '/vault',
-  '/settings',
-  '/learn',
   '/manifest.webmanifest',
-  '/data/rules.json',
-  '/data/directory.berlin.json',
   '/next.svg',
   '/vercel.svg',
   '/globe.svg',
   '/file.svg',
   '/window.svg',
-  '/favicon.ico'
+  '/favicon.ico',
+  '/icons/icon-192-maskable.png',
+  '/icons/icon-512-maskable.png',
+  '/icons/custody-clarity.png'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
-      await cache.addAll(CORE_ROUTES);
-      // Precache Berlin directory
-      try { await cache.add('/api/directory?city=berlin'); } catch {}
+      // Cache each static asset individually to handle failures gracefully
+      for (const asset of STATIC_ASSETS) {
+        try {
+          await cache.add(asset);
+        } catch (err) {
+          console.warn(`Failed to cache ${asset}:`, err);
+        }
+      }
+      // Precache Berlin directory API (optional, will be cached on first use)
+      try {
+        await cache.add('/api/directory?city=berlin');
+      } catch (err) {
+        console.warn(`Failed to cache /api/directory?city=berlin:`, err);
+        // Silently fail - API will be cached on first fetch
+      }
       await self.skipWaiting();
     })()
   );

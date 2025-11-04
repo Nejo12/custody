@@ -1,4 +1,5 @@
 import type { ClarifyRequest, ClarifyResponse } from '@/types/ai';
+import { anonymizeObject, anonymizeText } from '@/lib/anonymize';
 
 function buildPrompt(req: ClarifyRequest): string {
   const q = req.questionText || req.questionId;
@@ -35,7 +36,15 @@ export async function POST(req: Request) {
       return Response.json(suggestion);
     }
 
-    const prompt = buildPrompt(body);
+    // Anonymize user-provided fields before sending to external API
+    const safe: ClarifyRequest = {
+      questionId: anonymizeText(body.questionId || ''),
+      questionText: body.questionText ? anonymizeText(body.questionText) : undefined,
+      answers: anonymizeObject(body.answers) as Record<string, string>,
+      locale: body.locale,
+      context: body.context ? anonymizeText(body.context) : undefined,
+    };
+    const prompt = buildPrompt(safe);
     const res = await fetch(`${base}/chat/completions`, {
       method: 'POST',
       headers: {
@@ -72,4 +81,3 @@ export async function POST(req: Request) {
     return new Response(JSON.stringify({ error: msg }), { status: 400 });
   }
 }
-

@@ -62,6 +62,10 @@ const ru = {
     typeFilter: "Тип",
     jugendamt: "Офис по делам молодёжи (Jugendamt)",
     court: "Семейный суд",
+    mediation: "Услуги посредничества",
+    legal_aid: "Юридическая помощь и консультации",
+    counseling: "Консультирование и терапия",
+    support_group: "Группы поддержки",
     noResults: "Услуги не найдены.",
   },
   vault: {

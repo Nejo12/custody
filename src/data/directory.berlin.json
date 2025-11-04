@@ -3,21 +3,210 @@
     "id": "jugendamt-mitte",
     "type": "jugendamt",
     "name": "Jugendamt Berlin Mitte",
-    "postcode": "10115",
+    "postalCode": "10115",
     "address": "Müllerstraße 146, 13353 Berlin",
     "phone": "+49 30 9018-0",
-    "url": "https://www.berlin.de/ba-mitte/politik-und-verwaltung/aemter/jugendamt/",
+    "website": "https://www.berlin.de/ba-mitte/politik-und-verwaltung/aemter/jugendamt/",
+    "opening": "Mon-Fri 9-12"
+  },
+  {
+    "id": "jugendamt-pankow",
+    "type": "jugendamt",
+    "name": "Jugendamt Pankow",
+    "postalCode": "13187",
+    "address": "Berliner Straße 24-25, 13187 Berlin",
+    "phone": "+49 30 90295-0",
+    "website": "https://www.berlin.de/ba-pankow-weissensee/politik-und-verwaltung/aemter/jugendamt/",
+    "opening": "Mon-Fri 9-12"
+  },
+  {
+    "id": "jugendamt-friedrichshain",
+    "type": "jugendamt",
+    "name": "Jugendamt Friedrichshain-Kreuzberg",
+    "postalCode": "10243",
+    "address": "Frankfurter Allee 35-37, 10247 Berlin",
+    "phone": "+49 30 90298-0",
+    "website": "https://www.berlin.de/ba-friedrichshain-kreuzberg/politik-und-verwaltung/aemter/jugendamt/",
     "opening": "Mon-Fri 9-12"
   },
   {
     "id": "ag-berlin-mitte",
     "type": "court",
     "name": "Amtsgericht Mitte (Familiengericht)",
-    "postcode": "10179",
+    "postalCode": "10179",
     "address": "Littenstr. 12-17, 10179 Berlin",
     "phone": "+49 30 9014-0",
-    "url": "https://www.berlin.de/gerichte/amtsgericht-mitte/",
+    "website": "https://www.berlin.de/gerichte/amtsgericht-mitte/",
     "opening": "Mon-Fri 9-13"
+  },
+  {
+    "id": "ag-berlin-pankow",
+    "type": "court",
+    "name": "Amtsgericht Pankow/Weißensee (Familiengericht)",
+    "postalCode": "13086",
+    "address": "Parkstraße 71, 13086 Berlin",
+    "phone": "+49 30 9014-0",
+    "website": "https://www.berlin.de/gerichte/amtsgericht-pankow-weissensee/",
+    "opening": "Mon-Fri 9-13"
+  },
+  {
+    "id": "ag-berlin-tempelhof",
+    "type": "court",
+    "name": "Amtsgericht Tempelhof-Kreuzberg (Familiengericht)",
+    "postalCode": "10965",
+    "address": "Tempelhofer Damm 1, 10965 Berlin",
+    "phone": "+49 30 9014-0",
+    "website": "https://www.berlin.de/gerichte/amtsgericht-tempelhof-kreuzberg/",
+    "opening": "Mon-Fri 9-13"
+  },
+  {
+    "id": "mediation-berlin-mitte",
+    "type": "mediation",
+    "name": "Mediationszentrale Berlin",
+    "postalCode": "10115",
+    "address": "Invalidenstraße 112, 10115 Berlin",
+    "phone": "+49 30 2844-5450",
+    "website": "https://www.mediationszentrale-berlin.de",
+    "opening": "Mon-Fri 10-18"
+  },
+  {
+    "id": "mediation-familie",
+    "type": "mediation",
+    "name": "Familienmediation Berlin e.V.",
+    "postalCode": "10437",
+    "address": "Schönhauser Allee 141, 10437 Berlin",
+    "phone": "+49 30 4467-8230",
+    "website": "https://www.familienmediation-berlin.de",
+    "opening": "Mon-Thu 10-16"
+  },
+  {
+    "id": "mediation-konflikt",
+    "type": "mediation",
+    "name": "Institut für Konfliktlösung",
+    "postalCode": "10719",
+    "address": "Bleibtreustraße 12, 10719 Berlin",
+    "phone": "+49 30 8892-7840",
+    "website": "https://www.ifk-berlin.de",
+    "opening": "Mon-Fri 9-17"
+  },
+  {
+    "id": "legal-aid-caritas",
+    "type": "legal_aid",
+    "name": "Caritas Rechtsberatung",
+    "postalCode": "10117",
+    "address": "Reinhardtstraße 13, 10117 Berlin",
+    "phone": "+49 30 2844-470",
+    "website": "https://www.caritas-berlin.de/beratung/rechtsberatung",
+    "opening": "Mon-Thu 9-12, 14-16"
+  },
+  {
+    "id": "legal-aid-diakonie",
+    "type": "legal_aid",
+    "name": "Diakonie Rechts- und Sozialberatung",
+    "postalCode": "10115",
+    "address": "Georgenstraße 24, 10115 Berlin",
+    "phone": "+49 30 2887-8500",
+    "website": "https://www.diakonie-berlin.de/rechtsberatung",
+    "opening": "Mon, Wed, Fri 10-12"
+  },
+  {
+    "id": "legal-aid-ev",
+    "type": "legal_aid",
+    "name": "Rechtsberatung e.V. Berlin",
+    "postalCode": "10437",
+    "address": "Prenzlauer Allee 230, 10437 Berlin",
+    "phone": "+49 30 4433-1234",
+    "website": "https://www.rechtsberatung-berlin.de",
+    "opening": "Tue, Thu 14-18"
+  },
+  {
+    "id": "legal-aid-beratungshaus",
+    "type": "legal_aid",
+    "name": "Beratungshaus für Familienrecht",
+    "postalCode": "10243",
+    "address": "Warschauer Straße 58, 10243 Berlin",
+    "phone": "+49 30 2936-7890",
+    "website": "https://www.familienrecht-beratung.de",
+    "opening": "Mon-Fri 10-13"
+  },
+  {
+    "id": "counseling-profamilia",
+    "type": "counseling",
+    "name": "pro familia Beratungsstelle Berlin",
+    "postalCode": "10117",
+    "address": "Unter den Linden 40, 10117 Berlin",
+    "phone": "+49 30 2045-4550",
+    "website": "https://www.profamilia.de/beratung/beratungsstellen/berlin",
+    "opening": "Mon-Thu 10-18, Fri 10-14"
+  },
+  {
+    "id": "counseling-familienberatung",
+    "type": "counseling",
+    "name": "Familienberatungsstelle Berlin",
+    "postalCode": "10437",
+    "address": "Danziger Straße 52, 10435 Berlin",
+    "phone": "+49 30 4423-4567",
+    "website": "https://www.familienberatung-berlin.de",
+    "opening": "Mon-Fri 9-17"
+  },
+  {
+    "id": "counseling-psychologische",
+    "type": "counseling",
+    "name": "Psychologische Beratungsstelle für Eltern",
+    "postalCode": "10719",
+    "address": "Bleibtreustraße 4, 10719 Berlin",
+    "phone": "+49 30 8856-1234",
+    "website": "https://www.psych-beratung-berlin.de",
+    "opening": "Mon-Thu 10-18"
+  },
+  {
+    "id": "counseling-kinder",
+    "type": "counseling",
+    "name": "Kinder- und Jugendberatung Berlin",
+    "postalCode": "10965",
+    "address": "Tempelhofer Ufer 15, 10963 Berlin",
+    "phone": "+49 30 6123-4567",
+    "website": "https://www.kinderberatung-berlin.de",
+    "opening": "Mon-Fri 9-16"
+  },
+  {
+    "id": "support-group-eltern",
+    "type": "support_group",
+    "name": "Elternkreis Berlin e.V.",
+    "postalCode": "10115",
+    "address": "Invalidenstraße 112, 10115 Berlin",
+    "phone": "+49 30 2844-7890",
+    "website": "https://www.elternkreis-berlin.de",
+    "opening": "Tue 19-21"
+  },
+  {
+    "id": "support-group-trennung",
+    "type": "support_group",
+    "name": "Selbsthilfegruppe Trennung & Scheidung",
+    "postalCode": "10437",
+    "address": "Prenzlauer Allee 230, 10437 Berlin",
+    "phone": "+49 30 4433-5678",
+    "website": "https://www.selbsthilfe-trennung-berlin.de",
+    "opening": "Wed 18-20"
+  },
+  {
+    "id": "support-group-vater",
+    "type": "support_group",
+    "name": "Väteraufbruch Berlin",
+    "postalCode": "10243",
+    "address": "Warschauer Straße 58, 10243 Berlin",
+    "phone": "+49 30 2936-9012",
+    "website": "https://www.vaeteraufbruch-berlin.de",
+    "opening": "Mon 19-21"
+  },
+  {
+    "id": "support-group-mutter",
+    "type": "support_group",
+    "name": "Mütter für Kinder Berlin",
+    "postalCode": "10719",
+    "address": "Bleibtreustraße 12, 10719 Berlin",
+    "phone": "+49 30 8892-3456",
+    "website": "https://www.muetter-fuer-kinder-berlin.de",
+    "opening": "Thu 18-20"
   }
 ]
-

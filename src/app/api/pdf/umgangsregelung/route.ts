@@ -72,7 +72,7 @@ export async function POST(req: Request) {
       }
     };
 
-    const court = formData.court || {};
+    const court = resolveCourt(formData);
     const roles = formData.roles || {};
 
     drawHeading(locale === 'de' ? 'Gericht' : 'Court');
@@ -169,4 +169,27 @@ function wrapText(text: string, maxWidth: number, font: PDFFont, size: number): 
   }
   if (line) lines.push(line);
   return lines;
+}
+
+function resolveCourt(formData: { court?: Court; [k: string]: unknown }): Court {
+  if (formData.court && (formData.court.name || formData.court.address)) return formData.court;
+  const t = (formData as { courtTemplate?: string }).courtTemplate;
+  switch (t) {
+    case 'berlin-mitte':
+      return { name: 'Amtsgericht Mitte (Familiengericht)', address: 'Littenstraße 12–17, 10179 Berlin' };
+    case 'berlin-pankow':
+      return { name: 'Amtsgericht Pankow/Weißensee (Familiengericht)', address: 'Parkstraße 71, 13086 Berlin' };
+    case 'hamburg':
+      return { name: 'Amtsgericht Hamburg (Familiengericht)', address: 'Sievekingplatz 1, 20355 Hamburg' };
+    case 'koeln':
+      return { name: 'Amtsgericht Köln (Familiengericht)', address: 'Luxemburger Straße 101, 50939 Köln' };
+    case 'duesseldorf':
+      return { name: 'Amtsgericht Düsseldorf (Familiengericht)', address: 'Cecilienallee 3, 40474 Düsseldorf' };
+    case 'essen':
+      return { name: 'Amtsgericht Essen (Familiengericht)', address: 'Burgplatz 2, 45127 Essen' };
+    case 'dortmund':
+      return { name: 'Amtsgericht Dortmund (Familiengericht)', address: 'Luisenstraße 2-4, 44135 Dortmund' };
+    default:
+      return formData.court || {};
+  }
 }

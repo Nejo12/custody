@@ -51,7 +51,7 @@ export async function POST(req: Request) {
     const parentA = formData.parentA || {};
     const parentB = formData.parentB || {};
     const children = formData.children || [];
-    const court = formData.court || {};
+    const court = resolveCourt(formData);
     const roles = formData.roles || {};
 
     const drawHeading = (text: string) => {
@@ -129,11 +129,11 @@ export async function POST(req: Request) {
     // Antrag (request)
     y -= 6;
     drawHeading(locale==='de' ? 'Antrag' : 'Request');
-    drawField('', locale==='de' ? 'Es wird beantragt, die gemeinsame elterliche Sorge anzuordnen.' : 'It is requested to order joint parental custody.');
+    drawField('', locale==='de' ? 'Es wird beantragt, den Eltern die gemeinsame elterliche Sorge gemäß § 1626a BGB zu übertragen.' : 'It is requested to order joint parental custody pursuant to § 1626a BGB.');
     // Begründung (reasoning)
     y -= 6;
     drawHeading(locale==='de' ? 'Begründung (Kurzangaben)' : 'Reasoning (Summary)');
-    drawField('', locale==='de' ? 'Vaterschaft ist anerkannt; keine entgegenstehenden Gründe bekannt.' : 'Paternity is acknowledged; no opposing reasons known.');
+    drawField('', locale==='de' ? 'Vaterschaft ist anerkannt; eine gemeinsame Sorgeerklärung liegt nicht vor; dem Antrag stehen keine Kindeswohlgründe entgegen.' : 'Paternity is acknowledged; no joint custody declaration exists; no child-welfare grounds known against the request.');
     // Anlagen (attachments)
     y -= 6;
     drawHeading(locale==='de' ? 'Anlagen' : 'Attachments');
@@ -164,6 +164,29 @@ export async function POST(req: Request) {
   } catch (e) {
     const error = e as ErrorWithMessage;
     return new Response(JSON.stringify({ error: error?.message || 'Invalid request' }), { status: 400 });
+  }
+}
+
+function resolveCourt(formData: { court?: Court; courtTemplate?: string }): Court {
+  if (formData.court && (formData.court.name || formData.court.address)) return formData.court;
+  const t = formData.courtTemplate;
+  switch (t) {
+    case 'berlin-mitte':
+      return { name: 'Amtsgericht Mitte (Familiengericht)', address: 'Littenstraße 12–17, 10179 Berlin' };
+    case 'berlin-pankow':
+      return { name: 'Amtsgericht Pankow/Weißensee (Familiengericht)', address: 'Parkstraße 71, 13086 Berlin' };
+    case 'hamburg':
+      return { name: 'Amtsgericht Hamburg (Familiengericht)', address: 'Sievekingplatz 1, 20355 Hamburg' };
+    case 'koeln':
+      return { name: 'Amtsgericht Köln (Familiengericht)', address: 'Luxemburger Straße 101, 50939 Köln' };
+    case 'duesseldorf':
+      return { name: 'Amtsgericht Düsseldorf (Familiengericht)', address: 'Cecilienallee 3, 40474 Düsseldorf' };
+    case 'essen':
+      return { name: 'Amtsgericht Essen (Familiengericht)', address: 'Burgplatz 2, 45127 Essen' };
+    case 'dortmund':
+      return { name: 'Amtsgericht Dortmund (Familiengericht)', address: 'Luisenstraße 2-4, 44135 Dortmund' };
+    default:
+      return {};
   }
 }
 

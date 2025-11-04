@@ -62,6 +62,10 @@ const fr = {
     typeFilter: "Type",
     jugendamt: "Office de la Jeunesse (Jugendamt)",
     court: "Tribunal de la Famille",
+    mediation: "Services de médiation",
+    legal_aid: "Aide juridique et conseils",
+    counseling: "Conseil et thérapie",
+    support_group: "Groupes de soutien",
     noResults: "Aucun service trouvé.",
   },
   vault: {

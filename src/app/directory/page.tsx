@@ -35,6 +35,10 @@ export default function DirectoryPage() {
           <option value="">{t.directory.typeFilter}</option>
           <option value="jugendamt">{t.directory.jugendamt}</option>
           <option value="court">{t.directory.court}</option>
+          <option value="mediation">{t.directory.mediation}</option>
+          <option value="legal_aid">{t.directory.legal_aid}</option>
+          <option value="counseling">{t.directory.counseling}</option>
+          <option value="support_group">{t.directory.support_group}</option>
         </select>
       </div>
       <div className="space-y-3">

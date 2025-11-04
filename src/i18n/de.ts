@@ -91,6 +91,10 @@ const de = {
     typeFilter: "Art",
     jugendamt: "Jugendamt",
     court: "Familiengericht",
+    mediation: "Mediation",
+    legal_aid: "Rechtsberatung",
+    counseling: "Beratung & Therapie",
+    support_group: "Selbsthilfegruppen",
     noResults: "Keine Einträge gefunden.",
   },
   vault: {
