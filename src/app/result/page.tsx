@@ -16,8 +16,11 @@ import StatusCard from "@/components/StatusCard";
 import type { TranslationDict } from "@/types";
 import { motion } from "framer-motion";
 import EducationPanel, { type EducationItem } from "@/components/EducationPanel";
-import { buildICS } from "@/lib/ics";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
+import HelpSheet from "@/components/HelpSheet";
+import JSZip from "jszip";
+import type { ClarifyResponse } from "@/types/ai";
+import regionalTips from "@/data/regional.tips.json";
 
 type StatusKey = keyof TranslationDict["result"]["statuses"];
 
@@ -51,33 +54,12 @@ export default function Result() {
     .slice(0, 2);
   const unclear = status === "unknown";
   const [helpOpen, setHelpOpen] = useState(false);
-  const [postcode, setPostcode] = useState("");
-  const { preferredCity, setPreferredCity } = useAppStore();
-  const [city, setCity] = useState<"berlin" | "hamburg" | "nrw">(preferredCity || "berlin");
-  const [geoLoading, setGeoLoading] = useState(false);
-  const [geoError, setGeoError] = useState("");
-  type Service = {
-    id: string;
-    type: string;
-    name: string;
-    postcode: string;
-    address: string;
-    phone: string;
-    url: string;
-    opening?: string;
-  };
-  const [services, setServices] = useState<Service[]>([]);
-  const filteredServices = useMemo(() => {
-    const pc = postcode.trim();
-    return services.filter((s) => (pc ? s.postcode.startsWith(pc) : true));
-  }, [services, postcode]);
-  useEffect(() => {
-    if (!helpOpen) return;
-    fetch(`/api/directory?city=${city}`)
-      .then((r) => r.json())
-      .then((d) => setServices(Array.isArray(d.services) ? (d.services as Service[]) : []))
-      .catch(() => setServices([]));
-  }, [helpOpen, city]);
+  const [assistant, setAssistant] = useState<{
+    loading: boolean;
+    data: Record<string, ClarifyResponse>;
+  }>({ loading: false, data: {} });
+  const { preferredCity } = useAppStore();
+  const [city] = useState<"berlin" | "hamburg" | "nrw">(preferredCity || "berlin");
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-8 space-y-6">
@@ -121,31 +103,42 @@ export default function Result() {
           transition={{ duration: 0.3, delay: 0.15 }}
           className="space-y-3"
         >
+          <div className="text-sm text-zinc-600">
+            {t.result.pathHint || "If unsure, you can file this now and add details later."}
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <button
               className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
-              onClick={() => {
-                const q = missing[0];
-                if (!q) return;
-                const qKey = (q || "") as keyof TranslationDict["interview"]["questions"];
-                const payload = {
-                  questionId: q,
-                  questionText: t.interview.questions[qKey]?.label || q,
-                  answers: interview.answers,
-                  locale,
-                };
-                fetch("/api/ai/clarify", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(payload),
-                })
-                  .then((r) => r.json())
-                  .then((data) =>
-                    alert(
-                      `Suggestion: ${data.suggestion} (${Math.round((data.confidence || 0) * 100)}%)\n${data.followup || ""}`
-                    )
-                  )
-                  .catch(() => alert("Assistant unavailable at the moment."));
+              onClick={async () => {
+                const targets = missing.slice(0, 2);
+                if (!targets.length) return;
+                setAssistant({ loading: true, data: {} });
+                try {
+                  const pairs = await Promise.all(
+                    targets.map(async (q) => {
+                      const qKey = q as keyof TranslationDict["interview"]["questions"];
+                      const payload = {
+                        questionId: q,
+                        questionText: t.interview.questions[qKey]?.label || q,
+                        answers: interview.answers,
+                        locale,
+                      };
+                      const r = await fetch("/api/ai/clarify", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload),
+                      });
+                      const data = (await r.json()) as ClarifyResponse;
+                      return [q, data] as const;
+                    })
+                  );
+                  const map: Record<string, ClarifyResponse> = {};
+                  for (const [q, d] of pairs) map[q] = d;
+                  setAssistant({ loading: false, data: map });
+                } catch {
+                  setAssistant({ loading: false, data: {} });
+                  alert("Assistant unavailable at the moment.");
+                }
               }}
             >
               Ask the Assistant
@@ -157,7 +150,7 @@ export default function Result() {
                 window.location.href = `/interview?q=${q}`;
               }}
             >
-              Fix Key Detail
+              Jump To Key Question
             </button>
             <button
               className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
@@ -166,6 +159,61 @@ export default function Result() {
               Find Help Now
             </button>
           </div>
+
+          {/* Top-2 answer chips */}
+          {!!missing.length && (
+            <div className="flex flex-wrap gap-2">
+              {missing.slice(0, 2).map((q) => {
+                const qKey = q as keyof TranslationDict["interview"]["questions"];
+                return (
+                  <button
+                    key={q}
+                    className="text-xs rounded-full border px-3 py-1 underline"
+                    onClick={() => (window.location.href = `/interview?q=${q}`)}
+                  >
+                    Answer now: {t.interview.questions[qKey]?.label || q}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Assistant suggestions with one-tap accept */}
+          {assistant.loading && <div className="text-xs text-zinc-500">Assistant thinking…</div>}
+          {Object.keys(assistant.data).length > 0 && (
+            <div className="space-y-2">
+              {missing.slice(0, 2).map((q) => {
+                const suggestion = assistant.data[q];
+                if (!suggestion) return null;
+                const label =
+                  t.interview.questions[q as keyof TranslationDict["interview"]["questions"]]
+                    ?.label;
+                return (
+                  <div key={q} className="rounded border p-2 bg-zinc-50 dark:bg-zinc-900">
+                    <div className="text-sm">
+                      {label || q}: <b>{suggestion.suggestion}</b>{" "}
+                      <span className="text-xs text-zinc-500">
+                        ({Math.round((suggestion.confidence || 0) * 100)}%)
+                      </span>
+                    </div>
+                    {suggestion.followup && (
+                      <div className="text-xs text-zinc-600 mt-1">{suggestion.followup}</div>
+                    )}
+                    <div className="mt-2 flex gap-2">
+                      <button
+                        className="text-xs rounded border px-2 py-1 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                        onClick={() => {
+                          useAppStore.getState().setAnswer(q, suggestion.suggestion);
+                        }}
+                      >
+                        Accept
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
           {(missing.length ? missing : ["generic"]).map((id) => {
             const item: EducationItem = (edu[id] || edu.generic) as EducationItem;
@@ -191,6 +239,27 @@ export default function Result() {
             <Link href="/pdf/umgangsregelung" className="underline">
               {t.result.generateContactOrder}
             </Link>
+          )}
+          {/* Pack actions */}
+          {(status === "eligible_joint_custody" || status === "joint_custody_default") && (
+            <div className="flex gap-3 text-sm">
+              <button className="underline" onClick={() => buildAndDownloadPack("joint")}>
+                Download Pack
+              </button>
+              <button className="underline" onClick={() => sharePack("joint")}>
+                Email Me Pack
+              </button>
+            </div>
+          )}
+          {status === "apply_contact_order" && (
+            <div className="flex gap-3 text-sm">
+              <button className="underline" onClick={() => buildAndDownloadPack("contact")}>
+                Download Pack
+              </button>
+              <button className="underline" onClick={() => sharePack("contact")}>
+                Email Me Pack
+              </button>
+            </div>
           )}
         </div>
       </motion.div>
@@ -247,169 +316,141 @@ export default function Result() {
         </motion.details>
       )}
 
-      {/* Help Sheet (lightweight modal) */}
-      {helpOpen && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-end sm:items-center justify-center">
-          <div className="w-full sm:max-w-lg bg-white dark:bg-zinc-950 rounded-t-2xl sm:rounded-2xl p-4 space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="font-medium">Find Help Now</div>
-              <button className="text-sm underline" onClick={() => setHelpOpen(false)}>
-                Close
-              </button>
-            </div>
-            <div className="text-sm text-zinc-700 dark:text-zinc-300">
-              Call your nearest Jugendamt or court registry. Use the script below; tap to copy. You
-              can also add a calendar reminder.
-            </div>
-            <div className="rounded-lg border p-3">
-              <div className="text-xs uppercase text-zinc-500 mb-1">What to say (German)</div>
-              <textarea
-                className="w-full rounded border p-2 text-sm"
-                rows={4}
-                readOnly
-                onClick={(e) => (e.target as HTMLTextAreaElement).select()}
-                value="Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!"
-              ></textarea>
-              <div className="mt-2 flex gap-2">
-                <button
-                  className="rounded border px-3 py-1 text-sm"
-                  onClick={() =>
-                    navigator.clipboard.writeText(
-                      "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!"
-                    )
-                  }
-                >
-                  Copy
-                </button>
-                <button
-                  className="rounded border px-3 py-1 text-sm"
-                  onClick={() => {
-                    const ics = buildICS({
-                      summary: "Call Jugendamt",
-                      startISO: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-                      durationMinutes: 15,
-                    });
-                    const blob = new Blob([ics], { type: "text/calendar" });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement("a");
-                    a.href = url;
-                    a.download = "call-jugendamt.ics";
-                    a.click();
-                    URL.revokeObjectURL(url);
-                  }}
-                >
-                  Add reminder
-                </button>
-              </div>
-            </div>
-            <div className="rounded-lg border p-3 space-y-2">
-              <div className="text-xs uppercase text-zinc-500">Nearby services</div>
-              <div className="flex gap-2 items-center">
-                <select
-                  value={city}
-                  onChange={(e) => {
-                    const v = e.target.value as "berlin" | "hamburg" | "nrw";
-                    setCity(v);
-                    setPreferredCity(v);
-                  }}
-                  className="rounded border px-2 py-1 text-sm"
-                >
-                  <option value="berlin">Berlin</option>
-                  <option value="hamburg">Hamburg</option>
-                  <option value="nrw">NRW</option>
-                </select>
-                <input
-                  value={postcode}
-                  onChange={(e) => setPostcode(e.target.value)}
-                  placeholder="Postcode (e.g. 10115)"
-                  className="flex-1 rounded border px-3 py-1 text-sm"
-                />
-                <button
-                  className="rounded border px-2 py-1 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
-                  onClick={() => {
-                    setGeoError("");
-                    setGeoLoading(true);
-                    if (!("geolocation" in navigator)) {
-                      setGeoError("Location unavailable");
-                      setGeoLoading(false);
-                      return;
-                    }
-                    navigator.geolocation.getCurrentPosition(
-                      async (pos) => {
-                        try {
-                          const { latitude, longitude } = pos.coords;
-                          const res = await fetch(`/api/revgeo?lat=${latitude}&lon=${longitude}`);
-                          const j = (await res.json()) as { postcode?: string; error?: string };
-                          if (j.postcode) setPostcode(j.postcode);
-                          else if (j.error) setGeoError(j.error);
-                        } catch (err) {
-                          console.error(err);
-                          setGeoError("Failed to detect postcode");
-                        } finally {
-                          setGeoLoading(false);
-                        }
-                      },
-                      () => {
-                        setGeoError("Permission denied");
-                        setGeoLoading(false);
-                      }
-                    );
-                  }}
-                >
-                  Use my location
-                </button>
-                <span
-                  title="We only use your location to find your postcode. No location data is stored or sent elsewhere."
-                  className="text-zinc-500"
-                  aria-label="Privacy note"
-                >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    aria-hidden
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="12" y1="8" x2="12" y2="12" />
-                    <circle cx="12" cy="16" r="1" />
-                  </svg>
-                </span>
-              </div>
-              {geoLoading && <div className="text-xs text-zinc-500">Detecting…</div>}
-              {!!geoError && <div className="text-xs text-red-600">{geoError}</div>}
-              <div className="space-y-2 max-h-64 overflow-auto">
-                {filteredServices.length === 0 && (
-                  <div className="text-sm text-zinc-500">No services yet. Try a postcode.</div>
-                )}
-                {filteredServices.slice(0, 6).map((s) => (
-                  <div key={s.id} className="rounded border p-2">
-                    <div className="text-xs uppercase text-zinc-500">{s.type}</div>
-                    <div className="font-medium text-sm">{s.name}</div>
-                    <div className="text-sm text-zinc-600">{s.address}</div>
-                    {s.phone && (
-                      <a className="text-sm underline" href={`tel:${s.phone}`}>
-                        {s.phone}
-                      </a>
-                    )}
-                    {s.url && (
-                      <a className="ml-2 text-sm underline" href={s.url} target="_blank">
-                        Website
-                      </a>
-                    )}
-                    {s.opening && <div className="text-xs text-zinc-500">{s.opening}</div>}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="text-xs text-zinc-500">
-              Information only — not individualized legal advice.
-            </div>
-          </div>
+      {/* Global Help Sheet reuse */}
+      <HelpSheet open={helpOpen} onClose={() => setHelpOpen(false)} />
+
+      {/* Confidence tips */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.35 }}
+        className="rounded-lg border p-3 bg-white dark:bg-zinc-900"
+      >
+        <div className="text-sm font-medium mb-1">How to reach 95% confidence</div>
+        <div className="text-sm text-zinc-700 dark:text-zinc-300">
+          {missing.length > 0 ? "Answer these:" : "Add supporting documents in your vault."}
         </div>
-      )}
+        {!!missing.length && (
+          <div className="mt-2 flex flex-wrap gap-2">
+            {missing.slice(0, 2).map((q) => {
+              const qKey = q as keyof TranslationDict["interview"]["questions"];
+              return (
+                <button
+                  key={q}
+                  className="text-xs rounded-full border px-3 py-1 underline"
+                  onClick={() => (window.location.href = `/interview?q=${q}`)}
+                >
+                  {t.interview.questions[qKey]?.label || q}
+                </button>
+              );
+            })}
+          </div>
+        )}
+        <div className="text-xs mt-2">
+          Tip: add paternity acknowledgement or birth certificate scans in your{" "}
+          <a className="underline" href="/vault">
+            Vault
+          </a>
+          .
+        </div>
+      </motion.div>
+
+      {/* Regional tips */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.4 }}
+        className="rounded-lg border p-3"
+      >
+        <div className="text-sm font-medium">Regional Tips</div>
+        <div className="text-sm text-zinc-700 dark:text-zinc-300 mt-1">
+          {
+            ((regionalTips as Record<string, string>)[city] ||
+              "Local registries may have specific forms or appointment windows. Bring IDs and child’s birth details.") as string
+          }
+        </div>
+      </motion.div>
     </div>
   );
+}
+
+async function generatePdf(type: "joint" | "contact", locale: string) {
+  const url = type === "joint" ? "/api/pdf/gemeinsame-sorge" : "/api/pdf/umgangsregelung";
+  const body =
+    type === "joint"
+      ? { formData: { courtTemplate: "" }, citations: [], snapshotIds: [], locale }
+      : {
+          formData: {
+            courtTemplate: "",
+            proposal: { weekday: {}, weekend: {}, holidays: {}, handover: {} },
+          },
+          citations: [],
+          snapshotIds: [],
+          locale,
+        };
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  return await res.blob();
+}
+
+async function buildPackBlob(kind: "joint" | "contact", locale: string): Promise<Blob> {
+  const zip = new JSZip();
+  const date = new Date().toISOString().slice(0, 10);
+  const cover =
+    kind === "joint"
+      ? `Cover letter\n\nTo the Family Court\nRequest: Joint custody application.\nDate: ${date}\n\nEnclosed: application PDF, birth certificate, paternity acknowledgement (if available).\nInformation only — not legal advice.`
+      : `Cover letter\n\nTo the Family Court\nRequest: Contact/visitation order.\nDate: ${date}\n\nEnclosed: application PDF, communications/logs, proof of payments (if relevant).\nInformation only — not legal advice.`;
+  const checklist =
+    kind === "joint"
+      ? `Bring This Checklist\n- IDs (both parents if possible)\n- Child's birth certificate\n- Paternity acknowledgement (if applicable)\n- Any court letters`
+      : `Bring This Checklist\n- IDs\n- Proposed schedule (draft)\n- Communication log excerpts\n- Any safety notes (if applicable)`;
+  zip.file("cover-letter.txt", cover);
+  zip.file("checklist.txt", checklist);
+  const pdfBlob = await generatePdf(kind, locale);
+  const pdfArray = await pdfBlob.arrayBuffer();
+  zip.file(kind === "joint" ? "gemeinsame-sorge.pdf" : "umgangsregelung.pdf", pdfArray);
+  const blob = await zip.generateAsync({ type: "blob" });
+  return blob;
+}
+
+async function buildAndDownloadPack(kind: "joint" | "contact") {
+  const { locale } = useAppStore.getState();
+  const blob = await buildPackBlob(kind, locale);
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `custody-pack-${kind}-${new Date().toISOString().slice(0, 10)}.zip`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+async function sharePack(kind: "joint" | "contact") {
+  try {
+    const { locale } = useAppStore.getState();
+    const blob = await buildPackBlob(kind, locale);
+    const file = new File([blob], `custody-pack-${kind}.zip`, { type: "application/zip" });
+    // Prefer Web Share API if available
+    const nav = navigator as Navigator & {
+      canShare?: (data?: ShareData & { files?: File[] }) => boolean;
+      share?: (data: ShareData & { files?: File[] }) => Promise<void>;
+    };
+    if (typeof navigator !== "undefined" && nav.canShare && nav.canShare({ files: [file] })) {
+      await nav.share?.({ files: [file], title: "Custody Clarity Pack" });
+    } else {
+      // Fallback: download and open mailto
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `custody-pack-${kind}-${new Date().toISOString().slice(0, 10)}.zip`;
+      a.click();
+      URL.revokeObjectURL(url);
+      window.location.href = `mailto:?subject=Your%20Custody%20Clarity%20Pack&body=Your%20pack%20was%20downloaded.%20Attach%20the%20ZIP%20to%20this%20email%20if%20you%20wish%20to%20send%20it.`;
+    }
+  } catch {
+    alert("Unable to share pack. It has been downloaded instead.");
+    await buildAndDownloadPack(kind);
+  }
 }

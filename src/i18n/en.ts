@@ -16,6 +16,14 @@ const en = {
     support: "Find Support",
     disclaimer: "Information only. Not individualized legal advice.",
   },
+  header: {
+    findHelp: "Find Help",
+    quickExit: "Quick Exit",
+    exit: "Exit",
+    installApp: "Install App",
+    settings: "Settings",
+    more: "More",
+  },
   interview: {
     title: "Interview",
     help: "Tap the help icon for details and citations.",
@@ -86,6 +94,7 @@ const en = {
     whatThisMeans: "What this means",
     nextSteps: "Next steps",
     sources: "Sources",
+    pathHint: "If unsure, you can file this now and add details later.",
     generateJointCustody: "Generate joint custody form",
     generateContactOrder: "Generate contact order form",
     statuses: {
@@ -96,7 +105,7 @@ const en = {
       suggest_mediation: "Recommendation: Try mediation via Jugendamt or services",
       schedule_short_weekday: "Recommendation: Short weekday contact windows (age under 3)",
       schedule_weekend_only: "Recommendation: Weekend/holiday‑focused plan due to distance",
-      unknown: "We need more information",
+      unknown: "Let’s finish this together",
     },
   },
   directory: {

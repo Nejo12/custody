@@ -184,6 +184,13 @@ export async function POST(req: Request) {
     drawCheckbox(locale === "de" ? "Geburtsurkunde(n)" : "Birth certificate(s)");
     drawCheckbox(locale === "de" ? "Vaterschaftsanerkennung" : "Paternity acknowledgement");
     drawCheckbox(locale === "de" ? "Kommunikation/Logs" : "Communications/Logs");
+    // Tiny first-visit checklist hint
+    drawField(
+      "",
+      locale === "de"
+        ? "Erster Besuch – Checkliste: Ausweise, Geburtsurkunde, Vaterschaftsanerkennung."
+        : "First visit – checklist: IDs, birth certificate, paternity acknowledgement."
+    );
 
     // Signature block
     y -= 10;

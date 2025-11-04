@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import ThemeInit from "@/components/ThemeInit";
+import FloatingThemeSwitch from "@/components/FloatingThemeSwitch";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +44,7 @@ export default function RootLayout({
             {/* InstallPrompt removed: persistent install button lives in Header only on mobile */}
             <main className="flex-1 w-full flex flex-col items-center">{children}</main>
             <Footer />
+            <FloatingThemeSwitch />
           </div>
         </I18nProvider>
       </body>

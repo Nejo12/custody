@@ -16,6 +16,14 @@ const ar = {
     support: "العثور على الدعم",
     disclaimer: "معلومات فقط. ليست نصيحة قانونية فردية.",
   },
+  header: {
+    findHelp: "ابحث عن المساعدة",
+    quickExit: "خروج سريع",
+    exit: "خروج",
+    installApp: "تثبيت التطبيق",
+    settings: "الإعدادات",
+    more: "المزيد",
+  },
   interview: {
     title: "المقابلة",
     help: "اضغط على أيقونة المساعدة للحصول على التفاصيل والمراجع.",
@@ -86,6 +94,7 @@ const ar = {
     whatThisMeans: "ماذا يعني هذا",
     nextSteps: "الخطوات التالية",
     sources: "المصادر",
+    pathHint: "إذا كنت غير متأكد، يمكنك التقديم الآن وإضافة التفاصيل لاحقًا.",
     generateJointCustody: "إنشاء نموذج الحضانة المشتركة",
     generateContactOrder: "إنشاء نموذج أمر الاتصال",
     statuses: {
@@ -96,7 +105,7 @@ const ar = {
       suggest_mediation: "توصية: جرب الوساطة عبر Jugendamt أو الخدمات",
       schedule_short_weekday: "توصية: نوافذ اتصال قصيرة في أيام الأسبوع (عمر أقل من 3 سنوات)",
       schedule_weekend_only: "توصية: خطة تركز على عطلة نهاية الأسبوع/العطلات بسبب المسافة",
-      unknown: "نحتاج المزيد من المعلومات",
+      unknown: "لنُنْهِ هذا معًا",
     },
   },
   directory: {

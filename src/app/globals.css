@@ -45,3 +45,12 @@ body {
   border-radius: 12px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
+
+/* Shared UI helpers */
+.btn-pill {
+  @apply inline-flex items-center justify-center rounded-full border h-9 px-4 text-sm transition-colors bg-white/80 dark:bg-zinc-900/60 border-zinc-300 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800;
+}
+
+.header-surface {
+  @apply bg-white/80 dark:bg-zinc-950/60 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b border-zinc-200 dark:border-zinc-800;
+}

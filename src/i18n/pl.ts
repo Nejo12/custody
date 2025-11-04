@@ -16,6 +16,14 @@ const pl = {
     support: "Znajdź wsparcie",
     disclaimer: "Tylko informacja. Nie jest to indywidualna porada prawna.",
   },
+  header: {
+    findHelp: "Znajdź pomoc",
+    quickExit: "Szybkie wyjście",
+    exit: "Wyjdź",
+    installApp: "Zainstaluj aplikację",
+    settings: "Ustawienia",
+    more: "Więcej",
+  },
   interview: {
     title: "Wywiad",
     help: "Kliknij ikonę pomocy, aby uzyskać szczegóły i źródła.",
@@ -86,6 +94,7 @@ const pl = {
     whatThisMeans: "Co to oznacza",
     nextSteps: "Następne kroki",
     sources: "Źródła",
+    pathHint: "Jeśli nie jesteś pewien, możesz złożyć wniosek teraz i uzupełnić szczegóły później.",
     generateJointCustody: "Wygeneruj formularz wspólnej opieki",
     generateContactOrder: "Wygeneruj formularz kontaktu",
     statuses: {
@@ -98,7 +107,7 @@ const pl = {
         "Rekomendacja: Krótkie okna kontaktu w dni powszednie (wiek poniżej 3 lat)",
       schedule_weekend_only:
         "Rekomendacja: Plan skupiony na weekendach/świętach ze względu na odległość",
-      unknown: "Potrzebujemy więcej informacji",
+      unknown: "Dokończmy to razem",
     },
   },
   directory: {

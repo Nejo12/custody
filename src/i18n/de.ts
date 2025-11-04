@@ -16,6 +16,14 @@ const de = {
     support: "Hilfe finden",
     disclaimer: "Nur Information – keine individuelle Rechtsberatung.",
   },
+  header: {
+    findHelp: "Hilfe finden",
+    quickExit: "Schnell verlassen",
+    exit: "Verlassen",
+    installApp: "App installieren",
+    settings: "Einstellungen",
+    more: "Mehr",
+  },
   interview: {
     title: "Interview",
     help: "Tippe auf Hilfe für Details und Quellen.",
@@ -86,6 +94,7 @@ const de = {
     whatThisMeans: "Bedeutung",
     nextSteps: "Nächste Schritte",
     sources: "Quellen",
+    pathHint: "Wenn du unsicher bist: Du kannst jetzt einreichen und Details später ergänzen.",
     generateJointCustody: "Formular gemeinsames Sorgerecht",
     generateContactOrder: "Formular Umgangsregelung",
     statuses: {
@@ -96,7 +105,7 @@ const de = {
       suggest_mediation: "Empfehlung: Mediation über Jugendamt oder Dienste versuchen",
       schedule_short_weekday: "Empfehlung: Kurze Wochentags‑Zeitfenster (Kind unter 3)",
       schedule_weekend_only: "Empfehlung: Wochenend-/Ferien‑Fokus wegen Entfernung",
-      unknown: "Weitere Angaben erforderlich",
+      unknown: "Lass uns das gemeinsam abschließen",
     },
   },
   directory: {

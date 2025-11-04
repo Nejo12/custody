@@ -16,6 +16,14 @@ const tr = {
     support: "Destek bul",
     disclaimer: "Yalnızca bilgi. Bireysel hukuki tavsiye değildir.",
   },
+  header: {
+    findHelp: "Yardım bul",
+    quickExit: "Hızlı çıkış",
+    exit: "Çıkış",
+    installApp: "Uygulamayı yükle",
+    settings: "Ayarlar",
+    more: "Daha fazla",
+  },
   interview: {
     title: "Görüşme",
     help: "Detaylar ve referanslar için yardım simgesine dokunun.",
@@ -86,6 +94,7 @@ const tr = {
     whatThisMeans: "Bu ne anlama geliyor",
     nextSteps: "Sonraki adımlar",
     sources: "Kaynaklar",
+    pathHint: "Emin değilseniz, şimdi başvurabilir ve ayrıntıları sonra ekleyebilirsiniz.",
     generateJointCustody: "Ortak vesayet formu oluştur",
     generateContactOrder: "İletişim formu oluştur",
     statuses: {
@@ -96,7 +105,7 @@ const tr = {
       suggest_mediation: "Öneri: Jugendamt veya hizmetler aracılığıyla arabuluculuk deneyin",
       schedule_short_weekday: "Öneri: Hafta içi kısa iletişim pencereleri (3 yaş altı)",
       schedule_weekend_only: "Öneri: Mesafe nedeniyle hafta sonu/tatil odaklı plan",
-      unknown: "Daha fazla bilgiye ihtiyacımız var",
+      unknown: "Bunu birlikte tamamlayalım",
     },
   },
   directory: {

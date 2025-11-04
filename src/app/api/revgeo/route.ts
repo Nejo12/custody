@@ -1,8 +1,6 @@
-import type { NextRequest } from "next/server";
-
 type RevGeoResponse = { postcode?: string } | { error: string };
 
-export async function GET(req: NextRequest): Promise<Response> {
+export async function GET(req: Request): Promise<Response> {
   try {
     const { searchParams } = new URL(req.url);
     const lat = searchParams.get("lat");

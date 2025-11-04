@@ -159,6 +159,13 @@ export async function POST(req: Request) {
     drawHeading(locale === "de" ? "Anlagen" : "Attachments");
     drawCheckbox(locale === "de" ? "Kommunikation/Logs" : "Communications/Logs");
     drawCheckbox(locale === "de" ? "Nachweise Zahlungen" : "Proof of payments");
+    // Tiny first-visit checklist hint
+    drawField(
+      "",
+      locale === "de"
+        ? "Erster Besuch – Checkliste: Ausweise, Entwurf Umgangsplan, relevante Nachweise."
+        : "First visit – checklist: IDs, draft schedule, relevant proofs."
+    );
 
     y -= 10;
     drawHeading(locale === "de" ? "Unterschrift" : "Signature");

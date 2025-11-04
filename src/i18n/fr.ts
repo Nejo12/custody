@@ -16,6 +16,14 @@ const fr = {
     support: "Trouver du soutien",
     disclaimer: "Information uniquement. Pas de conseil juridique individualisé.",
   },
+  header: {
+    findHelp: "Trouver de l'aide",
+    quickExit: "Quitter rapidement",
+    exit: "Quitter",
+    installApp: "Installer l’app",
+    settings: "Paramètres",
+    more: "Plus",
+  },
   interview: {
     title: "Entretien",
     help: "Appuyez sur l'icône d'aide pour les détails et les références.",
@@ -86,6 +94,7 @@ const fr = {
     whatThisMeans: "Ce que cela signifie",
     nextSteps: "Prochaines étapes",
     sources: "Sources",
+    pathHint: "En cas de doute, vous pouvez déposer maintenant et ajouter des détails plus tard.",
     generateJointCustody: "Générer le formulaire de garde partagée",
     generateContactOrder: "Générer le formulaire de contact",
     statuses: {
@@ -99,7 +108,7 @@ const fr = {
         "Recommandation : Fenêtres de contact courtes en semaine (enfant de moins de 3 ans)",
       schedule_weekend_only:
         "Recommandation : Plan axé sur les week-ends/vacances en raison de la distance",
-      unknown: "Nous avons besoin de plus d'informations",
+      unknown: "Finissons ensemble",
     },
   },
   directory: {
