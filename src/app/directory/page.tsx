@@ -2,16 +2,47 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useI18n } from '@/i18n';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAppStore } from '@/store/app';
 
 type Service = { id: string; type: string; name: string; postcode: string; address: string; phone: string; url: string; opening?: string };
 type City = 'berlin' | 'hamburg' | 'nrw';
 
 export default function DirectoryPage() {
   const { t } = useI18n();
+  const { preferredCity, setPreferredCity } = useAppStore();
   const [services, setServices] = useState<Service[]>([]);
+  const [snapshots, setSnapshots] = useState<Record<City, Service[]>>({ berlin: [], hamburg: [], nrw: [] });
   const [q, setQ] = useState('');
   const [type, setType] = useState<string>('');
-  const [city, setCity] = useState<City>('berlin');
+  const [city, setCity] = useState<City>(preferredCity || 'berlin');
+
+  // Optional deep link: /directory?city=hamburg|nrw
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const u = new URL(window.location.href);
+    const c = u.searchParams.get('city') as City | null;
+    if (c && c !== city) { setCity(c); setPreferredCity(c); }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Fetch snapshot previews for all cities (Jugendamt/Court samples)
+  useEffect(() => {
+    let cancelled = false;
+    const cities: City[] = ['berlin','hamburg','nrw'];
+    Promise.all(
+      cities.map(async (c) => {
+        const r = await fetch(`/api/directory?city=${c}`);
+        const j = (await r.json()) as { services?: Service[] };
+        return [c, Array.isArray(j.services) ? j.services : []] as const;
+      })
+    ).then((entries) => {
+      if (cancelled) return;
+      const obj: Record<City, Service[]> = { berlin: [], hamburg: [], nrw: [] };
+      for (const [c, arr] of entries) obj[c] = arr;
+      setSnapshots(obj);
+    }).catch(() => {/* ignore */});
+    return () => { cancelled = true; };
+  }, []);
 
   useEffect(() => {
     fetch(`/api/directory?city=${city}` + (type ? `&type=${type}` : ''))
@@ -32,7 +63,7 @@ export default function DirectoryPage() {
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-2">
           <select 
             value={city} 
-            onChange={(e)=>setCity(e.target.value as City)} 
+            onChange={(e)=>{ const v = e.target.value as City; setCity(v); setPreferredCity(v); }} 
             className="w-full sm:w-auto sm:min-w-[120px] rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
           >
             <option value="berlin">Berlin</option>
@@ -64,6 +95,30 @@ export default function DirectoryPage() {
       {/* Scrollable Cards Section */}
       <div className="flex-1 overflow-y-auto px-4 pb-6 scroll-smooth" style={{ scrollBehavior: 'smooth' }}>
         <div className="space-y-3 pt-4">
+          <details className="rounded-lg border p-3">
+            <summary className="font-medium cursor-pointer">City snapshots</summary>
+            <div className="mt-2 grid grid-cols-1 gap-3">
+              {([
+                { label: 'Berlin', key: 'berlin' as City, data: snapshots.berlin },
+                { label: 'Hamburg', key: 'hamburg' as City, data: snapshots.hamburg },
+                { label: 'NRW', key: 'nrw' as City, data: snapshots.nrw },
+              ]).map((grp) => {
+                const items: Service[] = grp.data.filter(s => s.type==='jugendamt' || s.type==='court').slice(0,2);
+                return (
+                  <div key={grp.key} className="rounded border p-3">
+                    <div className="text-sm uppercase text-zinc-500 mb-1">{grp.label}</div>
+                    {items.map((s: Service) => (
+                      <div key={s.id} className="mb-2">
+                        <div className="font-medium">{s.name}</div>
+                        <div className="text-sm text-zinc-600 dark:text-zinc-400">{s.address}</div>
+                      </div>
+                    ))}
+                    <button onClick={()=>{ setCity(grp.key as City); setPreferredCity(grp.key as City); }} className="text-sm underline">View all in {grp.label}</button>
+                  </div>
+                );
+              })}
+            </div>
+          </details>
           <AnimatePresence mode="wait">
             {filtered.length === 0 && (
               <motion.div

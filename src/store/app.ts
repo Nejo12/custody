@@ -32,6 +32,9 @@ type AppState = {
   addEntry: (e: Entry) => void;
   removeEntry: (id: string) => void;
   exportData: () => string;
+
+  preferredCity: 'berlin' | 'hamburg' | 'nrw';
+  setPreferredCity: (c: 'berlin' | 'hamburg' | 'nrw') => void;
 };
 
 const getSystemTheme = (): 'light' | 'dark' => {
@@ -57,6 +60,8 @@ export const useAppStore = create<AppState>()(
       return {
         locale: (typeof window !== 'undefined' && (localStorage.getItem('locale') as AppState['locale'])) || 'en',
         setLocale: (l) => set({ locale: l }),
+        preferredCity: (typeof window !== 'undefined' && (localStorage.getItem('preferredCity') as AppState['preferredCity'])) || 'berlin',
+        setPreferredCity: (c) => set({ preferredCity: c }),
         theme: initialTheme,
         setTheme: (t) => {
           set({ theme: t });
@@ -88,6 +93,7 @@ export const useAppStore = create<AppState>()(
           const data = {
             locale: get().locale,
             theme: get().theme,
+            preferredCity: get().preferredCity,
             interview: get().interview,
             vault: get().vault,
           };
@@ -98,8 +104,7 @@ export const useAppStore = create<AppState>()(
     {
       name: 'custody-clarity',
       storage: createJSONStorage(() => localStorage),
-      partialize: (s) => ({ locale: s.locale, theme: s.theme, interview: s.interview, vault: s.vault }),
+      partialize: (s) => ({ locale: s.locale, theme: s.theme, preferredCity: s.preferredCity, interview: s.interview, vault: s.vault }),
     }
   )
 );
-

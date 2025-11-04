@@ -33,7 +33,8 @@ export default function Result() {
   const unclear = status === 'unknown';
   const [helpOpen, setHelpOpen] = useState(false);
   const [postcode, setPostcode] = useState('');
-  const [city, setCity] = useState<'berlin'|'hamburg'|'nrw'>('berlin');
+  const { preferredCity, setPreferredCity } = useAppStore();
+  const [city, setCity] = useState<'berlin'|'hamburg'|'nrw'>(preferredCity || 'berlin');
   const [geoLoading, setGeoLoading] = useState(false);
   const [geoError, setGeoError] = useState('');
   type Service = { id: string; type: string; name: string; postcode: string; address: string; phone: string; url: string; opening?: string };
@@ -182,7 +183,7 @@ export default function Result() {
           <div className="rounded-lg border p-3 space-y-2">
             <div className="text-xs uppercase text-zinc-500">Nearby services</div>
             <div className="flex gap-2 items-center">
-              <select value={city} onChange={(e)=>setCity(e.target.value as 'berlin'|'hamburg'|'nrw')} className="rounded border px-2 py-1 text-sm">
+              <select value={city} onChange={(e)=>{ const v = e.target.value as 'berlin'|'hamburg'|'nrw'; setCity(v); setPreferredCity(v); }} className="rounded border px-2 py-1 text-sm">
                 <option value="berlin">Berlin</option>
                 <option value="hamburg">Hamburg</option>
                 <option value="nrw">NRW</option>
@@ -209,6 +210,13 @@ export default function Result() {
                   }, () => { setGeoError('Permission denied'); setGeoLoading(false); });
                 }}
               >Use my location</button>
+              <span title="We only use your location to find your postcode. No location data is stored or sent elsewhere." className="text-zinc-500" aria-label="Privacy note">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <circle cx="12" cy="16" r="1" />
+                </svg>
+              </span>
             </div>
             {geoLoading && <div className="text-xs text-zinc-500">Detecting…</div>}
             {!!geoError && <div className="text-xs text-red-600">{geoError}</div>}
