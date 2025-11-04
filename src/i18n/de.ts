@@ -116,6 +116,14 @@ const de = {
     about: "Über",
     dataExport: "Datenexport",
   },
+  education: {
+    headings: {
+      why: "Warum diese Frage wichtig ist",
+      law: "Was das Gesetz sagt",
+      unsure: "Was du tun kannst, wenn du unsicher bist",
+      sources: "Quellen",
+    },
+  },
 };
 
 export default de;

@@ -1,0 +1,100 @@
+{
+  "generic": {
+    "title": "Lass uns das gemeinsam abschließen",
+    "why": "Dieses Ergebnis braucht noch ein Detail, um einen klaren Plan freizuschalten. Das ist normal – viele Eltern haben nicht alle Daten oder Unterlagen sofort parat. Ziel ist, ein bis zwei Punkte zu klären, damit du heute mit einem sicheren, praktikablen Schritt weiterkommst.",
+    "law": "Das Familienrecht stellt das Kindeswohl in den Mittelpunkt. Ist ein Kernfakt unklar, ändert sich oft nur der Weg: Entweder gilt eine Standardregel (z. B. gemeinsames Sorgerecht bei verheirateten Eltern) oder du erledigst einen kurzen Standard‑Schritt (z. B. Sorgeerklärung, kurzer Antrag oder Umgangsplan).",
+    "unsure": "Wenn du unsicher bist, kannst du trotzdem handeln: Nutze unsere Anruf‑Skripte für Jugendamt oder Gericht, reiche das passende Paket ein und ergänze später, oder lass dir vom Assistenten auf Basis deiner Antworten die wahrscheinlichste Option vorschlagen.",
+    "citations": []
+  },
+  "married_at_birth": {
+    "title": "Heirat bei Geburt des Kindes",
+    "why": "Dieser eine Fakt entscheidet oft, ob gemeinsames Sorgerecht automatisch gilt oder ob du einen kurzen Schritt gehst, um es zu begründen. Die Klarheit spart Umwege und bringt dich schneller zu Antrag, Unterlagen und zuständiger Stelle.",
+    "law": "Nach BGB §1626 haben verheiratete Eltern in der Regel gemeinsames Sorgerecht, sofern kein Gericht anders entschieden hat. Waren Eltern bei Geburt nicht verheiratet, beschreibt §1626a BGB die Begründung – per Sorgeerklärung oder kurzem gerichtlichen Antrag.",
+    "unsure": "Prüfe: Heiratsurkunde nahe dem Geburtsdatum? Gerichtlicher Beschluss zur Sorge? Wenn unklar, frage Registry/Jugendamt oder reiche das Paket zum gemeinsamen Sorgerechtsantrag ein – das Gericht kann den Rest bestätigen.",
+    "citations": [
+      {
+        "label": "BGB §1626",
+        "url": "https://gesetze-im-internet.de/bgb/__1626.html",
+        "snapshotId": "bgb-1626-2025-01"
+      },
+      {
+        "label": "BGB §1626a",
+        "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+        "snapshotId": "bgb-1626a-2025-01"
+      }
+    ]
+  },
+  "paternity_ack": {
+    "title": "Vaterschaftsanerkennung",
+    "why": "Für unverheiratete Eltern ist die formelle Anerkennung oft der erste Dominostein: Sie ermöglicht weitere Schritte (Sorge, Umgang) und verhindert Verzögerungen.",
+    "law": "Die Anerkennung erfolgt meist beim Standesamt oder Jugendamt. Danach werden Entscheidungen zu Sorge, Umgang, Pässen, Schule und Gesundheit schneller und klarer.",
+    "unsure": "Suche nach einer unterschriebenen Anerkennung oder einem Vermerk in der Geburtsurkunde. Fehlt sie, vereinbare kurz einen Termin beim Jugendamt/Standesamt – mit Ausweis und Geburtsdaten. Unser Assistent erstellt Schreiben und Checkliste.",
+    "citations": [
+      {
+        "label": "Familienportal.de",
+        "url": "https://www.familienportal.de/",
+        "snapshotId": "familienportal-2025-01"
+      }
+    ]
+  },
+  "blocked_contact": {
+    "title": "Blockierter oder eingeschränkter Umgang",
+    "why": "Ist der Umgang blockiert, kann das Gericht einen fairen, sicheren Plan festlegen. Klarheit macht aus Konflikt einen Plan – mit Zeiten, Feiertagen und Übergaberegeln.",
+    "law": "§1684 BGB schützt das Recht des Kindes auf Umgang mit beiden Eltern, sofern keine schwerwiegenden Gründe dagegen sprechen. Gerichte können begleiteten Umgang anordnen und Pläne anpassen, wenn sich Bedürfnisse ändern.",
+    "unsure": "Starte ein einfaches Protokoll: Datum der Versuche, Antworten, Sicherheitsaspekte. Die App erstellt Logbuch und Plan‑Vorschlag. Beides beim Jugendamt oder Gericht zeigen – das signalisiert Bereitschaft für eine praktische Lösung.",
+    "citations": [
+      {
+        "label": "BGB §1684",
+        "url": "https://gesetze-im-internet.de/bgb/__1684.html",
+        "snapshotId": "bgb-1684-2025-01"
+      }
+    ]
+  },
+  "joint_declaration": {
+    "title": "Gemeinsame Sorgeerklärung",
+    "why": "Für unverheiratete Eltern kann eine unterschriebene Sorgeerklärung das gemeinsame Sorgerecht ohne Gerichtsverhandlung begründen. Fehlt sie, ist der gerichtliche Weg kurz und standardisiert.",
+    "law": "§1626a BGB ermöglicht unverheirateten Eltern die Begründung des gemeinsamen Sorgerechts durch Sorgeerklärung oder – wenn passend – per einfachem gerichtlichen Antrag.",
+    "unsure": "Nicht sicher, ob ihr unterschrieben habt? Prüfe Unterlagen oder frage Jugendamt/Standesamt. Du kannst jetzt trotzdem einreichen; das Gericht prüft, was vorliegt.",
+    "citations": [
+      {
+        "label": "BGB §1626a",
+        "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+        "snapshotId": "bgb-1626a-2025-01"
+      }
+    ]
+  },
+  "court_order": {
+    "title": "Vorliegender Gerichtsbeschluss",
+    "why": "Eine gerichtliche Entscheidung kann Standardregeln überlagern. Ob es einen Beschluss gibt, bestimmt oft den richtigen Folgeweg (Änderung, Vollstreckung).",
+    "law": "Über Sorge und Umgang entscheidet das Familiengericht. Bestehende Beschlüsse gelten, bis sie geändert oder ersetzt werden.",
+    "unsure": "Suche nach einem Dokument mit dem Titel Beschluss/Urteil des Familiengerichts. Im Zweifel beim Gericht anrufen: Name und Kinderdaten genügen oft zur Auskunft, ob ein Beschluss existiert.",
+    "citations": []
+  },
+  "distance_km": {
+    "title": "Entfernung zwischen den Eltern",
+    "why": "Entfernung prägt die Praxis: kurze Wochentag‑Blöcke vs. wochenend-/feiertagszentrierte Pläne.",
+    "law": "Maßstab ist das Kindeswohl und die praktische Umsetzbarkeit. Längere Wege können weniger, aber längere Besuche rechtfertigen – inkl. Ferien.",
+    "unsure": "Schätze grob: gleiche Stadt (kurz), nahe Umgebung (mittel), weit (lang). Details kannst du später verfeinern; starte mit einem vernünftigen Vorschlag.",
+    "citations": []
+  },
+  "mediation_tried": {
+    "title": "Mediation versucht",
+    "why": "Mediation löst viele Konflikte schneller und günstiger als ein Gerichtsverfahren und wird vom Gericht oft positiv gesehen.",
+    "law": "Jugendämter und Dienste bieten kostenlose/faire Mediation und Beratung an. Gerichte regen das gelegentlich vorab an.",
+    "unsure": "Wenn noch nicht versucht: Vereinbare jetzt einen Termin. Wir liefern Anschreiben und Checkliste.",
+    "citations": [
+      {
+        "label": "Familienportal.de",
+        "url": "https://www.familienportal.de/",
+        "snapshotId": "familienportal-2025-01"
+      }
+    ]
+  },
+  "parental_agreement_possible": {
+    "title": "Einigung möglich",
+    "why": "Wenn eine Einigung realistisch ist, spart ein mediierter Plan oder eine Sorgeerklärung Zeit und reduziert Konflikt.",
+    "law": "Eltern können Sorge- und Umgangsregelungen einvernehmlich vereinbaren; das Gericht kann das protokollieren oder berücksichtigen.",
+    "unsure": "Sind nur einige Punkte unklar, probiert einen Entwurf mit Optionen (A/B). Mediation schließt oft die Lücke.",
+    "citations": []
+  }
+}

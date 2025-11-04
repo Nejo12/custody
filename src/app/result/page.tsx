@@ -1,5 +1,7 @@
 "use client";
 import rules from '@/data/rules.json';
+import eduEN from '@/data/education.en.json';
+import eduDE from '@/data/education.de.json';
 import { evaluateRules } from '@/lib/rules';
 import { useAppStore } from '@/store/app';
 import { useI18n } from '@/i18n';
@@ -8,6 +10,9 @@ import type { SimpleRule, Citation } from '@/lib/rules';
 import StatusCard from '@/components/StatusCard';
 import type { TranslationDict } from '@/types';
 import { motion } from 'framer-motion';
+import EducationPanel, { type EducationItem } from '@/components/EducationPanel';
+import { buildICS } from '@/lib/ics';
+import { useEffect, useMemo, useState } from 'react';
 
 type StatusKey = keyof TranslationDict['result']['statuses'];
 
@@ -18,6 +23,29 @@ export default function Result() {
 
   const status = (primary?.outcome.status || 'unknown') as StatusKey;
   const citations = (primary?.outcome.citations || []) as (Citation | string)[];
+  const htmlLang = typeof document !== 'undefined' ? document.documentElement.lang : 'en';
+  const locale: 'en'|'de' = htmlLang === 'de' ? 'de' : 'en';
+  type EducationMap = Record<string, EducationItem>;
+  const edu = (locale === 'de' ? eduDE : eduEN) as EducationMap;
+
+  const important = ['married_at_birth','paternity_ack','joint_declaration','blocked_contact'];
+  const missing = important.filter(k => !interview.answers[k] || interview.answers[k] === 'unsure').slice(0,2);
+  const unclear = status === 'unknown';
+  const [helpOpen, setHelpOpen] = useState(false);
+  const [postcode, setPostcode] = useState('');
+  type Service = { id: string; type: string; name: string; postcode: string; address: string; phone: string; url: string; opening?: string };
+  const [services, setServices] = useState<Service[]>([]);
+  const filteredServices = useMemo(() => {
+    const pc = postcode.trim();
+    return services.filter(s => (pc ? s.postcode.startsWith(pc) : true));
+  }, [services, postcode]);
+  useEffect(() => {
+    if (!helpOpen) return;
+    fetch('/api/directory?city=berlin')
+      .then(r=>r.json())
+      .then(d=> setServices(Array.isArray(d.services)? d.services as Service[]: []))
+      .catch(()=> setServices([]));
+  }, [helpOpen]);
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-8 space-y-6">
@@ -36,6 +64,33 @@ export default function Result() {
       >
         <StatusCard title={t.result.statuses[status] || status} message={primary?.outcome.message} confidence={confidence} tone={status==='joint_custody_default'?'success':status==='eligible_joint_custody'?'info':status==='apply_contact_order'?'warn':'info'} />
       </motion.div>
+
+      {unclear && (
+        <motion.div initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{duration:0.3,delay:0.15}} className="space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <button className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black" onClick={() => {
+              const q = missing[0];
+              if (!q) return;
+              const qKey = (q || '') as keyof TranslationDict['interview']['questions'];
+              const payload = { questionId: q, questionText: t.interview.questions[qKey]?.label || q, answers: interview.answers, locale };
+              fetch('/api/ai/clarify', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+                .then(r => r.json())
+                .then(data => alert(`Suggestion: ${data.suggestion} (${Math.round((data.confidence||0)*100)}%)\n${data.followup||''}`))
+                .catch(()=>alert('Assistant unavailable at the moment.'));
+            }}>Ask the Assistant</button>
+            <button className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black" onClick={() => {
+              const q = missing[0] || 'married_at_birth';
+              window.location.href = `/interview?q=${q}`;
+            }}>Fix Key Detail</button>
+            <button className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black" onClick={() => setHelpOpen(true)}>Find Help Now</button>
+          </div>
+
+          {(missing.length ? missing : ['generic']).map((id) => {
+            const item: EducationItem = (edu[id] || edu.generic) as EducationItem;
+            return <EducationPanel key={id} item={item} />;
+          })}
+        </motion.div>
+      )}
 
       <motion.div
         initial={{ opacity: 0, y: 10 }}
@@ -95,6 +150,54 @@ export default function Result() {
             ))}
           </ul>
         </motion.details>
+      )}
+
+      {/* Help Sheet (lightweight modal) */}
+      {helpOpen && (
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-end sm:items-center justify-center">
+        <div className="w-full sm:max-w-lg bg-white dark:bg-zinc-950 rounded-t-2xl sm:rounded-2xl p-4 space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="font-medium">Find Help Now</div>
+            <button className="text-sm underline" onClick={() => setHelpOpen(false)}>Close</button>
+          </div>
+          <div className="text-sm text-zinc-700 dark:text-zinc-300">
+            Call your nearest Jugendamt or court registry. Use the script below; tap to copy. You can also add a calendar reminder.
+          </div>
+          <div className="rounded-lg border p-3">
+            <div className="text-xs uppercase text-zinc-500 mb-1">What to say (German)</div>
+            <textarea className="w-full rounded border p-2 text-sm" rows={4} readOnly onClick={(e) => (e.target as HTMLTextAreaElement).select()} value="Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!"></textarea>
+            <div className="mt-2 flex gap-2">
+              <button className="rounded border px-3 py-1 text-sm" onClick={() => navigator.clipboard.writeText('Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!')}>Copy</button>
+              <button className="rounded border px-3 py-1 text-sm" onClick={() => {
+                const ics = buildICS({ summary: 'Call Jugendamt', startISO: new Date(Date.now()+24*60*60*1000).toISOString(), durationMinutes: 15 });
+                const blob = new Blob([ics], { type: 'text/calendar' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a'); a.href = url; a.download = 'call-jugendamt.ics'; a.click(); URL.revokeObjectURL(url);
+              }}>Add reminder</button>
+            </div>
+          </div>
+          <div className="rounded-lg border p-3 space-y-2">
+            <div className="text-xs uppercase text-zinc-500">Nearby services</div>
+            <div className="flex gap-2 items-center">
+              <input value={postcode} onChange={(e)=>setPostcode(e.target.value)} placeholder="Postcode (e.g. 10115)" className="flex-1 rounded border px-3 py-1 text-sm" />
+            </div>
+            <div className="space-y-2 max-h-64 overflow-auto">
+              {filteredServices.length===0 && <div className="text-sm text-zinc-500">No services yet. Try a postcode.</div>}
+              {filteredServices.slice(0,6).map(s => (
+                <div key={s.id} className="rounded border p-2">
+                  <div className="text-xs uppercase text-zinc-500">{s.type}</div>
+                  <div className="font-medium text-sm">{s.name}</div>
+                  <div className="text-sm text-zinc-600">{s.address}</div>
+                  {s.phone && <a className="text-sm underline" href={`tel:${s.phone}`}>{s.phone}</a>}
+                  {s.url && <a className="ml-2 text-sm underline" href={s.url} target="_blank">Website</a>}
+                  {s.opening && <div className="text-xs text-zinc-500">{s.opening}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="text-xs text-zinc-500">Information only — not individualized legal advice.</div>
+        </div>
+        </div>
       )}
     </div>
   );

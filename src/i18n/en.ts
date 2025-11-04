@@ -116,6 +116,14 @@ const en = {
     about: "About",
     dataExport: "Data export",
   },
+  education: {
+    headings: {
+      why: "Why this question matters",
+      law: "What the law says",
+      unsure: "What you can do if you’re not sure",
+      sources: "Sources",
+    },
+  },
 };
 
 export default en;

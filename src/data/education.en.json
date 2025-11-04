@@ -1,0 +1,100 @@
+{
+  "generic": {
+    "title": "Let’s finish this together",
+    "why": "This result needs one more detail to unlock a clear plan. That’s normal—many parents don’t have every date or document on hand. The goal is to confirm one or two facts so you can move forward today with a safe and practical next step.",
+    "law": "German family law focuses on the child’s best interests. When a key fact is uncertain, the path often changes slightly: either a default rule applies (e.g., married parents share custody) or you take a short, standard step (e.g., sign a joint custody declaration, file a short application, or propose a contact schedule).",
+    "unsure": "If you’re not sure, you can act anyway: use our call scripts to ask the Jugendamt or court registry, file the appropriate pack now and add details later, or let the assistant suggest the most likely option based on your answers.",
+    "citations": []
+  },
+  "married_at_birth": {
+    "title": "Marriage at the child’s birth",
+    "why": "This single fact can decide whether joint custody applies by default or whether you take a short step to establish it. Confirming this avoids detours and gets you to filing, documents, and the right office faster.",
+    "law": "Under BGB §1626, married parents generally share custody automatically unless a court decided otherwise. If parents were not married at birth, §1626a BGB describes how to establish joint custody—via a joint declaration or a short court application.",
+    "unsure": "Check for a marriage certificate near the child’s birth or any court paper about custody. If unsure, ask the registry/Jugendamt to confirm, or proceed with the joint custody pack—the court can verify the rest.",
+    "citations": [
+      {
+        "label": "BGB §1626",
+        "url": "https://gesetze-im-internet.de/bgb/__1626.html",
+        "snapshotId": "bgb-1626-2025-01"
+      },
+      {
+        "label": "BGB §1626a",
+        "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+        "snapshotId": "bgb-1626a-2025-01"
+      }
+    ]
+  },
+  "paternity_ack": {
+    "title": "Paternity acknowledgement",
+    "why": "For unmarried parents, a formal paternity acknowledgement is often the first domino: it unlocks parental rights, enables custody steps, and prevents delays later.",
+    "law": "Paternity is commonly acknowledged at the Standesamt or Jugendamt. Once acknowledged, decisions about custody, contact, passports, schooling, and health care become clearer and faster to process.",
+    "unsure": "Look for a signed acknowledgement or a birth certificate note. If missing, book a quick appointment at Jugendamt/Standesamt—bring your ID and birth details. You can keep moving: our assistant drafts the request letter and checklist.",
+    "citations": [
+      {
+        "label": "Familienportal.de",
+        "url": "https://www.familienportal.de/",
+        "snapshotId": "familienportal-2025-01"
+      }
+    ]
+  },
+  "blocked_contact": {
+    "title": "Blocked or restricted contact",
+    "why": "If contact is blocked, a court can set a fair, safe plan. Clarity turns conflict into a schedule everyone understands—days, times, holidays, and handover rules.",
+    "law": "§1684 BGB protects the child’s right to contact with both parents unless serious reasons speak against it. Courts can order supervised contact where appropriate and adjust plans as the child’s needs change.",
+    "unsure": "Start a simple log: dates you tried, replies, and any safety issues. Our app can generate a logbook and a schedule proposal. Bring both to Jugendamt or court; it shows you’re ready for a practical solution.",
+    "citations": [
+      {
+        "label": "BGB §1684",
+        "url": "https://gesetze-im-internet.de/bgb/__1684.html",
+        "snapshotId": "bgb-1684-2025-01"
+      }
+    ]
+  },
+  "joint_declaration": {
+    "title": "Joint custody declaration",
+    "why": "For unmarried parents, a signed joint declaration can establish joint custody without a court hearing. If this is missing, the court route is short and standard.",
+    "law": "§1626a BGB allows unmarried parents to establish joint custody by joint declaration or via a simple court application when appropriate.",
+    "unsure": "If you’re not sure whether you signed it, check your paperwork or ask Jugendamt/Standesamt. You can still file now; the court will confirm what’s on record.",
+    "citations": [
+      {
+        "label": "BGB §1626a",
+        "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+        "snapshotId": "bgb-1626a-2025-01"
+      }
+    ]
+  },
+  "court_order": {
+    "title": "Existing court order",
+    "why": "A court decision can override defaults. Knowing if one exists avoids conflicting steps and points you to the right update or enforcement path.",
+    "law": "Custody and contact decisions are made by the Family Court. Existing orders remain binding until varied or replaced.",
+    "unsure": "Look for a document titled Beschluss/Urteil from the Familiengericht. If in doubt, call the registry with your name and child’s details; they can confirm whether an order exists.",
+    "citations": []
+  },
+  "distance_km": {
+    "title": "Distance between parents",
+    "why": "Distance often shapes practical contact: short weekday blocks vs. weekend/holiday-centric plans.",
+    "law": "Courts aim for the child’s best interests and practical feasibility. Longer travel can justify fewer but longer visits, including holidays.",
+    "unsure": "Estimate: same city (short), nearby (medium), far (long). You can refine later; start with a reasonable proposal.",
+    "citations": []
+  },
+  "mediation_tried": {
+    "title": "Mediation tried",
+    "why": "Mediation can resolve many disputes faster and cheaper than court, and courts often appreciate genuine attempts.",
+    "law": "Jugendamt and local services offer free or low-cost mediation and counseling. Courts may suggest it before ordering.",
+    "unsure": "If you haven’t tried, you can request a mediation slot now. We provide a short request letter and checklist.",
+    "citations": [
+      {
+        "label": "Familienportal.de",
+        "url": "https://www.familienportal.de/",
+        "snapshotId": "familienportal-2025-01"
+      }
+    ]
+  },
+  "parental_agreement_possible": {
+    "title": "Agreement possible",
+    "why": "If an agreement is realistic, a mediated plan or joint declaration saves time and reduces conflict.",
+    "law": "Parents may formalize custody and contact arrangements by agreement, which the court can record or consider.",
+    "unsure": "If only some points are unclear, try a draft plan with options (A/B). Mediation can close the gap.",
+    "citations": []
+  }
+}

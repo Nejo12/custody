@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useI18n } from '@/i18n';
 import Progress from '@/components/Progress';
 import { useRouter } from 'next/navigation';
@@ -18,6 +18,16 @@ export default function Interview() {
   const router = useRouter();
   const { setAnswer, interview } = useAppStore();
   const [step, setStep] = useState(0);
+
+  // Deep link support: /interview?q=questionId (useEffect to avoid hydration mismatch)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const q = new URLSearchParams(window.location.search).get('q');
+    if (!q) return;
+    const idx = (questions as Q[]).findIndex(x => x.id === q);
+    if (idx >= 0 && idx !== step) setStep(idx);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const current = (questions as Q[])[step];
   const [clarify, setClarify] = useState<{loading: boolean; data?: ClarifyResponse; error?: string}>({ loading: false });
