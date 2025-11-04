@@ -1,0 +1,101 @@
+{
+  "generic": {
+    "title": "Bunu birlikte bitirelim",
+    "why": "Bu sonuç net bir planı açmak için bir detay daha gerektiriyor. Bu normal – birçok ebeveynin elinde tüm tarihler veya belgeler yok. Amaç, bugün güvenli ve pratik bir sonraki adımla ilerleyebilmeniz için bir veya iki gerçeği doğrulamaktır.",
+    "law": "Alman aile hukuku çocuğun en iyi çıkarlarına odaklanır. Temel bir gerçek belirsiz olduğunda, yol genellikle hafifçe değişir: ya varsayılan bir kural geçerlidir (örneğin, evli ebeveynler vesayeti paylaşır) ya da kısa, standart bir adım atarsınız (örneğin, ortak vesayet beyanı imzalama, kısa bir başvuru yapma veya iletişim programı önerme).",
+    "unsure": "Emin değilseniz, yine de hareket edebilirsiniz: Jugendamt veya mahkeme siciline sormak için arama senaryolarımızı kullanın, uygun paketi şimdi sunun ve ayrıntıları sonra ekleyin veya asistanın yanıtlarınıza göre en olası seçeneği önermesine izin verin.",
+    "citations": []
+  },
+  "married_at_birth": {
+    "title": "Çocuğun doğumunda evlilik",
+    "why": "Bu tek gerçek, ortak vesayetin varsayılan olarak geçerli olup olmadığını veya onu kurmak için kısa bir adım atıp atmadığınızı belirleyebilir. Bunu doğrulamak, dolambaçlı yolları önler ve sizi daha hızlı başvuru, belgeler ve doğru ofise götürür.",
+    "law": "BGB §1626 uyarınca, evli ebeveynler genellikle bir mahkeme aksini kararlaştırmadıkça otomatik olarak vesayeti paylaşır. Eğer ebeveynler doğumda evli değillerse, §1626a BGB ortak vesayeti nasıl kuracağınızı açıklar – ortak bir beyan veya kısa bir mahkeme başvurusu yoluyla.",
+    "unsure": "Çocuğun doğumuna yakın bir evlilik belgesi veya vesayet hakkında herhangi bir mahkeme belgesi kontrol edin. Emin değilseniz, sicile/Jugendamt'a onaylamasını sorun veya ortak vesayet paketiyle devam edin – mahkeme geri kalanını doğrulayabilir.",
+    "citations": [
+      {
+        "label": "BGB §1626",
+        "url": "https://gesetze-im-internet.de/bgb/__1626.html",
+        "snapshotId": "bgb-1626-2025-01"
+      },
+      {
+        "label": "BGB §1626a",
+        "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+        "snapshotId": "bgb-1626a-2025-01"
+      }
+    ]
+  },
+  "paternity_ack": {
+    "title": "Babalık tanıma",
+    "why": "Evli olmayan ebeveynler için, resmi bir babalık tanıma genellikle ilk domino taşıdır: ebeveyn haklarını açar, vesayet adımlarını sağlar ve daha sonra gecikmeleri önler.",
+    "law": "Babalık genellikle Standesamt veya Jugendamt'de tanınır. Tanındıktan sonra, vesayet, iletişim, pasaportlar, okul ve sağlık hizmetleri hakkındaki kararlar daha net hale gelir ve işlenmesi daha hızlı olur.",
+    "unsure": "İmzalı bir tanıma veya doğum belgesinde bir not arayın. Eksikse, Jugendamt/Standesamt'de hızlı bir randevu alın – kimliğinizi ve doğum bilgilerinizi getirin. Devam edebilirsiniz: asistanımız istek mektubunu ve kontrol listesini hazırlar.",
+    "citations": [
+      {
+        "label": "Familienportal.de",
+        "url": "https://www.familienportal.de/",
+        "snapshotId": "familienportal-2025-01"
+      }
+    ]
+  },
+  "blocked_contact": {
+    "title": "Engellenmiş veya kısıtlanmış iletişim",
+    "why": "İletişim engellenmişse, bir mahkeme adil, güvenli bir plan kurabilir. Netlik, çatışmayı herkesin anladığı bir programa dönüştürür – günler, saatler, tatiller ve devir kuralları.",
+    "law": "§1684 BGB, ciddi nedenler buna karşı olmadıkça çocuğun her iki ebeveynle iletişim kurma hakkını korur. Mahkemeler, uygun olduğunda denetimli iletişim emredebilir ve çocuğun ihtiyaçları değiştikçe planları ayarlayabilir.",
+    "unsure": "Basit bir günlük başlatın: denediğiniz tarihler, yanıtlar ve herhangi bir güvenlik sorunu. Uygulamamız bir günlük ve program önerisi oluşturabilir. Her ikisini de Jugendamt veya mahkemeye getirin; bu, pratik bir çözüm için hazır olduğunuzu gösterir.",
+    "citations": [
+      {
+        "label": "BGB §1684",
+        "url": "https://gesetze-im-internet.de/bgb/__1684.html",
+        "snapshotId": "bgb-1684-2025-01"
+      }
+    ]
+  },
+  "joint_declaration": {
+    "title": "Ortak vesayet beyanı",
+    "why": "Evli olmayan ebeveynler için, imzalı bir ortak beyan, mahkeme duruşması olmadan ortak vesayeti kurabilir. Eğer bu eksikse, mahkeme yolu kısa ve standarttır.",
+    "law": "§1626a BGB, evli olmayan ebeveynlerin, uygun olduğunda ortak beyan veya basit bir mahkeme başvurusu yoluyla ortak vesayeti kurmasına izin verir.",
+    "unsure": "İmzalayıp imzalamadığınızdan emin değilseniz, evraklarınızı kontrol edin veya Jugendamt/Standesamt'a sorun. Yine de şimdi başvurabilirsiniz; mahkeme kayıtlı olanı doğrulayacaktır.",
+    "citations": [
+      {
+        "label": "BGB §1626a",
+        "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+        "snapshotId": "bgb-1626a-2025-01"
+      }
+    ]
+  },
+  "court_order": {
+    "title": "Mevcut mahkeme kararı",
+    "why": "Bir mahkeme kararı varsayılanları geçersiz kılabilir. Bir tanesinin olup olmadığını bilmek, çelişkili adımlardan kaçınır ve sizi doğru güncelleme veya uygulama yoluna yönlendirir.",
+    "law": "Vesayet ve iletişim kararları Aile Mahkemesi tarafından verilir. Mevcut kararlar, değiştirilene veya yerine geçene kadar bağlayıcı kalır.",
+    "unsure": "Familiengericht'ten Beschluss/Urteil başlıklı bir belge arayın. Şüpheniz varsa, adınız ve çocuğun bilgileriyle sicile arayın; bir kararın olup olmadığını doğrulayabilirler.",
+    "citations": []
+  },
+  "distance_km": {
+    "title": "Ebeveynler arasındaki mesafe",
+    "why": "Mesafe genellikle pratik iletişimi şekillendirir: hafta içi kısa bloklar vs. hafta sonu/tatil odaklı planlar.",
+    "law": "Mahkemeler çocuğun en iyi çıkarlarını ve pratik uygulanabilirliği hedefler. Daha uzun seyahatler, tatiller dahil olmak üzere daha az ama daha uzun ziyaretleri haklı çıkarabilir.",
+    "unsure": "Tahmin edin: aynı şehir (kısa), yakın (orta), uzak (uzun). Daha sonra iyileştirebilirsiniz; makul bir öneriyle başlayın.",
+    "citations": []
+  },
+  "mediation_tried": {
+    "title": "Arabuluculuk denenmiş",
+    "why": "Arabuluculuk birçok anlaşmazlığı mahkemeden daha hızlı ve daha ucuz çözebilir ve mahkemeler genellikle samimi girişimleri takdir eder.",
+    "law": "Jugendamt ve yerel hizmetler ücretsiz veya düşük maliyetli arabuluculuk ve danışmanlık sunar. Mahkemeler karar vermeden önce bunu önerebilir.",
+    "unsure": "Denemediyseniz, şimdi bir arabuluculuk slotu talep edebilirsiniz. Kısa bir istek mektubu ve kontrol listesi sağlıyoruz.",
+    "citations": [
+      {
+        "label": "Familienportal.de",
+        "url": "https://www.familienportal.de/",
+        "snapshotId": "familienportal-2025-01"
+      }
+    ]
+  },
+  "parental_agreement_possible": {
+    "title": "Anlaşma mümkün",
+    "why": "Bir anlaşma gerçekçiyse, arabuluculuk planı veya ortak beyan zaman kazandırır ve çatışmayı azaltır.",
+    "law": "Ebeveynler, mahkemenin kaydedebileceği veya dikkate alabileceği bir anlaşma yoluyla vesayet ve iletişim düzenlemelerini resmileştirebilir.",
+    "unsure": "Sadece bazı noktalar belirsizse, seçeneklerle (A/B) bir taslak plan deneyin. Arabuluculuk boşluğu kapatabilir.",
+    "citations": []
+  }
+}
+

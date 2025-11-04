@@ -48,6 +48,45 @@
     "phone": "+49 234 9876-5432",
     "website": "https://www.rechtsberatung-nrw.de",
     "opening": "Tue, Thu 14-18"
+  },
+  {
+    "id": "jugendamt-bonn",
+    "type": "jugendamt",
+    "name": "Jugendamt Bonn",
+    "postalCode": "53111",
+    "address": "Berliner Platz 2, 53111 Bonn",
+    "phone": "+49 228 770",
+    "website": "https://www.bonn.de/jugendamt",
+    "opening": "Mon-Fri 9-12"
+  },
+  {
+    "id": "ag-wuppertal",
+    "type": "court",
+    "name": "Amtsgericht Wuppertal (Familiengericht)",
+    "postalCode": "42103",
+    "address": "Eiland 10, 42103 Wuppertal",
+    "phone": "+49 202 281-0",
+    "website": "https://www.ag-wuppertal.nrw.de/",
+    "opening": "Mon-Fri 9-13"
+  },
+  {
+    "id": "ag-bochum",
+    "type": "court",
+    "name": "Amtsgericht Bochum (Familiengericht)",
+    "postalCode": "44787",
+    "address": "Viktoriastraße 14, 44787 Bochum",
+    "phone": "+49 234 910-0",
+    "website": "https://www.ag-bochum.nrw.de/",
+    "opening": "Mon-Fri 9-13"
+  },
+  {
+    "id": "legal-aid-nrw-essen",
+    "type": "legal_aid",
+    "name": "Rechtsberatung Essen",
+    "postalCode": "45127",
+    "address": "Am Porscheplatz 2, 45127 Essen",
+    "phone": "+49 201 1234-567",
+    "website": "https://www.essen.de/rechtsberatung",
+    "opening": "Tue, Thu 14-18"
   }
 ]
-

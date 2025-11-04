@@ -35,6 +35,21 @@ const de = {
       court_order: {
         label: "Gibt es einen gerichtlichen Beschluss zur Sorge?",
         help: "Gerichtliche Entscheidungen gehen den Standardregeln vor.",
+        options: {
+          none: "Kein Beschluss",
+          exists: "Ja, Beschluss vorhanden",
+          unknown: "Unsicher",
+        },
+      },
+      distance_km: {
+        label: "Entfernung zwischen den Eltern?",
+        help: "Entfernung beeinflusst realistische Pläne (Wochentag/Wochenende).",
+        options: {
+          local: "< 30 km",
+          regional: "30–150 km",
+          far: "> 150 km",
+          unsure: "Unsicher",
+        },
       },
       blocked_contact: {
         label: "Ist dein Umgang mit dem Kind blockiert oder eingeschränkt?",
@@ -59,10 +74,6 @@ const de = {
       existing_visitation_plan: {
         label: "Gibt es bereits einen schriftlichen Umgangsplan?",
         help: "Bestehende Pläne können formalisiert oder angepasst werden.",
-      },
-      distance_km: {
-        label: "Entfernung zwischen den Eltern?",
-        help: "Entfernung beeinflusst realistische Pläne (Wochentag/Wochenende).",
       },
       parental_agreement_possible: {
         label: "Ist eine Einigung wahrscheinlich?",
@@ -126,6 +137,16 @@ const de = {
       unsure: "Was du tun kannst, wenn du unsicher bist",
       sources: "Quellen",
     },
+  },
+  rules: {
+    "custody.married.default": "Sie haben automatisch gemeinsames Sorgerecht, es sei denn, ein Gericht hat anders entschieden.",
+    "custody.unmarried.paternity_acknowledged": "Sie können gemeinsames Sorgerecht beantragen (§1626a BGB).",
+    "contact.right": "Sie können eine Umgangsregelung beantragen (§1684 BGB).",
+    "contact.safety.supervised": "Aufgrund von Sicherheitsbedenken sollten Sie begleiteten Umgang und Sicherheitsplanung in Betracht ziehen.",
+    "custody.unmarried.path_to_joint": "Sie können gemeinsames Sorgerecht beantragen (§1626a BGB).",
+    "contact.young_child.schedule": "Empfehlung: Kurze Wochentags-Kontaktblöcke für Kinder unter 3 Jahren.",
+    "contact.distance.far": "Empfehlung: Wochenend-/Ferien-zentrierter Plan aufgrund der Entfernung.",
+    "mediation.suggest": "Jugendamt-Mediation kann helfen, eine Einigung zu erzielen.",
   },
 };
 

@@ -2,6 +2,11 @@
 import rules from '@/data/rules.json';
 import eduEN from '@/data/education.en.json';
 import eduDE from '@/data/education.de.json';
+import eduFR from '@/data/education.fr.json';
+import eduAR from '@/data/education.ar.json';
+import eduPL from '@/data/education.pl.json';
+import eduRU from '@/data/education.ru.json';
+import eduTR from '@/data/education.tr.json';
 import { evaluateRules } from '@/lib/rules';
 import { useAppStore } from '@/store/app';
 import { useI18n } from '@/i18n';
@@ -18,15 +23,21 @@ type StatusKey = keyof TranslationDict['result']['statuses'];
 
 export default function Result() {
   const { interview } = useAppStore();
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const { matched, primary, confidence } = evaluateRules(rules as SimpleRule[], interview.answers);
 
   const status = (primary?.outcome.status || 'unknown') as StatusKey;
   const citations = (primary?.outcome.citations || []) as (Citation | string)[];
-  const htmlLang = typeof document !== 'undefined' ? document.documentElement.lang : 'en';
-  const locale: 'en'|'de' = htmlLang === 'de' ? 'de' : 'en';
   type EducationMap = Record<string, EducationItem>;
-  const edu = (locale === 'de' ? eduDE : eduEN) as EducationMap;
+  const edu = (
+    locale === 'de' ? eduDE :
+    locale === 'fr' ? eduFR :
+    locale === 'ar' ? eduAR :
+    locale === 'pl' ? eduPL :
+    locale === 'ru' ? eduRU :
+    locale === 'tr' ? eduTR :
+    eduEN
+  ) as EducationMap;
 
   const important = ['married_at_birth','paternity_ack','joint_declaration','blocked_contact'];
   const missing = important.filter(k => !interview.answers[k] || interview.answers[k] === 'unsure').slice(0,2);
@@ -66,7 +77,12 @@ export default function Result() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4, delay: 0.1 }}
       >
-        <StatusCard title={t.result.statuses[status] || status} message={primary?.outcome.message} confidence={confidence} tone={status==='joint_custody_default'?'success':status==='eligible_joint_custody'?'info':status==='apply_contact_order'?'warn':'info'} />
+        <StatusCard 
+          title={t.result.statuses[status] || status} 
+          message={primary?.outcome.message ? (t.rules?.[primary.id as keyof typeof t.rules] || primary.outcome.message) : undefined}
+          confidence={confidence} 
+          tone={status==='joint_custody_default'?'success':status==='eligible_joint_custody'?'info':status==='apply_contact_order'?'warn':'info'} 
+        />
       </motion.div>
 
       {unclear && (

@@ -14,6 +14,12 @@ export type EducationItem = {
 export default function EducationPanel({ item }: { item: EducationItem }) {
   const { t } = useI18n();
   const [open, setOpen] = useState(true);
+  const headings = t.education?.headings || {
+    why: "Why this question matters",
+    law: "What the law says",
+    unsure: "What you can do if you're not sure",
+    sources: "Sources",
+  };
   return (
     <div className="rounded-lg border p-4">
       <button className="w-full text-left font-medium flex items-center justify-between" onClick={() => setOpen(v => !v)}>
@@ -37,7 +43,7 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
                 <line x1="12" y1="8" x2="12" y2="12" />
                 <circle cx="12" cy="16" r="1" />
               </svg>
-              {t.education.headings.why}
+              {headings.why}
             </div>
             <p className="text-zinc-700 dark:text-zinc-300">{item.why}</p>
           </section>
@@ -48,7 +54,7 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
                 <path d="M3 8h18" />
                 <path d="M5 8c0 4 3 7 7 7s7-3 7-7" />
               </svg>
-              {t.education.headings.law}
+              {headings.law}
             </div>
             <p className="text-zinc-700 dark:text-zinc-300">{item.law}</p>
           </section>
@@ -59,7 +65,7 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
                 <path d="M6 2h12l-1.5 4H7.5L6 2z" />
                 <path d="M6 2v15" />
               </svg>
-              {t.education.headings.unsure}
+              {headings.unsure}
             </div>
             <p className="text-zinc-700 dark:text-zinc-300">{item.unsure}</p>
           </section>
@@ -71,7 +77,7 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
                   <path d="M6 2h9a2 2 0 0 1 2 2v15" />
                   <path d="M8 6h7" />
                 </svg>
-                {t.education.headings.sources}
+                {headings.sources}
               </div>
               <ul className="list-disc pl-5">
                 {item.citations.map((c, i) => (

@@ -62,7 +62,11 @@ export default function LearnPage() {
                     </div>
                   ))}
                 </div>
-                <Link href={`/directory?city=${grp.city}`} className="text-sm underline mt-2 inline-block">Open directory for {grp.label}</Link>
+                <div className="flex gap-3 mt-2">
+                  <Link href={`/directory?city=${grp.city}`} className="text-sm underline inline-block">All services</Link>
+                  <Link href={`/directory?city=${grp.city}&type=jugendamt`} className="text-sm underline inline-block">Jugendämter</Link>
+                  <Link href={`/directory?city=${grp.city}&type=court`} className="text-sm underline inline-block">Courts</Link>
+                </div>
               </div>
             );
           })}

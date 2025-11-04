@@ -16,12 +16,14 @@ export default function DirectoryPage() {
   const [type, setType] = useState<string>('');
   const [city, setCity] = useState<City>(preferredCity || 'berlin');
 
-  // Optional deep link: /directory?city=hamburg|nrw
+  // Optional deep link: /directory?city=hamburg|nrw&type=court|jugendamt|...
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const u = new URL(window.location.href);
     const c = u.searchParams.get('city') as City | null;
+    const ty = u.searchParams.get('type');
     if (c && c !== city) { setCity(c); setPreferredCity(c); }
+    if (ty && ty !== type) setType(ty);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -35,6 +35,21 @@ const en = {
       court_order: {
         label: "Is there a court order changing custody?",
         help: "If a court has ruled otherwise, default rules may not apply.",
+        options: {
+          none: "No order",
+          exists: "Yes, order exists",
+          unknown: "Not sure",
+        },
+      },
+      distance_km: {
+        label: "Approximate distance between parents?",
+        help: "Distance can shape a realistic schedule (weekday vs. weekend).",
+        options: {
+          local: "< 30 km",
+          regional: "30–150 km",
+          far: "> 150 km",
+          unsure: "Not sure",
+        },
       },
       blocked_contact: {
         label: "Is your contact with the child blocked or restricted?",
@@ -59,10 +74,6 @@ const en = {
       existing_visitation_plan: {
         label: "Do you already have a written visitation plan?",
         help: "Existing plans can be formalized or adjusted by agreement or court.",
-      },
-      distance_km: {
-        label: "Approximate distance between parents?",
-        help: "Distance can shape a realistic schedule (weekday vs. weekend).",
       },
       parental_agreement_possible: {
         label: "Is a mutual agreement likely?",
@@ -123,9 +134,19 @@ const en = {
     headings: {
       why: "Why this question matters",
       law: "What the law says",
-      unsure: "What you can do if you’re not sure",
+      unsure: "What you can do if you're not sure",
       sources: "Sources",
     },
+  },
+  rules: {
+    "custody.married.default": "You automatically share custody unless a court has ruled otherwise.",
+    "custody.unmarried.paternity_acknowledged": "You may apply for joint custody (§1626a BGB).",
+    "contact.right": "You can request a visitation order (§1684 BGB).",
+    "contact.safety.supervised": "Due to safety concerns, consider supervised contact and safety planning.",
+    "custody.unmarried.path_to_joint": "You may apply for joint custody (§1626a BGB).",
+    "contact.young_child.schedule": "Recommend short weekday contact blocks for children under 3.",
+    "contact.distance.far": "Recommend weekend/holiday-centric schedule due to distance.",
+    "mediation.suggest": "Jugendamt mediation may help reach an agreement.",
   },
 };
 

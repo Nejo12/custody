@@ -35,10 +35,49 @@ const fr = {
       court_order: {
         label: "Y a-t-il une ordonnance du tribunal modifiant la garde ?",
         help: "Si un tribunal a statué autrement, les règles par défaut peuvent ne pas s'appliquer.",
+        options: {
+          none: "Aucune ordonnance",
+          exists: "Oui, ordonnance existante",
+          unknown: "Pas sûr",
+        },
+      },
+      distance_km: {
+        label: "Distance approximative entre les parents ?",
+        help: "La distance peut façonner un calendrier réaliste (jours de semaine vs. weekend).",
+        options: {
+          local: "< 30 km",
+          regional: "30–150 km",
+          far: "> 150 km",
+          unsure: "Pas sûr",
+        },
       },
       blocked_contact: {
         label: "Votre contact avec l'enfant est-il bloqué ou restreint ?",
         help: "Les tribunaux peuvent établir des arrangements de contact (Umgang) (§1684 BGB).",
+      },
+      living_together_currently: {
+        label: "Vivez-vous actuellement ensemble ?",
+        help: "Vivre ensemble peut affecter les arrangements pratiques, pas les règles de garde légale.",
+      },
+      child_age_under_three: {
+        label: "L'enfant a-t-il moins de 3 ans ?",
+        help: "Les enfants plus jeunes peuvent influencer les calendriers de contact, pas le statut de garde.",
+      },
+      history_of_violence: {
+        label: "Y a-t-il des antécédents de violence ou de menaces ?",
+        help: "Sécurité d'abord. Un contact supervisé peut être approprié dans certains cas.",
+      },
+      mediation_tried: {
+        label: "Avez-vous essayé la médiation par le Jugendamt ou des services ?",
+        help: "La médiation peut être demandée avant ou parallèlement à une action judiciaire.",
+      },
+      existing_visitation_plan: {
+        label: "Avez-vous déjà un plan de visite écrit ?",
+        help: "Les plans existants peuvent être formalisés ou ajustés par accord ou par le tribunal.",
+      },
+      parental_agreement_possible: {
+        label: "Un accord mutuel est-il probable ?",
+        help: "Si oui, une déclaration commune ou un plan médié peut être le plus rapide.",
       },
     },
   },
@@ -53,6 +92,10 @@ const fr = {
       joint_custody_default: "Garde partagée par défaut",
       eligible_joint_custody: "Éligible pour une demande de garde partagée",
       apply_contact_order: "Vous pouvez demander un ordre de visite/contact",
+      consider_supervised_contact: "Envisager un contact supervisé en raison de préoccupations de sécurité",
+      suggest_mediation: "Recommandation : Essayer la médiation via Jugendamt ou des services",
+      schedule_short_weekday: "Recommandation : Fenêtres de contact courtes en semaine (enfant de moins de 3 ans)",
+      schedule_weekend_only: "Recommandation : Plan axé sur les week-ends/vacances en raison de la distance",
       unknown: "Nous avons besoin de plus d'informations",
     },
   },
@@ -86,6 +129,24 @@ const fr = {
     themeSystem: "Système",
     about: "À propos",
     dataExport: "Exportation de données",
+  },
+  education: {
+    headings: {
+      why: "Pourquoi cette question est importante",
+      law: "Ce que dit la loi",
+      unsure: "Ce que vous pouvez faire si vous n'êtes pas sûr",
+      sources: "Sources",
+    },
+  },
+  rules: {
+    "custody.married.default": "Vous partagez automatiquement la garde sauf si un tribunal a statué autrement.",
+    "custody.unmarried.paternity_acknowledged": "Vous pouvez demander la garde partagée (§1626a BGB).",
+    "contact.right": "Vous pouvez demander un ordre de visite/contact (§1684 BGB).",
+    "contact.safety.supervised": "En raison de préoccupations de sécurité, envisagez un contact supervisé et une planification de sécurité.",
+    "custody.unmarried.path_to_joint": "Vous pouvez demander la garde partagée (§1626a BGB).",
+    "contact.young_child.schedule": "Recommandation : Blocs de contact courts en semaine pour les enfants de moins de 3 ans.",
+    "contact.distance.far": "Recommandation : Plan axé sur les week-ends/vacances en raison de la distance.",
+    "mediation.suggest": "La médiation par le Jugendamt peut aider à parvenir à un accord.",
   },
 };
 

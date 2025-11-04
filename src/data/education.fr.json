@@ -1,0 +1,101 @@
+{
+  "generic": {
+    "title": "Terminons cela ensemble",
+    "why": "Ce résultat nécessite un détail supplémentaire pour débloquer un plan clair. C'est normal – beaucoup de parents n'ont pas toutes les dates ou documents à portée de main. L'objectif est de confirmer un ou deux faits afin que vous puissiez avancer aujourd'hui avec une prochaine étape sûre et pratique.",
+    "law": "Le droit de la famille allemand se concentre sur l'intérêt supérieur de l'enfant. Lorsqu'un fait clé est incertain, le chemin change souvent légèrement : soit une règle par défaut s'applique (par exemple, les parents mariés partagent la garde) soit vous prenez une étape courte et standard (par exemple, signer une déclaration de garde partagée, déposer une demande courte, ou proposer un plan de contact).",
+    "unsure": "Si vous n'êtes pas sûr, vous pouvez agir quand même : utilisez nos scripts d'appel pour contacter le Jugendamt ou le greffe du tribunal, déposez le dossier approprié maintenant et ajoutez les détails plus tard, ou laissez l'assistant suggérer l'option la plus probable en fonction de vos réponses.",
+    "citations": []
+  },
+  "married_at_birth": {
+    "title": "Mariage à la naissance de l'enfant",
+    "why": "Ce seul fait peut déterminer si la garde partagée s'applique par défaut ou si vous devez prendre une étape courte pour l'établir. Confirmer cela évite les détours et vous permet d'accéder plus rapidement aux dossiers, documents et au bon bureau.",
+    "law": "Selon le BGB §1626, les parents mariés partagent généralement la garde automatiquement sauf si un tribunal a décidé autrement. Si les parents n'étaient pas mariés à la naissance, le §1626a BGB décrit comment établir la garde partagée – via une déclaration commune ou une demande courte au tribunal.",
+    "unsure": "Vérifiez un certificat de mariage proche de la naissance de l'enfant ou tout document judiciaire concernant la garde. Si vous n'êtes pas sûr, demandez au registre/Jugendamt de confirmer, ou procédez avec le dossier de garde partagée – le tribunal peut vérifier le reste.",
+    "citations": [
+      {
+        "label": "BGB §1626",
+        "url": "https://gesetze-im-internet.de/bgb/__1626.html",
+        "snapshotId": "bgb-1626-2025-01"
+      },
+      {
+        "label": "BGB §1626a",
+        "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+        "snapshotId": "bgb-1626a-2025-01"
+      }
+    ]
+  },
+  "paternity_ack": {
+    "title": "Reconnaissance de paternité",
+    "why": "Pour les parents non mariés, une reconnaissance de paternité formelle est souvent le premier domino : elle débloque les droits parentaux, permet les étapes de garde et évite les retards ultérieurs.",
+    "law": "La paternité est communément reconnue au Standesamt ou Jugendamt. Une fois reconnue, les décisions concernant la garde, le contact, les passeports, la scolarité et les soins de santé deviennent plus claires et plus rapides à traiter.",
+    "unsure": "Recherchez une reconnaissance signée ou une note sur le certificat de naissance. Si elle manque, prenez rendez-vous rapidement au Jugendamt/Standesamt – apportez votre pièce d'identité et les détails de naissance. Vous pouvez continuer : notre assistant rédige la lettre de demande et la checklist.",
+    "citations": [
+      {
+        "label": "Familienportal.de",
+        "url": "https://www.familienportal.de/",
+        "snapshotId": "familienportal-2025-01"
+      }
+    ]
+  },
+  "blocked_contact": {
+    "title": "Contact bloqué ou restreint",
+    "why": "Si le contact est bloqué, un tribunal peut établir un plan équitable et sûr. La clarté transforme le conflit en un calendrier que tous comprennent – jours, heures, vacances et règles de transfert.",
+    "law": "Le §1684 BGB protège le droit de l'enfant au contact avec les deux parents sauf si de sérieuses raisons s'y opposent. Les tribunaux peuvent ordonner un contact supervisé si approprié et ajuster les plans selon l'évolution des besoins de l'enfant.",
+    "unsure": "Commencez un journal simple : dates où vous avez essayé, réponses et problèmes de sécurité. Notre application peut générer un journal et une proposition de calendrier. Apportez les deux au Jugendamt ou au tribunal ; cela montre que vous êtes prêt pour une solution pratique.",
+    "citations": [
+      {
+        "label": "BGB §1684",
+        "url": "https://gesetze-im-internet.de/bgb/__1684.html",
+        "snapshotId": "bgb-1684-2025-01"
+      }
+    ]
+  },
+  "joint_declaration": {
+    "title": "Déclaration de garde partagée",
+    "why": "Pour les parents non mariés, une déclaration de garde partagée signée peut établir la garde partagée sans audience judiciaire. Si cela manque, la voie judiciaire est courte et standard.",
+    "law": "Le §1626a BGB permet aux parents non mariés d'établir la garde partagée par déclaration commune ou via une demande simple au tribunal lorsque approprié.",
+    "unsure": "Si vous n'êtes pas sûr de l'avoir signée, vérifiez vos documents ou demandez au Jugendamt/Standesamt. Vous pouvez toujours déposer maintenant ; le tribunal confirmera ce qui est enregistré.",
+    "citations": [
+      {
+        "label": "BGB §1626a",
+        "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+        "snapshotId": "bgb-1626a-2025-01"
+      }
+    ]
+  },
+  "court_order": {
+    "title": "Ordonnance judiciaire existante",
+    "why": "Une décision judiciaire peut remplacer les règles par défaut. Savoir si une existe évite les étapes conflictuelles et vous oriente vers le bon chemin de mise à jour ou d'exécution.",
+    "law": "Les décisions de garde et de contact sont prises par le tribunal de la famille. Les ordonnances existantes restent contraignantes jusqu'à ce qu'elles soient modifiées ou remplacées.",
+    "unsure": "Recherchez un document intitulé Beschluss/Urteil du Familiengericht. En cas de doute, appelez le greffe avec votre nom et les détails de l'enfant ; ils peuvent confirmer si une ordonnance existe.",
+    "citations": []
+  },
+  "distance_km": {
+    "title": "Distance entre les parents",
+    "why": "La distance façonne souvent le contact pratique : blocs courts en semaine vs. plans centrés sur les week-ends/vacances.",
+    "law": "Les tribunaux visent l'intérêt supérieur de l'enfant et la faisabilité pratique. Des trajets plus longs peuvent justifier moins mais des visites plus longues, y compris les vacances.",
+    "unsure": "Estimez : même ville (court), proche (moyen), loin (long). Vous pouvez affiner plus tard ; commencez avec une proposition raisonnable.",
+    "citations": []
+  },
+  "mediation_tried": {
+    "title": "Médiation essayée",
+    "why": "La médiation peut résoudre de nombreux conflits plus rapidement et moins cher que le tribunal, et les tribunaux apprécient souvent les tentatives sincères.",
+    "law": "Le Jugendamt et les services locaux offrent une médiation et des conseils gratuits ou à faible coût. Les tribunaux peuvent le suggérer avant d'ordonner.",
+    "unsure": "Si vous ne l'avez pas essayée, vous pouvez demander un créneau de médiation maintenant. Nous fournissons une courte lettre de demande et une checklist.",
+    "citations": [
+      {
+        "label": "Familienportal.de",
+        "url": "https://www.familienportal.de/",
+        "snapshotId": "familienportal-2025-01"
+      }
+    ]
+  },
+  "parental_agreement_possible": {
+    "title": "Accord possible",
+    "why": "Si un accord est réaliste, un plan médié ou une déclaration commune économise du temps et réduit les conflits.",
+    "law": "Les parents peuvent formaliser les arrangements de garde et de contact par accord, que le tribunal peut enregistrer ou considérer.",
+    "unsure": "Si seulement certains points ne sont pas clairs, essayez un projet de plan avec des options (A/B). La médiation peut combler l'écart.",
+    "citations": []
+  }
+}
+

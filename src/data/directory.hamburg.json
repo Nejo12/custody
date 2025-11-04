@@ -38,6 +38,35 @@
     "phone": "+49 40 4321-9876",
     "website": "https://www.rechtsberatung-hamburg.de",
     "opening": "Tue, Thu 14-18"
+  },
+  {
+    "id": "jugendamt-hh-altona",
+    "type": "jugendamt",
+    "name": "Jugendamt Hamburg-Altona",
+    "postalCode": "22767",
+    "address": "Stresemannstraße 163, 22769 Hamburg",
+    "phone": "+49 40 42811-0",
+    "website": "https://www.hamburg.de/behoerdenfinder/hamburg/11283684/",
+    "opening": "Mon-Fri 9-12"
+  },
+  {
+    "id": "ag-hamburg-bergedorf",
+    "type": "court",
+    "name": "Amtsgericht Hamburg-Bergedorf (Familiengericht)",
+    "postalCode": "21029",
+    "address": "Holzhude 4, 21029 Hamburg",
+    "phone": "+49 40 42828-0",
+    "website": "https://justiz.hamburg.de/amtsgericht-bergedorf/",
+    "opening": "Mon-Fri 9-13"
+  },
+  {
+    "id": "legal-aid-hh-sozial",
+    "type": "legal_aid",
+    "name": "Sozialberatung Hamburg Mitte",
+    "postalCode": "20099",
+    "address": "Adenauerallee 10, 20099 Hamburg",
+    "phone": "+49 40 2800-123",
+    "website": "https://www.hamburg.de/soziales/",
+    "opening": "Tue, Thu 14-18"
   }
 ]
-

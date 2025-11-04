@@ -126,18 +126,22 @@ export default function Interview() {
             )}
             {current.type === 'enum' && (
               <>
-                {current.options?.map((o, i) => (
-                  <motion.button
-                    key={o.value}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + i * 0.05 }}
-                    onClick={() => onSelect(o.value)}
-                    className="rounded-lg border p-4 text-left hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
-                  >
-                    {o.label}
-                  </motion.button>
-                ))}
+                {current.options?.map((o, i) => {
+                  const questionOptions = questionData && 'options' in questionData ? questionData.options : undefined;
+                  const translatedLabel = questionOptions?.[o.value as keyof typeof questionOptions] || o.label;
+                  return (
+                    <motion.button
+                      key={o.value}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 + i * 0.05 }}
+                      onClick={() => onSelect(o.value)}
+                      className="rounded-lg border p-4 text-left hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+                    >
+                      {translatedLabel}
+                    </motion.button>
+                  );
+                })}
               </>
             )}
           </div>

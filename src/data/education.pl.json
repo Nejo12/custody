@@ -1,0 +1,101 @@
+{
+  "generic": {
+    "title": "Dokończmy to razem",
+    "why": "Ten wynik potrzebuje jeszcze jednego szczegółu, aby odblokować jasny plan. To normalne – wielu rodziców nie ma wszystkich dat lub dokumentów pod ręką. Celem jest potwierdzenie jednego lub dwóch faktów, abyś mógł dziś iść naprzód z bezpiecznym i praktycznym następnym krokiem.",
+    "law": "Niemieckie prawo rodzinne koncentruje się na najlepszym interesie dziecka. Gdy kluczowy fakt jest niepewny, ścieżka często zmienia się nieznacznie: albo zastosowanie ma reguła domyślna (np. małżonkowie dzielą opiekę) albo podejmujesz krótki, standardowy krok (np. podpisanie wspólnej deklaracji opieki, złożenie krótkiego wniosku lub zaproponowanie harmonogramu kontaktów).",
+    "unsure": "Jeśli nie jesteś pewien, możesz i tak działać: użyj naszych skryptów rozmów, aby zapytać Jugendamt lub rejestr sądowy, złóż odpowiedni pakiet teraz i dodaj szczegóły później, lub pozwól asystentowi zasugerować najbardziej prawdopodobną opcję na podstawie twoich odpowiedzi.",
+    "citations": []
+  },
+  "married_at_birth": {
+    "title": "Małżeństwo przy narodzinach dziecka",
+    "why": "Ten jeden fakt może zdecydować, czy wspólna opieka ma zastosowanie domyślnie, czy też musisz podjąć krótki krok, aby ją ustanowić. Potwierdzenie tego unika objazdów i szybciej doprowadza cię do składania, dokumentów i właściwego urzędu.",
+    "law": "Zgodnie z BGB §1626, małżonkowie generalnie dzielą opiekę automatycznie, chyba że sąd zdecydował inaczej. Jeśli rodzice nie byli małżeństwem przy narodzinach, §1626a BGB opisuje, jak ustanowić wspólną opiekę – poprzez wspólną deklarację lub krótki wniosek sądowy.",
+    "unsure": "Sprawdź akt małżeństwa w pobliżu narodzin dziecka lub jakikolwiek dokument sądowy dotyczący opieki. Jeśli nie jesteś pewien, zapytaj rejestr/Jugendamt o potwierdzenie lub przejdź z pakietem wspólnej opieki – sąd może zweryfikować resztę.",
+    "citations": [
+      {
+        "label": "BGB §1626",
+        "url": "https://gesetze-im-internet.de/bgb/__1626.html",
+        "snapshotId": "bgb-1626-2025-01"
+      },
+      {
+        "label": "BGB §1626a",
+        "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+        "snapshotId": "bgb-1626a-2025-01"
+      }
+    ]
+  },
+  "paternity_ack": {
+    "title": "Uznanie ojcostwa",
+    "why": "Dla rodziców niebędących w związku małżeńskim, formalne uznanie ojcostwa jest często pierwszą kostką domina: odblokowuje prawa rodzicielskie, umożliwia kroki opieki i zapobiega opóźnieniom później.",
+    "law": "Ojcostwo jest powszechnie uznawane w Standesamt lub Jugendamt. Po uznaniu, decyzje dotyczące opieki, kontaktu, paszportów, szkoły i opieki zdrowotnej stają się jaśniejsze i szybsze w przetwarzaniu.",
+    "unsure": "Szukaj podpisanego uznania lub notatki na akcie urodzenia. Jeśli brakuje, umów szybką wizytę w Jugendamt/Standesamt – zabierz dowód tożsamości i dane urodzenia. Możesz kontynuować: nasz asystent przygotowuje pismo wniosku i listę kontrolną.",
+    "citations": [
+      {
+        "label": "Familienportal.de",
+        "url": "https://www.familienportal.de/",
+        "snapshotId": "familienportal-2025-01"
+      }
+    ]
+  },
+  "blocked_contact": {
+    "title": "Zablokowany lub ograniczony kontakt",
+    "why": "Jeśli kontakt jest zablokowany, sąd może ustalić sprawiedliwy, bezpieczny plan. Jasność zamienia konflikt w harmonogram, który wszyscy rozumieją – dni, godziny, święta i zasady przekazania.",
+    "law": "§1684 BGB chroni prawo dziecka do kontaktu z obojgiem rodziców, chyba że poważne powody przemawiają przeciwko temu. Sądy mogą zarządzić nadzorowany kontakt, gdy jest to odpowiednie, i dostosować plany w miarę zmiany potrzeb dziecka.",
+    "unsure": "Zacznij prosty dziennik: daty, w których próbowałeś, odpowiedzi i wszelkie problemy bezpieczeństwa. Nasza aplikacja może wygenerować dziennik i propozycję harmonogramu. Przynieś oba do Jugendamt lub sądu; pokazuje to, że jesteś gotowy na praktyczne rozwiązanie.",
+    "citations": [
+      {
+        "label": "BGB §1684",
+        "url": "https://gesetze-im-internet.de/bgb/__1684.html",
+        "snapshotId": "bgb-1684-2025-01"
+      }
+    ]
+  },
+  "joint_declaration": {
+    "title": "Wspólna deklaracja opieki",
+    "why": "Dla rodziców niebędących w związku małżeńskim, podpisana wspólna deklaracja może ustanowić wspólną opiekę bez rozprawy sądowej. Jeśli tego brakuje, droga sądowa jest krótka i standardowa.",
+    "law": "§1626a BGB pozwala rodzicom niebędącym w związku małżeńskim ustanowić wspólną opiekę poprzez wspólną deklarację lub poprzez prosty wniosek sądowy, gdy jest to odpowiednie.",
+    "unsure": "Jeśli nie jesteś pewien, czy ją podpisałeś, sprawdź swoje dokumenty lub zapytaj Jugendamt/Standesamt. Możesz i tak złożyć teraz; sąd potwierdzi, co jest w rejestrze.",
+    "citations": [
+      {
+        "label": "BGB §1626a",
+        "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+        "snapshotId": "bgb-1626a-2025-01"
+      }
+    ]
+  },
+  "court_order": {
+    "title": "Istniejące orzeczenie sądowe",
+    "why": "Decyzja sądowa może zastąpić domyślne reguły. Wiedza, czy istnieje, unika sprzecznych kroków i wskazuje właściwą ścieżkę aktualizacji lub egzekucji.",
+    "law": "Decyzje dotyczące opieki i kontaktu są podejmowane przez Sąd Rodzinny. Istniejące orzeczenia pozostają wiążące do czasu zmiany lub zastąpienia.",
+    "unsure": "Szukaj dokumentu zatytułowanego Beschluss/Urteil z Familiengericht. W razie wątpliwości zadzwoń do rejestru z imieniem i danymi dziecka; mogą potwierdzić, czy istnieje orzeczenie.",
+    "citations": []
+  },
+  "distance_km": {
+    "title": "Odległość między rodzicami",
+    "why": "Odległość często kształtuje praktyczny kontakt: krótkie bloki w dni powszednie vs. plany skoncentrowane na weekendach/świętach.",
+    "law": "Sądy dążą do najlepszego interesu dziecka i praktycznej wykonalności. Dłuższe podróże mogą uzasadniać mniej, ale dłuższe wizyty, w tym święta.",
+    "unsure": "Oszacuj: to samo miasto (krótkie), w pobliżu (średnie), daleko (długie). Możesz później doprecyzować; zacznij od rozsądnej propozycji.",
+    "citations": []
+  },
+  "mediation_tried": {
+    "title": "Mediacja wypróbowana",
+    "why": "Mediacja może rozwiązać wiele sporów szybciej i taniej niż sąd, a sądy często doceniają szczere próby.",
+    "law": "Jugendamt i lokalne usługi oferują bezpłatną lub niskokosztową mediację i doradztwo. Sądy mogą to zasugerować przed zarządzeniem.",
+    "unsure": "Jeśli nie próbowałeś, możesz teraz poprosić o slot mediacji. Dostarczamy krótkie pismo wniosku i listę kontrolną.",
+    "citations": [
+      {
+        "label": "Familienportal.de",
+        "url": "https://www.familienportal.de/",
+        "snapshotId": "familienportal-2025-01"
+      }
+    ]
+  },
+  "parental_agreement_possible": {
+    "title": "Porozumienie możliwe",
+    "why": "Jeśli porozumienie jest realistyczne, plan mediacyjny lub wspólna deklaracja oszczędza czas i zmniejsza konflikt.",
+    "law": "Rodzice mogą sformalizować ustalenia dotyczące opieki i kontaktu poprzez porozumienie, które sąd może zarejestrować lub wziąć pod uwagę.",
+    "unsure": "Jeśli tylko niektóre punkty są niejasne, spróbuj projektu planu z opcjami (A/B). Mediacja może zamknąć lukę.",
+    "citations": []
+  }
+}
+

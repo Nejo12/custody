@@ -35,10 +35,49 @@ const pl = {
       court_order: {
         label: "Czy istnieje orzeczenie sądowe zmieniające opiekę?",
         help: "Jeśli sąd orzekł inaczej, domyślne zasady mogą nie obowiązywać.",
+        options: {
+          none: "Brak orzeczenia",
+          exists: "Tak, orzeczenie istnieje",
+          unknown: "Nie jestem pewien",
+        },
+      },
+      distance_km: {
+        label: "Przybliżona odległość między rodzicami?",
+        help: "Odległość może kształtować realistyczny harmonogram (dzień tygodnia vs. weekend).",
+        options: {
+          local: "< 30 km",
+          regional: "30–150 km",
+          far: "> 150 km",
+          unsure: "Nie jestem pewien",
+        },
       },
       blocked_contact: {
         label: "Czy Wasz kontakt z dzieckiem jest zablokowany lub ograniczony?",
         help: "Sądy mogą ustanowić ustalenia dotyczące kontaktu (Umgang) (§1684 BGB).",
+      },
+      living_together_currently: {
+        label: "Czy obecnie żyjecie razem?",
+        help: "Życie razem może wpływać na praktyczne ustalenia, a nie na zasady opieki prawnej.",
+      },
+      child_age_under_three: {
+        label: "Czy dziecko ma mniej niż 3 lata?",
+        help: "Młodsze dzieci mogą wpływać na harmonogramy kontaktu, a nie na status opieki.",
+      },
+      history_of_violence: {
+        label: "Czy istnieje historia przemocy lub gróźb?",
+        help: "Bezpieczeństwo przede wszystkim. Nadzorowany kontakt może być odpowiedni w niektórych przypadkach.",
+      },
+      mediation_tried: {
+        label: "Czy próbowaliście mediacji przez Jugendamt lub usługi?",
+        help: "Mediację można zażądać przed lub wraz z działaniami sądowymi.",
+      },
+      existing_visitation_plan: {
+        label: "Czy macie już pisemny plan odwiedzin?",
+        help: "Istniejące plany mogą być sformalizowane lub dostosowane przez porozumienie lub sąd.",
+      },
+      parental_agreement_possible: {
+        label: "Czy porozumienie wzajemne jest prawdopodobne?",
+        help: "Jeśli tak, wspólne oświadczenie lub plan mediacyjny może być najszybszy.",
       },
     },
   },
@@ -53,6 +92,10 @@ const pl = {
       joint_custody_default: "Wspólna opieka domyślnie",
       eligible_joint_custody: "Uprawniony do wniosku o wspólną opiekę",
       apply_contact_order: "Możesz złożyć wniosek o kontakt",
+      consider_supervised_contact: "Rozważ nadzorowany kontakt ze względu na obawy bezpieczeństwa",
+      suggest_mediation: "Rekomendacja: Spróbuj mediacji przez Jugendamt lub usługi",
+      schedule_short_weekday: "Rekomendacja: Krótkie okna kontaktu w dni powszednie (wiek poniżej 3 lat)",
+      schedule_weekend_only: "Rekomendacja: Plan skupiony na weekendach/świętach ze względu na odległość",
       unknown: "Potrzebujemy więcej informacji",
     },
   },
@@ -86,6 +129,24 @@ const pl = {
     themeSystem: "System",
     about: "O aplikacji",
     dataExport: "Eksport danych",
+  },
+  education: {
+    headings: {
+      why: "Dlaczego to pytanie ma znaczenie",
+      law: "Co mówi prawo",
+      unsure: "Co możesz zrobić, jeśli nie jesteś pewien",
+      sources: "Źródła",
+    },
+  },
+  rules: {
+    "custody.married.default": "Automatycznie dzielisz opiekę, chyba że sąd orzekł inaczej.",
+    "custody.unmarried.paternity_acknowledged": "Możesz złożyć wniosek o wspólną opiekę (§1626a BGB).",
+    "contact.right": "Możesz złożyć wniosek o kontakt (§1684 BGB).",
+    "contact.safety.supervised": "Ze względu na obawy bezpieczeństwa rozważ nadzorowany kontakt i planowanie bezpieczeństwa.",
+    "custody.unmarried.path_to_joint": "Możesz złożyć wniosek o wspólną opiekę (§1626a BGB).",
+    "contact.young_child.schedule": "Rekomendacja: Krótkie bloki kontaktu w dni powszednie dla dzieci poniżej 3 lat.",
+    "contact.distance.far": "Rekomendacja: Plan skupiony na weekendach/świętach ze względu na odległość.",
+    "mediation.suggest": "Mediacja przez Jugendamt może pomóc w osiągnięciu porozumienia.",
   },
 };
 

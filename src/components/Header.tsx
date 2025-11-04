@@ -4,6 +4,7 @@ import LanguageSwitch from './LanguageSwitch';
 import ThemeSwitch from './ThemeSwitch';
 import { useI18n } from '@/i18n';
 import { useInstallPrompt } from './useInstallPrompt';
+import CitySwitch from './CitySwitch';
 
 export default function Header() {
   const { t } = useI18n();
@@ -31,6 +32,7 @@ export default function Header() {
           </button>
         )}
         <Link href="/settings" className="text-sm underline decoration-dotted">Settings</Link>
+        <CitySwitch />
         <ThemeSwitch />
         <LanguageSwitch />
       </div>
