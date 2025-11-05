@@ -156,6 +156,9 @@ export default function Result() {
                 <details key={r.id} className="inline-block">
                   <summary className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800">
                     <span>{label}</span>
+                    <span className="text-[10px] text-zinc-500">
+                      {t.result.moreDetails || "More details"}
+                    </span>
                     {firstCitation?.snapshotId && (
                       <span className="text-[10px] text-zinc-500">
                         ({firstCitation.snapshotId})

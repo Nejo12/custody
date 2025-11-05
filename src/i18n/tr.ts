@@ -111,6 +111,7 @@ const tr = {
     downloadMediationPack: "Arabuluculuk Paketi indir",
     downloadBlockedPack: "‘İletişim Engellendiyse’ Paketi indir",
     additionalMatchedRules: "Ek eşleşen kurallar",
+    moreDetails: "Daha fazla ayrıntı",
     howToReach95Confidence: "%%95 güvene nasıl ulaşılır",
     answerThese: "Bunları cevapla:",
     addSupportingDocuments: "Vault'unuza destekleyici belgeler ekleyin.",
@@ -137,6 +138,7 @@ const tr = {
     courtTemplateNone: "Özel veya yok",
     tailorCoverLetter: "Kapak mektubunu buna göre uyarlayın.",
     packSection: "Paket",
+    attachTimeline: "Zincirden zaman çizelgesini ekle",
     whyThisResult: "Neden bu sonuç?",
   },
   directory: {

@@ -63,6 +63,106 @@ export default function UmgangPage() {
     summary: "",
   });
 
+  // Region-aware presets for schedule fields
+  type CityKey = "berlin" | "hamburg" | "nrw";
+  const deduceCityFromTemplate = (tpl?: string): CityKey | undefined => {
+    if (!tpl) return undefined;
+    if (tpl.startsWith("berlin-")) return "berlin";
+    if (tpl === "hamburg") return "hamburg";
+    // All others we currently treat as NRW
+    return "nrw";
+  };
+  const currentCity: CityKey | undefined =
+    deduceCityFromTemplate(preferredCourtTemplate || courtTemplate) || preferredCity;
+
+  const computeRegionPresets = (
+    region: CityKey | undefined,
+    distance: "local" | "regional" | "far",
+    under3: boolean
+  ): ScheduleInput => {
+    const times = (() => {
+      if (region === "berlin")
+        return { short: "16:30–18:30", mid: "15:30–19:00", sat: "10:00–14:00" };
+      if (region === "hamburg")
+        return { short: "17:00–19:00", mid: "16:00–19:30", sat: "10:00–14:00" };
+      // nrw / default
+      return { short: "16:30–18:30", mid: "15:00–19:00", sat: "10:00–14:00" };
+    })();
+    if (distance === "far") {
+      return {
+        weekday: {},
+        weekend: {
+          even: "Fri 18:00–Sun 18:00 (every 2nd weekend)",
+          odd: "—",
+        },
+        holidays: {
+          summer: "Weeks alternate",
+          winter: "Weeks alternate",
+        },
+        handover: { location: "Neutral meeting point (agreed)" },
+      };
+    }
+    if (distance === "regional") {
+      return {
+        weekday: under3
+          ? { tuesday: times.short, thursday: times.short }
+          : { wednesday: times.mid },
+        weekend: under3
+          ? { even: `Sat ${times.sat}`, odd: "Sun 10:00–14:00" }
+          : { even: "Sat 10:00–Sun 18:00", odd: "—" },
+        holidays: {},
+        handover: {
+          location: region ? `${region.toUpperCase()} central station` : "Handover point",
+        },
+      };
+    }
+    // local
+    return {
+      weekday: under3 ? { tuesday: times.short, thursday: times.short } : { wednesday: times.mid },
+      weekend: under3
+        ? { even: `Sat ${times.sat}`, odd: "Sun 10:00–14:00" }
+        : { even: "Sat 10:00–Sun 18:00", odd: "—" },
+      holidays: {},
+      handover: { location: region ? `${region.toUpperCase()} Jugendamt area` : "Handover point" },
+    };
+  };
+
+  // Seed or merge presets when location or optimizer inputs change; do not override filled fields
+  useEffect(() => {
+    const preset = computeRegionPresets(currentCity, optimizer.distance, optimizer.childUnderThree);
+    setForm((prev) => {
+      const merged: ScheduleInput = {
+        weekday: { ...(prev.proposal.weekday || {}) },
+        weekend: { ...(prev.proposal.weekend || {}) },
+        holidays: { ...(prev.proposal.holidays || {}) },
+        handover: { ...(prev.proposal.handover || {}) },
+      };
+      // Helper to set if empty
+      const setIfEmpty = (obj: Record<string, unknown>, key: string, val?: string) => {
+        if (!val) return;
+        const cur = (obj as Record<string, string | undefined>)[key];
+        if (!cur || String(cur).trim() === "") {
+          (obj as Record<string, string>)[key] = val;
+        }
+      };
+      // Weekday keys
+      Object.entries(preset.weekday || {}).forEach(([k, v]) =>
+        setIfEmpty(merged.weekday || {}, k, v as string)
+      );
+      // Weekend
+      if (preset.weekend) {
+        setIfEmpty(merged.weekend || {}, "even", preset.weekend.even as string | undefined);
+        setIfEmpty(merged.weekend || {}, "odd", preset.weekend.odd as string | undefined);
+      }
+      // Handover
+      if (preset.handover?.location) {
+        setIfEmpty(merged.handover || {}, "location", preset.handover.location);
+      }
+      return { ...prev, proposal: { ...prev.proposal, ...merged } } as ProposalForm;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentCity, optimizer.distance, optimizer.childUnderThree]);
+
   // Seed optimizer from interview answers if present
   const { interview } = useAppStore();
   useEffect(() => {

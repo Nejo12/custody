@@ -112,6 +112,7 @@ const fr = {
     downloadMediationPack: "Télécharger le pack Médiation",
     downloadBlockedPack: "Télécharger le pack ‘Si le contact est bloqué’",
     additionalMatchedRules: "Règles correspondantes supplémentaires",
+    moreDetails: "Plus de détails",
     howToReach95Confidence: "Comment atteindre 95% de confiance",
     answerThese: "Répondez à ces questions :",
     addSupportingDocuments: "Ajoutez des documents de soutien dans votre coffre-fort.",

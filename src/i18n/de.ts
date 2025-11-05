@@ -111,6 +111,7 @@ const de = {
     downloadMediationPack: "Mediations‑Paket herunterladen",
     downloadBlockedPack: "Paket ‚Wenn Umgang blockiert ist‘ herunterladen",
     additionalMatchedRules: "Weitere passende Regeln",
+    moreDetails: "Mehr Details",
     howToReach95Confidence: "Wie man 95% Vertrauen erreicht",
     answerThese: "Beantworte diese:",
     addSupportingDocuments: "Füge unterstützende Dokumente in deinem Tresor hinzu.",

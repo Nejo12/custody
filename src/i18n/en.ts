@@ -111,6 +111,7 @@ const en = {
     downloadMediationPack: "Download Mediation Pack",
     downloadBlockedPack: "Download ‘If Contact Is Blocked’ Pack",
     additionalMatchedRules: "Additional matched rules",
+    moreDetails: "More details",
     howToReach95Confidence: "How to reach 95% confidence",
     answerThese: "Answer these:",
     addSupportingDocuments: "Add supporting documents in your vault.",

@@ -111,6 +111,7 @@ const ar = {
     downloadMediationPack: "تنزيل حزمة الوساطة",
     downloadBlockedPack: "تنزيل حزمة ‘إذا كان الاتصال محجوباً’",
     additionalMatchedRules: "قواعد إضافية متطابقة",
+    moreDetails: "مزيد من التفاصيل",
     howToReach95Confidence: "كيفية الوصول إلى 95% من الثقة",
     answerThese: "أجب على هذه:",
     addSupportingDocuments: "أضف المستندات الداعمة في خزنتك.",
@@ -138,6 +139,7 @@ const ar = {
     courtTemplateNone: "مخصص أو لا شيء",
     tailorCoverLetter: "استخدم هذا لتخصيص خطاب الغلاف.",
     packSection: "الحزمة",
+    attachTimeline: "إرفاق الجدول الزمني من المخزن",
     whyThisResult: "لماذا هذه النتيجة؟",
   },
   directory: {

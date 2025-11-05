@@ -111,6 +111,7 @@ const ru = {
     downloadMediationPack: "Скачать пакет ‘Медиация’",
     downloadBlockedPack: "Скачать пакет ‘Если контакт блокируется’",
     additionalMatchedRules: "Дополнительные совпадающие правила",
+    moreDetails: "Подробнее",
     howToReach95Confidence: "Как достичь 95% уверенности",
     answerThese: "Ответьте на эти:",
     addSupportingDocuments: "Добавьте supporting документы в ваше хранилище.",
@@ -139,6 +140,7 @@ const ru = {
     courtTemplateNone: "Свой или отсутствует",
     tailorCoverLetter: "Используйте это, чтобы настроить сопроводительное письмо.",
     packSection: "Пакет",
+    attachTimeline: "Прикрепить хронологию из Хранилища",
     whyThisResult: "Почему такой результат?",
   },
   directory: {

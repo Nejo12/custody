@@ -112,6 +112,7 @@ const pl = {
     downloadMediationPack: "Pobierz Pakiet Mediacja",
     downloadBlockedPack: "Pobierz Pakiet ‘Gdy kontakt jest zablokowany’",
     additionalMatchedRules: "Dodatkowe dopasowane zasady",
+    moreDetails: "Więcej szczegółów",
     howToReach95Confidence: "Jak osiągnąć 95% pewności",
     answerThese: "Odpowiedz na te:",
     addSupportingDocuments: "Dodaj dokumenty wspierające w swoim skarbcu.",
