@@ -24,6 +24,7 @@ import type { ClarifyResponse } from "@/types/ai";
 import regionalTips from "@/data/regional.tips.json";
 import { resolveCourtTemplate } from "@/lib/courts";
 import Callout from "@/components/Callout";
+import { buildICS } from "@/lib/ics";
 
 type StatusKey = keyof TranslationDict["result"]["statuses"];
 
@@ -84,6 +85,55 @@ export default function Result() {
       >
         {t.result.title}
       </motion.h1>
+      {/* Clarity score + progress path */}
+      <div className="rounded-lg border p-3 bg-white dark:bg-zinc-900">
+        <div className="flex items-center justify-between text-sm">
+          <div>
+            <span className="font-medium">Clarity Score:</span> {Math.round(confidence * 100)}%
+          </div>
+          <button
+            className="text-xs underline"
+            onClick={() => {
+              const ics = buildICS({
+                summary: "Court filing (draft)",
+                startISO: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+                durationMinutes: 30,
+              });
+              const blob = new Blob([ics], { type: "text/calendar" });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement("a");
+              a.href = url;
+              a.download = "filing-reminder.ics";
+              a.click();
+              URL.revokeObjectURL(url);
+            }}
+          >
+            Add filing reminder
+          </button>
+        </div>
+        <div className="mt-2 flex items-center gap-2 text-xs">
+          {(() => {
+            const steps = [
+              { label: "Answer key questions", done: missing.length === 0 },
+              { label: "Pick court", done: !!preferredCourtTemplate },
+              { label: "Set sender", done: !!preferredOcrNoteId },
+              { label: "Generate PDF", done: false },
+            ];
+            return (
+              <div className="flex flex-wrap gap-2">
+                {steps.map((s, i) => (
+                  <span
+                    key={s.label}
+                    className={`px-2 py-1 rounded-full border ${s.done ? "bg-green-100 border-green-300 text-green-800" : "bg-white dark:bg-zinc-900"}`}
+                  >
+                    {s.done ? "✓" : i + 1}. {s.label}
+                  </span>
+                ))}
+              </div>
+            );
+          })()}
+        </div>
+      </div>
       {/* Radical Clarity: Why this result? */}
       {matched.length > 0 && (
         <motion.div

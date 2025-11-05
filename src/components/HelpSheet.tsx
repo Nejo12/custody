@@ -17,6 +17,13 @@ type Service = {
   opening?: string;
 };
 
+type QueueAggregate = {
+  serviceId: string;
+  avgWait: number;
+  bestWindows: string[];
+  count: number;
+};
+
 export default function HelpSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t } = useI18n();
   const { preferredCity, setPreferredCity } = useAppStore();
@@ -27,6 +34,10 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
   const [geoError, setGeoError] = useState("");
   const isSettingFromLocation = useRef(false);
   const prefersReduced = usePrefersReducedMotion();
+  const [queueIntel, setQueueIntel] = useState<Record<string, QueueAggregate>>({});
+  const [reportFor, setReportFor] = useState<string>("");
+  const [reportMinutes, setReportMinutes] = useState<string>("");
+  const [reportWindow, setReportWindow] = useState<string>("");
 
   const filteredServices = useMemo(() => {
     const pc = postcode.trim();
@@ -40,6 +51,19 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
       .then((d) => setServices(Array.isArray(d.services) ? (d.services as Service[]) : []))
       .catch(() => setServices([]));
   }, [open, city]);
+
+  useEffect(() => {
+    if (!open || services.length === 0) return;
+    const ids = services.map((s) => s.id).join(",");
+    fetch(`/api/queue?ids=${encodeURIComponent(ids)}`)
+      .then((r) => r.json())
+      .then((d: { aggregates?: QueueAggregate[] }) => {
+        const map: Record<string, QueueAggregate> = {};
+        (d.aggregates || []).forEach((a) => (map[a.serviceId] = a));
+        setQueueIntel(map);
+      })
+      .catch(() => setQueueIntel({}));
+  }, [open, services]);
 
   // Reset postcode when city changes (but not when setting from location detection)
   useEffect(() => {
@@ -314,6 +338,78 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                       )}
                       {s.opening && (
                         <div className="text-xs text-zinc-600 dark:text-zinc-400">{s.opening}</div>
+                      )}
+                      {queueIntel[s.id] && (
+                        <div className="mt-1 text-[11px] text-zinc-600 dark:text-zinc-400">
+                          Best: {queueIntel[s.id].bestWindows.join(" / ") || "—"} · Avg{" "}
+                          {queueIntel[s.id].avgWait}m
+                          <button
+                            className="ml-2 underline"
+                            onClick={() => {
+                              setReportFor(s.id);
+                              setReportMinutes("");
+                              setReportWindow("");
+                            }}
+                          >
+                            report wait
+                          </button>
+                        </div>
+                      )}
+                      {reportFor === s.id && (
+                        <form
+                          className="mt-2 flex items-center gap-2 text-[11px]"
+                          onSubmit={async (e) => {
+                            e.preventDefault();
+                            try {
+                              const payload = {
+                                serviceId: s.id,
+                                waitMinutes: Number(reportMinutes),
+                                suggestedWindow: reportWindow,
+                              };
+                              const res = await fetch("/api/queue", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(payload),
+                              });
+                              if (res.ok) {
+                                setReportFor("");
+                                const ids = services.map((x) => x.id).join(",");
+                                const r = await fetch(`/api/queue?ids=${encodeURIComponent(ids)}`);
+                                const j = (await r.json()) as { aggregates?: QueueAggregate[] };
+                                const map: Record<string, QueueAggregate> = {};
+                                (j.aggregates || []).forEach((a) => (map[a.serviceId] = a));
+                                setQueueIntel(map);
+                              }
+                            } catch {
+                              // ignore
+                            }
+                          }}
+                        >
+                          <input
+                            required
+                            min={1}
+                            max={600}
+                            value={reportMinutes}
+                            onChange={(e) => setReportMinutes(e.target.value)}
+                            placeholder="mins"
+                            className="w-16 rounded border px-2 py-1"
+                            type="number"
+                          />
+                          <input
+                            value={reportWindow}
+                            onChange={(e) => setReportWindow(e.target.value)}
+                            placeholder="best window (e.g. 9–11)"
+                            className="flex-1 rounded border px-2 py-1"
+                          />
+                          <button className="rounded border px-2 py-1">send</button>
+                          <button
+                            type="button"
+                            className="underline"
+                            onClick={() => setReportFor("")}
+                          >
+                            cancel
+                          </button>
+                        </form>
                       )}
                     </div>
                   ))}

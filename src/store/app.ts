@@ -41,6 +41,8 @@ type AppState = {
   setIncludeTimelineInPack: (v: boolean) => void;
   preferredOcrNoteId?: string;
   setPreferredOcrNoteId: (id: string) => void;
+  socialWorkerMode: boolean;
+  setSocialWorkerMode: (v: boolean) => void;
 };
 
 const getSystemTheme = (): "light" | "dark" => {
@@ -82,6 +84,8 @@ export const useAppStore = create<AppState>()(
         setIncludeTimelineInPack: (v) => set({ includeTimelineInPack: v }),
         preferredOcrNoteId: "",
         setPreferredOcrNoteId: (id) => set({ preferredOcrNoteId: id }),
+        socialWorkerMode: false,
+        setSocialWorkerMode: (v) => set({ socialWorkerMode: v }),
         theme: initialTheme,
         setTheme: (t) => {
           set({ theme: t });
@@ -135,6 +139,7 @@ export const useAppStore = create<AppState>()(
         preferredCourtTemplate: s.preferredCourtTemplate,
         includeTimelineInPack: s.includeTimelineInPack,
         preferredOcrNoteId: s.preferredOcrNoteId,
+        socialWorkerMode: s.socialWorkerMode,
         interview: s.interview,
         vault: s.vault,
       }),
