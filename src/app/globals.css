@@ -45,6 +45,21 @@ body {
   @apply text-zinc-800 dark:text-zinc-200;
 }
 
+/* Skip link for screen readers and keyboard users */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 8px;
+  background: #111;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  z-index: 1000;
+}
+.skip-link:focus {
+  top: 8px;
+}
+
 /* Ensure dropdown listboxes are readable */
 ul[role="listbox"] {
   @apply text-zinc-900 dark:text-zinc-100;

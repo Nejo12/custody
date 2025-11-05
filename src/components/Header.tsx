@@ -5,12 +5,14 @@ import { useI18n } from "@/i18n";
 import { useInstallPrompt } from "./useInstallPrompt";
 import CitySwitch from "./CitySwitch";
 import { useEffect, useRef, useState } from "react";
+import { useAppStore } from "@/store/app";
 
 export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
   const { t } = useI18n();
   const { canInstall, promptInstall } = useInstallPrompt();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { safetyMode, discreetMode } = useAppStore();
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -21,6 +23,18 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
     return () => document.removeEventListener("mousedown", onDoc);
   }, [menuOpen]);
 
+  // Quick Exit keyboard shortcut when Safety Mode enabled (Shift+Escape)
+  useEffect(() => {
+    if (!safetyMode) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && e.shiftKey) {
+        if (typeof window !== "undefined") window.location.replace("https://www.google.com");
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [safetyMode]);
+
   return (
     <header className="sticky top-0 z-40 w-full header-surface">
       <div className="max-w-xl mx-auto px-4">
@@ -29,7 +43,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
             href="/"
             className="font-semibold tracking-tight text-base sm:text-lg whitespace-nowrap truncate flex-shrink-0"
           >
-            {t.appName}
+            {discreetMode ? "Notes" : t.appName}
           </Link>
           {/* Right actions */}
           <div className="flex items-center gap-2 flex-shrink-0">

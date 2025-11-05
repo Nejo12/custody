@@ -15,7 +15,7 @@ type Fields = {
 
 export default function ScanPage() {
   const { t } = useI18n();
-  const { addEntry } = useAppStore();
+  const { addEntry, blurThumbnails } = useAppStore();
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>("");
   const [busy, setBusy] = useState(false);
@@ -163,7 +163,11 @@ export default function ScanPage() {
         {preview && (
           <div className="relative w-full h-56 overflow-hidden rounded border bg-zinc-50">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={preview} alt="preview" className="object-contain w-full h-full" />
+            <img
+              src={preview}
+              alt="preview"
+              className={`object-contain w-full h-full ${blurThumbnails ? "blur-sm" : ""}`}
+            />
           </div>
         )}
         <button

@@ -43,6 +43,13 @@ type AppState = {
   setPreferredOcrNoteId: (id: string) => void;
   socialWorkerMode: boolean;
   setSocialWorkerMode: (v: boolean) => void;
+  // Safety & privacy
+  safetyMode: boolean;
+  setSafetyMode: (v: boolean) => void;
+  discreetMode: boolean;
+  setDiscreetMode: (v: boolean) => void;
+  blurThumbnails: boolean;
+  setBlurThumbnails: (v: boolean) => void;
   milestones: {
     answeredCore: boolean;
     courtSelected: boolean;
@@ -95,6 +102,12 @@ export const useAppStore = create<AppState>()(
         setPreferredOcrNoteId: (id) => set({ preferredOcrNoteId: id }),
         socialWorkerMode: false,
         setSocialWorkerMode: (v) => set({ socialWorkerMode: v }),
+        safetyMode: false,
+        setSafetyMode: (v) => set({ safetyMode: v }),
+        discreetMode: false,
+        setDiscreetMode: (v) => set({ discreetMode: v }),
+        blurThumbnails: false,
+        setBlurThumbnails: (v) => set({ blurThumbnails: v }),
         milestones: {
           answeredCore: false,
           courtSelected: false,
@@ -187,6 +200,9 @@ export const useAppStore = create<AppState>()(
         includeTimelineInPack: s.includeTimelineInPack,
         preferredOcrNoteId: s.preferredOcrNoteId,
         socialWorkerMode: s.socialWorkerMode,
+        safetyMode: s.safetyMode,
+        discreetMode: s.discreetMode,
+        blurThumbnails: s.blurThumbnails,
         milestones: s.milestones,
         interview: s.interview,
         vault: s.vault,

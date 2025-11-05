@@ -90,6 +90,22 @@ export default function GSPage() {
         return f;
       })();
 
+      // Optional timeline attach from Vault
+      let timelineText = "";
+      try {
+        if (includeTimelineInPack) {
+          const entry = vault.entries.find(
+            (e) =>
+              e.type === "note" &&
+              typeof e.payload?.content === "string" &&
+              e.title.toLowerCase().includes("timeline")
+          );
+          if (entry && typeof entry.payload?.content === "string") {
+            timelineText = entry.payload.content as string;
+          }
+        }
+      } catch {}
+
       const res = await fetch("/api/pdf/gemeinsame-sorge", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -99,6 +115,7 @@ export default function GSPage() {
             courtTemplate,
             sender,
           } as FormData,
+          timelineText: timelineText || undefined,
           citations,
           snapshotIds,
           locale,

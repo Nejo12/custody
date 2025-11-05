@@ -142,6 +142,10 @@ export default function UmgangPage() {
         return { short: "16:30–18:30", mid: "15:30–19:00", sat: "10:00–14:00" };
       if (region === "hamburg")
         return { short: "17:00–19:00", mid: "16:00–19:30", sat: "10:00–14:00" };
+      if (region === "bayern")
+        return { short: "16:00–18:00", mid: "15:00–19:00", sat: "09:30–13:30" };
+      if (region === "hessen")
+        return { short: "16:30–18:00", mid: "15:30–19:00", sat: "10:00–14:00" };
       // nrw / default
       return { short: "16:30–18:30", mid: "15:00–19:00", sat: "10:00–14:00" };
     })();

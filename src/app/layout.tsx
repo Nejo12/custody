@@ -46,13 +46,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <ThemeInit />
         <I18nProvider>
           <div className="min-h-screen flex flex-col items-stretch">
             <ServiceWorkerRegister />
             <HeaderWithHelp />
             {/* InstallPrompt removed: persistent install button lives in Header only on mobile */}
-            <main className="flex-1 w-full flex flex-col items-center">{children}</main>
+            <main id="main-content" className="flex-1 w-full flex flex-col items-center">
+              {children}
+            </main>
             <Footer />
             <FloatingThemeSwitch />
           </div>

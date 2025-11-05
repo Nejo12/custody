@@ -28,12 +28,19 @@ type RequestBody = {
   citations?: Citation[] | string[];
   snapshotIds?: string[];
   locale?: string;
+  timelineText?: string;
 };
 
 export async function POST(req: Request) {
   try {
     const body: RequestBody = await req.json();
-    const { formData = {}, citations = [], snapshotIds = [], locale = "de" } = body;
+    const {
+      formData = {},
+      citations = [],
+      snapshotIds = [],
+      locale = "de",
+      timelineText = "",
+    } = body;
     const doc = await PDFDocument.create();
     const font = await doc.embedFont(StandardFonts.Helvetica);
     let page = doc.addPage([595.28, 841.89]); // A4
@@ -236,6 +243,27 @@ export async function POST(req: Request) {
     const snapshotStr = snapshotIds.join(", ");
     const footer = `Generated on ${date}. Sources: ${sourcesStr}. Snapshots: ${snapshotStr}. Information, not legal advice.`;
     page.drawText(footer.slice(0, 240), { x: marginX, y: marginY, size: 8, font });
+
+    // Optional timeline last page
+    if (timelineText && timelineText.trim().length > 0) {
+      page = doc.addPage([595.28, 841.89]);
+      let y = 800 - 40;
+      page.drawText(locale === "de" ? "Zeitleiste (Auszug)" : "Timeline (excerpt)", {
+        x: 50,
+        y: 800 - 40 + 10,
+        size: 12,
+        font,
+      });
+      const lines = wrapText(timelineText.slice(0, 4000), 595.28 - 100, font, 10);
+      for (const ln of lines) {
+        if (y < 50) {
+          page = doc.addPage([595.28, 841.89]);
+          y = 800 - 40;
+        }
+        page.drawText(ln, { x: 50, y, size: 10, font });
+        y -= 12;
+      }
+    }
 
     const bytes = await doc.save();
     return new Response(Buffer.from(bytes), { headers: { "Content-Type": "application/pdf" } });

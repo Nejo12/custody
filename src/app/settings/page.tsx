@@ -18,7 +18,16 @@ const languages: {
 
 export default function SettingsPage() {
   const { t, locale, setLocale } = useI18n();
-  const { socialWorkerMode, setSocialWorkerMode } = useAppStore();
+  const {
+    socialWorkerMode,
+    setSocialWorkerMode,
+    safetyMode,
+    setSafetyMode,
+    discreetMode,
+    setDiscreetMode,
+    blurThumbnails,
+    setBlurThumbnails,
+  } = useAppStore();
   async function quickWipe() {
     const ok = confirm("Erase local data and cached files? This cannot be undone.");
     if (!ok) return;
@@ -86,6 +95,30 @@ export default function SettingsPage() {
 
       <div className="space-y-2">
         <div className="text-sm text-zinc-700 dark:text-zinc-400">Safety</div>
+        <label className="flex items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            checked={safetyMode}
+            onChange={(e) => setSafetyMode(e.target.checked)}
+          />
+          Safety Mode (enable quick-exit shortcut)
+        </label>
+        <label className="flex items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            checked={discreetMode}
+            onChange={(e) => setDiscreetMode(e.target.checked)}
+          />
+          Discreet app name in header
+        </label>
+        <label className="flex items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            checked={blurThumbnails}
+            onChange={(e) => setBlurThumbnails(e.target.checked)}
+          />
+          Blur thumbnails/previews
+        </label>
         <button
           onClick={quickWipe}
           className="rounded-md border px-3 py-1 text-sm bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-900/40"
