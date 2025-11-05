@@ -159,6 +159,29 @@ const ar = {
     "contact.distance.far": "توصية: خطة تركز على عطلة نهاية الأسبوع/العطلات بسبب المسافة.",
     "mediation.suggest": "قد تساعد الوساطة من خلال Jugendamt في الوصول إلى اتفاق.",
   },
+  helpSheet: {
+    title: "ابحث عن المساعدة الآن",
+    description:
+      "اتصل بأقرب Jugendamt أو سجل المحكمة. استخدم النص أدناه؛ اضغط للنسخ. يمكنك أيضًا إضافة تذكير في التقويم.",
+    scriptLabel: "ماذا تقول (ألماني)",
+    scriptText:
+      "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
+    copy: "نسخ",
+    addReminder: "إضافة تذكير",
+    nearbyServices: "الخدمات القريبة",
+    postcodePlaceholder: "الرمز البريدي (مثال: 10115)",
+    useMyLocation: "استخدام موقعي",
+    detecting: "جاري الكشف…",
+    locationUnavailable: "الموقع غير متاح",
+    failedToDetect: "فشل في اكتشاف الرمز البريدي",
+    permissionDenied: "تم رفض الإذن",
+    noServices: "لا توجد خدمات بعد. جرب رمزًا بريديًا.",
+    website: "الموقع الإلكتروني",
+    disclaimer: "معلومات فقط — ليست نصيحة قانونية فردية.",
+    close: "إغلاق",
+    privacyNote:
+      "نستخدم موقعك فقط للعثور على الرمز البريدي. لا يتم تخزين أو إرسال بيانات الموقع إلى أي مكان آخر.",
+  },
 };
 
 export default ar;

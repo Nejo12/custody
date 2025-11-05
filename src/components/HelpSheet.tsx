@@ -38,28 +38,24 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
   if (!open) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 bg-black/50 flex items-end sm:items-center justify-center p-0"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="help-sheet-title"
-    >
-      <div className="w-full sm:max-w-lg bg-white dark:bg-zinc-950 rounded-t-2xl sm:rounded-2xl p-4 space-y-3 max-h-[90vh] overflow-y-auto flex flex-col">
-        <div className="flex items-center justify-between flex-shrink-0">
-          <div id="help-sheet-title" className="font-medium">
-            Find Help Now
+    <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-labelledby="help-sheet-title">
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+      {/* Centering wrapper */}
+      <div className="relative mx-auto min-h-full flex items-center justify-center p-4">
+        <div className="w-full max-w-lg bg-white dark:bg-zinc-950 rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 p-4 space-y-3 max-h-[90vh] overflow-y-auto flex flex-col">
+          <div className="flex items-center justify-between flex-shrink-0">
+            <div id="help-sheet-title" className="font-medium">
+              Find Help Now
+            </div>
+            <button
+              className="text-sm underline hover:no-underline"
+              onClick={onClose}
+              aria-label="Close help dialog"
+            >
+              Close
+            </button>
           </div>
-          <button
-            className="text-sm underline hover:no-underline"
-            onClick={onClose}
-            aria-label="Close help dialog"
-          >
-            Close
-          </button>
-        </div>
         <div className="text-sm text-zinc-700 dark:text-zinc-300 flex-shrink-0">
           Call your nearest Jugendamt or court registry. Use the script below; tap to copy. You can
           also add a calendar reminder.
@@ -222,6 +218,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
         </div>
         <div className="text-xs text-zinc-500 flex-shrink-0">
           Information only — not individualized legal advice.
+        </div>
         </div>
       </div>
     </div>

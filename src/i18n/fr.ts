@@ -165,6 +165,29 @@ const fr = {
       "Recommandation : Plan axé sur les week-ends/vacances en raison de la distance.",
     "mediation.suggest": "La médiation par le Jugendamt peut aider à parvenir à un accord.",
   },
+  helpSheet: {
+    title: "Trouver de l'aide maintenant",
+    description:
+      "Appelez votre Jugendamt ou le greffe du tribunal le plus proche. Utilisez le script ci-dessous ; appuyez pour copier. Vous pouvez également ajouter un rappel de calendrier.",
+    scriptLabel: "Que dire (Allemand)",
+    scriptText:
+      "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
+    copy: "Copier",
+    addReminder: "Ajouter un rappel",
+    nearbyServices: "Services à proximité",
+    postcodePlaceholder: "Code postal (ex: 10115)",
+    useMyLocation: "Utiliser ma localisation",
+    detecting: "Détection en cours…",
+    locationUnavailable: "Localisation indisponible",
+    failedToDetect: "Impossible de détecter le code postal",
+    permissionDenied: "Permission refusée",
+    noServices: "Aucun service pour le moment. Essayez un code postal.",
+    website: "Site web",
+    disclaimer: "Information uniquement — pas de conseil juridique individualisé.",
+    close: "Fermer",
+    privacyNote:
+      "Nous utilisons uniquement votre localisation pour trouver votre code postal. Aucune donnée de localisation n'est stockée ou envoyée ailleurs.",
+  },
 };
 
 export default fr;

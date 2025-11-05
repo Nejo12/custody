@@ -161,6 +161,29 @@ const tr = {
     "contact.distance.far": "Öneri: Mesafe nedeniyle hafta sonu/tatil odaklı plan.",
     "mediation.suggest": "Jugendamt arabuluculuğu bir anlaşmaya varmaya yardımcı olabilir.",
   },
+  helpSheet: {
+    title: "Şimdi yardım bul",
+    description:
+      "En yakın Jugendamt veya mahkeme sicilini arayın. Aşağıdaki metni kullanın; kopyalamak için dokunun. Ayrıca bir takvim hatırlatıcısı ekleyebilirsiniz.",
+    scriptLabel: "Ne söylenir (Almanca)",
+    scriptText:
+      "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
+    copy: "Kopyala",
+    addReminder: "Hatırlatıcı ekle",
+    nearbyServices: "Yakındaki hizmetler",
+    postcodePlaceholder: "Posta kodu (örn: 10115)",
+    useMyLocation: "Konumumu kullan",
+    detecting: "Tespit ediliyor…",
+    locationUnavailable: "Konum kullanılamıyor",
+    failedToDetect: "Posta kodu tespit edilemedi",
+    permissionDenied: "İzin reddedildi",
+    noServices: "Henüz hizmet yok. Bir posta kodu deneyin.",
+    website: "Web sitesi",
+    disclaimer: "Yalnızca bilgi — bireysel hukuki tavsiye değildir.",
+    close: "Kapat",
+    privacyNote:
+      "Konumunuzu yalnızca posta kodunuzu bulmak için kullanıyoruz. Konum verileri saklanmaz veya başka bir yere gönderilmez.",
+  },
 };
 
 export default tr;

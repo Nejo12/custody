@@ -163,6 +163,29 @@ const ru = {
       "Рекомендация: План, ориентированный на выходные/праздники из-за расстояния.",
     "mediation.suggest": "Посредничество через Jugendamt может помочь достичь соглашения.",
   },
+  helpSheet: {
+    title: "Найти помощь сейчас",
+    description:
+      "Позвоните в ближайший Jugendamt или судебный регистр. Используйте сценарий ниже; нажмите, чтобы скопировать. Вы также можете добавить напоминание в календарь.",
+    scriptLabel: "Что сказать (Немецкий)",
+    scriptText:
+      "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
+    copy: "Копировать",
+    addReminder: "Добавить напоминание",
+    nearbyServices: "Ближайшие службы",
+    postcodePlaceholder: "Почтовый индекс (например: 10115)",
+    useMyLocation: "Использовать моё местоположение",
+    detecting: "Определение…",
+    locationUnavailable: "Местоположение недоступно",
+    failedToDetect: "Не удалось определить почтовый индекс",
+    permissionDenied: "Разрешение отклонено",
+    noServices: "Пока нет служб. Попробуйте почтовый индекс.",
+    website: "Веб-сайт",
+    disclaimer: "Только информация — не индивидуальная юридическая консультация.",
+    close: "Закрыть",
+    privacyNote:
+      "Мы используем ваше местоположение только для определения почтового индекса. Данные о местоположении не сохраняются и не отправляются куда-либо ещё.",
+  },
 };
 
 export default ru;

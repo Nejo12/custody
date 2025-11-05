@@ -162,6 +162,29 @@ const de = {
       "Empfehlung: Wochenend-/Ferien-zentrierter Plan aufgrund der Entfernung.",
     "mediation.suggest": "Jugendamt-Mediation kann helfen, eine Einigung zu erzielen.",
   },
+  helpSheet: {
+    title: "Jetzt Hilfe finden",
+    description:
+      "Rufen Sie Ihr nächstgelegenes Jugendamt oder Gerichtsregister an. Verwenden Sie das untenstehende Skript; tippen Sie zum Kopieren. Sie können auch eine Kalendererinnerung hinzufügen.",
+    scriptLabel: "Was zu sagen (Deutsch)",
+    scriptText:
+      "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
+    copy: "Kopieren",
+    addReminder: "Erinnerung hinzufügen",
+    nearbyServices: "Nahegelegene Dienste",
+    postcodePlaceholder: "Postleitzahl (z. B. 10115)",
+    useMyLocation: "Meinen Standort verwenden",
+    detecting: "Erkennung läuft…",
+    locationUnavailable: "Standort nicht verfügbar",
+    failedToDetect: "Postleitzahl konnte nicht erkannt werden",
+    permissionDenied: "Berechtigung verweigert",
+    noServices: "Noch keine Dienste. Versuchen Sie eine Postleitzahl.",
+    website: "Website",
+    disclaimer: "Nur Information – keine individuelle Rechtsberatung.",
+    close: "Schließen",
+    privacyNote:
+      "Wir verwenden Ihren Standort nur, um Ihre Postleitzahl zu finden. Keine Standortdaten werden gespeichert oder anderswohin gesendet.",
+  },
 };
 
 export default de;

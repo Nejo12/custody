@@ -159,6 +159,29 @@ const en = {
     "contact.distance.far": "Recommend weekend/holiday-centric schedule due to distance.",
     "mediation.suggest": "Jugendamt mediation may help reach an agreement.",
   },
+  helpSheet: {
+    title: "Find Help Now",
+    description:
+      "Call your nearest Jugendamt or court registry. Use the script below; tap to copy. You can also add a calendar reminder.",
+    scriptLabel: "What to say (German)",
+    scriptText:
+      "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
+    copy: "Copy",
+    addReminder: "Add reminder",
+    nearbyServices: "Nearby services",
+    postcodePlaceholder: "Postcode (e.g. 10115)",
+    useMyLocation: "Use my location",
+    detecting: "Detecting…",
+    locationUnavailable: "Location unavailable",
+    failedToDetect: "Failed to detect postcode",
+    permissionDenied: "Permission denied",
+    noServices: "No services yet. Try a postcode.",
+    website: "Website",
+    disclaimer: "Information only — not individualized legal advice.",
+    close: "Close",
+    privacyNote:
+      "We only use your location to find your postcode. No location data is stored or sent elsewhere.",
+  },
 };
 
 export default en;
