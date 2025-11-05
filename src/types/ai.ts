@@ -22,6 +22,8 @@ export type ScheduleSuggestRequest = {
   childUnderThree?: boolean;
   workHours?: string; // free text like Mon-Fri 9-17
   specialNotes?: string;
+  city?: "berlin" | "hamburg" | "nrw";
+  courtName?: string;
 };
 
 export type ScheduleSuggestResponse = {

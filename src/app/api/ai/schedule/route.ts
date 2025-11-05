@@ -9,6 +9,8 @@ function buildPrompt(body: ScheduleSuggestRequest): string {
     `Locale: ${body.locale || "de"}`,
     `Distance: ${body.distance}`,
     `ChildUnderThree: ${body.childUnderThree ? "yes" : "no"}`,
+    body.city ? `Region: ${body.city}` : "",
+    body.courtName ? `Court: ${body.courtName}` : "",
     body.workHours ? `WorkHours: ${anonymizeText(body.workHours)}` : "",
     body.specialNotes ? `Notes: ${anonymizeText(body.specialNotes)}` : "",
   ].filter(Boolean);

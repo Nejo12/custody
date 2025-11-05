@@ -1,5 +1,17 @@
 {
-  "berlin": "Berlin: Some courts prefer early morning registry visits for filings. Amtsgericht Mitte often expects brief cover letters and will accept standard attachments listed.",
-  "hamburg": "Hamburg: Court registry may ask for a basic schedule outline even for initial contact requests. Bring printed IDs.",
-  "nrw": "NRW: Jugendamt offices sometimes require online booking for acknowledgements. Check office hours and book ahead where possible."
+  "berlin": {
+    "text": "Some courts prefer early morning registry visits for filings. Amtsgericht Mitte often expects brief cover letters and will accept standard attachments listed.",
+    "lastVerified": "2025‑01‑03",
+    "snapshotId": "berlin-registry-2025-01"
+  },
+  "hamburg": {
+    "text": "Court registry may ask for a basic schedule outline even for initial contact requests. Bring printed IDs.",
+    "lastVerified": "2025‑01‑02",
+    "snapshotId": "hamburg-registry-2025-01"
+  },
+  "nrw": {
+    "text": "Jugendamt offices sometimes require online booking for acknowledgements. Check office hours and book ahead where possible.",
+    "lastVerified": "2025‑01‑02",
+    "snapshotId": "nrw-jugendamt-2025-01"
+  }
 }

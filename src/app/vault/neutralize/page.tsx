@@ -5,7 +5,7 @@ import { useAppStore } from "@/store/app";
 import type { NeutralizeResponse } from "@/types/ai";
 
 export default function NeutralizePage() {
-  const { locale } = useI18n();
+  const { locale, t } = useI18n();
   const { addEntry } = useAppStore();
   const [text, setText] = useState("");
   const [tone, setTone] = useState<"neutral" | "polite" | "assertive">("neutral");
@@ -42,10 +42,32 @@ export default function NeutralizePage() {
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
-      <h1 className="text-xl font-semibold">Conflict neutralizer (beta)</h1>
+      <h1 className="text-xl font-semibold">
+        {t.neutralizer?.title || "Conflict neutralizer (beta)"}
+      </h1>
+      <div className="flex flex-wrap gap-2 text-xs">
+        <button
+          className="rounded border px-2 py-1"
+          onClick={() => setText(t.neutralizer?.presetJugendamt || "")}
+        >
+          {t.neutralizer?.presetJugendamtLabel || "Jugendamt"}
+        </button>
+        <button
+          className="rounded border px-2 py-1"
+          onClick={() => setText(t.neutralizer?.presetMediation || "")}
+        >
+          {t.neutralizer?.presetMediationLabel || "Mediation"}
+        </button>
+        <button
+          className="rounded border px-2 py-1"
+          onClick={() => setText(t.neutralizer?.presetCourt || "")}
+        >
+          {t.neutralizer?.presetCourtLabel || "Court registry"}
+        </button>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 items-end">
         <label className="text-sm sm:col-span-3">
-          Your draft
+          {t.neutralizer?.yourDraft || "Your draft"}
           <textarea
             className="mt-1 w-full min-h-32 rounded border p-3"
             value={text}
@@ -54,7 +76,7 @@ export default function NeutralizePage() {
           />
         </label>
         <label className="text-sm sm:col-span-1">
-          Tone
+          {t.neutralizer?.tone || "Tone"}
           <select
             className="mt-1 w-full rounded border px-2 py-2"
             value={tone}
@@ -68,7 +90,7 @@ export default function NeutralizePage() {
       </div>
       <div className="flex gap-2">
         <button onClick={onRewrite} className="rounded border px-3 py-1 text-sm">
-          {loading ? "Rewriting…" : "Rewrite"}
+          {loading ? t.neutralizer?.rewriting || "Rewriting…" : t.neutralizer?.rewrite || "Rewrite"}
         </button>
         {out && (
           <>
@@ -86,7 +108,9 @@ export default function NeutralizePage() {
       </div>
       {out && (
         <div className="rounded-lg border p-3 bg-zinc-50 dark:bg-zinc-900">
-          <div className="text-sm font-medium mb-1">Rewritten message</div>
+          <div className="text-sm font-medium mb-1">
+            {t.neutralizer?.rewritten || "Rewritten message"}
+          </div>
           <pre className="whitespace-pre-wrap text-sm">{out}</pre>
           <div className="text-[11px] text-zinc-500 mt-2">
             Information only — not individualized legal advice.

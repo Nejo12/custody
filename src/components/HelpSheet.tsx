@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useAppStore } from "@/store/app";
 import { buildICS } from "@/lib/ics";
 import { useI18n } from "@/i18n";
@@ -47,238 +48,273 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
     setPostcode("");
   }, [city]);
 
-  if (!open) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-50"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="help-sheet-title"
-    >
-      {/* Overlay */}
-      <div
-        className="absolute inset-0 bg-black/80 backdrop-blur-md"
-        onClick={onClose}
-        aria-hidden="true"
-      />
-      {/* Layout: bottom sheet on mobile, centered on desktop */}
-      <div className="absolute inset-0 flex items-end md:items-center justify-center p-0 md:p-4">
-        <div className="w-full md:max-w-lg bg-white dark:bg-zinc-950 rounded-t-2xl md:rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 p-4 space-y-3 max-h-[90vh] overflow-y-auto flex flex-col">
-          {/* Drag handle for mobile */}
-          <div className="md:hidden flex justify-center -mt-2 mb-1 flex-shrink-0">
-            <div
-              className="w-12 h-1.5 bg-zinc-300 dark:bg-zinc-700 rounded-full"
-              aria-hidden="true"
-            />
-          </div>
-          <div className="flex items-center justify-between flex-shrink-0">
-            <div id="help-sheet-title" className="font-medium">
-              {t.helpSheet.title}
-            </div>
-            <button
-              className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
-              onClick={onClose}
-              aria-label={t.helpSheet.closeButtonAriaLabel}
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-50"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="help-sheet-title"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          {/* Overlay */}
+          <motion.div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={onClose}
+            aria-hidden="true"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.15 } }}
+            exit={{ opacity: 0, transition: { duration: 0.12 } }}
+          />
+          {/* Layout: bottom sheet on mobile, centered on desktop */}
+          <div className="absolute inset-0 flex items-end sm:items-center justify-center p-0 sm:p-4">
+            <motion.div
+              className="dialog-panel w-full sm:max-w-lg bg-white dark:bg-zinc-950 rounded-t-2xl sm:rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 p-4 space-y-3 max-h-[90vh] overflow-y-auto flex flex-col"
+              initial={{ y: 56, opacity: 0 }}
+              animate={{
+                y: 0,
+                opacity: 1,
+                transition: { type: "spring", stiffness: 380, damping: 28 },
+              }}
+              exit={{
+                y: 28,
+                opacity: 0,
+                transition: { type: "spring", stiffness: 320, damping: 30 },
+              }}
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-          </div>
-          <div className="text-sm text-zinc-700 dark:text-zinc-300 flex-shrink-0">
-            {t.helpSheet.description}
-          </div>
-          <div className="rounded-lg border p-3 flex-shrink-0">
-            <textarea
-              className="w-full rounded border p-2 text-sm"
-              rows={4}
-              readOnly
-              onClick={(e) => (e.target as HTMLTextAreaElement).select()}
-              value={t.helpSheet.scriptText}
-              aria-label={t.helpSheet.scriptAriaLabel}
-            ></textarea>
-            <div className="mt-2 flex gap-2">
-              <button
-                className="rounded border px-3 py-1 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800"
-                onClick={() => navigator.clipboard.writeText(t.helpSheet.scriptText)}
-                aria-label={t.helpSheet.copyButtonAriaLabel}
-              >
-                {t.helpSheet.copy}
-              </button>
-              <button
-                className="rounded border px-3 py-1 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800"
-                onClick={() => {
-                  const ics = buildICS({
-                    summary: t.helpSheet.callJugendamtCalendarSummary,
-                    startISO: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-                    durationMinutes: 15,
-                  });
-                  const blob = new Blob([ics], { type: "text/calendar" });
-                  const url = URL.createObjectURL(blob);
-                  const a = document.createElement("a");
-                  a.href = url;
-                  a.download = "call-jugendamt.ics";
-                  a.click();
-                  URL.revokeObjectURL(url);
-                }}
-                aria-label={t.helpSheet.addReminderAriaLabel}
-              >
-                {t.helpSheet.addReminder}
-              </button>
-            </div>
-          </div>
-          <div className="rounded-lg border p-3 space-y-2 flex-1 min-h-0 overflow-hidden flex flex-col">
-            <div className="text-xs uppercase text-zinc-500">{t.helpSheet.nearbyServices}</div>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <div className="flex gap-2 items-center flex-1">
-                <select
-                  value={city}
-                  onChange={(e) => {
-                    const v = e.target.value as "berlin" | "hamburg" | "nrw";
-                    setCity(v);
-                    setPreferredCity(v);
-                  }}
-                  className="rounded border px-2 py-1 text-sm"
-                >
-                  <option value="berlin">Berlin</option>
-                  <option value="hamburg">Hamburg</option>
-                  <option value="nrw">NRW</option>
-                </select>
-                <input
-                  value={postcode}
-                  onChange={(e) => setPostcode(e.target.value)}
-                  placeholder={t.helpSheet.postcodePlaceholder}
-                  className="flex-1 rounded border px-3 py-1 text-sm"
+              {/* Drag handle for mobile */}
+              <div className="md:hidden flex justify-center -mt-2 mb-1 flex-shrink-0">
+                <div
+                  className="w-12 h-1.5 bg-zinc-300 dark:bg-zinc-700 rounded-full"
+                  aria-hidden="true"
                 />
+              </div>
+              <div className="flex items-center justify-between flex-shrink-0">
+                <div id="help-sheet-title" className="font-medium">
+                  {t.helpSheet.title}
+                </div>
                 <button
-                  type="button"
-                  className="text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 rounded p-0.5"
-                  title={t.helpSheet.privacyNote}
-                  aria-label={t.helpSheet.privacyNoteAriaLabel}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    alert(t.helpSheet.privacyNote);
-                  }}
+                  className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
+                  onClick={onClose}
+                  aria-label={t.helpSheet.closeButtonAriaLabel}
                 >
                   <svg
-                    width="14"
-                    height="14"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
-                    aria-hidden
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
                   >
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="12" y1="8" x2="12" y2="12" />
-                    <circle cx="12" cy="16" r="1" />
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
                   </svg>
                 </button>
               </div>
-              <button
-                className="w-full sm:w-auto rounded border px-2 py-1 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
-                onClick={() => {
-                  setGeoError("");
-                  setGeoLoading(true);
-                  if (!("geolocation" in navigator)) {
-                    setGeoError(t.helpSheet.locationUnavailable);
-                    setGeoLoading(false);
-                    return;
-                  }
-                  navigator.geolocation.getCurrentPosition(
-                    async (pos) => {
-                      try {
-                        const { latitude, longitude } = pos.coords;
-                        const res = await fetch(`/api/revgeo?lat=${latitude}&lon=${longitude}`);
-                        const j = (await res.json()) as {
-                          postcode?: string;
-                          city?: "berlin" | "hamburg" | "nrw";
-                          error?: string;
-                        };
-                        if (j.postcode) {
-                          if (j.city) {
-                            isSettingFromLocation.current = true;
-                            setCity(j.city);
-                            setPreferredCity(j.city);
-                            // Set postcode in next tick to ensure city change effect has run
-                            requestAnimationFrame(() => {
-                              setPostcode(j.postcode!);
-                            });
-                          } else {
-                            setPostcode(j.postcode);
-                          }
-                        } else if (j.error) {
-                          setGeoError(j.error);
-                        }
-                      } catch (err) {
-                        console.error(err);
-                        setGeoError(t.helpSheet.failedToDetect);
-                      } finally {
-                        setGeoLoading(false);
-                      }
-                    },
-                    () => {
-                      setGeoError(t.helpSheet.permissionDenied);
-                      setGeoLoading(false);
-                    }
-                  );
-                }}
-              >
-                {t.helpSheet.useMyLocation}
-              </button>
-            </div>
-            {geoLoading && <div className="text-xs text-zinc-500">{t.helpSheet.detecting}</div>}
-            {!!geoError && <div className="text-xs text-red-600">{geoError}</div>}
-            <div className="space-y-2 flex-1 overflow-y-auto min-h-0">
-              {filteredServices.length === 0 && (
-                <div className="text-sm text-zinc-500">{t.helpSheet.noServices}</div>
-              )}
-              {filteredServices.slice(0, 6).map((s) => (
-                <div key={s.id} className="rounded border p-2">
-                  <div className="text-xs uppercase text-zinc-500">{s.type}</div>
-                  <div className="font-medium text-sm">{s.name}</div>
-                  <div className="text-sm text-zinc-600">{s.address}</div>
-                  {s.phone && (
-                    <a
-                      className="text-sm underline"
-                      href={`tel:${s.phone}`}
-                      aria-label={t.helpSheet.callServiceAriaLabel.replace("{name}", s.name)}
-                    >
-                      {s.phone}
-                    </a>
-                  )}
-                  {s.url && (
-                    <a
-                      className="ml-2 text-sm underline"
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={t.helpSheet.visitWebsiteAriaLabel.replace("{name}", s.name)}
-                    >
-                      {t.helpSheet.website}
-                    </a>
-                  )}
-                  {s.opening && <div className="text-xs text-zinc-500">{s.opening}</div>}
+              <div className="text-sm text-zinc-700 dark:text-zinc-300 flex-shrink-0">
+                {t.helpSheet.description}
+              </div>
+              <div className="rounded-lg border p-3 flex-shrink-0">
+                <textarea
+                  className="w-full rounded border p-2 text-sm"
+                  rows={4}
+                  readOnly
+                  onClick={(e) => (e.target as HTMLTextAreaElement).select()}
+                  value={t.helpSheet.scriptText}
+                  aria-label={t.helpSheet.scriptAriaLabel}
+                ></textarea>
+                <div className="mt-2 flex gap-2">
+                  <button
+                    className="rounded border px-3 py-1 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    onClick={() => navigator.clipboard.writeText(t.helpSheet.scriptText)}
+                    aria-label={t.helpSheet.copyButtonAriaLabel}
+                  >
+                    {t.helpSheet.copy}
+                  </button>
+                  <button
+                    className="rounded border px-3 py-1 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    onClick={() => {
+                      const ics = buildICS({
+                        summary: t.helpSheet.callJugendamtCalendarSummary,
+                        startISO: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+                        durationMinutes: 15,
+                      });
+                      const blob = new Blob([ics], { type: "text/calendar" });
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url;
+                      a.download = "call-jugendamt.ics";
+                      a.click();
+                      URL.revokeObjectURL(url);
+                    }}
+                    aria-label={t.helpSheet.addReminderAriaLabel}
+                  >
+                    {t.helpSheet.addReminder}
+                  </button>
                 </div>
-              ))}
-            </div>
+              </div>
+              <div className="rounded-lg border p-3 space-y-2 flex-1 min-h-0 overflow-hidden flex flex-col">
+                <div className="text-xs uppercase text-zinc-600 dark:text-zinc-400">
+                  {t.helpSheet.nearbyServices}
+                </div>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <div className="flex gap-2 items-center flex-1">
+                    <select
+                      value={city}
+                      onChange={(e) => {
+                        const v = e.target.value as "berlin" | "hamburg" | "nrw";
+                        setCity(v);
+                        setPreferredCity(v);
+                      }}
+                      className="rounded border px-2 py-1 text-sm"
+                    >
+                      <option value="berlin">Berlin</option>
+                      <option value="hamburg">Hamburg</option>
+                      <option value="nrw">NRW</option>
+                    </select>
+                    <input
+                      value={postcode}
+                      onChange={(e) => setPostcode(e.target.value)}
+                      placeholder={t.helpSheet.postcodePlaceholder}
+                      className="flex-1 rounded border px-3 py-1 text-sm"
+                    />
+                    <button
+                      type="button"
+                      className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 rounded p-0.5"
+                      title={t.helpSheet.privacyNote}
+                      aria-label={t.helpSheet.privacyNoteAriaLabel}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        alert(t.helpSheet.privacyNote);
+                      }}
+                    >
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        aria-hidden
+                      >
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <circle cx="12" cy="16" r="1" />
+                      </svg>
+                    </button>
+                  </div>
+                  <button
+                    className="w-full sm:w-auto rounded border px-2 py-1 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+                    onClick={() => {
+                      setGeoError("");
+                      setGeoLoading(true);
+                      if (!("geolocation" in navigator)) {
+                        setGeoError(t.helpSheet.locationUnavailable);
+                        setGeoLoading(false);
+                        return;
+                      }
+                      navigator.geolocation.getCurrentPosition(
+                        async (pos) => {
+                          try {
+                            const { latitude, longitude } = pos.coords;
+                            const res = await fetch(`/api/revgeo?lat=${latitude}&lon=${longitude}`);
+                            const j = (await res.json()) as {
+                              postcode?: string;
+                              city?: "berlin" | "hamburg" | "nrw";
+                              error?: string;
+                            };
+                            if (j.postcode) {
+                              if (j.city) {
+                                isSettingFromLocation.current = true;
+                                setCity(j.city);
+                                setPreferredCity(j.city);
+                                // Set postcode in next tick to ensure city change effect has run
+                                requestAnimationFrame(() => {
+                                  setPostcode(j.postcode!);
+                                });
+                              } else {
+                                setPostcode(j.postcode);
+                              }
+                            } else if (j.error) {
+                              setGeoError(j.error);
+                            }
+                          } catch (err) {
+                            console.error(err);
+                            setGeoError(t.helpSheet.failedToDetect);
+                          } finally {
+                            setGeoLoading(false);
+                          }
+                        },
+                        () => {
+                          setGeoError(t.helpSheet.permissionDenied);
+                          setGeoLoading(false);
+                        }
+                      );
+                    }}
+                  >
+                    {t.helpSheet.useMyLocation}
+                  </button>
+                </div>
+                {geoLoading && (
+                  <div className="text-xs text-zinc-600 dark:text-zinc-400">
+                    {t.helpSheet.detecting}
+                  </div>
+                )}
+                {!!geoError && <div className="text-xs text-red-600">{geoError}</div>}
+                <div className="space-y-2 flex-1 overflow-y-auto min-h-0">
+                  {filteredServices.length === 0 && (
+                    <div className="text-sm text-zinc-600 dark:text-zinc-400">
+                      {t.helpSheet.noServices}
+                    </div>
+                  )}
+                  {filteredServices.slice(0, 6).map((s) => (
+                    <div key={s.id} className="rounded border p-2">
+                      <div className="text-xs uppercase text-zinc-600 dark:text-zinc-400">
+                        {s.type}
+                      </div>
+                      <div className="font-medium text-sm">{s.name}</div>
+                      <div className="text-sm text-zinc-700 dark:text-zinc-300">{s.address}</div>
+                      {s.phone && (
+                        <a
+                          className="text-sm underline"
+                          href={`tel:${s.phone}`}
+                          aria-label={t.helpSheet.callServiceAriaLabel.replace("{name}", s.name)}
+                        >
+                          {s.phone}
+                        </a>
+                      )}
+                      {s.url && (
+                        <a
+                          className="ml-2 text-sm underline"
+                          href={s.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={t.helpSheet.visitWebsiteAriaLabel.replace("{name}", s.name)}
+                        >
+                          {t.helpSheet.website}
+                        </a>
+                      )}
+                      {s.opening && (
+                        <div className="text-xs text-zinc-600 dark:text-zinc-400">{s.opening}</div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="text-xs text-zinc-600 dark:text-zinc-400 flex-shrink-0">
+                {t.helpSheet.disclaimer}
+              </div>
+            </motion.div>
           </div>
-          <div className="text-xs text-zinc-500 flex-shrink-0">{t.helpSheet.disclaimer}</div>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

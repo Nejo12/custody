@@ -128,6 +128,13 @@ const tr = {
       schedule_weekend_only: "Öneri: Mesafe nedeniyle hafta sonu/tatil odaklı plan",
       unknown: "Bunu birlikte tamamlayalım",
     },
+    safetyTitle: "Önce güvenlik",
+    safetyBody:
+      "Şiddet veya kaçırma riski varsa hemen yardım isteyin. Almanya: 08000 116 016 (Hilfetelefon). Denetimli iletişimi ve Jugendamt/polis (110) üzerinden acil desteği değerlendirin.",
+    courtTemplate: "Mahkeme (şablon)",
+    courtTemplateNone: "Özel veya yok",
+    tailorCoverLetter: "Kapak mektubunu buna göre uyarlayın.",
+    packSection: "Paket",
   },
   directory: {
     title: "Destek bul",
@@ -185,7 +192,7 @@ const tr = {
     "mediation.suggest": "Jugendamt arabuluculuğu bir anlaşmaya varmaya yardımcı olabilir.",
   },
   optimizer: {
-    title: "Program optimize edici (beta)",
+    title: "Takvim optimize edici (beta)",
     distance: "Mesafe",
     distanceLocal: "< 30 km",
     distanceRegional: "30–150 km",
@@ -197,6 +204,26 @@ const tr = {
     notesPlaceholder: "teslim, uyku, okuldan alma…",
     suggest: "Plan öner",
     suggesting: "Öneriliyor…",
+    explainerTitle: "Neden bu plan",
+    explainerNote: "Mesafe, yaş ve notlara göre.",
+    citations: "Atıflar",
+  },
+  neutralizer: {
+    title: "Çatışma yumuşatıcı (beta)",
+    presetJugendamtLabel: "Jugendamt",
+    presetMediationLabel: "Arabuluculuk",
+    presetCourtLabel: "Mahkeme kalemi",
+    presetJugendamt:
+      "Merhaba, vesayet/iletişim hakkında bilgi ve mümkünse randevu talep ediyorum. Lütfen getirmem gereken belgeleri ve uygun saatleri bildirin. Teşekkürler.",
+    presetMediation:
+      "Merhaba, ebeveynlik düzenlemelerimizle ilgili bir arabuluculuk randevusu talep etmek istiyorum. Güvenli ve pratik bir program ile teslim kurallarını görüşmek istiyoruz.",
+    presetCourt:
+      "Kaleme: Ekli başvuruyu sunmak istiyorum. Eksik belge varsa ve bir sonraki adım nedir, lütfen bildiriniz.",
+    yourDraft: "Taslağınız",
+    tone: "Ton",
+    rewrite: "Yeniden yaz",
+    rewriting: "Yeniden yazılıyor…",
+    rewritten: "Yeniden yazılmış metin",
   },
   helpSheet: {
     title: "Şimdi yardım bul",

@@ -5,12 +5,10 @@ import { useI18n } from "@/i18n";
 import { useInstallPrompt } from "./useInstallPrompt";
 import CitySwitch from "./CitySwitch";
 import { useEffect, useRef, useState } from "react";
-import HelpSheet from "./HelpSheet";
 
-export default function Header() {
+export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
   const { t } = useI18n();
   const { canInstall, promptInstall } = useInstallPrompt();
-  const [helpOpen, setHelpOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +35,7 @@ export default function Header() {
           <div className="flex items-center gap-2 flex-shrink-0">
             <button
               className="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900"
-              onClick={() => setHelpOpen(true)}
+              onClick={() => onOpenHelp?.()}
               title={t.header?.findHelp || "Find Help"}
               aria-label={t.header?.findHelp || "Find Help"}
             >
@@ -130,13 +128,13 @@ export default function Header() {
               {menuOpen && (
                 <div
                   role="menu"
-                  className="absolute right-0 mt-2 w-56 rounded-xl border bg-white dark:bg-zinc-900 shadow-xl p-2 z-50 divide-y divide-zinc-200 dark:divide-zinc-800"
+                  className="menu-panel absolute right-0 mt-2 w-56 rounded-xl border bg-white dark:bg-zinc-900 shadow-xl p-2 z-50 divide-y divide-zinc-200 dark:divide-zinc-800"
                 >
                   <button
                     className="w-full h-9 text-left rounded-md px-3 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() => {
                       setMenuOpen(false);
-                      setHelpOpen(true);
+                      onOpenHelp?.();
                     }}
                   >
                     {t.header?.findHelp || "Find Help"}
@@ -170,7 +168,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <HelpSheet open={helpOpen} onClose={() => setHelpOpen(false)} />
     </header>
   );
 }

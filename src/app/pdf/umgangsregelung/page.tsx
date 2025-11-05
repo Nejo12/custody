@@ -5,6 +5,7 @@ import { useI18n } from "@/i18n";
 import { normalizeSchedule, type ScheduleInput } from "@/lib/schedule";
 import type { ScheduleSuggestResponse } from "@/types/ai";
 import { useAppStore } from "@/store/app";
+import { resolveCourtTemplate } from "@/lib/courts";
 
 type ProposalForm = {
   proposal: ScheduleInput;
@@ -16,7 +17,13 @@ export default function UmgangPage() {
     proposal: { weekday: {}, weekend: {}, holidays: {}, handover: {} },
   });
   const [courtTemplate, setCourtTemplate] = useState<string>("");
-  const { setPreferredCourtTemplate } = useAppStore();
+  const {
+    setPreferredCourtTemplate,
+    includeTimelineInPack,
+    setIncludeTimelineInPack,
+    preferredCity,
+    preferredCourtTemplate,
+  } = useAppStore();
   const [downloading, setDownloading] = useState(false);
   const [optimizer, setOptimizer] = useState({
     distance: "local" as "local" | "regional" | "far",
@@ -81,6 +88,8 @@ export default function UmgangPage() {
           childUnderThree: optimizer.childUnderThree,
           workHours: optimizer.workHours,
           specialNotes: optimizer.specialNotes,
+          city: preferredCity,
+          courtName: resolveCourtTemplate(preferredCourtTemplate || courtTemplate).name || "",
         }),
       });
       const data = (await res.json()) as ScheduleSuggestResponse;
@@ -170,10 +179,53 @@ export default function UmgangPage() {
             </motion.div>
           )}
         </div>
+        <label className="flex items-center gap-2 text-xs">
+          <input
+            type="checkbox"
+            checked={useAppStore.getState().includeTimelineInPack}
+            onChange={(e) => useAppStore.getState().setIncludeTimelineInPack(e.target.checked)}
+          />
+          {t.result.attachTimeline}
+        </label>
       </motion.div>
+      {/* Optimizer explainer + citations */}
+      {optimizer.summary && (
+        <div className="rounded-lg border p-3 space-y-2">
+          <div className="text-sm font-medium">
+            {t.optimizer?.explainerTitle || "Why this plan"}
+          </div>
+          <div className="text-sm text-zinc-700 dark:text-zinc-300">{optimizer.summary}</div>
+          <div className="text-xs text-zinc-500">
+            {t.optimizer?.explainerNote || "Based on distance, age, and notes."}
+          </div>
+          <div className="text-xs mt-1">
+            <div className="font-medium">{t.optimizer?.citations || "Citations"}</div>
+            <ul className="list-disc pl-4">
+              <li>
+                <a
+                  className="underline"
+                  href="https://gesetze-im-internet.de/bgb/__1684.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  BGB §1684
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
+      <label className="block text-xs mt-2 flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={includeTimelineInPack}
+          onChange={(e) => setIncludeTimelineInPack(e.target.checked)}
+        />
+        {t.result.attachTimeline}
+      </label>
       <div className="space-y-3">
         <label className="block text-sm">
-          Court (template)
+          {t.result.courtTemplate}
           <select
             className="mt-1 w-full rounded border px-3 py-2"
             value={courtTemplate}
@@ -182,7 +234,7 @@ export default function UmgangPage() {
               setPreferredCourtTemplate(e.target.value);
             }}
           >
-            <option value="">Custom or none</option>
+            <option value="">{t.result.courtTemplateNone}</option>
             <optgroup label="Berlin">
               <option value="berlin-mitte">Berlin – Amtsgericht Mitte</option>
               <option value="berlin-pankow">Berlin – Amtsgericht Pankow/Weißensee</option>

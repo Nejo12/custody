@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/i18n";
-import Header from "@/components/Header";
+import HeaderWithHelp from "@/components/HeaderWithHelp";
 import Footer from "@/components/Footer";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import ThemeInit from "@/components/ThemeInit";
@@ -50,7 +50,7 @@ export default function RootLayout({
         <I18nProvider>
           <div className="min-h-screen flex flex-col items-stretch">
             <ServiceWorkerRegister />
-            <Header />
+            <HeaderWithHelp />
             {/* InstallPrompt removed: persistent install button lives in Header only on mobile */}
             <main className="flex-1 w-full flex flex-col items-center">{children}</main>
             <Footer />

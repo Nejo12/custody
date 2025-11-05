@@ -129,6 +129,14 @@ const de = {
       schedule_weekend_only: "Empfehlung: Wochenend-/Ferien‑Fokus wegen Entfernung",
       unknown: "Lass uns das gemeinsam abschließen",
     },
+    safetyTitle: "Sicherheit zuerst",
+    safetyBody:
+      "Bei Gefahr von Gewalt oder Entführung: sofort Hilfe suchen. Deutschlandweite Hotline: 08000 116 016 (Hilfetelefon). Begleiteten Umgang und Unterstützung beim Jugendamt oder der Polizei (110) erwägen.",
+    courtTemplate: "Gericht (Vorlage)",
+    courtTemplateNone: "Eigenes oder keines",
+    tailorCoverLetter: "Damit wird das Anschreiben angepasst.",
+    packSection: "Paket",
+    attachTimeline: "Zeitleiste aus dem Tresor beifügen",
   },
   directory: {
     title: "Hilfe finden",
@@ -199,6 +207,26 @@ const de = {
     notesPlaceholder: "Übergabe, Schlafzeiten, Abholen…",
     suggest: "Plan vorschlagen",
     suggesting: "Vorschlag…",
+    explainerTitle: "Warum dieser Plan",
+    explainerNote: "Basierend auf Entfernung, Alter und Notizen.",
+    citations: "Quellen",
+  },
+  neutralizer: {
+    title: "Konflikt‑Entschärfer (Beta)",
+    presetJugendamtLabel: "Jugendamt",
+    presetMediationLabel: "Mediation",
+    presetCourtLabel: "Gerichtsregistratur",
+    presetJugendamt:
+      "Sehr geehrtes Jugendamt, ich bitte um Informationen und einen möglichen Termin zu Sorge/Umgang. Bitte teilen Sie mir mit, welche Unterlagen ich mitbringen soll und mögliche Zeiten. Vielen Dank.",
+    presetMediation:
+      "Guten Tag, ich möchte einen Mediations‑Termin zu unseren elterlichen Regelungen anfragen. Wir möchten einen sicheren, praktikablen Plan und Übergaben besprechen.",
+    presetCourt:
+      "An die Geschäftsstelle: Ich möchte den beigefügten Antrag einreichen. Bitte teilen Sie mir mit, ob Unterlagen fehlen und welcher Schritt als Nächstes möglich ist.",
+    yourDraft: "Ihr Entwurf",
+    tone: "Ton",
+    rewrite: "Umschreiben",
+    rewriting: "Wird umgeschrieben…",
+    rewritten: "Neu formulierter Text",
   },
   helpSheet: {
     title: "Jetzt Hilfe finden",

@@ -129,6 +129,14 @@ const en = {
       schedule_weekend_only: "Recommendation: Weekend/holiday‑focused plan due to distance",
       unknown: "Let's finish this together",
     },
+    safetyTitle: "Safety first",
+    safetyBody:
+      "If there is risk of violence or abduction, seek help now. Germany hotlines: 08000 116 016 (Hilfetelefon). Consider supervised contact and urgent support at local Jugendamt or police (110).",
+    courtTemplate: "Court (template)",
+    courtTemplateNone: "Custom or none",
+    tailorCoverLetter: "Use this to tailor the cover letter.",
+    packSection: "Pack",
+    attachTimeline: "Attach timeline from Vault",
   },
   directory: {
     title: "Find support",
@@ -196,6 +204,26 @@ const en = {
     notesPlaceholder: "handover, naps, school pickup…",
     suggest: "Suggest schedule",
     suggesting: "Suggesting…",
+    explainerTitle: "Why this plan",
+    explainerNote: "Based on distance, age, and notes.",
+    citations: "Citations",
+  },
+  neutralizer: {
+    title: "Conflict neutralizer (beta)",
+    presetJugendamtLabel: "Jugendamt",
+    presetMediationLabel: "Mediation",
+    presetCourtLabel: "Court registry",
+    presetJugendamt:
+      "Dear Jugendamt, I would like to request information and a possible appointment regarding custody/contact. Please let me know what documents to bring and available times. Thank you.",
+    presetMediation:
+      "Hello, I would like to request a mediation appointment regarding our parenting arrangements. We would like to discuss a safe, practical schedule and handover rules.",
+    presetCourt:
+      "To the registry: I would like to file the attached application. Please advise if any documents are missing and the next available step.",
+    yourDraft: "Your draft",
+    tone: "Tone",
+    rewrite: "Rewrite",
+    rewriting: "Rewriting…",
+    rewritten: "Rewritten message",
   },
   helpSheet: {
     title: "Find Help Now",

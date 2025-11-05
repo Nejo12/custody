@@ -134,6 +134,14 @@ const fr = {
         "Recommandation : Plan axé sur les week-ends/vacances en raison de la distance",
       unknown: "Finissons ensemble",
     },
+    safetyTitle: "La sécurité d'abord",
+    safetyBody:
+      "En cas de risque de violence ou d'enlèvement, demandez de l'aide immédiatement. France: 3919 (ou 112 en urgence). En Allemagne: 08000 116 016 (Hilfetelefon). Envisagez un contact supervisé et un soutien urgent au Jugendamt ou à la police (110).",
+    courtTemplate: "Tribunal (modèle)",
+    courtTemplateNone: "Personnalisé ou aucun",
+    tailorCoverLetter: "Utilisez ceci pour adapter la lettre de couverture.",
+    packSection: "Dossier",
+    attachTimeline: "Joindre la chronologie depuis le coffre‑fort",
   },
   directory: {
     title: "Trouver du soutien",
@@ -204,6 +212,26 @@ const fr = {
     notesPlaceholder: "remise, sieste, sortie d’école…",
     suggest: "Proposer un planning",
     suggesting: "Proposition…",
+    explainerTitle: "Pourquoi ce plan",
+    explainerNote: "Selon la distance, l’âge et les notes.",
+    citations: "Citations",
+  },
+  neutralizer: {
+    title: "Neutraliseur de conflit (bêta)",
+    presetJugendamtLabel: "Jugendamt",
+    presetMediationLabel: "Médiation",
+    presetCourtLabel: "Greffe du tribunal",
+    presetJugendamt:
+      "Bonjour, je souhaite demander des informations et un rendez‑vous concernant la garde/le contact. Merci de m'indiquer les documents à apporter et les créneaux disponibles.",
+    presetMediation:
+      "Bonjour, je souhaite demander un rendez‑vous de médiation concernant nos modalités parentales. Nous aimerions discuter d'un planning pratique et sûr, ainsi que des règles de remise.",
+    presetCourt:
+      "Au greffe : je souhaite déposer la demande ci‑jointe. Merci de m'indiquer si des pièces manquent et la prochaine étape possible.",
+    yourDraft: "Votre brouillon",
+    tone: "Ton",
+    rewrite: "Réécrire",
+    rewriting: "Réécriture…",
+    rewritten: "Message réécrit",
   },
   helpSheet: {
     title: "Trouver de l'aide maintenant",

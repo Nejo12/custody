@@ -16,7 +16,8 @@ export default function GSPage() {
   const { t, locale } = useI18n();
   const [form, setForm] = useState<FormState>({ parentA: {}, parentB: {}, children: [] });
   const [courtTemplate, setCourtTemplate] = useState<string>("");
-  const { setPreferredCourtTemplate } = useAppStore();
+  const { setPreferredCourtTemplate, includeTimelineInPack, setIncludeTimelineInPack } =
+    useAppStore();
   const [downloading, setDownloading] = useState(false);
 
   async function onDownload() {
@@ -59,7 +60,7 @@ export default function GSPage() {
       <h1 className="text-xl font-semibold">{t.result.generateJointCustody}</h1>
       <div className="space-y-2">
         <label className="block text-sm">
-          Court (template)
+          {t.result.courtTemplate}
           <select
             className="mt-1 w-full rounded border px-3 py-2"
             value={courtTemplate}
@@ -68,7 +69,7 @@ export default function GSPage() {
               setPreferredCourtTemplate(e.target.value);
             }}
           >
-            <option value="">Custom or none</option>
+            <option value="">{t.result.courtTemplateNone}</option>
             <optgroup label="Berlin">
               <option value="berlin-mitte">Berlin – Amtsgericht Mitte</option>
               <option value="berlin-pankow">Berlin – Amtsgericht Pankow/Weißensee</option>
@@ -86,6 +87,14 @@ export default function GSPage() {
               <option value="bochum">Bochum – Amtsgericht Bochum</option>
             </optgroup>
           </select>
+        </label>
+        <label className="flex items-center gap-2 text-xs">
+          <input
+            type="checkbox"
+            checked={includeTimelineInPack}
+            onChange={(e) => setIncludeTimelineInPack(e.target.checked)}
+          />
+          {t.result.attachTimeline}
         </label>
         <label className="block text-sm">
           Parent A full name

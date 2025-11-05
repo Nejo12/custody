@@ -7,7 +7,12 @@ function heuristicSummarize(text: string): TimelineItem[] {
     .map((l) => l.trim())
     .filter(Boolean);
   const items: TimelineItem[] = [];
-  const dateRe = /(\d{4}-\d{2}-\d{2}|\d{1,2}[./]\d{1,2}[./]\d{2,4})/;
+  const month =
+    "(?:Jan(?:uar)?|Feb(?:ruar)?|M(?:ä|a)rz|Apr(?:il)?|May|Mai|Jun(?:i)?|Jul(?:i)?|Aug(?:ust)?|Sep(?:t)?(?:ember)?|Okt(?:ober)?|Oct(?:ober)?|Nov(?:ember)?|Dez(?:ember)?|Dec(?:ember)?)";
+  const dateRe = new RegExp(
+    `((?:\\d{4}-\\d{2}-\\d{2})|(?:\\d{1,2}[./]\\d{1,2}[./]\\d{2,4})|(?:\\d{1,2}\\s${month}\\s\\d{2,4})|(?:${month}\\s\\d{1,2},?\\s\\d{2,4}))`,
+    "i"
+  );
   for (const line of lines) {
     const m = line.match(dateRe);
     items.push({ date: m ? m[1] : undefined, text: anonymizeText(line) });

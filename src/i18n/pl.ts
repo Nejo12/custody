@@ -132,6 +132,14 @@ const pl = {
         "Rekomendacja: Plan skupiony na weekendach/świętach ze względu na odległość",
       unknown: "Dokończmy to razem",
     },
+    safetyTitle: "Bezpieczeństwo przede wszystkim",
+    safetyBody:
+      "Jeśli istnieje ryzyko przemocy lub uprowadzenia, natychmiast szukaj pomocy. Niemcy: 08000 116 016 (Hilfetelefon). Rozważ nadzorowany kontakt oraz pilne wsparcie w Jugendamt lub na policji (110).",
+    courtTemplate: "Sąd (szablon)",
+    courtTemplateNone: "Własny lub brak",
+    tailorCoverLetter: "Użyj, aby dopasować pismo przewodnie.",
+    packSection: "Pakiet",
+    attachTimeline: "Dołącz ze skarbca oś czasu",
   },
   directory: {
     title: "Znajdź wsparcie",
@@ -201,6 +209,26 @@ const pl = {
     notesPlaceholder: "przekazanie, drzemki, odbiór ze szkoły…",
     suggest: "Zaproponuj plan",
     suggesting: "Proponowanie…",
+    explainerTitle: "Dlaczego taki plan",
+    explainerNote: "Na podstawie odległości, wieku i notatek.",
+    citations: "Cytaty",
+  },
+  neutralizer: {
+    title: "Neutralizator konfliktu (beta)",
+    presetJugendamtLabel: "Jugendamt",
+    presetMediationLabel: "Mediacja",
+    presetCourtLabel: "Sekretariat sądu",
+    presetJugendamt:
+      "Dzień dobry, proszę o informacje i ewentualny termin w sprawie opieki/kontaktu. Proszę o listę dokumentów do zabrania i dostępne godziny. Dziękuję.",
+    presetMediation:
+      "Dzień dobry, chciałbym umówić mediację w sprawie naszych ustaleń rodzicielskich. Chcemy omówić bezpieczny, praktyczny harmonogram i zasady przekazania.",
+    presetCourt:
+      "Do sekretariatu: chciałbym złożyć załączony wniosek. Proszę o informację, czy brakuje dokumentów i jaki jest następny krok.",
+    yourDraft: "Twój szkic",
+    tone: "Ton",
+    rewrite: "Przepisz",
+    rewriting: "Przepisywanie…",
+    rewritten: "Przepisana wiadomość",
   },
   helpSheet: {
     title: "Znajdź pomoc teraz",

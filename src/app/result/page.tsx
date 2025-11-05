@@ -22,6 +22,7 @@ import JSZip from "jszip";
 import { buildCoverLetter } from "@/lib/coverLetter";
 import type { ClarifyResponse } from "@/types/ai";
 import regionalTips from "@/data/regional.tips.json";
+import { resolveCourtTemplate } from "@/lib/courts";
 import Callout from "@/components/Callout";
 
 type StatusKey = keyof TranslationDict["result"]["statuses"];
@@ -60,7 +61,14 @@ export default function Result() {
     loading: boolean;
     data: Record<string, ClarifyResponse>;
   }>({ loading: false, data: {} });
-  const { preferredCity } = useAppStore();
+  const {
+    preferredCity,
+    preferredCourtTemplate,
+    setPreferredCourtTemplate,
+    includeTimelineInPack,
+    setIncludeTimelineInPack,
+    vault,
+  } = useAppStore();
   const [city] = useState<"berlin" | "hamburg" | "nrw">(preferredCity || "berlin");
   const violenceFlag = interview.answers["history_of_violence"] === "yes";
 
@@ -244,11 +252,11 @@ export default function Result() {
         className="space-y-2"
       >
         {violenceFlag && (
-          <Callout tone="error" title="Safety first">
-            If there is risk of violence or abduction, seek help now. Germany hotlines: 08000 116
-            016 (Hilfetelefon). Consider supervised contact and urgent support at local Jugendamt or
-            police (110).
-          </Callout>
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <Callout tone="error" title={t.result.safetyTitle}>
+              {t.result.safetyBody}
+            </Callout>
+          </motion.div>
         )}
         <h2 className="font-medium">{t.result.nextSteps}</h2>
         <div className="grid grid-cols-1 gap-2">
@@ -262,27 +270,106 @@ export default function Result() {
               {t.result.generateContactOrder}
             </Link>
           )}
-          {/* Pack actions */}
-          {(status === "eligible_joint_custody" || status === "joint_custody_default") && (
-            <div className="flex gap-3 text-sm">
-              <button className="underline" onClick={() => buildAndDownloadPack("joint", t)}>
-                {t.result.downloadPack}
-              </button>
-              <button className="underline" onClick={() => sharePack("joint", t)}>
-                {t.result.emailMePack}
-              </button>
+          {/* Compact Pack section */}
+          <div className="mt-2 rounded-lg border p-3 space-y-2">
+            <div className="flex items-center justify-between">
+              <div className="text-sm font-medium">{t.result.packSection || "Pack"}</div>
+              <div className="flex gap-3 text-sm">
+                {(status === "eligible_joint_custody" || status === "joint_custody_default") && (
+                  <button className="underline" onClick={() => buildAndDownloadPack("joint", t)}>
+                    {t.result.downloadPack}
+                  </button>
+                )}
+                {status === "apply_contact_order" && (
+                  <button className="underline" onClick={() => buildAndDownloadPack("contact", t)}>
+                    {t.result.downloadPack}
+                  </button>
+                )}
+                {(status === "eligible_joint_custody" || status === "joint_custody_default") && (
+                  <button className="underline" onClick={() => sharePack("joint", t)}>
+                    {t.result.emailMePack}
+                  </button>
+                )}
+                {status === "apply_contact_order" && (
+                  <button className="underline" onClick={() => sharePack("contact", t)}>
+                    {t.result.emailMePack}
+                  </button>
+                )}
+              </div>
             </div>
-          )}
-          {status === "apply_contact_order" && (
-            <div className="flex gap-3 text-sm">
-              <button className="underline" onClick={() => buildAndDownloadPack("contact", t)}>
-                {t.result.downloadPack}
-              </button>
-              <button className="underline" onClick={() => sharePack("contact", t)}>
-                {t.result.emailMePack}
-              </button>
-            </div>
-          )}
+            <label className="block text-sm">
+              {t.result.courtTemplate}
+              <select
+                className="mt-1 w-full rounded border px-3 py-2"
+                value={preferredCourtTemplate || ""}
+                onChange={(e) => setPreferredCourtTemplate(e.target.value)}
+              >
+                <option value="">{t.result.courtTemplateNone}</option>
+                <optgroup label="Berlin">
+                  <option value="berlin-mitte">Berlin – Amtsgericht Mitte</option>
+                  <option value="berlin-pankow">Berlin – Amtsgericht Pankow/Weißensee</option>
+                </optgroup>
+                <optgroup label="Hamburg">
+                  <option value="hamburg">Hamburg – Amtsgericht Hamburg</option>
+                </optgroup>
+                <optgroup label="NRW">
+                  <option value="koeln">Köln – Amtsgericht Köln</option>
+                  <option value="duesseldorf">Düsseldorf – Amtsgericht Düsseldorf</option>
+                  <option value="essen">Essen – Amtsgericht Essen</option>
+                  <option value="dortmund">Dortmund – Amtsgericht Dortmund</option>
+                  <option value="bonn">Bonn – Amtsgericht Bonn</option>
+                  <option value="wuppertal">Wuppertal – Amtsgericht Wuppertal</option>
+                  <option value="bochum">Bochum – Amtsgericht Bochum</option>
+                </optgroup>
+              </select>
+            </label>
+            <div className="text-xs text-zinc-500 mt-1">{t.result.tailorCoverLetter}</div>
+            <label className="mt-2 flex items-center gap-2 text-xs">
+              <input
+                type="checkbox"
+                checked={includeTimelineInPack}
+                onChange={(e) => setIncludeTimelineInPack(e.target.checked)}
+              />
+              {t.result.attachTimeline}
+            </label>
+            {includeTimelineInPack &&
+              (() => {
+                const entry = vault.entries.find(
+                  (e) =>
+                    e.type === "note" &&
+                    typeof e.payload?.content === "string" &&
+                    e.title.toLowerCase().includes("timeline")
+                );
+                if (!entry) return null;
+                return (
+                  <div className="text-xs text-zinc-600 dark:text-zinc-300">
+                    {t.result.attachTimeline}
+                    {": "}
+                    <span className="italic">
+                      {(entry.payload as { content?: string }).content?.slice(0, 60) || ""}
+                      {"…"}
+                    </span>{" "}
+                    <a className="underline" href="/vault">
+                      {t.vault.title}
+                    </a>
+                  </div>
+                );
+              })()}
+            {/* Snapshot of selected court */}
+            {preferredCourtTemplate &&
+              (() => {
+                const c = resolveCourtTemplate(preferredCourtTemplate);
+                if (!c.name && !c.address) return null;
+                return (
+                  <div className="rounded border p-2 text-sm bg-zinc-50 dark:bg-zinc-900">
+                    {c.name && <div className="font-medium">{c.name}</div>}
+                    {c.address && (
+                      <div className="text-zinc-600 dark:text-zinc-300">{c.address}</div>
+                    )}
+                  </div>
+                );
+              })()}
+          </div>
         </div>
       </motion.div>
 
@@ -386,10 +473,23 @@ export default function Result() {
       >
         <div className="text-sm font-medium">{t.result.regionalTips}</div>
         <div className="text-sm text-zinc-700 dark:text-zinc-300 mt-1">
-          {
-            ((regionalTips as Record<string, string>)[city] ||
-              t.result.regionalTipsDefault) as string
-          }
+          {(() => {
+            const tip = (regionalTips as unknown as Record<string, unknown>)[city];
+            if (!tip) return t.result.regionalTipsDefault;
+            if (typeof tip === "string") return tip as string;
+            const obj = tip as { text?: string; lastVerified?: string; snapshotId?: string };
+            return (
+              <div>
+                <div>{obj.text || t.result.regionalTipsDefault}</div>
+                {(obj.lastVerified || obj.snapshotId) && (
+                  <div className="text-xs text-zinc-500 mt-1">
+                    {obj.lastVerified ? `Last verified: ${obj.lastVerified}` : null}
+                    {obj.snapshotId ? ` · Snapshot: ${obj.snapshotId}` : null}
+                  </div>
+                )}
+              </div>
+            );
+          })()}
         </div>
       </motion.div>
     </div>
@@ -449,15 +549,17 @@ async function buildPackBlob(
   zip.file("checklist.txt", checklist);
   // Optional recent timeline from Vault (if present)
   try {
-    const entries = useAppStore.getState().vault.entries;
-    const timeline = entries.find(
-      (e) =>
-        e.type === "note" &&
-        typeof e.payload?.content === "string" &&
-        e.title.toLowerCase().includes("timeline")
-    );
-    if (timeline && typeof timeline.payload.content === "string") {
-      zip.file("timeline.txt", timeline.payload.content);
+    if (useAppStore.getState().includeTimelineInPack) {
+      const entries = useAppStore.getState().vault.entries;
+      const timeline = entries.find(
+        (e) =>
+          e.type === "note" &&
+          typeof e.payload?.content === "string" &&
+          e.title.toLowerCase().includes("timeline")
+      );
+      if (timeline && typeof timeline.payload.content === "string") {
+        zip.file("timeline.txt", timeline.payload.content);
+      }
     }
   } catch {
     // ignore

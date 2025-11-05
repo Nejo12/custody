@@ -81,6 +81,7 @@ export async function buildCoverLetter(
           locale === "de"
             ? "Vaterschaftsanerkennung (falls vorhanden)"
             : "Paternity acknowledgement (if any)",
+          locale === "de" ? "Erstbesuch‑Checkliste (kurz)" : "First‑visit checklist (short)",
         ]
       : [
           locale === "de" ? "Formular Umgangsregelung" : "Contact order form",
@@ -90,6 +91,7 @@ export async function buildCoverLetter(
           locale === "de"
             ? "Nachweise Zahlungen (falls relevant)"
             : "Proof of payments (if relevant)",
+          locale === "de" ? "Erstbesuch‑Checkliste (kurz)" : "First‑visit checklist (short)",
         ];
   for (const a of attachments) {
     page.drawText("- " + a, { x: marginX + 10, y, size: 11, font });

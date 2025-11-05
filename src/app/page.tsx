@@ -10,7 +10,9 @@ export default function Home() {
       <FadeIn>
         <div className="text-center space-y-3">
           <h1 className="text-2xl font-semibold tracking-tight">{t.home.tagline}</h1>
-          <p className="text-sm text-zinc-600">WCAG AA · Privacy‑first · Offline‑ready</p>
+          <p className="text-sm text-zinc-700 dark:text-zinc-400">
+            WCAG AA · Privacy‑first · Offline‑ready
+          </p>
         </div>
       </FadeIn>
       <FadeIn delay={0.05}>

@@ -39,6 +39,12 @@ body {
     color 0.3s ease;
 }
 
+/* Ensure dropdown menus and dialog text are readable in light mode */
+.menu-panel,
+.dialog-panel {
+  @apply text-zinc-800 dark:text-zinc-200;
+}
+
 .card {
   background: var(--card);
   border: 1px solid var(--card-border);
