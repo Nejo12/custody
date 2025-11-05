@@ -425,7 +425,7 @@ export default function UmgangPage() {
       <button
         onClick={onDownload}
         disabled={downloading}
-        className="rounded-lg border px-4 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+        className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
       >
         {downloading ? "..." : t.common.download}
       </button>

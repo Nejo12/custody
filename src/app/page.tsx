@@ -19,19 +19,19 @@ export default function Home() {
         <div className="mt-8 grid grid-cols-1 gap-3">
           <Link
             href="/interview"
-            className="rounded-lg border p-4 text-center hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+            className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-center text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
           >
             {t.home.check}
           </Link>
           <Link
             href="/learn"
-            className="rounded-lg border p-4 text-center hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+            className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-center text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
           >
             {t.home.learn}
           </Link>
           <Link
             href="/directory"
-            className="rounded-lg border p-4 text-center hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+            className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-center text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
           >
             {t.home.support}
           </Link>

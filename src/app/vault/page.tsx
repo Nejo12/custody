@@ -102,7 +102,7 @@ export default function VaultPage() {
         </a>
         <button
           onClick={downloadExport}
-          className="underline text-sm hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black rounded px-2 py-1"
+          className="underline text-sm text-zinc-700 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 rounded px-2 py-1"
         >
           {t.vault.exportData}
         </button>

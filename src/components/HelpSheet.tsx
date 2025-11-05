@@ -211,7 +211,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                     </button>
                   </div>
                   <button
-                    className="w-full sm:w-auto rounded border px-2 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+                    className="w-full sm:w-auto rounded border border-zinc-300 dark:border-zinc-700 px-2 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() => {
                       setGeoError("");
                       setGeoLoading(true);

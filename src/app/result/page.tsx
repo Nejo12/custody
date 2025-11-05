@@ -119,7 +119,7 @@ export default function Result() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <button
-              className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+              className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={!missing.length || assistant.loading}
               onClick={async () => {
                 const targets = missing.slice(0, 2);
@@ -165,7 +165,7 @@ export default function Result() {
               {assistant.loading ? t.result.thinking : t.result.askAssistant}
             </button>
             <button
-              className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+              className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
               onClick={() => {
                 const q = missing[0] || "married_at_birth";
                 window.location.href = `/interview?q=${q}`;
@@ -174,7 +174,7 @@ export default function Result() {
               {t.result.jumpToKeyQuestion}
             </button>
             <button
-              className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+              className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
               onClick={() => setHelpOpen(true)}
             >
               {t.result.findHelpNow}
