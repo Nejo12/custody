@@ -268,6 +268,14 @@ const tr = {
     visitWebsiteAriaLabel: "{name} web sitesini ziyaret et",
     privacyNoteAriaLabel: "Gizlilik notu",
     callJugendamtCalendarSummary: "Jugendamt'ı ara",
+    queueBest: "En iyi",
+    queueAvg: "Ort.",
+    queueReport: "bekleme süresini bildir",
+    queueMins: "dk",
+    queueBestWindowPlaceholder: "en iyi zaman aralığı (örn. 9–11)",
+    queueSend: "gönder",
+    queueCancel: "iptal",
+    queueLastVerified: "Son doğrulama",
   },
 };
 

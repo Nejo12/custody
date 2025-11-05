@@ -278,6 +278,14 @@ const fr = {
     visitWebsiteAriaLabel: "Visiter le site web de {name}",
     privacyNoteAriaLabel: "Note de confidentialité",
     callJugendamtCalendarSummary: "Appeler le Jugendamt",
+    queueBest: "Meilleure",
+    queueAvg: "Moy.",
+    queueReport: "signaler l'attente",
+    queueMins: "min",
+    queueBestWindowPlaceholder: "meilleur créneau (ex. 9–11)",
+    queueSend: "envoyer",
+    queueCancel: "annuler",
+    queueLastVerified: "Dernière vérification",
   },
 };
 

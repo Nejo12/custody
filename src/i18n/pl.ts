@@ -274,6 +274,14 @@ const pl = {
     visitWebsiteAriaLabel: "Odwiedź stronę {name}",
     privacyNoteAriaLabel: "Uwaga dotycząca prywatności",
     callJugendamtCalendarSummary: "Zadzwoń do Jugendamt",
+    queueBest: "Najlepsze",
+    queueAvg: "Średnia",
+    queueReport: "zgłoś czas oczekiwania",
+    queueMins: "min",
+    queueBestWindowPlaceholder: "najlepsze okno (np. 9–11)",
+    queueSend: "wyślij",
+    queueCancel: "anuluj",
+    queueLastVerified: "Ostatnio zweryfikowano",
   },
 };
 

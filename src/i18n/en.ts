@@ -269,6 +269,14 @@ const en = {
     visitWebsiteAriaLabel: "Visit {name} website",
     privacyNoteAriaLabel: "Privacy note",
     callJugendamtCalendarSummary: "Call Jugendamt",
+    queueBest: "Best",
+    queueAvg: "Avg",
+    queueReport: "report wait",
+    queueMins: "mins",
+    queueBestWindowPlaceholder: "best window (e.g. 9–11)",
+    queueSend: "send",
+    queueCancel: "cancel",
+    queueLastVerified: "Last verified",
   },
 };
 

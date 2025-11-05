@@ -99,3 +99,18 @@ select option {
 .header-surface {
   @apply bg-white/80 dark:bg-zinc-950/60 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b border-zinc-200 dark:border-zinc-800;
 }
+
+/* Print-friendly styles for Worker page */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000 !important;
+  }
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+}

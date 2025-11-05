@@ -4,7 +4,7 @@ import path from "path";
 
 export const runtime = "nodejs";
 
-type QueueRecord = {
+export type QueueRecord = {
   serviceId: string;
   waitMinutes: number;
   suggestedWindow?: string;
@@ -16,6 +16,7 @@ type Aggregate = {
   avgWait: number;
   bestWindows: string[];
   count: number;
+  lastSubmittedAt?: number;
 };
 
 const DATA_PATH = path.join(process.cwd(), ".tmp", "queue.json");
@@ -51,7 +52,7 @@ async function writeRecords(records: QueueRecord[]): Promise<void> {
   }
 }
 
-function aggregate(records: QueueRecord[], ids?: string[]): Aggregate[] {
+export function aggregate(records: QueueRecord[], ids?: string[]): Aggregate[] {
   const map = new Map<string, QueueRecord[]>();
   for (const r of records) {
     if (ids && ids.length && !ids.includes(r.serviceId)) continue;
@@ -76,7 +77,8 @@ function aggregate(records: QueueRecord[], ids?: string[]): Aggregate[] {
       .sort((a, b) => b[1] - a[1])
       .slice(0, 2)
       .map(([w]) => w);
-    out.push({ serviceId, avgWait, bestWindows, count: arr.length });
+    const lastSubmittedAt = Math.max(...arr.map((r) => r.submittedAt || 0));
+    out.push({ serviceId, avgWait, bestWindows, count: arr.length, lastSubmittedAt });
   }
   return out;
 }

@@ -267,6 +267,14 @@ const ar = {
     visitWebsiteAriaLabel: "زيارة موقع {name}",
     privacyNoteAriaLabel: "ملاحظة الخصوصية",
     callJugendamtCalendarSummary: "اتصل بـ Jugendamt",
+    queueBest: "الأفضل",
+    queueAvg: "المتوسط",
+    queueReport: "أبلغ عن وقت الانتظار",
+    queueMins: "دقائق",
+    queueBestWindowPlaceholder: "أفضل نافذة (مثل 9–11)",
+    queueSend: "إرسال",
+    queueCancel: "إلغاء",
+    queueLastVerified: "آخر تحقق",
   },
 };
 

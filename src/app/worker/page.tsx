@@ -57,7 +57,7 @@ export default function WorkerPage() {
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
       <h1 className="text-xl font-semibold">Social Worker Tools</h1>
-      <div className="rounded-lg border p-3 space-y-2">
+      <div className="rounded-lg border p-3 space-y-2 no-print">
         <div className="text-sm font-medium">Batch Action Packs</div>
         <div className="text-xs">{senderLabel}</div>
         <textarea
@@ -96,14 +96,43 @@ export default function WorkerPage() {
           available in Vault.
         </div>
       </div>
-
-      <div className="rounded-lg border p-3 space-y-2">
+      <div className="rounded-lg border p-3 space-y-2 no-print">
         <div className="text-sm font-medium">Hand to Parent (QR link)</div>
         <QRPreview url="/result" />
         <div className="text-xs text-zinc-600">
           Opens the Result page on this device. For case‑specific links, we can add generated
           view‑only routes later.
         </div>
+      </div>
+
+      <div className="rounded-lg border p-3 space-y-2 no-print">
+        <div className="text-sm font-medium">Redacted CSV Export</div>
+        <button
+          className="rounded border px-3 py-1 text-sm"
+          onClick={() => {
+            const list = names
+              .split(/\n+/)
+              .map((l) => l.trim())
+              .filter(Boolean);
+            const rows = ["case_id,pack_types"];
+            list.forEach((_, idx) => {
+              const id = `case_${idx + 1}`;
+              const types = [kinds.joint ? "joint" : null, kinds.contact ? "contact" : null]
+                .filter(Boolean)
+                .join("+");
+              rows.push(`${id},${types}`);
+            });
+            const blob = new Blob([rows.join("\n")], { type: "text/csv" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `redacted-cases-${new Date().toISOString().slice(0, 10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+          }}
+        >
+          Export redacted CSV
+        </button>
       </div>
     </div>
   );

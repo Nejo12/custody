@@ -471,6 +471,13 @@ export default function Result() {
               {t.result.attachTimeline}
             </label>
             {(() => {
+              const { setMilestone } = useAppStore.getState();
+              if (preferredCourtTemplate) setMilestone("courtSelected", true);
+              if (preferredOcrNoteId) setMilestone("senderSelected", true);
+              if (missing.length === 0) setMilestone("answeredCore", true);
+              return null;
+            })()}
+            {(() => {
               const ocrNotes = vault.entries.filter(
                 (e) => e.type === "note" && (e.payload as { fields?: unknown }).fields
               );

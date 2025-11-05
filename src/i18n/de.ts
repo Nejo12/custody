@@ -271,6 +271,14 @@ const de = {
     visitWebsiteAriaLabel: "{name} Website besuchen",
     privacyNoteAriaLabel: "Hinweis zum Datenschutz",
     callJugendamtCalendarSummary: "Jugendamt anrufen",
+    queueBest: "Beste",
+    queueAvg: "Durchschn.",
+    queueReport: "Wartezeit melden",
+    queueMins: "Min.",
+    queueBestWindowPlaceholder: "bestes Zeitfenster (z. B. 9–11)",
+    queueSend: "senden",
+    queueCancel: "abbrechen",
+    queueLastVerified: "Zuletzt bestätigt",
   },
 };
 

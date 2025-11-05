@@ -15,6 +15,12 @@ export async function buildCoverLetter(
   courtTemplate?: string,
   sender?: Sender
 ): Promise<Uint8Array> {
+  const safe = (s: string): string =>
+    s
+      // map various dash/minus variants to hyphen-minus
+      .replace(/[\u2010\u2011\u2012\u2013\u2014\u2015\u2212]/g, "-")
+      // replace non-breaking space with regular space
+      .replace(/\u00A0/g, " ");
   const doc = await PDFDocument.create();
   const font = await doc.embedFont(StandardFonts.Helvetica);
   const page = doc.addPage([595.28, 841.89]); // A4
@@ -25,18 +31,18 @@ export async function buildCoverLetter(
     let yRight = 800;
     const xRight = 360;
     if (sender.fullName) {
-      page.drawText(sender.fullName, { x: xRight, y: yRight, size: 11, font });
+      page.drawText(safe(sender.fullName), { x: xRight, y: yRight, size: 11, font });
       yRight -= 14;
     }
     if (sender.address) {
       const lines = String(sender.address).split(/\n+/);
       for (const ln of lines) {
-        page.drawText(ln, { x: xRight, y: yRight, size: 11, font });
+        page.drawText(safe(ln), { x: xRight, y: yRight, size: 11, font });
         yRight -= 14;
       }
     }
     if (sender.phone) {
-      page.drawText((locale === "de" ? "Telefon: " : "Phone: ") + sender.phone, {
+      page.drawText(safe((locale === "de" ? "Telefon: " : "Phone: ") + sender.phone), {
         x: xRight,
         y: yRight,
         size: 11,
@@ -45,7 +51,7 @@ export async function buildCoverLetter(
       yRight -= 14;
     }
     if (sender.email) {
-      page.drawText("Email: " + sender.email, { x: xRight, y: yRight, size: 11, font });
+      page.drawText(safe("Email: " + sender.email), { x: xRight, y: yRight, size: 11, font });
       yRight -= 14;
     }
     // City + Date line
@@ -56,30 +62,32 @@ export async function buildCoverLetter(
       if (m) city = m[1].trim();
     }
     const dateLine = (city ? city + ", " : "") + today;
-    page.drawText(dateLine, { x: xRight, y: yRight, size: 11, font });
+    page.drawText(safe(dateLine), { x: xRight, y: yRight, size: 11, font });
     yRight -= 14;
   }
   const titleDe =
     kind === "joint"
-      ? "Anschreiben – Gemeinsame Sorge"
+      ? "Anschreiben - Gemeinsame Sorge"
       : kind === "contact"
-        ? "Anschreiben – Umgangsregelung"
+        ? "Anschreiben - Umgangsregelung"
         : kind === "mediation"
-          ? "Anschreiben – Mediation"
-          : "Anschreiben – Wenn Umgang blockiert";
+          ? "Anschreiben - Mediation"
+          : "Anschreiben - Wenn Umgang blockiert";
   const titleEn =
     kind === "joint"
-      ? "Cover Letter – Joint Custody"
+      ? "Cover Letter - Joint Custody"
       : kind === "contact"
-        ? "Cover Letter – Contact Order"
+        ? "Cover Letter - Contact Order"
         : kind === "mediation"
-          ? "Cover Letter – Mediation"
-          : "Cover Letter – If Contact Is Blocked";
+          ? "Cover Letter - Mediation"
+          : "Cover Letter - If Contact Is Blocked";
   const title = locale === "de" ? titleDe : titleEn;
   const date = new Date().toISOString().slice(0, 10);
 
   page.drawText(
-    locale === "de" ? "An das Amtsgericht – Familiengericht" : "To the Local Court – Family Court",
+    safe(
+      locale === "de" ? "An das Amtsgericht - Familiengericht" : "To the Local Court - Family Court"
+    ),
     {
       x: marginX,
       y,
@@ -88,11 +96,11 @@ export async function buildCoverLetter(
     }
   );
   y -= 18;
-  page.drawText(title, { x: marginX, y, size: 16, font });
+  page.drawText(safe(title), { x: marginX, y, size: 16, font });
   y -= 24;
   const court = resolveCourtTemplate(courtTemplate);
   if (court.name) {
-    page.drawText((locale === "de" ? "Gericht: " : "Court: ") + court.name, {
+    page.drawText(safe((locale === "de" ? "Gericht: " : "Court: ") + court.name), {
       x: marginX,
       y,
       size: 11,
@@ -101,7 +109,7 @@ export async function buildCoverLetter(
     y -= 14;
   }
   if (court.address) {
-    page.drawText((locale === "de" ? "Adresse: " : "Address: ") + court.address, {
+    page.drawText(safe((locale === "de" ? "Adresse: " : "Address: ") + court.address), {
       x: marginX,
       y,
       size: 11,
@@ -119,7 +127,7 @@ export async function buildCoverLetter(
         ? "Betreff: Antrag auf Umgangsregelung."
         : kind === "mediation"
           ? "Betreff: Bitte um Termin zur Mediation (Elternvereinbarung)."
-          : "Betreff: Umgang wird blockiert – Bitte um Unterstützung/weiteres Vorgehen.",
+          : "Betreff: Umgang wird blockiert - Bitte um Unterstützung/weiteres Vorgehen.",
     sender?.fullName ? `Absender: ${sender.fullName}` : "",
     sender?.phone || sender?.email
       ? `Kontakt: ${sender.phone ? `Telefon ${sender.phone}` : ""}${
@@ -163,11 +171,16 @@ export async function buildCoverLetter(
   ];
   const body = (locale === "de" ? bodyDe : bodyEn).join("\n");
   for (const line of body.split("\n")) {
-    page.drawText(line, { x: marginX, y, size: 11, font });
+    page.drawText(safe(line), { x: marginX, y, size: 11, font });
     y -= 14;
   }
   y -= 6;
-  page.drawText(locale === "de" ? "Anlagen:" : "Attachments:", { x: marginX, y, size: 11, font });
+  page.drawText(safe(locale === "de" ? "Anlagen:" : "Attachments:"), {
+    x: marginX,
+    y,
+    size: 11,
+    font,
+  });
   y -= 14;
   const attachments = (() => {
     if (kind === "joint") {
@@ -177,7 +190,7 @@ export async function buildCoverLetter(
         locale === "de"
           ? "Vaterschaftsanerkennung (falls vorhanden)"
           : "Paternity acknowledgement (if any)",
-        locale === "de" ? "Erstbesuch‑Checkliste (kurz)" : "First‑visit checklist (short)",
+        locale === "de" ? "Erstbesuch-Checkliste (kurz)" : "First-visit checklist (short)",
       ];
     }
     if (kind === "contact") {
@@ -189,38 +202,38 @@ export async function buildCoverLetter(
         locale === "de"
           ? "Nachweise Zahlungen (falls relevant)"
           : "Proof of payments (if relevant)",
-        locale === "de" ? "Erstbesuch‑Checkliste (kurz)" : "First‑visit checklist (short)",
+        locale === "de" ? "Erstbesuch-Checkliste (kurz)" : "First-visit checklist (short)",
       ];
     }
     if (kind === "mediation") {
       return [
         locale === "de" ? "Kurzbeschreibung Anliegen" : "Brief problem summary",
         locale === "de" ? "Vorschlag Plan/Übergaben (Entwurf)" : "Draft schedule/handovers",
-        locale === "de" ? "Erstbesuch‑Checkliste (kurz)" : "First‑visit checklist (short)",
+        locale === "de" ? "Erstbesuch-Checkliste (kurz)" : "First-visit checklist (short)",
       ];
     }
     // blocked
     return [
       locale === "de"
-        ? "Kontakt‑Protokoll/Zeitleiste (Auszüge)"
+        ? "Kontakt-Protokoll/Zeitleiste (Auszüge)"
         : "Contact log/timeline (excerpts)",
       locale === "de" ? "Nachweise (z. B. Nachrichten)" : "Evidence (e.g., messages)",
-      locale === "de" ? "Erstbesuch‑Checkliste (kurz)" : "First‑visit checklist (short)",
+      locale === "de" ? "Erstbesuch-Checkliste (kurz)" : "First-visit checklist (short)",
     ];
   })();
   for (const a of attachments) {
-    page.drawText("- " + a, { x: marginX + 10, y, size: 11, font });
+    page.drawText(safe("- " + a), { x: marginX + 10, y, size: 11, font });
     y -= 14;
   }
   y -= 20;
-  page.drawText(locale === "de" ? "Unterschrift:" : "Signature:", {
+  page.drawText(safe(locale === "de" ? "Unterschrift:" : "Signature:"), {
     x: marginX,
     y,
     size: 11,
     font,
   });
   y -= 20;
-  page.drawText("____________________________", { x: marginX, y, size: 11, font });
+  page.drawText(safe("____________________________"), { x: marginX, y, size: 11, font });
 
   const bytes = await doc.save();
   return bytes;

@@ -107,6 +107,11 @@ export default function UmgangPage() {
       a.download = `umgangsregelung-${new Date().toISOString().slice(0, 10)}.pdf`;
       a.click();
       URL.revokeObjectURL(url);
+      try {
+        (await import("@/store/app")).useAppStore.getState().setMilestone("pdfGenerated", true);
+      } catch {
+        // ignore
+      }
     } finally {
       setDownloading(false);
     }

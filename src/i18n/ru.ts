@@ -272,6 +272,14 @@ const ru = {
     visitWebsiteAriaLabel: "Посетить веб-сайт {name}",
     privacyNoteAriaLabel: "Примечание о конфиденциальности",
     callJugendamtCalendarSummary: "Позвонить в Jugendamt",
+    queueBest: "Лучшее",
+    queueAvg: "Ср.",
+    queueReport: "сообщить об ожидании",
+    queueMins: "мин",
+    queueBestWindowPlaceholder: "лучшее окно (напр. 9–11)",
+    queueSend: "отправить",
+    queueCancel: "отменить",
+    queueLastVerified: "Последняя проверка",
   },
 };
 

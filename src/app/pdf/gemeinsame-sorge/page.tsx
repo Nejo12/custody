@@ -111,6 +111,12 @@ export default function GSPage() {
       a.download = `gemeinsame-sorge-${new Date().toISOString().slice(0, 10)}.pdf`;
       a.click();
       URL.revokeObjectURL(url);
+      // Mark milestone: PDF generated
+      try {
+        (await import("@/store/app")).useAppStore.getState().setMilestone("pdfGenerated", true);
+      } catch {
+        // ignore
+      }
     } finally {
       setDownloading(false);
     }

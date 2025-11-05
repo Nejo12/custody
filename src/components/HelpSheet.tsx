@@ -22,6 +22,7 @@ type QueueAggregate = {
   avgWait: number;
   bestWindows: string[];
   count: number;
+  lastSubmittedAt?: number;
 };
 
 export default function HelpSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -341,8 +342,8 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                       )}
                       {queueIntel[s.id] && (
                         <div className="mt-1 text-[11px] text-zinc-600 dark:text-zinc-400">
-                          Best: {queueIntel[s.id].bestWindows.join(" / ") || "—"} · Avg{" "}
-                          {queueIntel[s.id].avgWait}m
+                          {t.helpSheet.queueBest}: {queueIntel[s.id].bestWindows.join(" / ") || "—"}{" "}
+                          · {t.helpSheet.queueAvg} {queueIntel[s.id].avgWait}m
                           <button
                             className="ml-2 underline"
                             onClick={() => {
@@ -351,8 +352,14 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                               setReportWindow("");
                             }}
                           >
-                            report wait
+                            {t.helpSheet.queueReport}
                           </button>
+                        </div>
+                      )}
+                      {queueIntel[s.id]?.lastSubmittedAt && (
+                        <div className="text-[11px] text-zinc-500 dark:text-zinc-500 mt-0.5">
+                          {t.helpSheet.queueLastVerified}:{" "}
+                          {new Date(queueIntel[s.id].lastSubmittedAt || 0).toLocaleDateString()}
                         </div>
                       )}
                       {reportFor === s.id && (
@@ -391,23 +398,25 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                             max={600}
                             value={reportMinutes}
                             onChange={(e) => setReportMinutes(e.target.value)}
-                            placeholder="mins"
+                            placeholder={t.helpSheet.queueMins}
                             className="w-16 rounded border px-2 py-1"
                             type="number"
                           />
                           <input
                             value={reportWindow}
                             onChange={(e) => setReportWindow(e.target.value)}
-                            placeholder="best window (e.g. 9–11)"
+                            placeholder={t.helpSheet.queueBestWindowPlaceholder}
                             className="flex-1 rounded border px-2 py-1"
                           />
-                          <button className="rounded border px-2 py-1">send</button>
+                          <button className="rounded border px-2 py-1">
+                            {t.helpSheet.queueSend}
+                          </button>
                           <button
                             type="button"
                             className="underline"
                             onClick={() => setReportFor("")}
                           >
-                            cancel
+                            {t.helpSheet.queueCancel}
                           </button>
                         </form>
                       )}

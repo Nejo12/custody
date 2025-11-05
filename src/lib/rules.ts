@@ -116,9 +116,12 @@ export function evaluateRules(rules: SimpleRule[], answers: Answers): Evaluation
   const matched = rules.filter((r) => matchesSimple(r, answers));
   matched.sort((a, b) => statusPriority(a.outcome.status) - statusPriority(b.outcome.status));
   const primary = matched[0];
-  // naive confidence: proportion of known answers vs. 12 baseline
+  // refined confidence: answered ratio + outcome stability (based on status priority)
   const answered = Object.values(answers).filter((v) => v !== undefined && v !== "unsure").length;
   const baseline = 12;
-  const confidence = Math.min(1, Math.max(0.3, answered / baseline));
+  const ratio = Math.min(1, answered / baseline);
+  const priority = primary ? statusPriority(primary.outcome.status) : 50;
+  const stability = 1 - Math.min(1, priority / 50);
+  const confidence = Math.max(0.2, Math.min(1, 0.5 * ratio + 0.3 * stability + 0.2));
   return { matched, primary, confidence };
 }

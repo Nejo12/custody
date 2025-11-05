@@ -43,6 +43,14 @@ type AppState = {
   setPreferredOcrNoteId: (id: string) => void;
   socialWorkerMode: boolean;
   setSocialWorkerMode: (v: boolean) => void;
+  milestones: {
+    answeredCore: boolean;
+    courtSelected: boolean;
+    senderSelected: boolean;
+    pdfGenerated: boolean;
+    lastUpdated?: number;
+  };
+  setMilestone: (key: keyof AppState["milestones"], value: boolean) => void;
 };
 
 const getSystemTheme = (): "light" | "dark" => {
@@ -86,6 +94,14 @@ export const useAppStore = create<AppState>()(
         setPreferredOcrNoteId: (id) => set({ preferredOcrNoteId: id }),
         socialWorkerMode: false,
         setSocialWorkerMode: (v) => set({ socialWorkerMode: v }),
+        milestones: {
+          answeredCore: false,
+          courtSelected: false,
+          senderSelected: false,
+          pdfGenerated: false,
+        },
+        setMilestone: (key, value) =>
+          set((s) => ({ milestones: { ...s.milestones, [key]: value, lastUpdated: Date.now() } })),
         theme: initialTheme,
         setTheme: (t) => {
           set({ theme: t });
@@ -140,6 +156,7 @@ export const useAppStore = create<AppState>()(
         includeTimelineInPack: s.includeTimelineInPack,
         preferredOcrNoteId: s.preferredOcrNoteId,
         socialWorkerMode: s.socialWorkerMode,
+        milestones: s.milestones,
         interview: s.interview,
         vault: s.vault,
       }),
