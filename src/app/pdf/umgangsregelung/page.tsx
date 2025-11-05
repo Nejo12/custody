@@ -240,6 +240,23 @@ export default function UmgangPage() {
       const normalized = normalizeSchedule(form.proposal || {});
       const sender =
         senderSource === "ocr" ? getFields(selectedOcrId) || undefined : form.applicant;
+      // Optional timeline attach from Vault
+      let timelineText = "";
+      try {
+        if (includeTimelineInPack) {
+          const entry = vault.entries.find(
+            (e) =>
+              e.type === "note" &&
+              typeof e.payload?.content === "string" &&
+              e.title.toLowerCase().includes("timeline")
+          );
+          if (entry && typeof entry.payload?.content === "string") {
+            timelineText = entry.payload.content as string;
+          }
+        }
+      } catch {
+        // ignore
+      }
       const res = await fetch("/api/pdf/umgangsregelung", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -250,6 +267,7 @@ export default function UmgangPage() {
             courtTemplate,
             sender,
           },
+          timelineText: timelineText || undefined,
           citations: [
             { label: "BGB §1684", url: "https://gesetze-im-internet.de/bgb/__1684.html" },
           ],

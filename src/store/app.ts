@@ -51,6 +51,7 @@ type AppState = {
     lastUpdated?: number;
   };
   setMilestone: (key: keyof AppState["milestones"], value: boolean) => void;
+  wipeAll: () => void;
 };
 
 const getSystemTheme = (): "light" | "dark" => {
@@ -142,6 +143,36 @@ export const useAppStore = create<AppState>()(
             vault: get().vault,
           };
           return JSON.stringify(data, null, 2);
+        },
+        wipeAll: () => {
+          try {
+            // Clear persisted storage
+            if (typeof localStorage !== "undefined") {
+              localStorage.removeItem("custody-clarity");
+            }
+          } catch {
+            // ignore
+          }
+          // Reset in‑memory state to initial defaults
+          set({
+            locale: "en",
+            theme: initialTheme,
+            resolvedTheme: initialResolvedTheme,
+            preferredCity: "berlin",
+            preferredCourtTemplate: "",
+            includeTimelineInPack: false,
+            preferredOcrNoteId: "",
+            socialWorkerMode: false,
+            milestones: {
+              answeredCore: false,
+              courtSelected: false,
+              senderSelected: false,
+              pdfGenerated: false,
+              lastUpdated: Date.now(),
+            },
+            interview: { version: "2025-01-01", answers: {} },
+            vault: { entries: [] },
+          });
         },
       };
     },

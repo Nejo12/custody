@@ -39,6 +39,12 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
   const [reportFor, setReportFor] = useState<string>("");
   const [reportMinutes, setReportMinutes] = useState<string>("");
   const [reportWindow, setReportWindow] = useState<string>("");
+  // Script language toggle + transliteration
+  const [scriptLang, setScriptLang] = useState<"de" | "en" | "pl" | "tr" | "ru" | "ar">("de");
+  const [translatedScript, setTranslatedScript] = useState<string>("");
+  const [scriptBusy, setScriptBusy] = useState(false);
+  const [scriptError, setScriptError] = useState<string>("");
+  const [translit, setTranslit] = useState<string>("");
 
   const filteredServices = useMemo(() => {
     const pc = postcode.trim();
@@ -74,6 +80,48 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
     }
     setPostcode("");
   }, [city]);
+
+  // Translate script when language changes or sheet opens
+  useEffect(() => {
+    if (!open) return;
+    (async () => {
+      try {
+        setScriptBusy(true);
+        setScriptError("");
+        const res = await fetch("/api/ai/translate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            text: t.helpSheet.scriptText,
+            to: scriptLang,
+            transliterate: true,
+          }),
+        });
+        const j = (await res.json()) as {
+          text?: string;
+          transliteration?: string;
+          disabled?: boolean;
+          error?: string;
+        };
+        if (j.error) throw new Error(j.error);
+        if (j.disabled) {
+          setTranslatedScript(t.helpSheet.scriptText);
+          setTranslit("");
+          return;
+        }
+        setTranslatedScript(j.text || t.helpSheet.scriptText);
+        setTranslit(j.transliteration || "");
+      } catch (e) {
+        const msg = e instanceof Error ? e.message : "Translation failed";
+        setScriptError(msg);
+        setTranslatedScript(t.helpSheet.scriptText);
+        setTranslit("");
+      } finally {
+        setScriptBusy(false);
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, scriptLang]);
 
   return (
     <AnimatePresence>
@@ -154,19 +202,38 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
               <div className="text-sm text-zinc-700 dark:text-zinc-300 flex-shrink-0">
                 {t.helpSheet.description}
               </div>
-              <div className="rounded-lg border p-3 flex-shrink-0">
+              <div className="rounded-lg border p-3 flex-shrink-0 space-y-2">
+                <div className="flex items-center gap-2 text-xs">
+                  <label className="text-zinc-700 dark:text-zinc-300">Script language</label>
+                  <select
+                    value={scriptLang}
+                    onChange={(e) => setScriptLang(e.target.value as typeof scriptLang)}
+                    className="rounded border px-2 py-1 text-xs bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                  >
+                    <option value="de">Deutsch</option>
+                    <option value="en">English</option>
+                    <option value="pl">Polski</option>
+                    <option value="tr">Türkçe</option>
+                    <option value="ru">Русский</option>
+                    <option value="ar">العربية</option>
+                  </select>
+                  {scriptBusy && <span className="text-[11px] text-zinc-500">Translating…</span>}
+                  {scriptError && <span className="text-[11px] text-red-600">{scriptError}</span>}
+                </div>
                 <textarea
                   className="w-full rounded border p-2 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
                   rows={4}
                   readOnly
                   onClick={(e) => (e.target as HTMLTextAreaElement).select()}
-                  value={t.helpSheet.scriptText}
+                  value={translatedScript || t.helpSheet.scriptText}
                   aria-label={t.helpSheet.scriptAriaLabel}
                 ></textarea>
                 <div className="mt-2 flex gap-2">
                   <button
                     className="rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
-                    onClick={() => navigator.clipboard.writeText(t.helpSheet.scriptText)}
+                    onClick={() =>
+                      navigator.clipboard.writeText(translatedScript || t.helpSheet.scriptText)
+                    }
                     aria-label={t.helpSheet.copyButtonAriaLabel}
                   >
                     {t.helpSheet.copy}
@@ -192,6 +259,22 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                     {t.helpSheet.addReminder}
                   </button>
                 </div>
+                {!!translit && (
+                  <div className="rounded border p-2 bg-zinc-50 dark:bg-zinc-900">
+                    <div className="text-xs font-medium mb-1">Transliteration</div>
+                    <div className="text-xs text-zinc-800 dark:text-zinc-200 whitespace-pre-wrap">
+                      {translit}
+                    </div>
+                    <div className="mt-2">
+                      <button
+                        className="rounded border px-2 py-1 text-xs"
+                        onClick={() => navigator.clipboard.writeText(translit)}
+                      >
+                        Copy transliteration
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="rounded-lg border p-3 space-y-2 flex-1 min-h-0 overflow-hidden flex flex-col">
                 <div className="text-xs uppercase text-zinc-600 dark:text-zinc-400">

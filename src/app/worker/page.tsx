@@ -81,6 +81,7 @@ export default function WorkerPage() {
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
       <h1 className="text-xl font-semibold">Social Worker Tools</h1>
+      <CaseZipPanel kinds={kinds} />
       <div className="rounded-lg border p-3 space-y-2 no-print">
         <div className="text-sm font-medium">Batch Action Packs</div>
         <div className="text-xs">{senderLabel}</div>
@@ -88,7 +89,7 @@ export default function WorkerPage() {
           className="w-full rounded border p-2 text-sm min-h-[120px]"
           value={names}
           onChange={(e) => setNames(e.target.value)}
-          placeholder={"Jane Doe\nJohn Smith"}
+          placeholder={"Gabriel Olaniyi\nGabriel Gabs"}
         />
         <div className="flex items-center gap-3 text-sm">
           <label className="inline-flex items-center gap-2">
@@ -177,6 +178,91 @@ function QRPreview({ url }: { url: string }) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt="QR" className="w-28 h-28" />
       <div className="text-xs break-all">{window?.location?.origin + url}</div>
+    </div>
+  );
+}
+
+function CaseZipPanel({ kinds }: { kinds: { joint: boolean; contact: boolean } }) {
+  const { locale } = useAppStore();
+  const [busy, setBusy] = useState(false);
+  return (
+    <div className="rounded-lg border p-3 space-y-2 no-print">
+      <div className="text-sm font-medium">Case ZIP export</div>
+      <div className="text-xs text-zinc-600">
+        Exports a redacted case snapshot (vault + timeline). Optionally adds selected packs.
+      </div>
+      <button
+        className="rounded border px-3 py-1 text-sm"
+        disabled={busy}
+        onClick={async () => {
+          setBusy(true);
+          try {
+            const JSZip = (await import("jszip")).default;
+            const { useAppStore } = await import("@/store/app");
+            const { anonymizeObject } = await import("@/lib/anonymize");
+            const state = useAppStore.getState();
+            const zip = new JSZip();
+            // Redacted export JSON
+            const raw = {
+              locale: state.locale,
+              theme: state.theme,
+              preferredCity: state.preferredCity,
+              preferredCourtTemplate: state.preferredCourtTemplate,
+              includeTimelineInPack: state.includeTimelineInPack,
+              interview: state.interview,
+              vault: state.vault,
+            };
+            const redacted = anonymizeObject(raw) as unknown as object;
+            zip.file("case/redacted-export.json", JSON.stringify(redacted, null, 2));
+            // Timeline (if present)
+            const timeline = state.vault.entries.find(
+              (e) =>
+                e.type === "note" &&
+                typeof e.payload?.content === "string" &&
+                e.title.toLowerCase().includes("timeline")
+            );
+            if (timeline && typeof timeline.payload.content === "string") {
+              zip.file("case/timeline.txt", String(timeline.payload.content));
+            }
+            // Add selected packs
+            const { buildPackZip } = await import("@/lib/packs");
+            const packs: Array<["joint" | "contact", Blob]> = [];
+            if (kinds.joint) {
+              const b = await buildPackZip(
+                "joint",
+                locale,
+                undefined,
+                state.preferredCourtTemplate
+              );
+              packs.push(["joint", b]);
+            }
+            if (kinds.contact) {
+              const b = await buildPackZip(
+                "contact",
+                locale,
+                undefined,
+                state.preferredCourtTemplate
+              );
+              packs.push(["contact", b]);
+            }
+            for (const [kind, blob] of packs) {
+              const buf = await blob.arrayBuffer();
+              zip.file(`packs/${kind}.zip`, buf);
+            }
+            const out = await zip.generateAsync({ type: "blob" });
+            const url = URL.createObjectURL(out);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `case-${new Date().toISOString().slice(0, 10)}.zip`;
+            a.click();
+            URL.revokeObjectURL(url);
+          } finally {
+            setBusy(false);
+          }
+        }}
+      >
+        {busy ? "Building…" : "Export Case ZIP"}
+      </button>
     </div>
   );
 }
