@@ -94,6 +94,9 @@ export default function VaultPage() {
           {t.vault.addFile}
           <input type="file" className="hidden" onChange={addFile} />
         </label>
+        <a href="/vault/summarize" className="underline text-sm">
+          Evidence summarizer
+        </a>
         <button
           onClick={downloadExport}
           className="underline text-sm hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black rounded px-2 py-1"
@@ -107,6 +110,11 @@ export default function VaultPage() {
           <div key={e.id} className="rounded-lg border p-4">
             <div className="text-xs text-zinc-500">{new Date(e.timestamp).toLocaleString()}</div>
             <div className="font-medium">{e.title}</div>
+            {e.type === "note" && typeof e.payload?.content === "string" && (
+              <pre className="mt-1 whitespace-pre-wrap text-xs text-zinc-600 dark:text-zinc-400 max-h-40 overflow-auto border rounded p-2 bg-zinc-50 dark:bg-zinc-900">
+                {String(e.payload.content)}
+              </pre>
+            )}
             {e.type === "file" && typeof e.payload?.type === "string" && (
               <div className="text-xs text-zinc-500">{e.payload.type}</div>
             )}

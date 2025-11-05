@@ -21,6 +21,7 @@ import HelpSheet from "@/components/HelpSheet";
 import JSZip from "jszip";
 import type { ClarifyResponse } from "@/types/ai";
 import regionalTips from "@/data/regional.tips.json";
+import Callout from "@/components/Callout";
 
 type StatusKey = keyof TranslationDict["result"]["statuses"];
 
@@ -60,6 +61,7 @@ export default function Result() {
   }>({ loading: false, data: {} });
   const { preferredCity } = useAppStore();
   const [city] = useState<"berlin" | "hamburg" | "nrw">(preferredCity || "berlin");
+  const violenceFlag = interview.answers["history_of_violence"] === "yes";
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-8 space-y-6">
@@ -240,6 +242,13 @@ export default function Result() {
         transition={{ duration: 0.3, delay: 0.2 }}
         className="space-y-2"
       >
+        {violenceFlag && (
+          <Callout tone="error" title="Safety first">
+            If there is risk of violence or abduction, seek help now. Germany hotlines: 08000 116
+            016 (Hilfetelefon). Consider supervised contact and urgent support at local Jugendamt or
+            police (110).
+          </Callout>
+        )}
         <h2 className="font-medium">{t.result.nextSteps}</h2>
         <div className="grid grid-cols-1 gap-2">
           {(status === "eligible_joint_custody" || status === "joint_custody_default") && (
@@ -426,6 +435,21 @@ async function buildPackBlob(
       : `Bring This Checklist\n- IDs\n- Proposed schedule (draft)\n- Communication log excerpts\n- Any safety notes (if applicable)`;
   zip.file("cover-letter.txt", cover);
   zip.file("checklist.txt", checklist);
+  // Optional recent timeline from Vault (if present)
+  try {
+    const entries = useAppStore.getState().vault.entries;
+    const timeline = entries.find(
+      (e) =>
+        e.type === "note" &&
+        typeof e.payload?.content === "string" &&
+        e.title.toLowerCase().includes("timeline")
+    );
+    if (timeline && typeof timeline.payload.content === "string") {
+      zip.file("timeline.txt", timeline.payload.content);
+    }
+  } catch {
+    // ignore
+  }
   const pdfBlob = await generatePdf(kind, locale);
   const pdfArray = await pdfBlob.arrayBuffer();
   zip.file(kind === "joint" ? "gemeinsame-sorge.pdf" : "umgangsregelung.pdf", pdfArray);

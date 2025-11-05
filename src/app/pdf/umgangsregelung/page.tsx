@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useI18n } from "@/i18n";
 import { normalizeSchedule, type ScheduleInput } from "@/lib/schedule";
+import type { ScheduleSuggestResponse } from "@/types/ai";
 
 type ProposalForm = {
   proposal: ScheduleInput;
@@ -14,6 +15,14 @@ export default function UmgangPage() {
   });
   const [courtTemplate, setCourtTemplate] = useState<string>("");
   const [downloading, setDownloading] = useState(false);
+  const [optimizer, setOptimizer] = useState({
+    distance: "local" as "local" | "regional" | "far",
+    childUnderThree: false,
+    workHours: "",
+    specialNotes: "",
+    loading: false,
+    summary: "",
+  });
 
   async function onDownload() {
     setDownloading(true);
@@ -43,9 +52,91 @@ export default function UmgangPage() {
     }
   }
 
+  async function onSuggest() {
+    setOptimizer((o) => ({ ...o, loading: true, summary: "" }));
+    try {
+      const res = await fetch("/api/ai/schedule", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          locale,
+          distance: optimizer.distance,
+          childUnderThree: optimizer.childUnderThree,
+          workHours: optimizer.workHours,
+          specialNotes: optimizer.specialNotes,
+        }),
+      });
+      const data = (await res.json()) as ScheduleSuggestResponse;
+      const next = normalizeSchedule({
+        weekday: data.weekday,
+        weekend: data.weekend,
+        handover: data.handover,
+      });
+      setForm({ ...form, proposal: next });
+      setOptimizer((o) => ({ ...o, loading: false, summary: data.summary || "" }));
+    } catch {
+      setOptimizer((o) => ({ ...o, loading: false }));
+      alert("Optimizer unavailable.");
+    }
+  }
+
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
       <h1 className="text-xl font-semibold">{t.result.generateContactOrder}</h1>
+      <div className="rounded-lg border p-3 space-y-2">
+        <div className="text-sm font-medium">Schedule optimizer (beta)</div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <label className="text-sm">
+            Distance
+            <select
+              className="mt-1 w-full rounded border px-2 py-2"
+              value={optimizer.distance}
+              onChange={(e) =>
+                setOptimizer({
+                  ...optimizer,
+                  distance: e.target.value as typeof optimizer.distance,
+                })
+              }
+            >
+              <option value="local">&lt; 30 km</option>
+              <option value="regional">30–150 km</option>
+              <option value="far">&gt; 150 km</option>
+            </select>
+          </label>
+          <label className="text-sm flex items-end gap-2">
+            <input
+              type="checkbox"
+              checked={optimizer.childUnderThree}
+              onChange={(e) => setOptimizer({ ...optimizer, childUnderThree: e.target.checked })}
+            />
+            Child under 3
+          </label>
+          <label className="text-sm sm:col-span-2">
+            Work hours (free text)
+            <input
+              className="mt-1 w-full rounded border px-3 py-2"
+              value={optimizer.workHours}
+              onChange={(e) => setOptimizer({ ...optimizer, workHours: e.target.value })}
+              placeholder="e.g. Mon-Fri 9-17"
+            />
+          </label>
+          <label className="text-sm sm:col-span-2">
+            Notes
+            <input
+              className="mt-1 w-full rounded border px-3 py-2"
+              value={optimizer.specialNotes}
+              onChange={(e) => setOptimizer({ ...optimizer, specialNotes: e.target.value })}
+              placeholder="handover, naps, school pickup..."
+            />
+          </label>
+        </div>
+        <div className="flex gap-2">
+          <button onClick={onSuggest} className="rounded border px-3 py-1 text-sm">
+            {optimizer.loading ? "Suggesting…" : "Suggest schedule"}
+          </button>
+          {!!optimizer.summary && <div className="text-sm text-zinc-600">{optimizer.summary}</div>}
+        </div>
+      </div>
       <div className="space-y-3">
         <label className="block text-sm">
           Court (template)
