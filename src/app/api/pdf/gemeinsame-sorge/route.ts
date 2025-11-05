@@ -2,6 +2,13 @@ import { PDFDocument, StandardFonts, PDFFont } from "pdf-lib";
 import type { Citation, FormData, ErrorWithMessage } from "@/types";
 
 type Parent = { fullName?: string; address?: string };
+type Sender = {
+  fullName?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  city?: string;
+};
 type Child = { fullName?: string; dob?: string; birthRegistryRef?: string };
 type Court = { name?: string; address?: string };
 type PartyRole = "parentA" | "parentB";
@@ -13,6 +20,7 @@ type GSForm = FormData & {
   roles?: { applicant?: PartyRole; respondent?: PartyRole };
   place?: string;
   dateISO?: string;
+  sender?: Sender;
 };
 
 type RequestBody = {
@@ -93,6 +101,20 @@ export async function POST(req: Request) {
       page.drawText(label, { x: marginX + 26, y: y - 2, size: 10, font });
       y -= 14;
     };
+
+    // Sender (optional)
+    if (formData.sender && (formData.sender.fullName || formData.sender.address)) {
+      const s = formData.sender;
+      drawHeading(locale === "de" ? "Absender" : "Sender");
+      if (s.fullName) drawField(locale === "de" ? "Name" : "Name", s.fullName);
+      if (s.address) drawField(locale === "de" ? "Adresse" : "Address", s.address);
+      if (s.phone || s.email) {
+        const contact = `${s.phone ? (locale === "de" ? "Telefon " : "Phone ") + s.phone : ""}${
+          s.phone && s.email ? ", " : ""
+        }${s.email ? "Email " + s.email : ""}`;
+        drawField(locale === "de" ? "Kontakt" : "Contact", contact);
+      }
+    }
 
     // Court block
     drawHeading(locale === "de" ? "Gericht" : "Court");

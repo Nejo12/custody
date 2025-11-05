@@ -53,6 +53,7 @@ export default function UmgangPage() {
     }));
   }
   const [downloading, setDownloading] = useState(false);
+  const [senderSource, setSenderSource] = useState<"applicant" | "ocr">("applicant");
   const [optimizer, setOptimizer] = useState({
     distance: "local" as "local" | "regional" | "far",
     childUnderThree: false,
@@ -80,11 +81,18 @@ export default function UmgangPage() {
     setDownloading(true);
     try {
       const normalized = normalizeSchedule(form.proposal || {});
+      const sender =
+        senderSource === "ocr" ? getFields(selectedOcrId) || undefined : form.applicant;
       const res = await fetch("/api/pdf/umgangsregelung", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          formData: { ...form, proposal: normalized, courtTemplate },
+          formData: {
+            ...form,
+            proposal: normalized,
+            courtTemplate,
+            sender,
+          },
           citations: [
             { label: "BGB §1684", url: "https://gesetze-im-internet.de/bgb/__1684.html" },
           ],
@@ -160,9 +168,70 @@ export default function UmgangPage() {
               <button type="button" className="text-sm underline" onClick={prefillApplicant}>
                 Prefill applicant
               </button>
+              <button
+                type="button"
+                className="text-sm underline"
+                onClick={() => {
+                  const f = getFields(selectedOcrId);
+                  if (!f) return;
+                  setForm((prev) => ({
+                    ...prev,
+                    otherParent: {
+                      fullName: prev.otherParent?.fullName || f.fullName,
+                      address: prev.otherParent?.address || f.address,
+                    },
+                  }));
+                }}
+              >
+                Prefill other parent
+              </button>
             </div>
           </div>
+          <div className="flex items-center gap-2 text-xs">
+            <span>Sender source</span>
+            <select
+              value={senderSource}
+              onChange={(e) => setSenderSource(e.target.value as typeof senderSource)}
+              className="rounded border px-2 py-1"
+            >
+              <option value="applicant">Applicant</option>
+              <option value="ocr">Selected OCR note</option>
+            </select>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="sm:col-span-2 flex items-center gap-2 text-xs">
+              <span>Sender source</span>
+              <select
+                value={senderSource}
+                onChange={(e) => setSenderSource(e.target.value as typeof senderSource)}
+                className="rounded border px-2 py-1"
+              >
+                <option value="applicant">Applicant</option>
+                <option value="ocr">Selected OCR note</option>
+              </select>
+              {(() => {
+                const f =
+                  senderSource === "applicant"
+                    ? form.applicant || {}
+                    : getFields(selectedOcrId) || {};
+                const deriveCity = (addr?: string) => {
+                  if (!addr) return "";
+                  const m = addr.match(/\b\d{5}\s+([A-Za-zÄÖÜäöüß\- ]{2,})\b/);
+                  return m ? m[1].trim() : "";
+                };
+                const city = deriveCity((f as { address?: string }).address);
+                if ((f as { fullName?: string }).fullName || city) {
+                  return (
+                    <span className="text-[11px] text-zinc-600 dark:text-zinc-400">
+                      {((f as { fullName?: string }).fullName || "") as string}
+                      {(f as { fullName?: string }).fullName && city ? " — " : ""}
+                      {city}
+                    </span>
+                  );
+                }
+                return null;
+              })()}
+            </div>
             <label className="block text-sm">
               Applicant full name (optional)
               <input

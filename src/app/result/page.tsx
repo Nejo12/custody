@@ -466,6 +466,31 @@ export default function Result() {
                       {((f as { fullName?: string }).fullName || "") as string}
                       {(f as { fullName?: string }).fullName && city ? " — " : ""}
                       {city}
+                      {(((selected.payload as { fields?: { phone?: string; email?: string } })
+                        .fields?.phone ||
+                        (selected.payload as { fields?: { phone?: string; email?: string } }).fields
+                          ?.email) && (
+                        <div className="text-[11px] text-zinc-600 dark:text-zinc-400">
+                          {
+                            ((selected.payload as { fields?: { phone?: string } }).fields?.phone ||
+                              "") as string
+                          }
+                          {(selected.payload as { fields?: { phone?: string; email?: string } })
+                            .fields?.phone &&
+                          (selected.payload as { fields?: { phone?: string; email?: string } })
+                            .fields?.email
+                            ? " · "
+                            : ""}
+                          {
+                            ((selected.payload as { fields?: { email?: string } }).fields?.email ||
+                              "") as string
+                          }{" "}
+                          <a className="underline" href="/vault">
+                            edit in Vault
+                          </a>
+                        </div>
+                      )) ||
+                        null}
                     </div>
                   )}
                 </label>

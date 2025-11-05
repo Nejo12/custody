@@ -19,6 +19,7 @@ export default function GSPage() {
   const { setPreferredCourtTemplate, includeTimelineInPack, setIncludeTimelineInPack, vault } =
     useAppStore();
   const [downloading, setDownloading] = useState(false);
+  const [senderSource, setSenderSource] = useState<"ocr" | "parentA">("ocr");
   const ocrNotes = vault.entries.filter((e) => {
     if (e.type !== "note") return false;
     const f = (e.payload as { fields?: unknown }).fields;
@@ -68,11 +69,36 @@ export default function GSPage() {
         .map((c: Citation) => c.snapshotId)
         .filter((id): id is string => typeof id === "string");
 
+      // Sender from selection (OCR note or Parent A)
+      const sender = (() => {
+        if (senderSource === "parentA") {
+          return { fullName: form.parentA?.fullName, address: form.parentA?.address };
+        }
+        const e = vault.entries.find((x) => x.id === selectedOcrId);
+        if (!e) return undefined;
+        const f = (
+          e.payload as {
+            fields?: {
+              fullName?: string;
+              address?: string;
+              phone?: string;
+              email?: string;
+              city?: string;
+            };
+          }
+        ).fields;
+        return f;
+      })();
+
       const res = await fetch("/api/pdf/gemeinsame-sorge", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          formData: { ...form, courtTemplate } as FormData,
+          formData: {
+            ...(form as unknown as Record<string, unknown>),
+            courtTemplate,
+            sender,
+          } as FormData,
           citations,
           snapshotIds,
           locale,
@@ -130,6 +156,75 @@ export default function GSPage() {
             </div>
           </div>
         )}
+        <div className="flex items-center gap-2 text-xs">
+          <span>Sender source</span>
+          <select
+            value={senderSource}
+            onChange={(e) => setSenderSource(e.target.value as typeof senderSource)}
+            className="rounded border px-2 py-1"
+          >
+            <option value="ocr">Selected OCR note</option>
+            <option value="parentA">Parent A</option>
+          </select>
+          {(() => {
+            const f =
+              senderSource === "parentA"
+                ? { fullName: form.parentA?.fullName, address: form.parentA?.address }
+                : (
+                    vault.entries.find((x) => x.id === selectedOcrId)?.payload as {
+                      fields?: {
+                        fullName?: string;
+                        address?: string;
+                        phone?: string;
+                        email?: string;
+                        city?: string;
+                      };
+                    }
+                  )?.fields || {};
+            const deriveCity = (addr?: string, city?: string) => {
+              if (city) return city;
+              if (!addr) return "";
+              const m = addr.match(/\b\d{5}\s+([A-Za-zÄÖÜäöüß\- ]{2,})\b/);
+              return m ? m[1].trim() : "";
+            };
+            const city = deriveCity(
+              (f as { address?: string }).address,
+              (f as { city?: string }).city
+            );
+            if ((f as { fullName?: string }).fullName || city) {
+              return (
+                <span className="text-[11px] text-zinc-600 dark:text-zinc-400">
+                  {((f as { fullName?: string }).fullName || "") as string}
+                  {(f as { fullName?: string }).fullName && city ? " — " : ""}
+                  {city}
+                  {(((f as { phone?: string }).phone || (f as { email?: string }).email) && (
+                    <>
+                      {" · "}
+                      {((f as { phone?: string }).phone || "") as string}
+                      {(f as { phone?: string }).phone && (f as { email?: string }).email
+                        ? " · "
+                        : ""}
+                      {((f as { email?: string }).email || "") as string}
+                    </>
+                  )) ||
+                    null}
+                </span>
+              );
+            }
+            return null;
+          })()}
+        </div>
+        <div className="flex items-center gap-2 text-xs">
+          <span>Sender source</span>
+          <select
+            value={senderSource}
+            onChange={(e) => setSenderSource(e.target.value as typeof senderSource)}
+            className="rounded border px-2 py-1"
+          >
+            <option value="ocr">Selected OCR note</option>
+            <option value="parentA">Parent A</option>
+          </select>
+        </div>
         <label className="block text-sm mt-2">
           {t.result.courtTemplate}
           <select

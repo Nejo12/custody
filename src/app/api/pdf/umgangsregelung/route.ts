@@ -4,6 +4,13 @@ import type { Schedule } from "@/lib/schedule";
 
 type Court = { name?: string; address?: string };
 type PartyRole = "parentA" | "parentB";
+type Sender = {
+  fullName?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  city?: string;
+};
 type UmgangForm = {
   proposal?: Schedule;
   court?: Court;
@@ -11,6 +18,7 @@ type UmgangForm = {
   interim?: boolean;
   place?: string;
   dateISO?: string;
+  sender?: Sender;
 } & Record<string, unknown>;
 
 type RequestBody = {
@@ -84,6 +92,20 @@ export async function POST(req: Request) {
 
     const court = resolveCourt(formData);
     const roles = formData.roles || {};
+
+    // Sender block
+    if (formData.sender && (formData.sender.fullName || formData.sender.address)) {
+      const s = formData.sender;
+      drawHeading(locale === "de" ? "Absender" : "Sender");
+      if (s.fullName) drawField(locale === "de" ? "Name" : "Name", s.fullName);
+      if (s.address) drawField(locale === "de" ? "Adresse" : "Address", s.address);
+      if (s.phone || s.email) {
+        const contact = `${s.phone ? (locale === "de" ? "Telefon " : "Phone ") + s.phone : ""}${
+          s.phone && s.email ? ", " : ""
+        }${s.email ? "Email " + s.email : ""}`;
+        drawField(locale === "de" ? "Kontakt" : "Contact", contact);
+      }
+    }
 
     drawHeading(locale === "de" ? "Gericht" : "Court");
     if (court.name) drawField(locale === "de" ? "Name" : "Name", court.name);
