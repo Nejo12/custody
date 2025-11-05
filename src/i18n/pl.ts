@@ -187,11 +187,10 @@ const pl = {
     "custody.unmarried.paternity_acknowledged":
       "Możesz złożyć wniosek o wspólną opiekę (§1626a BGB).",
     "contact.right": "Możesz złożyć wniosek o kontakt (§1684 BGB).",
-    "contact.safety.supervised":
-      "Ze względu na obawy bezpieczeństwa rozważ nadzorowany kontakt i planowanie bezpieczeństwa.",
+    "contact.safety.supervised": "Rozważ nadzorowany kontakt ze względu na obawy bezpieczeństwa",
     "custody.unmarried.path_to_joint": "Możesz złożyć wniosek o wspólną opiekę (§1626a BGB).",
     "contact.young_child.schedule":
-      "Rekomendacja: Krótkie bloki kontaktu w dni powszednie dla dzieci poniżej 3 lat.",
+      "Rekomendacja: Krótkie okna kontaktu w dni powszednie (wiek poniżej 3 lat)",
     "contact.distance.far":
       "Rekomendacja: Plan skupiony na weekendach/świętach ze względu na odległość.",
     "mediation.suggest": "Mediacja przez Jugendamt może pomóc w osiągnięciu porozumienia.",

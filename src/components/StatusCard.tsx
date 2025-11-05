@@ -14,10 +14,10 @@ export default function StatusCard({ title, message, confidence, tone = "info" }
   };
   return (
     <div className={`rounded-lg border p-4 ${toneClasses[tone]}`}>
-      <div className="text-2xl">{title}</div>
-      {message && <p className="text-sm text-zinc-600 dark:text-zinc-300 mt-2">{message}</p>}
+      <div className="text-2xl text-zinc-900 dark:text-zinc-100">{title}</div>
+      {message && <p className="text-sm text-zinc-700 dark:text-zinc-300 mt-2">{message}</p>}
       {typeof confidence === "number" && (
-        <div className="text-xs text-zinc-500 mt-2">
+        <div className="text-xs text-zinc-700 dark:text-zinc-400 mt-2">
           Confidence: {Math.round(confidence * 100)}%
         </div>
       )}

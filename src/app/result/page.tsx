@@ -114,7 +114,7 @@ export default function Result() {
           transition={{ duration: 0.3, delay: 0.15 }}
           className="space-y-3"
         >
-          <div className="text-sm text-zinc-600">
+          <div className="text-sm text-zinc-700 dark:text-zinc-300">
             {t.result.pathHint || "If unsure, you can file this now and add details later."}
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -201,7 +201,9 @@ export default function Result() {
 
           {/* Assistant suggestions with one-tap accept */}
           {assistant.loading && (
-            <div className="text-xs text-zinc-500">{t.result.assistantThinking}</div>
+            <div className="text-xs text-zinc-700 dark:text-zinc-400">
+              {t.result.assistantThinking}
+            </div>
           )}
           {Object.keys(assistant.data).length > 0 && (
             <div className="space-y-2">
@@ -215,12 +217,14 @@ export default function Result() {
                   <div key={q} className="rounded border p-2 bg-zinc-50 dark:bg-zinc-900">
                     <div className="text-sm">
                       {label || q}: <b>{suggestion.suggestion}</b>{" "}
-                      <span className="text-xs text-zinc-500">
+                      <span className="text-xs text-zinc-700 dark:text-zinc-400">
                         ({Math.round((suggestion.confidence || 0) * 100)}%)
                       </span>
                     </div>
                     {suggestion.followup && (
-                      <div className="text-xs text-zinc-600 mt-1">{suggestion.followup}</div>
+                      <div className="text-xs text-zinc-700 dark:text-zinc-300 mt-1">
+                        {suggestion.followup}
+                      </div>
                     )}
                     <div className="mt-2 flex gap-2">
                       <button
@@ -323,7 +327,9 @@ export default function Result() {
                 </optgroup>
               </select>
             </label>
-            <div className="text-xs text-zinc-500 mt-1">{t.result.tailorCoverLetter}</div>
+            <div className="text-xs text-zinc-700 dark:text-zinc-400 mt-1">
+              {t.result.tailorCoverLetter}
+            </div>
             <label className="mt-2 flex items-center gap-2 text-xs">
               <input
                 type="checkbox"
@@ -342,7 +348,7 @@ export default function Result() {
                 );
                 if (!entry) return null;
                 return (
-                  <div className="text-xs text-zinc-600 dark:text-zinc-300">
+                  <div className="text-xs text-zinc-700 dark:text-zinc-300">
                     {t.result.attachTimeline}
                     {": "}
                     <span className="italic">
@@ -361,10 +367,12 @@ export default function Result() {
                 const c = resolveCourtTemplate(preferredCourtTemplate);
                 if (!c.name && !c.address) return null;
                 return (
-                  <div className="rounded border p-2 text-sm bg-zinc-50 dark:bg-zinc-900">
-                    {c.name && <div className="font-medium">{c.name}</div>}
+                  <div className="rounded border p-2 bg-zinc-50 dark:bg-zinc-800/20">
+                    {c.name && (
+                      <div className="text-sm text-zinc-200 dark:text-zinc-500">{c.name}</div>
+                    )}
                     {c.address && (
-                      <div className="text-zinc-600 dark:text-zinc-300">{c.address}</div>
+                      <div className="text-xs text-zinc-200 dark:text-zinc-500">{c.address}</div>
                     )}
                   </div>
                 );
@@ -399,7 +407,9 @@ export default function Result() {
                   {citation.label || citation.url || ""}
                 </a>
                 {citation.snapshotId ? (
-                  <span className="ml-2 text-xs text-zinc-500">({citation.snapshotId})</span>
+                  <span className="ml-2 text-xs text-zinc-700 dark:text-zinc-400">
+                    ({citation.snapshotId})
+                  </span>
                 ) : null}
               </motion.li>
             );
@@ -412,7 +422,7 @@ export default function Result() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.5 }}
-          className="text-xs text-zinc-500"
+          className="text-xs text-zinc-700 dark:text-zinc-400"
         >
           <summary>{t.result.additionalMatchedRules}</summary>
           <ul className="list-disc pl-5">
@@ -435,8 +445,10 @@ export default function Result() {
         transition={{ duration: 0.3, delay: 0.35 }}
         className="rounded-lg border p-3 bg-white dark:bg-zinc-900"
       >
-        <div className="text-sm font-medium mb-1">{t.result.howToReach95Confidence}</div>
-        <div className="text-sm text-zinc-700 dark:text-zinc-300">
+        <div className="text-sm font-medium mb-1 text-zinc-900 dark:text-zinc-100">
+          {t.result.howToReach95Confidence}
+        </div>
+        <div className="text-sm text-zinc-800 dark:text-zinc-300">
           {missing.length > 0 ? t.result.answerThese : t.result.addSupportingDocuments}
         </div>
         {!!missing.length && (
@@ -455,7 +467,7 @@ export default function Result() {
             })}
           </div>
         )}
-        <div className="text-xs mt-2">
+        <div className="text-xs mt-2 text-zinc-700 dark:text-zinc-300">
           {t.result.confidenceTip}{" "}
           <a className="underline" href="/vault">
             {t.vault.title}
@@ -471,8 +483,10 @@ export default function Result() {
         transition={{ duration: 0.3, delay: 0.4 }}
         className="rounded-lg border p-3"
       >
-        <div className="text-sm font-medium">{t.result.regionalTips}</div>
-        <div className="text-sm text-zinc-700 dark:text-zinc-300 mt-1">
+        <div className="text-sm font-medium text-zinc-900 dark:text-zinc-400">
+          {t.result.regionalTips}
+        </div>
+        <div className="text-sm text-zinc-800 dark:text-zinc-400 mt-1">
           {(() => {
             const tip = (regionalTips as unknown as Record<string, unknown>)[city];
             if (!tip) return t.result.regionalTipsDefault;
@@ -482,7 +496,7 @@ export default function Result() {
               <div>
                 <div>{obj.text || t.result.regionalTipsDefault}</div>
                 {(obj.lastVerified || obj.snapshotId) && (
-                  <div className="text-xs text-zinc-500 mt-1">
+                  <div className="text-xs text-zinc-700 dark:text-zinc-600 mt-1">
                     {obj.lastVerified ? `Last verified: ${obj.lastVerified}` : null}
                     {obj.snapshotId ? ` · Snapshot: ${obj.snapshotId}` : null}
                   </div>

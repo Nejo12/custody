@@ -50,16 +50,21 @@ export default function LanguageSwitch({ buttonClassName }: { buttonClassName?: 
       {open && (
         <ul
           role="listbox"
-          className="absolute right-0 mt-1 w-44 rounded-lg border bg-white shadow-md dark:bg-zinc-900 dark:border-zinc-700 z-50"
+          className="absolute right-0 mt-1 w-44 rounded-lg border bg-white shadow-md dark:bg-zinc-900 dark:border-zinc-700 z-50 text-zinc-900 dark:text-zinc-100 overflow-hidden"
         >
           {locales.map((l) => (
-            <li key={l.code} role="option" aria-selected={locale === l.code}>
+            <li
+              key={l.code}
+              role="option"
+              aria-selected={locale === l.code}
+              className={locale === l.code ? "bg-zinc-50 dark:bg-zinc-800" : ""}
+            >
               <button
                 onClick={() => {
                   setLocale(l.code);
                   setOpen(false);
                 }}
-                className={`w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${locale === l.code ? "font-medium" : ""}`}
+                className={`w-full text-left px-3 py-2 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${locale === l.code ? "font-medium" : ""}`}
                 aria-label={`Select ${l.label}`}
               >
                 {l.label}

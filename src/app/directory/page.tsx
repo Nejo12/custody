@@ -92,7 +92,7 @@ export default function DirectoryPage() {
               setCity(v);
               setPreferredCity(v);
             }}
-            className="w-full sm:w-auto sm:min-w-[120px] rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
+            className="w-full sm:w-auto sm:min-w-[120px] rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
           >
             <option value="berlin">Berlin</option>
             <option value="hamburg">Hamburg</option>
@@ -101,13 +101,13 @@ export default function DirectoryPage() {
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            className="flex-1 w-full min-w-0 rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
+            className="flex-1 w-full min-w-0 rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
             placeholder={t.directory.searchPlaceholder}
           />
           <select
             value={type}
             onChange={(e) => setType(e.target.value)}
-            className="w-full sm:w-auto sm:min-w-[140px] rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
+            className="w-full sm:w-auto sm:min-w-[140px] rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
           >
             <option value="">{t.directory.typeFilter}</option>
             <option value="jugendamt">{t.directory.jugendamt}</option>
@@ -139,11 +139,13 @@ export default function DirectoryPage() {
                   .slice(0, 2);
                 return (
                   <div key={grp.key} className="rounded border p-3">
-                    <div className="text-sm uppercase text-zinc-500 mb-1">{grp.label}</div>
+                    <div className="text-sm uppercase text-zinc-700 dark:text-zinc-400 mb-1">
+                      {grp.label}
+                    </div>
                     {items.map((s: Service) => (
                       <div key={s.id} className="mb-2">
                         <div className="font-medium">{s.name}</div>
-                        <div className="text-sm text-zinc-600 dark:text-zinc-400">{s.address}</div>
+                        <div className="text-sm text-zinc-700 dark:text-zinc-300">{s.address}</div>
                       </div>
                     ))}
                     <button
@@ -167,7 +169,7 @@ export default function DirectoryPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="text-sm text-zinc-500"
+                className="text-sm text-zinc-700 dark:text-zinc-400"
               >
                 {t.directory.noResults}
               </motion.div>
@@ -185,9 +187,11 @@ export default function DirectoryPage() {
                 }}
                 className="rounded-lg border p-4 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md transition-all duration-200"
               >
-                <div className="text-sm uppercase tracking-wide text-zinc-500">{s.type}</div>
+                <div className="text-sm uppercase tracking-wide text-zinc-700 dark:text-zinc-400">
+                  {s.type}
+                </div>
                 <div className="font-medium">{s.name}</div>
-                <div className="text-sm text-zinc-600 dark:text-zinc-400">{s.address}</div>
+                <div className="text-sm text-zinc-700 dark:text-zinc-300">{s.address}</div>
                 <div className="text-sm">{s.phone}</div>
                 <a
                   href={s.url}
@@ -197,7 +201,9 @@ export default function DirectoryPage() {
                 >
                   {s.url}
                 </a>
-                {s.opening && <div className="text-xs text-zinc-500 mt-1">{s.opening}</div>}
+                {s.opening && (
+                  <div className="text-xs text-zinc-700 dark:text-zinc-400 mt-1">{s.opening}</div>
+                )}
               </motion.div>
             ))}
           </AnimatePresence>

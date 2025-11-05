@@ -122,7 +122,7 @@ export default function UmgangPage() {
           <label className="text-sm">
             {t.optimizer?.distance || "Distance"}
             <select
-              className="mt-1 w-full rounded border px-2 py-2"
+              className="mt-1 w-full rounded border px-2 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
               value={optimizer.distance}
               onChange={(e) =>
                 setOptimizer({
@@ -147,7 +147,7 @@ export default function UmgangPage() {
           <label className="text-sm sm:col-span-2">
             {t.optimizer?.workHours || "Work hours (free text)"}
             <input
-              className="mt-1 w-full rounded border px-3 py-2"
+              className="mt-1 w-full rounded border px-3 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 dark:placeholder:text-zinc-400"
               value={optimizer.workHours}
               onChange={(e) => setOptimizer({ ...optimizer, workHours: e.target.value })}
               placeholder={t.optimizer?.workHoursPlaceholder || "e.g. Mon-Fri 9-17"}
@@ -195,7 +195,7 @@ export default function UmgangPage() {
             {t.optimizer?.explainerTitle || "Why this plan"}
           </div>
           <div className="text-sm text-zinc-700 dark:text-zinc-300">{optimizer.summary}</div>
-          <div className="text-xs text-zinc-500">
+          <div className="text-xs text-zinc-700 dark:text-zinc-400">
             {t.optimizer?.explainerNote || "Based on distance, age, and notes."}
           </div>
           <div className="text-xs mt-1">

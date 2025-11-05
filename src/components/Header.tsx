@@ -131,7 +131,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                   className="menu-panel absolute right-0 mt-2 w-56 rounded-xl border bg-white dark:bg-zinc-900 shadow-xl p-2 z-50 divide-y divide-zinc-200 dark:divide-zinc-800"
                 >
                   <button
-                    className="w-full h-9 text-left rounded-md px-3 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="w-full h-9 text-left rounded-md px-3 text-sm text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() => {
                       setMenuOpen(false);
                       onOpenHelp?.();
@@ -141,7 +141,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                   </button>
                   {canInstall && (
                     <button
-                      className="w-full h-9 text-left rounded-md px-3 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                      className="w-full h-9 text-left rounded-md px-3 text-sm text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                       onClick={() => {
                         setMenuOpen(false);
                         void promptInstall();
@@ -152,7 +152,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                   )}
                   <Link
                     href="/settings"
-                    className="block h-9 rounded-md px-3 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="block h-9 rounded-md px-3 text-sm text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() => setMenuOpen(false)}
                   >
                     {t.header?.settings || "Settings"}

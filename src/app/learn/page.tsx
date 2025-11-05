@@ -66,7 +66,7 @@ export default function LearnPage() {
             <Link href={`/learn/item?slug=${e.slug}`} className="font-medium underline">
               {e.title}
             </Link>
-            <div className="text-xs text-zinc-500 mt-1">
+            <div className="text-xs text-zinc-700 dark:text-zinc-400 mt-1">
               Last verified: {e.lastVerified} · Snapshot: {e.snapshotId}
             </div>
           </li>
@@ -85,12 +85,14 @@ export default function LearnPage() {
               .slice(0, 2);
             return (
               <div key={grp.city} className="rounded-lg border p-3">
-                <div className="text-sm uppercase text-zinc-500">{grp.label}</div>
+                <div className="text-sm uppercase text-zinc-700 dark:text-zinc-400">
+                  {grp.label}
+                </div>
                 <div className="grid grid-cols-1 gap-2 mt-1">
                   {items.map((s: Service) => (
                     <div key={s.id}>
                       <div className="font-medium">{s.name}</div>
-                      <div className="text-sm text-zinc-600 dark:text-zinc-400">{s.address}</div>
+                      <div className="text-sm text-zinc-700 dark:text-zinc-300">{s.address}</div>
                     </div>
                   ))}
                 </div>

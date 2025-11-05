@@ -93,11 +93,11 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                 />
               </div>
               <div className="flex items-center justify-between flex-shrink-0">
-                <div id="help-sheet-title" className="font-medium">
+                <div id="help-sheet-title" className="font-medium text-zinc-900 dark:text-zinc-100">
                   {t.helpSheet.title}
                 </div>
                 <button
-                  className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
+                  className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 text-zinc-700 dark:text-zinc-300"
                   onClick={onClose}
                   aria-label={t.helpSheet.closeButtonAriaLabel}
                 >
@@ -122,7 +122,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
               </div>
               <div className="rounded-lg border p-3 flex-shrink-0">
                 <textarea
-                  className="w-full rounded border p-2 text-sm"
+                  className="w-full rounded border p-2 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
                   rows={4}
                   readOnly
                   onClick={(e) => (e.target as HTMLTextAreaElement).select()}
@@ -131,14 +131,14 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                 ></textarea>
                 <div className="mt-2 flex gap-2">
                   <button
-                    className="rounded border px-3 py-1 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() => navigator.clipboard.writeText(t.helpSheet.scriptText)}
                     aria-label={t.helpSheet.copyButtonAriaLabel}
                   >
                     {t.helpSheet.copy}
                   </button>
                   <button
-                    className="rounded border px-3 py-1 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() => {
                       const ics = buildICS({
                         summary: t.helpSheet.callJugendamtCalendarSummary,
@@ -172,7 +172,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                         setCity(v);
                         setPreferredCity(v);
                       }}
-                      className="rounded border px-2 py-1 text-sm"
+                      className="rounded border px-2 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
                     >
                       <option value="berlin">Berlin</option>
                       <option value="hamburg">Hamburg</option>
@@ -182,7 +182,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                       value={postcode}
                       onChange={(e) => setPostcode(e.target.value)}
                       placeholder={t.helpSheet.postcodePlaceholder}
-                      className="flex-1 rounded border px-3 py-1 text-sm"
+                      className="flex-1 rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 dark:placeholder:text-zinc-400"
                     />
                     <button
                       type="button"
@@ -211,7 +211,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                     </button>
                   </div>
                   <button
-                    className="w-full sm:w-auto rounded border px-2 py-1 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+                    className="w-full sm:w-auto rounded border px-2 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
                     onClick={() => {
                       setGeoError("");
                       setGeoLoading(true);
@@ -279,11 +279,13 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                       <div className="text-xs uppercase text-zinc-600 dark:text-zinc-400">
                         {s.type}
                       </div>
-                      <div className="font-medium text-sm">{s.name}</div>
+                      <div className="font-medium text-sm text-zinc-900 dark:text-zinc-100">
+                        {s.name}
+                      </div>
                       <div className="text-sm text-zinc-700 dark:text-zinc-300">{s.address}</div>
                       {s.phone && (
                         <a
-                          className="text-sm underline"
+                          className="text-sm underline text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100"
                           href={`tel:${s.phone}`}
                           aria-label={t.helpSheet.callServiceAriaLabel.replace("{name}", s.name)}
                         >
@@ -292,7 +294,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                       )}
                       {s.url && (
                         <a
-                          className="ml-2 text-sm underline"
+                          className="ml-2 text-sm underline text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100"
                           href={s.url}
                           target="_blank"
                           rel="noopener noreferrer"

@@ -22,7 +22,7 @@ export default function SettingsPage() {
       <h1 className="text-xl font-semibold">{t.settings.title}</h1>
 
       <div className="space-y-2">
-        <div className="text-sm text-zinc-500">{t.settings.language}</div>
+        <div className="text-sm text-zinc-700 dark:text-zinc-400">{t.settings.language}</div>
         <div className="inline-flex flex-wrap gap-2 rounded-full border overflow-hidden">
           {languages.map((lang) => (
             <button
@@ -37,7 +37,7 @@ export default function SettingsPage() {
       </div>
 
       <div className="space-y-1">
-        <div className="text-sm text-zinc-500">{t.settings.about}</div>
+        <div className="text-sm text-zinc-700 dark:text-zinc-400">{t.settings.about}</div>
         <p className="text-sm text-zinc-700">
           Privacy-first, offline-capable prototype. Information only, not individualized legal
           advice.

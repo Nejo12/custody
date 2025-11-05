@@ -182,11 +182,9 @@ const ar = {
     "custody.married.default": "تشارك الحضانة تلقائياً ما لم يحكم القضاء بخلاف ذلك.",
     "custody.unmarried.paternity_acknowledged": "يمكنك التقدم بطلب للحضانة المشتركة (§1626a BGB).",
     "contact.right": "يمكنك طلب أمر زيارة/اتصال (§1684 BGB).",
-    "contact.safety.supervised":
-      "بسبب مخاوف السلامة، فكر في الاتصال الخاضع للإشراف وتخطيط السلامة.",
+    "contact.safety.supervised": "النظر في الاتصال الخاضع للإشراف بسبب مخاوف السلامة",
     "custody.unmarried.path_to_joint": "يمكنك التقدم بطلب للحضانة المشتركة (§1626a BGB).",
-    "contact.young_child.schedule":
-      "توصية: فترات اتصال قصيرة في أيام الأسبوع للأطفال دون سن 3 سنوات.",
+    "contact.young_child.schedule": "توصية: نوافذ اتصال قصيرة في أيام الأسبوع (عمر أقل من 3 سنوات)",
     "contact.distance.far": "توصية: خطة تركز على عطلة نهاية الأسبوع/العطلات بسبب المسافة.",
     "mediation.suggest": "قد تساعد الوساطة من خلال Jugendamt في الوصول إلى اتفاق.",
   },

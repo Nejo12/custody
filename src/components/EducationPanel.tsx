@@ -128,7 +128,9 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
                         {c.label || c.url}
                       </a>
                       {c.snapshotId && (
-                        <span className="ml-2 text-xs text-zinc-500">({c.snapshotId})</span>
+                        <span className="ml-2 text-xs text-zinc-700 dark:text-zinc-400">
+                          ({c.snapshotId})
+                        </span>
                       )}
                     </li>
                   ))}

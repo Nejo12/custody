@@ -83,8 +83,10 @@ export default function SummarizePage() {
               </li>
             ))}
           </ul>
-          {result.notes && <div className="text-xs text-zinc-500 mt-2">{result.notes}</div>}
-          <div className="text-[11px] text-zinc-500 mt-2">
+          {result.notes && (
+            <div className="text-xs text-zinc-700 dark:text-zinc-400 mt-2">{result.notes}</div>
+          )}
+          <div className="text-[11px] text-zinc-700 dark:text-zinc-400 mt-2">
             Information only — not individualized legal advice.
           </div>
         </div>

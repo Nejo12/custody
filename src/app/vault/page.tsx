@@ -111,15 +111,17 @@ export default function VaultPage() {
       <div className="space-y-3">
         {filtered.map((e) => (
           <div key={e.id} className="rounded-lg border p-4">
-            <div className="text-xs text-zinc-500">{new Date(e.timestamp).toLocaleString()}</div>
+            <div className="text-xs text-zinc-700 dark:text-zinc-400">
+              {new Date(e.timestamp).toLocaleString()}
+            </div>
             <div className="font-medium">{e.title}</div>
             {e.type === "note" && typeof e.payload?.content === "string" && (
-              <pre className="mt-1 whitespace-pre-wrap text-xs text-zinc-600 dark:text-zinc-400 max-h-40 overflow-auto border rounded p-2 bg-zinc-50 dark:bg-zinc-900">
+              <pre className="mt-1 whitespace-pre-wrap text-xs text-zinc-700 dark:text-zinc-300 max-h-40 overflow-auto border rounded p-2 bg-zinc-50 dark:bg-zinc-900">
                 {String(e.payload.content)}
               </pre>
             )}
             {e.type === "file" && typeof e.payload?.type === "string" && (
-              <div className="text-xs text-zinc-500">{e.payload.type}</div>
+              <div className="text-xs text-zinc-700 dark:text-zinc-400">{e.payload.type}</div>
             )}
             <button onClick={() => removeEntry(e.id)} className="mt-2 text-xs underline">
               Remove

@@ -185,11 +185,9 @@ const de = {
     "custody.unmarried.paternity_acknowledged":
       "Sie können gemeinsames Sorgerecht beantragen (§1626a BGB).",
     "contact.right": "Sie können eine Umgangsregelung beantragen (§1684 BGB).",
-    "contact.safety.supervised":
-      "Aufgrund von Sicherheitsbedenken sollten Sie begleiteten Umgang und Sicherheitsplanung in Betracht ziehen.",
+    "contact.safety.supervised": "Begleiteter Umgang wegen Sicherheitsbedenken erwägen",
     "custody.unmarried.path_to_joint": "Sie können gemeinsames Sorgerecht beantragen (§1626a BGB).",
-    "contact.young_child.schedule":
-      "Empfehlung: Kurze Wochentags-Kontaktblöcke für Kinder unter 3 Jahren.",
+    "contact.young_child.schedule": "Empfehlung: Kurze Wochentags‑Zeitfenster (Kind unter 3)",
     "contact.distance.far":
       "Empfehlung: Wochenend-/Ferien-zentrierter Plan aufgrund der Entfernung.",
     "mediation.suggest": "Jugendamt-Mediation kann helfen, eine Einigung zu erzielen.",

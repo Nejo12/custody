@@ -61,16 +61,21 @@ export default function CitySwitch({ buttonClassName }: { buttonClassName?: stri
       {open && (
         <ul
           role="listbox"
-          className="absolute right-0 mt-1 w-40 rounded-lg border bg-white shadow-md dark:bg-zinc-900 dark:border-zinc-700 z-50"
+          className="absolute right-0 mt-1 w-40 rounded-lg border bg-white shadow-md dark:bg-zinc-900 dark:border-zinc-700 z-50 text-zinc-900 dark:text-zinc-100 overflow-hidden"
         >
           {CITIES.map((c) => (
-            <li key={c.code} role="option" aria-selected={preferredCity === c.code}>
+            <li
+              key={c.code}
+              role="option"
+              aria-selected={preferredCity === c.code}
+              className={preferredCity === c.code ? "bg-zinc-50 dark:bg-zinc-800" : ""}
+            >
               <button
                 onClick={() => {
                   setPreferredCity(c.code);
                   setOpen(false);
                 }}
-                className={`w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${preferredCity === c.code ? "font-medium" : ""}`}
+                className={`w-full text-left px-3 py-2 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${preferredCity === c.code ? "font-medium" : ""}`}
                 aria-label={`Select ${c.label}`}
               >
                 {c.label}

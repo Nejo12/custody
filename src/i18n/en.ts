@@ -184,10 +184,9 @@ const en = {
       "You automatically share custody unless a court has ruled otherwise.",
     "custody.unmarried.paternity_acknowledged": "You may apply for joint custody (§1626a BGB).",
     "contact.right": "You can request a visitation order (§1684 BGB).",
-    "contact.safety.supervised":
-      "Due to safety concerns, consider supervised contact and safety planning.",
+    "contact.safety.supervised": "Consider supervised contact due to safety concerns",
     "custody.unmarried.path_to_joint": "You may apply for joint custody (§1626a BGB).",
-    "contact.young_child.schedule": "Recommend short weekday contact blocks for children under 3.",
+    "contact.young_child.schedule": "Recommendation: Short weekday contact windows (age under 3)",
     "contact.distance.far": "Recommend weekend/holiday-centric schedule due to distance.",
     "mediation.suggest": "Jugendamt mediation may help reach an agreement.",
   },

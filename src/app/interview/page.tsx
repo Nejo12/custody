@@ -94,9 +94,11 @@ export default function Interview() {
           className="space-y-6"
         >
           <div className="space-y-2">
-            <div className="text-sm text-zinc-500">{t.interview.title}</div>
+            <div className="text-sm text-zinc-700 dark:text-zinc-400">{t.interview.title}</div>
             <h2 className="text-lg font-semibold">{questionData?.label || current.id}</h2>
-            <p className="text-sm text-zinc-600">{questionData?.help || t.interview.help}</p>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              {questionData?.help || t.interview.help}
+            </p>
           </div>
 
           <div className="grid grid-cols-1 gap-3">
@@ -159,7 +161,9 @@ export default function Interview() {
             <button onClick={onClarify} className="text-sm underline decoration-dotted">
               Need help?
             </button>
-            {clarify.loading && <span className="text-xs text-zinc-500">Thinking…</span>}
+            {clarify.loading && (
+              <span className="text-xs text-zinc-700 dark:text-zinc-400">Thinking…</span>
+            )}
           </div>
 
           {clarify.data && (
@@ -170,7 +174,7 @@ export default function Interview() {
             >
               <div className="text-sm">
                 Suggestion: <b>{clarify.data.suggestion}</b>{" "}
-                <span className="text-xs text-zinc-500">
+                <span className="text-xs text-zinc-700 dark:text-zinc-400">
                   ({Math.round(clarify.data.confidence * 100)}%)
                 </span>
               </div>
@@ -191,7 +195,7 @@ export default function Interview() {
                   Dismiss
                 </button>
               </div>
-              <div className="text-[11px] text-zinc-500 mt-2">
+              <div className="text-[11px] text-zinc-700 dark:text-zinc-400 mt-2">
                 Information only — not individualized legal advice.
               </div>
             </motion.div>
@@ -205,7 +209,7 @@ export default function Interview() {
             >
               {t.common.back}
             </button>
-            <div className="text-sm text-zinc-500">
+            <div className="text-sm text-zinc-700 dark:text-zinc-400">
               {step + 1} / {questions.length}
             </div>
           </div>
