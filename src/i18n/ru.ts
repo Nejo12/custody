@@ -167,7 +167,6 @@ const ru = {
     title: "Найти помощь сейчас",
     description:
       "Позвоните в ближайший Jugendamt или судебный регистр. Используйте сценарий ниже; нажмите, чтобы скопировать. Вы также можете добавить напоминание в календарь.",
-    scriptLabel: "Что сказать (Немецкий)",
     scriptText:
       "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
     copy: "Копировать",
@@ -185,6 +184,14 @@ const ru = {
     close: "Закрыть",
     privacyNote:
       "Мы используем ваше местоположение только для определения почтового индекса. Данные о местоположении не сохраняются и не отправляются куда-либо ещё.",
+    closeButtonAriaLabel: "Закрыть диалог помощи",
+    scriptAriaLabel: "Немецкий текст скрипта",
+    copyButtonAriaLabel: "Скопировать скрипт в буфер обмена",
+    addReminderAriaLabel: "Добавить напоминание в календарь",
+    callServiceAriaLabel: "Позвонить в {name}",
+    visitWebsiteAriaLabel: "Посетить веб-сайт {name}",
+    privacyNoteAriaLabel: "Примечание о конфиденциальности",
+    callJugendamtCalendarSummary: "Позвонить в Jugendamt",
   },
 };
 

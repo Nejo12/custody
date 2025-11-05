@@ -169,7 +169,6 @@ const fr = {
     title: "Trouver de l'aide maintenant",
     description:
       "Appelez votre Jugendamt ou le greffe du tribunal le plus proche. Utilisez le script ci-dessous ; appuyez pour copier. Vous pouvez également ajouter un rappel de calendrier.",
-    scriptLabel: "Que dire (Allemand)",
     scriptText:
       "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
     copy: "Copier",
@@ -187,6 +186,14 @@ const fr = {
     close: "Fermer",
     privacyNote:
       "Nous utilisons uniquement votre localisation pour trouver votre code postal. Aucune donnée de localisation n'est stockée ou envoyée ailleurs.",
+    closeButtonAriaLabel: "Fermer la boîte de dialogue d'aide",
+    scriptAriaLabel: "Texte du script en allemand",
+    copyButtonAriaLabel: "Copier le script dans le presse-papiers",
+    addReminderAriaLabel: "Ajouter un rappel de calendrier",
+    callServiceAriaLabel: "Appeler {name}",
+    visitWebsiteAriaLabel: "Visiter le site web de {name}",
+    privacyNoteAriaLabel: "Note de confidentialité",
+    callJugendamtCalendarSummary: "Appeler le Jugendamt",
   },
 };
 

@@ -163,7 +163,6 @@ const en = {
     title: "Find Help Now",
     description:
       "Call your nearest Jugendamt or court registry. Use the script below; tap to copy. You can also add a calendar reminder.",
-    scriptLabel: "What to say (German)",
     scriptText:
       "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
     copy: "Copy",
@@ -181,6 +180,14 @@ const en = {
     close: "Close",
     privacyNote:
       "We only use your location to find your postcode. No location data is stored or sent elsewhere.",
+    closeButtonAriaLabel: "Close help dialog",
+    scriptAriaLabel: "German script text",
+    copyButtonAriaLabel: "Copy script to clipboard",
+    addReminderAriaLabel: "Add calendar reminder",
+    callServiceAriaLabel: "Call {name}",
+    visitWebsiteAriaLabel: "Visit {name} website",
+    privacyNoteAriaLabel: "Privacy note",
+    callJugendamtCalendarSummary: "Call Jugendamt",
   },
 };
 

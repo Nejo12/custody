@@ -166,7 +166,6 @@ const de = {
     title: "Jetzt Hilfe finden",
     description:
       "Rufen Sie Ihr nächstgelegenes Jugendamt oder Gerichtsregister an. Verwenden Sie das untenstehende Skript; tippen Sie zum Kopieren. Sie können auch eine Kalendererinnerung hinzufügen.",
-    scriptLabel: "Was zu sagen (Deutsch)",
     scriptText:
       "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
     copy: "Kopieren",
@@ -184,6 +183,14 @@ const de = {
     close: "Schließen",
     privacyNote:
       "Wir verwenden Ihren Standort nur, um Ihre Postleitzahl zu finden. Keine Standortdaten werden gespeichert oder anderswohin gesendet.",
+    closeButtonAriaLabel: "Hilfedialog schließen",
+    scriptAriaLabel: "Deutscher Skripttext",
+    copyButtonAriaLabel: "Skript in die Zwischenablage kopieren",
+    addReminderAriaLabel: "Kalendererinnerung hinzufügen",
+    callServiceAriaLabel: "{name} anrufen",
+    visitWebsiteAriaLabel: "{name} Website besuchen",
+    privacyNoteAriaLabel: "Hinweis zum Datenschutz",
+    callJugendamtCalendarSummary: "Jugendamt anrufen",
   },
 };
 

@@ -167,7 +167,6 @@ const pl = {
     title: "Znajdź pomoc teraz",
     description:
       "Zadzwoń do najbliższego Jugendamt lub rejestru sądowego. Użyj skryptu poniżej; stuknij, aby skopiować. Możesz również dodać przypomnienie w kalendarzu.",
-    scriptLabel: "Co powiedzieć (Niemiecki)",
     scriptText:
       "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
     copy: "Kopiuj",
@@ -185,6 +184,14 @@ const pl = {
     close: "Zamknij",
     privacyNote:
       "Używamy Twojej lokalizacji tylko do znalezienia kodu pocztowego. Żadne dane lokalizacyjne nie są przechowywane ani wysyłane gdzie indziej.",
+    closeButtonAriaLabel: "Zamknij dialog pomocy",
+    scriptAriaLabel: "Niemiecki tekst skryptu",
+    copyButtonAriaLabel: "Skopiuj skrypt do schowka",
+    addReminderAriaLabel: "Dodaj przypomnienie w kalendarzu",
+    callServiceAriaLabel: "Zadzwoń do {name}",
+    visitWebsiteAriaLabel: "Odwiedź stronę {name}",
+    privacyNoteAriaLabel: "Uwaga dotycząca prywatności",
+    callJugendamtCalendarSummary: "Zadzwoń do Jugendamt",
   },
 };
 

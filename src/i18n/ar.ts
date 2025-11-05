@@ -163,7 +163,6 @@ const ar = {
     title: "ابحث عن المساعدة الآن",
     description:
       "اتصل بأقرب Jugendamt أو سجل المحكمة. استخدم النص أدناه؛ اضغط للنسخ. يمكنك أيضًا إضافة تذكير في التقويم.",
-    scriptLabel: "ماذا تقول (ألماني)",
     scriptText:
       "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
     copy: "نسخ",
@@ -181,6 +180,14 @@ const ar = {
     close: "إغلاق",
     privacyNote:
       "نستخدم موقعك فقط للعثور على الرمز البريدي. لا يتم تخزين أو إرسال بيانات الموقع إلى أي مكان آخر.",
+    closeButtonAriaLabel: "إغلاق حوار المساعدة",
+    scriptAriaLabel: "نص النص الألماني",
+    copyButtonAriaLabel: "نسخ النص إلى الحافظة",
+    addReminderAriaLabel: "إضافة تذكير في التقويم",
+    callServiceAriaLabel: "اتصل بـ {name}",
+    visitWebsiteAriaLabel: "زيارة موقع {name}",
+    privacyNoteAriaLabel: "ملاحظة الخصوصية",
+    callJugendamtCalendarSummary: "اتصل بـ Jugendamt",
   },
 };
 

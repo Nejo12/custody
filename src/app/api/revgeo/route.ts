@@ -1,4 +1,32 @@
-type RevGeoResponse = { postcode?: string } | { error: string };
+type RevGeoResponse =
+  | { postcode?: string; city?: "berlin" | "hamburg" | "nrw" }
+  | { error: string };
+
+function determineCity(address: {
+  city?: string;
+  state?: string;
+  "ISO3166-2-lvl4"?: string;
+}): "berlin" | "hamburg" | "nrw" | null {
+  const cityLower = address.city?.toLowerCase() || "";
+  const stateLower = address.state?.toLowerCase() || "";
+  const isoCode = address["ISO3166-2-lvl4"]?.toLowerCase() || "";
+
+  if (cityLower.includes("berlin") || stateLower.includes("berlin") || isoCode.includes("be")) {
+    return "berlin";
+  }
+  if (cityLower.includes("hamburg") || stateLower.includes("hamburg") || isoCode.includes("hh")) {
+    return "hamburg";
+  }
+  if (
+    stateLower.includes("nordrhein-westfalen") ||
+    stateLower.includes("north rhine-westphalia") ||
+    stateLower.includes("nrw") ||
+    isoCode.includes("nw")
+  ) {
+    return "nrw";
+  }
+  return null;
+}
 
 export async function GET(req: Request): Promise<Response> {
   try {
@@ -33,9 +61,17 @@ export async function GET(req: Request): Promise<Response> {
         headers: { "Content-Type": "application/json" },
       });
     }
-    const data = (await res.json()) as { address?: { postcode?: string } };
+    const data = (await res.json()) as {
+      address?: {
+        postcode?: string;
+        city?: string;
+        state?: string;
+        "ISO3166-2-lvl4"?: string;
+      };
+    };
     const code = data?.address?.postcode || "";
-    const body: RevGeoResponse = { postcode: code };
+    const city = data?.address ? determineCity(data.address) : null;
+    const body: RevGeoResponse = city ? { postcode: code, city } : { postcode: code };
     return new Response(JSON.stringify(body), {
       status: 200,
       headers: { "Content-Type": "application/json" },

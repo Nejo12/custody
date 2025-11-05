@@ -165,7 +165,6 @@ const tr = {
     title: "Şimdi yardım bul",
     description:
       "En yakın Jugendamt veya mahkeme sicilini arayın. Aşağıdaki metni kullanın; kopyalamak için dokunun. Ayrıca bir takvim hatırlatıcısı ekleyebilirsiniz.",
-    scriptLabel: "Ne söylenir (Almanca)",
     scriptText:
       "Guten Tag, ich benötige Informationen zu Sorgerecht/Umgang. Ich möchte wissen, welche Unterlagen ich mitbringen muss und wie ich einen Termin bekomme. Vielen Dank!",
     copy: "Kopyala",
@@ -183,6 +182,14 @@ const tr = {
     close: "Kapat",
     privacyNote:
       "Konumunuzu yalnızca posta kodunuzu bulmak için kullanıyoruz. Konum verileri saklanmaz veya başka bir yere gönderilmez.",
+    closeButtonAriaLabel: "Yardım diyalogunu kapat",
+    scriptAriaLabel: "Almanca script metni",
+    copyButtonAriaLabel: "Scripti panoya kopyala",
+    addReminderAriaLabel: "Takvim hatırlatıcısı ekle",
+    callServiceAriaLabel: "{name} araması yap",
+    visitWebsiteAriaLabel: "{name} web sitesini ziyaret et",
+    privacyNoteAriaLabel: "Gizlilik notu",
+    callJugendamtCalendarSummary: "Jugendamt'ı ara",
   },
 };
 
