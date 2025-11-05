@@ -150,6 +150,8 @@ const de = {
     addNote: "Notiz hinzufügen",
     addFile: "Datei hinzufügen",
     exportData: "Daten exportieren",
+    summarizer: "Beweis-Zusammenfassung",
+    neutralizer: "Konflikt-Entschärfer",
   },
   settings: {
     title: "Einstellungen",
@@ -183,6 +185,20 @@ const de = {
     "contact.distance.far":
       "Empfehlung: Wochenend-/Ferien-zentrierter Plan aufgrund der Entfernung.",
     "mediation.suggest": "Jugendamt-Mediation kann helfen, eine Einigung zu erzielen.",
+  },
+  optimizer: {
+    title: "Plan‑Optimierer (Beta)",
+    distance: "Entfernung",
+    distanceLocal: "< 30 km",
+    distanceRegional: "30–150 km",
+    distanceFar: "> 150 km",
+    childUnderThree: "Kind unter 3",
+    workHours: "Arbeitszeiten (Freitext)",
+    workHoursPlaceholder: "z. B. Mo–Fr 9–17",
+    notes: "Notizen",
+    notesPlaceholder: "Übergabe, Schlafzeiten, Abholen…",
+    suggest: "Plan vorschlagen",
+    suggesting: "Vorschlag…",
   },
   helpSheet: {
     title: "Jetzt Hilfe finden",

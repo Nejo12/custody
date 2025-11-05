@@ -35,6 +35,8 @@ type AppState = {
 
   preferredCity: "berlin" | "hamburg" | "nrw";
   setPreferredCity: (c: "berlin" | "hamburg" | "nrw") => void;
+  preferredCourtTemplate?: string;
+  setPreferredCourtTemplate: (tpl: string) => void;
 };
 
 const getSystemTheme = (): "light" | "dark" => {
@@ -68,6 +70,9 @@ export const useAppStore = create<AppState>()(
             (localStorage.getItem("preferredCity") as AppState["preferredCity"])) ||
           "berlin",
         setPreferredCity: (c) => set({ preferredCity: c }),
+        preferredCourtTemplate:
+          (typeof window !== "undefined" && localStorage.getItem("preferredCourtTemplate")) || "",
+        setPreferredCourtTemplate: (tpl) => set({ preferredCourtTemplate: tpl }),
         theme: initialTheme,
         setTheme: (t) => {
           set({ theme: t });
@@ -116,6 +121,7 @@ export const useAppStore = create<AppState>()(
         locale: s.locale,
         theme: s.theme,
         preferredCity: s.preferredCity,
+        preferredCourtTemplate: s.preferredCourtTemplate,
         interview: s.interview,
         vault: s.vault,
       }),

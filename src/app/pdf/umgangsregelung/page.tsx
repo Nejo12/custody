@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useI18n } from "@/i18n";
 import { normalizeSchedule, type ScheduleInput } from "@/lib/schedule";
 import type { ScheduleSuggestResponse } from "@/types/ai";
@@ -15,6 +16,7 @@ export default function UmgangPage() {
     proposal: { weekday: {}, weekend: {}, holidays: {}, handover: {} },
   });
   const [courtTemplate, setCourtTemplate] = useState<string>("");
+  const { setPreferredCourtTemplate } = useAppStore();
   const [downloading, setDownloading] = useState(false);
   const [optimizer, setOptimizer] = useState({
     distance: "local" as "local" | "regional" | "far",
@@ -98,11 +100,18 @@ export default function UmgangPage() {
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
       <h1 className="text-xl font-semibold">{t.result.generateContactOrder}</h1>
-      <div className="rounded-lg border p-3 space-y-2">
-        <div className="text-sm font-medium">Schedule optimizer (beta)</div>
+      <motion.div
+        className="rounded-lg border p-3 space-y-2"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+      >
+        <div className="text-sm font-medium">
+          {t.optimizer?.title || "Schedule optimizer (beta)"}
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <label className="text-sm">
-            Distance
+            {t.optimizer?.distance || "Distance"}
             <select
               className="mt-1 w-full rounded border px-2 py-2"
               value={optimizer.distance}
@@ -113,9 +122,9 @@ export default function UmgangPage() {
                 })
               }
             >
-              <option value="local">&lt; 30 km</option>
-              <option value="regional">30–150 km</option>
-              <option value="far">&gt; 150 km</option>
+              <option value="local">{t.optimizer?.distanceLocal || "< 30 km"}</option>
+              <option value="regional">{t.optimizer?.distanceRegional || "30–150 km"}</option>
+              <option value="far">{t.optimizer?.distanceFar || "> 150 km"}</option>
             </select>
           </label>
           <label className="text-sm flex items-end gap-2">
@@ -124,41 +133,54 @@ export default function UmgangPage() {
               checked={optimizer.childUnderThree}
               onChange={(e) => setOptimizer({ ...optimizer, childUnderThree: e.target.checked })}
             />
-            Child under 3
+            {t.optimizer?.childUnderThree || "Child under 3"}
           </label>
           <label className="text-sm sm:col-span-2">
-            Work hours (free text)
+            {t.optimizer?.workHours || "Work hours (free text)"}
             <input
               className="mt-1 w-full rounded border px-3 py-2"
               value={optimizer.workHours}
               onChange={(e) => setOptimizer({ ...optimizer, workHours: e.target.value })}
-              placeholder="e.g. Mon-Fri 9-17"
+              placeholder={t.optimizer?.workHoursPlaceholder || "e.g. Mon-Fri 9-17"}
             />
           </label>
           <label className="text-sm sm:col-span-2">
-            Notes
+            {t.optimizer?.notes || "Notes"}
             <input
               className="mt-1 w-full rounded border px-3 py-2"
               value={optimizer.specialNotes}
               onChange={(e) => setOptimizer({ ...optimizer, specialNotes: e.target.value })}
-              placeholder="handover, naps, school pickup..."
+              placeholder={t.optimizer?.notesPlaceholder || "handover, naps, school pickup..."}
             />
           </label>
         </div>
         <div className="flex gap-2">
           <button onClick={onSuggest} className="rounded border px-3 py-1 text-sm">
-            {optimizer.loading ? "Suggesting…" : "Suggest schedule"}
+            {optimizer.loading
+              ? t.optimizer?.suggesting || "Suggesting…"
+              : t.optimizer?.suggest || "Suggest schedule"}
           </button>
-          {!!optimizer.summary && <div className="text-sm text-zinc-600">{optimizer.summary}</div>}
+          {!!optimizer.summary && (
+            <motion.div
+              className="text-sm text-zinc-600"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              {optimizer.summary}
+            </motion.div>
+          )}
         </div>
-      </div>
+      </motion.div>
       <div className="space-y-3">
         <label className="block text-sm">
           Court (template)
           <select
             className="mt-1 w-full rounded border px-3 py-2"
             value={courtTemplate}
-            onChange={(e) => setCourtTemplate(e.target.value)}
+            onChange={(e) => {
+              setCourtTemplate(e.target.value);
+              setPreferredCourtTemplate(e.target.value);
+            }}
           >
             <option value="">Custom or none</option>
             <optgroup label="Berlin">

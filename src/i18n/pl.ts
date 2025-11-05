@@ -153,6 +153,8 @@ const pl = {
     addNote: "Dodaj notatkę",
     addFile: "Dodaj plik",
     exportData: "Eksportuj dane",
+    summarizer: "Podsumowanie dowodów",
+    neutralizer: "Neutralizator konfliktu",
   },
   settings: {
     title: "Ustawienia",
@@ -185,6 +187,20 @@ const pl = {
     "contact.distance.far":
       "Rekomendacja: Plan skupiony na weekendach/świętach ze względu na odległość.",
     "mediation.suggest": "Mediacja przez Jugendamt może pomóc w osiągnięciu porozumienia.",
+  },
+  optimizer: {
+    title: "Optymalizator harmonogramu (beta)",
+    distance: "Odległość",
+    distanceLocal: "< 30 km",
+    distanceRegional: "30–150 km",
+    distanceFar: "> 150 km",
+    childUnderThree: "Dziecko poniżej 3 lat",
+    workHours: "Godziny pracy (dowolny tekst)",
+    workHoursPlaceholder: "np. Pon–Pt 9–17",
+    notes: "Uwagi",
+    notesPlaceholder: "przekazanie, drzemki, odbiór ze szkoły…",
+    suggest: "Zaproponuj plan",
+    suggesting: "Proponowanie…",
   },
   helpSheet: {
     title: "Znajdź pomoc teraz",

@@ -1,8 +1,10 @@
 import { PDFDocument, StandardFonts } from "pdf-lib";
+import { resolveCourtTemplate } from "@/lib/courts";
 
 export async function buildCoverLetter(
   kind: "joint" | "contact",
-  locale: string
+  locale: string,
+  courtTemplate?: string
 ): Promise<Uint8Array> {
   const doc = await PDFDocument.create();
   const font = await doc.embedFont(StandardFonts.Helvetica);
@@ -28,6 +30,25 @@ export async function buildCoverLetter(
   y -= 18;
   page.drawText(title, { x: marginX, y, size: 16, font });
   y -= 24;
+  const court = resolveCourtTemplate(courtTemplate);
+  if (court.name) {
+    page.drawText((locale === "de" ? "Gericht: " : "Court: ") + court.name, {
+      x: marginX,
+      y,
+      size: 11,
+      font,
+    });
+    y -= 14;
+  }
+  if (court.address) {
+    page.drawText((locale === "de" ? "Adresse: " : "Address: ") + court.address, {
+      x: marginX,
+      y,
+      size: 11,
+      font,
+    });
+    y -= 14;
+  }
   const bodyDe = [
     `Datum: ${date}`,
     "",

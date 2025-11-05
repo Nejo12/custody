@@ -151,6 +151,8 @@ const ru = {
     addNote: "Добавить заметку",
     addFile: "Добавить файл",
     exportData: "Экспортировать данные",
+    summarizer: "Суммаризатор доказательств",
+    neutralizer: "Нейтрализатор конфликта",
   },
   settings: {
     title: "Настройки",
@@ -184,6 +186,20 @@ const ru = {
     "contact.distance.far":
       "Рекомендация: План, ориентированный на выходные/праздники из-за расстояния.",
     "mediation.suggest": "Посредничество через Jugendamt может помочь достичь соглашения.",
+  },
+  optimizer: {
+    title: "Оптимизатор графика (бета)",
+    distance: "Расстояние",
+    distanceLocal: "< 30 км",
+    distanceRegional: "30–150 км",
+    distanceFar: "> 150 км",
+    childUnderThree: "Ребёнок младше 3 лет",
+    workHours: "Рабочие часы (свободный текст)",
+    workHoursPlaceholder: "напр. Пн–Пт 9–17",
+    notes: "Заметки",
+    notesPlaceholder: "передача, сон, из школы…",
+    suggest: "Предложить график",
+    suggesting: "Предлагаем…",
   },
   helpSheet: {
     title: "Найти помощь сейчас",

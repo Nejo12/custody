@@ -4,6 +4,7 @@ import { useI18n } from "@/i18n";
 import rules from "@/data/rules.json";
 import type { SimpleRule, Citation } from "@/lib/rules";
 import type { FormData } from "@/types";
+import { useAppStore } from "@/store/app";
 
 type FormState = {
   parentA: { fullName?: string; address?: string };
@@ -15,6 +16,7 @@ export default function GSPage() {
   const { t, locale } = useI18n();
   const [form, setForm] = useState<FormState>({ parentA: {}, parentB: {}, children: [] });
   const [courtTemplate, setCourtTemplate] = useState<string>("");
+  const { setPreferredCourtTemplate } = useAppStore();
   const [downloading, setDownloading] = useState(false);
 
   async function onDownload() {
@@ -61,7 +63,10 @@ export default function GSPage() {
           <select
             className="mt-1 w-full rounded border px-3 py-2"
             value={courtTemplate}
-            onChange={(e) => setCourtTemplate(e.target.value)}
+            onChange={(e) => {
+              setCourtTemplate(e.target.value);
+              setPreferredCourtTemplate(e.target.value);
+            }}
           >
             <option value="">Custom or none</option>
             <optgroup label="Berlin">

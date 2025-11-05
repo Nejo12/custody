@@ -437,7 +437,11 @@ async function buildPackBlob(
   // Add text cover letter and PDF cover letter
   zip.file("cover-letter.txt", cover);
   try {
-    const pdfCover = await buildCoverLetter(kind, locale);
+    const pdfCover = await buildCoverLetter(
+      kind,
+      locale,
+      useAppStore.getState().preferredCourtTemplate
+    );
     zip.file("cover-letter.pdf", pdfCover);
   } catch {
     /* ignore pdf cover errors */

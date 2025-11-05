@@ -95,10 +95,10 @@ export default function VaultPage() {
           <input type="file" className="hidden" onChange={addFile} />
         </label>
         <a href="/vault/summarize" className="underline text-sm">
-          Evidence summarizer
+          {t.vault.summarizer}
         </a>
         <a href="/vault/neutralize" className="underline text-sm">
-          Conflict neutralizer
+          {t.vault.neutralizer}
         </a>
         <button
           onClick={downloadExport}
