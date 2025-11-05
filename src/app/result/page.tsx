@@ -68,6 +68,8 @@ export default function Result() {
     includeTimelineInPack,
     setIncludeTimelineInPack,
     vault,
+    preferredOcrNoteId,
+    setPreferredOcrNoteId,
   } = useAppStore();
   const [city] = useState<"berlin" | "hamburg" | "nrw">(preferredCity || "berlin");
   const violenceFlag = interview.answers["history_of_violence"] === "yes";
@@ -418,6 +420,57 @@ export default function Result() {
               />
               {t.result.attachTimeline}
             </label>
+            {(() => {
+              const ocrNotes = vault.entries.filter(
+                (e) => e.type === "note" && (e.payload as { fields?: unknown }).fields
+              );
+              if (ocrNotes.length === 0) return null;
+              const selected = preferredOcrNoteId
+                ? ocrNotes.find((n) => n.id === preferredOcrNoteId)
+                : undefined;
+              const f = selected
+                ? (
+                    selected.payload as {
+                      fields?: { fullName?: string; address?: string; city?: string };
+                    }
+                  ).fields || {}
+                : {};
+              const extractCity = (addr?: string, city?: string): string => {
+                if (city) return city;
+                if (!addr) return "";
+                const m = addr.match(/\b\d{5}\s+([A-Za-zÄÖÜäöüß\- ]{2,})\b/);
+                return m ? m[1].trim() : "";
+              };
+              const city = extractCity(
+                (f as { address?: string }).address,
+                (f as { city?: string }).city
+              );
+              return (
+                <label className="block text-sm mt-2">
+                  Sender (OCR note)
+                  <select
+                    className="mt-1 w-full rounded border px-3 py-2"
+                    value={preferredOcrNoteId || ""}
+                    onChange={(e) => setPreferredOcrNoteId(e.target.value)}
+                  >
+                    <option value="">—</option>
+                    {ocrNotes.map((n) => (
+                      <option
+                        key={n.id}
+                        value={n.id}
+                      >{`${n.title} – ${new Date(n.timestamp).toLocaleDateString()}`}</option>
+                    ))}
+                  </select>
+                  {selected && ((f as { fullName?: string }).fullName || city) && (
+                    <div className="text-xs text-zinc-700 dark:text-zinc-300 mt-1">
+                      {((f as { fullName?: string }).fullName || "") as string}
+                      {(f as { fullName?: string }).fullName && city ? " — " : ""}
+                      {city}
+                    </div>
+                  )}
+                </label>
+              );
+            })()}
             {includeTimelineInPack &&
               (() => {
                 const entry = vault.entries.find(
@@ -641,10 +694,31 @@ async function buildPackBlob(
   // Add text cover letter and PDF cover letter
   zip.file("cover-letter.txt", cover);
   try {
+    const state = useAppStore.getState();
+    const senderFields = (() => {
+      const notes = state.vault.entries.filter((e) => e.type === "note");
+      const pick = state.preferredOcrNoteId
+        ? notes.find((n) => n.id === state.preferredOcrNoteId)
+        : notes.find((n) => (n.payload as { fields?: unknown }).fields);
+      if (!pick) return undefined;
+      const f = (
+        pick.payload as {
+          fields?: {
+            fullName?: string;
+            address?: string;
+            phone?: string;
+            email?: string;
+            city?: string;
+          };
+        }
+      ).fields;
+      return f;
+    })();
     const pdfCover = await buildCoverLetter(
       kind,
       locale,
-      useAppStore.getState().preferredCourtTemplate
+      state.preferredCourtTemplate,
+      senderFields
     );
     zip.file("cover-letter.pdf", pdfCover);
   } catch {

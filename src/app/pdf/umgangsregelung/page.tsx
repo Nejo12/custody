@@ -11,6 +11,7 @@ import { resolveCourtTemplate } from "@/lib/courts";
 type ProposalForm = {
   proposal: ScheduleInput;
   applicant?: { fullName?: string; address?: string };
+  otherParent?: { fullName?: string; address?: string };
 };
 
 export default function UmgangPage() {
@@ -26,7 +27,31 @@ export default function UmgangPage() {
     setIncludeTimelineInPack,
     preferredCity,
     preferredCourtTemplate,
+    vault,
   } = useAppStore();
+  const ocrNotes = vault.entries.filter((e) => {
+    if (e.type !== "note") return false;
+    const f = (e.payload as { fields?: unknown }).fields;
+    return typeof f === "object" && f !== null;
+  });
+  const [selectedOcrId, setSelectedOcrId] = useState<string>(ocrNotes[0]?.id || "");
+  function getFields(id: string): { fullName?: string; address?: string } | undefined {
+    const e = ocrNotes.find((n) => n.id === id);
+    if (!e) return undefined;
+    const pf = (e.payload as { fields?: { fullName?: string; address?: string } }).fields;
+    return pf;
+  }
+  function prefillApplicant() {
+    const f = getFields(selectedOcrId);
+    if (!f) return;
+    setForm((prev) => ({
+      ...prev,
+      applicant: {
+        fullName: prev.applicant?.fullName || f.fullName,
+        address: prev.applicant?.address || f.address,
+      },
+    }));
+  }
   const [downloading, setDownloading] = useState(false);
   const [optimizer, setOptimizer] = useState({
     distance: "local" as "local" | "regional" | "far",
@@ -112,6 +137,102 @@ export default function UmgangPage() {
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
       <h1 className="text-xl font-semibold">{t.result.generateContactOrder}</h1>
+      {ocrNotes.length > 0 && (
+        <div className="rounded-lg border p-3 space-y-2">
+          <div className="text-sm font-medium">Prefill suggestions (OCR)</div>
+          <div className="flex flex-col sm:flex-row sm:items-end gap-2">
+            <label className="text-sm flex-1">
+              OCR note
+              <select
+                className="mt-1 w-full rounded border px-3 py-2"
+                value={selectedOcrId}
+                onChange={(e) => setSelectedOcrId(e.target.value)}
+              >
+                {ocrNotes.map((n) => (
+                  <option
+                    key={n.id}
+                    value={n.id}
+                  >{`${n.title} – ${new Date(n.timestamp).toLocaleDateString()}`}</option>
+                ))}
+              </select>
+            </label>
+            <div className="flex gap-2">
+              <button type="button" className="text-sm underline" onClick={prefillApplicant}>
+                Prefill applicant
+              </button>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <label className="block text-sm">
+              Applicant full name (optional)
+              <input
+                className="mt-1 w-full rounded border px-2 py-2"
+                value={form.applicant?.fullName || ""}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    applicant: { ...(form.applicant || {}), fullName: e.target.value },
+                  })
+                }
+              />
+            </label>
+            <label className="block text-sm">
+              Applicant address (optional)
+              <input
+                className="mt-1 w-full rounded border px-2 py-2"
+                value={form.applicant?.address || ""}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    applicant: { ...(form.applicant || {}), address: e.target.value },
+                  })
+                }
+              />
+            </label>
+            <label className="block text-sm">
+              Other parent full name (optional)
+              <input
+                className="mt-1 w-full rounded border px-2 py-2"
+                value={form.otherParent?.fullName || ""}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    otherParent: { ...(form.otherParent || {}), fullName: e.target.value },
+                  })
+                }
+              />
+            </label>
+            <label className="block text-sm">
+              Other parent address (optional)
+              <input
+                className="mt-1 w-full rounded border px-2 py-2"
+                value={form.otherParent?.address || ""}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    otherParent: { ...(form.otherParent || {}), address: e.target.value },
+                  })
+                }
+              />
+            </label>
+            <div className="sm:col-span-2">
+              <button
+                type="button"
+                className="text-xs underline"
+                onClick={() =>
+                  setForm((prev) => ({
+                    ...prev,
+                    applicant: prev.otherParent,
+                    otherParent: prev.applicant,
+                  }))
+                }
+              >
+                Swap applicant/other parent
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <motion.div
         className="rounded-lg border p-3 space-y-2"
         initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 12 }}

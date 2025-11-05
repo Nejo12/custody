@@ -1,10 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { anonymizeText } from "@/lib/anonymize";
 import { useAppStore } from "@/store/app";
 import { useI18n } from "@/i18n";
 
-type Fields = { fullName?: string; address?: string; dateOfBirth?: string };
+type Fields = {
+  fullName?: string;
+  address?: string;
+  dateOfBirth?: string;
+  phone?: string;
+  email?: string;
+  city?: string;
+};
 
 export default function ScanPage() {
   const { t } = useI18n();
@@ -17,6 +24,26 @@ export default function ScanPage() {
   const [redacted, setRedacted] = useState<string>("");
   const [fields, setFields] = useState<Fields>({});
   const [lang, setLang] = useState<"eng" | "deu" | "auto">("eng");
+  const [usedLang, setUsedLang] = useState<string>("");
+  const [preloadedDeu, setPreloadedDeu] = useState(false);
+
+  // Lazy preload German model once selected for faster subsequent scans
+  useEffect(() => {
+    if (preloadedDeu) return;
+    if (lang === "deu" || lang === "auto") {
+      (async () => {
+        try {
+          const { recognize } = await import("tesseract.js");
+          const tinyPng =
+            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAgMBg0sNn5wAAAAASUVORK5CYII=";
+          await recognize(tinyPng, "deu");
+          setPreloadedDeu(true);
+        } catch {
+          /* ignore preload errors */
+        }
+      })();
+    }
+  }, [lang, preloadedDeu]);
 
   function onPick(ev: React.ChangeEvent<HTMLInputElement>) {
     const f = ev.target.files?.[0] || null;
@@ -32,6 +59,9 @@ export default function ScanPage() {
     let fullName: string | undefined;
     let address: string | undefined;
     let dateOfBirth: string | undefined;
+    let phone: string | undefined;
+    let email: string | undefined;
+    let city: string | undefined;
     for (const ln of lines) {
       if (!fullName && /(name|full name|vorname|nachname)[:\s]/i.test(ln)) {
         fullName = ln.replace(/^(name|full name|vorname|nachname)[:\s-]*/i, "").trim();
@@ -42,8 +72,20 @@ export default function ScanPage() {
       if (!dateOfBirth && /(geburtsdatum|date of birth|dob)[:\s]/i.test(ln)) {
         dateOfBirth = ln.replace(/^(geburtsdatum|date of birth|dob)[:\s-]*/i, "").trim();
       }
+      if (!email) {
+        const m = ln.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
+        if (m) email = m[0];
+      }
+      if (!phone) {
+        const p = ln.match(/\+?\d[\d\s().-]{6,}\d/);
+        if (p) phone = p[0];
+      }
+      if (!city) {
+        const cm = ln.match(/\b(\d{5})\s+([A-Za-zÄÖÜäöüß\- ]{2,})\b/);
+        if (cm) city = cm[2].trim();
+      }
     }
-    return { fullName, address, dateOfBirth };
+    return { fullName, address, dateOfBirth, phone, email, city };
   }
 
   async function onRecognize() {
@@ -53,8 +95,21 @@ export default function ScanPage() {
       if (!file) throw new Error("No image selected");
       const { recognize } = await import("tesseract.js");
       const sel = lang === "auto" ? "deu+eng" : lang;
-      const { data } = await recognize(file, sel);
-      const raw = (data?.text || "").trim();
+      let { data } = await recognize(file, sel);
+      let raw = (data?.text || "").trim();
+      let conf = typeof data?.confidence === "number" ? data.confidence : 0;
+      let finalLang = sel;
+      if (conf < 55 && sel !== "deu") {
+        const re = await recognize(file, "deu");
+        const c2 = typeof re.data?.confidence === "number" ? re.data.confidence : 0;
+        if (c2 > conf) {
+          data = re.data;
+          raw = (re.data?.text || "").trim();
+          conf = c2;
+          finalLang = "deu";
+        }
+      }
+      setUsedLang(finalLang);
       setText(raw);
       const red = anonymizeText(raw);
       setRedacted(red);
@@ -126,6 +181,7 @@ export default function ScanPage() {
           <pre className="whitespace-pre-wrap text-xs bg-zinc-50 dark:bg-zinc-900 rounded p-2 max-h-48 overflow-auto">
             {redacted || text}
           </pre>
+          {usedLang && <div className="text-[11px] text-zinc-500">{`OCR model: ${usedLang}`}</div>}
           <div className="text-sm font-medium">{t.ocr?.extractedFields || "Extracted fields"}</div>
           <div className="text-xs text-zinc-700 dark:text-zinc-300">
             {fields.fullName && (
@@ -138,12 +194,32 @@ export default function ScanPage() {
                 <span className="font-medium">Address:</span> {fields.address}
               </div>
             )}
+            {fields.city && (
+              <div>
+                <span className="font-medium">City:</span> {fields.city}
+              </div>
+            )}
+            {fields.phone && (
+              <div>
+                <span className="font-medium">Phone:</span> {fields.phone}
+              </div>
+            )}
+            {fields.email && (
+              <div>
+                <span className="font-medium">Email:</span> {fields.email}
+              </div>
+            )}
             {fields.dateOfBirth && (
               <div>
                 <span className="font-medium">Date of birth:</span> {fields.dateOfBirth}
               </div>
             )}
-            {!fields.fullName && !fields.address && !fields.dateOfBirth && <div>—</div>}
+            {!fields.fullName &&
+              !fields.address &&
+              !fields.dateOfBirth &&
+              !fields.phone &&
+              !fields.email &&
+              !fields.city && <div>—</div>}
           </div>
           <button
             onClick={onSave}

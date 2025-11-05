@@ -19,23 +19,39 @@ export default function GSPage() {
   const { setPreferredCourtTemplate, includeTimelineInPack, setIncludeTimelineInPack, vault } =
     useAppStore();
   const [downloading, setDownloading] = useState(false);
-  const ocr = (() => {
-    const e = vault.entries.find(
-      (x) => x.type === "note" && (x.payload as { fields?: unknown }).fields
-    );
-    if (!e) return undefined as undefined | { fullName?: string; address?: string };
-    const p = e.payload as { fields?: { fullName?: string; address?: string } };
-    return p.fields;
-  })();
-  function applyOCRToParentA() {
-    if (!ocr) return;
+  const ocrNotes = vault.entries.filter((e) => {
+    if (e.type !== "note") return false;
+    const f = (e.payload as { fields?: unknown }).fields;
+    return typeof f === "object" && f !== null;
+  });
+  const [selectedOcrId, setSelectedOcrId] = useState<string>(ocrNotes[0]?.id || "");
+  function getFields(id: string): { fullName?: string; address?: string } | undefined {
+    const e = ocrNotes.find((n) => n.id === id);
+    if (!e) return undefined;
+    const pf = (e.payload as { fields?: { fullName?: string; address?: string } }).fields;
+    return pf;
+  }
+  function prefill(parent: "A" | "B") {
+    const f = getFields(selectedOcrId);
+    if (!f) return;
     setForm((prev) => ({
       ...prev,
-      parentA: {
-        ...prev.parentA,
-        fullName: prev.parentA.fullName || ocr.fullName || "",
-        address: prev.parentA.address || ocr.address || "",
-      },
+      parentA:
+        parent === "A"
+          ? {
+              ...prev.parentA,
+              fullName: prev.parentA.fullName || f.fullName || "",
+              address: prev.parentA.address || f.address || "",
+            }
+          : prev.parentA,
+      parentB:
+        parent === "B"
+          ? {
+              ...prev.parentB,
+              fullName: prev.parentB.fullName || f.fullName || "",
+              address: prev.parentB.address || f.address || "",
+            }
+          : prev.parentB,
     }));
   }
 
@@ -78,10 +94,41 @@ export default function GSPage() {
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
       <h1 className="text-xl font-semibold">{t.result.generateJointCustody}</h1>
       <div className="space-y-2">
-        {ocr && (
-          <button type="button" onClick={applyOCRToParentA} className="text-sm underline">
-            Prefill Parent A from OCR
-          </button>
+        {ocrNotes.length > 0 && (
+          <div className="flex flex-col sm:flex-row sm:items-end gap-2">
+            <label className="text-sm flex-1">
+              OCR note
+              <select
+                className="mt-1 w-full rounded border px-3 py-2"
+                value={selectedOcrId}
+                onChange={(e) => setSelectedOcrId(e.target.value)}
+              >
+                {ocrNotes.map((n) => (
+                  <option
+                    key={n.id}
+                    value={n.id}
+                  >{`${n.title} – ${new Date(n.timestamp).toLocaleDateString()}`}</option>
+                ))}
+              </select>
+            </label>
+            <div className="flex gap-2">
+              <button type="button" className="text-sm underline" onClick={() => prefill("A")}>
+                Prefill Parent A
+              </button>
+              <button type="button" className="text-sm underline" onClick={() => prefill("B")}>
+                Prefill Parent B
+              </button>
+              <button
+                type="button"
+                className="text-sm underline"
+                onClick={() =>
+                  setForm((prev) => ({ ...prev, parentA: prev.parentB, parentB: prev.parentA }))
+                }
+              >
+                Swap A/B
+              </button>
+            </div>
+          </div>
         )}
         <label className="block text-sm mt-2">
           {t.result.courtTemplate}

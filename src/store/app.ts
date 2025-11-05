@@ -39,6 +39,8 @@ type AppState = {
   setPreferredCourtTemplate: (tpl: string) => void;
   includeTimelineInPack: boolean;
   setIncludeTimelineInPack: (v: boolean) => void;
+  preferredOcrNoteId?: string;
+  setPreferredOcrNoteId: (id: string) => void;
 };
 
 const getSystemTheme = (): "light" | "dark" => {
@@ -78,6 +80,8 @@ export const useAppStore = create<AppState>()(
         // Persist middleware will rehydrate includeTimelineInPack; default to false
         includeTimelineInPack: false,
         setIncludeTimelineInPack: (v) => set({ includeTimelineInPack: v }),
+        preferredOcrNoteId: "",
+        setPreferredOcrNoteId: (id) => set({ preferredOcrNoteId: id }),
         theme: initialTheme,
         setTheme: (t) => {
           set({ theme: t });
@@ -130,6 +134,7 @@ export const useAppStore = create<AppState>()(
         preferredCity: s.preferredCity,
         preferredCourtTemplate: s.preferredCourtTemplate,
         includeTimelineInPack: s.includeTimelineInPack,
+        preferredOcrNoteId: s.preferredOcrNoteId,
         interview: s.interview,
         vault: s.vault,
       }),

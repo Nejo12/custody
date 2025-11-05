@@ -1,16 +1,64 @@
 import { PDFDocument, StandardFonts } from "pdf-lib";
 import { resolveCourtTemplate } from "@/lib/courts";
 
+export type Sender = {
+  fullName?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  city?: string;
+};
+
 export async function buildCoverLetter(
   kind: "joint" | "contact" | "mediation" | "blocked",
   locale: string,
-  courtTemplate?: string
+  courtTemplate?: string,
+  sender?: Sender
 ): Promise<Uint8Array> {
   const doc = await PDFDocument.create();
   const font = await doc.embedFont(StandardFonts.Helvetica);
   const page = doc.addPage([595.28, 841.89]); // A4
   const marginX = 50;
   let y = 780;
+  // Sender block (top-right)
+  if (sender && (sender.fullName || sender.address || sender.phone || sender.email)) {
+    let yRight = 800;
+    const xRight = 360;
+    if (sender.fullName) {
+      page.drawText(sender.fullName, { x: xRight, y: yRight, size: 11, font });
+      yRight -= 14;
+    }
+    if (sender.address) {
+      const lines = String(sender.address).split(/\n+/);
+      for (const ln of lines) {
+        page.drawText(ln, { x: xRight, y: yRight, size: 11, font });
+        yRight -= 14;
+      }
+    }
+    if (sender.phone) {
+      page.drawText((locale === "de" ? "Telefon: " : "Phone: ") + sender.phone, {
+        x: xRight,
+        y: yRight,
+        size: 11,
+        font,
+      });
+      yRight -= 14;
+    }
+    if (sender.email) {
+      page.drawText("Email: " + sender.email, { x: xRight, y: yRight, size: 11, font });
+      yRight -= 14;
+    }
+    // City + Date line
+    const today = new Date().toISOString().slice(0, 10);
+    let city = sender.city;
+    if (!city && sender.address) {
+      const m = sender.address.match(/\b\d{5}\s+([A-Za-zÄÖÜäöüß\- ]{2,})\b/);
+      if (m) city = m[1].trim();
+    }
+    const dateLine = (city ? city + ", " : "") + today;
+    page.drawText(dateLine, { x: xRight, y: yRight, size: 11, font });
+    yRight -= 14;
+  }
   const titleDe =
     kind === "joint"
       ? "Anschreiben – Gemeinsame Sorge"
@@ -72,6 +120,20 @@ export async function buildCoverLetter(
         : kind === "mediation"
           ? "Betreff: Bitte um Termin zur Mediation (Elternvereinbarung)."
           : "Betreff: Umgang wird blockiert – Bitte um Unterstützung/weiteres Vorgehen.",
+    sender?.fullName ? `Absender: ${sender.fullName}` : "",
+    sender?.phone || sender?.email
+      ? `Kontakt: ${sender.phone ? `Telefon ${sender.phone}` : ""}${
+          sender.phone && sender.email ? ", " : ""
+        }${sender.email ? `Email ${sender.email}` : ""}`
+      : "",
+    (() => {
+      let c = sender?.city;
+      if (!c && sender?.address) {
+        const m = sender.address.match(/\b\d{5}\s+([A-Za-zÄÖÜäöüß\- ]{2,})\b/);
+        if (m) c = m[1].trim();
+      }
+      return c ? `Ort/Datum: ${c}, ${date}` : "";
+    })(),
   ];
   const bodyEn = [
     `Date: ${date}`,
@@ -84,6 +146,20 @@ export async function buildCoverLetter(
         : kind === "mediation"
           ? "Subject: Request for mediation appointment (parenting agreement)."
           : "Subject: Contact is being blocked — request for support/next steps.",
+    sender?.fullName ? `Sender: ${sender.fullName}` : "",
+    sender?.phone || sender?.email
+      ? `Contact: ${sender.phone ? `Phone ${sender.phone}` : ""}${
+          sender.phone && sender.email ? ", " : ""
+        }${sender.email ? `Email ${sender.email}` : ""}`
+      : "",
+    (() => {
+      let c = sender?.city;
+      if (!c && sender?.address) {
+        const m = sender.address.match(/\b\d{5}\s+([A-Za-zÄÖÜäöüß\- ]{2,})\b/);
+        if (m) c = m[1].trim();
+      }
+      return c ? `City/Date: ${c}, ${date}` : "";
+    })(),
   ];
   const body = (locale === "de" ? bodyDe : bodyEn).join("\n");
   for (const line of body.split("\n")) {
