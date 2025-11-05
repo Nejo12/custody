@@ -223,6 +223,22 @@ const tr = {
     explainerTitle: "Neden bu plan",
     explainerNote: "Mesafe, yaş ve notlara göre.",
     citations: "Atıflar",
+    applyPresets: "Bölge önayarlarını uygula",
+    resetPresets: "Önayarları sıfırla",
+  },
+  ruleExplain: {
+    "custody.married.default":
+      "Doğumda evliyseniz: mahkeme aksini söylemedikçe ortak velayet geçerlidir.",
+    "custody.unmarried.paternity_acknowledged":
+      "Babalık tanınmışsa ortak velayet için başvurabilirsiniz.",
+    "custody.unmarried.path_to_joint":
+      "Evli değil + babalık tanınmış + aykırı karar yok → ortak velayet başvurusu mümkün.",
+    "contact.right": "İletişim engelleniyorsa mahkemeden iletişim düzeni isteyebilirsiniz.",
+    "contact.safety.supervised":
+      "Risk varsa denetimli görüşme çocuğu korurken iletişimi sürdürebilir.",
+    "contact.young_child.schedule": "3 yaş altı için kısa ve sık hafta içi buluşmalar uygundur.",
+    "contact.distance.far": "Uzun mesafelerde hafta sonu/tatil odaklı planlar uygundur.",
+    "mediation.suggest": "Jugendamt aracılığıyla arabuluculuk hızlı bir uzlaşma sağlayabilir.",
   },
   neutralizer: {
     title: "Çatışma yumuşatıcı (beta)",

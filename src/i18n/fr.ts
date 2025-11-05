@@ -232,6 +232,24 @@ const fr = {
     explainerTitle: "Pourquoi ce plan",
     explainerNote: "Selon la distance, l’âge et les notes.",
     citations: "Citations",
+    applyPresets: "Appliquer les préréglages régionaux",
+    resetPresets: "Réinitialiser aux préréglages",
+  },
+  ruleExplain: {
+    "custody.married.default":
+      "Mariés à la naissance : garde conjointe sauf décision contraire du tribunal.",
+    "custody.unmarried.paternity_acknowledged":
+      "Avec paternité reconnue, vous pouvez demander la garde conjointe.",
+    "custody.unmarried.path_to_joint":
+      "Non mariés + paternité reconnue + pas de décision contraire → demande possible de garde conjointe.",
+    "contact.right": "Si le contact est bloqué, vous pouvez demander une ordonnance de contact.",
+    "contact.safety.supervised":
+      "En cas de risque, un contact supervisé peut protéger l'enfant tout en préservant le droit de contact.",
+    "contact.young_child.schedule":
+      "Moins de 3 ans : des créneaux courts et fréquents en semaine sont souvent adaptés.",
+    "contact.distance.far":
+      "Les longues distances appellent des plans centrés sur les week‑ends/vacances.",
+    "mediation.suggest": "La médiation via le Jugendamt peut aider à un accord rapide.",
   },
   neutralizer: {
     title: "Neutraliseur de conflit (bêta)",

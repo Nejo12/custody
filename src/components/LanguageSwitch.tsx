@@ -50,7 +50,7 @@ export default function LanguageSwitch({ buttonClassName }: { buttonClassName?: 
       {open && (
         <ul
           role="listbox"
-          className="absolute right-0 mt-1 w-44 rounded-lg border bg-white shadow-md dark:bg-zinc-900 dark:border-zinc-700 z-50 text-zinc-900 dark:text-zinc-100 overflow-hidden"
+          className="menu-panel absolute right-0 mt-1 w-44 rounded-lg border bg-white dark:bg-zinc-900 shadow-xl z-50 overflow-hidden divide-y divide-zinc-200 dark:divide-zinc-800"
         >
           {locales.map((l) => (
             <li

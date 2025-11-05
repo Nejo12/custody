@@ -49,6 +49,84 @@ export function resolveCourtTemplate(template?: string): Court {
         name: "Amtsgericht Bochum (Familiengericht)",
         address: "Viktoriastraße 14, 44787 Bochum",
       };
+    // Bavaria
+    case "bayern-muenchen":
+      return {
+        name: "Amtsgericht München (Familiengericht)",
+        address: "Pacellistraße 5, 80333 München",
+      };
+    // Baden-Württemberg
+    case "bw-stuttgart":
+      return {
+        name: "Amtsgericht Stuttgart (Familiengericht)",
+        address: "Hauffstraße 5, 70190 Stuttgart",
+      };
+    // Hesse
+    case "hessen-frankfurt":
+      return {
+        name: "Amtsgericht Frankfurt am Main (Familiengericht)",
+        address: "Gerichtsstraße 2, 60313 Frankfurt am Main",
+      };
+    // Saxony
+    case "sachsen-leipzig":
+      return {
+        name: "Amtsgericht Leipzig (Familiengericht)",
+        address: "Bernhard‑Göring‑Straße 64, 04275 Leipzig",
+      };
+    // Lower Saxony
+    case "nds-hannover":
+      return {
+        name: "Amtsgericht Hannover (Familiengericht)",
+        address: "Volgersweg 65, 30175 Hannover",
+      };
+    // Rhineland-Palatinate
+    case "rlp-mainz":
+      return {
+        name: "Amtsgericht Mainz (Familiengericht)",
+        address: "Diether‑von‑Isenburg‑Straße 1, 55116 Mainz",
+      };
+    // Schleswig-Holstein
+    case "sh-kiel":
+      return {
+        name: "Amtsgericht Kiel (Familiengericht)",
+        address: "Eggerstedtstraße 10, 24103 Kiel",
+      };
+    // Bremen
+    case "bremen":
+      return {
+        name: "Amtsgericht Bremen (Familiengericht)",
+        address: "Am Wall 198‑212, 28195 Bremen",
+      };
+    // Saarland
+    case "saar-saarbruecken":
+      return {
+        name: "Amtsgericht Saarbrücken (Familiengericht)",
+        address: "Franz‑Joseph‑Röder‑Straße 15, 66119 Saarbrücken",
+      };
+    // Brandenburg
+    case "bb-potsdam":
+      return {
+        name: "Amtsgericht Potsdam (Familiengericht)",
+        address: "Jägerallee 10‑12, 14469 Potsdam",
+      };
+    // Mecklenburg-Vorpommern
+    case "mv-rostock":
+      return {
+        name: "Amtsgericht Rostock (Familiengericht)",
+        address: "August‑Bebel‑Straße 15, 18055 Rostock",
+      };
+    // Thuringia
+    case "thueringen-erfurt":
+      return {
+        name: "Amtsgericht Erfurt (Familiengericht)",
+        address: "Domplatz 37, 99084 Erfurt",
+      };
+    // Saxony-Anhalt
+    case "st-magdeburg":
+      return {
+        name: "Amtsgericht Magdeburg (Familiengericht)",
+        address: "Breiter Weg 203‑206, 39104 Magdeburg",
+      };
     default:
       return {};
   }

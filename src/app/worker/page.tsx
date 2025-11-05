@@ -4,20 +4,20 @@ import { useAppStore } from "@/store/app";
 import { buildPackZip } from "@/lib/packs";
 
 export default function WorkerPage() {
-  const { socialWorkerMode, locale } = useAppStore();
+  const { locale, socialWorkerMode } = useAppStore();
   const [names, setNames] = useState<string>("");
   const [kinds, setKinds] = useState<{ joint: boolean; contact: boolean }>({
     joint: true,
     contact: false,
   });
   const [downloading, setDownloading] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const senderLabel = "Sender name per line (used as cover-letter sender)";
 
+  // Mark as client-hydrated; rely on the store's persisted state rather than redirecting
   useEffect(() => {
-    if (!socialWorkerMode && typeof window !== "undefined") {
-      window.location.href = "/settings";
-    }
-  }, [socialWorkerMode]);
+    setHydrated(true);
+  }, []);
 
   async function onBuild() {
     try {
@@ -52,6 +52,30 @@ export default function WorkerPage() {
     } finally {
       setDownloading(false);
     }
+  }
+
+  if (!hydrated) {
+    return (
+      <div className="w-full max-w-xl mx-auto px-4 py-6">
+        <div className="text-sm">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!socialWorkerMode) {
+    return (
+      <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
+        <h1 className="text-xl font-semibold">Social Worker Tools</h1>
+        <div className="rounded-lg border p-3">
+          <div className="text-sm">
+            Access requires Social Worker Mode. Please enable it in Settings.
+          </div>
+          <a href="/settings" className="underline text-sm mt-2 inline-block">
+            Go to Settings
+          </a>
+        </div>
+      </div>
+    );
   }
 
   return (

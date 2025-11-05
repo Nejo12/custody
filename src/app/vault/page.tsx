@@ -114,7 +114,7 @@ export default function VaultPage() {
       <div className="space-y-3">
         {filtered.map((e) => (
           <div key={e.id} className="rounded-lg border p-4">
-            <div className="text-xs text-zinc-700 dark:text-zinc-400">
+            <div className="text-xs text-zinc-700 dark:text-zinc-400" suppressHydrationWarning>
               {new Date(e.timestamp).toLocaleString()}
             </div>
             <div className="font-medium">{e.title}</div>

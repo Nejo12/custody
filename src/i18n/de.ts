@@ -225,6 +225,24 @@ const de = {
     explainerTitle: "Warum dieser Plan",
     explainerNote: "Basierend auf Entfernung, Alter und Notizen.",
     citations: "Quellen",
+    applyPresets: "Regionale Voreinstellungen anwenden",
+    resetPresets: "Auf Voreinstellungen zurücksetzen",
+  },
+  ruleExplain: {
+    "custody.married.default":
+      "Bei Ehe zum Zeitpunkt der Geburt gilt gemeinsames Sorgerecht, sofern kein Gericht anders entschieden hat.",
+    "custody.unmarried.paternity_acknowledged":
+      "Bei anerkannter Vaterschaft können Sie gemeinsames Sorgerecht beantragen.",
+    "custody.unmarried.path_to_joint":
+      "Unverheiratet + Vaterschaft anerkannt + keine entgegenstehende Entscheidung → Antrag auf gemeinsames Sorgerecht möglich.",
+    "contact.right":
+      "Bei blockiertem Kontakt kann eine Umgangsregelung beim Gericht beantragt werden.",
+    "contact.safety.supervised":
+      "Bei Risiken kann begleiteter Umgang das Kindeswohl sichern und Kontakt ermöglichen.",
+    "contact.young_child.schedule":
+      "Unter 3 Jahren sind kürzere, häufigere Wochentagskontakte oft sinnvoll.",
+    "contact.distance.far": "Große Entfernungen sprechen für Wochenend-/Ferien‑Lösungen.",
+    "mediation.suggest": "Mediation über das Jugendamt kann eine schnelle Einigung fördern.",
   },
   neutralizer: {
     title: "Konflikt‑Entschärfer (Beta)",

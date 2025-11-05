@@ -228,6 +228,23 @@ const pl = {
     explainerTitle: "Dlaczego taki plan",
     explainerNote: "Na podstawie odległości, wieku i notatek.",
     citations: "Cytaty",
+    applyPresets: "Zastosuj ustawienia regionalne",
+    resetPresets: "Przywróć ustawienia regionalne",
+  },
+  ruleExplain: {
+    "custody.married.default":
+      "Małżeństwo przy urodzeniu: wspólna władza rodzicielska, o ile sąd nie orzekł inaczej.",
+    "custody.unmarried.paternity_acknowledged":
+      "Przy uznaniu ojcostwa można wnioskować o wspólną władzę.",
+    "custody.unmarried.path_to_joint":
+      "Nie małżeństwo + uznane ojcostwo + brak orzeczenia przeciwnego → możliwy wniosek o wspólną władzę.",
+    "contact.right": "Gdy kontakt jest blokowany, można wnioskować o uregulowanie kontaktów.",
+    "contact.safety.supervised":
+      "Przy ryzyku nadzorowane kontakty mogą chronić dziecko i zapewnić kontakt.",
+    "contact.young_child.schedule":
+      "Dzieci <3 lat: krótsze, częstsze kontakty w tygodniu są często najlepsze.",
+    "contact.distance.far": "Duże odległości przemawiają za planem weekendowym/feryjnym.",
+    "mediation.suggest": "Mediacja przez Jugendamt może przyspieszyć porozumienie.",
   },
   neutralizer: {
     title: "Neutralizator konfliktu (beta)",

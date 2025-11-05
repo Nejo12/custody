@@ -223,6 +223,22 @@ const en = {
     explainerTitle: "Why this plan",
     explainerNote: "Based on distance, age, and notes.",
     citations: "Citations",
+    applyPresets: "Apply region presets",
+    resetPresets: "Reset to presets",
+  },
+  ruleExplain: {
+    "custody.married.default": "Married at birth: joint custody applies unless a court changed it.",
+    "custody.unmarried.paternity_acknowledged":
+      "With paternity acknowledged, you can apply for joint custody.",
+    "custody.unmarried.path_to_joint":
+      "Unmarried + paternity acknowledged + no opposing order → you can apply for joint custody.",
+    "contact.right": "If contact is blocked, you may request a court contact order.",
+    "contact.safety.supervised":
+      "Where risks exist, supervised contact may protect the child while preserving contact rights.",
+    "contact.young_child.schedule":
+      "Under‑3 often benefit from shorter, more frequent weekday blocks.",
+    "contact.distance.far": "Long distances call for weekend/holiday‑focused plans.",
+    "mediation.suggest": "Mediation via Jugendamt can help reach a quick agreement.",
   },
   neutralizer: {
     title: "Conflict neutralizer (beta)",

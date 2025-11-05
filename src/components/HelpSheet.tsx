@@ -357,9 +357,14 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                         </div>
                       )}
                       {queueIntel[s.id]?.lastSubmittedAt && (
-                        <div className="text-[11px] text-zinc-500 dark:text-zinc-500 mt-0.5">
+                        <div
+                          className="text-[11px] text-zinc-500 dark:text-zinc-500 mt-0.5"
+                          suppressHydrationWarning
+                        >
                           {t.helpSheet.queueLastVerified}:{" "}
-                          {new Date(queueIntel[s.id].lastSubmittedAt || 0).toLocaleDateString()}
+                          {new Date(queueIntel[s.id].lastSubmittedAt || 0)
+                            .toISOString()
+                            .slice(0, 10)}
                         </div>
                       )}
                       {reportFor === s.id && (

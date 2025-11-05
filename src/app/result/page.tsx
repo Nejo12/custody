@@ -166,7 +166,13 @@ export default function Result() {
                     )}
                   </summary>
                   <div className="mt-1 rounded border px-3 py-2 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-800 dark:text-zinc-200">
-                    <div className="mb-1">{r.outcome.message || label}</div>
+                    <div className="mb-1">
+                      {(t as TranslationDict).ruleExplain?.[
+                        r.id as keyof TranslationDict["ruleExplain"]
+                      ] ||
+                        r.outcome.message ||
+                        label}
+                    </div>
                     {citationsArr.length > 0 && (
                       <ul className="list-disc pl-4 space-y-0.5">
                         {citationsArr.map((c, i) => {
@@ -451,6 +457,47 @@ export default function Result() {
                 <optgroup label="Hamburg">
                   <option value="hamburg">Hamburg – Amtsgericht Hamburg</option>
                 </optgroup>
+                <optgroup label="Bayern">
+                  <option value="bayern-muenchen">München – Amtsgericht München</option>
+                </optgroup>
+                <optgroup label="Baden‑Württemberg">
+                  <option value="bw-stuttgart">Stuttgart – Amtsgericht Stuttgart</option>
+                </optgroup>
+                <optgroup label="Hessen">
+                  <option value="hessen-frankfurt">
+                    Frankfurt – Amtsgericht Frankfurt am Main
+                  </option>
+                </optgroup>
+                <optgroup label="Sachsen">
+                  <option value="sachsen-leipzig">Leipzig – Amtsgericht Leipzig</option>
+                </optgroup>
+                <optgroup label="Niedersachsen">
+                  <option value="nds-hannover">Hannover – Amtsgericht Hannover</option>
+                </optgroup>
+                <optgroup label="Rheinland‑Pfalz">
+                  <option value="rlp-mainz">Mainz – Amtsgericht Mainz</option>
+                </optgroup>
+                <optgroup label="Schleswig‑Holstein">
+                  <option value="sh-kiel">Kiel – Amtsgericht Kiel</option>
+                </optgroup>
+                <optgroup label="Bremen">
+                  <option value="bremen">Bremen – Amtsgericht Bremen</option>
+                </optgroup>
+                <optgroup label="Saarland">
+                  <option value="saar-saarbruecken">Saarbrücken – Amtsgericht Saarbrücken</option>
+                </optgroup>
+                <optgroup label="Brandenburg">
+                  <option value="bb-potsdam">Potsdam – Amtsgericht Potsdam</option>
+                </optgroup>
+                <optgroup label="Mecklenburg‑Vorpommern">
+                  <option value="mv-rostock">Rostock – Amtsgericht Rostock</option>
+                </optgroup>
+                <optgroup label="Thüringen">
+                  <option value="thueringen-erfurt">Erfurt – Amtsgericht Erfurt</option>
+                </optgroup>
+                <optgroup label="Sachsen‑Anhalt">
+                  <option value="st-magdeburg">Magdeburg – Amtsgericht Magdeburg</option>
+                </optgroup>
                 <optgroup label="NRW">
                   <option value="koeln">Köln – Amtsgericht Köln</option>
                   <option value="duesseldorf">Düsseldorf – Amtsgericht Düsseldorf</option>
@@ -518,7 +565,7 @@ export default function Result() {
                       <option
                         key={n.id}
                         value={n.id}
-                      >{`${n.title} – ${new Date(n.timestamp).toLocaleDateString()}`}</option>
+                      >{`${n.title} – ${new Date(n.timestamp).toISOString().slice(0, 10)}`}</option>
                     ))}
                   </select>
                   {selected && ((f as { fullName?: string }).fullName || city) && (

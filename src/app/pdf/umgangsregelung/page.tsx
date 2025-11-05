@@ -7,6 +7,7 @@ import type { ScheduleSuggestResponse } from "@/types/ai";
 import { useAppStore } from "@/store/app";
 import { usePrefersReducedMotion } from "@/lib/hooks";
 import { resolveCourtTemplate } from "@/lib/courts";
+import { regionCitations, type RegionKey } from "@/data/region.resources";
 
 type ProposalForm = {
   proposal: ScheduleInput;
@@ -63,13 +64,69 @@ export default function UmgangPage() {
     summary: "",
   });
 
+  // Build citations for optimizer explainer based on presets + region
+  const buildOptimizerCitations = (
+    distance: "local" | "regional" | "far",
+    under3: boolean,
+    region?: RegionKey
+  ): { label: string; url: string }[] => {
+    const base: { label: string; url: string }[] = [
+      { label: "BGB §1684", url: "https://gesetze-im-internet.de/bgb/__1684.html" },
+      { label: "BGB §1697a", url: "https://gesetze-im-internet.de/bgb/__1697a.html" },
+    ];
+    const out = [...base];
+    if (under3) {
+      out.push({
+        label: "Familienportal – Umgang und Kindeswohl",
+        url: "https://www.familienportal.de/",
+      });
+    }
+    if (distance === "far") {
+      out.push({
+        label: "Praxis: Wochenend-/Ferienlösungen bei Entfernung",
+        url: "https://www.familienportal.de/",
+      });
+    }
+    if (region && regionCitations[region]) {
+      out.push(...regionCitations[region]);
+    }
+    return out;
+  };
+
   // Region-aware presets for schedule fields
-  type CityKey = "berlin" | "hamburg" | "nrw";
+  type CityKey =
+    | "berlin"
+    | "hamburg"
+    | "nrw"
+    | "bayern"
+    | "bw"
+    | "hessen"
+    | "sachsen"
+    | "niedersachsen"
+    | "rlp"
+    | "sh"
+    | "bremen"
+    | "saarland"
+    | "brandenburg"
+    | "mv"
+    | "thueringen";
   const deduceCityFromTemplate = (tpl?: string): CityKey | undefined => {
     if (!tpl) return undefined;
     if (tpl.startsWith("berlin-")) return "berlin";
     if (tpl === "hamburg") return "hamburg";
-    // All others we currently treat as NRW
+    if (tpl.startsWith("bayern-")) return "bayern";
+    if (tpl.startsWith("bw-")) return "bw";
+    if (tpl.startsWith("hessen-")) return "hessen";
+    if (tpl.startsWith("sachsen-")) return "sachsen";
+    if (tpl.startsWith("nds-")) return "niedersachsen";
+    if (tpl.startsWith("rlp-")) return "rlp";
+    if (tpl.startsWith("sh-")) return "sh";
+    if (tpl === "bremen") return "bremen";
+    if (tpl.startsWith("saar-")) return "saarland";
+    if (tpl.startsWith("bb-")) return "brandenburg";
+    if (tpl.startsWith("mv-")) return "mv";
+    if (tpl.startsWith("thueringen-")) return "thueringen";
+    // All others default
     return "nrw";
   };
   const currentCity: CityKey | undefined =
@@ -265,7 +322,7 @@ export default function UmgangPage() {
                   <option
                     key={n.id}
                     value={n.id}
-                  >{`${n.title} – ${new Date(n.timestamp).toLocaleDateString()}`}</option>
+                  >{`${n.title} – ${new Date(n.timestamp).toISOString().slice(0, 10)}`}</option>
                 ))}
               </select>
             </label>
@@ -467,6 +524,42 @@ export default function UmgangPage() {
               ? t.optimizer?.suggesting || "Suggesting…"
               : t.optimizer?.suggest || "Suggest schedule"}
           </button>
+          <button
+            type="button"
+            className="rounded border px-3 py-1 text-sm text-zinc-600 dark:text-zinc-300"
+            onClick={() => {
+              const preset = computeRegionPresets(
+                currentCity,
+                optimizer.distance,
+                optimizer.childUnderThree
+              );
+              setForm((prev) => ({ ...prev, proposal: preset }));
+            }}
+          >
+            {t.optimizer?.resetPresets || "Reset to presets"}
+          </button>
+          <button
+            type="button"
+            className="rounded border px-3 py-1 text-sm"
+            onClick={() => {
+              const preset = computeRegionPresets(
+                currentCity,
+                optimizer.distance,
+                optimizer.childUnderThree
+              );
+              setForm((prev) => ({
+                ...prev,
+                proposal: {
+                  weekday: { ...(prev.proposal.weekday || {}), ...(preset.weekday || {}) },
+                  weekend: { ...(prev.proposal.weekend || {}), ...(preset.weekend || {}) },
+                  holidays: { ...(prev.proposal.holidays || {}), ...(preset.holidays || {}) },
+                  handover: { ...(prev.proposal.handover || {}), ...(preset.handover || {}) },
+                },
+              }));
+            }}
+          >
+            {t.optimizer?.applyPresets || "Apply region presets"}
+          </button>
           {!!optimizer.summary && (
             <motion.div
               className="text-sm text-zinc-600"
@@ -499,16 +592,17 @@ export default function UmgangPage() {
           <div className="text-xs mt-1">
             <div className="font-medium">{t.optimizer?.citations || "Citations"}</div>
             <ul className="list-disc pl-4">
-              <li>
-                <a
-                  className="underline"
-                  href="https://gesetze-im-internet.de/bgb/__1684.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  BGB §1684
-                </a>
-              </li>
+              {buildOptimizerCitations(
+                optimizer.distance,
+                optimizer.childUnderThree,
+                currentCity as RegionKey | undefined
+              ).map((c, i) => (
+                <li key={i}>
+                  <a className="underline" href={c.url} target="_blank" rel="noopener noreferrer">
+                    {c.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -539,6 +633,45 @@ export default function UmgangPage() {
             </optgroup>
             <optgroup label="Hamburg">
               <option value="hamburg">Hamburg – Amtsgericht Hamburg</option>
+            </optgroup>
+            <optgroup label="Bayern">
+              <option value="bayern-muenchen">München – Amtsgericht München</option>
+            </optgroup>
+            <optgroup label="Baden‑Württemberg">
+              <option value="bw-stuttgart">Stuttgart – Amtsgericht Stuttgart</option>
+            </optgroup>
+            <optgroup label="Hessen">
+              <option value="hessen-frankfurt">Frankfurt – Amtsgericht Frankfurt am Main</option>
+            </optgroup>
+            <optgroup label="Sachsen">
+              <option value="sachsen-leipzig">Leipzig – Amtsgericht Leipzig</option>
+            </optgroup>
+            <optgroup label="Niedersachsen">
+              <option value="nds-hannover">Hannover – Amtsgericht Hannover</option>
+            </optgroup>
+            <optgroup label="Rheinland‑Pfalz">
+              <option value="rlp-mainz">Mainz – Amtsgericht Mainz</option>
+            </optgroup>
+            <optgroup label="Schleswig‑Holstein">
+              <option value="sh-kiel">Kiel – Amtsgericht Kiel</option>
+            </optgroup>
+            <optgroup label="Bremen">
+              <option value="bremen">Bremen – Amtsgericht Bremen</option>
+            </optgroup>
+            <optgroup label="Saarland">
+              <option value="saar-saarbruecken">Saarbrücken – Amtsgericht Saarbrücken</option>
+            </optgroup>
+            <optgroup label="Brandenburg">
+              <option value="bb-potsdam">Potsdam – Amtsgericht Potsdam</option>
+            </optgroup>
+            <optgroup label="Mecklenburg‑Vorpommern">
+              <option value="mv-rostock">Rostock – Amtsgericht Rostock</option>
+            </optgroup>
+            <optgroup label="Thüringen">
+              <option value="thueringen-erfurt">Erfurt – Amtsgericht Erfurt</option>
+            </optgroup>
+            <optgroup label="Sachsen‑Anhalt">
+              <option value="st-magdeburg">Magdeburg – Amtsgericht Magdeburg</option>
             </optgroup>
             <optgroup label="NRW">
               <option value="koeln">Köln – Amtsgericht Köln</option>

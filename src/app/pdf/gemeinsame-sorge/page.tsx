@@ -139,7 +139,7 @@ export default function GSPage() {
                   <option
                     key={n.id}
                     value={n.id}
-                  >{`${n.title} – ${new Date(n.timestamp).toLocaleDateString()}`}</option>
+                  >{`${n.title} – ${new Date(n.timestamp).toISOString().slice(0, 10)}`}</option>
                 ))}
               </select>
             </label>
@@ -248,6 +248,45 @@ export default function GSPage() {
             </optgroup>
             <optgroup label="Hamburg">
               <option value="hamburg">Hamburg – Amtsgericht Hamburg</option>
+            </optgroup>
+            <optgroup label="Bayern">
+              <option value="bayern-muenchen">München – Amtsgericht München</option>
+            </optgroup>
+            <optgroup label="Baden‑Württemberg">
+              <option value="bw-stuttgart">Stuttgart – Amtsgericht Stuttgart</option>
+            </optgroup>
+            <optgroup label="Hessen">
+              <option value="hessen-frankfurt">Frankfurt – Amtsgericht Frankfurt am Main</option>
+            </optgroup>
+            <optgroup label="Sachsen">
+              <option value="sachsen-leipzig">Leipzig – Amtsgericht Leipzig</option>
+            </optgroup>
+            <optgroup label="Niedersachsen">
+              <option value="nds-hannover">Hannover – Amtsgericht Hannover</option>
+            </optgroup>
+            <optgroup label="Rheinland‑Pfalz">
+              <option value="rlp-mainz">Mainz – Amtsgericht Mainz</option>
+            </optgroup>
+            <optgroup label="Schleswig‑Holstein">
+              <option value="sh-kiel">Kiel – Amtsgericht Kiel</option>
+            </optgroup>
+            <optgroup label="Bremen">
+              <option value="bremen">Bremen – Amtsgericht Bremen</option>
+            </optgroup>
+            <optgroup label="Saarland">
+              <option value="saar-saarbruecken">Saarbrücken – Amtsgericht Saarbrücken</option>
+            </optgroup>
+            <optgroup label="Brandenburg">
+              <option value="bb-potsdam">Potsdam – Amtsgericht Potsdam</option>
+            </optgroup>
+            <optgroup label="Mecklenburg‑Vorpommern">
+              <option value="mv-rostock">Rostock – Amtsgericht Rostock</option>
+            </optgroup>
+            <optgroup label="Thüringen">
+              <option value="thueringen-erfurt">Erfurt – Amtsgericht Erfurt</option>
+            </optgroup>
+            <optgroup label="Sachsen‑Anhalt">
+              <option value="st-magdeburg">Magdeburg – Amtsgericht Magdeburg</option>
             </optgroup>
             <optgroup label="NRW">
               <option value="koeln">Köln – Amtsgericht Köln</option>
