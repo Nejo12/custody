@@ -108,6 +108,8 @@ const ar = {
     accept: "قبول",
     downloadPack: "تنزيل الحزمة",
     emailMePack: "إرسال الحزمة بالبريد الإلكتروني",
+    downloadMediationPack: "تنزيل حزمة الوساطة",
+    downloadBlockedPack: "تنزيل حزمة ‘إذا كان الاتصال محجوباً’",
     additionalMatchedRules: "قواعد إضافية متطابقة",
     howToReach95Confidence: "كيفية الوصول إلى 95% من الثقة",
     answerThese: "أجب على هذه:",

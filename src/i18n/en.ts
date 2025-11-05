@@ -108,6 +108,8 @@ const en = {
     accept: "Accept",
     downloadPack: "Download Pack",
     emailMePack: "Email Me Pack",
+    downloadMediationPack: "Download Mediation Pack",
+    downloadBlockedPack: "Download ‘If Contact Is Blocked’ Pack",
     additionalMatchedRules: "Additional matched rules",
     howToReach95Confidence: "How to reach 95% confidence",
     answerThese: "Answer these:",

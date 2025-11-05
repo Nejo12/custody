@@ -109,6 +109,8 @@ const fr = {
     accept: "Accepter",
     downloadPack: "Télécharger le pack",
     emailMePack: "M'envoyer le pack par e-mail",
+    downloadMediationPack: "Télécharger le pack Médiation",
+    downloadBlockedPack: "Télécharger le pack ‘Si le contact est bloqué’",
     additionalMatchedRules: "Règles correspondantes supplémentaires",
     howToReach95Confidence: "Comment atteindre 95% de confiance",
     answerThese: "Répondez à ces questions :",

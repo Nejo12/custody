@@ -108,6 +108,8 @@ const ru = {
     accept: "Принять",
     downloadPack: "Скачать пакет",
     emailMePack: "Отправить мне пакет по электронной почте",
+    downloadMediationPack: "Скачать пакет ‘Медиация’",
+    downloadBlockedPack: "Скачать пакет ‘Если контакт блокируется’",
     additionalMatchedRules: "Дополнительные совпадающие правила",
     howToReach95Confidence: "Как достичь 95% уверенности",
     answerThese: "Ответьте на эти:",

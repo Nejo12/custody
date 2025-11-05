@@ -108,6 +108,8 @@ const tr = {
     accept: "Kabul Et",
     downloadPack: "Paketi İndir",
     emailMePack: "Paketi Bana E-posta ile Gönder",
+    downloadMediationPack: "Arabuluculuk Paketi indir",
+    downloadBlockedPack: "‘İletişim Engellendiyse’ Paketi indir",
     additionalMatchedRules: "Ek eşleşen kurallar",
     howToReach95Confidence: "%%95 güvene nasıl ulaşılır",
     answerThese: "Bunları cevapla:",

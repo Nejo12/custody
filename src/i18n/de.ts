@@ -108,6 +108,8 @@ const de = {
     accept: "Akzeptieren",
     downloadPack: "Paket herunterladen",
     emailMePack: "Paket per E-Mail senden",
+    downloadMediationPack: "Mediations‑Paket herunterladen",
+    downloadBlockedPack: "Paket ‚Wenn Umgang blockiert ist‘ herunterladen",
     additionalMatchedRules: "Weitere passende Regeln",
     howToReach95Confidence: "Wie man 95% Vertrauen erreicht",
     answerThese: "Beantworte diese:",

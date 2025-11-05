@@ -8,6 +8,7 @@ import questions from "@/data/questions";
 import type { ClarifyResponse } from "@/types/ai";
 import type { TranslationDict } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
+import VoiceInput from "@/components/VoiceInput";
 
 type Q = { id: string; type?: "yn" | "enum"; options?: { value: string; label: string }[] };
 
@@ -48,6 +49,38 @@ export default function Interview() {
     setAnswer(current.id, value);
     if (step < questions.length - 1) setStep(step + 1);
     else router.push("/result");
+  }
+
+  function normalize(s: string): string {
+    return s.toLowerCase().normalize("NFC");
+  }
+
+  function suggestFromSpeech(text: string): string | undefined {
+    const n = normalize(text);
+    // Boolean style
+    if (current.type !== "enum") {
+      if (/(^|\b)(yes|yeah|yep)\b/.test(n) || /(^|\b)(ja)\b/.test(n)) return "yes";
+      if (/(^|\b)(no|nope)\b/.test(n) || /(^|\b)(nein)\b/.test(n)) return "no";
+      if (/not sure|unsure|weiß nicht|nicht sicher/.test(n)) return "unsure";
+      return undefined;
+    }
+    // Enum: try to match option labels
+    const opts = current.options || [];
+    const questionOptions =
+      questionData && (questionData as { options?: Record<string, string> }).options
+        ? (questionData as { options?: Record<string, string> }).options
+        : undefined;
+    let best: { value: string; score: number } | null = null;
+    for (const o of opts) {
+      const label =
+        (questionOptions?.[o.value as keyof typeof questionOptions] as string) || o.label;
+      const ln = normalize(label);
+      let score = 0;
+      if (n.includes(ln)) score = ln.length;
+      else if (ln.includes(n)) score = n.length;
+      if (score > (best?.score || 0)) best = { value: o.value, score };
+    }
+    return best?.score && best.score > 2 ? best.value : undefined;
   }
 
   async function onClarify() {
@@ -158,6 +191,19 @@ export default function Interview() {
               </>
             )}
           </div>
+
+          {/* Voice input */}
+          <VoiceInput
+            target="both"
+            onTranscript={(text) => {
+              const v = suggestFromSpeech(text);
+              if (v)
+                setClarify({
+                  loading: false,
+                  data: { suggestion: v as "yes" | "no" | "unsure", confidence: 0.9 },
+                });
+            }}
+          />
 
           <div className="mt-2 flex items-center gap-3">
             <button

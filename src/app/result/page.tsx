@@ -301,6 +301,21 @@ export default function Result() {
                 )}
               </div>
             </div>
+            {/* Extra Action Packs */}
+            <div className="flex flex-wrap gap-3 text-sm">
+              <button className="underline" onClick={() => buildAndDownloadPack("mediation", t)}>
+                {t.result.downloadMediationPack || "Download Mediation Pack"}
+              </button>
+              <button className="underline" onClick={() => sharePack("mediation", t)}>
+                {t.result.emailMePack}
+              </button>
+              <button className="underline" onClick={() => buildAndDownloadPack("blocked", t)}>
+                {t.result.downloadBlockedPack || "Download If Contact Is Blocked Pack"}
+              </button>
+              <button className="underline" onClick={() => sharePack("blocked", t)}>
+                {t.result.emailMePack}
+              </button>
+            </div>
             <label className="block text-sm">
               {t.result.courtTemplate}
               <select
@@ -533,21 +548,31 @@ async function generatePdf(type: "joint" | "contact", locale: string) {
 }
 
 async function buildPackBlob(
-  kind: "joint" | "contact",
+  kind: "joint" | "contact" | "mediation" | "blocked",
   locale: string,
   _t: TranslationDict
 ): Promise<Blob> {
   const zip = new JSZip();
   const date = new Date().toISOString().slice(0, 10);
   // Cover letters and checklists are kept in English/German as they're formal court documents
-  const cover =
-    kind === "joint"
-      ? `Cover letter\n\nTo the Family Court\nRequest: Joint custody application.\nDate: ${date}\n\nEnclosed: application PDF, birth certificate, paternity acknowledgement (if available).\nInformation only — not legal advice.`
-      : `Cover letter\n\nTo the Family Court\nRequest: Contact/visitation order.\nDate: ${date}\n\nEnclosed: application PDF, communications/logs, proof of payments (if relevant).\nInformation only — not legal advice.`;
-  const checklist =
-    kind === "joint"
-      ? `Bring This Checklist\n- IDs (both parents if possible)\n- Child's birth certificate\n- Paternity acknowledgement (if applicable)\n- Any court letters`
-      : `Bring This Checklist\n- IDs\n- Proposed schedule (draft)\n- Communication log excerpts\n- Any safety notes (if applicable)`;
+  const cover = (() => {
+    if (kind === "joint")
+      return `Cover letter\n\nTo the Family Court\nRequest: Joint custody application.\nDate: ${date}\n\nEnclosed: application PDF, birth certificate, paternity acknowledgement (if available).\nInformation only — not legal advice.`;
+    if (kind === "contact")
+      return `Cover letter\n\nTo the Family Court\nRequest: Contact/visitation order.\nDate: ${date}\n\nEnclosed: application PDF, communications/logs, proof of payments (if relevant).\nInformation only — not legal advice.`;
+    if (kind === "mediation")
+      return `Cover letter\n\nTo the Mediation Service/Jugendamt\nRequest: Mediation appointment to discuss a safe practical plan and handover rules.\nDate: ${date}\n\nEnclosed: brief summary, draft schedule.`;
+    return `Cover letter\n\nTo the Family Court / Jugendamt\nSubject: Contact is being blocked — request for support/next steps.\nDate: ${date}\n\nEnclosed: timeline/log excerpts, relevant communications.`;
+  })();
+  const checklist = (() => {
+    if (kind === "joint")
+      return `Bring This Checklist\n- IDs (both parents if possible)\n- Child's birth certificate\n- Paternity acknowledgement (if applicable)\n- Any court letters`;
+    if (kind === "contact")
+      return `Bring This Checklist\n- IDs\n- Proposed schedule (draft)\n- Communication log excerpts\n- Any safety notes (if applicable)`;
+    if (kind === "mediation")
+      return `Bring This Checklist\n- IDs\n- Summary of issues\n- Draft schedule ideas\n- Any previous agreements`;
+    return `Bring This Checklist\n- IDs\n- Timeline/log excerpts\n- Messages (screenshots)\n- Any safety notes`;
+  })();
   // Add text cover letter and PDF cover letter
   zip.file("cover-letter.txt", cover);
   try {
@@ -578,14 +603,19 @@ async function buildPackBlob(
   } catch {
     // ignore
   }
-  const pdfBlob = await generatePdf(kind, locale);
-  const pdfArray = await pdfBlob.arrayBuffer();
-  zip.file(kind === "joint" ? "gemeinsame-sorge.pdf" : "umgangsregelung.pdf", pdfArray);
+  if (kind === "joint" || kind === "contact") {
+    const pdfBlob = await generatePdf(kind, locale);
+    const pdfArray = await pdfBlob.arrayBuffer();
+    zip.file(kind === "joint" ? "gemeinsame-sorge.pdf" : "umgangsregelung.pdf", pdfArray);
+  }
   const blob = await zip.generateAsync({ type: "blob" });
   return blob;
 }
 
-async function buildAndDownloadPack(kind: "joint" | "contact", t: TranslationDict) {
+async function buildAndDownloadPack(
+  kind: "joint" | "contact" | "mediation" | "blocked",
+  t: TranslationDict
+) {
   const { locale } = useAppStore.getState();
   const blob = await buildPackBlob(kind, locale, t);
   const url = URL.createObjectURL(blob);
@@ -596,7 +626,7 @@ async function buildAndDownloadPack(kind: "joint" | "contact", t: TranslationDic
   URL.revokeObjectURL(url);
 }
 
-async function sharePack(kind: "joint" | "contact", t: TranslationDict) {
+async function sharePack(kind: "joint" | "contact" | "mediation" | "blocked", t: TranslationDict) {
   try {
     const { locale } = useAppStore.getState();
     const blob = await buildPackBlob(kind, locale, t);
