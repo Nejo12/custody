@@ -38,7 +38,13 @@ export default function Interview() {
   const questionKey = current.id as QuestionKey;
   const questionData = t.interview.questions[questionKey];
 
+  // Clear clarify state when step changes
+  useEffect(() => {
+    setClarify({ loading: false });
+  }, [step]);
+
   function onSelect(value: string) {
+    setClarify({ loading: false });
     setAnswer(current.id, value);
     if (step < questions.length - 1) setStep(step + 1);
     else router.push("/result");

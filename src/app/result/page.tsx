@@ -108,26 +108,35 @@ export default function Result() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <button
-              className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
+              className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={!missing.length || assistant.loading}
               onClick={async () => {
                 const targets = missing.slice(0, 2);
-                if (!targets.length) return;
+                if (!targets.length) {
+                  alert(t.result.allQuestionsAnswered);
+                  return;
+                }
                 setAssistant({ loading: true, data: {} });
                 try {
                   const pairs = await Promise.all(
                     targets.map(async (q) => {
                       const qKey = q as keyof TranslationDict["interview"]["questions"];
+                      const questionData = t.interview.questions[qKey];
                       const payload = {
                         questionId: q,
-                        questionText: t.interview.questions[qKey]?.label || q,
+                        questionText: questionData?.label || q,
                         answers: interview.answers,
-                        locale,
+                        locale: locale === "de" ? "de" : "en",
+                        context: questionData?.help || "",
                       };
                       const r = await fetch("/api/ai/clarify", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(payload),
                       });
+                      if (!r.ok) {
+                        throw new Error(`API error: ${r.status}`);
+                      }
                       const data = (await r.json()) as ClarifyResponse;
                       return [q, data] as const;
                     })
@@ -135,13 +144,14 @@ export default function Result() {
                   const map: Record<string, ClarifyResponse> = {};
                   for (const [q, d] of pairs) map[q] = d;
                   setAssistant({ loading: false, data: map });
-                } catch {
+                } catch (err) {
+                  console.error("Assistant error:", err);
                   setAssistant({ loading: false, data: {} });
-                  alert("Assistant unavailable at the moment.");
+                  alert(t.result.assistantUnavailable);
                 }
               }}
             >
-              Ask the Assistant
+              {assistant.loading ? t.result.thinking : t.result.askAssistant}
             </button>
             <button
               className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
@@ -150,13 +160,13 @@ export default function Result() {
                 window.location.href = `/interview?q=${q}`;
               }}
             >
-              Jump To Key Question
+              {t.result.jumpToKeyQuestion}
             </button>
             <button
               className="rounded-lg border p-3 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black"
               onClick={() => setHelpOpen(true)}
             >
-              Find Help Now
+              {t.result.findHelpNow}
             </button>
           </div>
 
@@ -171,7 +181,7 @@ export default function Result() {
                     className="text-xs rounded-full border px-3 py-1 underline"
                     onClick={() => (window.location.href = `/interview?q=${q}`)}
                   >
-                    Answer now: {t.interview.questions[qKey]?.label || q}
+                    {t.result.answerNow} {t.interview.questions[qKey]?.label || q}
                   </button>
                 );
               })}
@@ -179,7 +189,9 @@ export default function Result() {
           )}
 
           {/* Assistant suggestions with one-tap accept */}
-          {assistant.loading && <div className="text-xs text-zinc-500">Assistant thinking…</div>}
+          {assistant.loading && (
+            <div className="text-xs text-zinc-500">{t.result.assistantThinking}</div>
+          )}
           {Object.keys(assistant.data).length > 0 && (
             <div className="space-y-2">
               {missing.slice(0, 2).map((q) => {
@@ -206,7 +218,7 @@ export default function Result() {
                           useAppStore.getState().setAnswer(q, suggestion.suggestion);
                         }}
                       >
-                        Accept
+                        {t.result.accept}
                       </button>
                     </div>
                   </div>
@@ -243,21 +255,21 @@ export default function Result() {
           {/* Pack actions */}
           {(status === "eligible_joint_custody" || status === "joint_custody_default") && (
             <div className="flex gap-3 text-sm">
-              <button className="underline" onClick={() => buildAndDownloadPack("joint")}>
-                Download Pack
+              <button className="underline" onClick={() => buildAndDownloadPack("joint", t)}>
+                {t.result.downloadPack}
               </button>
-              <button className="underline" onClick={() => sharePack("joint")}>
-                Email Me Pack
+              <button className="underline" onClick={() => sharePack("joint", t)}>
+                {t.result.emailMePack}
               </button>
             </div>
           )}
           {status === "apply_contact_order" && (
             <div className="flex gap-3 text-sm">
-              <button className="underline" onClick={() => buildAndDownloadPack("contact")}>
-                Download Pack
+              <button className="underline" onClick={() => buildAndDownloadPack("contact", t)}>
+                {t.result.downloadPack}
               </button>
-              <button className="underline" onClick={() => sharePack("contact")}>
-                Email Me Pack
+              <button className="underline" onClick={() => sharePack("contact", t)}>
+                {t.result.emailMePack}
               </button>
             </div>
           )}
@@ -305,7 +317,7 @@ export default function Result() {
           transition={{ duration: 0.3, delay: 0.5 }}
           className="text-xs text-zinc-500"
         >
-          <summary>Additional matched rules</summary>
+          <summary>{t.result.additionalMatchedRules}</summary>
           <ul className="list-disc pl-5">
             {matched.slice(1).map((m) => (
               <li key={m.id}>
@@ -326,9 +338,9 @@ export default function Result() {
         transition={{ duration: 0.3, delay: 0.35 }}
         className="rounded-lg border p-3 bg-white dark:bg-zinc-900"
       >
-        <div className="text-sm font-medium mb-1">How to reach 95% confidence</div>
+        <div className="text-sm font-medium mb-1">{t.result.howToReach95Confidence}</div>
         <div className="text-sm text-zinc-700 dark:text-zinc-300">
-          {missing.length > 0 ? "Answer these:" : "Add supporting documents in your vault."}
+          {missing.length > 0 ? t.result.answerThese : t.result.addSupportingDocuments}
         </div>
         {!!missing.length && (
           <div className="mt-2 flex flex-wrap gap-2">
@@ -347,9 +359,9 @@ export default function Result() {
           </div>
         )}
         <div className="text-xs mt-2">
-          Tip: add paternity acknowledgement or birth certificate scans in your{" "}
+          {t.result.confidenceTip}{" "}
           <a className="underline" href="/vault">
-            Vault
+            {t.vault.title}
           </a>
           .
         </div>
@@ -362,11 +374,11 @@ export default function Result() {
         transition={{ duration: 0.3, delay: 0.4 }}
         className="rounded-lg border p-3"
       >
-        <div className="text-sm font-medium">Regional Tips</div>
+        <div className="text-sm font-medium">{t.result.regionalTips}</div>
         <div className="text-sm text-zinc-700 dark:text-zinc-300 mt-1">
           {
             ((regionalTips as Record<string, string>)[city] ||
-              "Local registries may have specific forms or appointment windows. Bring IDs and child’s birth details.") as string
+              t.result.regionalTipsDefault) as string
           }
         </div>
       </motion.div>
@@ -396,9 +408,14 @@ async function generatePdf(type: "joint" | "contact", locale: string) {
   return await res.blob();
 }
 
-async function buildPackBlob(kind: "joint" | "contact", locale: string): Promise<Blob> {
+async function buildPackBlob(
+  kind: "joint" | "contact",
+  locale: string,
+  _t: TranslationDict
+): Promise<Blob> {
   const zip = new JSZip();
   const date = new Date().toISOString().slice(0, 10);
+  // Cover letters and checklists are kept in English/German as they're formal court documents
   const cover =
     kind === "joint"
       ? `Cover letter\n\nTo the Family Court\nRequest: Joint custody application.\nDate: ${date}\n\nEnclosed: application PDF, birth certificate, paternity acknowledgement (if available).\nInformation only — not legal advice.`
@@ -416,9 +433,9 @@ async function buildPackBlob(kind: "joint" | "contact", locale: string): Promise
   return blob;
 }
 
-async function buildAndDownloadPack(kind: "joint" | "contact") {
+async function buildAndDownloadPack(kind: "joint" | "contact", t: TranslationDict) {
   const { locale } = useAppStore.getState();
-  const blob = await buildPackBlob(kind, locale);
+  const blob = await buildPackBlob(kind, locale, t);
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
@@ -427,10 +444,10 @@ async function buildAndDownloadPack(kind: "joint" | "contact") {
   URL.revokeObjectURL(url);
 }
 
-async function sharePack(kind: "joint" | "contact") {
+async function sharePack(kind: "joint" | "contact", t: TranslationDict) {
   try {
     const { locale } = useAppStore.getState();
-    const blob = await buildPackBlob(kind, locale);
+    const blob = await buildPackBlob(kind, locale, t);
     const file = new File([blob], `custody-pack-${kind}.zip`, { type: "application/zip" });
     // Prefer Web Share API if available
     const nav = navigator as Navigator & {
@@ -438,7 +455,7 @@ async function sharePack(kind: "joint" | "contact") {
       share?: (data: ShareData & { files?: File[] }) => Promise<void>;
     };
     if (typeof navigator !== "undefined" && nav.canShare && nav.canShare({ files: [file] })) {
-      await nav.share?.({ files: [file], title: "Custody Clarity Pack" });
+      await nav.share?.({ files: [file], title: t.appName + " Pack" });
     } else {
       // Fallback: download and open mailto
       const url = URL.createObjectURL(blob);
@@ -447,10 +464,15 @@ async function sharePack(kind: "joint" | "contact") {
       a.download = `custody-pack-${kind}-${new Date().toISOString().slice(0, 10)}.zip`;
       a.click();
       URL.revokeObjectURL(url);
-      window.location.href = `mailto:?subject=Your%20Custody%20Clarity%20Pack&body=Your%20pack%20was%20downloaded.%20Attach%20the%20ZIP%20to%20this%20email%20if%20you%20wish%20to%20send%20it.`;
+      const subject = encodeURIComponent(t.appName + " Pack");
+      const body = encodeURIComponent(
+        t.result.packDownloaded ||
+          "Your pack was downloaded. Attach the ZIP to this email if you wish to send it."
+      );
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
     }
   } catch {
-    alert("Unable to share pack. It has been downloaded instead.");
-    await buildAndDownloadPack(kind);
+    alert(t.result.packShareError || "Unable to share pack. It has been downloaded instead.");
+    await buildAndDownloadPack(kind, t);
   }
 }

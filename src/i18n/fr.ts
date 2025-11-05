@@ -97,6 +97,30 @@ const fr = {
     pathHint: "En cas de doute, vous pouvez déposer maintenant et ajouter des détails plus tard.",
     generateJointCustody: "Générer le formulaire de garde partagée",
     generateContactOrder: "Générer le formulaire de contact",
+    allQuestionsAnswered:
+      "Toutes les questions clés ont été répondues. Aucune suggestion nécessaire.",
+    assistantUnavailable: "Assistant indisponible pour le moment. Veuillez réessayer plus tard.",
+    thinking: "Réflexion…",
+    askAssistant: "Demander à l'assistant",
+    jumpToKeyQuestion: "Aller à la question clé",
+    findHelpNow: "Trouver de l'aide maintenant",
+    answerNow: "Répondre maintenant :",
+    assistantThinking: "L'assistant réfléchit…",
+    accept: "Accepter",
+    downloadPack: "Télécharger le pack",
+    emailMePack: "M'envoyer le pack par e-mail",
+    additionalMatchedRules: "Règles correspondantes supplémentaires",
+    howToReach95Confidence: "Comment atteindre 95% de confiance",
+    answerThese: "Répondez à ces questions :",
+    addSupportingDocuments: "Ajoutez des documents de soutien dans votre coffre-fort.",
+    confidenceTip:
+      "Astuce : ajoutez une reconnaissance de paternité ou des scans de certificat de naissance dans votre",
+    regionalTips: "Conseils régionaux",
+    regionalTipsDefault:
+      "Les registres locaux peuvent avoir des formulaires spécifiques ou des créneaux de rendez-vous. Apportez les pièces d'identité et les détails de naissance de l'enfant.",
+    packDownloaded:
+      "Votre pack a été téléchargé. Joignez le fichier ZIP à cet e-mail si vous souhaitez l'envoyer.",
+    packShareError: "Impossible de partager le pack. Il a été téléchargé à la place.",
     statuses: {
       joint_custody_default: "Garde partagée par défaut",
       eligible_joint_custody: "Éligible pour une demande de garde partagée",

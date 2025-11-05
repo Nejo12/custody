@@ -2,11 +2,6 @@ const CACHE_NAME = 'custody-clarity-v3';
 const STATIC_ASSETS = [
   '/',
   '/manifest.webmanifest',
-  '/next.svg',
-  '/vercel.svg',
-  '/globe.svg',
-  '/file.svg',
-  '/window.svg',
   '/favicon.ico',
   '/icons/icon-192-maskable.png',
   '/icons/icon-512-maskable.png',
