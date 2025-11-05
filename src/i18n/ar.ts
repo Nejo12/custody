@@ -138,6 +138,7 @@ const ar = {
     courtTemplateNone: "مخصص أو لا شيء",
     tailorCoverLetter: "استخدم هذا لتخصيص خطاب الغلاف.",
     packSection: "الحزمة",
+    whyThisResult: "لماذا هذه النتيجة؟",
   },
   directory: {
     title: "العثور على الدعم",
@@ -161,6 +162,19 @@ const ar = {
     exportData: "تصدير البيانات",
     summarizer: "ملخص الأدلة",
     neutralizer: "مُحايد النزاع",
+    scanner: "ماسح الاستقبال",
+  },
+  ocr: {
+    selectImage: "اختر صورة",
+    lang: "اللغة",
+    langEnglish: "الإنجليزية",
+    langGerman: "الألمانية",
+    langAuto: "تلقائي (EN+DE)",
+    recognize: "تعرف على النص",
+    recognizing: "جاري التعرف…",
+    redactedPreview: "معاينة منقحة",
+    extractedFields: "الحقول المستخرجة",
+    saveToVault: "احفظ في المستودع",
   },
   settings: {
     title: "الإعدادات",

@@ -139,6 +139,7 @@ const de = {
     tailorCoverLetter: "Damit wird das Anschreiben angepasst.",
     packSection: "Paket",
     attachTimeline: "Zeitleiste aus dem Tresor beifügen",
+    whyThisResult: "Warum dieses Ergebnis?",
   },
   directory: {
     title: "Hilfe finden",
@@ -162,6 +163,19 @@ const de = {
     exportData: "Daten exportieren",
     summarizer: "Beweis-Zusammenfassung",
     neutralizer: "Konflikt-Entschärfer",
+    scanner: "Intake-Scanner",
+  },
+  ocr: {
+    selectImage: "Foto auswählen",
+    lang: "Sprache",
+    langEnglish: "Englisch",
+    langGerman: "Deutsch",
+    langAuto: "Auto (EN+DE)",
+    recognize: "Text erkennen",
+    recognizing: "Erkenne…",
+    redactedPreview: "Geschwärzte Vorschau",
+    extractedFields: "Erkannte Felder",
+    saveToVault: "In Ablage speichern",
   },
   settings: {
     title: "Einstellungen",

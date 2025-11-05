@@ -16,9 +16,28 @@ export default function GSPage() {
   const { t, locale } = useI18n();
   const [form, setForm] = useState<FormState>({ parentA: {}, parentB: {}, children: [] });
   const [courtTemplate, setCourtTemplate] = useState<string>("");
-  const { setPreferredCourtTemplate, includeTimelineInPack, setIncludeTimelineInPack } =
+  const { setPreferredCourtTemplate, includeTimelineInPack, setIncludeTimelineInPack, vault } =
     useAppStore();
   const [downloading, setDownloading] = useState(false);
+  const ocr = (() => {
+    const e = vault.entries.find(
+      (x) => x.type === "note" && (x.payload as { fields?: unknown }).fields
+    );
+    if (!e) return undefined as undefined | { fullName?: string; address?: string };
+    const p = e.payload as { fields?: { fullName?: string; address?: string } };
+    return p.fields;
+  })();
+  function applyOCRToParentA() {
+    if (!ocr) return;
+    setForm((prev) => ({
+      ...prev,
+      parentA: {
+        ...prev.parentA,
+        fullName: prev.parentA.fullName || ocr.fullName || "",
+        address: prev.parentA.address || ocr.address || "",
+      },
+    }));
+  }
 
   async function onDownload() {
     setDownloading(true);
@@ -59,7 +78,12 @@ export default function GSPage() {
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
       <h1 className="text-xl font-semibold">{t.result.generateJointCustody}</h1>
       <div className="space-y-2">
-        <label className="block text-sm">
+        {ocr && (
+          <button type="button" onClick={applyOCRToParentA} className="text-sm underline">
+            Prefill Parent A from OCR
+          </button>
+        )}
+        <label className="block text-sm mt-2">
           {t.result.courtTemplate}
           <select
             className="mt-1 w-full rounded border px-3 py-2"

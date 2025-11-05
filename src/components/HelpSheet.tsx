@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useAppStore } from "@/store/app";
 import { buildICS } from "@/lib/ics";
 import { useI18n } from "@/i18n";
+import { usePrefersReducedMotion } from "@/lib/hooks";
 
 type Service = {
   id: string;
@@ -25,6 +26,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
   const [geoLoading, setGeoLoading] = useState(false);
   const [geoError, setGeoError] = useState("");
   const isSettingFromLocation = useRef(false);
+  const prefersReduced = usePrefersReducedMotion();
 
   const filteredServices = useMemo(() => {
     const pc = postcode.trim();
@@ -56,33 +58,40 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
           role="dialog"
           aria-modal="true"
           aria-labelledby="help-sheet-title"
-          initial={{ opacity: 0 }}
+          initial={{ opacity: prefersReduced ? 1 : 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          exit={{ opacity: prefersReduced ? 1 : 0 }}
         >
           {/* Overlay */}
           <motion.div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={onClose}
             aria-hidden="true"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.15 } }}
-            exit={{ opacity: 0, transition: { duration: 0.12 } }}
+            initial={{ opacity: prefersReduced ? 1 : 0 }}
+            animate={{ opacity: 1, transition: { duration: prefersReduced ? 0 : 0.15 } }}
+            exit={{
+              opacity: prefersReduced ? 1 : 0,
+              transition: { duration: prefersReduced ? 0 : 0.12 },
+            }}
           />
           {/* Layout: bottom sheet on mobile, centered on desktop */}
           <div className="absolute inset-0 flex items-end sm:items-center justify-center p-0 sm:p-4">
             <motion.div
               className="dialog-panel w-full sm:max-w-lg bg-white dark:bg-zinc-950 rounded-t-2xl sm:rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 p-4 space-y-3 max-h-[90vh] overflow-y-auto flex flex-col"
-              initial={{ y: 56, opacity: 0 }}
+              initial={{ y: prefersReduced ? 0 : 56, opacity: prefersReduced ? 1 : 0 }}
               animate={{
                 y: 0,
                 opacity: 1,
-                transition: { type: "spring", stiffness: 380, damping: 28 },
+                transition: prefersReduced
+                  ? { duration: 0 }
+                  : { type: "spring", stiffness: 380, damping: 28 },
               }}
               exit={{
-                y: 28,
-                opacity: 0,
-                transition: { type: "spring", stiffness: 320, damping: 30 },
+                y: prefersReduced ? 0 : 28,
+                opacity: prefersReduced ? 1 : 0,
+                transition: prefersReduced
+                  ? { duration: 0 }
+                  : { type: "spring", stiffness: 320, damping: 30 },
               }}
             >
               {/* Drag handle for mobile */}

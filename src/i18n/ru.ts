@@ -139,6 +139,7 @@ const ru = {
     courtTemplateNone: "Свой или отсутствует",
     tailorCoverLetter: "Используйте это, чтобы настроить сопроводительное письмо.",
     packSection: "Пакет",
+    whyThisResult: "Почему такой результат?",
   },
   directory: {
     title: "Найти поддержку",
@@ -162,6 +163,19 @@ const ru = {
     exportData: "Экспортировать данные",
     summarizer: "Суммаризатор доказательств",
     neutralizer: "Нейтрализатор конфликта",
+    scanner: "Сканер анкет (OCR)",
+  },
+  ocr: {
+    selectImage: "Выбрать фото",
+    lang: "Язык",
+    langEnglish: "Английский",
+    langGerman: "Немецкий",
+    langAuto: "Авто (EN+DE)",
+    recognize: "Распознать текст",
+    recognizing: "Распознаём…",
+    redactedPreview: "Обезличенный просмотр",
+    extractedFields: "Извлечённые поля",
+    saveToVault: "Сохранить в Хранилище",
   },
   settings: {
     title: "Настройки",

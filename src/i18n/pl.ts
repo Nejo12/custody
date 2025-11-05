@@ -142,6 +142,7 @@ const pl = {
     tailorCoverLetter: "Użyj, aby dopasować pismo przewodnie.",
     packSection: "Pakiet",
     attachTimeline: "Dołącz ze skarbca oś czasu",
+    whyThisResult: "Dlaczego taki wynik?",
   },
   directory: {
     title: "Znajdź wsparcie",
@@ -165,6 +166,19 @@ const pl = {
     exportData: "Eksportuj dane",
     summarizer: "Podsumowanie dowodów",
     neutralizer: "Neutralizator konfliktu",
+    scanner: "Skaner wstępny",
+  },
+  ocr: {
+    selectImage: "Wybierz zdjęcie",
+    lang: "Język",
+    langEnglish: "Angielski",
+    langGerman: "Niemiecki",
+    langAuto: "Auto (EN+DE)",
+    recognize: "Rozpoznaj tekst",
+    recognizing: "Rozpoznawanie…",
+    redactedPreview: "Podgląd zanonimizowany",
+    extractedFields: "Wydobyte pola",
+    saveToVault: "Zapisz do Skarbca",
   },
   settings: {
     title: "Ustawienia",

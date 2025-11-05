@@ -139,6 +139,7 @@ const en = {
     tailorCoverLetter: "Use this to tailor the cover letter.",
     packSection: "Pack",
     attachTimeline: "Attach timeline from Vault",
+    whyThisResult: "Why this result?",
   },
   directory: {
     title: "Find support",
@@ -162,6 +163,19 @@ const en = {
     exportData: "Export data",
     summarizer: "Evidence summarizer",
     neutralizer: "Conflict neutralizer",
+    scanner: "Intake scanner",
+  },
+  ocr: {
+    selectImage: "Select photo",
+    lang: "Language",
+    langEnglish: "English",
+    langGerman: "German",
+    langAuto: "Auto (EN+DE)",
+    recognize: "Recognize text",
+    recognizing: "Recognizing…",
+    redactedPreview: "Redacted preview",
+    extractedFields: "Extracted fields",
+    saveToVault: "Save to Vault",
   },
   settings: {
     title: "Settings",

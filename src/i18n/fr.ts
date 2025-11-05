@@ -144,6 +144,7 @@ const fr = {
     tailorCoverLetter: "Utilisez ceci pour adapter la lettre de couverture.",
     packSection: "Dossier",
     attachTimeline: "Joindre la chronologie depuis le coffre‑fort",
+    whyThisResult: "Pourquoi ce résultat ?",
   },
   directory: {
     title: "Trouver du soutien",
@@ -158,7 +159,7 @@ const fr = {
     noResults: "Aucun service trouvé.",
   },
   vault: {
-    title: "Coffre-fort",
+    title: "Coffre‑fort",
     documents: "Documents",
     notes: "Notes",
     payments: "Paiements",
@@ -167,6 +168,19 @@ const fr = {
     exportData: "Exporter les données",
     summarizer: "Résumé des preuves",
     neutralizer: "Neutraliseur de conflit",
+    scanner: "Scanner d’accueil",
+  },
+  ocr: {
+    selectImage: "Sélectionner une photo",
+    lang: "Langue",
+    langEnglish: "Anglais",
+    langGerman: "Allemand",
+    langAuto: "Auto (EN+DE)",
+    recognize: "Reconnaître le texte",
+    recognizing: "Reconnaissance…",
+    redactedPreview: "Aperçu expurgé",
+    extractedFields: "Champs extraits",
+    saveToVault: "Enregistrer dans le coffre‑fort",
   },
   settings: {
     title: "Paramètres",

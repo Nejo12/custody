@@ -100,6 +100,9 @@ export default function VaultPage() {
         <a href="/vault/neutralize" className="underline text-sm">
           {t.vault.neutralizer}
         </a>
+        <a href="/vault/scan" className="underline text-sm">
+          {t.vault.scanner || "Intake scanner"}
+        </a>
         <button
           onClick={downloadExport}
           className="underline text-sm text-zinc-700 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 rounded px-2 py-1"

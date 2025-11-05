@@ -5,14 +5,17 @@ import { useI18n } from "@/i18n";
 import { normalizeSchedule, type ScheduleInput } from "@/lib/schedule";
 import type { ScheduleSuggestResponse } from "@/types/ai";
 import { useAppStore } from "@/store/app";
+import { usePrefersReducedMotion } from "@/lib/hooks";
 import { resolveCourtTemplate } from "@/lib/courts";
 
 type ProposalForm = {
   proposal: ScheduleInput;
+  applicant?: { fullName?: string; address?: string };
 };
 
 export default function UmgangPage() {
   const { t, locale } = useI18n();
+  const prefersReduced = usePrefersReducedMotion();
   const [form, setForm] = useState<ProposalForm>({
     proposal: { weekday: {}, weekend: {}, holidays: {}, handover: {} },
   });
@@ -111,9 +114,9 @@ export default function UmgangPage() {
       <h1 className="text-xl font-semibold">{t.result.generateContactOrder}</h1>
       <motion.div
         className="rounded-lg border p-3 space-y-2"
-        initial={{ opacity: 0, y: 12 }}
+        initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+        transition={{ duration: prefersReduced ? 0 : 0.25, ease: [0.4, 0, 0.2, 1] }}
       >
         <div className="text-sm font-medium">
           {t.optimizer?.title || "Schedule optimizer (beta)"}

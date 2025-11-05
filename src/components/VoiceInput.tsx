@@ -17,6 +17,8 @@ export default function VoiceInput({ target = "both", onTranscript }: Props) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string>("");
   const [transcript, setTranscript] = useState<string>("");
+  const [language, setLanguage] = useState<string>("");
+  const [translations, setTranslations] = useState<{ en?: string; de?: string }>({});
 
   useEffect(() => {
     return () => {
@@ -56,6 +58,8 @@ export default function VoiceInput({ target = "both", onTranscript }: Props) {
           }
           const txt = data.text || "";
           setTranscript(txt);
+          setLanguage(data.language || "");
+          setTranslations(data.translations || {});
           onTranscript?.(txt, data.translations || {}, data.language);
         } catch (e: unknown) {
           const msg = e instanceof Error ? e.message : "Failed to transcribe";
@@ -108,7 +112,28 @@ export default function VoiceInput({ target = "both", onTranscript }: Props) {
         {busy && <div className="text-xs text-zinc-500">Transcribing…</div>}
       </div>
       {error && <div className="text-xs text-red-600">{error}</div>}
-      {transcript && <div className="text-xs text-zinc-600 dark:text-zinc-300">“{transcript}”</div>}
+      {transcript && (
+        <div className="space-y-1">
+          <div className="text-xs text-zinc-600 dark:text-zinc-300">“{transcript}”</div>
+          <div className="text-[11px] text-zinc-500">
+            {language ? `Detected: ${language}` : null}
+          </div>
+          {(translations.en || translations.de) && (
+            <div className="text-[11px] text-zinc-600 dark:text-zinc-400">
+              {translations.en ? (
+                <div>
+                  <span className="font-medium">EN:</span> {translations.en}
+                </div>
+              ) : null}
+              {translations.de ? (
+                <div>
+                  <span className="font-medium">DE:</span> {translations.de}
+                </div>
+              ) : null}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

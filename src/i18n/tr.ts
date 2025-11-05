@@ -137,6 +137,7 @@ const tr = {
     courtTemplateNone: "Özel veya yok",
     tailorCoverLetter: "Kapak mektubunu buna göre uyarlayın.",
     packSection: "Paket",
+    whyThisResult: "Neden bu sonuç?",
   },
   directory: {
     title: "Destek bul",
@@ -160,6 +161,19 @@ const tr = {
     exportData: "Verileri dışa aktar",
     summarizer: "Delil özetleyici",
     neutralizer: "Çatışma yumuşatıcı",
+    scanner: "Ön tarama (OCR)",
+  },
+  ocr: {
+    selectImage: "Fotoğraf seç",
+    lang: "Dil",
+    langEnglish: "İngilizce",
+    langGerman: "Almanca",
+    langAuto: "Otomatik (EN+DE)",
+    recognize: "Metni tanı",
+    recognizing: "Tanınıyor…",
+    redactedPreview: "Anonimleştirilmiş önizleme",
+    extractedFields: "Çıkarılan alanlar",
+    saveToVault: "Kasaya kaydet",
   },
   settings: {
     title: "Ayarlar",

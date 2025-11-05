@@ -82,6 +82,71 @@ export default function Result() {
       >
         {t.result.title}
       </motion.h1>
+      {/* Radical Clarity: Why this result? */}
+      {matched.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          className="rounded-lg border p-3 bg-white dark:bg-zinc-900"
+        >
+          <div className="text-sm font-medium mb-1">
+            {t.result.whyThisResult || "Why this result?"}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {matched.slice(0, 3).map((r) => {
+              const citationsArr = (r.outcome.citations || []) as (Citation | string)[];
+              const firstCitation = citationsArr.find((c) => typeof c === "object") as
+                | Citation
+                | undefined;
+              const label = t.rules?.[r.id as keyof typeof t.rules] || r.id;
+              return (
+                <details key={r.id} className="inline-block">
+                  <summary className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800">
+                    <span>{label}</span>
+                    {firstCitation?.snapshotId && (
+                      <span className="text-[10px] text-zinc-500">
+                        ({firstCitation.snapshotId})
+                      </span>
+                    )}
+                  </summary>
+                  <div className="mt-1 rounded border px-3 py-2 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-800 dark:text-zinc-200">
+                    <div className="mb-1">{r.outcome.message || label}</div>
+                    {citationsArr.length > 0 && (
+                      <ul className="list-disc pl-4 space-y-0.5">
+                        {citationsArr.map((c, i) => {
+                          const ci: Citation = typeof c === "string" ? { url: c } : c;
+                          return (
+                            <li key={i}>
+                              {ci.url ? (
+                                <a
+                                  className="underline"
+                                  href={ci.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {ci.label || ci.url}
+                                </a>
+                              ) : (
+                                <span>{ci.label || "Citation"}</span>
+                              )}
+                              {ci.snapshotId ? (
+                                <span className="ml-1 text-[10px] text-zinc-500">
+                                  ({ci.snapshotId})
+                                </span>
+                              ) : null}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </div>
+                </details>
+              );
+            })}
+          </div>
+        </motion.div>
+      )}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
