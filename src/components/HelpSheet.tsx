@@ -62,9 +62,9 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
         onClick={onClose}
         aria-hidden="true"
       />
-      {/* Centering wrapper */}
-      <div className="relative mx-auto min-h-full flex items-center justify-center p-4">
-        <div className="w-full max-w-lg bg-white dark:bg-zinc-950 rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 p-4 space-y-3 max-h-[90vh] overflow-y-auto flex flex-col">
+      {/* Layout: bottom sheet on mobile, centered on desktop */}
+      <div className="absolute inset-0 flex items-end md:items-center justify-center p-0 md:p-4">
+        <div className="w-full md:max-w-lg bg-white dark:bg-zinc-950 rounded-t-2xl md:rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 p-4 space-y-3 max-h-[90vh] overflow-y-auto flex flex-col">
           {/* Drag handle for mobile */}
           <div className="md:hidden flex justify-center -mt-2 mb-1 flex-shrink-0">
             <div

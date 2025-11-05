@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useI18n } from "@/i18n";
 import { normalizeSchedule, type ScheduleInput } from "@/lib/schedule";
 import type { ScheduleSuggestResponse } from "@/types/ai";
+import { useAppStore } from "@/store/app";
 
 type ProposalForm = {
   proposal: ScheduleInput;
@@ -23,6 +24,20 @@ export default function UmgangPage() {
     loading: false,
     summary: "",
   });
+
+  // Seed optimizer from interview answers if present
+  const { interview } = useAppStore();
+  useEffect(() => {
+    const ans = interview?.answers || {};
+    const mapDistance = (v: string | undefined): "local" | "regional" | "far" =>
+      v === "regional" || v === "far" ? (v as "regional" | "far") : "local";
+    setOptimizer((o) => ({
+      ...o,
+      distance: mapDistance(ans["distance_km"] as string | undefined),
+      childUnderThree: ans["child_age_under_three"] === "yes",
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function onDownload() {
     setDownloading(true);

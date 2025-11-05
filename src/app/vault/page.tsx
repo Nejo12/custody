@@ -97,6 +97,9 @@ export default function VaultPage() {
         <a href="/vault/summarize" className="underline text-sm">
           Evidence summarizer
         </a>
+        <a href="/vault/neutralize" className="underline text-sm">
+          Conflict neutralizer
+        </a>
         <button
           onClick={downloadExport}
           className="underline text-sm hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-black dark:hover:text-black rounded px-2 py-1"

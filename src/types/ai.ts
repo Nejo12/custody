@@ -48,3 +48,13 @@ export type SummarizeResponse = {
   items: TimelineItem[];
   notes?: string; // optional overall notes
 };
+
+export type NeutralizeRequest = {
+  text: string;
+  tone?: "neutral" | "polite" | "assertive";
+  locale?: string;
+};
+
+export type NeutralizeResponse = {
+  text: string;
+};

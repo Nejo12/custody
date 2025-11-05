@@ -19,6 +19,7 @@ import EducationPanel, { type EducationItem } from "@/components/EducationPanel"
 import { useState } from "react";
 import HelpSheet from "@/components/HelpSheet";
 import JSZip from "jszip";
+import { buildCoverLetter } from "@/lib/coverLetter";
 import type { ClarifyResponse } from "@/types/ai";
 import regionalTips from "@/data/regional.tips.json";
 import Callout from "@/components/Callout";
@@ -433,7 +434,14 @@ async function buildPackBlob(
     kind === "joint"
       ? `Bring This Checklist\n- IDs (both parents if possible)\n- Child's birth certificate\n- Paternity acknowledgement (if applicable)\n- Any court letters`
       : `Bring This Checklist\n- IDs\n- Proposed schedule (draft)\n- Communication log excerpts\n- Any safety notes (if applicable)`;
+  // Add text cover letter and PDF cover letter
   zip.file("cover-letter.txt", cover);
+  try {
+    const pdfCover = await buildCoverLetter(kind, locale);
+    zip.file("cover-letter.pdf", pdfCover);
+  } catch {
+    /* ignore pdf cover errors */
+  }
   zip.file("checklist.txt", checklist);
   // Optional recent timeline from Vault (if present)
   try {
