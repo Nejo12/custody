@@ -170,6 +170,7 @@ const fr = {
     summarizer: "Résumé des preuves",
     neutralizer: "Neutraliseur de conflit",
     scanner: "Scanner d’accueil",
+    logbook: "Journal",
   },
   ocr: {
     selectImage: "Sélectionner une photo",
@@ -305,6 +306,28 @@ const fr = {
     queueSend: "envoyer",
     queueCancel: "annuler",
     queueLastVerified: "Dernière vérification",
+    scriptLanguage: "Langue du script",
+    transliterationLabel: "Translittération",
+    copyTransliteration: "Copier la translittération",
+  },
+  logbook: {
+    title: "Générateur de journal",
+    placeholder: "Rédigez une note brève et factuelle…",
+    addEntry: "Ajouter une entrée",
+    addProof: "Ajouter une preuve",
+    entries: "Entrées",
+    saveToVault: "Enregistrer dans le coffre",
+    downloadPdf: "Télécharger le PDF",
+    saved: "Journal enregistré dans le coffre sous forme de chronologie.",
+  },
+  settings: {
+    safety: "Sécurité",
+    safetyMode: "Mode sécurité (raccourci de sortie rapide)",
+    discreetMode: "Nom d’application discret dans l’en‑tête",
+    blurThumbnails: "Flouter les miniatures/prévisualisations",
+    quickWipe: "Effacement rapide (panique)",
+    quickWipeNote: "Supprime les données locales, vide les caches et annule l’enregistrement du Service Worker.",
+    clearOcrCache: "Vider le cache des modèles OCR",
   },
 };
 

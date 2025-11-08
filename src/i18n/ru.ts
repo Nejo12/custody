@@ -166,6 +166,7 @@ const ru = {
     summarizer: "Суммаризатор доказательств",
     neutralizer: "Нейтрализатор конфликта",
     scanner: "Сканер анкет (OCR)",
+    logbook: "Журнал",
   },
   ocr: {
     selectImage: "Выбрать фото",
@@ -299,6 +300,28 @@ const ru = {
     queueSend: "отправить",
     queueCancel: "отменить",
     queueLastVerified: "Последняя проверка",
+    scriptLanguage: "Язык скрипта",
+    transliterationLabel: "Транслитерация",
+    copyTransliteration: "Копировать транслитерацию",
+  },
+  logbook: {
+    title: "Генератор журнала",
+    placeholder: "Напишите краткую, фактическую запись…",
+    addEntry: "Добавить запись",
+    addProof: "Добавить доказательство",
+    entries: "Записи",
+    saveToVault: "Сохранить в Хранилище",
+    downloadPdf: "Скачать PDF",
+    saved: "Журнал сохранён в хранилище как хронология.",
+  },
+  settings: {
+    safety: "Безопасность",
+    safetyMode: "Режим безопасности (быстрый выход)",
+    discreetMode: "Незаметное имя приложения в шапке",
+    blurThumbnails: "Размывать миниатюры/предпросмотры",
+    quickWipe: "Быстрое удаление (паника)",
+    quickWipeNote: "Удаляет локальные данные, очищает кэши и отменяет регистрацию Service Worker.",
+    clearOcrCache: "Очистить кэш моделей OCR",
   },
 };
 

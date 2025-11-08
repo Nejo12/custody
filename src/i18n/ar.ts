@@ -165,6 +165,7 @@ const ar = {
     summarizer: "ملخص الأدلة",
     neutralizer: "مُحايد النزاع",
     scanner: "ماسح الاستقبال",
+    logbook: "السجل",
   },
   ocr: {
     selectImage: "اختر صورة",
@@ -294,6 +295,28 @@ const ar = {
     queueSend: "إرسال",
     queueCancel: "إلغاء",
     queueLastVerified: "آخر تحقق",
+    scriptLanguage: "لغة النص",
+    transliterationLabel: "النقل الصوتي",
+    copyTransliteration: "نسخ النقل الصوتي",
+  },
+  logbook: {
+    title: "منشئ سجل",
+    placeholder: "اكتب إدخالاً موجزاً وموضوعياً…",
+    addEntry: "إضافة إدخال",
+    addProof: "إضافة دليل",
+    entries: "الإدخالات",
+    saveToVault: "حفظ في المخزن",
+    downloadPdf: "تنزيل PDF",
+    saved: "تم حفظ السجل في المخزن كجدول زمني.",
+  },
+  settings: {
+    safety: "السلامة",
+    safetyMode: "وضع السلامة (اختصار الخروج السريع)",
+    discreetMode: "اسم تطبيق غير لافت في العنوان",
+    blurThumbnails: "تمويه الصور المصغرة/المعاينات",
+    quickWipe: "مسح سريع (ذعر)",
+    quickWipeNote: "يزيل البيانات المحلية، ويفرّغ الذاكرة المؤقتة، ويلغي تسجيل عامل الخدمة.",
+    clearOcrCache: "مسح ذاكرة نماذج OCR",
   },
 };
 

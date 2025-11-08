@@ -184,12 +184,15 @@ function QRPreview({ url }: { url: string }) {
 
 function CaseZipPanel({ kinds }: { kinds: { joint: boolean; contact: boolean } }) {
   const { locale } = useAppStore();
+  const { useI18n } = require("@/i18n");
+  const { t } = useI18n();
   const [busy, setBusy] = useState(false);
   return (
     <div className="rounded-lg border p-3 space-y-2 no-print">
-      <div className="text-sm font-medium">Case ZIP export</div>
+      <div className="text-sm font-medium">{t.worker?.caseZipExport || "Case ZIP export"}</div>
       <div className="text-xs text-zinc-600">
-        Exports a redacted case snapshot (vault + timeline). Optionally adds selected packs.
+        {t.worker?.caseZipHint ||
+          "Exports a redacted case snapshot (vault + timeline). Optionally adds selected packs."}
       </div>
       <button
         className="rounded border px-3 py-1 text-sm"
@@ -261,7 +264,7 @@ function CaseZipPanel({ kinds }: { kinds: { joint: boolean; contact: boolean } }
           }
         }}
       >
-        {busy ? "Building…" : "Export Case ZIP"}
+        {busy ? "Building…" : (require("@/i18n").useI18n().t.worker?.exportCaseZip || "Export Case ZIP")}
       </button>
     </div>
   );

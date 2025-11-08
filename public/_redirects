@@ -1,0 +1,4 @@
+https://www.custodyclarity.com/*  https://custodyclarity.com/:splat  301!
+https://custodyclarity.org/*      https://custodyclarity.com/:splat  301!
+https://www.custodyclarity.org/*  https://custodyclarity.com/:splat  301!
+https://kostody.netlify.app/*     https://custodyclarity.com/:splat  301!

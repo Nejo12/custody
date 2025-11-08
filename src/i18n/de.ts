@@ -165,6 +165,7 @@ const de = {
     summarizer: "Beweis-Zusammenfassung",
     neutralizer: "Konflikt-Entschärfer",
     scanner: "Intake-Scanner",
+    logbook: "Protokoll",
   },
   ocr: {
     selectImage: "Foto auswählen",
@@ -298,6 +299,28 @@ const de = {
     queueSend: "senden",
     queueCancel: "abbrechen",
     queueLastVerified: "Zuletzt bestätigt",
+    scriptLanguage: "Skript-Sprache",
+    transliterationLabel: "Transliteration",
+    copyTransliteration: "Transliteration kopieren",
+  },
+  logbook: {
+    title: "Protokoll-Generator",
+    placeholder: "Schreibe einen kurzen, sachlichen Eintrag…",
+    addEntry: "Eintrag hinzufügen",
+    addProof: "Nachweis hinzufügen",
+    entries: "Einträge",
+    saveToVault: "In Tresor speichern",
+    downloadPdf: "PDF herunterladen",
+    saved: "Protokoll als Zeitlinie im Tresor gespeichert.",
+  },
+  settings: {
+    safety: "Sicherheit",
+    safetyMode: "Sicherheitsmodus (Schnellverlassen‑Tastenkombi)",
+    discreetMode: "Dezenter App‑Name in der Kopfzeile",
+    blurThumbnails: "Vorschaubilder weichzeichnen",
+    quickWipe: "Schnell löschen (Panik)",
+    quickWipeNote: "Löscht lokale Daten, leert Caches und deregistriert den Service Worker.",
+    clearOcrCache: "OCR‑Modell‑Cache leeren",
   },
 };
 

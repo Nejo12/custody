@@ -49,6 +49,29 @@ export default function SettingsPage() {
       if (typeof window !== "undefined") window.location.href = "/";
     }
   }
+  async function clearOcrCache() {
+    try {
+      if (typeof caches !== "undefined") {
+        const names = await caches.keys();
+        await Promise.all(
+          names.map(async (n) => {
+            const c = await caches.open(n);
+            const reqs = await c.keys();
+            await Promise.all(
+              reqs.map((r) => {
+                const u = r.url;
+                if (/tesseract|traineddata/i.test(u)) return c.delete(r);
+                return Promise.resolve(false);
+              })
+            );
+          })
+        );
+        alert("OCR cache cleared.");
+      }
+    } catch {
+      // ignore
+    }
+  }
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-6">
       <h1 className="text-xl font-semibold">{t.settings.title}</h1>
@@ -94,14 +117,14 @@ export default function SettingsPage() {
       </div>
 
       <div className="space-y-2">
-        <div className="text-sm text-zinc-700 dark:text-zinc-400">Safety</div>
+        <div className="text-sm text-zinc-700 dark:text-zinc-400">{t.settings?.safety || "Safety"}</div>
         <label className="flex items-center gap-2 text-sm">
           <input
             type="checkbox"
             checked={safetyMode}
             onChange={(e) => setSafetyMode(e.target.checked)}
           />
-          Safety Mode (enable quick-exit shortcut)
+          {t.settings?.safetyMode || "Safety Mode (enable quick-exit shortcut)"}
         </label>
         <label className="flex items-center gap-2 text-sm">
           <input
@@ -109,7 +132,7 @@ export default function SettingsPage() {
             checked={discreetMode}
             onChange={(e) => setDiscreetMode(e.target.checked)}
           />
-          Discreet app name in header
+          {t.settings?.discreetMode || "Discreet app name in header"}
         </label>
         <label className="flex items-center gap-2 text-sm">
           <input
@@ -117,17 +140,23 @@ export default function SettingsPage() {
             checked={blurThumbnails}
             onChange={(e) => setBlurThumbnails(e.target.checked)}
           />
-          Blur thumbnails/previews
+          {t.settings?.blurThumbnails || "Blur thumbnails/previews"}
         </label>
         <button
           onClick={quickWipe}
           className="rounded-md border px-3 py-1 text-sm bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-900/40"
         >
-          Quick Wipe (panic erase)
+          {t.settings?.quickWipe || "Quick Wipe (panic erase)"}
         </button>
         <div className="text-xs text-zinc-600 dark:text-zinc-400">
-          Removes local data, clears caches, and unregisters the service worker.
+          {t.settings?.quickWipeNote || "Removes local data, clears caches, and unregisters the service worker."}
         </div>
+        <button
+          onClick={clearOcrCache}
+          className="rounded-md border px-3 py-1 text-sm"
+        >
+          {t.settings?.clearOcrCache || "Clear OCR model cache"}
+        </button>
       </div>
     </div>
   );

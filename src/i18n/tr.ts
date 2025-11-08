@@ -164,6 +164,7 @@ const tr = {
     summarizer: "Delil özetleyici",
     neutralizer: "Çatışma yumuşatıcı",
     scanner: "Ön tarama (OCR)",
+    logbook: "Günlük",
   },
   ocr: {
     selectImage: "Fotoğraf seç",
@@ -294,6 +295,28 @@ const tr = {
     queueSend: "gönder",
     queueCancel: "iptal",
     queueLastVerified: "Son doğrulama",
+    scriptLanguage: "Metin dili",
+    transliterationLabel: "Transliterasyon",
+    copyTransliteration: "Transliterasyonu kopyala",
+  },
+  logbook: {
+    title: "Günlük oluşturucu",
+    placeholder: "Kısa, olgusal bir giriş yazın…",
+    addEntry: "Girdi ekle",
+    addProof: "Kanıt ekle",
+    entries: "Kayıtlar",
+    saveToVault: "Kasaya kaydet",
+    downloadPdf: "PDF indir",
+    saved: "Günlük Zaman Çizelgesi olarak Kasaya kaydedildi.",
+  },
+  settings: {
+    safety: "Güvenlik",
+    safetyMode: "Güvenlik Modu (hızlı çıkış kısayolu)",
+    discreetMode: "Başlıkta sade uygulama adı",
+    blurThumbnails: "Küçük resimleri/bakışları bulanıklaştır",
+    quickWipe: "Hızlı silme (panik)",
+    quickWipeNote: "Yerel verileri kaldırır, önbellekleri temizler ve Service Worker kaydını siler.",
+    clearOcrCache: "OCR model önbelleğini temizle",
   },
 };
 

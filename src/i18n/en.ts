@@ -165,6 +165,7 @@ const en = {
     summarizer: "Evidence summarizer",
     neutralizer: "Conflict neutralizer",
     scanner: "Intake scanner",
+    logbook: "Logbook",
   },
   ocr: {
     selectImage: "Select photo",
@@ -294,6 +295,29 @@ const en = {
     queueSend: "send",
     queueCancel: "cancel",
     queueLastVerified: "Last verified",
+    scriptLanguage: "Script language",
+    transliterationLabel: "Transliteration",
+    copyTransliteration: "Copy transliteration",
+  },
+  logbook: {
+    title: "Logbook generator",
+    placeholder: "Write a brief, factual entry…",
+    addEntry: "Add Entry",
+    addProof: "Add proof",
+    entries: "Entries",
+    saveToVault: "Save to Vault",
+    downloadPdf: "Download PDF",
+    saved: "Logbook saved to Vault as Timeline.",
+  },
+  settings: {
+    ...((typeof import.meta !== 'undefined') ? {} : {}),
+    safety: "Safety",
+    safetyMode: "Safety Mode (enable quick-exit shortcut)",
+    discreetMode: "Discreet app name in header",
+    blurThumbnails: "Blur thumbnails/previews",
+    quickWipe: "Quick Wipe (panic erase)",
+    quickWipeNote: "Removes local data, clears caches, and unregisters the service worker.",
+    clearOcrCache: "Clear OCR model cache",
   },
 };
 

@@ -168,6 +168,7 @@ const pl = {
     summarizer: "Podsumowanie dowodów",
     neutralizer: "Neutralizator konfliktu",
     scanner: "Skaner wstępny",
+    logbook: "Dziennik",
   },
   ocr: {
     selectImage: "Wybierz zdjęcie",
@@ -300,6 +301,28 @@ const pl = {
     queueSend: "wyślij",
     queueCancel: "anuluj",
     queueLastVerified: "Ostatnio zweryfikowano",
+    scriptLanguage: "Język skryptu",
+    transliterationLabel: "Transliteracja",
+    copyTransliteration: "Kopiuj transliterację",
+  },
+  logbook: {
+    title: "Generator dziennika",
+    placeholder: "Napisz krótki, rzeczowy wpis…",
+    addEntry: "Dodaj wpis",
+    addProof: "Dodaj dowód",
+    entries: "Wpisy",
+    saveToVault: "Zapisz w skarbcu",
+    downloadPdf: "Pobierz PDF",
+    saved: "Dziennik zapisany w skarbcu jako oś czasu.",
+  },
+  settings: {
+    safety: "Bezpieczeństwo",
+    safetyMode: "Tryb bezpieczeństwa (skrót szybkiego wyjścia)",
+    discreetMode: "Dyskretny tytuł aplikacji w nagłówku",
+    blurThumbnails: "Rozmyj miniatury/podglądy",
+    quickWipe: "Szybkie wymazanie (panika)",
+    quickWipeNote: "Usuwa dane lokalne, czyści pamięć podręczną i wyrejestrowuje Service Workera.",
+    clearOcrCache: "Wyczyść cache modeli OCR",
   },
 };
 

@@ -204,7 +204,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
               </div>
               <div className="rounded-lg border p-3 flex-shrink-0 space-y-2">
                 <div className="flex items-center gap-2 text-xs">
-                  <label className="text-zinc-700 dark:text-zinc-300">Script language</label>
+                  <label className="text-zinc-700 dark:text-zinc-300">{t.helpSheet?.scriptLanguage || "Script language"}</label>
                   <select
                     value={scriptLang}
                     onChange={(e) => setScriptLang(e.target.value as typeof scriptLang)}
@@ -261,7 +261,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                 </div>
                 {!!translit && (
                   <div className="rounded border p-2 bg-zinc-50 dark:bg-zinc-900">
-                    <div className="text-xs font-medium mb-1">Transliteration</div>
+                    <div className="text-xs font-medium mb-1">{t.helpSheet?.transliterationLabel || "Transliteration"}</div>
                     <div className="text-xs text-zinc-800 dark:text-zinc-200 whitespace-pre-wrap">
                       {translit}
                     </div>
@@ -270,7 +270,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                         className="rounded border px-2 py-1 text-xs"
                         onClick={() => navigator.clipboard.writeText(translit)}
                       >
-                        Copy transliteration
+                        {t.helpSheet?.copyTransliteration || "Copy transliteration"}
                       </button>
                     </div>
                   </div>
