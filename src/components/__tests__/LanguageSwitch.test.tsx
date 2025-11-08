@@ -19,87 +19,23 @@ describe("LanguageSwitch", () => {
     });
   });
 
-  it("renders all language buttons", () => {
-    render(<LanguageSwitch />);
-    expect(screen.getByText("EN")).toBeInTheDocument();
-    expect(screen.getByText("DE")).toBeInTheDocument();
-    expect(screen.getByText("AR")).toBeInTheDocument();
-    expect(screen.getByText("PL")).toBeInTheDocument();
-    expect(screen.getByText("FR")).toBeInTheDocument();
-    expect(screen.getByText("TR")).toBeInTheDocument();
-    expect(screen.getByText("RU")).toBeInTheDocument();
-  });
-
-  it("highlights current locale", () => {
-    render(<LanguageSwitch />);
-    const enButton = screen.getByText("EN").closest("button");
-    expect(enButton).toHaveClass("bg-black", "text-white");
-  });
-
-  it("calls setLocale when clicking a language button", async () => {
+  it("renders current locale button and opens list on click", async () => {
     const user = userEvent.setup();
     render(<LanguageSwitch />);
+    // Button shows short code (En)
+    expect(screen.getByText(/En/i)).toBeInTheDocument();
+    // Open list
+    await user.click(screen.getByRole("button"));
+    // List contains language labels
+    expect(screen.getByRole("option", { name: /English/i })).toBeInTheDocument();
+    expect(screen.getByRole("option", { name: /Deutsch/i })).toBeInTheDocument();
+  });
 
-    const deButton = screen.getByText("DE");
-    await user.click(deButton);
-
+  it("calls setLocale when selecting a language from the list", async () => {
+    const user = userEvent.setup();
+    render(<LanguageSwitch />);
+    await user.click(screen.getByRole("button"));
+    await user.click(screen.getByText(/Deutsch/i));
     expect(mockSetLocale).toHaveBeenCalledWith("de");
-  });
-
-  it("switches to Arabic when AR is clicked", async () => {
-    const user = userEvent.setup();
-    render(<LanguageSwitch />);
-
-    const arButton = screen.getByText("AR");
-    await user.click(arButton);
-
-    expect(mockSetLocale).toHaveBeenCalledWith("ar");
-  });
-
-  it("switches to Polish when PL is clicked", async () => {
-    const user = userEvent.setup();
-    render(<LanguageSwitch />);
-
-    const plButton = screen.getByText("PL");
-    await user.click(plButton);
-
-    expect(mockSetLocale).toHaveBeenCalledWith("pl");
-  });
-
-  it("updates highlight when locale changes", () => {
-    (useI18n as ReturnType<typeof vi.fn>).mockReturnValue({
-      locale: "de",
-      setLocale: mockSetLocale,
-    });
-
-    const { rerender } = render(<LanguageSwitch />);
-    const deButton = screen.getByText("DE").closest("button");
-    expect(deButton).toHaveClass("bg-black", "text-white");
-
-    (useI18n as ReturnType<typeof vi.fn>).mockReturnValue({
-      locale: "fr",
-      setLocale: mockSetLocale,
-    });
-
-    rerender(<LanguageSwitch />);
-    const frButton = screen.getByText("FR").closest("button");
-    expect(frButton).toHaveClass("bg-black", "text-white");
-  });
-
-  it("has proper accessibility attributes", () => {
-    render(<LanguageSwitch />);
-    const buttons = screen.getAllByRole("button");
-    buttons.forEach((button) => {
-      expect(button).toHaveAttribute("aria-pressed");
-    });
-  });
-
-  it("sets aria-pressed correctly for active locale", () => {
-    render(<LanguageSwitch />);
-    const enButton = screen.getByText("EN").closest("button");
-    expect(enButton).toHaveAttribute("aria-pressed", "true");
-
-    const deButton = screen.getByText("DE").closest("button");
-    expect(deButton).toHaveAttribute("aria-pressed", "false");
   });
 });

@@ -1,5 +1,6 @@
 import type { NeutralizeRequest, NeutralizeResponse } from "@/types/ai";
 import { anonymizeText } from "@/lib/anonymize";
+import { getClientKey, rateLimit, rateLimitResponse } from "@/lib/ratelimit";
 
 export async function POST(req: Request) {
   const apiKey = process.env.OPENAI_API_KEY || process.env.AI_API_KEY;
@@ -7,6 +8,14 @@ export async function POST(req: Request) {
     process.env.OPENAI_API_BASE || process.env.AI_API_BASE || "https://api.openai.com/v1";
   const model = process.env.OPENAI_MODEL || process.env.AI_MODEL || "gpt-4o-mini";
   try {
+    const key = getClientKey(req, "ai:neutralize");
+    const rl = rateLimit(key, 20, 60_000);
+    if (!rl.allowed) {
+      return new Response(JSON.stringify({ error: "rate_limited" }), {
+        status: 429,
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
+    }
     const body = (await req.json()) as NeutralizeRequest;
     const tone = body.tone || "neutral";
     const locale = body.locale || "de";
@@ -14,7 +23,9 @@ export async function POST(req: Request) {
     if (!apiKey) {
       const text = anonymizeText(body.text || "").replace(/!+/g, ".");
       const res: NeutralizeResponse = { text };
-      return Response.json(res);
+      return new Response(JSON.stringify(res), {
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
     }
 
     const prompt = [
@@ -41,7 +52,9 @@ export async function POST(req: Request) {
     try {
       const parsed = JSON.parse(content) as NeutralizeResponse;
       if (!parsed || typeof parsed.text !== "string") throw new Error("bad");
-      return Response.json(parsed);
+      return new Response(JSON.stringify(parsed), {
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
     } catch {
       return new Response(JSON.stringify({ error: "Invalid AI output" }), { status: 502 });
     }

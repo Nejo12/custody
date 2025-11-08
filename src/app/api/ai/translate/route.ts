@@ -1,5 +1,6 @@
 import type { NextRequest } from "next/server";
 import { anonymizeText } from "@/lib/anonymize";
+import { getClientKey, rateLimit, rateLimitResponse } from "@/lib/ratelimit";
 
 export const runtime = "nodejs";
 
@@ -11,7 +12,15 @@ type TranslateRequest = {
 
 export async function POST(req: Request | NextRequest) {
   try {
-    const body = (await req.json()) as TranslateRequest;
+    const key = getClientKey(req as Request, "ai:translate");
+    const rl = rateLimit(key, 30, 60_000);
+    if (!rl.allowed) {
+      return new Response(JSON.stringify({ error: "rate_limited" }), {
+        status: 429,
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
+    }
+    const body = (await (req as Request).json()) as TranslateRequest;
     const text = (body.text || "").toString();
     const to = (body.to || "de").toString();
     const transliterate = !!body.transliterate;
@@ -22,7 +31,9 @@ export async function POST(req: Request | NextRequest) {
     const model = process.env.OPENAI_MODEL || process.env.AI_MODEL || "gpt-4o-mini";
 
     if (!apiKey) {
-      return Response.json({ text, transliteration: "", disabled: true });
+      return new Response(JSON.stringify({ text, transliteration: "", disabled: true }), {
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
     }
 
     const sys = [
@@ -60,10 +71,10 @@ export async function POST(req: Request | NextRequest) {
     const j = (await r.json()) as { choices?: Array<{ message?: { content?: string } }> };
     const content = j?.choices?.[0]?.message?.content || "{}";
     const parsed = JSON.parse(content) as { text?: string; transliteration?: string };
-    return Response.json({
-      text: parsed.text || text,
-      transliteration: parsed.transliteration || "",
-    });
+    return new Response(
+      JSON.stringify({ text: parsed.text || text, transliteration: parsed.transliteration || "" }),
+      { headers: rateLimitResponse(rl.remaining, rl.resetAt) }
+    );
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Unexpected error";
     return new Response(JSON.stringify({ error: msg }), { status: 400 });

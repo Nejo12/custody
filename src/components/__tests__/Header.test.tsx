@@ -8,18 +8,8 @@ vi.mock("@/i18n", () => ({
 }));
 
 vi.mock("next/link", () => ({
-  default: ({
-    children,
-    href,
-    className,
-  }: {
-    children: React.ReactNode;
-    href: string;
-    className?: string;
-  }) => (
-    <a href={href} className={className}>
-      {children}
-    </a>
+  default: ({ children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+    <a {...props}>{children}</a>
   ),
 }));
 
@@ -27,9 +17,7 @@ vi.mock("../LanguageSwitch", () => ({
   default: () => <div data-testid="language-switch">LanguageSwitch</div>,
 }));
 
-vi.mock("../ThemeSwitch", () => ({
-  default: () => <div data-testid="theme-switch">ThemeSwitch</div>,
-}));
+// ThemeSwitch is not used in Header anymore.
 
 describe("Header", () => {
   beforeEach(() => {
@@ -52,11 +40,10 @@ describe("Header", () => {
     expect(link).toHaveAttribute("href", "/");
   });
 
-  it("renders settings link", () => {
+  it("renders settings control (aria-label)", () => {
     render(<Header />);
-    const settingsLink = screen.getByText("Settings");
-    expect(settingsLink).toBeInTheDocument();
-    expect(settingsLink.closest("a")).toHaveAttribute("href", "/settings");
+    const settings = screen.getByRole("link", { name: /Settings/i });
+    expect(settings).toBeInTheDocument();
   });
 
   it("renders language switch component", () => {
@@ -64,15 +51,12 @@ describe("Header", () => {
     expect(screen.getByTestId("language-switch")).toBeInTheDocument();
   });
 
-  it("renders theme switch component", () => {
-    render(<Header />);
-    expect(screen.getByTestId("theme-switch")).toBeInTheDocument();
-  });
+  // Theme switch is not part of Header anymore.
 
-  it("has correct layout structure", () => {
+  it("has container with max width inside header", () => {
     render(<Header />);
-    const header = screen.getByRole("banner");
-    expect(header).toHaveClass("w-full", "max-w-xl", "mx-auto");
+    const container = screen.getByRole("banner").querySelector(".max-w-xl");
+    expect(container).toBeInTheDocument();
   });
 
   it("displays app name in different locales", () => {

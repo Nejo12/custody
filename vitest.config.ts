@@ -3,10 +3,27 @@ import path from "path";
 
 export default defineConfig({
   test: {
-    environment: "node",
-    include: ["src/lib/**/__tests__/*.{test,spec}.ts"],
-    setupFiles: [],
+    environment: "jsdom",
+    include: ["src/**/__tests__/*.{test,spec}.{ts,tsx}", "src/**/__tests__/*.{test,spec}.ts"],
+    setupFiles: ["./vitest.setup.ts", "./vitest.d.ts"],
     globals: true,
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "html"],
+      include: ["src/**/*.{ts,tsx}"],
+      exclude: [
+        "**/__tests__/**",
+        "**/*.d.ts",
+        "src/app/**/page.tsx", // Next.js pages often require jsdom complexity
+        "src/app/**/layout.tsx",
+      ],
+      thresholds: {
+        lines: 80,
+        functions: 80,
+        branches: 70,
+        statements: 80,
+      },
+    },
   },
   resolve: {
     alias: {

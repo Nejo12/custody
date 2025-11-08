@@ -1,4 +1,5 @@
 import type { SummarizeRequest, SummarizeResponse, TimelineItem } from "@/types/ai";
+import { getClientKey, rateLimit, rateLimitResponse } from "@/lib/ratelimit";
 import { anonymizeText } from "@/lib/anonymize";
 
 function heuristicSummarize(text: string): TimelineItem[] {
@@ -26,12 +27,22 @@ export async function POST(req: Request) {
     process.env.OPENAI_API_BASE || process.env.AI_API_BASE || "https://api.openai.com/v1";
   const model = process.env.OPENAI_MODEL || process.env.AI_MODEL || "gpt-4o-mini";
   try {
+    const key = getClientKey(req, "ai:summarize");
+    const rl = rateLimit(key, 20, 60_000);
+    if (!rl.allowed) {
+      return new Response(JSON.stringify({ error: "rate_limited" }), {
+        status: 429,
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
+    }
     const body = (await req.json()) as SummarizeRequest;
     const locale = body.locale || "de";
     if (!apiKey) {
       const items = heuristicSummarize(body.text || "");
       const res: SummarizeResponse = { items, notes: "Heuristic summary (no external AI)." };
-      return Response.json(res);
+      return new Response(JSON.stringify(res), {
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
     }
     const prompt = [
       "You extract a facts-only custody/contact timeline.",
@@ -67,9 +78,13 @@ export async function POST(req: Request) {
     if (!parsed || !Array.isArray(parsed.items)) {
       const items = heuristicSummarize(body.text || "");
       const res: SummarizeResponse = { items, notes: "Fallback heuristic summary." };
-      return Response.json(res);
+      return new Response(JSON.stringify(res), {
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
     }
-    return Response.json(parsed);
+    return new Response(JSON.stringify(parsed), {
+      headers: rateLimitResponse(rl.remaining, rl.resetAt),
+    });
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Unexpected error";
     return new Response(JSON.stringify({ error: msg }), { status: 400 });

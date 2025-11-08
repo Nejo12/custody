@@ -80,8 +80,13 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
       .catch(() => setQueueIntel({}));
   }, [open, services]);
 
-  // Reset postcode when city changes (but not when setting from location detection)
+  // Reset postcode when city changes (skip first mount, and skip when coming from location detect)
+  const didMountRef = useRef(false);
   useEffect(() => {
+    if (!didMountRef.current) {
+      didMountRef.current = true;
+      return;
+    }
     if (isSettingFromLocation.current) {
       isSettingFromLocation.current = false;
       return;

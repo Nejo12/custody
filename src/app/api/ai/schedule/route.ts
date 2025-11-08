@@ -1,5 +1,6 @@
 import type { ScheduleSuggestRequest, ScheduleSuggestResponse } from "@/types/ai";
 import { anonymizeText } from "@/lib/anonymize";
+import { getClientKey, rateLimit, rateLimitResponse } from "@/lib/ratelimit";
 
 function buildPrompt(body: ScheduleSuggestRequest): string {
   const parts = [
@@ -23,6 +24,14 @@ export async function POST(req: Request) {
     process.env.OPENAI_API_BASE || process.env.AI_API_BASE || "https://api.openai.com/v1";
   const model = process.env.OPENAI_MODEL || process.env.AI_MODEL || "gpt-4o-mini";
   try {
+    const key = getClientKey(req, "ai:schedule");
+    const rl = rateLimit(key, 20, 60_000);
+    if (!rl.allowed) {
+      return new Response(JSON.stringify({ error: "rate_limited" }), {
+        status: 429,
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
+    }
     const body = (await req.json()) as ScheduleSuggestRequest;
 
     if (!apiKey) {
@@ -49,7 +58,9 @@ export async function POST(req: Request) {
               ? "Short weekday windows with a short weekend morning."
               : "Balanced weekday and weekend time.",
       };
-      return Response.json(res);
+      return new Response(JSON.stringify(res), {
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
     }
 
     const prompt = buildPrompt(body);
@@ -77,7 +88,9 @@ export async function POST(req: Request) {
     if (!parsed || typeof parsed !== "object") {
       return new Response(JSON.stringify({ error: "Invalid AI output" }), { status: 502 });
     }
-    return Response.json(parsed);
+    return new Response(JSON.stringify(parsed), {
+      headers: rateLimitResponse(rl.remaining, rl.resetAt),
+    });
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Unexpected error";
     return new Response(JSON.stringify({ error: msg }), { status: 400 });

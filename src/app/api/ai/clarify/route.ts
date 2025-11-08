@@ -1,5 +1,6 @@
 import type { ClarifyRequest, ClarifyResponse } from "@/types/ai";
 import { anonymizeObject, anonymizeText } from "@/lib/anonymize";
+import { getClientKey, rateLimit, rateLimitResponse } from "@/lib/ratelimit";
 
 function buildPrompt(req: ClarifyRequest): string {
   const q = req.questionText || req.questionId;
@@ -22,6 +23,14 @@ function buildPrompt(req: ClarifyRequest): string {
 
 export async function POST(req: Request) {
   try {
+    const key = getClientKey(req, "ai:clarify");
+    const rl = rateLimit(key, 20, 60_000);
+    if (!rl.allowed) {
+      return new Response(JSON.stringify({ error: "rate_limited" }), {
+        status: 429,
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
+    }
     const body = (await req.json()) as ClarifyRequest;
     const apiKey = process.env.OPENAI_API_KEY || process.env.AI_API_KEY;
     const base =
@@ -38,7 +47,9 @@ export async function POST(req: Request) {
           : "Bitte prüfen Sie die Hilfe und Quellen.",
         reasoning: "No external AI configured; returning conservative default.",
       };
-      return Response.json(suggestion);
+      return new Response(JSON.stringify(suggestion), {
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
     }
 
     // Anonymize user-provided fields before sending to external API
@@ -87,11 +98,15 @@ export async function POST(req: Request) {
         followup: "Bitte prüfen Sie die Hilfe.",
         reasoning: "Unparsable model output.",
       };
-      return Response.json(fallback);
+      return new Response(JSON.stringify(fallback), {
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
     }
     parsed.confidence = Math.max(0, Math.min(1, parsed.confidence));
     if (!["yes", "no", "unsure"].includes(parsed.suggestion)) parsed.suggestion = "unsure";
-    return Response.json(parsed);
+    return new Response(JSON.stringify(parsed), {
+      headers: rateLimitResponse(rl.remaining, rl.resetAt),
+    });
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : "Unexpected error";
     return new Response(JSON.stringify({ error: msg }), { status: 400 });

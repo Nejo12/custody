@@ -1,5 +1,6 @@
 import type { NextRequest } from "next/server";
 import { anonymizeText } from "@/lib/anonymize";
+import { getClientKey, rateLimit, rateLimitResponse } from "@/lib/ratelimit";
 
 export const runtime = "nodejs";
 
@@ -12,6 +13,14 @@ type TranscribeResult = {
 
 export async function POST(req: NextRequest) {
   try {
+    const key = getClientKey(req as unknown as Request, "ai:transcribe");
+    const rl = rateLimit(key, 15, 60_000);
+    if (!rl.allowed) {
+      return new Response(JSON.stringify({ error: "rate_limited" }), {
+        status: 429,
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
+    }
     const form = await req.formData();
     const file = form.get("audio");
     const target = (form.get("target") as string | null) || "both"; // en | de | both
@@ -36,7 +45,9 @@ export async function POST(req: NextRequest) {
         translations: {},
         disabled: true,
       };
-      return Response.json(res);
+      return new Response(JSON.stringify(res), {
+        headers: rateLimitResponse(rl.remaining, rl.resetAt),
+      });
     }
 
     // Build multipart body to call OpenAI transcriptions
@@ -91,7 +102,9 @@ export async function POST(req: NextRequest) {
       result.translations!.de = await translate("de");
     }
 
-    return Response.json(result);
+    return new Response(JSON.stringify(result), {
+      headers: rateLimitResponse(rl.remaining, rl.resetAt),
+    });
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Unexpected error";
     return new Response(JSON.stringify({ error: msg }), { status: 400 });
