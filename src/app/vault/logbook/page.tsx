@@ -66,8 +66,12 @@ export default function LogbookPage() {
           placeholder={t.logbook?.placeholder || "Write a brief, factual entry…"}
         />
         <div className="flex gap-2">
-          <button className="rounded border px-3 py-1 text-sm" onClick={add}>{t.logbook?.addEntry || "Add Entry"}</button>
-          <button className="rounded border px-3 py-1 text-sm" onClick={addProof}>{t.logbook?.addProof || "Add proof"}</button>
+          <button className="rounded border px-3 py-1 text-sm" onClick={add}>
+            {t.logbook?.addEntry || "Add Entry"}
+          </button>
+          <button className="rounded border px-3 py-1 text-sm" onClick={addProof}>
+            {t.logbook?.addProof || "Add proof"}
+          </button>
         </div>
       </div>
       {items.length > 0 && (
@@ -81,8 +85,12 @@ export default function LogbookPage() {
             ))}
           </ul>
           <div className="mt-3 flex gap-2">
-            <button className="rounded border px-3 py-1 text-sm" onClick={saveToVault}>{t.logbook?.saveToVault || "Save to Vault"}</button>
-            <button className="rounded border px-3 py-1 text-sm" onClick={exportPdf}>{t.logbook?.downloadPdf || "Download PDF"}</button>
+            <button className="rounded border px-3 py-1 text-sm" onClick={saveToVault}>
+              {t.logbook?.saveToVault || "Save to Vault"}
+            </button>
+            <button className="rounded border px-3 py-1 text-sm" onClick={exportPdf}>
+              {t.logbook?.downloadPdf || "Download PDF"}
+            </button>
           </div>
         </div>
       )}

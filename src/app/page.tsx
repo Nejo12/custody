@@ -11,7 +11,10 @@ export default function Home() {
         <div className="text-center space-y-3">
           <h1 className="text-2xl font-semibold tracking-tight">{t.home.tagline}</h1>
           <p className="text-sm text-zinc-700 dark:text-zinc-400">
-            WCAG AA · Privacy‑first · Offline‑ready
+            {t.home?.subline || "Takes 6 minutes. No signup."}
+          </p>
+          <p className="text-sm text-zinc-700 dark:text-zinc-400">
+            {t.home?.features || "WCAG AA · Privacy‑first · Offline‑ready"}
           </p>
         </div>
       </FadeIn>
@@ -19,7 +22,7 @@ export default function Home() {
         <div className="mt-8 grid grid-cols-1 gap-3">
           <Link
             href="/interview"
-            className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-center text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+            className="rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 p-4 text-center hover:bg-black dark:hover:bg-white transition-colors"
           >
             {t.home.check}
           </Link>

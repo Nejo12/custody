@@ -8,6 +8,7 @@ const tr = {
     next: "İleri",
     finish: "Bitir",
     download: "İndir",
+    step: "Adım {idx} / {total}",
   },
   home: {
     tagline: "Vesayet ve iletişim haklarınızı öğrenin.",
@@ -15,6 +16,7 @@ const tr = {
     learn: "Yasayı öğren",
     support: "Destek bul",
     disclaimer: "Yalnızca bilgi. Bireysel hukuki tavsiye değildir.",
+    features: "WCAG AA · Gizlilik öncelikli · Çevrimdışı hazır",
   },
   header: {
     findHelp: "Yardım bul",
@@ -165,6 +167,9 @@ const tr = {
     neutralizer: "Çatışma yumuşatıcı",
     scanner: "Ön tarama (OCR)",
     logbook: "Günlük",
+    savedToVault: "Kasaya kaydedildi",
+    timelineSavedToVault: "Zaman çizelgesi kasaya kaydedildi.",
+    rewriteFailed: "Yeniden yazma başarısız",
   },
   ocr: {
     selectImage: "Fotoğraf seç",
@@ -178,6 +183,20 @@ const tr = {
     extractedFields: "Çıkarılan alanlar",
     saveToVault: "Kasaya kaydet",
   },
+  voiceInput: {
+    speakAnswer: "Cevabınızı söyleyin",
+    start: "Başlat",
+    stop: "Durdur",
+    transcribing: "Yazıya dönüştürülüyor…",
+    transcriptionDisabled: "Yazıya dönüştürme devre dışı.",
+    failedToTranscribe: "Yazıya dönüştürme başarısız",
+    microphoneUnavailable: "Mikrofon kullanılamıyor",
+    detected: "Tespit edildi: {language}",
+    en: "EN:",
+    de: "DE:",
+    startRecording: "Kaydı başlat",
+    stopRecording: "Kaydı durdur",
+  },
   settings: {
     title: "Ayarlar",
     language: "Dil",
@@ -187,6 +206,20 @@ const tr = {
     themeSystem: "Sistem",
     about: "Hakkında",
     dataExport: "Veri dışa aktarma",
+    safety: "Güvenlik",
+    safetyMode: "Güvenlik Modu (hızlı çıkış kısayolu)",
+    discreetMode: "Başlıkta sade uygulama adı",
+    blurThumbnails: "Küçük resimleri/bakışları bulanıklaştır",
+    quickWipe: "Hızlı silme (panik)",
+    quickWipeConfirm:
+      "Yerel veriler ve önbelleğe alınmış dosyalar silinsin mi? Bu işlem geri alınamaz.",
+    quickWipeNote:
+      "Yerel verileri kaldırır, önbellekleri temizler ve Service Worker kaydını siler.",
+    clearOcrCache: "OCR model önbelleğini temizle",
+    ocrCacheCleared: "OCR önbelleği temizlendi.",
+    socialWorkerMode: "Sosyal Hizmet Uzmanı Modu",
+    socialWorkerModeEnable: "Yardımcılar/NGO'lar için araçları etkinleştir",
+    socialWorkerModeOpen: "Sosyal Hizmet Uzmanı araçlarını aç",
   },
   education: {
     headings: {
@@ -309,14 +342,31 @@ const tr = {
     downloadPdf: "PDF indir",
     saved: "Günlük Zaman Çizelgesi olarak Kasaya kaydedildi.",
   },
-  settings: {
-    safety: "Güvenlik",
-    safetyMode: "Güvenlik Modu (hızlı çıkış kısayolu)",
-    discreetMode: "Başlıkta sade uygulama adı",
-    blurThumbnails: "Küçük resimleri/bakışları bulanıklaştır",
-    quickWipe: "Hızlı silme (panik)",
-    quickWipeNote: "Yerel verileri kaldırır, önbellekleri temizler ve Service Worker kaydını siler.",
-    clearOcrCache: "OCR model önbelleğini temizle",
+  worker: {
+    title: "Sosyal Hizmet Uzmanı Araçları",
+    accessRequired: "Erişim Sosyal Hizmet Uzmanı Modu gerektirir. Lütfen Ayarlar'da etkinleştirin.",
+    goToSettings: "Ayarlar'a git",
+    loading: "Yükleniyor...",
+    batchActionPacks: "Toplu İşlem Paketleri",
+    senderLabel: "Her satırda gönderen adı (kapak mektubunda gönderen olarak kullanılır)",
+    jointCustodyPack: "Ortak Vesayet Paketi",
+    contactOrderPack: "İletişim Emri Paketi",
+    building: "Oluşturuluyor…",
+    buildBatchZip: "Toplu ZIP oluştur",
+    batchHint:
+      "Düzenleme kapak mektuplarında yalnızca gönderen aracılığıyla uygulanır; tam dava düzenleme dışa aktarımı Kasada mevcuttur.",
+    handToParent: "Ebeveyne ver (QR bağlantısı)",
+    handToParentHint:
+      "Bu cihazda Sonuç sayfasını açar. Dava özel bağlantıları için daha sonra oluşturulmuş salt okunur rotalar ekleyebiliriz.",
+    redactedCsvExport: "Düzenlenmiş CSV Dışa Aktarımı",
+    exportRedactedCsv: "Düzenlenmiş CSV dışa aktar",
+    caseZipExport: "Dava ZIP dışa aktarımı",
+    caseZipHint:
+      "Düzenlenmiş bir dava anlık görüntüsünü (kasa + zaman çizelgesi) dışa aktarır. İsteğe bağlı olarak seçilen paketleri ekler.",
+    exportCaseZip: "Dava ZIP dışa aktar",
+  },
+  pdf: {
+    optimizerUnavailable: "Optimize edici kullanılamıyor.",
   },
 };
 

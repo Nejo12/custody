@@ -27,7 +27,7 @@ type QueueAggregate = {
 
 export default function HelpSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t } = useI18n();
-  const { preferredCity, setPreferredCity } = useAppStore();
+  const { preferredCity, setPreferredCity, interview } = useAppStore();
   const [city, setCity] = useState<"berlin" | "hamburg" | "nrw">(preferredCity || "berlin");
   const [services, setServices] = useState<Service[]>([]);
   const [postcode, setPostcode] = useState("");
@@ -58,6 +58,14 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
       .then((d) => setServices(Array.isArray(d.services) ? (d.services as Service[]) : []))
       .catch(() => setServices([]));
   }, [open, city]);
+
+  // Prefill postcode from prior interview answer if present
+  useEffect(() => {
+    if (!open) return;
+    const prev = (interview?.answers || ({} as Record<string, string>))["postcode"] || "";
+    if (prev && !postcode) setPostcode(prev);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
   useEffect(() => {
     if (!open || services.length === 0) return;
@@ -204,7 +212,9 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
               </div>
               <div className="rounded-lg border p-3 flex-shrink-0 space-y-2">
                 <div className="flex items-center gap-2 text-xs">
-                  <label className="text-zinc-700 dark:text-zinc-300">{t.helpSheet?.scriptLanguage || "Script language"}</label>
+                  <label className="text-zinc-700 dark:text-zinc-300">
+                    {t.helpSheet?.scriptLanguage || "Script language"}
+                  </label>
                   <select
                     value={scriptLang}
                     onChange={(e) => setScriptLang(e.target.value as typeof scriptLang)}
@@ -261,7 +271,9 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                 </div>
                 {!!translit && (
                   <div className="rounded border p-2 bg-zinc-50 dark:bg-zinc-900">
-                    <div className="text-xs font-medium mb-1">{t.helpSheet?.transliterationLabel || "Transliteration"}</div>
+                    <div className="text-xs font-medium mb-1">
+                      {t.helpSheet?.transliterationLabel || "Transliteration"}
+                    </div>
                     <div className="text-xs text-zinc-800 dark:text-zinc-200 whitespace-pre-wrap">
                       {translit}
                     </div>

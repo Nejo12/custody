@@ -22,7 +22,7 @@ export default function NeutralizePage() {
       });
       const data = (await res.json()) as NeutralizeResponse & { error?: string };
       if (data && typeof data.text === "string") setOut(data.text);
-      else alert(data.error || "Rewrite failed");
+      else alert(data.error || t.vault?.rewriteFailed || "Rewrite failed");
     } finally {
       setLoading(false);
     }
@@ -37,7 +37,7 @@ export default function NeutralizePage() {
       timestamp: Date.now(),
       payload: { content: out },
     });
-    alert("Saved to Vault");
+    alert(t.vault?.savedToVault || "Saved to Vault");
   }
 
   return (

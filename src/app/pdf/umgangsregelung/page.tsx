@@ -322,7 +322,7 @@ export default function UmgangPage() {
       setOptimizer((o) => ({ ...o, loading: false, summary: data.summary || "" }));
     } catch {
       setOptimizer((o) => ({ ...o, loading: false }));
-      alert("Optimizer unavailable.");
+      alert(t.pdf?.optimizerUnavailable || "Optimizer unavailable.");
     }
   }
 

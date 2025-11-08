@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { useI18n } from "@/i18n";
 
 type Props = {
   target?: "en" | "de" | "both";
@@ -11,6 +12,7 @@ type Props = {
 };
 
 export default function VoiceInput({ target = "both", onTranscript }: Props) {
+  const { t } = useI18n();
   const mediaRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<BlobPart[]>([]);
   const [recording, setRecording] = useState(false);
@@ -53,7 +55,7 @@ export default function VoiceInput({ target = "both", onTranscript }: Props) {
           };
           if (data.error) throw new Error(data.error);
           if (data.disabled) {
-            setError("Transcription disabled.");
+            setError(t.voiceInput.transcriptionDisabled);
             return;
           }
           const txt = data.text || "";
@@ -62,7 +64,7 @@ export default function VoiceInput({ target = "both", onTranscript }: Props) {
           setTranslations(data.translations || {});
           onTranscript?.(txt, data.translations || {}, data.language);
         } catch (e: unknown) {
-          const msg = e instanceof Error ? e.message : "Failed to transcribe";
+          const msg = e instanceof Error ? e.message : t.voiceInput.failedToTranscribe;
           setError(msg);
         } finally {
           setBusy(false);
@@ -72,7 +74,7 @@ export default function VoiceInput({ target = "both", onTranscript }: Props) {
       mediaRef.current = mr;
       setRecording(true);
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : "Microphone unavailable";
+      const msg = e instanceof Error ? e.message : t.voiceInput.microphoneUnavailable;
       setError(msg);
     }
   }
@@ -87,16 +89,16 @@ export default function VoiceInput({ target = "both", onTranscript }: Props) {
 
   return (
     <div className="rounded-lg border p-3 space-y-2">
-      <div className="text-sm font-medium">Speak your answer</div>
+      <div className="text-sm font-medium">{t.voiceInput.speakAnswer}</div>
       <div className="flex items-center gap-2">
         {!recording && (
           <button
             type="button"
             onClick={start}
             className="rounded-lg border px-3 py-1 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800"
-            aria-label="Start recording"
+            aria-label={t.voiceInput.startRecording}
           >
-            Start
+            {t.voiceInput.start}
           </button>
         )}
         {recording && (
@@ -104,30 +106,30 @@ export default function VoiceInput({ target = "both", onTranscript }: Props) {
             type="button"
             onClick={stop}
             className="rounded-lg border px-3 py-1 text-sm bg-red-50 dark:bg-red-900/30 hover:bg-red-100 dark:hover:bg-red-900/50"
-            aria-label="Stop recording"
+            aria-label={t.voiceInput.stopRecording}
           >
-            Stop
+            {t.voiceInput.stop}
           </button>
         )}
-        {busy && <div className="text-xs text-zinc-500">Transcribing…</div>}
+        {busy && <div className="text-xs text-zinc-500">{t.voiceInput.transcribing}</div>}
       </div>
       {error && <div className="text-xs text-red-600">{error}</div>}
       {transcript && (
         <div className="space-y-1">
-          <div className="text-xs text-zinc-600 dark:text-zinc-300">“{transcript}”</div>
+          <div className="text-xs text-zinc-600 dark:text-zinc-300">&ldquo;{transcript}&rdquo;</div>
           <div className="text-[11px] text-zinc-500">
-            {language ? `Detected: ${language}` : null}
+            {language ? t.voiceInput.detected.replace("{language}", language) : null}
           </div>
           {(translations.en || translations.de) && (
             <div className="text-[11px] text-zinc-600 dark:text-zinc-400">
               {translations.en ? (
                 <div>
-                  <span className="font-medium">EN:</span> {translations.en}
+                  <span className="font-medium">{t.voiceInput.en}</span> {translations.en}
                 </div>
               ) : null}
               {translations.de ? (
                 <div>
-                  <span className="font-medium">DE:</span> {translations.de}
+                  <span className="font-medium">{t.voiceInput.de}</span> {translations.de}
                 </div>
               ) : null}
             </div>

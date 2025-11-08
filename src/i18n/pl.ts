@@ -8,6 +8,7 @@ const pl = {
     next: "Dalej",
     finish: "Zakończ",
     download: "Pobierz",
+    step: "Krok {idx} z {total}",
   },
   home: {
     tagline: "Poznaj swoje prawa dotyczące opieki i kontaktu.",
@@ -15,6 +16,7 @@ const pl = {
     learn: "Poznaj prawo",
     support: "Znajdź wsparcie",
     disclaimer: "Tylko informacja. Nie jest to indywidualna porada prawna.",
+    features: "WCAG AA · Prywatność przede wszystkim · Gotowe do pracy offline",
   },
   header: {
     findHelp: "Znajdź pomoc",
@@ -169,6 +171,9 @@ const pl = {
     neutralizer: "Neutralizator konfliktu",
     scanner: "Skaner wstępny",
     logbook: "Dziennik",
+    savedToVault: "Zapisano w skarbcu",
+    timelineSavedToVault: "Oś czasu zapisana w skarbcu.",
+    rewriteFailed: "Przepisanie nie powiodło się",
   },
   ocr: {
     selectImage: "Wybierz zdjęcie",
@@ -182,6 +187,20 @@ const pl = {
     extractedFields: "Wydobyte pola",
     saveToVault: "Zapisz do Skarbca",
   },
+  voiceInput: {
+    speakAnswer: "Wypowiedz swoją odpowiedź",
+    start: "Rozpocznij",
+    stop: "Zatrzymaj",
+    transcribing: "Transkrypcja…",
+    transcriptionDisabled: "Transkrypcja wyłączona.",
+    failedToTranscribe: "Nie udało się transkrybować",
+    microphoneUnavailable: "Mikrofon niedostępny",
+    detected: "Wykryto: {language}",
+    en: "EN:",
+    de: "DE:",
+    startRecording: "Rozpocznij nagrywanie",
+    stopRecording: "Zatrzymaj nagrywanie",
+  },
   settings: {
     title: "Ustawienia",
     language: "Język",
@@ -190,7 +209,22 @@ const pl = {
     themeDark: "Ciemny",
     themeSystem: "System",
     about: "O aplikacji",
+    aboutDescription:
+      "Prototyp zorientowany na prywatność, działający offline. Tylko informacja, nie indywidualna porada prawna.",
     dataExport: "Eksport danych",
+    safety: "Bezpieczeństwo",
+    safetyMode: "Tryb bezpieczeństwa (skrót szybkiego wyjścia)",
+    discreetMode: "Dyskretny tytuł aplikacji w nagłówku",
+    blurThumbnails: "Rozmyj miniatury/podglądy",
+    quickWipe: "Szybkie wymazanie (panika)",
+    quickWipeConfirm:
+      "Usunąć dane lokalne i pliki w pamięci podręcznej? Tej operacji nie można cofnąć.",
+    quickWipeNote: "Usuwa dane lokalne, czyści pamięć podręczną i wyrejestrowuje Service Workera.",
+    clearOcrCache: "Wyczyść cache modeli OCR",
+    ocrCacheCleared: "Cache OCR wyczyszczony.",
+    socialWorkerMode: "Tryb pracownika socjalnego",
+    socialWorkerModeEnable: "Włącz narzędzia dla pomocników/NGO",
+    socialWorkerModeOpen: "Otwórz narzędzia pracownika socjalnego",
   },
   education: {
     headings: {
@@ -315,14 +349,31 @@ const pl = {
     downloadPdf: "Pobierz PDF",
     saved: "Dziennik zapisany w skarbcu jako oś czasu.",
   },
-  settings: {
-    safety: "Bezpieczeństwo",
-    safetyMode: "Tryb bezpieczeństwa (skrót szybkiego wyjścia)",
-    discreetMode: "Dyskretny tytuł aplikacji w nagłówku",
-    blurThumbnails: "Rozmyj miniatury/podglądy",
-    quickWipe: "Szybkie wymazanie (panika)",
-    quickWipeNote: "Usuwa dane lokalne, czyści pamięć podręczną i wyrejestrowuje Service Workera.",
-    clearOcrCache: "Wyczyść cache modeli OCR",
+  worker: {
+    title: "Narzędzia pracownika socjalnego",
+    accessRequired: "Dostęp wymaga trybu pracownika socjalnego. Włącz go w ustawieniach.",
+    goToSettings: "Przejdź do ustawień",
+    loading: "Ładowanie...",
+    batchActionPacks: "Pakiety akcji wsadowych",
+    senderLabel: "Nazwa nadawcy w każdym wierszu (używana jako nadawca w liście przewodnim)",
+    jointCustodyPack: "Pakiet wspólnej opieki",
+    contactOrderPack: "Pakiet zarządzenia kontaktowego",
+    building: "Tworzenie…",
+    buildBatchZip: "Utwórz ZIP wsadowy",
+    batchHint:
+      "Redakcja jest stosowana w listach przewodnich tylko przez nadawcę; pełny eksport redakcji sprawy dostępny w skarbcu.",
+    handToParent: "Przekaż rodzicowi (link QR)",
+    handToParentHint:
+      "Otwiera stronę wyników na tym urządzeniu. Dla linków specyficznych dla sprawy możemy później dodać wygenerowane trasy tylko do odczytu.",
+    redactedCsvExport: "Eksport CSV zredagowany",
+    exportRedactedCsv: "Eksportuj CSV zredagowany",
+    caseZipExport: "Eksport ZIP sprawy",
+    caseZipHint:
+      "Eksportuje zredagowany snapshot sprawy (skarbiec + oś czasu). Opcjonalnie dodaje wybrane pakiety.",
+    exportCaseZip: "Eksportuj ZIP sprawy",
+  },
+  pdf: {
+    optimizerUnavailable: "Optymalizator niedostępny.",
   },
 };
 

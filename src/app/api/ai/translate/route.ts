@@ -9,7 +9,7 @@ type TranslateRequest = {
   transliterate?: boolean;
 };
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request | NextRequest) {
   try {
     const body = (await req.json()) as TranslateRequest;
     const text = (body.text || "").toString();

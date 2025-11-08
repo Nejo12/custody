@@ -20,7 +20,6 @@ import { useState } from "react";
 import HelpSheet from "@/components/HelpSheet";
 import JSZip from "jszip";
 import { buildCoverLetter } from "@/lib/coverLetter";
-import type { ClarifyResponse } from "@/types/ai";
 import regionalTips from "@/data/regional.tips.json";
 import { resolveCourtTemplate } from "@/lib/courts";
 import Callout from "@/components/Callout";
@@ -31,7 +30,7 @@ type StatusKey = keyof TranslationDict["result"]["statuses"];
 export default function Result() {
   const { interview } = useAppStore();
   const { t, locale } = useI18n();
-  const { matched, primary, confidence } = evaluateRules(rules as SimpleRule[], interview.answers);
+  const { matched, primary } = evaluateRules(rules as SimpleRule[], interview.answers);
 
   const status = (primary?.outcome.status || "unknown") as StatusKey;
   const citations = (primary?.outcome.citations || []) as (Citation | string)[];
@@ -53,15 +52,13 @@ export default function Result() {
   ) as EducationMap;
 
   const important = ["married_at_birth", "paternity_ack", "joint_declaration", "blocked_contact"];
-  const missing = important
-    .filter((k) => !interview.answers[k] || interview.answers[k] === "unsure")
-    .slice(0, 2);
+  const allMissing = important.filter(
+    (k) => !interview.answers[k] || interview.answers[k] === "unsure"
+  );
+  const missing = allMissing.slice(0, 2);
   const unclear = status === "unknown";
   const [helpOpen, setHelpOpen] = useState(false);
-  const [assistant, setAssistant] = useState<{
-    loading: boolean;
-    data: Record<string, ClarifyResponse>;
-  }>({ loading: false, data: {} });
+  // Assistant suggestions removed from this view per UX tone simplification.
   const {
     preferredCity,
     preferredCourtTemplate,
@@ -85,11 +82,15 @@ export default function Result() {
       >
         {t.result.title}
       </motion.h1>
-      {/* Clarity score + progress path */}
+      {/* Progress + next steps */}
       <div className="rounded-lg border p-3 bg-white dark:bg-zinc-900">
         <div className="flex items-center justify-between text-sm">
-          <div>
-            <span className="font-medium">Clarity Score:</span> {Math.round(confidence * 100)}%
+          <div className="text-sm">
+            <span className="font-medium">
+              {allMissing.length > 0
+                ? `We need ${allMissing.length} quick details to confirm`
+                : "All key details confirmed"}
+            </span>
           </div>
           <button
             className="text-xs underline"
@@ -220,7 +221,6 @@ export default function Result() {
               ? t.rules?.[primary.id as keyof typeof t.rules] || primary.outcome.message
               : undefined
           }
-          confidence={confidence}
           tone={
             status === "joint_custody_default"
               ? "success"
@@ -243,67 +243,21 @@ export default function Result() {
           <div className="text-sm text-zinc-700 dark:text-zinc-300">
             {t.result.pathHint || "If unsure, you can file this now and add details later."}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <button
-              className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={!missing.length || assistant.loading}
-              onClick={async () => {
-                const targets = missing.slice(0, 2);
-                if (!targets.length) {
-                  alert(t.result.allQuestionsAnswered);
-                  return;
-                }
-                setAssistant({ loading: true, data: {} });
-                try {
-                  const pairs = await Promise.all(
-                    targets.map(async (q) => {
-                      const qKey = q as keyof TranslationDict["interview"]["questions"];
-                      const questionData = t.interview.questions[qKey];
-                      const payload = {
-                        questionId: q,
-                        questionText: questionData?.label || q,
-                        answers: interview.answers,
-                        locale: locale === "de" ? "de" : "en",
-                        context: questionData?.help || "",
-                      };
-                      const r = await fetch("/api/ai/clarify", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(payload),
-                      });
-                      if (!r.ok) {
-                        throw new Error(`API error: ${r.status}`);
-                      }
-                      const data = (await r.json()) as ClarifyResponse;
-                      return [q, data] as const;
-                    })
-                  );
-                  const map: Record<string, ClarifyResponse> = {};
-                  for (const [q, d] of pairs) map[q] = d;
-                  setAssistant({ loading: false, data: map });
-                } catch (err) {
-                  console.error("Assistant error:", err);
-                  setAssistant({ loading: false, data: {} });
-                  alert(t.result.assistantUnavailable);
-                }
-              }}
-            >
-              {assistant.loading ? t.result.thinking : t.result.askAssistant}
-            </button>
-            <button
-              className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+              className="rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 p-3 hover:bg-black dark:hover:bg-white"
               onClick={() => {
-                const q = missing[0] || "married_at_birth";
+                const q = (allMissing[0] || "married_at_birth") as string;
                 window.location.href = `/interview?q=${q}`;
               }}
             >
-              {t.result.jumpToKeyQuestion}
+              {t.common?.next || "Continue"}
             </button>
             <button
               className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
               onClick={() => setHelpOpen(true)}
             >
-              {t.result.findHelpNow}
+              {t.result?.findHelpNow || "Find help near me"}
             </button>
           </div>
 
@@ -325,48 +279,7 @@ export default function Result() {
             </div>
           )}
 
-          {/* Assistant suggestions with one-tap accept */}
-          {assistant.loading && (
-            <div className="text-xs text-zinc-700 dark:text-zinc-400">
-              {t.result.assistantThinking}
-            </div>
-          )}
-          {Object.keys(assistant.data).length > 0 && (
-            <div className="space-y-2">
-              {missing.slice(0, 2).map((q) => {
-                const suggestion = assistant.data[q];
-                if (!suggestion) return null;
-                const label =
-                  t.interview.questions[q as keyof TranslationDict["interview"]["questions"]]
-                    ?.label;
-                return (
-                  <div key={q} className="rounded border p-2 bg-zinc-50 dark:bg-zinc-900">
-                    <div className="text-sm">
-                      {label || q}: <b>{suggestion.suggestion}</b>{" "}
-                      <span className="text-xs text-zinc-700 dark:text-zinc-400">
-                        ({Math.round((suggestion.confidence || 0) * 100)}%)
-                      </span>
-                    </div>
-                    {suggestion.followup && (
-                      <div className="text-xs text-zinc-700 dark:text-zinc-300 mt-1">
-                        {suggestion.followup}
-                      </div>
-                    )}
-                    <div className="mt-2 flex gap-2">
-                      <button
-                        className="text-xs rounded border px-2 py-1 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                        onClick={() => {
-                          useAppStore.getState().setAnswer(q, suggestion.suggestion);
-                        }}
-                      >
-                        {t.result.accept}
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+          {/* Assistant removed in Result view */}
 
           {(missing.length ? missing : ["generic"]).map((id) => {
             const item: EducationItem = (edu[id] || edu.generic) as EducationItem;

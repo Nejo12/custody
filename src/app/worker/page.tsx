@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useAppStore } from "@/store/app";
 import { buildPackZip } from "@/lib/packs";
+import { useI18n } from "@/i18n";
 
 export default function WorkerPage() {
   const { locale, socialWorkerMode } = useAppStore();
@@ -12,7 +13,6 @@ export default function WorkerPage() {
   });
   const [downloading, setDownloading] = useState(false);
   const [hydrated, setHydrated] = useState(false);
-  const senderLabel = "Sender name per line (used as cover-letter sender)";
 
   // Mark as client-hydrated; rely on the store's persisted state rather than redirecting
   useEffect(() => {
@@ -54,10 +54,11 @@ export default function WorkerPage() {
     }
   }
 
+  const { t } = useI18n();
   if (!hydrated) {
     return (
       <div className="w-full max-w-xl mx-auto px-4 py-6">
-        <div className="text-sm">Loading...</div>
+        <div className="text-sm">{t.worker?.loading || "Loading..."}</div>
       </div>
     );
   }
@@ -65,13 +66,14 @@ export default function WorkerPage() {
   if (!socialWorkerMode) {
     return (
       <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
-        <h1 className="text-xl font-semibold">Social Worker Tools</h1>
+        <h1 className="text-xl font-semibold">{t.worker?.title || "Social Worker Tools"}</h1>
         <div className="rounded-lg border p-3">
           <div className="text-sm">
-            Access requires Social Worker Mode. Please enable it in Settings.
+            {t.worker?.accessRequired ||
+              "Access requires Social Worker Mode. Please enable it in Settings."}
           </div>
           <a href="/settings" className="underline text-sm mt-2 inline-block">
-            Go to Settings
+            {t.worker?.goToSettings || "Go to Settings"}
           </a>
         </div>
       </div>
@@ -80,11 +82,15 @@ export default function WorkerPage() {
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
-      <h1 className="text-xl font-semibold">Social Worker Tools</h1>
+      <h1 className="text-xl font-semibold">{t.worker?.title || "Social Worker Tools"}</h1>
       <CaseZipPanel kinds={kinds} />
       <div className="rounded-lg border p-3 space-y-2 no-print">
-        <div className="text-sm font-medium">Batch Action Packs</div>
-        <div className="text-xs">{senderLabel}</div>
+        <div className="text-sm font-medium">
+          {t.worker?.batchActionPacks || "Batch Action Packs"}
+        </div>
+        <div className="text-xs">
+          {t.worker?.senderLabel || "Sender name per line (used as cover-letter sender)"}
+        </div>
         <textarea
           className="w-full rounded border p-2 text-sm min-h-[120px]"
           value={names}
@@ -98,7 +104,7 @@ export default function WorkerPage() {
               checked={kinds.joint}
               onChange={(e) => setKinds((k) => ({ ...k, joint: e.target.checked }))}
             />
-            Joint Custody Pack
+            {t.worker?.jointCustodyPack || "Joint Custody Pack"}
           </label>
           <label className="inline-flex items-center gap-2">
             <input
@@ -106,7 +112,7 @@ export default function WorkerPage() {
               checked={kinds.contact}
               onChange={(e) => setKinds((k) => ({ ...k, contact: e.target.checked }))}
             />
-            Contact Order Pack
+            {t.worker?.contactOrderPack || "Contact Order Pack"}
           </label>
         </div>
         <button
@@ -114,24 +120,30 @@ export default function WorkerPage() {
           onClick={onBuild}
           disabled={downloading}
         >
-          {downloading ? "Building…" : "Build batch ZIP"}
+          {downloading
+            ? t.worker?.building || "Building…"
+            : t.worker?.buildBatchZip || "Build batch ZIP"}
         </button>
         <div className="text-xs text-zinc-600">
-          Redaction is applied in cover‑letters via sender only; full case redaction export
-          available in Vault.
+          {t.worker?.batchHint ||
+            "Redaction is applied in cover‑letters via sender only; full case redaction export available in Vault."}
         </div>
       </div>
       <div className="rounded-lg border p-3 space-y-2 no-print">
-        <div className="text-sm font-medium">Hand to Parent (QR link)</div>
+        <div className="text-sm font-medium">
+          {t.worker?.handToParent || "Hand to Parent (QR link)"}
+        </div>
         <QRPreview url="/result" />
         <div className="text-xs text-zinc-600">
-          Opens the Result page on this device. For case‑specific links, we can add generated
-          view‑only routes later.
+          {t.worker?.handToParentHint ||
+            "Opens the Result page on this device. For case‑specific links, we can add generated view‑only routes later."}
         </div>
       </div>
 
       <div className="rounded-lg border p-3 space-y-2 no-print">
-        <div className="text-sm font-medium">Redacted CSV Export</div>
+        <div className="text-sm font-medium">
+          {t.worker?.redactedCsvExport || "Redacted CSV Export"}
+        </div>
         <button
           className="rounded border px-3 py-1 text-sm"
           onClick={() => {
@@ -156,7 +168,7 @@ export default function WorkerPage() {
             URL.revokeObjectURL(url);
           }}
         >
-          Export redacted CSV
+          {t.worker?.exportRedactedCsv || "Export redacted CSV"}
         </button>
       </div>
     </div>
@@ -184,7 +196,6 @@ function QRPreview({ url }: { url: string }) {
 
 function CaseZipPanel({ kinds }: { kinds: { joint: boolean; contact: boolean } }) {
   const { locale } = useAppStore();
-  const { useI18n } = require("@/i18n");
   const { t } = useI18n();
   const [busy, setBusy] = useState(false);
   return (
@@ -264,7 +275,7 @@ function CaseZipPanel({ kinds }: { kinds: { joint: boolean; contact: boolean } }
           }
         }}
       >
-        {busy ? "Building…" : (require("@/i18n").useI18n().t.worker?.exportCaseZip || "Export Case ZIP")}
+        {busy ? t.worker?.building || "Building…" : t.worker?.exportCaseZip || "Export Case ZIP"}
       </button>
     </div>
   );

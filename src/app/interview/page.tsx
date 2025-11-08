@@ -128,12 +128,15 @@ export default function Interview() {
         >
           <div className="space-y-2">
             <div className="text-sm text-zinc-700 dark:text-zinc-400">{t.interview.title}</div>
-            <h2 className="text-lg font-semibold text-zinc-400 dark:text-zinc-700">
-              {questionData?.label || current.id}
-            </h2>
-            <p className="text-sm text-zinc-700 dark:text-zinc-700">
-              {questionData?.help || t.interview.help}
-            </p>
+            <h2 className="text-lg font-semibold">{questionData?.label || current.id}</h2>
+            <details className="rounded border p-3 bg-zinc-50 dark:bg-zinc-900 text-sm">
+              <summary className="cursor-pointer font-medium text-zinc-800 dark:text-zinc-200">
+                {t.education?.headings?.why || "Why this question matters"}
+              </summary>
+              <div className="mt-1 text-zinc-600 dark:text-zinc-400">
+                {questionData?.help || t.interview.help}
+              </div>
+            </details>
           </div>
 
           <div className="grid grid-cols-1 gap-3">
@@ -157,15 +160,7 @@ export default function Interview() {
                 >
                   {t.common.no}
                 </motion.button>
-                <motion.button
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  onClick={() => onSelect("unsure")}
-                  className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-left text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
-                >
-                  {t.common.unsure}
-                </motion.button>
+                {/* Unsure is provided via Skip control below */}
               </>
             )}
             {current.type === "enum" && (
@@ -210,10 +205,12 @@ export default function Interview() {
               onClick={onClarify}
               className="text-sm text-zinc-700 dark:text-zinc-400 underline decoration-dotted hover:text-zinc-900 dark:hover:text-zinc-200"
             >
-              Need help?
+              {t.result?.askAssistant || "Ask the Assistant"}
             </button>
             {clarify.loading && (
-              <span className="text-xs text-zinc-700 dark:text-zinc-400">Thinking…</span>
+              <span className="text-xs text-zinc-700 dark:text-zinc-400">
+                {t.result?.thinking || "Thinking…"}
+              </span>
             )}
           </div>
 
@@ -224,14 +221,15 @@ export default function Interview() {
               className="rounded-lg border border-zinc-300 dark:border-zinc-700 p-3 bg-zinc-50 dark:bg-zinc-900"
             >
               <div className="text-sm text-zinc-900 dark:text-zinc-100">
-                Suggestion: <b>{clarify.data.suggestion}</b>{" "}
+                {(t.result?.answerNow || "Answer now:") + " "}
+                <b>{clarify.data.suggestion}</b>{" "}
                 <span className="text-xs text-zinc-700 dark:text-zinc-400">
                   ({Math.round(clarify.data.confidence * 100)}%)
                 </span>
               </div>
               {clarify.data.followup && (
                 <div className="text-sm text-zinc-900 dark:text-zinc-100 mt-1">
-                  Follow‑up: {clarify.data.followup}
+                  {clarify.data.followup}
                 </div>
               )}
               <div className="mt-2 flex gap-2">
@@ -239,22 +237,22 @@ export default function Interview() {
                   onClick={() => onSelect(clarify.data!.suggestion)}
                   className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1 text-sm text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-700"
                 >
-                  Accept
+                  {t.result?.accept || "Accept"}
                 </button>
                 <button
                   onClick={() => setClarify({ loading: false })}
                   className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1 text-sm text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-700"
                 >
-                  Dismiss
+                  {t.helpSheet?.close || "Close"}
                 </button>
               </div>
               <div className="text-[11px] text-zinc-700 dark:text-zinc-400 mt-2">
-                Information only — not individualized legal advice.
+                {t.helpSheet?.disclaimer || "Information only — not individualized legal advice."}
               </div>
             </motion.div>
           )}
 
-          <div className="flex justify-between pt-2">
+          <div className="flex justify-between items-center pt-2">
             <button
               onClick={() => setStep((s) => Math.max(0, s - 1))}
               className="text-sm text-zinc-700 dark:text-zinc-400 underline hover:text-zinc-900 dark:hover:text-zinc-200 disabled:text-zinc-300 dark:disabled:text-zinc-600"
@@ -262,8 +260,16 @@ export default function Interview() {
             >
               {t.common.back}
             </button>
-            <div className="text-sm text-zinc-700 dark:text-zinc-400">
-              {step + 1} / {questions.length}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => onSelect("unsure")}
+                className="text-sm text-zinc-700 dark:text-zinc-400 underline hover:text-zinc-900 dark:hover:text-zinc-200"
+              >
+                {t.common?.unsure || "Not sure"}
+              </button>
+              <div className="text-sm text-zinc-700 dark:text-zinc-400">
+                {step + 1} / {questions.length}
+              </div>
             </div>
           </div>
         </motion.div>

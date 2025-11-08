@@ -8,6 +8,7 @@ const ar = {
     next: "التالي",
     finish: "إنهاء",
     download: "تحميل",
+    step: "الخطوة {idx} من {total}",
   },
   home: {
     tagline: "اعرف حقوقك في الحضانة والاتصال.",
@@ -15,6 +16,7 @@ const ar = {
     learn: "تعرف على القانون",
     support: "العثور على الدعم",
     disclaimer: "معلومات فقط. ليست نصيحة قانونية فردية.",
+    features: "WCAG AA · الخصوصية أولاً · جاهز للعمل دون اتصال",
   },
   header: {
     findHelp: "ابحث عن المساعدة",
@@ -166,6 +168,9 @@ const ar = {
     neutralizer: "مُحايد النزاع",
     scanner: "ماسح الاستقبال",
     logbook: "السجل",
+    savedToVault: "تم الحفظ في المستودع",
+    timelineSavedToVault: "تم حفظ الجدول الزمني في المستودع.",
+    rewriteFailed: "فشل إعادة الكتابة",
   },
   ocr: {
     selectImage: "اختر صورة",
@@ -179,6 +184,20 @@ const ar = {
     extractedFields: "الحقول المستخرجة",
     saveToVault: "احفظ في المستودع",
   },
+  voiceInput: {
+    speakAnswer: "تحدث إجابتك",
+    start: "ابدأ",
+    stop: "توقف",
+    transcribing: "جاري التحويل…",
+    transcriptionDisabled: "التحويل معطل.",
+    failedToTranscribe: "فشل التحويل",
+    microphoneUnavailable: "الميكروفون غير متاح",
+    detected: "تم اكتشاف: {language}",
+    en: "EN:",
+    de: "DE:",
+    startRecording: "بدء التسجيل",
+    stopRecording: "إيقاف التسجيل",
+  },
   settings: {
     title: "الإعدادات",
     language: "اللغة",
@@ -187,7 +206,21 @@ const ar = {
     themeDark: "داكن",
     themeSystem: "النظام",
     about: "حول",
+    aboutDescription:
+      "نموذج أولي يراعي الخصوصية ويعمل دون اتصال. معلومات فقط، وليست نصيحة قانونية فردية.",
     dataExport: "تصدير البيانات",
+    safety: "السلامة",
+    safetyMode: "وضع السلامة (اختصار الخروج السريع)",
+    discreetMode: "اسم تطبيق غير لافت في العنوان",
+    blurThumbnails: "تمويه الصور المصغرة/المعاينات",
+    quickWipe: "مسح سريع (ذعر)",
+    quickWipeConfirm: "حذف البيانات المحلية والملفات المخزنة مؤقتاً؟ لا يمكن التراجع عن هذا.",
+    quickWipeNote: "يزيل البيانات المحلية، ويفرّغ الذاكرة المؤقتة، ويلغي تسجيل عامل الخدمة.",
+    clearOcrCache: "مسح ذاكرة نماذج OCR",
+    ocrCacheCleared: "تم مسح ذاكرة OCR.",
+    socialWorkerMode: "وضع العامل الاجتماعي",
+    socialWorkerModeEnable: "تفعيل أدوات للمساعدين/المنظمات غير الحكومية",
+    socialWorkerModeOpen: "فتح أدوات العامل الاجتماعي",
   },
   education: {
     headings: {
@@ -309,14 +342,30 @@ const ar = {
     downloadPdf: "تنزيل PDF",
     saved: "تم حفظ السجل في المخزن كجدول زمني.",
   },
-  settings: {
-    safety: "السلامة",
-    safetyMode: "وضع السلامة (اختصار الخروج السريع)",
-    discreetMode: "اسم تطبيق غير لافت في العنوان",
-    blurThumbnails: "تمويه الصور المصغرة/المعاينات",
-    quickWipe: "مسح سريع (ذعر)",
-    quickWipeNote: "يزيل البيانات المحلية، ويفرّغ الذاكرة المؤقتة، ويلغي تسجيل عامل الخدمة.",
-    clearOcrCache: "مسح ذاكرة نماذج OCR",
+  worker: {
+    title: "أدوات العامل الاجتماعي",
+    accessRequired: "يتطلب الوصول وضع العامل الاجتماعي. يرجى تفعيله في الإعدادات.",
+    goToSettings: "انتقل إلى الإعدادات",
+    loading: "جاري التحميل...",
+    batchActionPacks: "حزم الإجراءات المجمعة",
+    senderLabel: "اسم المرسل في كل سطر (يُستخدم كمرسل في خطاب التغطية)",
+    jointCustodyPack: "حزمة الحضانة المشتركة",
+    contactOrderPack: "حزمة أمر الاتصال",
+    building: "جاري الإنشاء…",
+    buildBatchZip: "إنشاء ملف ZIP مجمع",
+    batchHint:
+      "يتم تطبيق التعديل في خطابات التغطية عبر المرسل فقط؛ تصدير تعديل الحالة الكامل متاح في المستودع.",
+    handToParent: "تسليم للوالد (رابط QR)",
+    handToParentHint:
+      "يفتح صفحة النتائج على هذا الجهاز. للروابط الخاصة بالحالة، يمكننا إضافة مسارات للقراءة فقط لاحقاً.",
+    redactedCsvExport: "تصدير CSV معدّل",
+    exportRedactedCsv: "تصدير CSV معدّل",
+    caseZipExport: "تصدير ZIP الحالة",
+    caseZipHint: "يصدّر لقطة حالة معدّلة (المستودع + الجدول الزمني). يضيف حزم مختارة اختيارياً.",
+    exportCaseZip: "تصدير ZIP الحالة",
+  },
+  pdf: {
+    optimizerUnavailable: "المحسّن غير متاح.",
   },
 };
 

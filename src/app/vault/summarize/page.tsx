@@ -5,7 +5,7 @@ import { useAppStore } from "@/store/app";
 import type { SummarizeResponse } from "@/types/ai";
 
 export default function SummarizePage() {
-  const { locale } = useI18n();
+  const { locale, t } = useI18n();
   const { addEntry } = useAppStore();
   const [text, setText] = useState("");
   const [result, setResult] = useState<SummarizeResponse | null>(null);
@@ -36,7 +36,7 @@ export default function SummarizePage() {
       timestamp: Date.now(),
       payload: { content },
     });
-    alert("Timeline saved to Vault.");
+    alert(t.vault?.timelineSavedToVault || "Timeline saved to Vault.");
   }
 
   return (

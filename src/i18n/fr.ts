@@ -8,6 +8,7 @@ const fr = {
     next: "Suivant",
     finish: "Terminer",
     download: "Télécharger",
+    step: "Étape {idx} sur {total}",
   },
   home: {
     tagline: "Connaissez vos droits de garde et de contact.",
@@ -15,6 +16,7 @@ const fr = {
     learn: "Apprendre la loi",
     support: "Trouver du soutien",
     disclaimer: "Information uniquement. Pas de conseil juridique individualisé.",
+    features: "WCAG AA · Confidentialité d'abord · Prêt hors ligne",
   },
   header: {
     findHelp: "Trouver de l'aide",
@@ -169,8 +171,11 @@ const fr = {
     exportData: "Exporter les données",
     summarizer: "Résumé des preuves",
     neutralizer: "Neutraliseur de conflit",
-    scanner: "Scanner d’accueil",
+    scanner: "Scanner d'accueil",
     logbook: "Journal",
+    savedToVault: "Enregistré dans le coffre",
+    timelineSavedToVault: "Chronologie enregistrée dans le coffre.",
+    rewriteFailed: "Réécriture échouée",
   },
   ocr: {
     selectImage: "Sélectionner une photo",
@@ -184,6 +189,20 @@ const fr = {
     extractedFields: "Champs extraits",
     saveToVault: "Enregistrer dans le coffre‑fort",
   },
+  voiceInput: {
+    speakAnswer: "Parlez votre réponse",
+    start: "Démarrer",
+    stop: "Arrêter",
+    transcribing: "Transcription…",
+    transcriptionDisabled: "Transcription désactivée.",
+    failedToTranscribe: "Échec de la transcription",
+    microphoneUnavailable: "Microphone indisponible",
+    detected: "Détecté : {language}",
+    en: "EN:",
+    de: "DE:",
+    startRecording: "Démarrer l'enregistrement",
+    stopRecording: "Arrêter l'enregistrement",
+  },
   settings: {
     title: "Paramètres",
     language: "Langue",
@@ -192,7 +211,23 @@ const fr = {
     themeDark: "Sombre",
     themeSystem: "Système",
     about: "À propos",
+    aboutDescription:
+      "Prototype axé sur la confidentialité, fonctionnant hors ligne. Information uniquement, pas de conseil juridique individualisé.",
     dataExport: "Exportation de données",
+    safety: "Sécurité",
+    safetyMode: "Mode sécurité (raccourci de sortie rapide)",
+    discreetMode: "Nom d'application discret dans l'en‑tête",
+    blurThumbnails: "Flouter les miniatures/prévisualisations",
+    quickWipe: "Effacement rapide (panique)",
+    quickWipeConfirm:
+      "Effacer les données locales et les fichiers mis en cache ? Cette action est irréversible.",
+    quickWipeNote:
+      "Supprime les données locales, vide les caches et annule l'enregistrement du Service Worker.",
+    clearOcrCache: "Vider le cache des modèles OCR",
+    ocrCacheCleared: "Cache OCR vidé.",
+    socialWorkerMode: "Mode travailleur social",
+    socialWorkerModeEnable: "Activer les outils pour les aidants/ONG",
+    socialWorkerModeOpen: "Ouvrir les outils travailleur social",
   },
   education: {
     headings: {
@@ -320,14 +355,33 @@ const fr = {
     downloadPdf: "Télécharger le PDF",
     saved: "Journal enregistré dans le coffre sous forme de chronologie.",
   },
-  settings: {
-    safety: "Sécurité",
-    safetyMode: "Mode sécurité (raccourci de sortie rapide)",
-    discreetMode: "Nom d’application discret dans l’en‑tête",
-    blurThumbnails: "Flouter les miniatures/prévisualisations",
-    quickWipe: "Effacement rapide (panique)",
-    quickWipeNote: "Supprime les données locales, vide les caches et annule l’enregistrement du Service Worker.",
-    clearOcrCache: "Vider le cache des modèles OCR",
+  worker: {
+    title: "Outils travailleur social",
+    accessRequired:
+      "L'accès nécessite le mode travailleur social. Veuillez l'activer dans les paramètres.",
+    goToSettings: "Aller aux paramètres",
+    loading: "Chargement...",
+    batchActionPacks: "Packs d'action par lot",
+    senderLabel:
+      "Nom de l'expéditeur par ligne (utilisé comme expéditeur dans la lettre de couverture)",
+    jointCustodyPack: "Pack garde conjointe",
+    contactOrderPack: "Pack ordre de contact",
+    building: "Construction…",
+    buildBatchZip: "Créer ZIP par lot",
+    batchHint:
+      "L'anonymisation est appliquée dans les lettres de couverture via l'expéditeur uniquement ; export d'anonymisation complète du dossier disponible dans le coffre.",
+    handToParent: "Remettre au parent (lien QR)",
+    handToParentHint:
+      "Ouvre la page de résultats sur cet appareil. Pour les liens spécifiques au dossier, nous pouvons ajouter des routes en lecture seule générées plus tard.",
+    redactedCsvExport: "Export CSV anonymisé",
+    exportRedactedCsv: "Exporter CSV anonymisé",
+    caseZipExport: "Export ZIP dossier",
+    caseZipHint:
+      "Exporte un instantané de dossier anonymisé (coffre + chronologie). Ajoute optionnellement les packs sélectionnés.",
+    exportCaseZip: "Exporter ZIP dossier",
+  },
+  pdf: {
+    optimizerUnavailable: "Optimiseur indisponible.",
   },
 };
 

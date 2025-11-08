@@ -8,6 +8,7 @@ const de = {
     next: "Weiter",
     finish: "Fertig",
     download: "Herunterladen",
+    step: "Schritt {idx} von {total}",
   },
   home: {
     tagline: "Kenne deine Sorge- und Umgangsrechte.",
@@ -15,6 +16,7 @@ const de = {
     learn: "Gesetz verstehen",
     support: "Hilfe finden",
     disclaimer: "Nur Information – keine individuelle Rechtsberatung.",
+    features: "WCAG AA · Datenschutzorientiert · Offlinefähig",
   },
   header: {
     findHelp: "Hilfe finden",
@@ -166,6 +168,9 @@ const de = {
     neutralizer: "Konflikt-Entschärfer",
     scanner: "Intake-Scanner",
     logbook: "Protokoll",
+    savedToVault: "Im Tresor gespeichert",
+    timelineSavedToVault: "Zeitlinie im Tresor gespeichert.",
+    rewriteFailed: "Umschreiben fehlgeschlagen",
   },
   ocr: {
     selectImage: "Foto auswählen",
@@ -179,6 +184,20 @@ const de = {
     extractedFields: "Erkannte Felder",
     saveToVault: "In Ablage speichern",
   },
+  voiceInput: {
+    speakAnswer: "Sprechen Sie Ihre Antwort",
+    start: "Starten",
+    stop: "Stoppen",
+    transcribing: "Transkribiere…",
+    transcriptionDisabled: "Transkription deaktiviert.",
+    failedToTranscribe: "Transkription fehlgeschlagen",
+    microphoneUnavailable: "Mikrofon nicht verfügbar",
+    detected: "Erkannt: {language}",
+    en: "EN:",
+    de: "DE:",
+    startRecording: "Aufnahme starten",
+    stopRecording: "Aufnahme stoppen",
+  },
   settings: {
     title: "Einstellungen",
     language: "Sprache",
@@ -187,7 +206,22 @@ const de = {
     themeDark: "Dunkel",
     themeSystem: "System",
     about: "Über",
+    aboutDescription:
+      "Datenschutzorientierter, offlinefähiger Prototyp. Nur Informationen, keine individuelle Rechtsberatung.",
     dataExport: "Datenexport",
+    safety: "Sicherheit",
+    safetyMode: "Sicherheitsmodus (Schnellverlassen‑Tastenkombi)",
+    discreetMode: "Dezenter App‑Name in der Kopfzeile",
+    blurThumbnails: "Vorschaubilder weichzeichnen",
+    quickWipe: "Schnell löschen (Panik)",
+    quickWipeConfirm:
+      "Lokale Daten und gecachte Dateien löschen? Dies kann nicht rückgängig gemacht werden.",
+    quickWipeNote: "Löscht lokale Daten, leert Caches und deregistriert den Service Worker.",
+    clearOcrCache: "OCR‑Modell‑Cache leeren",
+    ocrCacheCleared: "OCR‑Cache geleert.",
+    socialWorkerMode: "Sozialarbeiter‑Modus",
+    socialWorkerModeEnable: "Tools für Helfer/NGOs aktivieren",
+    socialWorkerModeOpen: "Sozialarbeiter‑Tools öffnen",
   },
   education: {
     headings: {
@@ -313,14 +347,32 @@ const de = {
     downloadPdf: "PDF herunterladen",
     saved: "Protokoll als Zeitlinie im Tresor gespeichert.",
   },
-  settings: {
-    safety: "Sicherheit",
-    safetyMode: "Sicherheitsmodus (Schnellverlassen‑Tastenkombi)",
-    discreetMode: "Dezenter App‑Name in der Kopfzeile",
-    blurThumbnails: "Vorschaubilder weichzeichnen",
-    quickWipe: "Schnell löschen (Panik)",
-    quickWipeNote: "Löscht lokale Daten, leert Caches und deregistriert den Service Worker.",
-    clearOcrCache: "OCR‑Modell‑Cache leeren",
+  worker: {
+    title: "Sozialarbeiter‑Tools",
+    accessRequired:
+      "Zugriff erfordert Sozialarbeiter‑Modus. Bitte in den Einstellungen aktivieren.",
+    goToSettings: "Zu den Einstellungen",
+    loading: "Lädt…",
+    batchActionPacks: "Stapel‑Aktionspakete",
+    senderLabel: "Absendername pro Zeile (wird als Absender im Anschreiben verwendet)",
+    jointCustodyPack: "Gemeinsames Sorgerecht Paket",
+    contactOrderPack: "Umgangsregelung Paket",
+    building: "Erstelle…",
+    buildBatchZip: "Stapel‑ZIP erstellen",
+    batchHint:
+      "Anonymisierung wird in Anschreiben nur über Absender angewendet; vollständige Fallanonymisierung verfügbar im Tresor.",
+    handToParent: "An Eltern weitergeben (QR‑Link)",
+    handToParentHint:
+      "Öffnet die Ergebnisseite auf diesem Gerät. Für fall‑spezifische Links können wir später generierte Nur‑Lese‑Routen hinzufügen.",
+    redactedCsvExport: "Anonymisierter CSV‑Export",
+    exportRedactedCsv: "Anonymisierte CSV exportieren",
+    caseZipExport: "Fall‑ZIP‑Export",
+    caseZipHint:
+      "Exportiert eine anonymisierte Fallaufnahme (Tresor + Zeitlinie). Fügt optional ausgewählte Pakete hinzu.",
+    exportCaseZip: "Fall‑ZIP exportieren",
+  },
+  pdf: {
+    optimizerUnavailable: "Optimierer nicht verfügbar.",
   },
 };
 

@@ -131,7 +131,7 @@ export default function ScanPage() {
       timestamp: Date.now(),
       payload: { content: redacted, fields },
     });
-    alert("Saved to Vault");
+    alert(t.vault?.savedToVault || "Saved to Vault");
   }
 
   return (

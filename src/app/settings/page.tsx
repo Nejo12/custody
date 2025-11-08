@@ -29,7 +29,9 @@ export default function SettingsPage() {
     setBlurThumbnails,
   } = useAppStore();
   async function quickWipe() {
-    const ok = confirm("Erase local data and cached files? This cannot be undone.");
+    const ok = confirm(
+      t.settings?.quickWipeConfirm || "Erase local data and cached files? This cannot be undone."
+    );
     if (!ok) return;
     try {
       // Reset app state
@@ -66,7 +68,7 @@ export default function SettingsPage() {
             );
           })
         );
-        alert("OCR cache cleared.");
+        alert(t.settings?.ocrCacheCleared || "OCR cache cleared.");
       }
     } catch {
       // ignore
@@ -74,10 +76,12 @@ export default function SettingsPage() {
   }
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-6">
-      <h1 className="text-xl font-semibold">{t.settings.title}</h1>
+      <h1 className="text-xl font-semibold">{t.settings?.title || "Settings"}</h1>
 
       <div className="space-y-2">
-        <div className="text-sm text-zinc-700 dark:text-zinc-400">{t.settings.language}</div>
+        <div className="text-sm text-zinc-700 dark:text-zinc-400">
+          {t.settings?.language || "Language"}
+        </div>
         <div className="inline-flex flex-wrap gap-2 rounded-full border overflow-hidden">
           {languages.map((lang) => (
             <button
@@ -92,32 +96,38 @@ export default function SettingsPage() {
       </div>
 
       <div className="space-y-1">
-        <div className="text-sm text-zinc-700 dark:text-zinc-400">{t.settings.about}</div>
+        <div className="text-sm text-zinc-700 dark:text-zinc-400">
+          {t.settings?.about || "About"}
+        </div>
         <p className="text-sm text-zinc-700">
-          Privacy-first, offline-capable prototype. Information only, not individualized legal
-          advice.
+          {t.settings?.aboutDescription ||
+            "Privacy-first, offline-capable prototype. Information only, not individualized legal advice."}
         </p>
       </div>
 
       <div className="space-y-2">
-        <div className="text-sm text-zinc-700 dark:text-zinc-400">Social Worker Mode</div>
+        <div className="text-sm text-zinc-700 dark:text-zinc-400">
+          {t.settings?.socialWorkerMode || "Social Worker Mode"}
+        </div>
         <label className="flex items-center gap-2 text-sm">
           <input
             type="checkbox"
             checked={socialWorkerMode}
             onChange={(e) => setSocialWorkerMode(e.target.checked)}
           />
-          Enable tools for helpers/NGOs
+          {t.settings?.socialWorkerModeEnable || "Enable tools for helpers/NGOs"}
         </label>
         {socialWorkerMode && (
           <a href="/worker" className="underline text-sm">
-            Open Social Worker tools
+            {t.settings?.socialWorkerModeOpen || "Open Social Worker tools"}
           </a>
         )}
       </div>
 
       <div className="space-y-2">
-        <div className="text-sm text-zinc-700 dark:text-zinc-400">{t.settings?.safety || "Safety"}</div>
+        <div className="text-sm text-zinc-700 dark:text-zinc-400">
+          {t.settings?.safety || "Safety"}
+        </div>
         <label className="flex items-center gap-2 text-sm">
           <input
             type="checkbox"
@@ -149,12 +159,10 @@ export default function SettingsPage() {
           {t.settings?.quickWipe || "Quick Wipe (panic erase)"}
         </button>
         <div className="text-xs text-zinc-600 dark:text-zinc-400">
-          {t.settings?.quickWipeNote || "Removes local data, clears caches, and unregisters the service worker."}
+          {t.settings?.quickWipeNote ||
+            "Removes local data, clears caches, and unregisters the service worker."}
         </div>
-        <button
-          onClick={clearOcrCache}
-          className="rounded-md border px-3 py-1 text-sm"
-        >
+        <button onClick={clearOcrCache} className="rounded-md border px-3 py-1 text-sm">
           {t.settings?.clearOcrCache || "Clear OCR model cache"}
         </button>
       </div>
