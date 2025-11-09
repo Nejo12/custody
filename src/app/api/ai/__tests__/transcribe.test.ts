@@ -132,7 +132,7 @@ function createMockRequestWithFiles(
 describe("ai transcribe route", () => {
   let OriginalFormData: typeof FormData;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     vi.clearAllMocks();
     delete process.env.OPENAI_API_KEY;
     delete process.env.AI_API_KEY;
@@ -144,7 +144,7 @@ describe("ai transcribe route", () => {
     delete process.env.AI_TRANSCRIBE_MODEL;
     global.fetch = vi.fn();
     // Clear rate limit buckets between tests
-    clearRateLimitBuckets();
+    await clearRateLimitBuckets();
     // Use fake timers to control rate limiting
     vi.useFakeTimers();
 

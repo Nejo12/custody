@@ -13,7 +13,7 @@ type TranslateRequest = {
 export async function POST(req: Request | NextRequest) {
   try {
     const key = getClientKey(req as Request, "ai:translate");
-    const rl = rateLimit(key, 30, 60_000);
+    const rl = await rateLimit(key, 30, 60_000);
     if (!rl.allowed) {
       return new Response(JSON.stringify({ error: "rate_limited" }), {
         status: 429,

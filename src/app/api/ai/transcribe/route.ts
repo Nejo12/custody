@@ -14,7 +14,7 @@ type TranscribeResult = {
 export async function POST(req: NextRequest) {
   try {
     const key = getClientKey(req as unknown as Request, "ai:transcribe");
-    const rl = rateLimit(key, 15, 60_000);
+    const rl = await rateLimit(key, 15, 60_000);
     if (!rl.allowed) {
       return new Response(JSON.stringify({ error: "rate_limited" }), {
         status: 429,

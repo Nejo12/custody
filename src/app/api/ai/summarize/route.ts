@@ -28,7 +28,7 @@ export async function POST(req: Request) {
   const model = process.env.OPENAI_MODEL || process.env.AI_MODEL || "gpt-4o-mini";
   try {
     const key = getClientKey(req, "ai:summarize");
-    const rl = rateLimit(key, 20, 60_000);
+    const rl = await rateLimit(key, 20, 60_000);
     if (!rl.allowed) {
       return new Response(JSON.stringify({ error: "rate_limited" }), {
         status: 429,

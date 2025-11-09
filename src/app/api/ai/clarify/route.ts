@@ -24,7 +24,7 @@ function buildPrompt(req: ClarifyRequest): string {
 export async function POST(req: Request) {
   try {
     const key = getClientKey(req, "ai:clarify");
-    const rl = rateLimit(key, 20, 60_000);
+    const rl = await rateLimit(key, 20, 60_000);
     if (!rl.allowed) {
       return new Response(JSON.stringify({ error: "rate_limited" }), {
         status: 429,
