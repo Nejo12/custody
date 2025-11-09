@@ -1,13 +1,9 @@
 "use client";
 import rules from "@/data/rules.json";
 import eduEN from "@/data/education.en.json";
-import eduDE from "@/data/education.de.json";
-import eduFR from "@/data/education.fr.json";
-import eduAR from "@/data/education.ar.json";
-import eduPL from "@/data/education.pl.json";
-import eduRU from "@/data/education.ru.json";
-import eduTR from "@/data/education.tr.json";
 import { evaluateRules } from "@/lib/rules";
+
+export const dynamic = "force-dynamic";
 import { useAppStore } from "@/store/app";
 import { useI18n } from "@/i18n";
 import Link from "next/link";
@@ -46,21 +42,42 @@ export default function Result() {
   const status = (primary?.outcome.status || "unknown") as StatusKey;
   const citations = (primary?.outcome.citations || []) as (Citation | string)[];
   type EducationMap = Record<string, EducationItem>;
-  const edu = (
-    locale === "de"
-      ? eduDE
-      : locale === "fr"
-        ? eduFR
-        : locale === "ar"
-          ? eduAR
-          : locale === "pl"
-            ? eduPL
-            : locale === "ru"
-              ? eduRU
-              : locale === "tr"
-                ? eduTR
-                : eduEN
-  ) as EducationMap;
+  const [edu, setEdu] = useState<EducationMap>(eduEN as EducationMap);
+
+  // Lazy load education file based on locale
+  useEffect(() => {
+    const loadEducation = async () => {
+      try {
+        let eduData: EducationMap;
+        switch (locale) {
+          case "de":
+            eduData = (await import("@/data/education.de.json")).default;
+            break;
+          case "fr":
+            eduData = (await import("@/data/education.fr.json")).default;
+            break;
+          case "ar":
+            eduData = (await import("@/data/education.ar.json")).default;
+            break;
+          case "pl":
+            eduData = (await import("@/data/education.pl.json")).default;
+            break;
+          case "ru":
+            eduData = (await import("@/data/education.ru.json")).default;
+            break;
+          case "tr":
+            eduData = (await import("@/data/education.tr.json")).default;
+            break;
+          default:
+            eduData = eduEN;
+        }
+        setEdu(eduData as EducationMap);
+      } catch {
+        setEdu(eduEN as EducationMap);
+      }
+    };
+    loadEducation();
+  }, [locale]);
 
   const important = ["married_at_birth", "paternity_ack", "joint_declaration", "blocked_contact"];
   const allMissing = important.filter(

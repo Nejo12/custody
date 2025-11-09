@@ -1,7 +1,22 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { aggregate, type QueueRecord } from "@/app/api/queue/route";
 
+// Mock supabase to avoid requiring environment variables
+vi.mock("@/lib/supabase", () => ({
+  supabase: {
+    from: vi.fn(() => ({
+      select: vi.fn(() => ({
+        order: vi.fn(() => Promise.resolve({ data: [], error: null })),
+      })),
+      insert: vi.fn(() => Promise.resolve({ error: null })),
+    })),
+  },
+}));
+
 describe("queue aggregate", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
   it("computes averages and best windows", () => {
     const records: QueueRecord[] = [
       { serviceId: "svc1", waitMinutes: 30, submittedAt: Date.now(), suggestedWindow: "9-11" },

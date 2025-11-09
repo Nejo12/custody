@@ -94,9 +94,9 @@ If Upstash Redis credentials are not configured, the system automatically falls 
 ## Free Tier
 
 Upstash offers a generous free tier that includes:
+
 - 10,000 commands per day
 - 256 MB storage
 - Global replication
 
 This should be sufficient for most development and small production deployments.
-

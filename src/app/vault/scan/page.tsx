@@ -4,6 +4,8 @@ import { anonymizeText } from "@/lib/anonymize";
 import { useAppStore } from "@/store/app";
 import { useI18n } from "@/i18n";
 
+export const dynamic = "force-dynamic";
+
 type Fields = {
   fullName?: string;
   address?: string;
@@ -33,10 +35,12 @@ export default function ScanPage() {
     if (lang === "deu" || lang === "auto") {
       (async () => {
         try {
-          const { recognize } = await import("tesseract.js");
+          const { createWorker } = await import("tesseract.js");
+          const worker = await createWorker("deu");
           const tinyPng =
             "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAgMBg0sNn5wAAAAASUVORK5CYII=";
-          await recognize(tinyPng, "deu");
+          await worker.recognize(tinyPng);
+          await worker.terminate();
           setPreloadedDeu(true);
         } catch {
           /* ignore preload errors */
@@ -93,14 +97,22 @@ export default function ScanPage() {
       setBusy(true);
       setError("");
       if (!file) throw new Error("No image selected");
-      const { recognize } = await import("tesseract.js");
+      const { createWorker } = await import("tesseract.js");
       const sel = lang === "auto" ? "deu+eng" : lang;
-      let { data } = await recognize(file, sel);
+
+      // Create worker with only the needed language(s)
+      const worker = await createWorker(sel);
+      const result = await worker.recognize(file);
+      let data = result.data;
       let raw = (data?.text || "").trim();
       let conf = typeof data?.confidence === "number" ? data.confidence : 0;
       let finalLang = sel;
+
+      // If confidence is low and not already using German, try German
       if (conf < 55 && sel !== "deu") {
-        const re = await recognize(file, "deu");
+        await worker.terminate();
+        const workerDeu = await createWorker("deu");
+        const re = await workerDeu.recognize(file);
         const c2 = typeof re.data?.confidence === "number" ? re.data.confidence : 0;
         if (c2 > conf) {
           data = re.data;
@@ -108,7 +120,11 @@ export default function ScanPage() {
           conf = c2;
           finalLang = "deu";
         }
+        await workerDeu.terminate();
+      } else {
+        await worker.terminate();
       }
+
       setUsedLang(finalLang);
       setText(raw);
       const red = anonymizeText(raw);

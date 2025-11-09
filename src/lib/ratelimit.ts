@@ -40,7 +40,7 @@ export async function rateLimit(
     try {
       // Use INCR for atomic increment, then check if we need to set TTL
       const count = await redis.incr(key);
-      
+
       // Set TTL only on first increment (when count is 1)
       if (count === 1) {
         await redis.expire(key, ttlSeconds);

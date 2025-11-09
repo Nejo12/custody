@@ -1,4 +1,3 @@
-import { PDFDocument, StandardFonts } from "pdf-lib";
 import { resolveCourtTemplate } from "@/lib/courts";
 
 export type Sender = {
@@ -15,6 +14,9 @@ export async function buildCoverLetter(
   courtTemplate?: string,
   sender?: Sender
 ): Promise<Uint8Array> {
+  // Lazy load pdf-lib only when needed
+  const { PDFDocument, StandardFonts } = await import("pdf-lib");
+
   const safe = (s: string): string =>
     s
       // map various dash/minus variants to hyphen-minus

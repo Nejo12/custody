@@ -2,9 +2,10 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { GET, POST, aggregate } from "@/app/api/queue/route";
 import type { NextRequest } from "next/server";
 import { supabase } from "@/lib/supabase";
+import type { QueueRecord } from "@/app/api/queue/route";
 
 // Mock Supabase - must be defined inside the factory function for hoisting
-let mockRecords: Array<{
+const mockRecords: Array<{
   service_id: string;
   wait_minutes: number;
   suggested_window: string | null;
@@ -103,7 +104,7 @@ describe("queue API", () => {
         { serviceId: "service1", waitMinutes: 10, submittedAt: 1000 },
         { serviceId: "service1", submittedAt: 2000 },
       ];
-      const result = aggregate(records);
+      const result = aggregate(records as QueueRecord[]);
       // When waitMinutes is undefined, it's treated as 0 in the calculation
       expect(result[0].avgWait).toBe(5);
     });

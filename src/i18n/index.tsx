@@ -1,6 +1,7 @@
 "use client";
 import React, {
   createContext,
+  startTransition,
   useContext,
   useEffect,
   useLayoutEffect,
@@ -9,12 +10,6 @@ import React, {
   useState,
 } from "react";
 import enDict from "./en";
-import de from "./de";
-import ar from "./ar";
-import pl from "./pl";
-import fr from "./fr";
-import tr from "./tr";
-import ru from "./ru";
 import type { TranslationDict } from "@/types";
 
 type Locale = "en" | "de" | "ar" | "pl" | "fr" | "tr" | "ru";
@@ -22,21 +17,26 @@ type Locale = "en" | "de" | "ar" | "pl" | "fr" | "tr" | "ru";
 // but the common structure is preserved
 type Dict = TranslationDict;
 
-// Type assertion needed because some locales have partial question sets
-// This is acceptable since the app handles missing properties gracefully
-const dictionaries: Record<Locale, Dict> = { en: enDict, de, ar, pl, fr, tr, ru } as Record<
-  Locale,
-  Dict
->;
-
-const appNames: Record<Locale, string> = {
-  en: "Custody Clarity",
-  de: "ElternWeg",
-  ar: "وضوح الحضانة",
-  pl: "Jasność Opieki",
-  fr: "Clarté de la Garde",
-  tr: "Vesayet Netliği",
-  ru: "Ясность Опеки",
+// Lazy load locale dictionaries - only load current locale
+const loadLocale = async (locale: Locale): Promise<Dict> => {
+  switch (locale) {
+    case "en":
+      return enDict;
+    case "de":
+      return (await import("./de")).default as Dict;
+    case "ar":
+      return (await import("./ar")).default as Dict;
+    case "pl":
+      return (await import("./pl")).default as Dict;
+    case "fr":
+      return (await import("./fr")).default as Dict;
+    case "tr":
+      return (await import("./tr")).default as Dict;
+    case "ru":
+      return (await import("./ru")).default as Dict;
+    default:
+      return enDict;
+  }
 };
 
 type I18nContextType = {
@@ -50,7 +50,9 @@ const I18nContext = createContext<I18nContextType | null>(null);
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   // Always start with "en" to avoid hydration mismatch
   const [locale, setLocaleState] = useState<Locale>("en");
+  const [dict, setDict] = useState<Dict>(enDict);
   const hasInitialized = useRef(false);
+  const isMountedRef = useRef(true);
 
   // Load locale from localStorage after mount (client-side only)
   // Using useLayoutEffect to avoid hydration mismatch
@@ -66,23 +68,58 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     }
   }, []); // Only run once on mount
 
-  // Update locale and sync to localStorage/DOM
-  const setLocale = (newLocale: Locale) => {
-    setLocaleState(newLocale);
+  // Track mount status to prevent state updates after unmount
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
+  // Lazy load dictionary when locale changes
+  useEffect(() => {
+    startTransition(() => {
+      if (locale === "en") {
+        setDict(enDict);
+        return;
+      }
+      loadLocale(locale)
+        .then((loadedDict) => {
+          if (isMountedRef.current) {
+            setDict(loadedDict);
+          }
+        })
+        .catch(() => {
+          if (isMountedRef.current) {
+            setDict(enDict);
+          }
+        });
+    });
+  }, [locale]);
+
+  // Update document attributes when locale changes
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Set document lang
+    document.documentElement.lang = locale;
+
+    // Set document dir for RTL languages
+    document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
+
+    // Set document title
+    document.title = dict.appName || "";
+  }, [locale, dict.appName]);
+
+  // Custom setLocale that persists to localStorage
+  const setLocale = React.useCallback((newLocale: Locale) => {
     if (typeof window !== "undefined") {
       localStorage.setItem("locale", newLocale);
     }
-  };
+    setLocaleState(newLocale);
+  }, []);
 
-  // Sync locale to DOM attributes
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    document.documentElement.lang = locale;
-    document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
-    document.title = appNames[locale];
-  }, [locale]);
-
-  const value = useMemo(() => ({ locale, t: dictionaries[locale], setLocale }), [locale]);
+  const value = useMemo(() => ({ locale, t: dict, setLocale }), [locale, dict, setLocale]);
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }

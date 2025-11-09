@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, act, waitFor } from "@testing-library/react";
 import { I18nProvider, useI18n } from "../index";
 
 // Mock all translation files
@@ -61,15 +61,25 @@ describe("I18nProvider", () => {
     expect(screen.getByTestId("appName")).toHaveTextContent("Custody Clarity");
   });
 
-  it("loads locale from localStorage", () => {
+  it("loads locale from localStorage", async () => {
     localStorageMock.getItem.mockReturnValue("de");
     render(
       <I18nProvider>
         <TestComponent />
       </I18nProvider>
     );
+    // Wait for useLayoutEffect to run and locale to load
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
     expect(screen.getByTestId("locale")).toHaveTextContent("de");
-    expect(screen.getByTestId("appName")).toHaveTextContent("ElternWeg");
+    // Wait for dictionary to load asynchronously
+    await waitFor(
+      () => {
+        expect(screen.getByTestId("appName")).toHaveTextContent("ElternWeg");
+      },
+      { timeout: 1000 }
+    );
   });
 
   it("switches locale correctly", async () => {
@@ -119,6 +129,11 @@ describe("I18nProvider", () => {
     const switchButton = screen.getByText("Switch to AR");
     await user.click(switchButton);
 
+    // Wait for dictionary to load and useEffect to run
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+
     expect(document.documentElement.dir).toBe("rtl");
     expect(document.documentElement.lang).toBe("ar");
   });
@@ -134,6 +149,11 @@ describe("I18nProvider", () => {
     const switchButton = screen.getByText("Switch to DE");
     await user.click(switchButton);
 
+    // Wait for dictionary to load and useEffect to run
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+
     expect(document.title).toBe("ElternWeg");
   });
 
@@ -147,6 +167,11 @@ describe("I18nProvider", () => {
 
     const switchButton = screen.getByText("Switch to DE");
     await user.click(switchButton);
+
+    // Wait for setLocale to be called
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
 
     expect(localStorageMock.setItem).toHaveBeenCalledWith("locale", "de");
   });
