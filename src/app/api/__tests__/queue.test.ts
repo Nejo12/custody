@@ -1,19 +1,59 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { GET, POST, aggregate } from "@/app/api/queue/route";
 import type { NextRequest } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
+import { supabase } from "@/lib/supabase";
 
-const DATA_PATH = path.join(process.cwd(), ".tmp", "queue.json");
+// Mock Supabase - must be defined inside the factory function for hoisting
+let mockRecords: Array<{
+  service_id: string;
+  wait_minutes: number;
+  suggested_window: string | null;
+  submitted_at: number;
+}> = [];
+
+vi.mock("@/lib/supabase", () => {
+  const createMockQueryBuilder = () => {
+    const order = vi.fn(async () => ({
+      data: mockRecords,
+      error: null,
+    }));
+
+    const select = vi.fn(() => ({
+      order,
+    }));
+
+    return { select, order };
+  };
+
+  const createMockInsertBuilder = () => {
+    const insert = vi.fn(async () => ({
+      error: null,
+    }));
+
+    return { insert };
+  };
+
+  const mockSupabase = {
+    from: vi.fn((table: string) => {
+      if (table === "queue_records") {
+        return {
+          ...createMockQueryBuilder(),
+          ...createMockInsertBuilder(),
+        };
+      }
+      return createMockQueryBuilder();
+    }),
+  };
+
+  return {
+    supabase: mockSupabase,
+  };
+});
 
 describe("queue API", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     vi.clearAllMocks();
-    try {
-      await fs.unlink(DATA_PATH);
-    } catch {
-      // ignore
-    }
+    mockRecords.length = 0;
   });
 
   describe("aggregate function", () => {
@@ -71,6 +111,14 @@ describe("queue API", () => {
 
   describe("GET endpoint", () => {
     it("returns aggregates", async () => {
+      mockRecords.length = 0;
+      mockRecords.push({
+        service_id: "service1",
+        wait_minutes: 10,
+        suggested_window: null,
+        submitted_at: 1000,
+      });
+
       const req = {
         nextUrl: {
           searchParams: new URLSearchParams(),
@@ -84,6 +132,12 @@ describe("queue API", () => {
     });
 
     it("filters by ids parameter", async () => {
+      mockRecords.length = 0;
+      mockRecords.push(
+        { service_id: "service1", wait_minutes: 10, suggested_window: null, submitted_at: 1000 },
+        { service_id: "service2", wait_minutes: 20, suggested_window: null, submitted_at: 2000 }
+      );
+
       const searchParams = new URLSearchParams();
       searchParams.set("ids", "service1,service2");
       const req = {
@@ -109,6 +163,7 @@ describe("queue API", () => {
       expect(res.ok).toBe(true);
       const json = await res.json();
       expect(json).toHaveProperty("ok", true);
+      expect(vi.mocked(supabase.from)).toHaveBeenCalledWith("queue_records");
     });
 
     it("returns 400 for invalid payload - missing serviceId", async () => {

@@ -1,6 +1,5 @@
 import type { NextRequest } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
+import { supabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
@@ -19,34 +18,42 @@ type Aggregate = {
   lastSubmittedAt?: number;
 };
 
-const DATA_PATH = path.join(process.cwd(), ".tmp", "queue.json");
-
-async function ensureStore(): Promise<void> {
-  try {
-    await fs.mkdir(path.dirname(DATA_PATH), { recursive: true });
-    await fs.access(DATA_PATH).catch(async () => {
-      await fs.writeFile(DATA_PATH, JSON.stringify({ records: [] as QueueRecord[] }));
-    });
-  } catch {
-    // ignore
-  }
-}
-
 async function readRecords(): Promise<QueueRecord[]> {
   try {
-    await ensureStore();
-    const raw = await fs.readFile(DATA_PATH, "utf-8");
-    const json = JSON.parse(raw) as { records?: QueueRecord[] };
-    return Array.isArray(json.records) ? json.records : [];
+    const { data, error } = await supabase
+      .from("queue_records")
+      .select("service_id, wait_minutes, suggested_window, submitted_at")
+      .order("submitted_at", { ascending: false });
+
+    if (error) {
+      console.error("Error reading records:", error);
+      return [];
+    }
+
+    return (data || []).map((row) => ({
+      serviceId: row.service_id,
+      waitMinutes: row.wait_minutes,
+      suggestedWindow: row.suggested_window || undefined,
+      submittedAt: row.submitted_at,
+    }));
   } catch {
     return [];
   }
 }
 
-async function writeRecords(records: QueueRecord[]): Promise<void> {
+async function insertRecord(record: QueueRecord): Promise<void> {
   try {
-    await ensureStore();
-    await fs.writeFile(DATA_PATH, JSON.stringify({ records }));
+    const { error } = await supabase.from("queue_records").insert({
+      service_id: record.serviceId,
+      wait_minutes: record.waitMinutes,
+      suggested_window: record.suggestedWindow || null,
+      submitted_at: record.submittedAt,
+    });
+
+    if (error) {
+      console.error("Error inserting record:", error);
+      throw error;
+    }
   } catch {
     // ignore
   }
@@ -111,9 +118,7 @@ export async function POST(req: NextRequest) {
       suggestedWindow: win || undefined,
       submittedAt: Date.now(),
     };
-    const records = await readRecords();
-    records.push(rec);
-    await writeRecords(records);
+    await insertRecord(rec);
     return Response.json({ ok: true });
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Unexpected error";
