@@ -1,0 +1,28 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[redirects]]
+  from = "https://www.custodyclarity.com/*"
+  to = "https://custodyclarity.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://custodyclarity.org/*"
+  to = "https://custodyclarity.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.custodyclarity.org/*"
+  to = "https://custodyclarity.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://custodyclarity.netlify.app/*"
+  to = "https://custodyclarity.com/:splat"
+  status = 301
+  force = true
+
