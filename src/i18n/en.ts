@@ -431,6 +431,72 @@ const en = {
       "Disclaimer: This guide provides general information only, not individualized legal advice. Consult a qualified family law attorney for advice specific to your situation.",
     note: "Note: These guides provide general information only. For legal advice specific to your situation, consult a qualified family law attorney.",
   },
+  impressum: {
+    title: "Impressum",
+    section1Title: "Information according to § 5 TMG",
+    responsible: "Responsible for content according to § 55 Abs. 2 RStV:",
+    contact: "Contact",
+    email: "Email:",
+    liabilityDisclaimer: "Liability Disclaimer",
+    liabilityContent: "Liability for Content",
+    liabilityContentText:
+      "The contents of our pages were created with the greatest care. However, we cannot guarantee the accuracy, completeness, and timeliness of the content. As a service provider, we are responsible for our own content on these pages in accordance with general laws pursuant to § 7 Abs.1 TMG.",
+    liabilityLinks: "Liability for Links",
+    liabilityLinksText:
+      "Our offer contains links to external websites of third parties, on whose contents we have no influence. Therefore, we cannot assume any liability for these external contents. The respective provider or operator of the pages is always responsible for the contents of the linked pages.",
+    copyright: "Copyright",
+    copyrightText:
+      "The content and works created by the site operators on these pages are subject to German copyright law. The duplication, processing, distribution, and any kind of exploitation outside the limits of copyright require the written consent of the respective author or creator.",
+    note: "Note",
+    noteText:
+      "This website is for informational purposes only and does not constitute individualized legal advice. For legal questions, you should consult a qualified attorney or counseling service.",
+  },
+  datenschutz: {
+    title: "Privacy Policy",
+    section1Title: "1. Privacy at a Glance",
+    generalNotes: "General Notes",
+    generalNotesText:
+      "The following notes provide a simple overview of what happens to your personal data when you visit this website. Personal data is any data with which you can be personally identified.",
+    section2Title: "2. Responsible Party",
+    responsiblePartyText: "The responsible party for data processing on this website is:",
+    email: "Email:",
+    section3Title: "3. Data Collection on This Website",
+    serverLogFiles: "Server Log Files",
+    serverLogFilesText:
+      "The provider of the pages automatically collects and stores information in so-called server log files, which your browser automatically transmits to us. These are:",
+    serverLogItems: [
+      "Browser type and browser version",
+      "Operating system used",
+      "Referrer URL",
+      "Hostname of the accessing computer",
+      "Time of server request",
+      "IP address",
+    ],
+    serverLogFilesNote:
+      "A combination of this data with other data sources is not carried out. The collection of this data is based on Art. 6 para. 1 lit. f DSGVO.",
+    contactForm: "Contact Form",
+    contactFormText:
+      "If you send us inquiries via contact form, your details from the inquiry form, including the contact details you provided there, will be stored by us for the purpose of processing the inquiry and in case of follow-up questions. We do not pass on this data without your consent.",
+    localStorage: "Local Storage (LocalStorage)",
+    localStorageText:
+      "This website uses LocalStorage to store your preferences (e.g., language settings, theme settings) locally in your browser. This data is only stored on your device and is not transmitted to servers.",
+    section4Title: "4. Your Rights",
+    yourRightsText: "You have the right at any time:",
+    yourRightsItems: [
+      "To obtain information about your personal data stored by us (Art. 15 DSGVO)",
+      "To request correction of incorrect data (Art. 16 DSGVO)",
+      "To request deletion of your data stored by us (Art. 17 DSGVO)",
+      "To request restriction of data processing (Art. 18 DSGVO)",
+      "To object to the processing of your data (Art. 21 DSGVO)",
+      "To request data portability (Art. 20 DSGVO)",
+    ],
+    section5Title: "5. Objection to Data Processing",
+    objectionText:
+      "You have the right, for reasons arising from your particular situation, to object at any time to the processing of personal data concerning you, which is carried out on the basis of Art. 6 para. 1 lit. f DSGVO.",
+    section6Title: "6. Changes to This Privacy Policy",
+    changesText:
+      "We reserve the right to adapt this privacy policy so that it always complies with current legal requirements or to implement changes to our services in the privacy policy.",
+  },
 };
 
 export default en;

@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useI18n } from "@/i18n";
-import faqData from "@/data/faq.json";
+import faqDataEn from "@/data/faq.json";
 
 type FAQCategory = {
   id: string;
@@ -12,10 +12,39 @@ type FAQCategory = {
   }>;
 };
 
+// Lazy load locale-specific FAQ data
+const loadFAQ = async (locale: string) => {
+  try {
+    switch (locale) {
+      case "de":
+        return (await import("@/data/faq.de.json")).default;
+      case "ar":
+        return (await import("@/data/faq.ar.json")).default;
+      case "pl":
+        return (await import("@/data/faq.pl.json")).default;
+      case "fr":
+        return (await import("@/data/faq.fr.json")).default;
+      case "tr":
+        return (await import("@/data/faq.tr.json")).default;
+      case "ru":
+        return (await import("@/data/faq.ru.json")).default;
+      default:
+        return faqDataEn;
+    }
+  } catch {
+    return faqDataEn;
+  }
+};
+
 export default function FAQPage() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [openQuestion, setOpenQuestion] = useState<string | null>(null);
+  const [faqData, setFaqData] = useState(faqDataEn);
   const categories = faqData.categories as FAQCategory[];
+
+  useEffect(() => {
+    loadFAQ(locale).then((data) => setFaqData(data));
+  }, [locale]);
 
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-6 space-y-8">

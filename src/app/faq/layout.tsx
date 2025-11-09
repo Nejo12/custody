@@ -34,12 +34,19 @@ export const metadata: Metadata = {
     url: "https://custodyclarity.com/faq",
     images: [
       {
-        url: "/og",
+        url: "https://custodyclarity.com/og",
         width: 1200,
         height: 630,
         alt: "Custody Clarity - FAQ",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FAQ | Custody Clarity",
+    description:
+      "Frequently asked questions about custody rights, the legal process, and using Custody Clarity in Germany.",
+    images: ["https://custodyclarity.com/og"],
   },
 };
 

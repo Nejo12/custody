@@ -405,6 +405,73 @@ const de = {
       "Haftungsausschluss: Dieser Leitfaden bietet nur allgemeine Informationen, keine individuelle Rechtsberatung. Konsultieren Sie einen qualifizierten Familienrechtsanwalt für Beratung zu Ihrer spezifischen Situation.",
     note: "Hinweis: Diese Leitfäden bieten nur allgemeine Informationen. Für rechtliche Beratung zu Ihrer spezifischen Situation konsultieren Sie einen qualifizierten Familienrechtsanwalt.",
   },
+  impressum: {
+    title: "Impressum",
+    section1Title: "Angaben gemäß § 5 TMG",
+    responsible: "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:",
+    contact: "Kontakt",
+    email: "E-Mail:",
+    liabilityDisclaimer: "Haftungsausschluss",
+    liabilityContent: "Haftung für Inhalte",
+    liabilityContentText:
+      "Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.",
+    liabilityLinks: "Haftung für Links",
+    liabilityLinksText:
+      "Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.",
+    copyright: "Urheberrecht",
+    copyrightText:
+      "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.",
+    note: "Hinweis",
+    noteText:
+      "Diese Website dient ausschließlich Informationszwecken und stellt keine individuelle Rechtsberatung dar. Bei rechtlichen Fragen sollten Sie sich an einen qualifizierten Rechtsanwalt oder eine Beratungsstelle wenden.",
+  },
+  datenschutz: {
+    title: "Datenschutzerklärung",
+    section1Title: "1. Datenschutz auf einen Blick",
+    generalNotes: "Allgemeine Hinweise",
+    generalNotesText:
+      "Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.",
+    section2Title: "2. Verantwortliche Stelle",
+    responsiblePartyText:
+      "Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:",
+    email: "E-Mail:",
+    section3Title: "3. Datenerfassung auf dieser Website",
+    serverLogFiles: "Server-Log-Dateien",
+    serverLogFilesText:
+      "Der Provider der Seiten erhebt und speichert automatisch Informationen in sogenannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:",
+    serverLogItems: [
+      "Browsertyp und Browserversion",
+      "verwendetes Betriebssystem",
+      "Referrer URL",
+      "Hostname des zugreifenden Rechners",
+      "Uhrzeit der Serveranfrage",
+      "IP-Adresse",
+    ],
+    serverLogFilesNote:
+      "Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.",
+    contactForm: "Kontaktformular",
+    contactFormText:
+      "Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.",
+    localStorage: "Lokale Speicherung (LocalStorage)",
+    localStorageText:
+      "Diese Website verwendet LocalStorage, um Ihre Präferenzen (z. B. Spracheinstellungen, Theme-Einstellungen) lokal in Ihrem Browser zu speichern. Diese Daten werden nur auf Ihrem Gerät gespeichert und nicht an Server übertragen.",
+    section4Title: "4. Ihre Rechte",
+    yourRightsText: "Sie haben jederzeit das Recht:",
+    yourRightsItems: [
+      "Auskunft über Ihre bei uns gespeicherten personenbezogenen Daten zu erhalten (Art. 15 DSGVO)",
+      "Berichtigung unrichtiger Daten zu verlangen (Art. 16 DSGVO)",
+      "Löschung Ihrer bei uns gespeicherten Daten zu verlangen (Art. 17 DSGVO)",
+      "Einschränkung der Datenverarbeitung zu verlangen (Art. 18 DSGVO)",
+      "Widerspruch gegen die Verarbeitung Ihrer Daten einzulegen (Art. 21 DSGVO)",
+      "Datenübertragbarkeit zu verlangen (Art. 20 DSGVO)",
+    ],
+    section5Title: "5. Widerspruch gegen Datenverarbeitung",
+    objectionText:
+      "Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Sie betreffender personenbezogener Daten, die aufgrund von Art. 6 Abs. 1 lit. f DSGVO erfolgt, Widerspruch einzulegen.",
+    section6Title: "6. Änderung dieser Datenschutzerklärung",
+    changesText:
+      "Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen.",
+  },
 };
 
 export default de;

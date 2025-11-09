@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     alternateLocale: ["de_DE", "ar_SA", "pl_PL", "fr_FR", "tr_TR", "ru_RU"],
     images: [
       {
-        url: "/og",
+        url: "https://custodyclarity.com/og",
         width: 1200,
         height: 630,
         alt: "Custody Clarity - Know your custody and contact rights in Germany",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "Free Custody Rights Calculator Germany | Custody Clarity",
     description:
       "6-minute guided interview for custody and contact rights in Germany. Get instant results with legal citations.",
-    images: ["/og"],
+    images: ["https://custodyclarity.com/og"],
   },
   alternates: {
     canonical: "https://custodyclarity.com/",

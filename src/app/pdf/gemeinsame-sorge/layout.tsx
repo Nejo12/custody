@@ -13,12 +13,18 @@ export const metadata: Metadata = {
     url: "https://custodyclarity.com/pdf/gemeinsame-sorge",
     images: [
       {
-        url: "/og",
+        url: "https://custodyclarity.com/og",
         width: 1200,
         height: 630,
         alt: "Custody Clarity - Joint Custody Application",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Joint Custody Application | Custody Clarity",
+    description: "Generate a joint custody application document for German family courts.",
+    images: ["https://custodyclarity.com/og"],
   },
 };
 

@@ -414,6 +414,72 @@ const fr = {
       "Avertissement : Ce guide fournit des informations générales uniquement, pas de conseils juridiques individualisés. Consultez un avocat spécialisé en droit de la famille pour des conseils spécifiques à votre situation.",
     note: "Note : Ces guides fournissent des informations générales uniquement. Pour des conseils juridiques spécifiques à votre situation, consultez un avocat spécialisé en droit de la famille.",
   },
+  impressum: {
+    title: "Mentions légales",
+    section1Title: "Informations selon § 5 TMG",
+    responsible: "Responsable du contenu selon § 55 Abs. 2 RStV :",
+    contact: "Contact",
+    email: "Email :",
+    liabilityDisclaimer: "Avertissement de responsabilité",
+    liabilityContent: "Responsabilité du contenu",
+    liabilityContentText:
+      "Le contenu de nos pages a été créé avec le plus grand soin. Cependant, nous ne pouvons garantir l'exactitude, l'exhaustivité et l'actualité du contenu. En tant que fournisseur de services, nous sommes responsables de notre propre contenu sur ces pages conformément aux lois générales en vertu de § 7 Abs.1 TMG.",
+    liabilityLinks: "Responsabilité des liens",
+    liabilityLinksText:
+      "Notre offre contient des liens vers des sites Web externes de tiers, sur le contenu desquels nous n'avons aucune influence. Par conséquent, nous ne pouvons assumer aucune responsabilité pour ces contenus externes. Le fournisseur ou l'opérateur respectif des pages est toujours responsable du contenu des pages liées.",
+    copyright: "Droit d'auteur",
+    copyrightText:
+      "Le contenu et les œuvres créés par les opérateurs du site sur ces pages sont soumis au droit d'auteur allemand. La duplication, le traitement, la distribution et toute forme d'exploitation en dehors des limites du droit d'auteur nécessitent le consentement écrit de l'auteur ou du créateur respectif.",
+    note: "Note",
+    noteText:
+      "Ce site Web est à des fins informatives uniquement et ne constitue pas un conseil juridique individualisé. Pour les questions juridiques, vous devriez consulter un avocat qualifié ou un service de conseil.",
+  },
+  datenschutz: {
+    title: "Politique de confidentialité",
+    section1Title: "1. Confidentialité en un coup d'œil",
+    generalNotes: "Notes générales",
+    generalNotesText:
+      "Les notes suivantes fournissent un aperçu simple de ce qui arrive à vos données personnelles lorsque vous visitez ce site Web. Les données personnelles sont toutes les données avec lesquelles vous pouvez être personnellement identifié.",
+    section2Title: "2. Partie responsable",
+    responsiblePartyText: "La partie responsable du traitement des données sur ce site Web est :",
+    email: "Email :",
+    section3Title: "3. Collecte de données sur ce site Web",
+    serverLogFiles: "Fichiers journaux du serveur",
+    serverLogFilesText:
+      "Le fournisseur des pages collecte et stocke automatiquement des informations dans des fichiers journaux de serveur, que votre navigateur nous transmet automatiquement. Ce sont :",
+    serverLogItems: [
+      "Type et version du navigateur",
+      "Système d'exploitation utilisé",
+      "URL du référent",
+      "Nom d'hôte de l'ordinateur accédant",
+      "Heure de la demande du serveur",
+      "Adresse IP",
+    ],
+    serverLogFilesNote:
+      "Une combinaison de ces données avec d'autres sources de données n'est pas effectuée. La collecte de ces données est basée sur l'art. 6 par. 1 lit. f RGPD.",
+    contactForm: "Formulaire de contact",
+    contactFormText:
+      "Si vous nous envoyez des demandes via le formulaire de contact, vos détails du formulaire de demande, y compris les coordonnées que vous y avez fournies, seront stockés par nous aux fins de traitement de la demande et en cas de questions de suivi. Nous ne transmettons pas ces données sans votre consentement.",
+    localStorage: "Stockage local (LocalStorage)",
+    localStorageText:
+      "Ce site Web utilise LocalStorage pour stocker vos préférences (par exemple, paramètres de langue, paramètres de thème) localement dans votre navigateur. Ces données ne sont stockées que sur votre appareil et ne sont pas transmises aux serveurs.",
+    section4Title: "4. Vos droits",
+    yourRightsText: "Vous avez le droit à tout moment :",
+    yourRightsItems: [
+      "D'obtenir des informations sur vos données personnelles stockées par nous (Art. 15 RGPD)",
+      "De demander la correction de données incorrectes (Art. 16 RGPD)",
+      "De demander la suppression de vos données stockées par nous (Art. 17 RGPD)",
+      "De demander la restriction du traitement des données (Art. 18 RGPD)",
+      "De vous opposer au traitement de vos données (Art. 21 RGPD)",
+      "De demander la portabilité des données (Art. 20 RGPD)",
+    ],
+    section5Title: "5. Opposition au traitement des données",
+    objectionText:
+      "Vous avez le droit, pour des raisons découlant de votre situation particulière, de vous opposer à tout moment au traitement des données personnelles vous concernant, qui est effectué sur la base de l'art. 6 par. 1 lit. f RGPD.",
+    section6Title: "6. Modifications de cette politique de confidentialité",
+    changesText:
+      "Nous nous réservons le droit d'adapter cette politique de confidentialité afin qu'elle soit toujours conforme aux exigences légales actuelles ou pour mettre en œuvre des modifications à nos services dans la politique de confidentialité.",
+  },
 };
 
 export default fr;

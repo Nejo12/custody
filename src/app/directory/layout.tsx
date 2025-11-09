@@ -13,12 +13,18 @@ export const metadata: Metadata = {
     url: "https://custodyclarity.com/directory",
     images: [
       {
-        url: "/og",
+        url: "https://custodyclarity.com/og",
         width: 1200,
         height: 630,
         alt: "Custody Clarity - Directory",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Directory | Custody Clarity",
+    description: "Find support services, courts, and legal aid organizations in your area.",
+    images: ["https://custodyclarity.com/og"],
   },
 };
 

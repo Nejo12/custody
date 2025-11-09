@@ -1,0 +1,104 @@
+{
+  "categories": [
+    {
+      "id": "getting-started",
+      "title": "Erste Schritte",
+      "questions": [
+        {
+          "question": "Wie erfahre ich meine Sorgerechte in Deutschland?",
+          "answer": "Machen Sie unser kostenloses 6-minütiges geführtes Interview. Beantworten Sie Fragen zu Ihrer Situation und erhalten Sie sofortige Ergebnisse mit rechtlichen Zitaten aus dem Bürgerlichen Gesetzbuch (BGB). Das Tool bewertet Ihre spezifischen Umstände und liefert relevante rechtliche Informationen."
+        },
+        {
+          "question": "Ist das Rechtsberatung?",
+          "answer": "Nein. Custody Clarity bietet nur allgemeine Rechtsinformationen, keine individuelle Rechtsberatung. Das Tool hilft Ihnen, Ihre Rechte zu verstehen und Dokumente vorzubereiten, aber Sie sollten sich für eine auf Ihre Situation zugeschnittene Beratung an einen qualifizierten Familienrechtsanwalt wenden."
+        },
+        {
+          "question": "In welchen Sprachen ist das Tool verfügbar?",
+          "answer": "Custody Clarity ist in 7 Sprachen verfügbar: Englisch, Deutsch, Arabisch, Polnisch, Französisch, Türkisch und Russisch. Dies macht Rechtsinformationen für verschiedene Gemeinschaften in Deutschland zugänglich."
+        },
+        {
+          "question": "Sind meine Daten privat?",
+          "answer": "Ja. Alle Daten werden lokal in Ihrem Browser gespeichert. Wir verfolgen Sie nicht, sammeln keine persönlichen Informationen und senden Ihre Daten nicht an externe Server. Sie können Ihre Daten jederzeit exportieren und die Funktion 'Schnell löschen' in den Einstellungen verwenden, um alles zu löschen."
+        },
+        {
+          "question": "Muss ich ein Konto erstellen?",
+          "answer": "Nein. Das Tool funktioniert vollständig ohne Registrierung. Alle Ihre Daten bleiben auf Ihrem Gerät. Sie können es offline verwenden, sobald es geladen ist."
+        }
+      ]
+    },
+    {
+      "id": "legal-process",
+      "title": "Rechtsprozess",
+      "questions": [
+        {
+          "question": "Was ist gemeinsames Sorgerecht in Deutschland?",
+          "answer": "Gemeinsames Sorgerecht (gemeinsame Sorge) bedeutet, dass beide Elternteile Entscheidungsrechte für ihr Kind teilen. In Deutschland haben verheiratete Eltern automatisch gemeinsames Sorgerecht. Unverheiratete Eltern können unter §1626a BGB gemeinsames Sorgerecht beantragen, wenn die Vaterschaft anerkannt ist."
+        },
+        {
+          "question": "Kann ich Umgangsrechte erhalten, wenn der andere Elternteil den Kontakt blockiert?",
+          "answer": "Ja. Unter §1684 BGB haben Sie das Recht auf Umgang mit Ihrem Kind. Wenn der Kontakt blockiert wird, können Sie beim Familiengericht einen Umgangsbeschluss (Umgangsregelung) beantragen. Unser Tool hilft Ihnen, Ihre Rechte zu verstehen und die notwendigen Dokumente vorzubereiten."
+        },
+        {
+          "question": "Wie lange dauert ein Sorgerechtsantrag?",
+          "answer": "Die Bearbeitungszeiten variieren je nach Gericht und Fallkomplexität. Einfache gemeinsame Sorgerechtsanträge können 2-4 Wochen dauern, während Umgangsregelungen 1-3 Monate dauern können. Das Gericht wird bei Bedarf eine Anhörung ansetzen."
+        },
+        {
+          "question": "Brauche ich einen Anwalt?",
+          "answer": "Für einfache gemeinsame Sorgerechtsanträge benötigen Sie möglicherweise keinen Anwalt. Bei strittigen Fällen oder Umgangsregelungen wird jedoch eine Rechtsvertretung empfohlen. Sie können auch kostenlose Erstberatungen von Rechtsberatungsstellen erhalten."
+        },
+        {
+          "question": "Welche Dokumente muss ich einreichen?",
+          "answer": "Typischerweise: Geburtsurkunde, Vaterschaftsanerkennung (falls zutreffend), Heiratsurkunde (falls verheiratet) und bestehende Gerichtsbeschlüsse. Unser Tool erstellt eine Checkliste und ein Anschreiben, das auf Ihre Situation zugeschnitten ist."
+        },
+        {
+          "question": "Was ist das Jugendamt und muss ich es einbeziehen?",
+          "answer": "Das Jugendamt (Jugendamt) bietet kostenlose Beratungs- und Mediationsdienste an. Sie müssen es nicht einbeziehen, aber es kann bei der Mediation von Streitigkeiten helfen und Unterstützung bieten. Gerichte schlagen oft vor, das Jugendamt vor oder während des Verfahrens einzubeziehen."
+        }
+      ]
+    },
+    {
+      "id": "documents",
+      "title": "Dokumente & Formulare",
+      "questions": [
+        {
+          "question": "Welche Dokumente kann ich erstellen?",
+          "answer": "Sie können gemeinsame Sorgerechtsanträge (gemeinsame Sorge) und Umgangsregelungsanträge (Umgangsregelung) erstellen. Das Tool erstellt auch Anschreiben, Checklisten und kann alles in ein herunterladbares Paket zusammenstellen."
+        },
+        {
+          "question": "Sind die generierten Dokumente rechtlich gültig?",
+          "answer": "Die Dokumente basieren auf standardmäßigen Rechtsformularen und enthalten ordnungsgemäße Zitate. Sie sollten sie jedoch sorgfältig überprüfen und möchten möglicherweise, dass ein Anwalt sie vor der Einreichung überprüft. Sie dienen als Ausgangspunkt, nicht als endgültiges Rechtsdokument."
+        },
+        {
+          "question": "Kann ich die generierten Dokumente bearbeiten?",
+          "answer": "Ja. Die PDFs können mit PDF-Bearbeitungssoftware bearbeitet werden. Wir empfehlen jedoch, die Formulare des Tools zu verwenden, um Dokumente neu zu generieren, wenn Sie Änderungen vornehmen müssen, da dies sicherstellt, dass alle Informationen konsistent bleiben."
+        },
+        {
+          "question": "Was ist die Vault-Funktion?",
+          "answer": "Der Vault ist ein sicherer, lokaler Speicherplatz für Ihre Dokumente, Notizen und Zahlungsaufzeichnungen. Alles bleibt auf Ihrem Gerät. Sie können Dokumente scannen, Notizen machen und alles als ZIP-Datei exportieren."
+        }
+      ]
+    },
+    {
+      "id": "practical",
+      "title": "Praktische Fragen",
+      "questions": [
+        {
+          "question": "Was, wenn ich mir bei einigen Antworten nicht sicher bin?",
+          "answer": "Das ist normal. Sie können bei jeder Frage 'Nicht sicher' auswählen. Das Tool bietet dennoch Anleitung basierend auf dem, was Sie wissen. Sie können Ihre Antworten jederzeit aktualisieren oder Dokumente einreichen und Details hinzufügen, während Sie mehr erfahren."
+        },
+        {
+          "question": "Kann ich dies verwenden, wenn ich nicht in Deutschland bin?",
+          "answer": "Das Tool ist für deutsches Familienrecht konzipiert. Wenn Sie außerhalb Deutschlands sind, können die Gesetze unterschiedlich sein. Wenn Sie jedoch eine Verbindung zu Deutschland haben (z. B. Kind lebt dort, deutsche Staatsbürgerschaft), kann das Tool dennoch relevant sein."
+        },
+        {
+          "question": "Was, wenn es eine Vorgeschichte von Gewalt gibt?",
+          "answer": "Sicherheit geht vor. Das Tool enthält Sicherheitswarnungen und kann Ihnen helfen, Optionen wie betreuten Umgang zu verstehen. Wenn Sie in unmittelbarer Gefahr sind, wenden Sie sich an lokale Behörden oder Unterstützungsdienste. Das Tool bietet Ressourcen zur Hilfe."
+        },
+        {
+          "question": "Wie finde ich ein Gericht oder Jugendamt in meiner Nähe?",
+          "answer": "Verwenden Sie unsere Verzeichnisfunktion, um nach Stadt und Postleitzahl zu suchen. Es enthält Gerichte, Jugendämter, Mediationsdienste und Rechtsberatungsorganisationen in Berlin, Hamburg und NRW."
+        }
+      ]
+    }
+  ]
+}

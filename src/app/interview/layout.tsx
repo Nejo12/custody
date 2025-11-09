@@ -13,12 +13,18 @@ export const metadata: Metadata = {
     url: "https://custodyclarity.com/interview",
     images: [
       {
-        url: "/og",
+        url: "https://custodyclarity.com/og",
         width: 1200,
         height: 630,
         alt: "Custody Clarity - Custody Rights Interview",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Custody Rights Interview | Custody Clarity",
+    description: "Answer a few questions to understand your custody and contact rights in Germany.",
+    images: ["https://custodyclarity.com/og"],
   },
 };
 

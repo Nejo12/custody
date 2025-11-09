@@ -13,12 +13,18 @@ export const metadata: Metadata = {
     url: "https://custodyclarity.com/vault",
     images: [
       {
-        url: "/og",
+        url: "https://custodyclarity.com/og",
         width: 1200,
         height: 630,
         alt: "Custody Clarity - Vault",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vault | Custody Clarity",
+    description: "Store and manage your documents, notes, and payment records securely.",
+    images: ["https://custodyclarity.com/og"],
   },
 };
 

@@ -406,6 +406,73 @@ const pl = {
       "Zastrzeżenie: Ten przewodnik zawiera jedynie ogólne informacje, a nie indywidualną poradę prawną. Skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym w celu uzyskania porady dotyczącej Twojej konkretnej sytuacji.",
     note: "Uwaga: Te przewodniki zawierają jedynie ogólne informacje. W celu uzyskania porady prawnej dotyczącej Twojej konkretnej sytuacji skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym.",
   },
+  impressum: {
+    title: "Informacje prawne",
+    section1Title: "Informacje zgodnie z § 5 TMG",
+    responsible: "Odpowiedzialny za treść zgodnie z § 55 Abs. 2 RStV:",
+    contact: "Kontakt",
+    email: "Email:",
+    liabilityDisclaimer: "Zastrzeżenie odpowiedzialności",
+    liabilityContent: "Odpowiedzialność za treść",
+    liabilityContentText:
+      "Treści naszych stron zostały stworzone z największą starannością. Nie możemy jednak zagwarantować dokładności, kompletności i aktualności treści. Jako dostawca usług jesteśmy odpowiedzialni za naszą własną treść na tych stronach zgodnie z ogólnymi przepisami zgodnie z § 7 Abs.1 TMG.",
+    liabilityLinks: "Odpowiedzialność za linki",
+    liabilityLinksText:
+      "Nasza oferta zawiera linki do zewnętrznych stron internetowych stron trzecich, na których treść nie mamy wpływu. Dlatego nie możemy ponosić odpowiedzialności za te zewnętrzne treści. Odpowiedzialny za treść połączonych stron jest zawsze odpowiedni dostawca lub operator stron.",
+    copyright: "Prawo autorskie",
+    copyrightText:
+      "Treści i dzieła stworzone przez operatorów stron na tych stronach podlegają niemieckiemu prawu autorskiemu. Powielanie, przetwarzanie, dystrybucja i każdy rodzaj wykorzystania poza granicami prawa autorskiego wymaga pisemnej zgody odpowiedniego autora lub twórcy.",
+    note: "Uwaga",
+    noteText:
+      "Ta strona internetowa służy wyłącznie celom informacyjnym i nie stanowi indywidualnej porady prawnej. W przypadku pytań prawnych należy skonsultować się z wykwalifikowanym prawnikiem lub usługą doradczą.",
+  },
+  datenschutz: {
+    title: "Polityka prywatności",
+    section1Title: "1. Prywatność w skrócie",
+    generalNotes: "Uwagi ogólne",
+    generalNotesText:
+      "Poniższe uwagi zapewniają prosty przegląd tego, co dzieje się z Twoimi danymi osobowymi podczas odwiedzania tej strony internetowej. Dane osobowe to wszystkie dane, za pomocą których możesz zostać osobiście zidentyfikowany.",
+    section2Title: "2. Strona odpowiedzialna",
+    responsiblePartyText:
+      "Stroną odpowiedzialną za przetwarzanie danych na tej stronie internetowej jest:",
+    email: "Email:",
+    section3Title: "3. Zbieranie danych na tej stronie internetowej",
+    serverLogFiles: "Pliki dziennika serwera",
+    serverLogFilesText:
+      "Dostawca stron automatycznie zbiera i przechowuje informacje w tak zwanych plikach dziennika serwera, które Twoja przeglądarka automatycznie przesyła do nas. Są to:",
+    serverLogItems: [
+      "Typ i wersja przeglądarki",
+      "Używany system operacyjny",
+      "URL referera",
+      "Nazwa hosta komputera uzyskującego dostęp",
+      "Czas żądania serwera",
+      "Adres IP",
+    ],
+    serverLogFilesNote:
+      "Połączenie tych danych z innymi źródłami danych nie jest przeprowadzane. Zbieranie tych danych odbywa się na podstawie art. 6 ust. 1 lit. f RODO.",
+    contactForm: "Formularz kontaktowy",
+    contactFormText:
+      "Jeśli przesyłasz nam zapytania za pomocą formularza kontaktowego, Twoje dane z formularza zapytania, w tym podane tam dane kontaktowe, będą przechowywane przez nas w celu przetworzenia zapytania i w przypadku pytań uzupełniających. Nie przekazujemy tych danych bez Twojej zgody.",
+    localStorage: "Pamięć lokalna (LocalStorage)",
+    localStorageText:
+      "Ta strona internetowa używa LocalStorage do przechowywania Twoich preferencji (np. ustawień języka, ustawień motywu) lokalnie w Twojej przeglądarce. Te dane są przechowywane tylko na Twoim urządzeniu i nie są przesyłane na serwery.",
+    section4Title: "4. Twoje prawa",
+    yourRightsText: "Masz prawo w dowolnym momencie:",
+    yourRightsItems: [
+      "Uzyskać informacje o Twoich danych osobowych przechowywanych przez nas (Art. 15 RODO)",
+      "Zażądać korekty nieprawidłowych danych (Art. 16 RODO)",
+      "Zażądać usunięcia Twoich danych przechowywanych przez nas (Art. 17 RODO)",
+      "Zażądać ograniczenia przetwarzania danych (Art. 18 RODO)",
+      "Wnieść sprzeciw wobec przetwarzania Twoich danych (Art. 21 RODO)",
+      "Zażądać przenośności danych (Art. 20 RODO)",
+    ],
+    section5Title: "5. Sprzeciw wobec przetwarzania danych",
+    objectionText:
+      "Masz prawo, z powodów wynikających z Twojej szczególnej sytuacji, w dowolnym momencie wnieść sprzeciw wobec przetwarzania dotyczących Cię danych osobowych, które odbywa się na podstawie art. 6 ust. 1 lit. f RODO.",
+    section6Title: "6. Zmiany w tej polityce prywatności",
+    changesText:
+      "Zastrzegamy sobie prawo do dostosowania tej polityki prywatności, aby zawsze była zgodna z aktualnymi wymogami prawnymi lub wdrożenia zmian w naszych usługach w polityce prywatności.",
+  },
 };
 
 export default pl;

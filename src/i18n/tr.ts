@@ -399,6 +399,72 @@ const tr = {
       "Sorumluluk Reddi: Bu kılavuz yalnızca genel bilgi sağlar, bireysel hukuki tavsiye değildir. Durumunuza özel tavsiye için nitelikli bir aile hukuku avukatına danışın.",
     note: "Not: Bu kılavuzlar yalnızca genel bilgi sağlar. Durumunuza özel hukuki tavsiye için nitelikli bir aile hukuku avukatına danışın.",
   },
+  impressum: {
+    title: "Yasal Bilgiler",
+    section1Title: "§ 5 TMG'ye göre bilgiler",
+    responsible: "§ 55 Abs. 2 RStV'ye göre içerikten sorumlu:",
+    contact: "İletişim",
+    email: "E-posta:",
+    liabilityDisclaimer: "Sorumluluk Reddi",
+    liabilityContent: "İçerik Sorumluluğu",
+    liabilityContentText:
+      "Sayfalarımızın içerikleri en büyük özenle oluşturulmuştur. Ancak içeriğin doğruluğu, eksiksizliği ve güncelliği için garanti veremeyiz. Bir hizmet sağlayıcı olarak, § 7 Abs.1 TMG uyarınca genel yasalara göre bu sayfalardaki kendi içeriğimizden sorumluyuz.",
+    liabilityLinks: "Bağlantılar için Sorumluluk",
+    liabilityLinksText:
+      "Teklifimiz, içeriklerine etkimiz olmayan üçüncü tarafların harici web sitelerine bağlantılar içerir. Bu nedenle, bu harici içeriklerden herhangi bir sorumluluk üstlenemeyiz. Bağlantılı sayfaların içeriğinden her zaman ilgili sağlayıcı veya sayfa operatörü sorumludur.",
+    copyright: "Telif Hakkı",
+    copyrightText:
+      "Sayfa operatörleri tarafından bu sayfalarda oluşturulan içerikler ve eserler Alman telif hakkı yasasına tabidir. Telif hakkı sınırlarının dışında çoğaltma, işleme, dağıtım ve her türlü kullanım, ilgili yazar veya yaratıcının yazılı iznini gerektirir.",
+    note: "Not",
+    noteText:
+      "Bu web sitesi yalnızca bilgilendirme amaçlıdır ve bireysel hukuki tavsiye oluşturmaz. Hukuki sorular için nitelikli bir avukata veya danışmanlık hizmetine başvurmalısınız.",
+  },
+  datenschutz: {
+    title: "Gizlilik Politikası",
+    section1Title: "1. Gizliliğe Genel Bakış",
+    generalNotes: "Genel Notlar",
+    generalNotesText:
+      "Aşağıdaki notlar, bu web sitesini ziyaret ettiğinizde kişisel verilerinize ne olduğuna dair basit bir genel bakış sağlar. Kişisel veriler, kişisel olarak tanımlanabileceğiniz tüm verilerdir.",
+    section2Title: "2. Sorumlu Taraf",
+    responsiblePartyText: "Bu web sitesindeki veri işlemeden sorumlu taraf:",
+    email: "E-posta:",
+    section3Title: "3. Bu Web Sitesinde Veri Toplama",
+    serverLogFiles: "Sunucu Günlük Dosyaları",
+    serverLogFilesText:
+      "Sayfaların sağlayıcısı, tarayıcınızın bize otomatik olarak ilettiği sözde sunucu günlük dosyalarında otomatik olarak bilgi toplar ve saklar. Bunlar:",
+    serverLogItems: [
+      "Tarayıcı türü ve tarayıcı sürümü",
+      "Kullanılan işletim sistemi",
+      "Referrer URL",
+      "Erişen bilgisayarın ana bilgisayar adı",
+      "Sunucu isteği zamanı",
+      "IP adresi",
+    ],
+    serverLogFilesNote:
+      "Bu verilerin diğer veri kaynaklarıyla birleştirilmesi yapılmaz. Bu verilerin toplanması GDPR Madde 6 fık. 1 lit. f'ye dayanmaktadır.",
+    contactForm: "İletişim Formu",
+    contactFormText:
+      "Bize iletişim formu aracılığıyla sorgular gönderirseniz, sorgu formundaki ayrıntılarınız, orada sağladığınız iletişim bilgileri dahil olmak üzere, sorguyu işleme ve takip soruları durumunda bizim tarafımızdan saklanacaktır. Bu verileri sizin izniniz olmadan iletmeyiz.",
+    localStorage: "Yerel Depolama (LocalStorage)",
+    localStorageText:
+      "Bu web sitesi, tercihlerinizi (ör. dil ayarları, tema ayarları) tarayıcınızda yerel olarak saklamak için LocalStorage kullanır. Bu veriler yalnızca cihazınızda saklanır ve sunuculara iletilmez.",
+    section4Title: "4. Haklarınız",
+    yourRightsText: "Her zaman hakkınız vardır:",
+    yourRightsItems: [
+      "Bizim tarafımızdan saklanan kişisel verileriniz hakkında bilgi almak (GDPR Madde 15)",
+      "Yanlış verilerin düzeltilmesini talep etmek (GDPR Madde 16)",
+      "Bizim tarafımızdan saklanan verilerinizin silinmesini talep etmek (GDPR Madde 17)",
+      "Veri işlemeyi kısıtlamayı talep etmek (GDPR Madde 18)",
+      "Verilerinizin işlenmesine itiraz etmek (GDPR Madde 21)",
+      "Veri taşınabilirliği talep etmek (GDPR Madde 20)",
+    ],
+    section5Title: "5. Veri İşlemeye İtiraz",
+    objectionText:
+      "Özel durumunuzdan kaynaklanan nedenlerle, GDPR Madde 6 fık. 1 lit. f'ye dayanarak yapılan sizi ilgilendiren kişisel verilerin işlenmesine her zaman itiraz etme hakkınız vardır.",
+    section6Title: "6. Bu Gizlilik Politikasındaki Değişiklikler",
+    changesText:
+      "Bu gizlilik politikasını, her zaman mevcut yasal gerekliliklere uygun olması veya hizmetlerimizdeki değişiklikleri gizlilik politikasında uygulamak için uyarlama hakkını saklı tutarız.",
+  },
 };
 
 export default tr;

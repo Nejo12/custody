@@ -13,12 +13,18 @@ export const metadata: Metadata = {
     url: "https://custodyclarity.com/settings",
     images: [
       {
-        url: "/og",
+        url: "https://custodyclarity.com/og",
         width: 1200,
         height: 630,
         alt: "Custody Clarity - Settings",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Settings | Custody Clarity",
+    description: "Configure language, safety options, and privacy settings.",
+    images: ["https://custodyclarity.com/og"],
   },
 };
 

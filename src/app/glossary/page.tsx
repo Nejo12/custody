@@ -5,14 +5,26 @@ import glossaryDataEn from "@/data/glossary.json";
 
 // Lazy load locale-specific glossary data
 const loadGlossary = async (locale: string) => {
-  if (locale === "de") {
-    try {
-      return (await import("@/data/glossary.de.json")).default;
-    } catch {
-      return glossaryDataEn;
+  try {
+    switch (locale) {
+      case "de":
+        return (await import("@/data/glossary.de.json")).default;
+      case "ar":
+        return (await import("@/data/glossary.ar.json")).default;
+      case "pl":
+        return (await import("@/data/glossary.pl.json")).default;
+      case "fr":
+        return (await import("@/data/glossary.fr.json")).default;
+      case "tr":
+        return (await import("@/data/glossary.tr.json")).default;
+      case "ru":
+        return (await import("@/data/glossary.ru.json")).default;
+      default:
+        return glossaryDataEn;
     }
+  } catch {
+    return glossaryDataEn;
   }
-  return glossaryDataEn;
 };
 
 type GlossaryTerm = {
