@@ -254,11 +254,17 @@ export async function POST(req: NextRequest) {
       return content.trim();
     }
 
-    if (target === "en" || target === "both") {
-      result.translations!.en = await translate("en");
+    // Parallelize translation calls for better performance
+    const [enTranslation, deTranslation] = await Promise.all([
+      target !== "de" ? translate("en") : null,
+      target !== "en" ? translate("de") : null,
+    ]);
+
+    if (enTranslation !== null) {
+      result.translations!.en = enTranslation;
     }
-    if (target === "de" || target === "both") {
-      result.translations!.de = await translate("de");
+    if (deTranslation !== null) {
+      result.translations!.de = deTranslation;
     }
 
     return new Response(JSON.stringify(result), {

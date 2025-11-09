@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Custody Clarity",
-  description: "Guided custody and contact rights information.",
+  description: "Free tool to help you understand your custody and contact rights in Germany.",
   manifest: "/manifest.webmanifest",
   icons: {
     icon: [
