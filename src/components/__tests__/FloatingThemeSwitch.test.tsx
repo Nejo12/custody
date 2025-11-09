@@ -1,0 +1,58 @@
+import { describe, it, expect, beforeEach, vi } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import FloatingThemeSwitch from "../FloatingThemeSwitch";
+import { useAppStore } from "@/store/app";
+import { I18nProvider } from "@/i18n";
+
+describe("FloatingThemeSwitch", () => {
+  beforeEach(() => {
+    useAppStore.getState().wipeAll();
+    vi.clearAllMocks();
+  });
+
+  it("renders theme switch button", () => {
+    render(
+      <I18nProvider>
+        <FloatingThemeSwitch />
+      </I18nProvider>
+    );
+    const button = screen.getByRole("button");
+    expect(button).toBeInTheDocument();
+  });
+
+  it("toggles theme from light to dark", () => {
+    useAppStore.getState().setTheme("light");
+    render(
+      <I18nProvider>
+        <FloatingThemeSwitch />
+      </I18nProvider>
+    );
+    const button = screen.getByRole("button");
+    fireEvent.click(button);
+    expect(useAppStore.getState().theme).toBe("dark");
+  });
+
+  it("toggles theme from dark to system", () => {
+    useAppStore.getState().setTheme("dark");
+    render(
+      <I18nProvider>
+        <FloatingThemeSwitch />
+      </I18nProvider>
+    );
+    const button = screen.getByRole("button");
+    fireEvent.click(button);
+    expect(useAppStore.getState().theme).toBe("system");
+  });
+
+  it("toggles theme from system to light", () => {
+    useAppStore.getState().setTheme("system");
+    render(
+      <I18nProvider>
+        <FloatingThemeSwitch />
+      </I18nProvider>
+    );
+    const button = screen.getByRole("button");
+    fireEvent.click(button);
+    expect(useAppStore.getState().theme).toBe("light");
+  });
+});

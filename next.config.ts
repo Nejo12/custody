@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     const isDev = process.env.NODE_ENV !== "production";
     const scriptSrc = [
       "'self'",
-      isDev ? "'unsafe-inline'" : "",
+      "'unsafe-inline'", // Allow inline scripts (less secure but fixes the issue)
       isDev ? "'unsafe-eval'" : "",
       "'wasm-unsafe-eval'",
       "blob:",

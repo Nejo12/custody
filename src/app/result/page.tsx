@@ -16,7 +16,7 @@ import StatusCard from "@/components/StatusCard";
 import type { TranslationDict } from "@/types";
 import { motion } from "framer-motion";
 import EducationPanel, { type EducationItem } from "@/components/EducationPanel";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef, startTransition } from "react";
 import HelpSheet from "@/components/HelpSheet";
 import JSZip from "jszip";
 import { buildCoverLetter } from "@/lib/coverLetter";
@@ -28,8 +28,19 @@ import { buildICS } from "@/lib/ics";
 type StatusKey = keyof TranslationDict["result"]["statuses"];
 
 export default function Result() {
+  const mountedRef = useRef(false);
+  const [mounted, setMounted] = useState(false);
   const { interview } = useAppStore();
   const { t, locale } = useI18n();
+
+  useEffect(() => {
+    if (!mountedRef.current) {
+      mountedRef.current = true;
+      startTransition(() => {
+        setMounted(true);
+      });
+    }
+  }, []);
   const { matched, primary } = evaluateRules(rules as SimpleRule[], interview.answers);
 
   const status = (primary?.outcome.status || "unknown") as StatusKey;
@@ -159,7 +170,7 @@ export default function Result() {
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-8 space-y-6">
       <motion.h1
-        initial={{ opacity: 0, y: -10 }}
+        initial={mounted ? { opacity: 0, y: -10 } : false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         className="text-xl font-semibold"
@@ -222,7 +233,7 @@ export default function Result() {
       {/* Radical Clarity: Why this result? */}
       {matched.length > 0 && (
         <motion.div
-          initial={{ opacity: 0, y: 6 }}
+          initial={mounted ? { opacity: 0, y: 6 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
           className="rounded-lg border p-3 bg-white dark:bg-zinc-900"
@@ -294,7 +305,7 @@ export default function Result() {
         </motion.div>
       )}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={mounted ? { opacity: 0, scale: 0.95 } : false}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4, delay: 0.1 }}
       >
@@ -319,7 +330,7 @@ export default function Result() {
 
       {unclear && (
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={mounted ? { opacity: 0, y: 10 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.15 }}
           className="space-y-3"
@@ -373,13 +384,16 @@ export default function Result() {
       )}
 
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={mounted ? { opacity: 0, y: 10 } : false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.2 }}
         className="space-y-2"
       >
         {violenceFlag && (
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+          <motion.div
+            initial={mounted ? { opacity: 0, y: 6 } : false}
+            animate={{ opacity: 1, y: 0 }}
+          >
             <Callout tone="error" title={t.result.safetyTitle}>
               {t.result.safetyBody}
             </Callout>
@@ -583,7 +597,7 @@ export default function Result() {
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={mounted ? { opacity: 0, y: 10 } : false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.3 }}
         className="space-y-2"
@@ -595,7 +609,7 @@ export default function Result() {
             return (
               <motion.li
                 key={i}
-                initial={{ opacity: 0, x: -10 }}
+                initial={mounted ? { opacity: 0, x: -10 } : false}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: 0.4 + i * 0.05 }}
               >
@@ -620,7 +634,7 @@ export default function Result() {
 
       {matched.length > 1 && (
         <motion.details
-          initial={{ opacity: 0 }}
+          initial={mounted ? { opacity: 0 } : false}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.5 }}
           className="text-xs text-zinc-700 dark:text-zinc-400"
@@ -641,7 +655,7 @@ export default function Result() {
 
       {/* Confidence tips */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={mounted ? { opacity: 0, y: 10 } : false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.35 }}
         className="rounded-lg border p-3 bg-white dark:bg-zinc-900"
@@ -679,7 +693,7 @@ export default function Result() {
 
       {/* Regional tips */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={mounted ? { opacity: 0, y: 10 } : false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.4 }}
         className="rounded-lg border p-3"

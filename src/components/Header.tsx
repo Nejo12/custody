@@ -50,8 +50,8 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
             <button
               className="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900"
               onClick={() => onOpenHelp?.()}
-              title={t.header?.findHelp || "Find Help"}
-              aria-label={t.header?.findHelp || "Find Help"}
+              title={t.header?.findHelp ?? "Need help?"}
+              aria-label={t.header?.findHelp ?? "Need help?"}
             >
               <svg
                 className="w-4 h-4 text-zinc-700 dark:text-zinc-300"
@@ -151,7 +151,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                       onOpenHelp?.();
                     }}
                   >
-                    {t.header?.findHelp || "Find Help"}
+                    {t.header?.findHelp ?? "Need help?"}
                   </button>
                   {canInstall && (
                     <button

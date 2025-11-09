@@ -38,3 +38,8 @@ export function rateLimitResponse(remaining: number, resetAt: number) {
     "X-RateLimit-Reset": String(Math.floor(resetAt / 1000)),
   } as Record<string, string>;
 }
+
+// For testing: clear all buckets
+export function clearRateLimitBuckets() {
+  buckets.clear();
+}
