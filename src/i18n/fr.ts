@@ -123,7 +123,13 @@ const fr = {
       "Astuce : ajoutez une reconnaissance de paternité ou des scans de certificat de naissance dans votre",
     regionalTips: "Conseils régionaux",
     regionalTipsDefault:
-      "Les registres locaux peuvent avoir des formulaires spécifiques ou des créneaux de rendez-vous. Apportez les pièces d'identité et les détails de naissance de l'enfant.",
+      "Les registres locaux peuvent avoir des formulaires spécifiques ou des créneaux de rendez-vous. Apportez des pièces d'identité et les détails de naissance de l'enfant.",
+    regionalTipBerlin:
+      "Certains tribunaux préfèrent les visites au registre tôt le matin pour les dépôts. L'Amtsgericht Mitte s'attend souvent à des lettres de couverture brèves et acceptera les pièces jointes standard listées.",
+    regionalTipHamburg:
+      "Le registre du tribunal peut demander un aperçu de l'horaire de base même pour les demandes de contact initiales. Apportez des pièces d'identité imprimées.",
+    regionalTipNrw:
+      "Les bureaux du Jugendamt exigent parfois une réservation en ligne pour les reconnaissances. Vérifiez les heures d'ouverture et réservez à l'avance si possible.",
     packDownloaded:
       "Votre pack a été téléchargé. Joignez le fichier ZIP à cet e-mail si vous souhaitez l'envoyer.",
     packShareError: "Impossible de partager le pack. Il a été téléchargé à la place.",
@@ -149,6 +155,23 @@ const fr = {
     packSection: "Dossier",
     attachTimeline: "Joindre la chronologie depuis le coffre‑fort",
     whyThisResult: "Pourquoi ce résultat ?",
+    allDetailsConfirmed: "Tous les détails clés confirmés",
+    needQuickDetails: "Nous avons besoin de {count} détails rapides pour confirmer",
+    addFilingReminder: "Ajouter un rappel de dépôt",
+    stepAnswerKeyQuestions: "Répondre aux questions clés",
+    stepPickCourt: "Choisir le tribunal",
+    stepSetSender: "Définir l'expéditeur",
+    stepGeneratePdf: "Générer le PDF",
+    senderOcrNote: "Expéditeur (note OCR)",
+    editInVault: "modifier dans le Coffre-fort",
+    lastVerified: "Dernière vérification:",
+    snapshot: "Instantané:",
+  },
+  learn: {
+    findSupportByCity: "Trouver du soutien par ville",
+    allServices: "Tous les services",
+    jugendamter: "Jugendämter",
+    courts: "Tribunaux",
   },
   directory: {
     title: "Trouver du soutien",
@@ -161,6 +184,8 @@ const fr = {
     counseling: "Conseil et thérapie",
     support_group: "Groupes de soutien",
     noResults: "Aucun service trouvé.",
+    citySnapshots: "Aperçus des villes",
+    viewAllIn: "Voir tout dans",
   },
   vault: {
     title: "Coffre‑fort",

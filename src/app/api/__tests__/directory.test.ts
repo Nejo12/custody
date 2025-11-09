@@ -45,4 +45,31 @@ describe("directory API route", () => {
     const json = await res.json();
     expect(json).toHaveProperty("services");
   });
+
+  it("handles unknown city parameter", async () => {
+    const req = new Request("http://localhost/api/directory?city=unknown");
+    const res = await GET(req);
+    expect(res.ok).toBe(true);
+    const json = await res.json();
+    expect(json).toHaveProperty("services");
+    expect(json.services).toEqual([]);
+  });
+
+  it("handles missing type parameter", async () => {
+    const req = new Request("http://localhost/api/directory?city=berlin");
+    const res = await GET(req);
+    expect(res.ok).toBe(true);
+    const json = await res.json();
+    expect(json).toHaveProperty("services");
+    // Should return all services when type is not specified
+    expect(Array.isArray(json.services)).toBe(true);
+  });
+
+  it("handles empty type filter", async () => {
+    const req = new Request("http://localhost/api/directory?city=berlin&type=");
+    const res = await GET(req);
+    expect(res.ok).toBe(true);
+    const json = await res.json();
+    expect(json).toHaveProperty("services");
+  });
 });

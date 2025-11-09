@@ -264,4 +264,168 @@ describe("useAppStore", () => {
       expect(parsed.vault).toBeDefined();
     });
   });
+
+  describe("Preferred City", () => {
+    it("defaults to berlin", () => {
+      const city = useAppStore.getState().preferredCity;
+      expect(city).toBe("berlin");
+    });
+
+    it("sets preferred city correctly", () => {
+      useAppStore.getState().setPreferredCity("hamburg");
+      expect(useAppStore.getState().preferredCity).toBe("hamburg");
+    });
+
+    it("supports all cities", () => {
+      const cities: Array<"berlin" | "hamburg" | "nrw"> = ["berlin", "hamburg", "nrw"];
+      cities.forEach((city) => {
+        useAppStore.getState().setPreferredCity(city);
+        expect(useAppStore.getState().preferredCity).toBe(city);
+      });
+    });
+  });
+
+  describe("Preferred Court Template", () => {
+    it("defaults to empty string", () => {
+      const template = useAppStore.getState().preferredCourtTemplate;
+      expect(template).toBe("");
+    });
+
+    it("sets preferred court template correctly", () => {
+      useAppStore.getState().setPreferredCourtTemplate("template-123");
+      expect(useAppStore.getState().preferredCourtTemplate).toBe("template-123");
+    });
+  });
+
+  describe("Include Timeline In Pack", () => {
+    it("defaults to false", () => {
+      const include = useAppStore.getState().includeTimelineInPack;
+      expect(include).toBe(false);
+    });
+
+    it("sets include timeline in pack correctly", () => {
+      useAppStore.getState().setIncludeTimelineInPack(true);
+      expect(useAppStore.getState().includeTimelineInPack).toBe(true);
+    });
+  });
+
+  describe("Preferred OCR Note ID", () => {
+    it("defaults to empty string", () => {
+      const id = useAppStore.getState().preferredOcrNoteId;
+      expect(id).toBe("");
+    });
+
+    it("sets preferred OCR note ID correctly", () => {
+      useAppStore.getState().setPreferredOcrNoteId("note-123");
+      expect(useAppStore.getState().preferredOcrNoteId).toBe("note-123");
+    });
+  });
+
+  describe("Social Worker Mode", () => {
+    it("defaults to false", () => {
+      const mode = useAppStore.getState().socialWorkerMode;
+      expect(mode).toBe(false);
+    });
+
+    it("sets social worker mode correctly", () => {
+      useAppStore.getState().setSocialWorkerMode(true);
+      expect(useAppStore.getState().socialWorkerMode).toBe(true);
+    });
+  });
+
+  describe("Safety Mode", () => {
+    it("defaults to false", () => {
+      const mode = useAppStore.getState().safetyMode;
+      expect(mode).toBe(false);
+    });
+
+    it("sets safety mode correctly", () => {
+      useAppStore.getState().setSafetyMode(true);
+      expect(useAppStore.getState().safetyMode).toBe(true);
+    });
+  });
+
+  describe("Discreet Mode", () => {
+    it("defaults to false", () => {
+      const mode = useAppStore.getState().discreetMode;
+      expect(mode).toBe(false);
+    });
+
+    it("sets discreet mode correctly", () => {
+      useAppStore.getState().setDiscreetMode(true);
+      expect(useAppStore.getState().discreetMode).toBe(true);
+    });
+  });
+
+  describe("Blur Thumbnails", () => {
+    it("defaults to false", () => {
+      const blur = useAppStore.getState().blurThumbnails;
+      expect(blur).toBe(false);
+    });
+
+    it("sets blur thumbnails correctly", () => {
+      useAppStore.getState().setBlurThumbnails(true);
+      expect(useAppStore.getState().blurThumbnails).toBe(true);
+    });
+  });
+
+  describe("Milestones", () => {
+    it("initializes with all false", () => {
+      const milestones = useAppStore.getState().milestones;
+      expect(milestones.answeredCore).toBe(false);
+      expect(milestones.courtSelected).toBe(false);
+      expect(milestones.senderSelected).toBe(false);
+      expect(milestones.pdfGenerated).toBe(false);
+    });
+
+    it("sets milestone correctly", () => {
+      useAppStore.getState().setMilestone("answeredCore", true);
+      const milestones = useAppStore.getState().milestones;
+      expect(milestones.answeredCore).toBe(true);
+      expect(milestones.lastUpdated).toBeDefined();
+    });
+
+    it("updates lastUpdated when setting milestone", () => {
+      const before = Date.now();
+      useAppStore.getState().setMilestone("courtSelected", true);
+      const after = Date.now();
+      const milestones = useAppStore.getState().milestones;
+      expect(milestones.lastUpdated).toBeGreaterThanOrEqual(before);
+      expect(milestones.lastUpdated).toBeLessThanOrEqual(after);
+    });
+
+    it("sets multiple milestones", () => {
+      useAppStore.getState().setMilestone("answeredCore", true);
+      useAppStore.getState().setMilestone("courtSelected", true);
+      const milestones = useAppStore.getState().milestones;
+      expect(milestones.answeredCore).toBe(true);
+      expect(milestones.courtSelected).toBe(true);
+    });
+  });
+
+  describe("Wipe All", () => {
+    it("resets all state to defaults", () => {
+      useAppStore.getState().setLocale("de");
+      useAppStore.getState().setTheme("dark");
+      useAppStore.getState().setAnswer("question1", "yes");
+      useAppStore.getState().setPreferredCity("hamburg");
+      useAppStore.getState().setMilestone("answeredCore", true);
+
+      useAppStore.getState().wipeAll();
+
+      expect(useAppStore.getState().locale).toBe("en");
+      expect(useAppStore.getState().preferredCity).toBe("berlin");
+      expect(useAppStore.getState().interview.answers).toEqual({});
+      expect(useAppStore.getState().milestones.answeredCore).toBe(false);
+      expect(useAppStore.getState().preferredCourtTemplate).toBe("");
+      expect(useAppStore.getState().includeTimelineInPack).toBe(false);
+      expect(useAppStore.getState().vault.entries).toEqual([]);
+    });
+
+    it("clears localStorage", () => {
+      localStorageMock.setItem("custody-clarity", "test");
+      useAppStore.getState().wipeAll();
+      expect(localStorageMock.removeItem).toHaveBeenCalledWith("custody-clarity");
+    });
+  });
 });

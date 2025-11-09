@@ -122,6 +122,12 @@ const tr = {
     regionalTips: "Bölgesel İpuçları",
     regionalTipsDefault:
       "Yerel siciller belirli formlara veya randevu pencerelerine sahip olabilir. Kimlikler ve çocuğun doğum ayrıntılarını getirin.",
+    regionalTipBerlin:
+      "Bazı mahkemeler dosyalama için sabah erken saatlerde sicil ziyaretlerini tercih eder. Amtsgericht Mitte genellikle kısa kapak mektupları bekler ve listelenen standart ekleri kabul eder.",
+    regionalTipHamburg:
+      "Mahkeme sicili, ilk temas talepleri için bile temel bir program taslağı isteyebilir. Yazdırılmış kimlikleri getirin.",
+    regionalTipNrw:
+      "Jugendamt ofisleri bazen tanımalar için çevrimiçi rezervasyon gerektirir. Çalışma saatlerini kontrol edin ve mümkün olduğunca önceden rezervasyon yapın.",
     packDownloaded: "Paketiniz indirildi. Göndermek isterseniz ZIP dosyasını bu e-postaya ekleyin.",
     packShareError: "Paket paylaşılamadı. Bunun yerine indirildi.",
     statuses: {
@@ -143,6 +149,23 @@ const tr = {
     packSection: "Paket",
     attachTimeline: "Zincirden zaman çizelgesini ekle",
     whyThisResult: "Neden bu sonuç?",
+    allDetailsConfirmed: "Tüm önemli detaylar onaylandı",
+    needQuickDetails: "Onaylamak için {count} hızlı detaya ihtiyacımız var",
+    addFilingReminder: "Dosyalama hatırlatıcısı ekle",
+    stepAnswerKeyQuestions: "Ana soruları yanıtla",
+    stepPickCourt: "Mahkeme seç",
+    stepSetSender: "Gönderen ayarla",
+    stepGeneratePdf: "PDF oluştur",
+    senderOcrNote: "Gönderen (OCR notu)",
+    editInVault: "Zincirde düzenle",
+    lastVerified: "Son doğrulama:",
+    snapshot: "Anlık görüntü:",
+  },
+  learn: {
+    findSupportByCity: "Şehre göre destek bul",
+    allServices: "Tüm hizmetler",
+    jugendamter: "Jugendämter",
+    courts: "Mahkemeler",
   },
   directory: {
     title: "Destek bul",
@@ -155,6 +178,8 @@ const tr = {
     counseling: "Danışmanlık ve Terapi",
     support_group: "Destek Grupları",
     noResults: "Hizmet bulunamadı.",
+    citySnapshots: "Şehir anlık görüntüleri",
+    viewAllIn: "Tümünü görüntüle",
   },
   vault: {
     title: "Kasa",

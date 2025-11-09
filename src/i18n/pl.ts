@@ -123,6 +123,12 @@ const pl = {
     regionalTips: "Wskazówki regionalne",
     regionalTipsDefault:
       "Lokalne rejestry mogą mieć określone formularze lub okna wizyt. Zabierz dokumenty tożsamości i szczegóły urodzenia dziecka.",
+    regionalTipBerlin:
+      "Niektóre sądy preferują wizyty w rejestrze wczesnym rankiem w celu składania dokumentów. Amtsgericht Mitte często oczekuje krótkich listów przewodnich i zaakceptuje wymienione standardowe załączniki.",
+    regionalTipHamburg:
+      "Rejestr sądowy może poprosić o podstawowy zarys harmonogramu nawet przy początkowych wnioskach o kontakt. Zabierz wydrukowane dokumenty tożsamości.",
+    regionalTipNrw:
+      "Biura Jugendamt czasami wymagają rezerwacji online dla uznania. Sprawdź godziny otwarcia i zarezerwuj z wyprzedzeniem, gdzie to możliwe.",
     packDownloaded:
       "Twój pakiet został pobrany. Dołącz plik ZIP do tego e-maila, jeśli chcesz go wysłać.",
     packShareError: "Nie można udostępnić pakietu. Został zamiast tego pobrany.",
@@ -147,6 +153,23 @@ const pl = {
     packSection: "Pakiet",
     attachTimeline: "Dołącz ze skarbca oś czasu",
     whyThisResult: "Dlaczego taki wynik?",
+    allDetailsConfirmed: "Wszystkie kluczowe szczegóły potwierdzone",
+    needQuickDetails: "Potrzebujemy {count} szybkich szczegółów do potwierdzenia",
+    addFilingReminder: "Dodaj przypomnienie o złożeniu",
+    stepAnswerKeyQuestions: "Odpowiedz na kluczowe pytania",
+    stepPickCourt: "Wybierz sąd",
+    stepSetSender: "Ustaw nadawcę",
+    stepGeneratePdf: "Wygeneruj PDF",
+    senderOcrNote: "Nadawca (notatka OCR)",
+    editInVault: "edytuj w Skarbcu",
+    lastVerified: "Ostatnio zweryfikowano:",
+    snapshot: "Migawka:",
+  },
+  learn: {
+    findSupportByCity: "Znajdź wsparcie według miasta",
+    allServices: "Wszystkie usługi",
+    jugendamter: "Jugendämter",
+    courts: "Sądy",
   },
   directory: {
     title: "Znajdź wsparcie",
@@ -159,6 +182,8 @@ const pl = {
     counseling: "Poradnictwo i terapia",
     support_group: "Grupy wsparcia",
     noResults: "Nie znaleziono usług.",
+    citySnapshots: "Migawki miast",
+    viewAllIn: "Zobacz wszystko w",
   },
   vault: {
     title: "Skarbiec",

@@ -122,6 +122,12 @@ const en = {
     regionalTips: "Regional Tips",
     regionalTipsDefault:
       "Local registries may have specific forms or appointment windows. Bring IDs and child's birth details.",
+    regionalTipBerlin:
+      "Some courts prefer early morning registry visits for filings. Amtsgericht Mitte often expects brief cover letters and will accept standard attachments listed.",
+    regionalTipHamburg:
+      "Court registry may ask for a basic schedule outline even for initial contact requests. Bring printed IDs.",
+    regionalTipNrw:
+      "Jugendamt offices sometimes require online booking for acknowledgements. Check office hours and book ahead where possible.",
     packDownloaded:
       "Your pack was downloaded. Attach the ZIP to this email if you wish to send it.",
     packShareError: "Unable to share pack. It has been downloaded instead.",
@@ -144,6 +150,23 @@ const en = {
     packSection: "Pack",
     attachTimeline: "Attach timeline from Vault",
     whyThisResult: "Why this result?",
+    allDetailsConfirmed: "All key details confirmed",
+    needQuickDetails: "We need {count} quick details to confirm",
+    addFilingReminder: "Add filing reminder",
+    stepAnswerKeyQuestions: "Answer key questions",
+    stepPickCourt: "Pick court",
+    stepSetSender: "Set sender",
+    stepGeneratePdf: "Generate PDF",
+    senderOcrNote: "Sender (OCR note)",
+    editInVault: "edit in Vault",
+    lastVerified: "Last verified:",
+    snapshot: "Snapshot:",
+  },
+  learn: {
+    findSupportByCity: "Find support by city",
+    allServices: "All services",
+    jugendamter: "Jugendämter",
+    courts: "Courts",
   },
   directory: {
     title: "Find support",
@@ -156,6 +179,8 @@ const en = {
     counseling: "Counseling & Therapy",
     support_group: "Support Groups",
     noResults: "No services found.",
+    citySnapshots: "City snapshots",
+    viewAllIn: "View all in",
   },
   vault: {
     title: "Vault",

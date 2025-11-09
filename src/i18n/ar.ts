@@ -122,6 +122,12 @@ const ar = {
     regionalTips: "نصائح إقليمية",
     regionalTipsDefault:
       "قد تحتوي السجلات المحلية على نماذج محددة أو نوافذ مواعيد. أحضر بطاقات الهوية وتفاصيل ميلاد الطفل.",
+    regionalTipBerlin:
+      "بعض المحاكم تفضل زيارات السجل في الصباح الباكر لتقديم الملفات. غالباً ما يتوقع محكمة Mitte خطابات غلاف موجزة وسيقبل المرفقات القياسية المدرجة.",
+    regionalTipHamburg:
+      "قد يطلب سجل المحكمة مخططاً أساسياً للجدول الزمني حتى لطلبات الاتصال الأولية. أحضر بطاقات الهوية المطبوعة.",
+    regionalTipNrw:
+      "مكاتب Jugendamt تتطلب أحياناً حجزاً عبر الإنترنت للاعترافات. تحقق من ساعات العمل واحجز مسبقاً حيثما أمكن.",
     packDownloaded:
       "تم تنزيل الحزمة الخاصة بك. أرفق ملف ZIP بهذا البريد الإلكتروني إذا كنت ترغب في إرساله.",
     packShareError: "تعذر مشاركة الحزمة. تم تنزيلها بدلاً من ذلك.",
@@ -144,6 +150,23 @@ const ar = {
     packSection: "الحزمة",
     attachTimeline: "إرفاق الجدول الزمني من المخزن",
     whyThisResult: "لماذا هذه النتيجة؟",
+    allDetailsConfirmed: "تم تأكيد جميع التفاصيل الرئيسية",
+    needQuickDetails: "نحتاج إلى {count} تفاصيل سريعة للتأكيد",
+    addFilingReminder: "إضافة تذكير بالإيداع",
+    stepAnswerKeyQuestions: "الإجابة على الأسئلة الرئيسية",
+    stepPickCourt: "اختيار المحكمة",
+    stepSetSender: "تعيين المرسل",
+    stepGeneratePdf: "إنشاء PDF",
+    senderOcrNote: "المرسل (ملاحظة OCR)",
+    editInVault: "تعديل في المخزن",
+    lastVerified: "آخر تحقق:",
+    snapshot: "لقطة:",
+  },
+  learn: {
+    findSupportByCity: "العثور على الدعم حسب المدينة",
+    allServices: "جميع الخدمات",
+    jugendamter: "مكاتب Jugendamt",
+    courts: "المحاكم",
   },
   directory: {
     title: "العثور على الدعم",
@@ -156,6 +179,8 @@ const ar = {
     counseling: "الاستشارة والعلاج",
     support_group: "مجموعات الدعم",
     noResults: "لم يتم العثور على خدمات.",
+    citySnapshots: "لقطات المدينة",
+    viewAllIn: "عرض الكل في",
   },
   vault: {
     title: "المستودع",

@@ -93,7 +93,7 @@ export default function Interview() {
           questionId: current.id,
           questionText: questionData?.label || current.id,
           answers: interview.answers,
-          locale: locale === "de" ? "de" : "en",
+          locale: locale,
           context: questionData?.help || "",
         }),
       });
@@ -222,7 +222,13 @@ export default function Interview() {
             >
               <div className="text-sm text-zinc-900 dark:text-zinc-100">
                 {(t.result?.answerNow || "Answer now:") + " "}
-                <b>{clarify.data.suggestion}</b>{" "}
+                <b>
+                  {clarify.data.suggestion === "yes"
+                    ? t.common.yes
+                    : clarify.data.suggestion === "no"
+                      ? t.common.no
+                      : t.common.unsure}
+                </b>{" "}
                 <span className="text-xs text-zinc-700 dark:text-zinc-400">
                   ({Math.round(clarify.data.confidence * 100)}%)
                 </span>

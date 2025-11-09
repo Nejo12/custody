@@ -127,7 +127,9 @@ export default function DirectoryPage() {
       >
         <div className="space-y-3 pt-4">
           <details className="rounded-lg border p-3">
-            <summary className="font-medium cursor-pointer">City snapshots</summary>
+            <summary className="font-medium cursor-pointer">
+              {t.directory.citySnapshots || "City snapshots"}
+            </summary>
             <div className="mt-2 grid grid-cols-1 gap-3">
               {[
                 { label: "Berlin", key: "berlin" as City, data: snapshots.berlin },
@@ -155,7 +157,7 @@ export default function DirectoryPage() {
                       }}
                       className="text-sm underline"
                     >
-                      View all in {grp.label}
+                      {t.directory.viewAllIn || "View all in"} {grp.label}
                     </button>
                   </div>
                 );

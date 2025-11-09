@@ -16,6 +16,7 @@ export default defineConfig({
         "**/*.d.ts",
         "src/app/**/page.tsx", // Next.js pages often require jsdom complexity
         "src/app/**/layout.tsx",
+        "src/types/**", // Type definition files
       ],
       thresholds: {
         lines: 80,

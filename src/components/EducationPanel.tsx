@@ -21,9 +21,9 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
     sources: "Sources",
   };
   return (
-    <div className="rounded-lg border p-4">
+    <div className="rounded-lg border p-4 bg-white dark:bg-zinc-900">
       <button
-        className="w-full text-left font-medium flex items-center justify-between"
+        className="w-full text-left font-medium flex items-center justify-between text-zinc-900 dark:text-zinc-100"
         onClick={() => setOpen((v) => !v)}
       >
         <span>{item.title}</span>
@@ -42,7 +42,7 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
             className="mt-3 space-y-3 text-sm overflow-hidden"
           >
             <section>
-              <div className="font-medium flex items-center gap-2">
+              <div className="font-medium flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
                 <svg
                   width="14"
                   height="14"
@@ -58,10 +58,10 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
                 </svg>
                 {headings.why}
               </div>
-              <p className="text-zinc-700 dark:text-zinc-300">{item.why}</p>
+              <p className="text-zinc-900 dark:text-zinc-300">{item.why}</p>
             </section>
             <section>
-              <div className="font-medium flex items-center gap-2">
+              <div className="font-medium flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
                 <svg
                   width="14"
                   height="14"
@@ -77,10 +77,10 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
                 </svg>
                 {headings.law}
               </div>
-              <p className="text-zinc-700 dark:text-zinc-300">{item.law}</p>
+              <p className="text-zinc-900 dark:text-zinc-300">{item.law}</p>
             </section>
             <section>
-              <div className="font-medium flex items-center gap-2">
+              <div className="font-medium flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
                 <svg
                   width="14"
                   height="14"
@@ -96,11 +96,11 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
                 </svg>
                 {headings.unsure}
               </div>
-              <p className="text-zinc-700 dark:text-zinc-300">{item.unsure}</p>
+              <p className="text-zinc-900 dark:text-zinc-300">{item.unsure}</p>
             </section>
             {!!item.citations?.length && (
               <section>
-                <div className="font-medium flex items-center gap-2">
+                <div className="font-medium flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
                   <svg
                     width="14"
                     height="14"
@@ -116,7 +116,7 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
                   </svg>
                   {headings.sources}
                 </div>
-                <ul className="list-disc pl-5">
+                <ul className="list-disc pl-5 text-zinc-900 dark:text-zinc-300">
                   {item.citations.map((c, i) => (
                     <li key={i}>
                       <a

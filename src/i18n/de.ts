@@ -122,6 +122,12 @@ const de = {
     regionalTips: "Regionale Tipps",
     regionalTipsDefault:
       "Lokale Register können spezifische Formulare oder Terminfenster haben. Bringe Ausweise und Geburtsdetails des Kindes mit.",
+    regionalTipBerlin:
+      "Einige Gerichte bevorzugen frühmorgendliche Registerbesuche für Einreichungen. Das Amtsgericht Mitte erwartet oft kurze Anschreiben und akzeptiert die aufgeführten Standardanhänge.",
+    regionalTipHamburg:
+      "Das Gerichtsregister kann auch bei ersten Kontaktanfragen nach einem grundlegenden Zeitplanentwurf fragen. Bringe ausgedruckte Ausweise mit.",
+    regionalTipNrw:
+      "Jugendämter erfordern manchmal eine Online-Buchung für Anerkennungen. Prüfe die Bürozeiten und buche im Voraus, wo möglich.",
     packDownloaded:
       "Dein Paket wurde heruntergeladen. Füge die ZIP-Datei an diese E-Mail an, wenn du sie senden möchtest.",
     packShareError: "Paket konnte nicht geteilt werden. Es wurde stattdessen heruntergeladen.",
@@ -144,6 +150,23 @@ const de = {
     packSection: "Paket",
     attachTimeline: "Zeitleiste aus dem Tresor beifügen",
     whyThisResult: "Warum dieses Ergebnis?",
+    allDetailsConfirmed: "Alle wichtigen Details bestätigt",
+    needQuickDetails: "Wir brauchen {count} schnelle Details zur Bestätigung",
+    addFilingReminder: "Einreichungserinnerung hinzufügen",
+    stepAnswerKeyQuestions: "Schlüsselfragen beantworten",
+    stepPickCourt: "Gericht auswählen",
+    stepSetSender: "Absender setzen",
+    stepGeneratePdf: "PDF generieren",
+    senderOcrNote: "Absender (OCR-Notiz)",
+    editInVault: "im Tresor bearbeiten",
+    lastVerified: "Zuletzt verifiziert:",
+    snapshot: "Snapshot:",
+  },
+  learn: {
+    findSupportByCity: "Hilfe nach Stadt finden",
+    allServices: "Alle Dienste",
+    jugendamter: "Jugendämter",
+    courts: "Gerichte",
   },
   directory: {
     title: "Hilfe finden",
@@ -156,6 +179,8 @@ const de = {
     counseling: "Beratung & Therapie",
     support_group: "Selbsthilfegruppen",
     noResults: "Keine Einträge gefunden.",
+    citySnapshots: "Stadt-Snapshots",
+    viewAllIn: "Alle anzeigen in",
   },
   vault: {
     title: "Ablage",

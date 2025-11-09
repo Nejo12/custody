@@ -45,4 +45,115 @@ describe("ai neutralize route", () => {
     const res = await POST(req);
     expect(res.status).toBe(400);
   });
+
+  it("handles API key path with successful response", async () => {
+    process.env.OPENAI_API_KEY = "test-key";
+    process.env.OPENAI_API_BASE = "https://api.openai.com/v1";
+
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({ text: "Neutralized text" }),
+            },
+          },
+        ],
+      }),
+    });
+
+    const req = new Request("http://localhost/api/ai/neutralize?unique=apikey", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-forwarded-for": "192.168.1.101" },
+      body: JSON.stringify({
+        text: "Test text",
+        locale: "de",
+        tone: "neutral",
+      }),
+    });
+    const res = await POST(req);
+    expect(res.ok).toBe(true);
+    const json = await res.json();
+    expect(json).toHaveProperty("text");
+    expect(json.text).toBe("Neutralized text");
+  });
+
+  it("handles API response with invalid JSON", async () => {
+    process.env.OPENAI_API_KEY = "test-key";
+
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        choices: [
+          {
+            message: {
+              content: "invalid json",
+            },
+          },
+        ],
+      }),
+    });
+
+    const req = new Request("http://localhost/api/ai/neutralize?unique=invalidjson", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-forwarded-for": "192.168.1.102" },
+      body: JSON.stringify({
+        text: "Test text",
+        locale: "de",
+      }),
+    });
+    const res = await POST(req);
+    expect(res.status).toBe(502);
+    const json = await res.json();
+    expect(json).toHaveProperty("error", "Invalid AI output");
+  });
+
+  it("handles API response with missing text field", async () => {
+    process.env.OPENAI_API_KEY = "test-key";
+
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({ notText: "value" }),
+            },
+          },
+        ],
+      }),
+    });
+
+    const req = new Request("http://localhost/api/ai/neutralize?unique=missingtext", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-forwarded-for": "192.168.1.103" },
+      body: JSON.stringify({
+        text: "Test text",
+        locale: "de",
+      }),
+    });
+    const res = await POST(req);
+    expect(res.status).toBe(502);
+  });
+
+  it("handles API request failure", async () => {
+    process.env.OPENAI_API_KEY = "test-key";
+
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 500,
+    });
+
+    const req = new Request("http://localhost/api/ai/neutralize?unique=apifail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-forwarded-for": "192.168.1.104" },
+      body: JSON.stringify({
+        text: "Test text",
+        locale: "de",
+      }),
+    });
+    const res = await POST(req);
+    expect(res.status).toBe(502);
+  });
 });

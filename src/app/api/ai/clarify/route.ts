@@ -7,15 +7,26 @@ function buildPrompt(req: ClarifyRequest): string {
   const ans = JSON.stringify(req.answers);
   const locale = req.locale || "de";
   const help = req.context || "";
+  const localeMap: Record<string, string> = {
+    de: "German",
+    en: "English",
+    ar: "Arabic",
+    fr: "French",
+    pl: "Polish",
+    ru: "Russian",
+    tr: "Turkish",
+  };
+  const language = localeMap[locale] || "German";
   return [
     "You are an assistant for a custody/contact rights interview in Germany.",
     "Task: given the current question and prior structured answers, propose the most likely structured answer and one short follow-up question to clarify uncertainty.",
     "Never provide legal advice. Keep it concise and neutral.",
+    `IMPORTANT: Respond in ${language} language. All text output (followup, reasoning) must be in ${language}.`,
     `Locale: ${locale}`,
     `Question: ${q}`,
     `Answers: ${ans}`,
     help ? `Context: ${help}` : "",
-    "Output strictly as JSON with keys: suggestion (yes|no|unsure), confidence (0..1), followup (optional, short), reasoning (optional, one sentence).",
+    "Output strictly as JSON with keys: suggestion (yes|no|unsure), confidence (0..1), followup (optional, short, in the user's language), reasoning (optional, one sentence, in the user's language).",
   ]
     .filter(Boolean)
     .join("\n");
@@ -39,12 +50,47 @@ export async function POST(req: Request) {
 
     // Fallback stub if no key configured
     if (!apiKey) {
+      const locale = body.locale || "de";
+      const fallbackMessages: Record<
+        string,
+        { withQuestion: (q: string) => string; withoutQuestion: string }
+      > = {
+        de: {
+          withQuestion: (q: string) => `Können Sie genauer sagen: ${q}?`,
+          withoutQuestion: "Bitte prüfen Sie die Hilfe und Quellen.",
+        },
+        en: {
+          withQuestion: (q: string) => `Can you be more specific: ${q}?`,
+          withoutQuestion: "Please check the help and sources.",
+        },
+        ar: {
+          withQuestion: (q: string) => `هل يمكنك أن تكون أكثر تحديداً: ${q}؟`,
+          withoutQuestion: "يرجى التحقق من المساعدة والمصادر.",
+        },
+        fr: {
+          withQuestion: (q: string) => `Pouvez-vous être plus précis : ${q} ?`,
+          withoutQuestion: "Veuillez consulter l'aide et les sources.",
+        },
+        pl: {
+          withQuestion: (q: string) => `Czy możesz być bardziej szczegółowy: ${q}?`,
+          withoutQuestion: "Proszę sprawdzić pomoc i źródła.",
+        },
+        ru: {
+          withQuestion: (q: string) => `Можете ли вы быть более конкретным: ${q}?`,
+          withoutQuestion: "Пожалуйста, проверьте справку и источники.",
+        },
+        tr: {
+          withQuestion: (q: string) => `Daha spesifik olabilir misiniz: ${q}?`,
+          withoutQuestion: "Lütfen yardım ve kaynakları kontrol edin.",
+        },
+      };
+      const messages = fallbackMessages[locale] || fallbackMessages.de;
       const suggestion: ClarifyResponse = {
         suggestion: "unsure",
         confidence: 0.35,
         followup: body.questionText
-          ? `Können Sie genauer sagen: ${body.questionText}?`
-          : "Bitte prüfen Sie die Hilfe und Quellen.",
+          ? messages.withQuestion(body.questionText)
+          : messages.withoutQuestion,
         reasoning: "No external AI configured; returning conservative default.",
       };
       return new Response(JSON.stringify(suggestion), {
@@ -92,10 +138,20 @@ export async function POST(req: Request) {
       /* ignore */
     }
     if (!parsed || typeof parsed.suggestion !== "string" || typeof parsed.confidence !== "number") {
+      const locale = safe.locale || "de";
+      const fallbackFollowups: Record<string, string> = {
+        de: "Bitte prüfen Sie die Hilfe.",
+        en: "Please check the help.",
+        ar: "يرجى التحقق من المساعدة.",
+        fr: "Veuillez consulter l'aide.",
+        pl: "Proszę sprawdzić pomoc.",
+        ru: "Пожалуйста, проверьте справку.",
+        tr: "Lütfen yardımı kontrol edin.",
+      };
       const fallback: ClarifyResponse = {
         suggestion: "unsure",
         confidence: 0.5,
-        followup: "Bitte prüfen Sie die Hilfe.",
+        followup: fallbackFollowups[locale] || fallbackFollowups.de,
         reasoning: "Unparsable model output.",
       };
       return new Response(JSON.stringify(fallback), {

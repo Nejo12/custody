@@ -67,13 +67,14 @@ export default function LearnPage() {
               {e.title}
             </Link>
             <div className="text-xs text-zinc-700 dark:text-zinc-400 mt-1">
-              Last verified: {e.lastVerified} · Snapshot: {e.snapshotId}
+              {t.result.lastVerified || "Last verified:"} {e.lastVerified} ·{" "}
+              {t.result.snapshot || "Snapshot:"} {e.snapshotId}
             </div>
           </li>
         ))}
       </ul>
       <div className="pt-2">
-        <h2 className="font-medium mb-2">Find support by city</h2>
+        <h2 className="font-medium mb-2">{t.learn?.findSupportByCity || "Find support by city"}</h2>
         <div className="space-y-3">
           {[
             { label: "Berlin", city: "berlin" as City, data: snapshots.berlin },
@@ -101,19 +102,19 @@ export default function LearnPage() {
                     href={`/directory?city=${grp.city}`}
                     className="text-sm underline inline-block"
                   >
-                    All services
+                    {t.learn?.allServices || "All services"}
                   </Link>
                   <Link
                     href={`/directory?city=${grp.city}&type=jugendamt`}
                     className="text-sm underline inline-block"
                   >
-                    Jugendämter
+                    {t.learn?.jugendamter || "Jugendämter"}
                   </Link>
                   <Link
                     href={`/directory?city=${grp.city}&type=court`}
                     className="text-sm underline inline-block"
                   >
-                    Courts
+                    {t.learn?.courts || "Courts"}
                   </Link>
                 </div>
               </div>

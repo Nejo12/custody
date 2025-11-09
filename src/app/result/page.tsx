@@ -177,12 +177,23 @@ export default function Result() {
     if (!tip) return { text: t.result.regionalTipsDefault };
     if (typeof tip === "string") return { text: tip };
     const obj = tip as { text?: string; lastVerified?: string; snapshotId?: string };
+
+    // Get translated text based on city
+    let translatedText = t.result.regionalTipsDefault;
+    if (city === "berlin" && t.result.regionalTipBerlin) {
+      translatedText = t.result.regionalTipBerlin;
+    } else if (city === "hamburg" && t.result.regionalTipHamburg) {
+      translatedText = t.result.regionalTipHamburg;
+    } else if (city === "nrw" && t.result.regionalTipNrw) {
+      translatedText = t.result.regionalTipNrw;
+    }
+
     return {
-      text: obj.text || t.result.regionalTipsDefault,
+      text: translatedText,
       lastVerified: obj.lastVerified,
       snapshotId: obj.snapshotId,
     };
-  }, [city, t.result.regionalTipsDefault]);
+  }, [city, t.result]);
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-8 space-y-6">
@@ -198,14 +209,15 @@ export default function Result() {
       <div className="rounded-lg border p-3 bg-white dark:bg-zinc-900">
         <div className="flex items-center justify-between text-sm">
           <div className="text-sm">
-            <span className="font-medium">
+            <span className="font-medium text-zinc-300 dark:text-zinc-300">
               {allMissing.length > 0
-                ? `We need ${allMissing.length} quick details to confirm`
-                : "All key details confirmed"}
+                ? t.result.needQuickDetails?.replace("{count}", allMissing.length.toString()) ||
+                  `We need ${allMissing.length} quick details to confirm`
+                : t.result.allDetailsConfirmed || "All key details confirmed"}
             </span>
           </div>
           <button
-            className="text-xs underline"
+            className="text-xs underline text-zinc-300 dark:text-zinc-300"
             onClick={() => {
               const ics = buildICS({
                 summary: "Court filing (draft)",
@@ -221,16 +233,19 @@ export default function Result() {
               URL.revokeObjectURL(url);
             }}
           >
-            Add filing reminder
+            {t.result.addFilingReminder || "Add filing reminder"}
           </button>
         </div>
         <div className="mt-2 flex items-center gap-2 text-xs">
           {useMemo(() => {
             const steps = [
-              { label: "Answer key questions", done: missing.length === 0 },
-              { label: "Pick court", done: !!preferredCourtTemplate },
-              { label: "Set sender", done: !!preferredOcrNoteId },
-              { label: "Generate PDF", done: false },
+              {
+                label: t.result.stepAnswerKeyQuestions || "Answer key questions",
+                done: missing.length === 0,
+              },
+              { label: t.result.stepPickCourt || "Pick court", done: !!preferredCourtTemplate },
+              { label: t.result.stepSetSender || "Set sender", done: !!preferredOcrNoteId },
+              { label: t.result.stepGeneratePdf || "Generate PDF", done: false },
             ];
             return (
               <div className="flex flex-wrap gap-2">
@@ -244,7 +259,7 @@ export default function Result() {
                 ))}
               </div>
             );
-          }, [missing.length, preferredCourtTemplate, preferredOcrNoteId])}
+          }, [missing.length, preferredCourtTemplate, preferredOcrNoteId, t.result])}
         </div>
       </div>
       {/* Radical Clarity: Why this result? */}
@@ -255,7 +270,7 @@ export default function Result() {
           transition={{ duration: 0.25 }}
           className="rounded-lg border p-3 bg-white dark:bg-zinc-900"
         >
-          <div className="text-sm font-medium mb-1">
+          <div className="text-sm font-medium mb-1 text-zinc-300 dark:text-zinc-300">
             {t.result.whyThisResult || "Why this result?"}
           </div>
           <div className="flex flex-wrap gap-2">
@@ -352,7 +367,7 @@ export default function Result() {
           transition={{ duration: 0.3, delay: 0.15 }}
           className="space-y-3"
         >
-          <div className="text-sm text-zinc-700 dark:text-zinc-300">
+          <div className="text-sm">
             {t.result.pathHint || "If unsure, you can file this now and add details later."}
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -550,7 +565,7 @@ export default function Result() {
             </label>
             {ocrNotes.length > 0 && (
               <label className="block text-sm mt-2">
-                Sender (OCR note)
+                {t.result.senderOcrNote || "Sender (OCR note)"}
                 <select
                   className="mt-1 w-full rounded border px-3 py-2"
                   value={preferredOcrNoteId || ""}
@@ -575,7 +590,7 @@ export default function Result() {
                         {selectedOcrFields.phone && selectedOcrFields.email ? " · " : ""}
                         {selectedOcrFields.email || ""}{" "}
                         <a className="underline" href="/vault">
-                          edit in Vault
+                          {t.result.editInVault || "edit in Vault"}
                         </a>
                       </div>
                     )}
@@ -600,10 +615,10 @@ export default function Result() {
             {courtInfo && (
               <div className="rounded border p-2 bg-zinc-50 dark:bg-zinc-800/20">
                 {courtInfo.name && (
-                  <div className="text-sm text-zinc-200 dark:text-zinc-500">{courtInfo.name}</div>
+                  <div className="text-sm text-zinc-900 dark:text-zinc-500">{courtInfo.name}</div>
                 )}
                 {courtInfo.address && (
-                  <div className="text-xs text-zinc-200 dark:text-zinc-500">
+                  <div className="text-xs text-zinc-900 dark:text-zinc-500">
                     {courtInfo.address}
                   </div>
                 )}
@@ -722,8 +737,12 @@ export default function Result() {
           <div>{regionalTip.text}</div>
           {(regionalTip.lastVerified || regionalTip.snapshotId) && (
             <div className="text-xs text-zinc-700 dark:text-zinc-600 mt-1">
-              {regionalTip.lastVerified ? `Last verified: ${regionalTip.lastVerified}` : null}
-              {regionalTip.snapshotId ? ` · Snapshot: ${regionalTip.snapshotId}` : null}
+              {regionalTip.lastVerified
+                ? `${t.result.lastVerified || "Last verified:"} ${regionalTip.lastVerified}`
+                : null}
+              {regionalTip.snapshotId
+                ? ` · ${t.result.snapshot || "Snapshot:"} ${regionalTip.snapshotId}`
+                : null}
             </div>
           )}
         </div>
