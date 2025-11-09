@@ -15,6 +15,7 @@ const de = {
     check: "Meine Situation prüfen",
     learn: "Gesetz verstehen",
     support: "Hilfe finden",
+    subline: "Dauert 6 Minuten. Keine Anmeldung.",
     disclaimer: "Nur Information – keine individuelle Rechtsberatung.",
     features: "WCAG AA · Datenschutzorientiert · Offlinefähig",
   },

@@ -16,7 +16,7 @@ import StatusCard from "@/components/StatusCard";
 import type { TranslationDict } from "@/types";
 import { motion } from "framer-motion";
 import EducationPanel, { type EducationItem } from "@/components/EducationPanel";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import HelpSheet from "@/components/HelpSheet";
 import JSZip from "jszip";
 import { buildCoverLetter } from "@/lib/coverLetter";
@@ -72,6 +72,90 @@ export default function Result() {
   const [city] = useState<"berlin" | "hamburg" | "nrw">(preferredCity || "berlin");
   const violenceFlag = interview.answers["history_of_violence"] === "yes";
 
+  // Update milestones when conditions change (moved from render to prevent infinite loop)
+  useEffect(() => {
+    const { setMilestone } = useAppStore.getState();
+    if (preferredCourtTemplate) setMilestone("courtSelected", true);
+    if (preferredOcrNoteId) setMilestone("senderSelected", true);
+    if (missing.length === 0) setMilestone("answeredCore", true);
+  }, [preferredCourtTemplate, preferredOcrNoteId, missing.length]);
+
+  // Extract OCR notes computation
+  const ocrNotes = useMemo(
+    () =>
+      vault.entries.filter((e) => e.type === "note" && (e.payload as { fields?: unknown }).fields),
+    [vault.entries]
+  );
+
+  // Extract selected OCR note and fields
+  const selectedOcrNote = useMemo(
+    () => (preferredOcrNoteId ? ocrNotes.find((n) => n.id === preferredOcrNoteId) : undefined),
+    [preferredOcrNoteId, ocrNotes]
+  );
+
+  const selectedOcrFields = useMemo(() => {
+    if (!selectedOcrNote) return {};
+    return (
+      (
+        selectedOcrNote.payload as {
+          fields?: {
+            fullName?: string;
+            address?: string;
+            city?: string;
+            phone?: string;
+            email?: string;
+          };
+        }
+      ).fields || {}
+    );
+  }, [selectedOcrNote]);
+
+  // Extract city from address
+  const extractCity = (addr?: string, city?: string): string => {
+    if (city) return city;
+    if (!addr) return "";
+    const m = addr.match(/\b\d{5}\s+([A-Za-zÄÖÜäöüß\- ]{2,})\b/);
+    return m ? m[1].trim() : "";
+  };
+
+  const extractedCity = useMemo(
+    () => extractCity(selectedOcrFields.address, selectedOcrFields.city),
+    [selectedOcrFields.address, selectedOcrFields.city]
+  );
+
+  // Timeline entry for pack
+  const timelineEntry = useMemo(
+    () =>
+      vault.entries.find(
+        (e) =>
+          e.type === "note" &&
+          typeof e.payload?.content === "string" &&
+          e.title.toLowerCase().includes("timeline")
+      ),
+    [vault.entries]
+  );
+
+  // Court template info
+  const courtInfo = useMemo(() => {
+    if (!preferredCourtTemplate) return null;
+    const c = resolveCourtTemplate(preferredCourtTemplate);
+    if (!c.name && !c.address) return null;
+    return c;
+  }, [preferredCourtTemplate]);
+
+  // Regional tips
+  const regionalTip = useMemo(() => {
+    const tip = (regionalTips as unknown as Record<string, unknown>)[city];
+    if (!tip) return { text: t.result.regionalTipsDefault };
+    if (typeof tip === "string") return { text: tip };
+    const obj = tip as { text?: string; lastVerified?: string; snapshotId?: string };
+    return {
+      text: obj.text || t.result.regionalTipsDefault,
+      lastVerified: obj.lastVerified,
+      snapshotId: obj.snapshotId,
+    };
+  }, [city, t.result.regionalTipsDefault]);
+
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-8 space-y-6">
       <motion.h1
@@ -113,7 +197,7 @@ export default function Result() {
           </button>
         </div>
         <div className="mt-2 flex items-center gap-2 text-xs">
-          {(() => {
+          {useMemo(() => {
             const steps = [
               { label: "Answer key questions", done: missing.length === 0 },
               { label: "Pick court", done: !!preferredCourtTemplate },
@@ -132,7 +216,7 @@ export default function Result() {
                 ))}
               </div>
             );
-          })()}
+          }, [missing.length, preferredCourtTemplate, preferredOcrNoteId])}
         </div>
       </div>
       {/* Radical Clarity: Why this result? */}
@@ -433,128 +517,67 @@ export default function Result() {
               />
               {t.result.attachTimeline}
             </label>
-            {(() => {
-              const { setMilestone } = useAppStore.getState();
-              if (preferredCourtTemplate) setMilestone("courtSelected", true);
-              if (preferredOcrNoteId) setMilestone("senderSelected", true);
-              if (missing.length === 0) setMilestone("answeredCore", true);
-              return null;
-            })()}
-            {(() => {
-              const ocrNotes = vault.entries.filter(
-                (e) => e.type === "note" && (e.payload as { fields?: unknown }).fields
-              );
-              if (ocrNotes.length === 0) return null;
-              const selected = preferredOcrNoteId
-                ? ocrNotes.find((n) => n.id === preferredOcrNoteId)
-                : undefined;
-              const f = selected
-                ? (
-                    selected.payload as {
-                      fields?: { fullName?: string; address?: string; city?: string };
-                    }
-                  ).fields || {}
-                : {};
-              const extractCity = (addr?: string, city?: string): string => {
-                if (city) return city;
-                if (!addr) return "";
-                const m = addr.match(/\b\d{5}\s+([A-Za-zÄÖÜäöüß\- ]{2,})\b/);
-                return m ? m[1].trim() : "";
-              };
-              const city = extractCity(
-                (f as { address?: string }).address,
-                (f as { city?: string }).city
-              );
-              return (
-                <label className="block text-sm mt-2">
-                  Sender (OCR note)
-                  <select
-                    className="mt-1 w-full rounded border px-3 py-2"
-                    value={preferredOcrNoteId || ""}
-                    onChange={(e) => setPreferredOcrNoteId(e.target.value)}
-                  >
-                    <option value="">—</option>
-                    {ocrNotes.map((n) => (
-                      <option
-                        key={n.id}
-                        value={n.id}
-                      >{`${n.title} – ${new Date(n.timestamp).toISOString().slice(0, 10)}`}</option>
-                    ))}
-                  </select>
-                  {selected && ((f as { fullName?: string }).fullName || city) && (
-                    <div className="text-xs text-zinc-700 dark:text-zinc-300 mt-1">
-                      {((f as { fullName?: string }).fullName || "") as string}
-                      {(f as { fullName?: string }).fullName && city ? " — " : ""}
-                      {city}
-                      {(((selected.payload as { fields?: { phone?: string; email?: string } })
-                        .fields?.phone ||
-                        (selected.payload as { fields?: { phone?: string; email?: string } }).fields
-                          ?.email) && (
-                        <div className="text-[11px] text-zinc-600 dark:text-zinc-400">
-                          {
-                            ((selected.payload as { fields?: { phone?: string } }).fields?.phone ||
-                              "") as string
-                          }
-                          {(selected.payload as { fields?: { phone?: string; email?: string } })
-                            .fields?.phone &&
-                          (selected.payload as { fields?: { phone?: string; email?: string } })
-                            .fields?.email
-                            ? " · "
-                            : ""}
-                          {
-                            ((selected.payload as { fields?: { email?: string } }).fields?.email ||
-                              "") as string
-                          }{" "}
-                          <a className="underline" href="/vault">
-                            edit in Vault
-                          </a>
-                        </div>
-                      )) ||
-                        null}
-                    </div>
-                  )}
-                </label>
-              );
-            })()}
-            {includeTimelineInPack &&
-              (() => {
-                const entry = vault.entries.find(
-                  (e) =>
-                    e.type === "note" &&
-                    typeof e.payload?.content === "string" &&
-                    e.title.toLowerCase().includes("timeline")
-                );
-                if (!entry) return null;
-                return (
-                  <div className="text-xs text-zinc-700 dark:text-zinc-300">
-                    {t.result.attachTimeline}
-                    {": "}
-                    <span className="italic">
-                      {(entry.payload as { content?: string }).content?.slice(0, 60) || ""}
-                      {"…"}
-                    </span>{" "}
-                    <a className="underline" href="/vault">
-                      {t.vault.title}
-                    </a>
+            {ocrNotes.length > 0 && (
+              <label className="block text-sm mt-2">
+                Sender (OCR note)
+                <select
+                  className="mt-1 w-full rounded border px-3 py-2"
+                  value={preferredOcrNoteId || ""}
+                  onChange={(e) => setPreferredOcrNoteId(e.target.value)}
+                >
+                  <option value="">—</option>
+                  {ocrNotes.map((n) => (
+                    <option
+                      key={n.id}
+                      value={n.id}
+                    >{`${n.title} – ${new Date(n.timestamp).toISOString().slice(0, 10)}`}</option>
+                  ))}
+                </select>
+                {selectedOcrNote && (selectedOcrFields.fullName || extractedCity) && (
+                  <div className="text-xs text-zinc-700 dark:text-zinc-300 mt-1">
+                    {selectedOcrFields.fullName || ""}
+                    {selectedOcrFields.fullName && extractedCity ? " — " : ""}
+                    {extractedCity}
+                    {(selectedOcrFields.phone || selectedOcrFields.email) && (
+                      <div className="text-[11px] text-zinc-600 dark:text-zinc-400">
+                        {selectedOcrFields.phone || ""}
+                        {selectedOcrFields.phone && selectedOcrFields.email ? " · " : ""}
+                        {selectedOcrFields.email || ""}{" "}
+                        <a className="underline" href="/vault">
+                          edit in Vault
+                        </a>
+                      </div>
+                    )}
                   </div>
-                );
-              })()}
+                )}
+              </label>
+            )}
+            {includeTimelineInPack && timelineEntry && (
+              <div className="text-xs text-zinc-700 dark:text-zinc-300">
+                {t.result.attachTimeline}
+                {": "}
+                <span className="italic">
+                  {(timelineEntry.payload as { content?: string }).content?.slice(0, 60) || ""}
+                  {"…"}
+                </span>{" "}
+                <a className="underline" href="/vault">
+                  {t.vault.title}
+                </a>
+              </div>
+            )}
             {/* Snapshot of selected court */}
-            {preferredCourtTemplate &&
-              (() => {
-                const c = resolveCourtTemplate(preferredCourtTemplate);
-                if (!c.name && !c.address) return null;
-                return (
-                  <div className="rounded border p-2 bg-zinc-50 dark:bg-zinc-800/20">
-                    {c.name && (
-                      <div className="text-sm text-zinc-200 dark:text-zinc-500">{c.name}</div>
-                    )}
-                    {c.address && (
-                      <div className="text-xs text-zinc-200 dark:text-zinc-500">{c.address}</div>
-                    )}
+            {courtInfo && (
+              <div className="rounded border p-2 bg-zinc-50 dark:bg-zinc-800/20">
+                {courtInfo.name && (
+                  <div className="text-sm text-zinc-200 dark:text-zinc-500">{courtInfo.name}</div>
+                )}
+                {courtInfo.address && (
+                  <div className="text-xs text-zinc-200 dark:text-zinc-500">
+                    {courtInfo.address}
                   </div>
-                );
-              })()}
+                )}
+              </div>
+            )}
           </div>
         </div>
       </motion.div>
@@ -665,23 +688,13 @@ export default function Result() {
           {t.result.regionalTips}
         </div>
         <div className="text-sm text-zinc-800 dark:text-zinc-400 mt-1">
-          {(() => {
-            const tip = (regionalTips as unknown as Record<string, unknown>)[city];
-            if (!tip) return t.result.regionalTipsDefault;
-            if (typeof tip === "string") return tip as string;
-            const obj = tip as { text?: string; lastVerified?: string; snapshotId?: string };
-            return (
-              <div>
-                <div>{obj.text || t.result.regionalTipsDefault}</div>
-                {(obj.lastVerified || obj.snapshotId) && (
-                  <div className="text-xs text-zinc-700 dark:text-zinc-600 mt-1">
-                    {obj.lastVerified ? `Last verified: ${obj.lastVerified}` : null}
-                    {obj.snapshotId ? ` · Snapshot: ${obj.snapshotId}` : null}
-                  </div>
-                )}
-              </div>
-            );
-          })()}
+          <div>{regionalTip.text}</div>
+          {(regionalTip.lastVerified || regionalTip.snapshotId) && (
+            <div className="text-xs text-zinc-700 dark:text-zinc-600 mt-1">
+              {regionalTip.lastVerified ? `Last verified: ${regionalTip.lastVerified}` : null}
+              {regionalTip.snapshotId ? ` · Snapshot: ${regionalTip.snapshotId}` : null}
+            </div>
+          )}
         </div>
       </motion.div>
     </div>
@@ -718,7 +731,10 @@ async function buildPackBlob(
   const zip = new JSZip();
   const date = new Date().toISOString().slice(0, 10);
   // Cover letters and checklists are kept in English/German as they're formal court documents
-  const cover = (() => {
+  const getCoverLetter = (
+    kind: "joint" | "contact" | "mediation" | "blocked",
+    date: string
+  ): string => {
     if (kind === "joint")
       return `Cover letter\n\nTo the Family Court\nRequest: Joint custody application.\nDate: ${date}\n\nEnclosed: application PDF, birth certificate, paternity acknowledgement (if available).\nInformation only — not legal advice.`;
     if (kind === "contact")
@@ -726,8 +742,9 @@ async function buildPackBlob(
     if (kind === "mediation")
       return `Cover letter\n\nTo the Mediation Service/Jugendamt\nRequest: Mediation appointment to discuss a safe practical plan and handover rules.\nDate: ${date}\n\nEnclosed: brief summary, draft schedule.`;
     return `Cover letter\n\nTo the Family Court / Jugendamt\nSubject: Contact is being blocked — request for support/next steps.\nDate: ${date}\n\nEnclosed: timeline/log excerpts, relevant communications.`;
-  })();
-  const checklist = (() => {
+  };
+
+  const getChecklist = (kind: "joint" | "contact" | "mediation" | "blocked"): string => {
     if (kind === "joint")
       return `Bring This Checklist\n- IDs (both parents if possible)\n- Child's birth certificate\n- Paternity acknowledgement (if applicable)\n- Any court letters`;
     if (kind === "contact")
@@ -735,18 +752,21 @@ async function buildPackBlob(
     if (kind === "mediation")
       return `Bring This Checklist\n- IDs\n- Summary of issues\n- Draft schedule ideas\n- Any previous agreements`;
     return `Bring This Checklist\n- IDs\n- Timeline/log excerpts\n- Messages (screenshots)\n- Any safety notes`;
-  })();
+  };
+
+  const cover = getCoverLetter(kind, date);
+  const checklist = getChecklist(kind);
   // Add text cover letter and PDF cover letter
   zip.file("cover-letter.txt", cover);
   try {
     const state = useAppStore.getState();
-    const senderFields = (() => {
+    const getSenderFields = (state: ReturnType<typeof useAppStore.getState>) => {
       const notes = state.vault.entries.filter((e) => e.type === "note");
       const pick = state.preferredOcrNoteId
         ? notes.find((n) => n.id === state.preferredOcrNoteId)
         : notes.find((n) => (n.payload as { fields?: unknown }).fields);
       if (!pick) return undefined;
-      const f = (
+      return (
         pick.payload as {
           fields?: {
             fullName?: string;
@@ -757,8 +777,8 @@ async function buildPackBlob(
           };
         }
       ).fields;
-      return f;
-    })();
+    };
+    const senderFields = getSenderFields(state);
     const pdfCover = await buildCoverLetter(
       kind,
       locale,

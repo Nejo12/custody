@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useI18n } from "@/i18n";
 import rules from "@/data/rules.json";
 import type { SimpleRule, Citation } from "@/lib/rules";
@@ -20,12 +20,23 @@ export default function GSPage() {
     useAppStore();
   const [downloading, setDownloading] = useState(false);
   const [senderSource, setSenderSource] = useState<"ocr" | "parentA">("ocr");
-  const ocrNotes = vault.entries.filter((e) => {
-    if (e.type !== "note") return false;
-    const f = (e.payload as { fields?: unknown }).fields;
-    return typeof f === "object" && f !== null;
-  });
-  const [selectedOcrId, setSelectedOcrId] = useState<string>(ocrNotes[0]?.id || "");
+  const ocrNotes = useMemo(
+    () =>
+      vault.entries.filter((e) => {
+        if (e.type !== "note") return false;
+        const f = (e.payload as { fields?: unknown }).fields;
+        return typeof f === "object" && f !== null;
+      }),
+    [vault.entries]
+  );
+  const [selectedOcrId, setSelectedOcrId] = useState<string>("");
+
+  // Initialize selectedOcrId when ocrNotes change
+  useEffect(() => {
+    if (ocrNotes.length > 0 && !selectedOcrId) {
+      setSelectedOcrId(ocrNotes[0]?.id || "");
+    }
+  }, [ocrNotes, selectedOcrId]);
   function getFields(id: string): { fullName?: string; address?: string } | undefined {
     const e = ocrNotes.find((n) => n.id === id);
     if (!e) return undefined;
@@ -70,13 +81,13 @@ export default function GSPage() {
         .filter((id): id is string => typeof id === "string");
 
       // Sender from selection (OCR note or Parent A)
-      const sender = (() => {
+      const getSender = () => {
         if (senderSource === "parentA") {
           return { fullName: form.parentA?.fullName, address: form.parentA?.address };
         }
         const e = vault.entries.find((x) => x.id === selectedOcrId);
         if (!e) return undefined;
-        const f = (
+        return (
           e.payload as {
             fields?: {
               fullName?: string;
@@ -87,8 +98,8 @@ export default function GSPage() {
             };
           }
         ).fields;
-        return f;
-      })();
+      };
+      const sender = getSender();
 
       // Optional timeline attach from Vault
       let timelineText = "";
@@ -189,21 +200,28 @@ export default function GSPage() {
             <option value="ocr">Selected OCR note</option>
             <option value="parentA">Parent A</option>
           </select>
-          {(() => {
-            const f =
-              senderSource === "parentA"
-                ? { fullName: form.parentA?.fullName, address: form.parentA?.address }
-                : (
-                    vault.entries.find((x) => x.id === selectedOcrId)?.payload as {
-                      fields?: {
-                        fullName?: string;
-                        address?: string;
-                        phone?: string;
-                        email?: string;
-                        city?: string;
-                      };
-                    }
-                  )?.fields || {};
+          {useMemo(() => {
+            const getSenderFields = () => {
+              if (senderSource === "parentA") {
+                return { fullName: form.parentA?.fullName, address: form.parentA?.address };
+              }
+              const e = ocrNotes.find((x) => x.id === selectedOcrId);
+              if (!e) return {};
+              return (
+                (
+                  e.payload as {
+                    fields?: {
+                      fullName?: string;
+                      address?: string;
+                      phone?: string;
+                      email?: string;
+                      city?: string;
+                    };
+                  }
+                ).fields || {}
+              );
+            };
+            const f = getSenderFields();
             const deriveCity = (addr?: string, city?: string) => {
               if (city) return city;
               if (!addr) return "";
@@ -235,18 +253,7 @@ export default function GSPage() {
               );
             }
             return null;
-          })()}
-        </div>
-        <div className="flex items-center gap-2 text-xs">
-          <span>Sender source</span>
-          <select
-            value={senderSource}
-            onChange={(e) => setSenderSource(e.target.value as typeof senderSource)}
-            className="rounded border px-2 py-1"
-          >
-            <option value="ocr">Selected OCR note</option>
-            <option value="parentA">Parent A</option>
-          </select>
+          }, [senderSource, form.parentA, selectedOcrId, ocrNotes])}
         </div>
         <label className="block text-sm mt-2">
           {t.result.courtTemplate}

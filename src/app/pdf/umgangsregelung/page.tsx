@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/i18n";
 import { normalizeSchedule, type ScheduleInput } from "@/lib/schedule";
@@ -30,18 +30,32 @@ export default function UmgangPage() {
     preferredCourtTemplate,
     vault,
   } = useAppStore();
-  const ocrNotes = vault.entries.filter((e) => {
-    if (e.type !== "note") return false;
-    const f = (e.payload as { fields?: unknown }).fields;
-    return typeof f === "object" && f !== null;
-  });
-  const [selectedOcrId, setSelectedOcrId] = useState<string>(ocrNotes[0]?.id || "");
-  function getFields(id: string): { fullName?: string; address?: string } | undefined {
-    const e = ocrNotes.find((n) => n.id === id);
-    if (!e) return undefined;
-    const pf = (e.payload as { fields?: { fullName?: string; address?: string } }).fields;
-    return pf;
-  }
+  const ocrNotes = useMemo(
+    () =>
+      vault.entries.filter((e) => {
+        if (e.type !== "note") return false;
+        const f = (e.payload as { fields?: unknown }).fields;
+        return typeof f === "object" && f !== null;
+      }),
+    [vault.entries]
+  );
+  const [selectedOcrId, setSelectedOcrId] = useState<string>("");
+
+  // Initialize selectedOcrId when ocrNotes change
+  useEffect(() => {
+    if (ocrNotes.length > 0 && !selectedOcrId) {
+      setSelectedOcrId(ocrNotes[0]?.id || "");
+    }
+  }, [ocrNotes, selectedOcrId]);
+  const getFields = useCallback(
+    (id: string): { fullName?: string; address?: string } | undefined => {
+      const e = ocrNotes.find((n) => n.id === id);
+      if (!e) return undefined;
+      const pf = (e.payload as { fields?: { fullName?: string; address?: string } }).fields;
+      return pf;
+    },
+    [ocrNotes]
+  );
   function prefillApplicant() {
     const f = getFields(selectedOcrId);
     if (!f) return;
@@ -132,23 +146,25 @@ export default function UmgangPage() {
   const currentCity: CityKey | undefined =
     deduceCityFromTemplate(preferredCourtTemplate || courtTemplate) || preferredCity;
 
+  const getRegionTimes = (region: CityKey | undefined) => {
+    if (region === "berlin")
+      return { short: "16:30–18:30", mid: "15:30–19:00", sat: "10:00–14:00" };
+    if (region === "hamburg")
+      return { short: "17:00–19:00", mid: "16:00–19:30", sat: "10:00–14:00" };
+    if (region === "bayern")
+      return { short: "16:00–18:00", mid: "15:00–19:00", sat: "09:30–13:30" };
+    if (region === "hessen")
+      return { short: "16:30–18:00", mid: "15:30–19:00", sat: "10:00–14:00" };
+    // nrw / default
+    return { short: "16:30–18:30", mid: "15:00–19:00", sat: "10:00–14:00" };
+  };
+
   const computeRegionPresets = (
     region: CityKey | undefined,
     distance: "local" | "regional" | "far",
     under3: boolean
   ): ScheduleInput => {
-    const times = (() => {
-      if (region === "berlin")
-        return { short: "16:30–18:30", mid: "15:30–19:00", sat: "10:00–14:00" };
-      if (region === "hamburg")
-        return { short: "17:00–19:00", mid: "16:00–19:30", sat: "10:00–14:00" };
-      if (region === "bayern")
-        return { short: "16:00–18:00", mid: "15:00–19:00", sat: "09:30–13:30" };
-      if (region === "hessen")
-        return { short: "16:30–18:00", mid: "15:30–19:00", sat: "10:00–14:00" };
-      // nrw / default
-      return { short: "16:30–18:30", mid: "15:00–19:00", sat: "10:00–14:00" };
-    })();
+    const times = getRegionTimes(region);
     if (distance === "far") {
       return {
         weekday: {},
@@ -326,15 +342,35 @@ export default function UmgangPage() {
     }
   }
 
+  const senderPreview = useMemo(() => {
+    const f = senderSource === "applicant" ? form.applicant || {} : getFields(selectedOcrId) || {};
+    const deriveCity = (addr?: string) => {
+      if (!addr) return "";
+      const m = addr.match(/\b\d{5}\s+([A-Za-zÄÖÜäöüß\- ]{2,})\b/);
+      return m ? m[1].trim() : "";
+    };
+    const city = deriveCity((f as { address?: string }).address);
+    if ((f as { fullName?: string }).fullName || city) {
+      return (
+        <span className="text-[11px] text-zinc-600 dark:text-zinc-400">
+          {((f as { fullName?: string }).fullName || "") as string}
+          {(f as { fullName?: string }).fullName && city ? " — " : ""}
+          {city}
+        </span>
+      );
+    }
+    return null;
+  }, [senderSource, form.applicant, selectedOcrId, getFields]);
+
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 space-y-4">
       <h1 className="text-xl font-semibold">{t.result.generateContactOrder}</h1>
       {ocrNotes.length > 0 && (
         <div className="rounded-lg border p-3 space-y-2">
-          <div className="text-sm font-medium">Prefill suggestions (OCR)</div>
+          <div className="text-sm font-medium">{t.pdfForm.prefillSuggestions}</div>
           <div className="flex flex-col sm:flex-row sm:items-end gap-2">
             <label className="text-sm flex-1">
-              OCR note
+              {t.pdfForm.ocrNote}
               <select
                 className="mt-1 w-full rounded border px-3 py-2"
                 value={selectedOcrId}
@@ -350,7 +386,7 @@ export default function UmgangPage() {
             </label>
             <div className="flex gap-2">
               <button type="button" className="text-sm underline" onClick={prefillApplicant}>
-                Prefill applicant
+                {t.pdfForm.prefillApplicant}
               </button>
               <button
                 type="button"
@@ -367,57 +403,25 @@ export default function UmgangPage() {
                   }));
                 }}
               >
-                Prefill other parent
+                {t.pdfForm.prefillOtherParent}
               </button>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-xs">
-            <span>Sender source</span>
-            <select
-              value={senderSource}
-              onChange={(e) => setSenderSource(e.target.value as typeof senderSource)}
-              className="rounded border px-2 py-1"
-            >
-              <option value="applicant">Applicant</option>
-              <option value="ocr">Selected OCR note</option>
-            </select>
-          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <div className="sm:col-span-2 flex items-center gap-2 text-xs">
-              <span>Sender source</span>
+              <span>{t.pdfForm.senderSource}</span>
               <select
                 value={senderSource}
                 onChange={(e) => setSenderSource(e.target.value as typeof senderSource)}
                 className="rounded border px-2 py-1"
               >
-                <option value="applicant">Applicant</option>
-                <option value="ocr">Selected OCR note</option>
+                <option value="applicant">{t.pdfForm.applicant}</option>
+                <option value="ocr">{t.pdfForm.selectedOcrNote}</option>
               </select>
-              {(() => {
-                const f =
-                  senderSource === "applicant"
-                    ? form.applicant || {}
-                    : getFields(selectedOcrId) || {};
-                const deriveCity = (addr?: string) => {
-                  if (!addr) return "";
-                  const m = addr.match(/\b\d{5}\s+([A-Za-zÄÖÜäöüß\- ]{2,})\b/);
-                  return m ? m[1].trim() : "";
-                };
-                const city = deriveCity((f as { address?: string }).address);
-                if ((f as { fullName?: string }).fullName || city) {
-                  return (
-                    <span className="text-[11px] text-zinc-600 dark:text-zinc-400">
-                      {((f as { fullName?: string }).fullName || "") as string}
-                      {(f as { fullName?: string }).fullName && city ? " — " : ""}
-                      {city}
-                    </span>
-                  );
-                }
-                return null;
-              })()}
+              {senderPreview}
             </div>
             <label className="block text-sm">
-              Applicant full name (optional)
+              {t.pdfForm.applicantFullName}
               <input
                 className="mt-1 w-full rounded border px-2 py-2"
                 value={form.applicant?.fullName || ""}
@@ -430,7 +434,7 @@ export default function UmgangPage() {
               />
             </label>
             <label className="block text-sm">
-              Applicant address (optional)
+              {t.pdfForm.applicantAddress}
               <input
                 className="mt-1 w-full rounded border px-2 py-2"
                 value={form.applicant?.address || ""}
@@ -443,7 +447,7 @@ export default function UmgangPage() {
               />
             </label>
             <label className="block text-sm">
-              Other parent full name (optional)
+              {t.pdfForm.otherParentFullName}
               <input
                 className="mt-1 w-full rounded border px-2 py-2"
                 value={form.otherParent?.fullName || ""}
@@ -456,7 +460,7 @@ export default function UmgangPage() {
               />
             </label>
             <label className="block text-sm">
-              Other parent address (optional)
+              {t.pdfForm.otherParentAddress}
               <input
                 className="mt-1 w-full rounded border px-2 py-2"
                 value={form.otherParent?.address || ""}
@@ -480,7 +484,7 @@ export default function UmgangPage() {
                   }))
                 }
               >
-                Swap applicant/other parent
+                {t.pdfForm.swapApplicantOtherParent}
               </button>
             </div>
           </div>
@@ -592,14 +596,6 @@ export default function UmgangPage() {
             </motion.div>
           )}
         </div>
-        <label className="flex items-center gap-2 text-xs">
-          <input
-            type="checkbox"
-            checked={useAppStore.getState().includeTimelineInPack}
-            onChange={(e) => useAppStore.getState().setIncludeTimelineInPack(e.target.checked)}
-          />
-          {t.result.attachTimeline}
-        </label>
       </motion.div>
       {/* Optimizer explainer + citations */}
       {optimizer.summary && (
@@ -629,14 +625,6 @@ export default function UmgangPage() {
           </div>
         </div>
       )}
-      <label className="block text-xs mt-2 flex items-center gap-2">
-        <input
-          type="checkbox"
-          checked={includeTimelineInPack}
-          onChange={(e) => setIncludeTimelineInPack(e.target.checked)}
-        />
-        {t.result.attachTimeline}
-      </label>
       <div className="space-y-3">
         <label className="block text-sm">
           {t.result.courtTemplate}
@@ -706,9 +694,17 @@ export default function UmgangPage() {
             </optgroup>
           </select>
         </label>
+        <label className="flex items-center gap-2 text-xs">
+          <input
+            type="checkbox"
+            checked={includeTimelineInPack}
+            onChange={(e) => setIncludeTimelineInPack(e.target.checked)}
+          />
+          {t.result.attachTimeline}
+        </label>
         <div className="grid grid-cols-2 gap-2">
           <label className="block text-sm">
-            Mon
+            {t.pdfForm.monday}
             <input
               className="mt-1 w-full rounded border px-2 py-2"
               value={form.proposal.weekday?.monday || ""}
@@ -724,7 +720,7 @@ export default function UmgangPage() {
             />
           </label>
           <label className="block text-sm">
-            Tue
+            {t.pdfForm.tuesday}
             <input
               className="mt-1 w-full rounded border px-2 py-2"
               value={form.proposal.weekday?.tuesday || ""}
@@ -740,7 +736,7 @@ export default function UmgangPage() {
             />
           </label>
           <label className="block text-sm">
-            Wed
+            {t.pdfForm.wednesday}
             <input
               className="mt-1 w-full rounded border px-2 py-2"
               value={form.proposal.weekday?.wednesday || ""}
@@ -756,7 +752,7 @@ export default function UmgangPage() {
             />
           </label>
           <label className="block text-sm">
-            Thu
+            {t.pdfForm.thursday}
             <input
               className="mt-1 w-full rounded border px-2 py-2"
               value={form.proposal.weekday?.thursday || ""}
@@ -772,7 +768,7 @@ export default function UmgangPage() {
             />
           </label>
           <label className="block text-sm">
-            Fri
+            {t.pdfForm.friday}
             <input
               className="mt-1 w-full rounded border px-2 py-2"
               value={form.proposal.weekday?.friday || ""}
@@ -788,7 +784,7 @@ export default function UmgangPage() {
             />
           </label>
           <label className="block text-sm">
-            Sat
+            {t.pdfForm.saturday}
             <input
               className="mt-1 w-full rounded border px-2 py-2"
               value={form.proposal.weekday?.saturday || ""}
@@ -804,7 +800,7 @@ export default function UmgangPage() {
             />
           </label>
           <label className="block text-sm">
-            Sun
+            {t.pdfForm.sunday}
             <input
               className="mt-1 w-full rounded border px-2 py-2"
               value={form.proposal.weekday?.sunday || ""}
@@ -821,7 +817,7 @@ export default function UmgangPage() {
           </label>
         </div>
         <label className="block text-sm">
-          Weekend even
+          {t.pdfForm.weekendEven}
           <input
             className="mt-1 w-full rounded border px-3 py-2"
             value={form.proposal.weekend?.even || ""}
@@ -837,7 +833,7 @@ export default function UmgangPage() {
           />
         </label>
         <label className="block text-sm">
-          Weekend odd
+          {t.pdfForm.weekendOdd}
           <input
             className="mt-1 w-full rounded border px-3 py-2"
             value={form.proposal.weekend?.odd || ""}
@@ -853,7 +849,7 @@ export default function UmgangPage() {
           />
         </label>
         <label className="block text-sm">
-          Handover location
+          {t.pdfForm.handoverLocation}
           <input
             className="mt-1 w-full rounded border px-3 py-2"
             value={form.proposal.handover?.location || ""}
@@ -870,7 +866,7 @@ export default function UmgangPage() {
         </label>
       </div>
       <div className="text-xs text-zinc-600">
-        <div className="font-medium">Preview</div>
+        <div className="font-medium">{t.pdfForm.preview}</div>
         <pre className="whitespace-pre-wrap bg-zinc-50 p-2 rounded border">
           {JSON.stringify(normalizeSchedule(form.proposal || {}), null, 2)}
         </pre>

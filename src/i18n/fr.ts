@@ -15,6 +15,7 @@ const fr = {
     check: "Vérifier ma situation",
     learn: "Apprendre la loi",
     support: "Trouver du soutien",
+    subline: "Prend 6 minutes. Pas d'inscription.",
     disclaimer: "Information uniquement. Pas de conseil juridique individualisé.",
     features: "WCAG AA · Confidentialité d'abord · Prêt hors ligne",
   },

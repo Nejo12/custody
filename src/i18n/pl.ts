@@ -15,6 +15,7 @@ const pl = {
     check: "Sprawdź moją sytuację",
     learn: "Poznaj prawo",
     support: "Znajdź wsparcie",
+    subline: "Zajmuje 6 minut. Bez rejestracji.",
     disclaimer: "Tylko informacja. Nie jest to indywidualna porada prawna.",
     features: "WCAG AA · Prywatność przede wszystkim · Gotowe do pracy offline",
   },

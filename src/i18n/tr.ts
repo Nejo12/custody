@@ -15,6 +15,7 @@ const tr = {
     check: "Durumumu kontrol et",
     learn: "Yasayı öğren",
     support: "Destek bul",
+    subline: "6 dakika sürer. Kayıt yok.",
     disclaimer: "Yalnızca bilgi. Bireysel hukuki tavsiye değildir.",
     features: "WCAG AA · Gizlilik öncelikli · Çevrimdışı hazır",
   },
