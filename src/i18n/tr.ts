@@ -369,6 +369,36 @@ const tr = {
   pdf: {
     optimizerUnavailable: "Optimize edici kullanılamıyor.",
   },
+  glossary: {
+    title: "Vesayet Terimleri Sözlüğü",
+    description: "Almanca hukuki terimler basit dille açıklanmıştır.",
+    searchPlaceholder: "Terim ara...",
+    noResults: '"{query}" ile eşleşen terim bulunamadı',
+    definition: "Tanım",
+    inContext: "Bağlamda",
+    legalSource: "Hukuki kaynak",
+    note: "Not: Bu sözlük genel açıklamalar sağlar. Durumunuza özel hukuki tavsiye için nitelikli bir aile hukuku avukatına danışın.",
+  },
+  faq: {
+    title: "Sıkça Sorulan Sorular",
+    description:
+      "Vesayet hakları, hukuki süreç ve Vesayet Netliği kullanımı hakkında yaygın sorular.",
+    stillHaveQuestions: "Hala sorularınız mı var?",
+    checkGlossary: "Hukuki terimlerin açıklamaları için",
+    glossaryLink: "Sözlüğümüze",
+    orUseDirectory: "bakın veya bölgenizdeki destek hizmetlerini bulmak için",
+    directoryLink: "Dizini",
+    toFindSupport: "mizi kullanın.",
+  },
+  guides: {
+    title: "Hukuki Kılavuzlar",
+    description:
+      "Almanya'da vesayet ve iletişim haklarında yolunuzu bulmanıza yardımcı olacak adım adım kılavuzlar.",
+    backToGuides: "← Kılavuzlara Dön",
+    disclaimer:
+      "Sorumluluk Reddi: Bu kılavuz yalnızca genel bilgi sağlar, bireysel hukuki tavsiye değildir. Durumunuza özel tavsiye için nitelikli bir aile hukuku avukatına danışın.",
+    note: "Not: Bu kılavuzlar yalnızca genel bilgi sağlar. Durumunuza özel hukuki tavsiye için nitelikli bir aile hukuku avukatına danışın.",
+  },
 };
 
 export default tr;

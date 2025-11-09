@@ -402,6 +402,35 @@ const en = {
     handoverLocation: "Handover location",
     preview: "Preview",
   },
+  glossary: {
+    title: "Glossary of Custody Terms",
+    description: "German legal terms explained in simple language.",
+    searchPlaceholder: "Search terms...",
+    noResults: 'No terms found matching "{query}"',
+    definition: "Definition",
+    inContext: "In context",
+    legalSource: "Legal source",
+    note: "Note: This glossary provides general explanations. For legal advice specific to your situation, consult a qualified family law attorney.",
+  },
+  faq: {
+    title: "Frequently Asked Questions",
+    description:
+      "Common questions about custody rights, the legal process, and using Custody Clarity.",
+    stillHaveQuestions: "Still have questions?",
+    checkGlossary: "Check our",
+    glossaryLink: "Glossary",
+    orUseDirectory: "for explanations of legal terms, or use our",
+    directoryLink: "Directory",
+    toFindSupport: "to find support services in your area.",
+  },
+  guides: {
+    title: "Legal Guides",
+    description: "Step-by-step guides to help you navigate custody and contact rights in Germany.",
+    backToGuides: "← Back to Guides",
+    disclaimer:
+      "Disclaimer: This guide provides general information only, not individualized legal advice. Consult a qualified family law attorney for advice specific to your situation.",
+    note: "Note: These guides provide general information only. For legal advice specific to your situation, consult a qualified family law attorney.",
+  },
 };
 
 export default en;

@@ -376,6 +376,36 @@ const pl = {
   pdf: {
     optimizerUnavailable: "Optymalizator niedostępny.",
   },
+  glossary: {
+    title: "Słownik terminów opieki",
+    description: "Niemieckie terminy prawne wyjaśnione prostym językiem.",
+    searchPlaceholder: "Szukaj terminów...",
+    noResults: 'Nie znaleziono terminów pasujących do "{query}"',
+    definition: "Definicja",
+    inContext: "W kontekście",
+    legalSource: "Źródło prawne",
+    note: "Uwaga: Ten słownik zawiera ogólne wyjaśnienia. W celu uzyskania porady prawnej dotyczącej Twojej konkretnej sytuacji skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym.",
+  },
+  faq: {
+    title: "Często zadawane pytania",
+    description:
+      "Typowe pytania dotyczące praw opieki, procesu prawnego i korzystania z Jasność Opieki.",
+    stillHaveQuestions: "Masz jeszcze pytania?",
+    checkGlossary: "Sprawdź nasz",
+    glossaryLink: "Słownik",
+    orUseDirectory: "w celu wyjaśnienia terminów prawnych lub użyj naszego",
+    directoryLink: "Katalogu",
+    toFindSupport: "aby znaleźć usługi wsparcia w Twojej okolicy.",
+  },
+  guides: {
+    title: "Przewodniki prawne",
+    description:
+      "Przewodniki krok po kroku, które pomogą Ci poruszać się w prawach opieki i kontaktu w Niemczech.",
+    backToGuides: "← Powrót do przewodników",
+    disclaimer:
+      "Zastrzeżenie: Ten przewodnik zawiera jedynie ogólne informacje, a nie indywidualną poradę prawną. Skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym w celu uzyskania porady dotyczącej Twojej konkretnej sytuacji.",
+    note: "Uwaga: Te przewodniki zawierają jedynie ogólne informacje. W celu uzyskania porady prawnej dotyczącej Twojej konkretnej sytuacji skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym.",
+  },
 };
 
 export default pl;

@@ -1,0 +1,40 @@
+{
+  "terms": [
+    {
+      "term": "BGB",
+      "fullForm": "Bürgerliches Gesetzbuch",
+      "english": "German Civil Code",
+      "definition": "Das Hauptgesetzbuch Deutschlands, das familienrechtliche Bestimmungen enthält, einschließlich Sorgerecht und Umgangsrechte.",
+      "context": "Verweise wie 'BGB §1626' beziehen sich auf bestimmte Abschnitte des Bürgerlichen Gesetzbuchs.",
+      "citation": "https://gesetze-im-internet.de/bgb/"
+    },
+    {
+      "term": "Familiengericht",
+      "english": "Family Court",
+      "definition": "Das Gericht, das für familienrechtliche Angelegenheiten zuständig ist, einschließlich Sorgerecht und Umgangsregelungen. Meist Teil des Amtsgerichts.",
+      "context": "Sie stellen Anträge auf Sorgerecht und Umgang beim Familiengericht in Ihrer Region.",
+      "citation": "https://www.familienportal.de/"
+    },
+    {
+      "term": "Jugendamt",
+      "english": "Youth Welfare Office",
+      "definition": "Lokale Behörde, die Unterstützung, Beratung und Mediationsdienste für Familien anbietet. Kann bei Sorgerechtsangelegenheiten und Umgangsregelungen helfen.",
+      "context": "Das Jugendamt bietet kostenlose Beratung und kann bei der Mediation von Sorgerechts- und Umgangsstreitigkeiten helfen.",
+      "citation": "https://www.familienportal.de/"
+    },
+    {
+      "term": "gemeinsame Sorge",
+      "english": "Joint Custody",
+      "definition": "Wenn beide Elternteile Entscheidungsrechte und -pflichten für ihr Kind teilen.",
+      "context": "Verheiratete Eltern haben automatisch gemeinsame Sorge. Unverheiratete Eltern können sie durch eine gemeinsame Erklärung oder einen Gerichtsantrag begründen.",
+      "citation": "https://gesetze-im-internet.de/bgb/__1626.html"
+    },
+    {
+      "term": "Umgangsregelung",
+      "english": "Contact Order",
+      "definition": "Ein Gerichtsbeschluss, der festlegt, wann und wie ein Elternteil (oder eine andere Person) Kontakt zu einem Kind haben kann.",
+      "context": "Wenn der Umgang blockiert wird, können Sie beim Familiengericht eine Umgangsregelung beantragen.",
+      "citation": "https://gesetze-im-internet.de/bgb/__1684.html"
+    }
+  ]
+}

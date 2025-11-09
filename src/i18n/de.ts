@@ -375,6 +375,36 @@ const de = {
   pdf: {
     optimizerUnavailable: "Optimierer nicht verfügbar.",
   },
+  glossary: {
+    title: "Glossar der Sorgerechtsbegriffe",
+    description: "Deutsche Rechtsbegriffe einfach erklärt.",
+    searchPlaceholder: "Begriffe suchen...",
+    noResults: 'Keine Begriffe gefunden, die "{query}" entsprechen',
+    definition: "Definition",
+    inContext: "Im Kontext",
+    legalSource: "Rechtsquelle",
+    note: "Hinweis: Dieses Glossar bietet allgemeine Erklärungen. Für rechtliche Beratung zu Ihrer spezifischen Situation konsultieren Sie einen qualifizierten Familienrechtsanwalt.",
+  },
+  faq: {
+    title: "Häufig gestellte Fragen",
+    description:
+      "Häufige Fragen zu Sorgerechten, dem rechtlichen Verfahren und der Nutzung von ElternWeg.",
+    stillHaveQuestions: "Haben Sie noch Fragen?",
+    checkGlossary: "Schauen Sie in unser",
+    glossaryLink: "Glossar",
+    orUseDirectory: "für Erklärungen von Rechtsbegriffen oder nutzen Sie unser",
+    directoryLink: "Verzeichnis",
+    toFindSupport: "um Unterstützungsdienste in Ihrer Nähe zu finden.",
+  },
+  guides: {
+    title: "Rechtsleitfäden",
+    description:
+      "Schritt-für-Schritt-Anleitungen, die Ihnen helfen, sich im Sorge- und Umgangsrecht in Deutschland zurechtzufinden.",
+    backToGuides: "← Zurück zu den Leitfäden",
+    disclaimer:
+      "Haftungsausschluss: Dieser Leitfaden bietet nur allgemeine Informationen, keine individuelle Rechtsberatung. Konsultieren Sie einen qualifizierten Familienrechtsanwalt für Beratung zu Ihrer spezifischen Situation.",
+    note: "Hinweis: Diese Leitfäden bieten nur allgemeine Informationen. Für rechtliche Beratung zu Ihrer spezifischen Situation konsultieren Sie einen qualifizierten Familienrechtsanwalt.",
+  },
 };
 
 export default de;

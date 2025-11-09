@@ -384,6 +384,36 @@ const fr = {
   pdf: {
     optimizerUnavailable: "Optimiseur indisponible.",
   },
+  glossary: {
+    title: "Glossaire des termes de garde",
+    description: "Termes juridiques allemands expliqués en langage simple.",
+    searchPlaceholder: "Rechercher des termes...",
+    noResults: 'Aucun terme trouvé correspondant à "{query}"',
+    definition: "Définition",
+    inContext: "En contexte",
+    legalSource: "Source juridique",
+    note: "Note : Ce glossaire fournit des explications générales. Pour des conseils juridiques spécifiques à votre situation, consultez un avocat spécialisé en droit de la famille.",
+  },
+  faq: {
+    title: "Questions fréquemment posées",
+    description:
+      "Questions courantes sur les droits de garde, le processus juridique et l'utilisation de Clarté de la Garde.",
+    stillHaveQuestions: "Vous avez encore des questions ?",
+    checkGlossary: "Consultez notre",
+    glossaryLink: "Glossaire",
+    orUseDirectory: "pour des explications de termes juridiques, ou utilisez notre",
+    directoryLink: "Répertoire",
+    toFindSupport: "pour trouver des services de soutien dans votre région.",
+  },
+  guides: {
+    title: "Guides juridiques",
+    description:
+      "Guides étape par étape pour vous aider à naviguer dans les droits de garde et de contact en Allemagne.",
+    backToGuides: "← Retour aux guides",
+    disclaimer:
+      "Avertissement : Ce guide fournit des informations générales uniquement, pas de conseils juridiques individualisés. Consultez un avocat spécialisé en droit de la famille pour des conseils spécifiques à votre situation.",
+    note: "Note : Ces guides fournissent des informations générales uniquement. Pour des conseils juridiques spécifiques à votre situation, consultez un avocat spécialisé en droit de la famille.",
+  },
 };
 
 export default fr;
