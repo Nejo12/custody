@@ -17,6 +17,9 @@ export default defineConfig({
         "src/app/**/page.tsx", // Next.js pages often require jsdom complexity
         "src/app/**/layout.tsx",
         "src/types/**", // Type definition files
+        "src/app/api/payment/**", // Payment routes require external API keys (Stripe)
+        "src/lib/stripe.ts", // Stripe config requires API keys
+        "src/lib/email.ts", // Email service requires API keys (Resend)
       ],
       thresholds: {
         lines: 80,

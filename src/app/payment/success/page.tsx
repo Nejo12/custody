@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
@@ -16,8 +16,7 @@ function PaymentSuccessContent() {
     fetch(`/api/payment/verify-session?session_id=${sessionId}`)
       .then((res) => res.json())
       .then((data) => (data.success ? setStatus("success") : setStatus("error")))
-      .catch(() => setStatus("error"))
-      .finally(() => setStatus("loading"));
+      .catch(() => setStatus("error"));
   }, [sessionId]);
 
   if (status === "loading") {

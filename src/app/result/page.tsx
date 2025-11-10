@@ -20,6 +20,7 @@ import regionalTips from "@/data/regional.tips.json";
 import { resolveCourtTemplate } from "@/lib/courts";
 import Callout from "@/components/Callout";
 import { buildICS } from "@/lib/ics";
+import GetPDFButton from "@/components/GetPDFButton";
 
 type StatusKey = keyof TranslationDict["result"]["statuses"];
 
@@ -358,6 +359,88 @@ export default function Result() {
                   : "info"
           }
         />
+      </motion.div>
+
+      {/* Payment CTA - Beautiful Section */}
+      <motion.div
+        initial={mounted ? { opacity: 0, y: 10 } : false}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.15 }}
+        className="rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/30 dark:to-pink-950/30 border border-purple-200 dark:border-purple-800 p-6 space-y-4"
+      >
+        <div className="text-center space-y-3">
+          <h3 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            Get Court-Ready Documents
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+            Professional PDFs with legal citations, court submission guides, and all required
+            formatting - delivered instantly to your email.
+          </p>
+          <div className="flex flex-wrap justify-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+            <span className="flex items-center gap-1">
+              <svg
+                className="w-4 h-4 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              Instant delivery
+            </span>
+            <span className="flex items-center gap-1">
+              <svg
+                className="w-4 h-4 text-blue-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+              Secure payment
+            </span>
+            <span className="flex items-center gap-1">
+              <svg
+                className="w-4 h-4 text-purple-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              Court-ready format
+            </span>
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <GetPDFButton
+            documentType={
+              status === "joint_custody_default" || status === "eligible_joint_custody"
+                ? "joint-custody"
+                : "contact-order"
+            }
+            metadata={{
+              interviewData: JSON.stringify(interview.answers),
+              status: status,
+              locale: locale,
+            }}
+          />
+        </div>
       </motion.div>
 
       {unclear && (
