@@ -79,6 +79,11 @@ export async function POST(req: NextRequest) {
       phone_number_collection: {
         enabled: false,
       },
+      // Statement descriptors - appears on customer bank statements
+      payment_intent_data: {
+        statement_descriptor: "CUSTODYCLARITY", // Main descriptor (5-22 chars)
+        statement_descriptor_suffix: "PDF", // Optional suffix for individual products
+      },
     });
 
     return NextResponse.json({

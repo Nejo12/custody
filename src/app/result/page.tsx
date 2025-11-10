@@ -218,7 +218,7 @@ export default function Result() {
             </span>
           </div>
           <button
-            className="text-xs underline text-zinc-300 dark:text-zinc-300"
+            className="text-xs underline text-zinc-300 dark:text-zinc-600"
             onClick={() => {
               const ics = buildICS({
                 summary: "Court filing (draft)",
@@ -237,7 +237,7 @@ export default function Result() {
             {t.result.addFilingReminder || "Add filing reminder"}
           </button>
         </div>
-        <div className="mt-2 flex items-center gap-2 text-xs">
+        <div className="mt-2 flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400">
           {useMemo(() => {
             const steps = [
               {
@@ -269,9 +269,9 @@ export default function Result() {
           initial={mounted ? { opacity: 0, y: 6 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
-          className="rounded-lg border p-3 bg-white dark:bg-zinc-900"
+          className="rounded-lg border p-3 bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400"
         >
-          <div className="text-sm font-medium mb-1 text-zinc-300 dark:text-zinc-300">
+          <div className="text-sm font-medium mb-1">
             {t.result.whyThisResult || "Why this result?"}
           </div>
           <div className="flex flex-wrap gap-2">
@@ -361,29 +361,24 @@ export default function Result() {
         />
       </motion.div>
 
-      {/* Payment CTA - Beautiful Section */}
+      {/* Get Professional Documents */}
       <motion.div
-        initial={mounted ? { opacity: 0, y: 10 } : false}
+        initial={mounted ? { opacity: 0, y: 6 } : false}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.15 }}
-        className="rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/30 dark:to-pink-950/30 border border-purple-200 dark:border-purple-800 p-6 space-y-4"
+        transition={{ duration: 0.25 }}
+        className="rounded-lg border p-4 bg-white dark:bg-zinc-900"
       >
-        <div className="text-center space-y-3">
-          <h3 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            Get Court-Ready Documents
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 max-w-md mx-auto">
-            Professional PDFs with legal citations, court submission guides, and all required
-            formatting - delivered instantly to your email.
+        <div className="space-y-3">
+          <div className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+            {t.result.getProfessionalDocs || "Get Professional Documents"}
+          </div>
+          <p className="text-xs text-zinc-600 dark:text-zinc-400">
+            {t.result.professionalDocsDesc ||
+              "Court-ready PDFs with legal citations and submission guides, delivered to your email."}
           </p>
-          <div className="flex flex-wrap justify-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+          <div className="flex flex-wrap gap-2 text-xs text-zinc-500 dark:text-zinc-400">
             <span className="flex items-center gap-1">
-              <svg
-                className="w-4 h-4 text-green-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -391,15 +386,10 @@ export default function Result() {
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              Instant delivery
+              {t.result.instantDelivery || "Instant delivery"}
             </span>
             <span className="flex items-center gap-1">
-              <svg
-                className="w-4 h-4 text-blue-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -407,15 +397,10 @@ export default function Result() {
                   d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                 />
               </svg>
-              Secure payment
+              {t.result.securePayment || "Secure payment"}
             </span>
             <span className="flex items-center gap-1">
-              <svg
-                className="w-4 h-4 text-purple-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -423,11 +408,9 @@ export default function Result() {
                   d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
               </svg>
-              Court-ready format
+              {t.result.courtReady || "Court-ready"}
             </span>
           </div>
-        </div>
-        <div className="flex justify-center">
           <GetPDFButton
             documentType={
               status === "joint_custody_default" || status === "eligible_joint_custody"
@@ -782,7 +765,7 @@ export default function Result() {
           {missing.length > 0 ? t.result.answerThese : t.result.addSupportingDocuments}
         </div>
         {!!missing.length && (
-          <div className="mt-2 flex flex-wrap gap-2">
+          <div className="mt-2 flex flex-wrap gap-2 text-zinc-600 dark:text-zinc-400">
             {missing.slice(0, 2).map((q) => {
               const qKey = q as keyof TranslationDict["interview"]["questions"];
               return (
@@ -813,10 +796,10 @@ export default function Result() {
         transition={{ duration: 0.3, delay: 0.4 }}
         className="rounded-lg border p-3"
       >
-        <div className="text-sm font-medium text-zinc-900 dark:text-zinc-400">
+        <div className="text-sm font-medium text-zinc-300 dark:text-zinc-400">
           {t.result.regionalTips}
         </div>
-        <div className="text-sm text-zinc-800 dark:text-zinc-400 mt-1">
+        <div className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
           <div>{regionalTip.text}</div>
           {(regionalTip.lastVerified || regionalTip.snapshotId) && (
             <div className="text-xs text-zinc-700 dark:text-zinc-600 mt-1">

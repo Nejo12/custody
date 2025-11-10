@@ -68,19 +68,19 @@ export default function VaultPage() {
       <div className="flex gap-2 text-sm">
         <button
           onClick={() => setTab("documents")}
-          className={`px-3 py-1 rounded-full border ${tab === "documents" ? "bg-black text-white" : "bg-white"}`}
+          className={`px-3 py-1 rounded-full border ${tab === "documents" ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900" : "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"}`}
         >
           {t.vault.documents}
         </button>
         <button
           onClick={() => setTab("notes")}
-          className={`px-3 py-1 rounded-full border ${tab === "notes" ? "bg-black text-white" : "bg-white"}`}
+          className={`px-3 py-1 rounded-full border ${tab === "notes" ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900" : "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"}`}
         >
           {t.vault.notes}
         </button>
         <button
           onClick={() => setTab("payments")}
-          className={`px-3 py-1 rounded-full border ${tab === "payments" ? "bg-black text-white" : "bg-white"}`}
+          className={`px-3 py-1 rounded-full border ${tab === "payments" ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900" : "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"}`}
         >
           {t.vault.payments}
         </button>

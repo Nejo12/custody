@@ -157,6 +157,12 @@ const en = {
     stepPickCourt: "Pick court",
     stepSetSender: "Set sender",
     stepGeneratePdf: "Generate PDF",
+    getProfessionalDocs: "Get Professional Documents",
+    professionalDocsDesc:
+      "Court-ready PDFs with legal citations and submission guides, delivered to your email.",
+    instantDelivery: "Instant delivery",
+    securePayment: "Secure payment",
+    courtReady: "Court-ready",
     senderOcrNote: "Sender (OCR note)",
     editInVault: "edit in Vault",
     lastVerified: "Last verified:",

@@ -157,6 +157,12 @@ const ar = {
     stepPickCourt: "اختيار المحكمة",
     stepSetSender: "تعيين المرسل",
     stepGeneratePdf: "إنشاء PDF",
+    getProfessionalDocs: "الحصول على المستندات الاحترافية",
+    professionalDocsDesc:
+      "ملفات PDF جاهزة للمحكمة مع استشهادات قانونية وأدلة الإرسال، تُسلّم إلى بريدك الإلكتروني.",
+    instantDelivery: "التسليم الفوري",
+    securePayment: "الدفع الآمن",
+    courtReady: "جاهز للمحكمة",
     senderOcrNote: "المرسل (ملاحظة OCR)",
     editInVault: "تعديل في المخزن",
     lastVerified: "آخر تحقق:",

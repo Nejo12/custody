@@ -162,6 +162,12 @@ const fr = {
     stepPickCourt: "Choisir le tribunal",
     stepSetSender: "Définir l'expéditeur",
     stepGeneratePdf: "Générer le PDF",
+    getProfessionalDocs: "Obtenir des documents professionnels",
+    professionalDocsDesc:
+      "PDFs prêts pour le tribunal avec citations légales et guides de dépôt, livrés à votre email.",
+    instantDelivery: "Livraison instantanée",
+    securePayment: "Paiement sécurisé",
+    courtReady: "Prêt pour le tribunal",
     senderOcrNote: "Expéditeur (note OCR)",
     editInVault: "modifier dans le Coffre-fort",
     lastVerified: "Dernière vérification:",

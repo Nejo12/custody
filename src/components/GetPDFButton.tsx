@@ -18,12 +18,11 @@ export default function GetPDFButton({
 }: GetPDFButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const baseClasses =
-    "px-8 py-4 rounded-lg font-bold text-lg transition-all hover:scale-105 shadow-lg";
+  const baseClasses = "w-full rounded-lg text-sm transition-colors";
   const variantClasses =
     variant === "primary"
-      ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-xl"
-      : "bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-purple-600 hover:bg-purple-50 dark:hover:bg-gray-700";
+      ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 p-3 hover:bg-black dark:hover:bg-white"
+      : "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white border hover:bg-zinc-50 dark:hover:bg-zinc-700 p-3";
 
   return (
     <>
@@ -31,7 +30,7 @@ export default function GetPDFButton({
         onClick={() => setIsModalOpen(true)}
         className={`${baseClasses} ${variantClasses} ${className}`}
       >
-        📄 Get Professional PDF
+        Get Professional PDF
       </button>
 
       <PricingModal

@@ -156,6 +156,12 @@ const tr = {
     stepPickCourt: "Mahkeme seç",
     stepSetSender: "Gönderen ayarla",
     stepGeneratePdf: "PDF oluştur",
+    getProfessionalDocs: "Profesyonel Belgeleri Alın",
+    professionalDocsDesc:
+      "Hukuki alıntılar ve gönderim kılavuzları içeren mahkemeye hazır PDF'ler, e-postanıza gönderilir.",
+    instantDelivery: "Anında teslimat",
+    securePayment: "Güvenli ödeme",
+    courtReady: "Mahkemeye hazır",
     senderOcrNote: "Gönderen (OCR notu)",
     editInVault: "Zincirde düzenle",
     lastVerified: "Son doğrulama:",

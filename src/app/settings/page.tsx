@@ -87,7 +87,7 @@ export default function SettingsPage() {
             <button
               key={lang.code}
               onClick={() => setLocale(lang.code)}
-              className={`px-4 py-2 ${locale === lang.code ? "bg-black text-white" : "bg-white text-black"}`}
+              className={`px-4 py-2 ${locale === lang.code ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900" : "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"}`}
             >
               {lang.label}
             </button>

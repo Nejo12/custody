@@ -27,11 +27,11 @@ export default function PricingModal({
 
       {/* Modal */}
       <div className="flex min-h-full items-center justify-center p-4">
-        <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-6xl w-full p-8">
+        <div className="relative bg-white dark:bg-zinc-900 rounded-lg border max-w-6xl w-full p-8">
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+            className="absolute top-4 right-4 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
             aria-label="Close"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -45,11 +45,11 @@ export default function PricingModal({
           </button>
 
           {/* Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-100">
               Get Your Professional PDF
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
               Choose the package that best fits your needs. All documents are delivered instantly
               via email.
             </p>
@@ -69,14 +69,9 @@ export default function PricingModal({
           </div>
 
           {/* Trust indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-8 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-              <svg
-                className="w-5 h-5 text-green-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+          <div className="flex flex-wrap justify-center items-center gap-6 pt-6 border-t text-xs text-zinc-500 dark:text-zinc-400">
+            <div className="flex items-center gap-1">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -86,13 +81,8 @@ export default function PricingModal({
               </svg>
               <span>Secure Payment</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-              <svg
-                className="w-5 h-5 text-blue-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+            <div className="flex items-center gap-1">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -102,13 +92,8 @@ export default function PricingModal({
               </svg>
               <span>Instant Email Delivery</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-              <svg
-                className="w-5 h-5 text-purple-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+            <div className="flex items-center gap-1">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -121,7 +106,7 @@ export default function PricingModal({
           </div>
 
           {/* Footer note */}
-          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
+          <p className="text-center text-xs text-zinc-500 dark:text-zinc-400 mt-6">
             All prices are one-time payments. No subscriptions or hidden fees.
           </p>
         </div>

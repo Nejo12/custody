@@ -157,6 +157,12 @@ const de = {
     stepPickCourt: "Gericht auswählen",
     stepSetSender: "Absender setzen",
     stepGeneratePdf: "PDF generieren",
+    getProfessionalDocs: "Professionelle Dokumente erhalten",
+    professionalDocsDesc:
+      "Gerichtsfähige PDFs mit Rechtszitaten und Einreichungsleitfäden, direkt per E-Mail zugestellt.",
+    instantDelivery: "Sofortige Zustellung",
+    securePayment: "Sichere Zahlung",
+    courtReady: "Gerichtsfähig",
     senderOcrNote: "Absender (OCR-Notiz)",
     editInVault: "im Tresor bearbeiten",
     lastVerified: "Zuletzt verifiziert:",

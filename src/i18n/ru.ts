@@ -158,6 +158,12 @@ const ru = {
     stepPickCourt: "Выбрать суд",
     stepSetSender: "Установить отправителя",
     stepGeneratePdf: "Создать PDF",
+    getProfessionalDocs: "Получить профессиональные документы",
+    professionalDocsDesc:
+      "PDF-файлы, готовые к подаче в суд, с юридическими ссылками и руководствами по подаче, доставляются на вашу электронную почту.",
+    instantDelivery: "Мгновенная доставка",
+    securePayment: "Безопасный платёж",
+    courtReady: "Готово в суд",
     senderOcrNote: "Отправитель (OCR-заметка)",
     editInVault: "редактировать в Хранилище",
     lastVerified: "Последняя проверка:",

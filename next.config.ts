@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       isDev ? "'unsafe-eval'" : "",
       "'wasm-unsafe-eval'",
       "blob:",
+      "https://js.stripe.com", // Required for Stripe Checkout
     ]
       .filter(Boolean)
       .join(" ");
@@ -29,6 +30,7 @@ const nextConfig: NextConfig = {
       "img-src 'self' data: blob:",
       "font-src 'self' data:",
       `connect-src ${connectSrc}`,
+      "frame-src 'self' https://js.stripe.com https://hooks.stripe.com",
       "frame-ancestors 'self'",
       "base-uri 'self'",
       "form-action 'self'",

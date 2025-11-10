@@ -160,6 +160,12 @@ const pl = {
     stepPickCourt: "Wybierz sąd",
     stepSetSender: "Ustaw nadawcę",
     stepGeneratePdf: "Wygeneruj PDF",
+    getProfessionalDocs: "Uzyskaj dokumenty zawodowe",
+    professionalDocsDesc:
+      "Pliki PDF gotowe do sądu z cytatami prawnymi i przewodnikami wysyłki, dostarczane na Twoją skrzynkę e-mail.",
+    instantDelivery: "Natychmiastowa dostawa",
+    securePayment: "Bezpieczna płatność",
+    courtReady: "Gotowe do sądu",
     senderOcrNote: "Nadawca (notatka OCR)",
     editInVault: "edytuj w Skarbcu",
     lastVerified: "Ostatnio zweryfikowano:",
