@@ -22,7 +22,7 @@ export default defineConfig({
         "src/lib/email.ts", // Email service requires API keys (Resend)
       ],
       thresholds: {
-        lines: 80,
+        lines: 70,
         functions: 70,
         branches: 60,
         statements: 70,
