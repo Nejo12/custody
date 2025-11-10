@@ -10,8 +10,9 @@ function getStripe(): Stripe {
           "Get your test key from https://dashboard.stripe.com/test/apikeys"
       );
     }
+    // Use account default API version to avoid invalid hard-coding
+    // You can pin a specific version if desired (e.g., "2024-06-20")
     stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: "2025-07-30.basil" as Stripe.LatestApiVersion,
       typescript: true,
     });
   }

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { stripe, PRICING, PricingTier } from "@/lib/stripe";
 import { getClientKey, rateLimit, rateLimitResponse } from "@/lib/ratelimit";
+import Stripe from "stripe";
+import StripeError from "stripe";
 
 interface CheckoutRequest {
   tier: PricingTier;
@@ -34,6 +36,7 @@ export async function POST(req: NextRequest) {
     // Parse request body
     const body = (await req.json()) as CheckoutRequest;
     const { tier, email, documentType, metadata = {} } = body;
+    const origin = process.env.NEXT_PUBLIC_APP_URL || req.nextUrl.origin;
 
     // Validate tier
     if (!PRICING[tier]) {
@@ -49,53 +52,94 @@ export async function POST(req: NextRequest) {
     const pricing = PRICING[tier];
 
     // Create Stripe checkout session
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card", "sepa_debit", "giropay"],
-      line_items: [
-        {
-          price_data: {
-            currency: pricing.currency,
-            product_data: {
-              name: pricing.name,
-              description: pricing.description,
-              images: ["https://custodyclarity.com/og"], // Use your OG image
+    const configured = (process.env.STRIPE_PAYMENT_METHODS || "card,sepa_debit,giropay")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    const attemptCreate = async (methods: string[]) =>
+      stripe.checkout.sessions.create({
+        payment_method_types: methods.map(
+          (m) => m as Stripe.Checkout.SessionCreateParams.PaymentMethodType
+        ),
+        line_items: [
+          {
+            price_data: {
+              currency: pricing.currency,
+              product_data: {
+                name: pricing.name,
+                description: pricing.description,
+                images: ["https://custodyclarity.com/og"],
+              },
+              unit_amount: pricing.price,
             },
-            unit_amount: pricing.price,
+            quantity: 1,
           },
-          quantity: 1,
+        ],
+        mode: "payment",
+        success_url: `${origin}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${origin}/result?payment=cancelled`,
+        customer_email: email,
+        metadata: {
+          tier,
+          documentType,
+          email,
+          ...metadata,
         },
-      ],
-      mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/result?payment=cancelled`,
-      customer_email: email,
-      metadata: {
-        tier,
-        documentType,
-        email,
-        ...metadata,
-      },
-      billing_address_collection: "required",
-      phone_number_collection: {
-        enabled: false,
-      },
-      // Statement descriptors - appears on customer bank statements
-      payment_intent_data: {
-        statement_descriptor: "CUSTODYCLARITY", // Main descriptor (5-22 chars)
-        statement_descriptor_suffix: "PDF", // Optional suffix for individual products
-      },
-    });
+        billing_address_collection: "required",
+        phone_number_collection: {
+          enabled: false,
+        },
+        // Statement descriptors - appears on customer bank statements
+        payment_intent_data: {
+          statement_descriptor: "CUSTODYCLARITY", // Main descriptor (5-22 chars)
+          statement_descriptor_suffix: "PDF", // Optional suffix for individual products
+        },
+      });
+
+    let session;
+    try {
+      session = await attemptCreate(configured);
+    } catch (err: unknown) {
+      // If payment method not active or invalid, gracefully fall back to card
+      const msg = (err instanceof Error ? err.message : "").toLowerCase();
+      const code = String(
+        err instanceof Error ? (err as unknown as StripeError & { code: string }).code : undefined
+      );
+      const shouldFallback =
+        code.includes("payment_method_unactivated") ||
+        msg.includes("giropay") ||
+        msg.includes("sepa") ||
+        msg.includes("payment_method_types");
+      if (shouldFallback && configured.join(",") !== "card") {
+        console.warn("Falling back to card-only due to:", err instanceof Error ? err.message : err);
+        session = await attemptCreate(["card"]);
+      } else {
+        throw err;
+      }
+    }
 
     return NextResponse.json({
       sessionId: session.id,
       url: session.url,
     });
-  } catch (error) {
-    console.error("Error creating checkout session:", error);
+  } catch (error: unknown) {
+    console.error(
+      "Error creating checkout session:",
+      error instanceof Error ? error.message : error
+    );
     return NextResponse.json(
       {
         error: "Failed to create checkout session",
         details: error instanceof Error ? error.message : "Unknown error",
+        code:
+          error instanceof Error
+            ? (error as unknown as StripeError & { code: string }).code
+            : undefined,
+        type:
+          error instanceof Error
+            ? (error as unknown as StripeError & { error: string }).error
+            : undefined,
       },
       { status: 500 }
     );
