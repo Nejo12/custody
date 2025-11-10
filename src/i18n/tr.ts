@@ -19,6 +19,12 @@ const tr = {
     disclaimer: "Yalnızca bilgi. Bireysel hukuki tavsiye değildir.",
     features: "WCAG AA · Gizlilik öncelikli · Çevrimdışı hazır",
   },
+  footer: {
+    guides: "Kılavuzlar",
+    blog: "Blog",
+    impressum: "Yasal Bilgiler",
+    datenschutz: "Gizlilik",
+  },
   header: {
     findHelp: "Yardım bul",
     quickExit: "Hızlı çıkış",
@@ -172,6 +178,9 @@ const tr = {
     allServices: "Tüm hizmetler",
     jugendamter: "Jugendämter",
     courts: "Mahkemeler",
+    legalGuides: "Hukuki Kılavuzlar",
+    blog: "Blog",
+    officialResources: "Resmi Kaynaklar",
   },
   directory: {
     title: "Destek bul",
@@ -429,6 +438,31 @@ const tr = {
     disclaimer:
       "Sorumluluk Reddi: Bu kılavuz yalnızca genel bilgi sağlar, bireysel hukuki tavsiye değildir. Durumunuza özel tavsiye için nitelikli bir aile hukuku avukatına danışın.",
     note: "Not: Bu kılavuzlar yalnızca genel bilgi sağlar. Durumunuza özel hukuki tavsiye için nitelikli bir aile hukuku avukatına danışın.",
+    categories: {
+      legalProcess: "Hukuki Süreç",
+      practical: "Pratik Kılavuzlar",
+    },
+    languageNote: "Not: Kılavuzlar şu anda yalnızca İngilizce olarak mevcuttur.",
+  },
+  blog: {
+    title: "Blog",
+    description:
+      "Almanya'da vesayet ve ebeveyn haklarında yolunuzu bulmak için gerçek hikayeler, pratik tavsiyeler ve içgörüler.",
+    backToBlog: "← Blog'a Dön",
+    categories: {
+      personalStory: "Kişisel Hikaye",
+      legalGuide: "Hukuki Kılavuz",
+      resource: "Kaynak",
+    },
+    disclaimer:
+      "Not: Blog yazıları kişisel deneyimleri ve görüşleri yansıtır. Durumunuza özel hukuki tavsiye için nitelikli bir aile hukuku avukatına danışın.",
+    postDisclaimer:
+      "Sorumluluk Reddi: Bu blog yazısı kişisel deneyimleri ve görüşleri yansıtır. Hukuki tavsiye teşkil etmez. Durumunuza özel tavsiye için nitelikli bir aile hukuku avukatına danışın.",
+    aboutAuthor: "Yazar Hakkında",
+    authorDescription:
+      "{author} Alman vesayet sisteminde yol almış bir babadır. Bu araç, benzer zorluklarla karşılaşan diğer ebeveynlere yardımcı olmak için oluşturulmuştur.",
+    by: "tarafından",
+    languageNote: "Not: Blog yazıları şu anda yalnızca İngilizce olarak mevcuttur.",
   },
   impressum: {
     title: "Yasal Bilgiler",

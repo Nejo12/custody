@@ -7,6 +7,12 @@ vi.mock("@/i18n", () => ({
   useI18n: vi.fn(),
 }));
 
+vi.mock("next/link", () => ({
+  default: ({ children, href }: { children: React.ReactNode; href: string }) => (
+    <a href={href}>{children}</a>
+  ),
+}));
+
 describe("Footer", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -14,6 +20,12 @@ describe("Footer", () => {
       t: {
         home: {
           disclaimer: "Information only. Not individualized legal advice.",
+        },
+        footer: {
+          guides: "Guides",
+          blog: "Blog",
+          impressum: "Impressum",
+          datenschutz: "Datenschutz",
         },
       },
     });
@@ -37,6 +49,12 @@ describe("Footer", () => {
       t: {
         home: {
           disclaimer: "Nur Information – keine individuelle Rechtsberatung.",
+        },
+        footer: {
+          guides: "Guides",
+          blog: "Blog",
+          impressum: "Impressum",
+          datenschutz: "Datenschutz",
         },
       },
     });

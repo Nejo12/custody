@@ -19,6 +19,12 @@ const en = {
     disclaimer: "Information only. Not individualized legal advice.",
     features: "WCAG AA · Privacy‑first · Offline‑ready",
   },
+  footer: {
+    guides: "Guides",
+    blog: "Blog",
+    impressum: "Impressum",
+    datenschutz: "Datenschutz",
+  },
   header: {
     findHelp: "Need help?",
     quickExit: "Quick Exit",
@@ -173,6 +179,9 @@ const en = {
     allServices: "All services",
     jugendamter: "Jugendämter",
     courts: "Courts",
+    legalGuides: "Legal Guides",
+    blog: "Blog",
+    officialResources: "Official Resources",
   },
   directory: {
     title: "Find support",
@@ -461,6 +470,31 @@ const en = {
     disclaimer:
       "Disclaimer: This guide provides general information only, not individualized legal advice. Consult a qualified family law attorney for advice specific to your situation.",
     note: "Note: These guides provide general information only. For legal advice specific to your situation, consult a qualified family law attorney.",
+    categories: {
+      legalProcess: "Legal Process",
+      practical: "Practical Guides",
+    },
+    languageNote: "",
+  },
+  blog: {
+    title: "Blog",
+    description:
+      "Real stories, practical advice, and insights on navigating custody and parental rights in Germany.",
+    backToBlog: "← Back to Blog",
+    categories: {
+      personalStory: "Personal Story",
+      legalGuide: "Legal Guide",
+      resource: "Resource",
+    },
+    disclaimer:
+      "Note: Blog posts reflect personal experiences and opinions. For legal advice specific to your situation, consult a qualified family law attorney.",
+    postDisclaimer:
+      "Disclaimer: This blog post reflects personal experiences and opinions. It does not constitute legal advice. For advice specific to your situation, consult a qualified family law attorney.",
+    aboutAuthor: "About the Author",
+    authorDescription:
+      "{author} is a father who has navigated the German custody system. This tool was built to help other parents facing similar challenges.",
+    by: "by",
+    languageNote: "",
   },
   impressum: {
     title: "Impressum",

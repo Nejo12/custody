@@ -1,4 +1,5 @@
 import { PDFDocument, StandardFonts, rgb, PageSizes } from "pdf-lib";
+import { formatDate } from "./utils";
 
 export interface InterviewData {
   custodyType?: string;
@@ -25,7 +26,7 @@ export interface PDFGenerationOptions {
  * Generate a professional custody document PDF
  */
 export async function generateCustodyPDF(options: PDFGenerationOptions): Promise<Buffer> {
-  const { tier, documentType, interviewData, locale = "en" } = options;
+  const { tier, documentType, interviewData } = options;
 
   // Create a new PDF document
   const pdfDoc = await PDFDocument.create();
@@ -88,7 +89,7 @@ export async function generateCustodyPDF(options: PDFGenerationOptions): Promise
     size: 12,
     bold: true,
   });
-  addText(`Generated: ${new Date().toLocaleDateString(locale === "de" ? "de-DE" : "en-US")}`, {
+  addText(`Generated: ${formatDate(new Date().toISOString())}`, {
     size: 10,
   });
   addText(`Tier: ${tier}`, { size: 10 });

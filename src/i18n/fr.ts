@@ -19,6 +19,12 @@ const fr = {
     disclaimer: "Information uniquement. Pas de conseil juridique individualisé.",
     features: "WCAG AA · Confidentialité d'abord · Prêt hors ligne",
   },
+  footer: {
+    guides: "Guides",
+    blog: "Blog",
+    impressum: "Mentions légales",
+    datenschutz: "Confidentialité",
+  },
   header: {
     findHelp: "Trouver de l'aide",
     quickExit: "Quitter rapidement",
@@ -178,6 +184,9 @@ const fr = {
     allServices: "Tous les services",
     jugendamter: "Jugendämter",
     courts: "Tribunaux",
+    legalGuides: "Guides juridiques",
+    blog: "Blog",
+    officialResources: "Ressources officielles",
   },
   directory: {
     title: "Trouver du soutien",
@@ -444,6 +453,31 @@ const fr = {
     disclaimer:
       "Avertissement : Ce guide fournit des informations générales uniquement, pas de conseils juridiques individualisés. Consultez un avocat spécialisé en droit de la famille pour des conseils spécifiques à votre situation.",
     note: "Note : Ces guides fournissent des informations générales uniquement. Pour des conseils juridiques spécifiques à votre situation, consultez un avocat spécialisé en droit de la famille.",
+    categories: {
+      legalProcess: "Processus juridique",
+      practical: "Guides pratiques",
+    },
+    languageNote: "Note : Les guides ne sont actuellement disponibles qu'en anglais.",
+  },
+  blog: {
+    title: "Blog",
+    description:
+      "Histoires réelles, conseils pratiques et aperçus sur la navigation dans les droits de garde et parentaux en Allemagne.",
+    backToBlog: "← Retour au blog",
+    categories: {
+      personalStory: "Histoire personnelle",
+      legalGuide: "Guide juridique",
+      resource: "Ressource",
+    },
+    disclaimer:
+      "Note : Les articles de blog reflètent des expériences et opinions personnelles. Pour des conseils juridiques spécifiques à votre situation, consultez un avocat spécialisé en droit de la famille.",
+    postDisclaimer:
+      "Avertissement : Cet article de blog reflète des expériences et opinions personnelles. Il ne constitue pas un conseil juridique. Pour des conseils spécifiques à votre situation, consultez un avocat spécialisé en droit de la famille.",
+    aboutAuthor: "À propos de l'auteur",
+    authorDescription:
+      "{author} est un père qui a navigué dans le système de garde allemand. Cet outil a été créé pour aider d'autres parents confrontés à des défis similaires.",
+    by: "par",
+    languageNote: "Note : Les articles de blog ne sont actuellement disponibles qu'en anglais.",
   },
   impressum: {
     title: "Mentions légales",

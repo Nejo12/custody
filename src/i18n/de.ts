@@ -19,6 +19,12 @@ const de = {
     disclaimer: "Nur Information – keine individuelle Rechtsberatung.",
     features: "WCAG AA · Datenschutzorientiert · Offlinefähig",
   },
+  footer: {
+    guides: "Leitfäden",
+    blog: "Blog",
+    impressum: "Impressum",
+    datenschutz: "Datenschutz",
+  },
   header: {
     findHelp: "Hilfe finden",
     quickExit: "Schnell verlassen",
@@ -173,6 +179,9 @@ const de = {
     allServices: "Alle Dienste",
     jugendamter: "Jugendämter",
     courts: "Gerichte",
+    legalGuides: "Leitfäden",
+    blog: "Blog",
+    officialResources: "Offizielle Ressourcen",
   },
   directory: {
     title: "Hilfe finden",
@@ -435,6 +444,31 @@ const de = {
     disclaimer:
       "Haftungsausschluss: Dieser Leitfaden bietet nur allgemeine Informationen, keine individuelle Rechtsberatung. Konsultieren Sie einen qualifizierten Familienrechtsanwalt für Beratung zu Ihrer spezifischen Situation.",
     note: "Hinweis: Diese Leitfäden bieten nur allgemeine Informationen. Für rechtliche Beratung zu Ihrer spezifischen Situation konsultieren Sie einen qualifizierten Familienrechtsanwalt.",
+    categories: {
+      legalProcess: "Rechtlicher Prozess",
+      practical: "Praktische Leitfäden",
+    },
+    languageNote: "Hinweis: Die Leitfäden sind derzeit nur auf Englisch verfügbar.",
+  },
+  blog: {
+    title: "Blog",
+    description:
+      "Echte Geschichten, praktische Ratschläge und Einblicke zur Navigation im Sorge- und Umgangsrecht in Deutschland.",
+    backToBlog: "← Zurück zum Blog",
+    categories: {
+      personalStory: "Persönliche Geschichte",
+      legalGuide: "Rechtlicher Leitfaden",
+      resource: "Ressource",
+    },
+    disclaimer:
+      "Hinweis: Blogbeiträge spiegeln persönliche Erfahrungen und Meinungen wider. Für rechtliche Beratung zu Ihrer spezifischen Situation konsultieren Sie einen qualifizierten Familienrechtsanwalt.",
+    postDisclaimer:
+      "Haftungsausschluss: Dieser Blogbeitrag spiegelt persönliche Erfahrungen und Meinungen wider. Er stellt keine Rechtsberatung dar. Für Beratung zu Ihrer spezifischen Situation konsultieren Sie einen qualifizierten Familienrechtsanwalt.",
+    aboutAuthor: "Über den Autor",
+    authorDescription:
+      "{author} ist ein Vater, der das deutsche Sorgerechtssystem durchlaufen hat. Dieses Tool wurde entwickelt, um anderen Eltern zu helfen, die ähnliche Herausforderungen bewältigen.",
+    by: "von",
+    languageNote: "Hinweis: Die Blogbeiträge sind derzeit nur auf Englisch verfügbar.",
   },
   impressum: {
     title: "Impressum",

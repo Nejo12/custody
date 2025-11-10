@@ -19,6 +19,12 @@ const pl = {
     disclaimer: "Tylko informacja. Nie jest to indywidualna porada prawna.",
     features: "WCAG AA · Prywatność przede wszystkim · Gotowe do pracy offline",
   },
+  footer: {
+    guides: "Przewodniki",
+    blog: "Blog",
+    impressum: "Informacje prawne",
+    datenschutz: "Prywatność",
+  },
   header: {
     findHelp: "Znajdź pomoc",
     quickExit: "Szybkie wyjście",
@@ -176,6 +182,9 @@ const pl = {
     allServices: "Wszystkie usługi",
     jugendamter: "Jugendämter",
     courts: "Sądy",
+    legalGuides: "Przewodniki prawne",
+    blog: "Blog",
+    officialResources: "Oficjalne zasoby",
   },
   directory: {
     title: "Znajdź wsparcie",
@@ -436,6 +445,31 @@ const pl = {
     disclaimer:
       "Zastrzeżenie: Ten przewodnik zawiera jedynie ogólne informacje, a nie indywidualną poradę prawną. Skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym w celu uzyskania porady dotyczącej Twojej konkretnej sytuacji.",
     note: "Uwaga: Te przewodniki zawierają jedynie ogólne informacje. W celu uzyskania porady prawnej dotyczącej Twojej konkretnej sytuacji skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym.",
+    categories: {
+      legalProcess: "Proces prawny",
+      practical: "Przewodniki praktyczne",
+    },
+    languageNote: "Uwaga: Przewodniki są obecnie dostępne tylko w języku angielskim.",
+  },
+  blog: {
+    title: "Blog",
+    description:
+      "Prawdziwe historie, praktyczne porady i spostrzeżenia dotyczące poruszania się w prawach opieki i rodzicielskich w Niemczech.",
+    backToBlog: "← Powrót do bloga",
+    categories: {
+      personalStory: "Historia osobista",
+      legalGuide: "Przewodnik prawny",
+      resource: "Zasób",
+    },
+    disclaimer:
+      "Uwaga: Posty na blogu odzwierciedlają osobiste doświadczenia i opinie. W celu uzyskania porady prawnej dotyczącej Twojej konkretnej sytuacji skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym.",
+    postDisclaimer:
+      "Zastrzeżenie: Ten post na blogu odzwierciedla osobiste doświadczenia i opinie. Nie stanowi porady prawnej. W celu uzyskania porady dotyczącej Twojej konkretnej sytuacji skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym.",
+    aboutAuthor: "O autorze",
+    authorDescription:
+      "{author} jest ojcem, który przeszedł przez niemiecki system opieki. To narzędzie zostało stworzone, aby pomóc innym rodzicom stawiającym czoła podobnym wyzwaniom.",
+    by: "przez",
+    languageNote: "Uwaga: Posty na blogu są obecnie dostępne tylko w języku angielskim.",
   },
   impressum: {
     title: "Informacje prawne",

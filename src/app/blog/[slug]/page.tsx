@@ -2,75 +2,48 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { useI18n } from "@/i18n";
-import guidesDataEn from "@/data/guides.json";
+import blogData from "@/data/blog.json";
 import { formatDate } from "@/lib/utils";
-import { use, useMemo, useState, useEffect } from "react";
+import { use, useMemo } from "react";
 
-// Lazy load locale-specific guides data
-const loadGuides = async (locale: string) => {
-  try {
-    switch (locale) {
-      case "de":
-        return (await import("@/data/guides.de.json")).default;
-      case "ar":
-        return (await import("@/data/guides.ar.json")).default;
-      case "pl":
-        return (await import("@/data/guides.pl.json")).default;
-      case "fr":
-        return (await import("@/data/guides.fr.json")).default;
-      case "tr":
-        return (await import("@/data/guides.tr.json")).default;
-      case "ru":
-        return (await import("@/data/guides.ru.json")).default;
-      default:
-        return guidesDataEn;
-    }
-  } catch {
-    return guidesDataEn;
-  }
-};
-
-type Guide = {
+type BlogPost = {
   slug: string;
   title: string;
   excerpt: string;
   category: string;
   published: string;
   readTime: string;
+  author: string;
   content: string;
+  keywords?: string[];
 };
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
-export default function GuidePage({ params }: Props) {
+export default function BlogPostPage({ params }: Props) {
+  const { t } = useI18n();
   const resolvedParams = use(params);
   const { slug } = resolvedParams;
-  const { t, locale } = useI18n();
-  const [guidesData, setGuidesData] = useState(guidesDataEn);
+  const posts = blogData.posts as BlogPost[];
+  const post = posts.find((p) => p.slug === slug);
 
-  useEffect(() => {
-    loadGuides(locale).then((data) => setGuidesData(data));
-  }, [locale]);
-
-  const guides = guidesData.guides as Guide[];
-  const guide = guides.find((g) => g.slug === slug);
-
-  if (!guide) {
+  if (!post) {
     notFound();
   }
 
   const categories = {
-    "legal-process": t.guides?.categories?.legalProcess || "Legal Process",
-    practical: t.guides?.categories?.practical || "Practical Guides",
+    "personal-story": t.blog.categories.personalStory,
+    "legal-guide": t.blog.categories.legalGuide,
+    resource: t.blog.categories.resource,
   };
 
-  const formattedDate = formatDate(guide.published);
+  const formattedDate = formatDate(post.published);
 
-  // Simple markdown-like rendering
+  // Simple markdown-like rendering (same as guides)
   const renderedContent = useMemo(() => {
-    const lines = guide.content.split("\n");
+    const lines = post.content.split("\n");
     const elements: React.ReactNode[] = [];
     let currentList: string[] = [];
     let listType: "ul" | "ol" | null = null;
@@ -80,7 +53,10 @@ export default function GuidePage({ params }: Props) {
         if (currentList.length > 0) {
           const ListTag = listType === "ol" ? "ol" : "ul";
           elements.push(
-            <ListTag key={`list-${idx}`} className="list-disc list-inside mb-3 space-y-1 ml-4">
+            <ListTag
+              key={`list-${idx}`}
+              className="list-disc list-inside mb-3 space-y-1 ml-4 text-zinc-900 dark:text-zinc-100"
+            >
               {currentList.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
@@ -90,7 +66,10 @@ export default function GuidePage({ params }: Props) {
           listType = null;
         }
         elements.push(
-          <h2 key={`h2-${idx}`} className="text-xl font-semibold mt-6 mb-3">
+          <h2
+            key={`h2-${idx}`}
+            className="text-xl font-semibold mt-6 mb-3 text-zinc-900 dark:text-zinc-100"
+          >
             {line.replace("## ", "")}
           </h2>
         );
@@ -98,7 +77,10 @@ export default function GuidePage({ params }: Props) {
         if (currentList.length > 0) {
           const ListTag = listType === "ol" ? "ol" : "ul";
           elements.push(
-            <ListTag key={`list-${idx}`} className="list-disc list-inside mb-3 space-y-1 ml-4">
+            <ListTag
+              key={`list-${idx}`}
+              className="list-disc list-inside mb-3 space-y-1 ml-4 text-zinc-900 dark:text-zinc-100"
+            >
               {currentList.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
@@ -108,7 +90,10 @@ export default function GuidePage({ params }: Props) {
           listType = null;
         }
         elements.push(
-          <h3 key={`h3-${idx}`} className="text-lg font-semibold mt-4 mb-2">
+          <h3
+            key={`h3-${idx}`}
+            className="text-lg font-semibold mt-4 mb-2 text-zinc-900 dark:text-zinc-100"
+          >
             {line.replace("### ", "")}
           </h3>
         );
@@ -116,7 +101,10 @@ export default function GuidePage({ params }: Props) {
         if (listType !== "ul") {
           if (listType === "ol" && currentList.length > 0) {
             elements.push(
-              <ol key={`list-${idx}`} className="list-decimal list-inside mb-3 space-y-1 ml-4">
+              <ol
+                key={`list-${idx}`}
+                className="list-decimal list-inside mb-3 space-y-1 ml-4 text-zinc-900 dark:text-zinc-100"
+              >
                 {currentList.map((item, i) => (
                   <li key={i}>{item}</li>
                 ))}
@@ -131,7 +119,10 @@ export default function GuidePage({ params }: Props) {
         if (listType !== "ol") {
           if (listType === "ul" && currentList.length > 0) {
             elements.push(
-              <ul key={`list-${idx}`} className="list-disc list-inside mb-3 space-y-1 ml-4">
+              <ul
+                key={`list-${idx}`}
+                className="list-disc list-inside mb-3 space-y-1 ml-4 text-zinc-900 dark:text-zinc-100"
+              >
                 {currentList.map((item, i) => (
                   <li key={i}>{item}</li>
                 ))}
@@ -148,7 +139,7 @@ export default function GuidePage({ params }: Props) {
           elements.push(
             <ListTag
               key={`list-${idx}`}
-              className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4`}
+              className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4 text-zinc-900 dark:text-zinc-100`}
             >
               {currentList.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -165,7 +156,7 @@ export default function GuidePage({ params }: Props) {
           elements.push(
             <ListTag
               key={`list-${idx}`}
-              className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4`}
+              className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4 text-zinc-900 dark:text-zinc-100`}
             >
               {currentList.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -175,10 +166,14 @@ export default function GuidePage({ params }: Props) {
           currentList = [];
           listType = null;
         }
+        // Handle bold text with **text**
+        const processedLine = line.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
         elements.push(
-          <p key={`p-${idx}`} className="mb-3">
-            {line}
-          </p>
+          <p
+            key={`p-${idx}`}
+            className="mb-3 text-zinc-900 dark:text-zinc-100"
+            dangerouslySetInnerHTML={{ __html: processedLine }}
+          />
         );
       }
     });
@@ -188,7 +183,7 @@ export default function GuidePage({ params }: Props) {
       elements.push(
         <ListTag
           key="list-final"
-          className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4`}
+          className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4 text-zinc-900 dark:text-zinc-100`}
         >
           {currentList.map((item, i) => (
             <li key={i}>{item}</li>
@@ -198,39 +193,57 @@ export default function GuidePage({ params }: Props) {
     }
 
     return elements;
-  }, [guide.content]);
+  }, [post.content]);
 
   return (
     <article className="w-full max-w-2xl mx-auto px-4 py-6 space-y-6">
       <div>
-        <Link href="/guides" className="text-sm  hover:underline mb-4 inline-block">
-          {t.guides?.backToGuides || "← Back to Guides"}
+        <Link
+          href="/blog"
+          className="text-sm text-zinc-600 dark:text-zinc-400 hover:underline mb-4 inline-block"
+        >
+          {t.blog.backToBlog}
         </Link>
-        <h1 className="text-2xl font-semibold mb-2">{guide.title}</h1>
-        <div className="flex items-center gap-4 text-sm  mb-4">
-          <span className="px-2 py-1 rounded bg-zinc-800 text-zinc-300 dark:bg-zinc-600">
-            {categories[guide.category as keyof typeof categories] || guide.category}
+        <h1 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-100">
+          {post.title}
+        </h1>
+        <div className="flex items-center gap-4 text-sm text-zinc-600 dark:text-zinc-400 mb-4">
+          <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100">
+            {categories[post.category as keyof typeof categories] || post.category}
           </span>
-          <span className="text-zinc-500 dark:text-zinc-400">{guide.readTime}</span>
-          <span className="text-zinc-500 dark:text-zinc-400">{formattedDate}</span>
+          <span className="text-zinc-700 dark:text-zinc-400">{post.readTime}</span>
+          <span className="text-zinc-700 dark:text-zinc-400">{formattedDate}</span>
+          {post.author && (
+            <span className="text-zinc-700 dark:text-zinc-400">
+              {t.blog.by} {post.author}
+            </span>
+          )}
         </div>
-        <p className="text-zinc-400 dark:text-zinc-400 mb-6">{guide.excerpt}</p>
+        <p className="text-zinc-800 dark:text-zinc-300 mb-6 italic">{post.excerpt}</p>
       </div>
 
-      {t.guides?.languageNote && (
-        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm">
-          <p>{t.guides.languageNote}</p>
+      {t.blog.languageNote && (
+        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm text-zinc-700 dark:text-zinc-300">
+          <p>{t.blog.languageNote}</p>
         </div>
       )}
 
       <div className="prose prose-zinc dark:prose-invert max-w-none">
-        <div className="text-sm leading-relaxed">{renderedContent}</div>
+        <div className="text-sm text-zinc-900 dark:text-zinc-100 leading-relaxed">
+          {renderedContent}
+        </div>
       </div>
 
       <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-300">
-        <p>
-          {t.guides?.disclaimer ||
-            "Disclaimer: This guide provides general information only, not individualized legal advice. Consult a qualified family law attorney for advice specific to your situation."}
+        <p>{t.blog.postDisclaimer}</p>
+      </div>
+
+      <div className="border-t border-zinc-300 dark:border-zinc-700 pt-6">
+        <h3 className="text-lg font-semibold mb-3 text-zinc-900 dark:text-zinc-100">
+          {t.blog.aboutAuthor}
+        </h3>
+        <p className="text-sm text-zinc-700 dark:text-zinc-300">
+          {t.blog.authorDescription.replace("{author}", post.author || "")}
         </p>
       </div>
     </article>
