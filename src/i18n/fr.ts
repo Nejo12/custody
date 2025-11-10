@@ -511,6 +511,41 @@ const fr = {
     changesText:
       "Nous nous réservons le droit d'adapter cette politique de confidentialité afin qu'elle soit toujours conforme aux exigences légales actuelles ou pour mettre en œuvre des modifications à nos services dans la politique de confidentialité.",
   },
+  paymentSuccess: {
+    verifying: "Vérification de votre paiement...",
+    loading: "Chargement...",
+    verificationFailed: "Échec de la vérification du paiement",
+    verificationFailedMessage:
+      "Nous n'avons pas pu vérifier votre paiement. Si vous avez été débité, ne vous inquiétez pas - nous vous enverrons votre document par e-mail sous peu.",
+    goToResults: "Aller aux résultats",
+    goHome: "Retour à l'accueil",
+    paymentInitiated: "Paiement initié !",
+    paymentSuccessful: "Paiement réussi !",
+    sepaProcessing: "Votre paiement SEPA est en cours de traitement",
+    thankYou: "Merci pour votre achat",
+    sepaProcessingTitle: "Traitement du paiement SEPA",
+    sepaProcessingMessage:
+      "Les paiements par prélèvement automatique SEPA prennent 3 à 5 jours ouvrables pour être traités. Vous recevrez votre document PDF par e-mail une fois le paiement confirmé.",
+    whatHappensNext: "Que se passe-t-il ensuite ?",
+    step1Title: "Vérifiez votre e-mail",
+    step1MessageSepa:
+      "Nous avons envoyé une confirmation à votre e-mail. Votre document sera envoyé une fois que votre paiement SEPA sera traité (3-5 jours ouvrables).",
+    step1Message:
+      "Nous avons envoyé une confirmation à votre adresse e-mail. Votre document arrivera dans les 5 à 10 minutes.",
+    step2Title: "Examinez votre document",
+    step2Message: "Ouvrez la pièce jointe PDF et examinez attentivement toutes les informations.",
+    step3Title: "Soumettez aux autorités",
+    step3Message:
+      "Suivez les instructions du document pour le soumettre au tribunal ou au bureau approprié.",
+    emailNotReceived: "Vous n'avez pas reçu votre e-mail ?",
+    emailNotReceivedTip1: "Vérifiez votre dossier spam/courrier indésirable",
+    emailNotReceivedTip2: "Attendez jusqu'à 10 minutes pour la livraison",
+    emailNotReceivedTip3: "Contactez support@custodyclarity.com si vous ne le recevez toujours pas",
+    viewResults: "Voir vos résultats",
+    returnHome: "Retour à l'accueil",
+    needHelp: "Besoin d'aide ? Écrivez-nous à support@custodyclarity.com",
+    sessionId: "ID de session :",
+  },
 };
 
 export default fr;

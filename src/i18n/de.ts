@@ -503,6 +503,42 @@ const de = {
     changesText:
       "Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen.",
   },
+  paymentSuccess: {
+    verifying: "Zahlung wird überprüft...",
+    loading: "Lädt...",
+    verificationFailed: "Zahlungsüberprüfung fehlgeschlagen",
+    verificationFailedMessage:
+      "Wir konnten Ihre Zahlung nicht überprüfen. Falls Sie belastet wurden, keine Sorge - wir senden Ihr Dokument in Kürze per E-Mail.",
+    goToResults: "Zu den Ergebnissen",
+    goHome: "Zur Startseite",
+    paymentInitiated: "Zahlung initiiert!",
+    paymentSuccessful: "Zahlung erfolgreich!",
+    sepaProcessing: "Ihre SEPA-Zahlung wird bearbeitet",
+    thankYou: "Vielen Dank für Ihren Kauf",
+    sepaProcessingTitle: "SEPA-Zahlungsbearbeitung",
+    sepaProcessingMessage:
+      "SEPA-Lastschriftzahlungen benötigen 3-5 Werktage zur Abwicklung. Sie erhalten Ihr PDF-Dokument per E-Mail, sobald die Zahlung bestätigt wurde.",
+    whatHappensNext: "Was passiert als Nächstes?",
+    step1Title: "E-Mail prüfen",
+    step1MessageSepa:
+      "Wir haben eine Bestätigung an Ihre E-Mail gesendet. Ihr Dokument wird gesendet, sobald Ihre SEPA-Zahlung abgewickelt wurde (3-5 Werktage).",
+    step1Message:
+      "Wir haben eine Bestätigung an Ihre E-Mail-Adresse gesendet. Ihr Dokument wird innerhalb von 5-10 Minuten eintreffen.",
+    step2Title: "Dokument prüfen",
+    step2Message: "Öffnen Sie den PDF-Anhang und prüfen Sie alle Informationen sorgfältig.",
+    step3Title: "Bei Behörden einreichen",
+    step3Message:
+      "Befolgen Sie die Anweisungen im Dokument, um es beim zuständigen Gericht oder Amt einzureichen.",
+    emailNotReceived: "E-Mail nicht erhalten?",
+    emailNotReceivedTip1: "Spam-/Junk-Ordner prüfen",
+    emailNotReceivedTip2: "Bis zu 10 Minuten auf Zustellung warten",
+    emailNotReceivedTip3:
+      "Kontaktieren Sie support@custodyclarity.com, falls Sie sie weiterhin nicht erhalten",
+    viewResults: "Ihre Ergebnisse anzeigen",
+    returnHome: "Zur Startseite",
+    needHelp: "Benötigen Sie Hilfe? Schreiben Sie uns an support@custodyclarity.com",
+    sessionId: "Sitzungs-ID:",
+  },
 };
 
 export default de;

@@ -504,6 +504,42 @@ const pl = {
     changesText:
       "Zastrzegamy sobie prawo do dostosowania tej polityki prywatności, aby zawsze była zgodna z aktualnymi wymogami prawnymi lub wdrożenia zmian w naszych usługach w polityce prywatności.",
   },
+  paymentSuccess: {
+    verifying: "Weryfikowanie płatności...",
+    loading: "Ładowanie...",
+    verificationFailed: "Weryfikacja płatności nie powiodła się",
+    verificationFailedMessage:
+      "Nie mogliśmy zweryfikować Twojej płatności. Jeśli zostałeś obciążony, nie martw się - wyślemy Twój dokument na e-mail wkrótce.",
+    goToResults: "Przejdź do wyników",
+    goHome: "Wróć do strony głównej",
+    paymentInitiated: "Płatność zainicjowana!",
+    paymentSuccessful: "Płatność zakończona sukcesem!",
+    sepaProcessing: "Twoja płatność SEPA jest przetwarzana",
+    thankYou: "Dziękujemy za zakup",
+    sepaProcessingTitle: "Przetwarzanie płatności SEPA",
+    sepaProcessingMessage:
+      "Płatności bezpośredniego obciążenia SEPA wymagają 3-5 dni roboczych do rozliczenia. Otrzymasz dokument PDF na e-mail po potwierdzeniu płatności.",
+    whatHappensNext: "Co dalej?",
+    step1Title: "Sprawdź swoją pocztę e-mail",
+    step1MessageSepa:
+      "Wysłaliśmy potwierdzenie na Twój e-mail. Dokument zostanie wysłany po rozliczeniu płatności SEPA (3-5 dni roboczych).",
+    step1Message:
+      "Wysłaliśmy potwierdzenie na Twój adres e-mail. Dokument dotrze w ciągu 5-10 minut.",
+    step2Title: "Przejrzyj dokument",
+    step2Message: "Otwórz załącznik PDF i dokładnie przejrzyj wszystkie informacje.",
+    step3Title: "Prześlij do urzędów",
+    step3Message:
+      "Postępuj zgodnie z instrukcjami w dokumencie, aby przesłać go do odpowiedniego sądu lub urzędu.",
+    emailNotReceived: "Nie otrzymałeś e-maila?",
+    emailNotReceivedTip1: "Sprawdź folder spam/niechciane",
+    emailNotReceivedTip2: "Poczekaj do 10 minut na dostarczenie",
+    emailNotReceivedTip3:
+      "Skontaktuj się z support@custodyclarity.com, jeśli nadal go nie otrzymujesz",
+    viewResults: "Zobacz swoje wyniki",
+    returnHome: "Wróć do strony głównej",
+    needHelp: "Potrzebujesz pomocy? Napisz do nas na support@custodyclarity.com",
+    sessionId: "ID sesji:",
+  },
 };
 
 export default pl;

@@ -493,6 +493,39 @@ const ar = {
     changesText:
       "نحتفظ بالحق في تكييف سياسة الخصوصية هذه بحيث تتوافق دائماً مع المتطلبات القانونية الحالية أو لتنفيذ تغييرات على خدماتنا في سياسة الخصوصية.",
   },
+  paymentSuccess: {
+    verifying: "جارٍ التحقق من الدفع...",
+    loading: "جارٍ التحميل...",
+    verificationFailed: "فشل التحقق من الدفع",
+    verificationFailedMessage:
+      "لم نتمكن من التحقق من دفعتك. إذا تم خصم المبلغ، لا تقلق - سنرسل المستند إلى بريدك الإلكتروني قريباً.",
+    goToResults: "الانتقال إلى النتائج",
+    goHome: "العودة إلى الصفحة الرئيسية",
+    paymentInitiated: "تم بدء الدفع!",
+    paymentSuccessful: "تم الدفع بنجاح!",
+    sepaProcessing: "جارٍ معالجة دفعتك عبر SEPA",
+    thankYou: "شكراً لك على الشراء",
+    sepaProcessingTitle: "معالجة الدفع عبر SEPA",
+    sepaProcessingMessage:
+      "تستغرق مدفوعات الخصم المباشر SEPA من 3 إلى 5 أيام عمل للمعالجة. ستحصل على مستند PDF الخاص بك عبر البريد الإلكتروني بمجرد تأكيد الدفع.",
+    whatHappensNext: "ماذا يحدث بعد ذلك؟",
+    step1Title: "تحقق من بريدك الإلكتروني",
+    step1MessageSepa:
+      "لقد أرسلنا تأكيداً إلى بريدك الإلكتروني. سيتم إرسال المستند بمجرد معالجة دفعتك عبر SEPA (3-5 أيام عمل).",
+    step1Message: "لقد أرسلنا تأكيداً إلى عنوان بريدك الإلكتروني. سيصل المستند خلال 5-10 دقائق.",
+    step2Title: "راجع المستند",
+    step2Message: "افتح مرفق PDF وراجع جميع المعلومات بعناية.",
+    step3Title: "قدمه للسلطات",
+    step3Message: "اتبع التعليمات في المستند لتقديمه إلى المحكمة أو المكتب المناسب.",
+    emailNotReceived: "لم تستلم بريدك الإلكتروني؟",
+    emailNotReceivedTip1: "تحقق من مجلد البريد العشوائي/غير المرغوب فيه",
+    emailNotReceivedTip2: "انتظر حتى 10 دقائق للتسليم",
+    emailNotReceivedTip3: "اتصل بـ support@custodyclarity.com إذا لم تستلمه بعد",
+    viewResults: "عرض نتائجك",
+    returnHome: "العودة إلى الصفحة الرئيسية",
+    needHelp: "تحتاج مساعدة؟ راسلنا على support@custodyclarity.com",
+    sessionId: "معرف الجلسة:",
+  },
 };
 
 export default ar;

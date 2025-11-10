@@ -528,6 +528,41 @@ const en = {
     changesText:
       "We reserve the right to adapt this privacy policy so that it always complies with current legal requirements or to implement changes to our services in the privacy policy.",
   },
+  paymentSuccess: {
+    verifying: "Verifying your payment...",
+    loading: "Loading...",
+    verificationFailed: "Payment Verification Failed",
+    verificationFailedMessage:
+      "We couldn't verify your payment. If you were charged, don't worry - we'll send your document to your email shortly.",
+    goToResults: "Go to Results",
+    goHome: "Go Home",
+    paymentInitiated: "Payment Initiated!",
+    paymentSuccessful: "Payment Successful!",
+    sepaProcessing: "Your SEPA payment is being processed",
+    thankYou: "Thank you for your purchase",
+    sepaProcessingTitle: "SEPA Payment Processing",
+    sepaProcessingMessage:
+      "SEPA Direct Debit payments take 3-5 business days to clear. You'll receive your PDF document via email once the payment is confirmed.",
+    whatHappensNext: "What happens next?",
+    step1Title: "Check your email",
+    step1MessageSepa:
+      "We've sent a confirmation to your email. Your document will be sent once your SEPA payment clears (3-5 business days).",
+    step1Message:
+      "We've sent a confirmation to your email address. Your document will arrive within 5-10 minutes.",
+    step2Title: "Review your document",
+    step2Message: "Open the PDF attachment and review all the information carefully.",
+    step3Title: "Submit to authorities",
+    step3Message:
+      "Follow the instructions in the document to submit it to the appropriate court or office.",
+    emailNotReceived: "Haven't received your email?",
+    emailNotReceivedTip1: "Check your spam/junk folder",
+    emailNotReceivedTip2: "Wait up to 10 minutes for delivery",
+    emailNotReceivedTip3: "Contact support@custodyclarity.com if you still don't receive it",
+    viewResults: "View Your Results",
+    returnHome: "Return Home",
+    needHelp: "Need help? Email us at support@custodyclarity.com",
+    sessionId: "Session ID:",
+  },
 };
 
 export default en;

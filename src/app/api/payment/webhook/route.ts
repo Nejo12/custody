@@ -108,7 +108,7 @@ export async function POST(req: NextRequest) {
           });
 
           if (emailResult.success) {
-            console.log(`PDF sent successfully to ${session.customer_email}`);
+            console.info(`PDF sent successfully to ${session.customer_email}`); // eslint-disable-line no-console
           } else {
             console.error(`Failed to send PDF: ${emailResult.error}`);
           }

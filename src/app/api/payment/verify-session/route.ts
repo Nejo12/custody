@@ -12,15 +12,30 @@ export async function GET(req: NextRequest) {
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
-    if (session.payment_status === "paid") {
+    // Accept both "paid" (card payments) and "unpaid" with valid payment intent (SEPA)
+    // SEPA payments show as "unpaid" initially but will be processed asynchronously
+    const isSuccessful =
+      session.payment_status === "paid" ||
+      (session.payment_status === "unpaid" && session.payment_intent);
+
+    if (isSuccessful) {
       return NextResponse.json({
         success: true,
         email: session.customer_email,
         metadata: session.metadata,
+        paymentStatus: session.payment_status, // Include status for frontend
+        paymentMethod: session.payment_method_types?.[0] || "unknown",
       });
     }
 
-    return NextResponse.json({ success: false, error: "Payment not completed" }, { status: 400 });
+    return NextResponse.json(
+      {
+        success: false,
+        error: "Payment not completed",
+        paymentStatus: session.payment_status,
+      },
+      { status: 400 }
+    );
   } catch (error) {
     console.error("Error verifying session:", error);
     return NextResponse.json({ error: "Failed to verify session" }, { status: 500 });

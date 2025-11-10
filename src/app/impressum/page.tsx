@@ -21,15 +21,12 @@ export default function ImpressumPage() {
             </strong>
           </p>
           <p className="mt-2">
-            {/* TODO: Replace with actual contact information */}
-            [Ihr Name]
+            <strong>Olaniyi Gabriel, Aborisade</strong>
             <br />
-            [Ihre Adresse]
+            <strong>12459 Berlin</strong>
             <br />
-            [PLZ Ort]
           </p>
         </div>
-
         <div>
           <h2 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
             {t.impressum?.contact || "Kontakt"}

@@ -496,6 +496,39 @@ const tr = {
     changesText:
       "Bu gizlilik politikasını, her zaman mevcut yasal gerekliliklere uygun olması veya hizmetlerimizdeki değişiklikleri gizlilik politikasında uygulamak için uyarlama hakkını saklı tutarız.",
   },
+  paymentSuccess: {
+    verifying: "Ödemeniz doğrulanıyor...",
+    loading: "Yükleniyor...",
+    verificationFailed: "Ödeme Doğrulaması Başarısız",
+    verificationFailedMessage:
+      "Ödemenizi doğrulayamadık. Ücretlendirildiyseniz, endişelenmeyin - belgenizi kısa süre içinde e-postanıza göndereceğiz.",
+    goToResults: "Sonuçlara Git",
+    goHome: "Ana Sayfaya Dön",
+    paymentInitiated: "Ödeme Başlatıldı!",
+    paymentSuccessful: "Ödeme Başarılı!",
+    sepaProcessing: "SEPA ödemeniz işleniyor",
+    thankYou: "Satın aldığınız için teşekkürler",
+    sepaProcessingTitle: "SEPA Ödeme İşleme",
+    sepaProcessingMessage:
+      "SEPA Doğrudan Borçlandırma ödemeleri 3-5 iş günü sürer. Ödeme onaylandıktan sonra PDF belgenizi e-posta ile alacaksınız.",
+    whatHappensNext: "Sırada ne var?",
+    step1Title: "E-postanızı kontrol edin",
+    step1MessageSepa:
+      "E-postanıza bir onay gönderdik. Belgeniz, SEPA ödemeniz işlendikten sonra gönderilecektir (3-5 iş günü).",
+    step1Message: "E-posta adresinize bir onay gönderdik. Belgeniz 5-10 dakika içinde gelecektir.",
+    step2Title: "Belgenizi inceleyin",
+    step2Message: "PDF ekindini açın ve tüm bilgileri dikkatlice inceleyin.",
+    step3Title: "Yetkililere sunun",
+    step3Message: "Belgeyi uygun mahkemeye veya ofise sunmak için belgedeki talimatları izleyin.",
+    emailNotReceived: "E-postanızı almadınız mı?",
+    emailNotReceivedTip1: "Spam/gereksiz klasörünüzü kontrol edin",
+    emailNotReceivedTip2: "Teslimat için 10 dakikaya kadar bekleyin",
+    emailNotReceivedTip3: "Hala almazsanız support@custodyclarity.com ile iletişime geçin",
+    viewResults: "Sonuçlarınızı Görüntüle",
+    returnHome: "Ana Sayfaya Dön",
+    needHelp: "Yardıma mı ihtiyacınız var? Bize support@custodyclarity.com adresinden yazın",
+    sessionId: "Oturum Kimliği:",
+  },
 };
 
 export default tr;
