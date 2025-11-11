@@ -10,25 +10,31 @@ export default function Footer() {
       <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1">
         <Link
           href="/guides"
-          className="underline hover:text-zinc-700 dark:hover:text-zinc-100 transition-colors"
+          className="underline hover:text-zinc-700 dark:hover:text-zinc-600 transition-colors"
         >
           {t.footer?.guides || "Guides"}
         </Link>
         <Link
           href="/blog"
-          className="underline hover:text-zinc-700 dark:hover:text-zinc-100 transition-colors"
+          className="underline hover:text-zinc-700 dark:hover:text-zinc-600 transition-colors"
         >
           {t.footer?.blog || "Blog"}
         </Link>
+        <Link
+          href="/pricing"
+          className="underline hover:text-zinc-700 dark:hover:text-zinc-600 transition-colors"
+        >
+          {"Professional PDFs"}
+        </Link>
         <a
           href="/impressum"
-          className="underline hover:text-zinc-700 dark:hover:text-zinc-100 transition-colors"
+          className="underline hover:text-zinc-700 dark:hover:text-zinc-600 transition-colors"
         >
           {t.footer?.impressum || "Impressum"}
         </a>
         <a
           href="/datenschutz"
-          className="underline hover:text-zinc-700 dark:hover:text-zinc-100 transition-colors"
+          className="underline hover:text-zinc-700 dark:hover:text-zinc-600 transition-colors"
         >
           {t.footer?.datenschutz || "Datenschutz"}
         </a>

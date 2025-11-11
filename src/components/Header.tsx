@@ -165,6 +165,13 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                     </button>
                   )}
                   <Link
+                    href="/pricing"
+                    className="block h-9 rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Professional PDFs
+                  </Link>
+                  <Link
                     href="/settings"
                     className="block h-9 rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() => setMenuOpen(false)}

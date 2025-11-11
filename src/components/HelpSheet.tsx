@@ -419,7 +419,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                       <div className="text-sm text-zinc-700 dark:text-zinc-500">{s.address}</div>
                       {s.phone && (
                         <a
-                          className="text-sm underline text-zinc-700 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-100"
+                          className="text-sm underline text-zinc-700 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-600"
                           href={`tel:${s.phone}`}
                           aria-label={t.helpSheet.callServiceAriaLabel.replace("{name}", s.name)}
                         >
@@ -428,7 +428,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                       )}
                       {s.url && (
                         <a
-                          className="ml-2 text-sm underline text-zinc-700 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-100"
+                          className="ml-2 text-sm underline text-zinc-700 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-600"
                           href={s.url}
                           target="_blank"
                           rel="noopener noreferrer"

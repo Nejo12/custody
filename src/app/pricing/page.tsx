@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
 import PricingCard from "@/components/PricingCard";
 import type { PricingTier } from "@/lib/stripe";
+import { trackEvent } from "@/components/Analytics";
 
 /**
  * Standalone pricing page that reuses existing pricing components.
@@ -14,6 +16,11 @@ export default function PricingPage() {
   // We default to a generic document type here; the modal
   // on the results page customizes this based on status.
   const defaultDocumentType = "custody-document";
+
+  // Track pricing page views for analytics
+  useEffect(() => {
+    trackEvent("pricing_view", { entry_point: "pricing-page" });
+  }, []);
 
   return (
     <div className="w-full max-w-5xl mx-auto px-4 py-10">

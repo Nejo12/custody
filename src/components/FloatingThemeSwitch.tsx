@@ -73,7 +73,7 @@ export default function FloatingThemeSwitch() {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed bottom-12 right-4 z-[60] inline-flex items-center justify-center w-12 h-12 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm hover:bg-white dark:hover:bg-zinc-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 shadow-lg hover:shadow-xl"
+      className="fixed bottom-12 right-4 z-[60] inline-flex items-center justify-center w-12 h-12 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm hover:bg-white dark:hover:bg-zinc-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 shadow-lg hover:shadow-xl md:hidden"
       aria-label={getLabel()}
       title={getLabel()}
       type="button"

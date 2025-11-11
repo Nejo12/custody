@@ -68,11 +68,11 @@ export default function BlogPage() {
       </div>
 
       {t.blog.languageNote && (
-        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm text-zinc-700 dark:text-zinc-500">
+        <div className="rounded-lg border border-zinc-300 dark:border-zinc-500 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm text-zinc-700 dark:text-zinc-500">
           <p>{t.blog.languageNote}</p>
         </div>
       )}
-      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-500">
+      <div className="rounded-lg border border-zinc-300 dark:border-zinc-400 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-500">
         <p>{t.blog.disclaimer}</p>
       </div>
     </div>

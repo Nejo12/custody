@@ -70,4 +70,10 @@ describe("Footer", () => {
     const footer = screen.getByRole("contentinfo");
     expect(footer).toHaveClass("w-full", "max-w-xl", "mx-auto", "text-center");
   });
+
+  it("includes Professional PDFs link", () => {
+    render(<Footer />);
+    const link = screen.getByRole("link", { name: /Professional PDFs/i });
+    expect(link).toBeInTheDocument();
+  });
 });

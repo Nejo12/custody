@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PRICING, PricingTier, formatPrice } from "@/lib/stripe";
+import { trackEvent } from "@/components/Analytics";
 
 interface PricingCardProps {
   tier: PricingTier;
@@ -32,6 +33,11 @@ export default function PricingCard({
     setError("");
 
     try {
+      // Track purchase intent from pricing UI
+      trackEvent("pricing_purchase_click", {
+        tier,
+        documentType,
+      });
       // Create checkout session
       const response = await fetch("/api/payment/create-checkout", {
         method: "POST",
