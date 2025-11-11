@@ -9,7 +9,7 @@
 # Runs every hour to send pending court reminders
 [[scheduled_functions]]
   schedule = "0 * * * *"  # Every hour at minute 0
-  path = "/api/reminders/send"
+  name = "send-reminders"
 
 [[redirects]]
   from = "https://www.custodyclarity.com/*"

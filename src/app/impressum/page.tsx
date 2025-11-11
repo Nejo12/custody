@@ -1,8 +1,41 @@
 "use client";
 import { useI18n } from "@/i18n";
+import { useEffect, useState } from "react";
 
+/**
+ * Impressum (Legal Notice) Page
+ *
+ * Displays legal information required under German law (§ 5 TMG).
+ * Uses client-side mounting guard to prevent hydration mismatches
+ * with i18n translations loaded from localStorage.
+ */
 export default function ImpressumPage() {
   const { t } = useI18n();
+
+  // Track mounted state to prevent hydration mismatch
+  // Only render content after client-side hydration is complete
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    // This is a valid pattern for tracking component mount state after hydration
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsMounted(true);
+  }, []);
+
+  // During SSR and initial hydration, render a minimal skeleton
+  // This prevents content flash when locale loads from localStorage
+  if (!isMounted) {
+    return (
+      <div className="w-full max-w-2xl mx-auto px-4 py-8 space-y-6">
+        <div className="h-8 w-48 bg-zinc-200 dark:bg-zinc-800 animate-pulse rounded" />
+        <div className="space-y-4">
+          <div className="h-4 bg-zinc-100 dark:bg-zinc-800 animate-pulse rounded" />
+          <div className="h-4 bg-zinc-100 dark:bg-zinc-800 animate-pulse rounded" />
+          <div className="h-4 w-3/4 bg-zinc-100 dark:bg-zinc-800 animate-pulse rounded" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-8 space-y-6">

@@ -4,7 +4,11 @@ import path from "path";
 export default defineConfig({
   test: {
     environment: "jsdom",
-    include: ["src/**/__tests__/*.{test,spec}.{ts,tsx}", "src/**/__tests__/*.{test,spec}.ts"],
+    include: [
+      "src/**/__tests__/*.{test,spec}.{ts,tsx}",
+      "src/**/__tests__/*.{test,spec}.ts",
+      "netlify/functions/**/__tests__/*.{test,spec}.ts",
+    ],
     setupFiles: ["./vitest.setup.ts", "./vitest.d.ts"],
     globals: true,
     coverage: {
