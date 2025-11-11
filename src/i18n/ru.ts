@@ -574,6 +574,12 @@ const ru = {
     needHelp: "Нужна помощь? Напишите нам на support@custodyclarity.com",
     sessionId: "ID сессии:",
   },
+  updatePrompt: {
+    message: "Доступна новая версия.",
+    later: "Позже",
+    updateNow: "Обновить сейчас",
+    updating: "Обновление...",
+  },
 };
 
 export default ru;

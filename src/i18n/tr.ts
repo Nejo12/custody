@@ -563,6 +563,12 @@ const tr = {
     needHelp: "Yardıma mı ihtiyacınız var? Bize support@custodyclarity.com adresinden yazın",
     sessionId: "Oturum Kimliği:",
   },
+  updatePrompt: {
+    message: "Yeni bir sürüm mevcut.",
+    later: "Sonra",
+    updateNow: "Şimdi güncelle",
+    updating: "Güncelleniyor...",
+  },
 };
 
 export default tr;

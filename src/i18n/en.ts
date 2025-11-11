@@ -597,6 +597,12 @@ const en = {
     needHelp: "Need help? Email us at support@custodyclarity.com",
     sessionId: "Session ID:",
   },
+  updatePrompt: {
+    message: "A new version is available.",
+    later: "Later",
+    updateNow: "Update now",
+    updating: "Updating...",
+  },
 };
 
 export default en;

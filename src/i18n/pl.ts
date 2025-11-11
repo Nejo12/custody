@@ -574,6 +574,12 @@ const pl = {
     needHelp: "Potrzebujesz pomocy? Napisz do nas na support@custodyclarity.com",
     sessionId: "ID sesji:",
   },
+  updatePrompt: {
+    message: "Dostępna jest nowa wersja.",
+    later: "Później",
+    updateNow: "Zaktualizuj teraz",
+    updating: "Aktualizowanie...",
+  },
 };
 
 export default pl;

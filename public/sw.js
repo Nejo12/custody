@@ -31,7 +31,7 @@ self.addEventListener('install', (event) => {
         console.warn(`Failed to cache /api/directory?city=berlin:`, err);
         // Silently fail - API will be cached on first fetch
       }
-      await self.skipWaiting();
+      // Don't skip waiting automatically - wait for user confirmation via message
     })()
   );
 });
@@ -40,6 +40,13 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))).then(() => self.clients.claim())
   );
+});
+
+// Listen for messages from the client to skip waiting
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 function isApi(req) {

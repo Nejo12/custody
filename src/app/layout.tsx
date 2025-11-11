@@ -5,6 +5,7 @@ import { I18nProvider } from "@/i18n";
 import HeaderWithHelp from "@/components/HeaderWithHelp";
 import Footer from "@/components/Footer";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+import UpdatePrompt from "@/components/UpdatePrompt";
 import ThemeInit from "@/components/ThemeInit";
 import FloatingThemeSwitch from "@/components/FloatingThemeSwitch";
 
@@ -53,6 +54,7 @@ export default function RootLayout({
         <I18nProvider>
           <div className="min-h-screen flex flex-col items-stretch">
             <ServiceWorkerRegister />
+            <UpdatePrompt />
             <HeaderWithHelp />
             {/* InstallPrompt removed: persistent install button lives in Header only on mobile */}
             <main id="main-content" className="flex-1 w-full flex flex-col items-center">

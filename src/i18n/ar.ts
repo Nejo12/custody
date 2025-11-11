@@ -559,6 +559,12 @@ const ar = {
     needHelp: "تحتاج مساعدة؟ راسلنا على support@custodyclarity.com",
     sessionId: "معرف الجلسة:",
   },
+  updatePrompt: {
+    message: "إصدار جديد متاح.",
+    later: "لاحقاً",
+    updateNow: "تحديث الآن",
+    updating: "جاري التحديث...",
+  },
 };
 
 export default ar;
