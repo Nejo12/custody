@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useI18n } from "@/i18n";
+import { trackConversion } from "@/components/Analytics";
 
 function PaymentSuccessContent() {
   const { t } = useI18n();
@@ -28,6 +29,11 @@ function PaymentSuccessContent() {
             paymentStatus: data.paymentStatus,
             paymentMethod: data.paymentMethod,
           });
+
+          // Track conversion in analytics
+          if (data.amount && data.currency) {
+            trackConversion(data.amount, data.currency, sessionId || undefined);
+          }
         } else {
           setStatus("error");
         }

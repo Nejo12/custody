@@ -25,6 +25,8 @@ export async function GET(req: NextRequest) {
         metadata: session.metadata,
         paymentStatus: session.payment_status, // Include status for frontend
         paymentMethod: session.payment_method_types?.[0] || "unknown",
+        amount: session.amount_total || 0,
+        currency: session.currency?.toUpperCase() || "EUR",
       });
     }
 

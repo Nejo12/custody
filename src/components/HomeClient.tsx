@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useI18n } from "@/i18n";
 import FadeIn from "@/components/FadeIn";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 export default function HomeClient() {
   const { t } = useI18n();
@@ -38,6 +39,11 @@ export default function HomeClient() {
           >
             {t.home.support}
           </Link>
+        </div>
+      </FadeIn>
+      <FadeIn delay={0.1}>
+        <div className="mt-8">
+          <NewsletterSignup variant="default" />
         </div>
       </FadeIn>
     </div>

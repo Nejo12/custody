@@ -8,6 +8,7 @@ import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import UpdatePrompt from "@/components/UpdatePrompt";
 import ThemeInit from "@/components/ThemeInit";
 import FloatingThemeSwitch from "@/components/FloatingThemeSwitch";
+import Analytics from "@/components/Analytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,6 +53,7 @@ export default function RootLayout({
         </a>
         <ThemeInit />
         <I18nProvider>
+          <Analytics />
           <div className="min-h-screen flex flex-col items-stretch">
             <ServiceWorkerRegister />
             <UpdatePrompt />

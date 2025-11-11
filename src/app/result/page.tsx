@@ -19,8 +19,9 @@ import { buildCoverLetter } from "@/lib/coverLetter";
 import regionalTips from "@/data/regional.tips.json";
 import { resolveCourtTemplate } from "@/lib/courts";
 import Callout from "@/components/Callout";
-import { buildICS } from "@/lib/ics";
 import GetPDFButton from "@/components/GetPDFButton";
+import CourtReminderButton from "@/components/CourtReminderButton";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 type StatusKey = keyof TranslationDict["result"]["statuses"];
 
@@ -217,25 +218,13 @@ export default function Result() {
                 : t.result.allDetailsConfirmed || "All key details confirmed"}
             </span>
           </div>
-          <button
-            className="text-xs underline text-zinc-300 dark:text-zinc-600"
-            onClick={() => {
-              const ics = buildICS({
-                summary: "Court filing (draft)",
-                startISO: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-                durationMinutes: 30,
-              });
-              const blob = new Blob([ics], { type: "text/calendar" });
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement("a");
-              a.href = url;
-              a.download = "filing-reminder.ics";
-              a.click();
-              URL.revokeObjectURL(url);
-            }}
-          >
-            {t.result.addFilingReminder || "Add filing reminder"}
-          </button>
+          <CourtReminderButton
+            defaultDate={new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)}
+            summary="Court filing (draft)"
+            description={
+              t.result.reminderDescription || "Don't forget to file your court documents"
+            }
+          />
         </div>
         <div className="mt-2 flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400">
           {useMemo(() => {
@@ -480,6 +469,16 @@ export default function Result() {
           })}
         </motion.div>
       )}
+
+      {/* Newsletter Signup */}
+      <motion.div
+        initial={mounted ? { opacity: 0, y: 10 } : false}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.2 }}
+        className="mt-6"
+      >
+        <NewsletterSignup variant="inline" />
+      </motion.div>
 
       <motion.div
         initial={mounted ? { opacity: 0, y: 10 } : false}
