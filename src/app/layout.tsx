@@ -9,6 +9,7 @@ import UpdatePrompt from "@/components/UpdatePrompt";
 import ThemeInit from "@/components/ThemeInit";
 import FloatingThemeSwitch from "@/components/FloatingThemeSwitch";
 import Analytics from "@/components/Analytics";
+import ReferralTracker from "@/components/ReferralTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,6 +55,7 @@ export default function RootLayout({
         <ThemeInit />
         <I18nProvider>
           <Analytics />
+          <ReferralTracker />
           <div className="min-h-screen flex flex-col items-stretch">
             <ServiceWorkerRegister />
             <UpdatePrompt />
