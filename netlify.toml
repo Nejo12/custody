@@ -1,6 +1,15 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+
+# Netlify Next.js Runtime - automatically handles Next.js deployment
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Scheduled Functions for Court Reminders Cron
+# Runs every hour to send pending court reminders
+[[scheduled_functions]]
+  schedule = "0 * * * *"  # Every hour at minute 0
+  path = "/api/reminders/send"
 
 [[redirects]]
   from = "https://www.custodyclarity.com/*"
