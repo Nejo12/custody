@@ -92,7 +92,7 @@ export default function DirectoryPage() {
               setCity(v);
               setPreferredCity(v);
             }}
-            className="w-full sm:w-auto sm:min-w-[120px] rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
+            className="w-full sm:w-auto sm:min-w-[120px] rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 text-zinc-500 dark:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
           >
             <option value="berlin">Berlin</option>
             <option value="hamburg">Hamburg</option>
@@ -101,13 +101,13 @@ export default function DirectoryPage() {
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            className="flex-1 w-full min-w-0 rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
+            className="flex-1 w-full min-w-0 rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 text-zinc-500 dark:text-zinc-400 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
             placeholder={t.directory.searchPlaceholder}
           />
           <select
             value={type}
             onChange={(e) => setType(e.target.value)}
-            className="w-full sm:w-auto sm:min-w-[140px] rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
+            className="w-full sm:w-auto sm:min-w-[140px] rounded border px-3 py-2 text-sm sm:text-base bg-background dark:bg-zinc-950 text-zinc-500 dark:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
           >
             <option value="">{t.directory.typeFilter}</option>
             <option value="jugendamt">{t.directory.jugendamt}</option>
@@ -147,7 +147,7 @@ export default function DirectoryPage() {
                     {items.map((s: Service) => (
                       <div key={s.id} className="mb-2">
                         <div className="font-medium">{s.name}</div>
-                        <div className="text-sm text-zinc-700 dark:text-zinc-300">{s.address}</div>
+                        <div className="text-sm text-zinc-700 dark:text-zinc-500">{s.address}</div>
                       </div>
                     ))}
                     <button
@@ -193,7 +193,7 @@ export default function DirectoryPage() {
                   {s.type}
                 </div>
                 <div className="font-medium">{s.name}</div>
-                <div className="text-sm text-zinc-700 dark:text-zinc-300">{s.address}</div>
+                <div className="text-sm text-zinc-700 dark:text-zinc-500">{s.address}</div>
                 <div className="text-sm">{s.phone}</div>
                 <a
                   href={s.url}

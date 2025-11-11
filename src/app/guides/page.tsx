@@ -56,7 +56,9 @@ export default function GuidesPage() {
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-6 space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold mb-2">{t.guides?.title || "Legal Guides"}</h1>
+        <h1 className="text-2xl font-semibold mb-2 text-zinc-400 dark:text-zinc-400">
+          {t.guides?.title || "Legal Guides"}
+        </h1>
         <p className="text-sm">
           {t.guides?.description ||
             "Step-by-step guides to help you navigate custody and contact rights in Germany."}
@@ -73,15 +75,15 @@ export default function GuidesPage() {
               <div className="flex-1">
                 <Link
                   href={`/guides/${guide.slug}`}
-                  className="text-lg font-semibold text-zinc-400 dark:text-zinc-300 hover:underline block mb-2"
+                  className="text-lg font-semibold text-zinc-400 dark:text-zinc-500 hover:underline block mb-2"
                 >
                   {guide.title}
                 </Link>
-                <p className="text-sm text-zinc-700 dark:text-zinc-300 mb-3">{guide.excerpt}</p>
+                <p className="text-sm text-zinc-700 dark:text-zinc-500 mb-3">{guide.excerpt}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 text-xs text-zinc-600 dark:text-zinc-400">
+            <div className="flex items-center gap-4 text-xs text-zinc-500 dark:text-zinc-400">
               <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800">
                 {categories[guide.category as keyof typeof categories] || guide.category}
               </span>
@@ -95,11 +97,11 @@ export default function GuidesPage() {
       </div>
 
       {t.guides?.languageNote && (
-        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm text-zinc-700 dark:text-zinc-300">
+        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm text-zinc-700 dark:text-zinc-500">
           <p>{t.guides.languageNote}</p>
         </div>
       )}
-      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-300">
+      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-500">
         <p>
           {t.guides?.note ||
             "Note: These guides provide general information only. For legal advice specific to your situation, consult a qualified family law attorney."}

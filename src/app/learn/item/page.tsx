@@ -33,7 +33,7 @@ function ExplainerInner() {
         ← Back
       </Link>
       <h1 className="text-xl font-semibold">{item.title}</h1>
-      <div className="text-sm text-zinc-600">
+      <div className="text-sm text-zinc-700">
         Last verified: {item.lastVerified} · Snapshot: {item.snapshotId}
       </div>
       <a href={item.url} target="_blank" className="underline">

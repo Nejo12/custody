@@ -21,8 +21,8 @@ export default function GetPDFButton({
   const baseClasses = "w-full rounded-lg text-sm transition-colors";
   const variantClasses =
     variant === "primary"
-      ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 p-3 hover:bg-black dark:hover:bg-white"
-      : "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white border hover:bg-zinc-50 dark:hover:bg-zinc-700 p-3";
+      ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700 p-3 hover:bg-black dark:hover:bg-white"
+      : "bg-white dark:bg-zinc-800 text-zinc-700 dark:text-white border hover:bg-zinc-50 dark:hover:bg-zinc-700 p-3";
 
   return (
     <>

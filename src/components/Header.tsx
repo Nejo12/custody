@@ -54,7 +54,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
               aria-label={t.header?.findHelp ?? "Need help?"}
             >
               <svg
-                className="w-4 h-4 text-zinc-700 dark:text-zinc-300"
+                className="w-4 h-4 text-zinc-700 dark:text-zinc-500"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -77,7 +77,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
               aria-label={t.header?.quickExit || "Quick Exit"}
             >
               <svg
-                className="w-4 h-4 text-zinc-700 dark:text-zinc-300"
+                className="w-4 h-4 text-zinc-700 dark:text-zinc-500"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -100,7 +100,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                 aria-label={t.header?.settings || "Settings"}
               >
                 <svg
-                  className="w-4 h-4 text-zinc-700 dark:text-zinc-300"
+                  className="w-4 h-4 text-zinc-700 dark:text-zinc-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -145,7 +145,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                   className="menu-panel fixed right-0 mt-2 w-56 rounded-xl border bg-white dark:bg-zinc-900 shadow-xl p-2 z-50 divide-y divide-zinc-200 dark:divide-zinc-800"
                 >
                   <button
-                    className="w-full h-9 text-left rounded-md px-3 text-sm text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="w-full h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() => {
                       setMenuOpen(false);
                       onOpenHelp?.();
@@ -155,7 +155,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                   </button>
                   {canInstall && (
                     <button
-                      className="w-full h-9 text-left rounded-md px-3 text-sm text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                      className="w-full h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                       onClick={() => {
                         setMenuOpen(false);
                         void promptInstall();
@@ -166,7 +166,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                   )}
                   <Link
                     href="/settings"
-                    className="block h-9 rounded-md px-3 text-sm text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="block h-9 rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() => setMenuOpen(false)}
                   >
                     {t.header?.settings || "Settings"}

@@ -25,10 +25,10 @@ export default function InstallPrompt() {
   if (!visible || !canInstall) return null;
 
   return (
-    <div className="mt-4 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 flex items-center justify-between text-sm text-zinc-900 dark:text-zinc-100">
+    <div className="mt-4 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 flex items-center justify-between text-sm text-zinc-500 dark:text-zinc-400">
       <span>Install this app for quicker access.</span>
       <button
-        className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1 text-sm text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-700"
+        className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-700"
         onClick={async () => {
           await promptInstall();
           setVisible(false);

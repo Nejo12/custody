@@ -127,7 +127,7 @@ export default function LearnPage() {
                   {items.map((s: Service) => (
                     <div key={s.id}>
                       <div className="font-medium">{s.name}</div>
-                      <div className="text-sm text-zinc-700 dark:text-zinc-300">{s.address}</div>
+                      <div className="text-sm text-zinc-700 dark:text-zinc-500">{s.address}</div>
                     </div>
                   ))}
                 </div>

@@ -203,7 +203,7 @@ export default function ScanPage() {
           </pre>
           {usedLang && <div className="text-[11px] text-zinc-500">{`OCR model: ${usedLang}`}</div>}
           <div className="text-sm font-medium">{t.ocr?.extractedFields || "Extracted fields"}</div>
-          <div className="text-xs text-zinc-700 dark:text-zinc-300">
+          <div className="text-xs text-zinc-700 dark:text-zinc-500">
             {fields.fullName && (
               <div>
                 <span className="font-medium">Full name:</span> {fields.fullName}

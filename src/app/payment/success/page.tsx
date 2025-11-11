@@ -46,7 +46,7 @@ function PaymentSuccessContent() {
       <div className="container mx-auto px-4 py-16 max-w-2xl text-center">
         <div className="animate-pulse">
           <div className="w-16 h-16 bg-zinc-200 dark:bg-zinc-700 rounded-full mx-auto mb-4"></div>
-          <p className="text-lg text-zinc-700 dark:text-zinc-300">{t.paymentSuccess.verifying}</p>
+          <p className="text-lg text-zinc-700 dark:text-zinc-500">{t.paymentSuccess.verifying}</p>
         </div>
       </div>
     );
@@ -56,22 +56,22 @@ function PaymentSuccessContent() {
     return (
       <div className="container mx-auto px-4 py-16 max-w-2xl text-center">
         <div className="text-6xl mb-4">⚠️</div>
-        <h1 className="text-3xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">
+        <h1 className="text-3xl font-bold mb-4 text-zinc-500 dark:text-zinc-400">
           {t.paymentSuccess.verificationFailed}
         </h1>
-        <p className="text-zinc-600 dark:text-zinc-400 mb-8">
+        <p className="text-zinc-500 dark:text-zinc-400 mb-8">
           {t.paymentSuccess.verificationFailedMessage}
         </p>
         <div className="flex gap-4 justify-center">
           <Link
             href="/result"
-            className="px-6 py-3 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-lg hover:bg-black dark:hover:bg-white transition"
+            className="px-6 py-3 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700 rounded-lg hover:bg-black dark:hover:bg-white transition"
           >
             {t.paymentSuccess.goToResults}
           </Link>
           <Link
             href="/"
-            className="px-6 py-3 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800 transition"
+            className="px-6 py-3 bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800 transition"
           >
             {t.paymentSuccess.goHome}
           </Link>
@@ -84,12 +84,12 @@ function PaymentSuccessContent() {
     <div className="container mx-auto px-4 py-16 max-w-2xl">
       <div className="text-center mb-8">
         <div className="text-6xl mb-4">✅</div>
-        <h1 className="text-4xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">
+        <h1 className="text-4xl font-bold mb-4 text-zinc-500 dark:text-zinc-400">
           {paymentInfo.paymentMethod === "sepa_debit"
             ? t.paymentSuccess.paymentInitiated
             : t.paymentSuccess.paymentSuccessful}
         </h1>
-        <p className="text-xl text-zinc-600 dark:text-zinc-400">
+        <p className="text-xl text-zinc-500 dark:text-zinc-400">
           {paymentInfo.paymentMethod === "sepa_debit"
             ? t.paymentSuccess.sepaProcessing
             : t.paymentSuccess.thankYou}
@@ -113,12 +113,12 @@ function PaymentSuccessContent() {
       )}
 
       <div className="bg-white dark:bg-zinc-900 rounded-xl p-8 border border-zinc-200 dark:border-zinc-800 mb-8">
-        <h2 className="text-2xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">
+        <h2 className="text-2xl font-bold mb-4 text-zinc-500 dark:text-zinc-400">
           {t.paymentSuccess.whatHappensNext}
         </h2>
         <ol className="space-y-4">
           <li className="flex gap-3">
-            <span className="flex-shrink-0 w-8 h-8 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full flex items-center justify-center font-bold">
+            <span className="flex-shrink-0 w-8 h-8 bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 rounded-full flex items-center justify-center font-bold">
               1
             </span>
             <div>
@@ -131,27 +131,27 @@ function PaymentSuccessContent() {
             </div>
           </li>
           <li className="flex gap-3">
-            <span className="flex-shrink-0 w-8 h-8 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full flex items-center justify-center font-bold">
+            <span className="flex-shrink-0 w-8 h-8 bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 rounded-full flex items-center justify-center font-bold">
               2
             </span>
             <div>
-              <strong className="text-zinc-900 dark:text-zinc-100">
+              <strong className="text-zinc-500 dark:text-zinc-400">
                 {t.paymentSuccess.step2Title}
               </strong>
-              <p className="text-zinc-600 dark:text-zinc-400 text-sm">
+              <p className="text-zinc-500 dark:text-zinc-400 text-sm">
                 {t.paymentSuccess.step2Message}
               </p>
             </div>
           </li>
           <li className="flex gap-3">
-            <span className="flex-shrink-0 w-8 h-8 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full flex items-center justify-center font-bold">
+            <span className="flex-shrink-0 w-8 h-8 bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 rounded-full flex items-center justify-center font-bold">
               3
             </span>
             <div>
-              <strong className="text-zinc-900 dark:text-zinc-100">
+              <strong className="text-zinc-500 dark:text-zinc-400">
                 {t.paymentSuccess.step3Title}
               </strong>
-              <p className="text-zinc-600 dark:text-zinc-400 text-sm">
+              <p className="text-zinc-500 dark:text-zinc-400 text-sm">
                 {t.paymentSuccess.step3Message}
               </p>
             </div>
@@ -178,13 +178,13 @@ function PaymentSuccessContent() {
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Link
           href="/result"
-          className="px-8 py-3 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-lg hover:bg-black dark:hover:bg-white transition text-center font-medium"
+          className="px-8 py-3 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700 rounded-lg hover:bg-black dark:hover:bg-white transition text-center font-medium"
         >
           {t.paymentSuccess.viewResults}
         </Link>
         <Link
           href="/"
-          className="px-8 py-3 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800 transition text-center font-medium"
+          className="px-8 py-3 bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800 transition text-center font-medium"
         >
           {t.paymentSuccess.returnHome}
         </Link>
@@ -206,7 +206,7 @@ function PaymentSuccessFallback() {
     <div className="container mx-auto px-4 py-16 max-w-2xl text-center">
       <div className="animate-pulse">
         <div className="w-16 h-16 bg-zinc-200 dark:bg-zinc-700 rounded-full mx-auto mb-4"></div>
-        <p className="text-lg text-zinc-700 dark:text-zinc-300">{t.paymentSuccess.loading}</p>
+        <p className="text-lg text-zinc-700 dark:text-zinc-500">{t.paymentSuccess.loading}</p>
       </div>
     </div>
   );

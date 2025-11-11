@@ -79,7 +79,7 @@ export default function FloatingThemeSwitch() {
       type="button"
     >
       <span className="sr-only">{getLabel()}</span>
-      <span className="text-zinc-700 dark:text-zinc-300 transition-transform duration-200 hover:scale-110">
+      <span className="text-zinc-700 dark:text-zinc-500 transition-transform duration-200 hover:scale-110">
         {getIcon()}
       </span>
     </button>

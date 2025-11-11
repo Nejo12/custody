@@ -116,12 +116,12 @@ export default function VoiceInput({ target = "both", onTranscript }: Props) {
       {error && <div className="text-xs text-red-600">{error}</div>}
       {transcript && (
         <div className="space-y-1">
-          <div className="text-xs text-zinc-600 dark:text-zinc-300">&ldquo;{transcript}&rdquo;</div>
+          <div className="text-xs text-zinc-700 dark:text-zinc-500">&ldquo;{transcript}&rdquo;</div>
           <div className="text-[11px] text-zinc-500">
             {language ? t.voiceInput.detected.replace("{language}", language) : null}
           </div>
           {(translations.en || translations.de) && (
-            <div className="text-[11px] text-zinc-600 dark:text-zinc-400">
+            <div className="text-[11px] text-zinc-500 dark:text-zinc-400">
               {translations.en ? (
                 <div>
                   <span className="font-medium">{t.voiceInput.en}</span> {translations.en}

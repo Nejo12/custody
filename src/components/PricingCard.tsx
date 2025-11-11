@@ -70,21 +70,21 @@ export default function PricingCard({
       } p-6 transition-colors`}
     >
       {popular && (
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-4 py-1 rounded-full text-xs font-medium">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700 px-4 py-1 rounded-full text-xs font-medium">
           Most Popular
         </div>
       )}
 
       <div className="space-y-4">
         <div>
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-1">
+          <h3 className="text-lg font-semibold text-zinc-500 dark:text-zinc-400 mb-1">
             {pricing.name}
           </h3>
-          <p className="text-xs text-zinc-600 dark:text-zinc-400">{pricing.description}</p>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">{pricing.description}</p>
         </div>
 
         <div className="flex items-baseline gap-1">
-          <span className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
+          <span className="text-3xl font-bold text-zinc-500 dark:text-zinc-400">
             {formatPrice(pricing.price, pricing.currency)}
           </span>
           <span className="text-xs text-zinc-500 dark:text-zinc-400">one-time</span>
@@ -94,7 +94,7 @@ export default function PricingCard({
           {pricing.features.map((feature, index) => (
             <li key={index} className="flex items-start gap-2 text-xs">
               <svg
-                className="w-3 h-3 text-zinc-600 dark:text-zinc-400 flex-shrink-0 mt-0.5"
+                className="w-3 h-3 text-zinc-500 dark:text-zinc-400 flex-shrink-0 mt-0.5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -106,7 +106,7 @@ export default function PricingCard({
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              <span className="text-zinc-700 dark:text-zinc-300">{feature}</span>
+              <span className="text-zinc-700 dark:text-zinc-500">{feature}</span>
             </li>
           ))}
         </ul>
@@ -124,7 +124,7 @@ export default function PricingCard({
             }}
             autoComplete="off"
             data-tier={tier}
-            className="w-full px-3 py-2 text-sm border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
+            className="w-full px-3 py-2 text-sm border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 bg-white dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
             disabled={loading}
           />
 
@@ -133,7 +133,7 @@ export default function PricingCard({
           <button
             onClick={handlePurchase}
             disabled={loading}
-            className="w-full py-2.5 px-4 rounded-lg text-sm font-medium transition-colors bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:bg-black dark:hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-2.5 px-4 rounded-lg text-sm font-medium transition-colors bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700 hover:bg-black dark:hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "Processing..." : "Purchase Now"}
           </button>

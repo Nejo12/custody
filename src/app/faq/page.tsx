@@ -49,7 +49,7 @@ export default function FAQPage() {
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-6 space-y-8">
       <div>
-        <h1 className="text-2xl font-semibold mb-2">
+        <h1 className="text-2xl font-semibold mb-2 text-zinc-600">
           {t.faq?.title || "Frequently Asked Questions"}
         </h1>
         <p className="text-sm text-zinc-700 dark:text-zinc-400">
@@ -60,7 +60,7 @@ export default function FAQPage() {
 
       {categories.map((category) => (
         <div key={category.id} className="space-y-4">
-          <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+          <h2 className="text-lg font-semibold text-zinc-500 dark:text-zinc-400">
             {category.title}
           </h2>
           <div className="space-y-2">
@@ -76,10 +76,10 @@ export default function FAQPage() {
                   }}
                   className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900"
                 >
-                  <summary className="px-4 py-3 cursor-pointer font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800">
+                  <summary className="px-4 py-3 cursor-pointer font-medium text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800">
                     {item.question}
                   </summary>
-                  <div className="px-4 pb-3 pt-2 text-sm text-zinc-700 dark:text-zinc-300 border-t border-zinc-200 dark:border-zinc-800">
+                  <div className="px-4 pb-3 pt-2 text-sm text-zinc-700 dark:text-zinc-500 border-t border-zinc-200 dark:border-zinc-800">
                     {item.answer}
                   </div>
                 </details>
@@ -89,7 +89,7 @@ export default function FAQPage() {
         </div>
       ))}
 
-      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-300">
+      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-500">
         <p>
           <strong>{t.faq?.stillHaveQuestions || "Still have questions?"}</strong>{" "}
           {t.faq?.checkGlossary || "Check our"}{" "}

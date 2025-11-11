@@ -352,7 +352,7 @@ export default function UmgangPage() {
     const city = deriveCity((f as { address?: string }).address);
     if ((f as { fullName?: string }).fullName || city) {
       return (
-        <span className="text-[11px] text-zinc-600 dark:text-zinc-400">
+        <span className="text-[11px] text-zinc-500 dark:text-zinc-400">
           {((f as { fullName?: string }).fullName || "") as string}
           {(f as { fullName?: string }).fullName && city ? " — " : ""}
           {city}
@@ -503,7 +503,7 @@ export default function UmgangPage() {
           <label className="text-sm">
             {t.optimizer?.distance || "Distance"}
             <select
-              className="mt-1 w-full rounded border px-2 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+              className="mt-1 w-full rounded border px-2 py-2 bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
               value={optimizer.distance}
               onChange={(e) =>
                 setOptimizer({
@@ -528,7 +528,7 @@ export default function UmgangPage() {
           <label className="text-sm sm:col-span-2">
             {t.optimizer?.workHours || "Work hours (free text)"}
             <input
-              className="mt-1 w-full rounded border px-3 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 dark:placeholder:text-zinc-400"
+              className="mt-1 w-full rounded border px-3 py-2 bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 placeholder:text-zinc-500 dark:placeholder:text-zinc-400"
               value={optimizer.workHours}
               onChange={(e) => setOptimizer({ ...optimizer, workHours: e.target.value })}
               placeholder={t.optimizer?.workHoursPlaceholder || "e.g. Mon-Fri 9-17"}
@@ -552,7 +552,7 @@ export default function UmgangPage() {
           </button>
           <button
             type="button"
-            className="rounded border px-3 py-1 text-sm text-zinc-600 dark:text-zinc-300"
+            className="rounded border px-3 py-1 text-sm text-zinc-700 dark:text-zinc-500"
             onClick={() => {
               const preset = computeRegionPresets(
                 currentCity,
@@ -588,7 +588,7 @@ export default function UmgangPage() {
           </button>
           {!!optimizer.summary && (
             <motion.div
-              className="text-sm text-zinc-600"
+              className="text-sm text-zinc-700"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
@@ -603,7 +603,7 @@ export default function UmgangPage() {
           <div className="text-sm font-medium">
             {t.optimizer?.explainerTitle || "Why this plan"}
           </div>
-          <div className="text-sm text-zinc-700 dark:text-zinc-300">{optimizer.summary}</div>
+          <div className="text-sm text-zinc-700 dark:text-zinc-500">{optimizer.summary}</div>
           <div className="text-xs text-zinc-700 dark:text-zinc-400">
             {t.optimizer?.explainerNote || "Based on distance, age, and notes."}
           </div>
@@ -865,7 +865,7 @@ export default function UmgangPage() {
           />
         </label>
       </div>
-      <div className="text-xs text-zinc-600">
+      <div className="text-xs text-zinc-700">
         <div className="font-medium">{t.pdfForm.preview}</div>
         <pre className="whitespace-pre-wrap bg-zinc-50 p-2 rounded border">
           {JSON.stringify(normalizeSchedule(form.proposal || {}), null, 2)}
@@ -874,7 +874,7 @@ export default function UmgangPage() {
       <button
         onClick={onDownload}
         disabled={downloading}
-        className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+        className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
       >
         {downloading ? "..." : t.common.download}
       </button>

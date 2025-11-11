@@ -206,7 +206,7 @@ export default function GuidePage({ params }: Props) {
         <Link href="/guides" className="text-sm  hover:underline mb-4 inline-block">
           {t.guides?.backToGuides || "← Back to Guides"}
         </Link>
-        <h1 className="text-2xl font-semibold mb-2">{guide.title}</h1>
+        <h1 className="text-2xl font-semibold mb-2 text-zinc-600">{guide.title}</h1>
         <div className="flex items-center gap-4 text-sm  mb-4">
           <span className="px-2 py-1 rounded bg-zinc-800 text-zinc-300 dark:bg-zinc-600">
             {categories[guide.category as keyof typeof categories] || guide.category}
@@ -224,10 +224,12 @@ export default function GuidePage({ params }: Props) {
       )}
 
       <div className="prose prose-zinc dark:prose-invert max-w-none">
-        <div className="text-sm leading-relaxed">{renderedContent}</div>
+        <div className="text-sm leading-relaxed text-zinc-400 dark:text-zinc-600">
+          {renderedContent}
+        </div>
       </div>
 
-      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-300">
+      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-500">
         <p>
           {t.guides?.disclaimer ||
             "Disclaimer: This guide provides general information only, not individualized legal advice. Consult a qualified family law attorney for advice specific to your situation."}

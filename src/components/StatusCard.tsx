@@ -13,8 +13,8 @@ export default function StatusCard({ title, message, tone = "info" }: Props) {
   };
   return (
     <div className={`rounded-lg border p-4 ${toneClasses[tone]}`}>
-      <div className="text-2xl text-zinc-900 dark:text-zinc-100">{title}</div>
-      {message && <p className="text-sm text-zinc-700 dark:text-zinc-300 mt-2">{message}</p>}
+      <div className="text-2xl text-zinc-500 dark:text-zinc-400">{title}</div>
+      {message && <p className="text-sm text-zinc-700 dark:text-zinc-500 mt-2">{message}</p>}
       {/* Confidence percentage removed in favor of plain language guidance */}
     </div>
   );

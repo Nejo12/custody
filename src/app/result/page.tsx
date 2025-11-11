@@ -211,7 +211,7 @@ export default function Result() {
       <div className="rounded-lg border p-3 bg-white dark:bg-zinc-900">
         <div className="flex items-center justify-between text-sm">
           <div className="text-sm">
-            <span className="font-medium text-zinc-300 dark:text-zinc-300">
+            <span className="font-medium text-zinc-300 dark:text-zinc-500">
               {allMissing.length > 0
                 ? t.result.needQuickDetails?.replace("{count}", allMissing.length.toString()) ||
                   `We need ${allMissing.length} quick details to confirm`
@@ -226,7 +226,7 @@ export default function Result() {
             }
           />
         </div>
-        <div className="mt-2 flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400">
+        <div className="mt-2 flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
           {useMemo(() => {
             const steps = [
               {
@@ -258,7 +258,7 @@ export default function Result() {
           initial={mounted ? { opacity: 0, y: 6 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
-          className="rounded-lg border p-3 bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400"
+          className="rounded-lg border p-3 bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
         >
           <div className="text-sm font-medium mb-1">
             {t.result.whyThisResult || "Why this result?"}
@@ -358,10 +358,10 @@ export default function Result() {
         className="rounded-lg border p-4 bg-white dark:bg-zinc-900"
       >
         <div className="space-y-3">
-          <div className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+          <div className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
             {t.result.getProfessionalDocs || "Get Professional Documents"}
           </div>
-          <p className="text-xs text-zinc-600 dark:text-zinc-400">
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">
             {t.result.professionalDocsDesc ||
               "Court-ready PDFs with legal citations and submission guides, delivered to your email."}
           </p>
@@ -427,7 +427,7 @@ export default function Result() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <button
-              className="rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 p-3 hover:bg-black dark:hover:bg-white"
+              className="rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700 p-3 hover:bg-black dark:hover:bg-white"
               onClick={() => {
                 const q = (allMissing[0] || "married_at_birth") as string;
                 window.location.href = `/interview?q=${q}`;
@@ -436,7 +436,7 @@ export default function Result() {
               {t.common?.next || "Continue"}
             </button>
             <button
-              className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+              className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
               onClick={() => setHelpOpen(true)}
             >
               {t.result?.findHelpNow || "Find help near me"}
@@ -645,12 +645,12 @@ export default function Result() {
                   ))}
                 </select>
                 {selectedOcrNote && (selectedOcrFields.fullName || extractedCity) && (
-                  <div className="text-xs text-zinc-700 dark:text-zinc-300 mt-1">
+                  <div className="text-xs text-zinc-700 dark:text-zinc-500 mt-1">
                     {selectedOcrFields.fullName || ""}
                     {selectedOcrFields.fullName && extractedCity ? " — " : ""}
                     {extractedCity}
                     {(selectedOcrFields.phone || selectedOcrFields.email) && (
-                      <div className="text-[11px] text-zinc-600 dark:text-zinc-400">
+                      <div className="text-[11px] text-zinc-500 dark:text-zinc-400">
                         {selectedOcrFields.phone || ""}
                         {selectedOcrFields.phone && selectedOcrFields.email ? " · " : ""}
                         {selectedOcrFields.email || ""}{" "}
@@ -664,7 +664,7 @@ export default function Result() {
               </label>
             )}
             {includeTimelineInPack && timelineEntry && (
-              <div className="text-xs text-zinc-700 dark:text-zinc-300">
+              <div className="text-xs text-zinc-700 dark:text-zinc-500">
                 {t.result.attachTimeline}
                 {": "}
                 <span className="italic">
@@ -680,10 +680,10 @@ export default function Result() {
             {courtInfo && (
               <div className="rounded border p-2 bg-zinc-50 dark:bg-zinc-800/20">
                 {courtInfo.name && (
-                  <div className="text-sm text-zinc-900 dark:text-zinc-500">{courtInfo.name}</div>
+                  <div className="text-sm text-zinc-700 dark:text-zinc-500">{courtInfo.name}</div>
                 )}
                 {courtInfo.address && (
-                  <div className="text-xs text-zinc-900 dark:text-zinc-500">
+                  <div className="text-xs text-zinc-700 dark:text-zinc-500">
                     {courtInfo.address}
                   </div>
                 )}
@@ -757,14 +757,14 @@ export default function Result() {
         transition={{ duration: 0.3, delay: 0.35 }}
         className="rounded-lg border p-3 bg-white dark:bg-zinc-900"
       >
-        <div className="text-sm font-medium mb-1 text-zinc-900 dark:text-zinc-100">
+        <div className="text-sm font-medium mb-1 text-zinc-500 dark:text-zinc-400">
           {t.result.howToReach95Confidence}
         </div>
-        <div className="text-sm text-zinc-800 dark:text-zinc-300">
+        <div className="text-zinc-500 dark:text-zinc-400">
           {missing.length > 0 ? t.result.answerThese : t.result.addSupportingDocuments}
         </div>
         {!!missing.length && (
-          <div className="mt-2 flex flex-wrap gap-2 text-zinc-600 dark:text-zinc-400">
+          <div className="mt-2 flex flex-wrap gap-2 text-zinc-500 dark:text-zinc-400">
             {missing.slice(0, 2).map((q) => {
               const qKey = q as keyof TranslationDict["interview"]["questions"];
               return (
@@ -779,7 +779,7 @@ export default function Result() {
             })}
           </div>
         )}
-        <div className="text-xs mt-2 text-zinc-700 dark:text-zinc-300">
+        <div className="text-xs mt-2 text-zinc-700 dark:text-zinc-500">
           {t.result.confidenceTip}{" "}
           <a className="underline" href="/vault">
             {t.vault.title}
@@ -798,10 +798,10 @@ export default function Result() {
         <div className="text-sm font-medium text-zinc-300 dark:text-zinc-400">
           {t.result.regionalTips}
         </div>
-        <div className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
+        <div className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
           <div>{regionalTip.text}</div>
           {(regionalTip.lastVerified || regionalTip.snapshotId) && (
-            <div className="text-xs text-zinc-700 dark:text-zinc-600 mt-1">
+            <div className="text-xs text-zinc-700 dark:text-zinc-500 mt-1">
               {regionalTip.lastVerified
                 ? `${t.result.lastVerified || "Last verified:"} ${regionalTip.lastVerified}`
                 : null}

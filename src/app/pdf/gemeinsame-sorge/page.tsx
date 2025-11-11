@@ -234,7 +234,7 @@ export default function GSPage() {
             );
             if ((f as { fullName?: string }).fullName || city) {
               return (
-                <span className="text-[11px] text-zinc-600 dark:text-zinc-400">
+                <span className="text-[11px] text-zinc-500 dark:text-zinc-400">
                   {((f as { fullName?: string }).fullName || "") as string}
                   {(f as { fullName?: string }).fullName && city ? " — " : ""}
                   {city}
@@ -365,7 +365,7 @@ export default function GSPage() {
       <button
         onClick={onDownload}
         disabled={downloading}
-        className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+        className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
       >
         {downloading ? "..." : t.common.download}
       </button>

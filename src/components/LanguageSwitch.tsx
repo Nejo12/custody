@@ -43,7 +43,7 @@ export default function LanguageSwitch({ buttonClassName }: { buttonClassName?: 
         onClick={() => setOpen((v) => !v)}
         title={active ? `${active.label} (${active.shortCode})` : "Change language"}
       >
-        <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+        <span className="text-sm font-medium text-zinc-700 dark:text-zinc-500">
           {active?.shortCode || locale.toUpperCase().slice(0, 2)}
         </span>
       </button>
@@ -64,7 +64,7 @@ export default function LanguageSwitch({ buttonClassName }: { buttonClassName?: 
                   setLocale(l.code);
                   setOpen(false);
                 }}
-                className={`w-full text-left px-3 py-2 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${locale === l.code ? "font-medium" : ""}`}
+                className={`w-full text-left px-3 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${locale === l.code ? "font-medium" : ""}`}
                 aria-label={`Select ${l.label}`}
               >
                 {l.label}

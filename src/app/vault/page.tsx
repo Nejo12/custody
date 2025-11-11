@@ -68,19 +68,19 @@ export default function VaultPage() {
       <div className="flex gap-2 text-sm">
         <button
           onClick={() => setTab("documents")}
-          className={`px-3 py-1 rounded-full border ${tab === "documents" ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900" : "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"}`}
+          className={`px-3 py-1 rounded-full border ${tab === "documents" ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700" : "bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"}`}
         >
           {t.vault.documents}
         </button>
         <button
           onClick={() => setTab("notes")}
-          className={`px-3 py-1 rounded-full border ${tab === "notes" ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900" : "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"}`}
+          className={`px-3 py-1 rounded-full border ${tab === "notes" ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700" : "bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"}`}
         >
           {t.vault.notes}
         </button>
         <button
           onClick={() => setTab("payments")}
-          className={`px-3 py-1 rounded-full border ${tab === "payments" ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900" : "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"}`}
+          className={`px-3 py-1 rounded-full border ${tab === "payments" ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700" : "bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"}`}
         >
           {t.vault.payments}
         </button>
@@ -108,7 +108,7 @@ export default function VaultPage() {
         </a>
         <button
           onClick={downloadExport}
-          className="underline text-sm text-zinc-700 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 rounded px-2 py-1"
+          className="underline text-sm text-zinc-700 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 rounded px-2 py-1"
         >
           {t.vault.exportData}
         </button>
@@ -122,7 +122,7 @@ export default function VaultPage() {
             </div>
             <div className="font-medium">{e.title}</div>
             {e.type === "note" && typeof e.payload?.content === "string" && (
-              <pre className="mt-1 whitespace-pre-wrap text-xs text-zinc-700 dark:text-zinc-300 max-h-40 overflow-auto border rounded p-2 bg-zinc-50 dark:bg-zinc-900">
+              <pre className="mt-1 whitespace-pre-wrap text-xs text-zinc-700 dark:text-zinc-500 max-h-40 overflow-auto border rounded p-2 bg-zinc-50 dark:bg-zinc-900">
                 {String(e.payload.content)}
               </pre>
             )}

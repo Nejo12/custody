@@ -87,7 +87,7 @@ export default function SettingsPage() {
             <button
               key={lang.code}
               onClick={() => setLocale(lang.code)}
-              className={`px-4 py-2 ${locale === lang.code ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900" : "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"}`}
+              className={`px-4 py-2 ${locale === lang.code ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700" : "bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"}`}
             >
               {lang.label}
             </button>
@@ -158,7 +158,7 @@ export default function SettingsPage() {
         >
           {t.settings?.quickWipe || "Quick Wipe (panic erase)"}
         </button>
-        <div className="text-xs text-zinc-600 dark:text-zinc-400">
+        <div className="text-xs text-zinc-500 dark:text-zinc-400">
           {t.settings?.quickWipeNote ||
             "Removes local data, clears caches, and unregisters the service worker."}
         </div>

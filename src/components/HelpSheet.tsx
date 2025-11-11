@@ -188,11 +188,11 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                 />
               </div>
               <div className="flex items-center justify-between flex-shrink-0">
-                <div id="help-sheet-title" className="font-medium text-zinc-900 dark:text-zinc-100">
+                <div id="help-sheet-title" className="font-medium text-zinc-500 dark:text-zinc-400">
                   {t.helpSheet.title}
                 </div>
                 <button
-                  className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 text-zinc-700 dark:text-zinc-300"
+                  className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 text-zinc-700 dark:text-zinc-500"
                   onClick={onClose}
                   aria-label={t.helpSheet.closeButtonAriaLabel}
                 >
@@ -212,18 +212,18 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                   </svg>
                 </button>
               </div>
-              <div className="text-sm text-zinc-700 dark:text-zinc-300 flex-shrink-0">
+              <div className="text-sm text-zinc-700 dark:text-zinc-500 flex-shrink-0">
                 {t.helpSheet.description}
               </div>
               <div className="rounded-lg border p-3 flex-shrink-0 space-y-2">
                 <div className="flex items-center gap-2 text-xs">
-                  <label className="text-zinc-700 dark:text-zinc-300">
+                  <label className="text-zinc-700 dark:text-zinc-500">
                     {t.helpSheet?.scriptLanguage || "Script language"}
                   </label>
                   <select
                     value={scriptLang}
                     onChange={(e) => setScriptLang(e.target.value as typeof scriptLang)}
-                    className="rounded border px-2 py-1 text-xs bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                    className="rounded border px-2 py-1 text-xs bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
                   >
                     <option value="de">Deutsch</option>
                     <option value="en">English</option>
@@ -236,7 +236,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                   {scriptError && <span className="text-[11px] text-red-600">{scriptError}</span>}
                 </div>
                 <textarea
-                  className="w-full rounded border p-2 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                  className="w-full rounded border p-2 text-sm bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
                   rows={4}
                   readOnly
                   onClick={(e) => (e.target as HTMLTextAreaElement).select()}
@@ -245,7 +245,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                 ></textarea>
                 <div className="mt-2 flex gap-2">
                   <button
-                    className="rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() =>
                       navigator.clipboard.writeText(translatedScript || t.helpSheet.scriptText)
                     }
@@ -254,7 +254,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                     {t.helpSheet.copy}
                   </button>
                   <button
-                    className="rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() => {
                       const ics = buildICS({
                         summary: t.helpSheet.callJugendamtCalendarSummary,
@@ -294,7 +294,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                 )}
               </div>
               <div className="rounded-lg border p-3 space-y-2 flex-1 min-h-0 overflow-hidden flex flex-col">
-                <div className="text-xs uppercase text-zinc-600 dark:text-zinc-400">
+                <div className="text-xs uppercase text-zinc-500 dark:text-zinc-400">
                   {t.helpSheet.nearbyServices}
                 </div>
                 <div className="flex flex-col sm:flex-row gap-2">
@@ -306,7 +306,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                         setCity(v);
                         setPreferredCity(v);
                       }}
-                      className="rounded border px-2 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                      className="rounded border px-2 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
                     >
                       <option value="berlin">Berlin</option>
                       <option value="hamburg">Hamburg</option>
@@ -316,11 +316,11 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                       value={postcode}
                       onChange={(e) => setPostcode(e.target.value)}
                       placeholder={t.helpSheet.postcodePlaceholder}
-                      className="flex-1 rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 dark:placeholder:text-zinc-400"
+                      className="flex-1 rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 placeholder:text-zinc-500 dark:placeholder:text-zinc-400"
                     />
                     <button
                       type="button"
-                      className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 rounded p-0.5"
+                      className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 rounded p-0.5"
                       title={t.helpSheet.privacyNote}
                       aria-label={t.helpSheet.privacyNoteAriaLabel}
                       onClick={(e) => {
@@ -345,7 +345,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                     </button>
                   </div>
                   <button
-                    className="w-full sm:w-auto rounded border border-zinc-300 dark:border-zinc-700 px-2 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="w-full sm:w-auto rounded border border-zinc-300 dark:border-zinc-700 px-2 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() => {
                       setGeoError("");
                       setGeoLoading(true);
@@ -397,29 +397,29 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                   </button>
                 </div>
                 {geoLoading && (
-                  <div className="text-xs text-zinc-600 dark:text-zinc-400">
+                  <div className="text-xs text-zinc-500 dark:text-zinc-400">
                     {t.helpSheet.detecting}
                   </div>
                 )}
                 {!!geoError && <div className="text-xs text-red-600">{geoError}</div>}
                 <div className="space-y-2 flex-1 overflow-y-auto min-h-0">
                   {filteredServices.length === 0 && (
-                    <div className="text-sm text-zinc-600 dark:text-zinc-400">
+                    <div className="text-sm text-zinc-500 dark:text-zinc-400">
                       {t.helpSheet.noServices}
                     </div>
                   )}
                   {filteredServices.slice(0, 6).map((s) => (
                     <div key={s.id} className="rounded border p-2">
-                      <div className="text-xs uppercase text-zinc-600 dark:text-zinc-400">
+                      <div className="text-xs uppercase text-zinc-500 dark:text-zinc-400">
                         {s.type}
                       </div>
-                      <div className="font-medium text-sm text-zinc-900 dark:text-zinc-100">
+                      <div className="font-medium text-sm text-zinc-500 dark:text-zinc-400">
                         {s.name}
                       </div>
-                      <div className="text-sm text-zinc-700 dark:text-zinc-300">{s.address}</div>
+                      <div className="text-sm text-zinc-700 dark:text-zinc-500">{s.address}</div>
                       {s.phone && (
                         <a
-                          className="text-sm underline text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100"
+                          className="text-sm underline text-zinc-700 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-100"
                           href={`tel:${s.phone}`}
                           aria-label={t.helpSheet.callServiceAriaLabel.replace("{name}", s.name)}
                         >
@@ -428,7 +428,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                       )}
                       {s.url && (
                         <a
-                          className="ml-2 text-sm underline text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100"
+                          className="ml-2 text-sm underline text-zinc-700 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-100"
                           href={s.url}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -438,10 +438,10 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                         </a>
                       )}
                       {s.opening && (
-                        <div className="text-xs text-zinc-600 dark:text-zinc-400">{s.opening}</div>
+                        <div className="text-xs text-zinc-500 dark:text-zinc-400">{s.opening}</div>
                       )}
                       {queueIntel[s.id] && (
-                        <div className="mt-1 text-[11px] text-zinc-600 dark:text-zinc-400">
+                        <div className="mt-1 text-[11px] text-zinc-500 dark:text-zinc-400">
                           {t.helpSheet.queueBest}: {queueIntel[s.id].bestWindows.join(" / ") || "—"}{" "}
                           · {t.helpSheet.queueAvg} {queueIntel[s.id].avgWait}m
                           <button
@@ -529,7 +529,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                   ))}
                 </div>
               </div>
-              <div className="text-xs text-zinc-600 dark:text-zinc-400 flex-shrink-0">
+              <div className="text-xs text-zinc-500 dark:text-zinc-400 flex-shrink-0">
                 {t.helpSheet.disclaimer}
               </div>
             </motion.div>

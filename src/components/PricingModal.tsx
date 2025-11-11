@@ -31,7 +31,7 @@ export default function PricingModal({
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
+            className="absolute top-4 right-4 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
             aria-label="Close"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -46,10 +46,10 @@ export default function PricingModal({
 
           {/* Header */}
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-100">
+            <h2 className="text-2xl font-semibold mb-2 text-zinc-500 dark:text-zinc-400">
               Get Your Professional PDF
             </h2>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto">
               Choose the package that best fits your needs. All documents are delivered instantly
               via email.
             </p>

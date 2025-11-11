@@ -69,7 +69,7 @@ export default function NeutralizePage() {
         <label className="text-sm sm:col-span-3">
           {t.neutralizer?.yourDraft || "Your draft"}
           <textarea
-            className="mt-1 w-full min-h-32 rounded border p-3 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 dark:placeholder:text-zinc-400"
+            className="mt-1 w-full min-h-32 rounded border p-3 bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 placeholder:text-zinc-500 dark:placeholder:text-zinc-400"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Paste the message you want to rewrite…"
@@ -78,7 +78,7 @@ export default function NeutralizePage() {
         <label className="text-sm sm:col-span-1">
           {t.neutralizer?.tone || "Tone"}
           <select
-            className="mt-1 w-full rounded border px-2 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+            className="mt-1 w-full rounded border px-2 py-2 bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
             value={tone}
             onChange={(e) => setTone(e.target.value as typeof tone)}
           >

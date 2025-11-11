@@ -39,7 +39,7 @@ export default function CitySwitch({ buttonClassName }: { buttonClassName?: stri
         title={active ? `Region: ${active.label}` : "Change region"}
       >
         <svg
-          className="w-4 h-4 text-zinc-700 dark:text-zinc-300"
+          className="w-4 h-4 text-zinc-700 dark:text-zinc-500"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -75,7 +75,7 @@ export default function CitySwitch({ buttonClassName }: { buttonClassName?: stri
                   setPreferredCity(c.code);
                   setOpen(false);
                 }}
-                className={`w-full text-left px-3 py-2 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${preferredCity === c.code ? "font-medium" : ""}`}
+                className={`w-full text-left px-3 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${preferredCity === c.code ? "font-medium" : ""}`}
                 aria-label={`Select ${c.label}`}
               >
                 {c.label}

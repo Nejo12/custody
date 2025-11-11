@@ -23,19 +23,19 @@ export default function HomeClient() {
         <div className="mt-8 grid grid-cols-1 gap-3">
           <Link
             href="/interview"
-            className="rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 p-4 text-center hover:bg-black dark:hover:bg-white transition-colors"
+            className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700 p-4 text-center hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-black dark:hover:bg-white transition-colors"
           >
             {t.home.check}
           </Link>
           <Link
             href="/learn"
-            className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-center text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+            className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-center text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
           >
             {t.home.learn}
           </Link>
           <Link
             href="/directory"
-            className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-center text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+            className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-center text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
           >
             {t.home.support}
           </Link>

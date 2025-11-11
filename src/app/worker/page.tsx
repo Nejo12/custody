@@ -124,7 +124,7 @@ export default function WorkerPage() {
             ? t.worker?.building || "Building…"
             : t.worker?.buildBatchZip || "Build batch ZIP"}
         </button>
-        <div className="text-xs text-zinc-600">
+        <div className="text-xs text-zinc-700">
           {t.worker?.batchHint ||
             "Redaction is applied in cover‑letters via sender only; full case redaction export available in Vault."}
         </div>
@@ -134,7 +134,7 @@ export default function WorkerPage() {
           {t.worker?.handToParent || "Hand to Parent (QR link)"}
         </div>
         <QRPreview url="/result" />
-        <div className="text-xs text-zinc-600">
+        <div className="text-xs text-zinc-700">
           {t.worker?.handToParentHint ||
             "Opens the Result page on this device. For case‑specific links, we can add generated view‑only routes later."}
         </div>
@@ -201,7 +201,7 @@ function CaseZipPanel({ kinds }: { kinds: { joint: boolean; contact: boolean } }
   return (
     <div className="rounded-lg border p-3 space-y-2 no-print">
       <div className="text-sm font-medium">{t.worker?.caseZipExport || "Case ZIP export"}</div>
-      <div className="text-xs text-zinc-600">
+      <div className="text-xs text-zinc-700">
         {t.worker?.caseZipHint ||
           "Exports a redacted case snapshot (vault + timeline). Optionally adds selected packs."}
       </div>
