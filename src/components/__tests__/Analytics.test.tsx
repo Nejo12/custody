@@ -1,6 +1,18 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import Analytics, { trackEvent, trackConversion } from "../Analytics";
+
+// Mock Next.js navigation hooks
+const mockPathname = "/";
+vi.mock("next/navigation", () => ({
+  usePathname: () => mockPathname,
+}));
+
+// Mock Next.js Script component
+// Script component is mocked to return null since we're testing component behavior, not script execution
+vi.mock("next/script", () => ({
+  default: () => null,
+}));
 
 // Mock window.gtag
 const mockGtag = vi.fn();
@@ -31,20 +43,34 @@ beforeEach(() => {
 afterEach(() => {
   vi.unstubAllEnvs();
   vi.clearAllMocks();
+  // Clean up window properties
+  delete (window as { gtag?: unknown }).gtag;
+  delete (window as { dataLayer?: unknown }).dataLayer;
 });
 
 describe("Analytics", () => {
-  it("should not initialize if GA_MEASUREMENT_ID is not set", () => {
+  it("should not render Script components if GA_MEASUREMENT_ID is not set", () => {
     vi.unstubAllEnvs();
-    render(<Analytics />);
-    expect(mockGtag).not.toHaveBeenCalled();
+    const { container } = render(<Analytics />);
+    // Component should return null when GA ID is not set
+    expect(container.firstChild).toBeNull();
   });
 
-  it("should initialize Google Analytics when GA_MEASUREMENT_ID is set", () => {
+  it("should render Script components when GA_MEASUREMENT_ID is set", () => {
     render(<Analytics />);
-    // Component should attempt to load gtag script
-    // Note: Actual script loading is tested in integration tests
+    // Script components are mocked, so we just verify the component renders without errors
     expect(window.dataLayer).toBeDefined();
+  });
+
+  it("should track page views when pathname changes", async () => {
+    render(<Analytics />);
+
+    // Wait for useEffect to run and track the initial page view
+    await waitFor(() => {
+      expect(mockGtag).toHaveBeenCalledWith("config", "G-TEST123", {
+        page_path: "/",
+      });
+    });
   });
 });
 

@@ -10,12 +10,15 @@ const nextConfig: NextConfig = {
       "'wasm-unsafe-eval'",
       "blob:",
       "https://js.stripe.com", // Required for Stripe Checkout
+      "https://www.googletagmanager.com", // Google Analytics script source
     ]
       .filter(Boolean)
       .join(" ");
     const connectSrc = [
       "'self'",
       "https://api.openai.com",
+      "https://www.google-analytics.com", // Google Analytics data collection
+      "https://www.googletagmanager.com", // Google Tag Manager
       isDev ? "http:" : "",
       isDev ? "https:" : "https:",
       isDev ? "ws:" : "",

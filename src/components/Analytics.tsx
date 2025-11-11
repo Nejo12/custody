@@ -2,54 +2,97 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Script from "next/script";
+
+/**
+ * Google Analytics 4 configuration parameters
+ */
+interface GAConfig {
+  page_path: string;
+}
+
+/**
+ * Google Analytics event parameters
+ */
+interface GAEventParams {
+  [key: string]: string | number | boolean | undefined;
+}
+
+/**
+ * Google Analytics purchase event parameters
+ */
+interface GAPurchaseParams {
+  value: number;
+  currency: string;
+  transaction_id?: string;
+}
+
+/**
+ * Google Analytics gtag function signature
+ */
+type GtagFunction = (
+  command: "config" | "event" | "js",
+  targetId: string | Date,
+  config?: GAConfig | GAEventParams | GAPurchaseParams
+) => void;
+
+/**
+ * Extend Window interface for Google Analytics
+ */
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: GtagFunction;
+  }
+}
 
 /**
  * Google Analytics 4 tracking component
+ * Uses Next.js Script component for optimal performance
  * Tracks page views and custom events
  */
 export default function Analytics() {
   const pathname = usePathname();
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
-  // Initialize Google Analytics
-  useEffect(() => {
-    if (!gaId || typeof window === "undefined") {
-      return;
-    }
-
-    // Load gtag script if not already loaded
-    if (!window.gtag) {
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
-      document.head.appendChild(script);
-
-      // Initialize gtag
-      window.dataLayer = window.dataLayer || [];
-      function gtag(...args: unknown[]): void {
-        window.dataLayer?.push(args);
-      }
-      window.gtag = gtag;
-
-      gtag("js", new Date());
-      gtag("config", gaId, {
-        page_path: pathname,
-      });
-    }
-  }, [gaId, pathname]);
-
-  // Track page views on route change
+  // Track page views on route change (after initial load)
   useEffect(() => {
     if (!gaId || !window.gtag || typeof window === "undefined") {
       return;
     }
 
-    window.gtag("config", gaId, {
+    const config: GAConfig = {
       page_path: pathname,
-    });
+    };
+
+    window.gtag("config", gaId, config);
   }, [pathname, gaId]);
 
-  return null;
+  // Don't render anything if GA ID is not configured
+  if (!gaId) {
+    return null;
+  }
+
+  return (
+    <>
+      {/* Load Google Analytics script */}
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+      />
+      {/* Initialize Google Analytics */}
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${gaId}', {
+            page_path: window.location.pathname,
+          });
+        `}
+      </Script>
+    </>
+  );
 }
 
 /**
@@ -57,10 +100,7 @@ export default function Analytics() {
  * @param eventName - Name of the event
  * @param eventParams - Additional event parameters
  */
-export function trackEvent(
-  eventName: string,
-  eventParams?: Record<string, string | number | boolean>
-): void {
+export function trackEvent(eventName: string, eventParams?: GAEventParams): void {
   if (typeof window === "undefined" || !window.gtag) {
     return;
   }
@@ -79,17 +119,11 @@ export function trackConversion(value: number, currency = "EUR", transactionId?:
     return;
   }
 
-  window.gtag("event", "purchase", {
+  const purchaseParams: GAPurchaseParams = {
     value: value / 100, // Convert cents to currency units
     currency,
     transaction_id: transactionId,
-  });
-}
+  };
 
-// Extend Window interface for gtag
-declare global {
-  interface Window {
-    dataLayer?: unknown[];
-    gtag?: (command: string, targetId: string | Date, config?: Record<string, unknown>) => void;
-  }
+  window.gtag("event", "purchase", purchaseParams);
 }
