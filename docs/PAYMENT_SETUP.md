@@ -241,7 +241,7 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
    http://localhost:3000/result
    ```
 
-3. **Click "Get Professional PDF"**
+3. **Click "Get Pro Document"**
    - You should see the pricing modal
 
 4. **Choose a tier and enter email:**

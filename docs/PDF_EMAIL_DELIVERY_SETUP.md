@@ -7,7 +7,7 @@ The complete payment → PDF generation → email delivery flow is now implement
 **Flow:**
 
 1. User completes interview on result page
-2. Clicks "Get Professional PDF" button
+2. Clicks "Get Pro Document" button
 3. Selects pricing tier and enters email
 4. Pays via Stripe Checkout
 5. **Webhook triggered** → PDF generated → Email sent with attachment
@@ -192,7 +192,7 @@ npm test pdfGenerator.test.ts
    - Answer all questions
    - Reach the result page
 
-4. **Click "Get Professional PDF"**
+4. **Click "Get Pro Document"**
    - Select a tier (try "Professional" or "Attorney" to see more content)
    - Enter your real email address
    - Click "Purchase Now"
@@ -358,7 +358,7 @@ Once you've completed the setup steps above, the full flow is ready:
 **Test it now:**
 
 1. Complete the interview
-2. Click "Get Professional PDF"
+2. Click "Get Pro Document"
 3. Use test card `4242 4242 4242 4242`
 4. Check your email! 📧
 

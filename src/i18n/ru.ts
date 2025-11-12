@@ -164,7 +164,7 @@ const ru = {
     stepPickCourt: "Выбрать суд",
     stepSetSender: "Установить отправителя",
     stepGeneratePdf: "Создать PDF",
-    getProfessionalDocs: "Получить профессиональные документы",
+    getProfessionalDocs: "Получить Pro документы",
     professionalDocsDesc:
       "PDF-файлы, готовые к подаче в суд, с юридическими ссылками и руководствами по подаче, доставляются на вашу электронную почту.",
     instantDelivery: "Мгновенная доставка",

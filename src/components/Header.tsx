@@ -169,7 +169,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                     className="block h-9 rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Professional PDFs
+                    Pro Documents
                   </Link>
                   <Link
                     href="/settings"

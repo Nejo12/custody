@@ -30,7 +30,7 @@ export default function GetPDFButton({
         onClick={() => setIsModalOpen(true)}
         className={`${baseClasses} ${variantClasses} ${className}`}
       >
-        Get Professional PDF
+        Get Pro Document
       </button>
 
       <PricingModal

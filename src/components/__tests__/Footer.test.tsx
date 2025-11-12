@@ -71,9 +71,9 @@ describe("Footer", () => {
     expect(footer).toHaveClass("w-full", "max-w-xl", "mx-auto", "text-center");
   });
 
-  it("includes Professional PDFs link", () => {
+  it("includes Pro Documents link", () => {
     render(<Footer />);
-    const link = screen.getByRole("link", { name: /Professional PDFs/i });
+    const link = screen.getByRole("link", { name: /Pro Documents/i });
     expect(link).toBeInTheDocument();
   });
 });

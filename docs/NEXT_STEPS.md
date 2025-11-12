@@ -38,7 +38,7 @@ RESEND_API_KEY=re_...
 ```bash
 npm run dev
 # Visit http://localhost:3000/result
-# Click "Get Professional PDF"
+# Click "Get Pro Document"
 # See the pricing modal!
 ```
 

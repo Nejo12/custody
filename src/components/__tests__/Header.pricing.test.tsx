@@ -31,12 +31,12 @@ describe("Header pricing link", () => {
     document.body.innerHTML = "";
   });
 
-  it("shows Professional PDFs link in mobile menu", () => {
+  it("shows Pro Documents link in mobile menu", () => {
     render(<Header />);
     // open mobile menu (More)
     const more = screen.getByText(/More/i);
     fireEvent.click(more);
-    const link = screen.getByRole("link", { name: /Professional PDFs/i });
+    const link = screen.getByRole("link", { name: /Pro Documents/i });
     expect(link).toBeInTheDocument();
   });
 });

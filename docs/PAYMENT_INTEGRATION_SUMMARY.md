@@ -20,7 +20,7 @@ The result page now has a beautiful, prominent payment CTA section that:
 ```tsx
 <motion.div className="rounded-xl bg-gradient-to-br from-purple-50 to-pink-50...">
   <h3>Get Court-Ready Documents</h3>
-  <p>Professional PDFs with legal citations...</p>
+  <p>Pro Documents with legal citations...</p>
   <GetPDFButton documentType="joint-custody" metadata={{...}} />
 </motion.div>
 ```
@@ -89,7 +89,7 @@ custody/
    - Located right after the status card
    - Beautiful gradient design
    - Animated entry
-   - Click "📄 Get Professional PDF" button
+   - Click "📄 Get Pro Document" button
    - See the pricing modal!
 
 ### Next Steps

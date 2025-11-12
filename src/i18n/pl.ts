@@ -166,7 +166,7 @@ const pl = {
     stepPickCourt: "Wybierz sąd",
     stepSetSender: "Ustaw nadawcę",
     stepGeneratePdf: "Wygeneruj PDF",
-    getProfessionalDocs: "Uzyskaj dokumenty zawodowe",
+    getProfessionalDocs: "Uzyskaj dokumenty Pro",
     professionalDocsDesc:
       "Pliki PDF gotowe do sądu z cytatami prawnymi i przewodnikami wysyłki, dostarczane na Twoją skrzynkę e-mail.",
     instantDelivery: "Natychmiastowa dostawa",

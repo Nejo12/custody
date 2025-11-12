@@ -26,7 +26,7 @@ Automatically generates and emails PDF after successful payment.
 ## Quick Test
 
 ```bash
-# Complete interview → Click "Get Professional PDF"
+# Complete interview → Click "Get Pro Document"
 # Use card: 4242 4242 4242 4242
 # Check your email - PDF arrives in 30 seconds!
 ```

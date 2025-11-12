@@ -24,7 +24,7 @@ export default function Footer() {
           href="/pricing"
           className="underline hover:text-zinc-700 dark:hover:text-zinc-600 transition-colors"
         >
-          {"Professional PDFs"}
+          {"Pro Documents"}
         </Link>
         <a
           href="/impressum"

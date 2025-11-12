@@ -163,7 +163,7 @@ const de = {
     stepPickCourt: "Gericht auswählen",
     stepSetSender: "Absender setzen",
     stepGeneratePdf: "PDF generieren",
-    getProfessionalDocs: "Professionelle Dokumente erhalten",
+    getProfessionalDocs: "Pro-Dokumente erhalten",
     professionalDocsDesc:
       "Gerichtsfähige PDFs mit Rechtszitaten und Einreichungsleitfäden, direkt per E-Mail zugestellt.",
     instantDelivery: "Sofortige Zustellung",

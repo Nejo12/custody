@@ -163,7 +163,7 @@ const ar = {
     stepPickCourt: "اختيار المحكمة",
     stepSetSender: "تعيين المرسل",
     stepGeneratePdf: "إنشاء PDF",
-    getProfessionalDocs: "الحصول على المستندات الاحترافية",
+    getProfessionalDocs: "الحصول على مستندات Pro",
     professionalDocsDesc:
       "ملفات PDF جاهزة للمحكمة مع استشهادات قانونية وأدلة الإرسال، تُسلّم إلى بريدك الإلكتروني.",
     instantDelivery: "التسليم الفوري",
