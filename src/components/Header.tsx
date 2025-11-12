@@ -135,7 +135,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                 onClick={() => setMenuOpen((v) => !v)}
                 aria-haspopup="menu"
                 aria-expanded={menuOpen}
-                className="btn-pill"
+                className="inline-flex items-center justify-center h-10 px-4 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 text-sm"
               >
                 {t.header?.more || "More"}
               </button>
@@ -180,8 +180,8 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                   </Link>
                   <div className="pt-2" />
                   <div className="px-1 py-2 space-y-2">
-                    <CitySwitch buttonClassName="btn-pill w-full justify-start" />
-                    <LanguageSwitch buttonClassName="btn-pill w-full justify-start" />
+                    <CitySwitch buttonClassName="w-full justify-start rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 px-3 h-9" />
+                    <LanguageSwitch buttonClassName="w-full justify-start rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 px-3 h-9" />
                   </div>
                 </div>
               )}

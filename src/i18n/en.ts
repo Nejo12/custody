@@ -618,6 +618,13 @@ const en = {
     needHelp: "Need help? Email us at support@custodyclarity.com",
     sessionId: "Session ID:",
   },
+  thanks: {
+    title: "Thank you for visiting!",
+    message: "We appreciate your interest in Custody Clarity.",
+    referralCode: "Your referral/campaign code: {code}",
+    startInterview: "Start the interview to get your result in minutes.",
+    beginInterview: "Begin Interview",
+  },
   updatePrompt: {
     message: "A new version is available.",
     later: "Later",

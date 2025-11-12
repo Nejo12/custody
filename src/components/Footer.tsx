@@ -26,18 +26,18 @@ export default function Footer() {
         >
           {"Pro Documents"}
         </Link>
-        <a
+        <Link
           href="/impressum"
           className="underline hover:text-zinc-700 dark:hover:text-zinc-600 transition-colors"
         >
           {t.footer?.impressum || "Impressum"}
-        </a>
-        <a
+        </Link>
+        <Link
           href="/datenschutz"
           className="underline hover:text-zinc-700 dark:hover:text-zinc-600 transition-colors"
         >
           {t.footer?.datenschutz || "Datenschutz"}
-        </a>
+        </Link>
       </nav>
     </footer>
   );

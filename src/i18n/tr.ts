@@ -576,6 +576,13 @@ const tr = {
     needHelp: "Yardıma mı ihtiyacınız var? Bize support@custodyclarity.com adresinden yazın",
     sessionId: "Oturum Kimliği:",
   },
+  thanks: {
+    title: "Ziyaretiniz için teşekkürler!",
+    message: "Custody Clarity'ye gösterdiğiniz ilgiyi takdir ediyoruz.",
+    referralCode: "Referans/kampanya kodunuz: {code}",
+    startInterview: "Sonucunuzu dakikalar içinde almak için görüşmeyi başlatın.",
+    beginInterview: "Görüşmeyi Başlat",
+  },
   updatePrompt: {
     message: "Yeni bir sürüm mevcut.",
     later: "Sonra",

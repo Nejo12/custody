@@ -587,6 +587,13 @@ const ru = {
     needHelp: "Нужна помощь? Напишите нам на support@custodyclarity.com",
     sessionId: "ID сессии:",
   },
+  thanks: {
+    title: "Спасибо за посещение!",
+    message: "Мы ценим ваш интерес к Custody Clarity.",
+    referralCode: "Ваш реферальный/кампанийный код: {code}",
+    startInterview: "Начните интервью, чтобы получить результат за несколько минут.",
+    beginInterview: "Начать интервью",
+  },
   updatePrompt: {
     message: "Доступна новая версия.",
     later: "Позже",

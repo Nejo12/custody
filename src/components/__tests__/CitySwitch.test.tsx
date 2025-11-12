@@ -18,10 +18,11 @@ describe("CitySwitch", () => {
     });
   });
 
-  it("renders button with location icon", () => {
+  it("renders button with city name", () => {
     render(<CitySwitch />);
     const button = screen.getByRole("button", { name: /Change region/i });
     expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent("Berlin");
   });
 
   it("displays current city in aria-label", () => {
@@ -41,16 +42,16 @@ describe("CitySwitch", () => {
     render(<CitySwitch />);
     const button = screen.getByRole("button");
     fireEvent.click(button);
-    expect(screen.getByText("Berlin")).toBeInTheDocument();
-    expect(screen.getByText("Hamburg")).toBeInTheDocument();
-    expect(screen.getByText("NRW")).toBeInTheDocument();
+    expect(screen.getByRole("option", { name: "Berlin" })).toBeInTheDocument();
+    expect(screen.getByRole("option", { name: "Hamburg" })).toBeInTheDocument();
+    expect(screen.getByRole("option", { name: "NRW" })).toBeInTheDocument();
   });
 
   it("selects city when clicked", () => {
     render(<CitySwitch />);
     const button = screen.getByRole("button");
     fireEvent.click(button);
-    const hamburgOption = screen.getByText("Hamburg");
+    const hamburgOption = screen.getByRole("option", { name: "Hamburg" });
     fireEvent.click(hamburgOption);
     expect(mockSetPreferredCity).toHaveBeenCalledWith("hamburg");
   });
@@ -59,7 +60,7 @@ describe("CitySwitch", () => {
     render(<CitySwitch />);
     const button = screen.getByRole("button");
     fireEvent.click(button);
-    const hamburgOption = screen.getByText("Hamburg");
+    const hamburgOption = screen.getByRole("option", { name: "Hamburg" });
     fireEvent.click(hamburgOption);
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
@@ -94,7 +95,7 @@ describe("CitySwitch", () => {
     render(<CitySwitch />);
     const button = screen.getByRole("button");
     fireEvent.click(button);
-    const hamburgOption = screen.getByText("Hamburg").closest("li");
-    expect(hamburgOption).toHaveAttribute("aria-selected", "true");
+    const hamburgOption = screen.getByRole("option", { name: "Hamburg" });
+    expect(hamburgOption.closest("li")).toHaveAttribute("aria-selected", "true");
   });
 });

@@ -571,6 +571,13 @@ const ar = {
     needHelp: "تحتاج مساعدة؟ راسلنا على support@custodyclarity.com",
     sessionId: "معرف الجلسة:",
   },
+  thanks: {
+    title: "شكراً لزيارتك!",
+    message: "نقدر اهتمامك بـ Custody Clarity.",
+    referralCode: "رمز الإحالة/الحملة الخاص بك: {code}",
+    startInterview: "ابدأ المقابلة للحصول على النتيجة في دقائق.",
+    beginInterview: "بدء المقابلة",
+  },
   updatePrompt: {
     message: "إصدار جديد متاح.",
     later: "لاحقاً",

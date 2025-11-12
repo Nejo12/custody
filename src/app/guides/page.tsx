@@ -67,32 +67,26 @@ export default function GuidesPage() {
 
       <div className="space-y-6">
         {guides.map((guide) => (
-          <article
-            key={guide.slug}
-            className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-5 hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors"
-          >
-            <div className="flex items-start justify-between gap-4 mb-2">
-              <div className="flex-1">
-                <Link
-                  href={`/guides/${guide.slug}`}
-                  className="text-lg font-semibold text-zinc-400 dark:text-zinc-500 hover:underline block mb-2"
-                >
-                  {guide.title}
-                </Link>
-                <p className="text-sm text-zinc-700 dark:text-zinc-500 mb-3">{guide.excerpt}</p>
+          <Link key={guide.slug} href={`/guides/${guide.slug}`} className="group block">
+            <article className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-5 hover:bg-zinc-500 dark:hover:bg-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all hover:scale-[1.01] cursor-pointer">
+              <div className="flex items-start justify-between gap-4 mb-2">
+                <div className="flex-1">
+                  <h2 className="text-lg font-semibold text-zinc-200 dark:text-zinc-200 group-hover:text-blue-300 dark:group-hover:text-blue-800 transition-colors block mb-2">
+                    {guide.title}
+                  </h2>
+                  <p className="text-sm text-zinc-600 mb-3">{guide.excerpt}</p>
+                </div>
               </div>
-            </div>
 
-            <div className="flex items-center gap-4 text-xs text-zinc-500 dark:text-zinc-400">
-              <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800">
-                {categories[guide.category as keyof typeof categories] || guide.category}
-              </span>
-              <span className="text-zinc-700 dark:text-zinc-400">{guide.readTime}</span>
-              <span className="text-zinc-700 dark:text-zinc-400">
-                {formatDate(guide.published)}
-              </span>
-            </div>
-          </article>
+              <div className="flex items-center gap-4 text-xs text-zinc-500 dark:text-zinc-400">
+                <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800">
+                  {categories[guide.category as keyof typeof categories] || guide.category}
+                </span>
+                <span className="text-zinc-600">{guide.readTime}</span>
+                <span className="text-zinc-600">{formatDate(guide.published)}</span>
+              </div>
+            </article>
+          </Link>
         ))}
       </div>
 

@@ -39,16 +39,16 @@ export default function DatenschutzPage() {
 
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-8 space-y-6">
-      <h1 className="text-2xl font-semibold text-zinc-500 dark:text-zinc-400">
+      <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
         {t.datenschutz?.title || "Datenschutzerklärung"}
       </h1>
 
-      <section className="space-y-4 text-sm text-zinc-700 dark:text-zinc-500">
+      <section className="space-y-4 text-sm text-zinc-800 dark:text-zinc-200">
         <div>
-          <h2 className="font-semibold text-zinc-500 dark:text-zinc-400 mb-2">
+          <h2 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
             {t.datenschutz?.section1Title || "1. Datenschutz auf einen Blick"}
           </h2>
-          <h3 className="font-medium text-zinc-500 dark:text-zinc-400 mt-3 mb-2">
+          <h3 className="font-medium text-zinc-800 dark:text-zinc-200 mt-3 mb-2">
             {t.datenschutz?.generalNotes || "Allgemeine Hinweise"}
           </h3>
           <p>
@@ -58,7 +58,7 @@ export default function DatenschutzPage() {
         </div>
 
         <div>
-          <h2 className="font-semibold text-zinc-500 dark:text-zinc-400 mb-2">
+          <h2 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
             {t.datenschutz?.section2Title || "2. Verantwortliche Stelle"}
           </h2>
           <p>
@@ -73,7 +73,7 @@ export default function DatenschutzPage() {
             <strong>{t.datenschutz?.email || "E-Mail:"}</strong>{" "}
             <a
               href="mailto:contact@custodyclarity.com"
-              className="underline text-blue-600 dark:text-blue-400"
+              className="underline text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
             >
               contact@custodyclarity.com
             </a>
@@ -81,10 +81,10 @@ export default function DatenschutzPage() {
         </div>
 
         <div>
-          <h2 className="font-semibold text-zinc-500 dark:text-zinc-400 mb-2">
+          <h2 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
             {t.datenschutz?.section3Title || "3. Datenerfassung auf dieser Website"}
           </h2>
-          <h3 className="font-medium text-zinc-500 dark:text-zinc-400 mt-3 mb-2">
+          <h3 className="font-medium text-zinc-800 dark:text-zinc-200 mt-3 mb-2">
             {t.datenschutz?.serverLogFiles || "Server-Log-Dateien"}
           </h3>
           <p>
@@ -110,7 +110,7 @@ export default function DatenschutzPage() {
               "Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO."}
           </p>
 
-          <h3 className="font-medium text-zinc-500 dark:text-zinc-400 mt-3 mb-2">
+          <h3 className="font-medium text-zinc-800 dark:text-zinc-200 mt-3 mb-2">
             {t.datenschutz?.contactForm || "Kontaktformular"}
           </h3>
           <p>
@@ -118,7 +118,7 @@ export default function DatenschutzPage() {
               "Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter."}
           </p>
 
-          <h3 className="font-medium text-zinc-500 dark:text-zinc-400 mt-3 mb-2">
+          <h3 className="font-medium text-zinc-800 dark:text-zinc-200 mt-3 mb-2">
             {t.datenschutz?.localStorage || "Lokale Speicherung (LocalStorage)"}
           </h3>
           <p>
@@ -128,7 +128,7 @@ export default function DatenschutzPage() {
         </div>
 
         <div>
-          <h2 className="font-semibold text-zinc-500 dark:text-zinc-400 mb-2">
+          <h2 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
             {t.datenschutz?.section4Title || "4. Ihre Rechte"}
           </h2>
           <p>{t.datenschutz?.yourRightsText || "Sie haben jederzeit das Recht:"}</p>
@@ -149,7 +149,7 @@ export default function DatenschutzPage() {
         </div>
 
         <div>
-          <h2 className="font-semibold text-zinc-500 dark:text-zinc-400 mb-2">
+          <h2 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
             {t.datenschutz?.section5Title || "5. Widerspruch gegen Datenverarbeitung"}
           </h2>
           <p>
@@ -159,7 +159,7 @@ export default function DatenschutzPage() {
         </div>
 
         <div>
-          <h2 className="font-semibold text-zinc-500 dark:text-zinc-400 mb-2">
+          <h2 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
             {t.datenschutz?.section6Title || "6. Änderung dieser Datenschutzerklärung"}
           </h2>
           <p>

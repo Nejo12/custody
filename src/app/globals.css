@@ -128,8 +128,17 @@ select:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 a:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid rgb(161 161 170); /* zinc-400 */
   outline-offset: 2px;
+}
+
+/* Dark mode focus outline */
+.dark button:focus-visible,
+.dark select:focus-visible,
+.dark input:focus-visible,
+.dark textarea:focus-visible,
+.dark a:focus-visible {
+  outline-color: rgb(113 113 122); /* zinc-500 */
 }
 
 /* Ensure dropdown listboxes are readable */

@@ -90,7 +90,10 @@ export default function GuidePage({ params }: Props) {
           listType = null;
         }
         elements.push(
-          <h2 key={`h2-${idx}`} className="text-xl font-semibold mt-6 mb-3">
+          <h2
+            key={`h2-${idx}`}
+            className="text-xl font-semibold mt-6 mb-3 text-zinc-900 dark:text-zinc-100"
+          >
             {line.replace("## ", "")}
           </h2>
         );
@@ -98,7 +101,10 @@ export default function GuidePage({ params }: Props) {
         if (currentList.length > 0) {
           const ListTag = listType === "ol" ? "ol" : "ul";
           elements.push(
-            <ListTag key={`list-${idx}`} className="list-disc list-inside mb-3 space-y-1 ml-4">
+            <ListTag
+              key={`list-${idx}`}
+              className="list-disc list-inside mb-3 space-y-1 ml-4 text-zinc-700 dark:text-zinc-300"
+            >
               {currentList.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
@@ -108,7 +114,10 @@ export default function GuidePage({ params }: Props) {
           listType = null;
         }
         elements.push(
-          <h3 key={`h3-${idx}`} className="text-lg font-semibold mt-4 mb-2">
+          <h3
+            key={`h3-${idx}`}
+            className="text-lg font-semibold mt-4 mb-2 text-zinc-800 dark:text-zinc-200"
+          >
             {line.replace("### ", "")}
           </h3>
         );
@@ -148,7 +157,7 @@ export default function GuidePage({ params }: Props) {
           elements.push(
             <ListTag
               key={`list-${idx}`}
-              className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4`}
+              className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4 text-zinc-700 dark:text-zinc-300`}
             >
               {currentList.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -165,7 +174,7 @@ export default function GuidePage({ params }: Props) {
           elements.push(
             <ListTag
               key={`list-${idx}`}
-              className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4`}
+              className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4 text-zinc-700 dark:text-zinc-300`}
             >
               {currentList.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -176,7 +185,7 @@ export default function GuidePage({ params }: Props) {
           listType = null;
         }
         elements.push(
-          <p key={`p-${idx}`} className="mb-3">
+          <p key={`p-${idx}`} className="mb-3 text-zinc-700 dark:text-zinc-300">
             {line}
           </p>
         );
@@ -203,33 +212,38 @@ export default function GuidePage({ params }: Props) {
   return (
     <article className="w-full max-w-2xl mx-auto px-4 py-6 space-y-6">
       <div>
-        <Link href="/guides" className="text-sm  hover:underline mb-4 inline-block">
+        <Link
+          href="/guides"
+          className="text-sm text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 hover:underline transition-colors mb-4 inline-block"
+        >
           {t.guides?.backToGuides || "← Back to Guides"}
         </Link>
-        <h1 className="text-2xl font-semibold mb-2 text-zinc-600">{guide.title}</h1>
-        <div className="flex items-center gap-4 text-sm  mb-4">
-          <span className="px-2 py-1 rounded bg-zinc-800 text-zinc-300 dark:bg-zinc-600">
+        <h1 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-50">
+          {guide.title}
+        </h1>
+        <div className="flex items-center gap-4 text-sm mb-4">
+          <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200">
             {categories[guide.category as keyof typeof categories] || guide.category}
           </span>
-          <span className="text-zinc-500 dark:text-zinc-400">{guide.readTime}</span>
-          <span className="text-zinc-500 dark:text-zinc-400">{formattedDate}</span>
+          <span className="text-zinc-700 dark:text-zinc-300">{guide.readTime}</span>
+          <span className="text-zinc-700 dark:text-zinc-300">{formattedDate}</span>
         </div>
-        <p className="text-zinc-400 dark:text-zinc-400 mb-6">{guide.excerpt}</p>
+        <p className="text-zinc-700 dark:text-zinc-300 mb-6">{guide.excerpt}</p>
       </div>
 
       {t.guides?.languageNote && (
-        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm">
+        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm text-zinc-800 dark:text-zinc-200">
           <p>{t.guides.languageNote}</p>
         </div>
       )}
 
       <div className="prose prose-zinc dark:prose-invert max-w-none">
-        <div className="text-sm leading-relaxed text-zinc-400 dark:text-zinc-600">
+        <div className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
           {renderedContent}
         </div>
       </div>
 
-      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-500">
+      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-800 dark:text-zinc-200">
         <p>
           {t.guides?.disclaimer ||
             "Disclaimer: This guide provides general information only, not individualized legal advice. Consult a qualified family law attorney for advice specific to your situation."}

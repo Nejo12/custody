@@ -82,14 +82,14 @@ export default function SettingsPage() {
         <div className="text-sm text-zinc-700 dark:text-zinc-400">
           {t.settings?.language || "Language"}
         </div>
-        <div className="inline-flex flex-wrap gap-2 rounded-full border overflow-hidden">
+        <div className="inline-flex flex-wrap gap-2 rounded-lg border overflow-hidden">
           {languages.map((lang) => (
             <button
               key={lang.code}
               onClick={() => setLocale(lang.code)}
               className={`px-4 py-2 ${locale === lang.code ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700" : "bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"}`}
             >
-              {lang.label}
+              {lang.name}
             </button>
           ))}
         </div>

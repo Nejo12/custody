@@ -44,13 +44,13 @@ export default function LanguageSwitch({ buttonClassName }: { buttonClassName?: 
         title={active ? `${active.label} (${active.shortCode})` : "Change language"}
       >
         <span className="text-sm font-medium text-zinc-700 dark:text-zinc-500">
-          {active?.shortCode || locale.toUpperCase().slice(0, 2)}
+          {active?.label || locale.toUpperCase().slice(0, 2)}
         </span>
       </button>
       {open && (
         <ul
           role="listbox"
-          className="menu-panel absolute right-0 mt-1 w-44 rounded-lg border bg-white dark:bg-zinc-900 shadow-xl z-50 overflow-hidden divide-y divide-zinc-200 dark:divide-zinc-800"
+          className="menu-panel absolute right-0 mt-1 w-48 rounded-lg border bg-white dark:bg-zinc-900 shadow-xl z-50 overflow-hidden divide-y divide-zinc-200 dark:divide-zinc-800"
         >
           {locales.map((l) => (
             <li

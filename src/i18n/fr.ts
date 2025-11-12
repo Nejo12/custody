@@ -593,6 +593,13 @@ const fr = {
     needHelp: "Besoin d'aide ? Écrivez-nous à support@custodyclarity.com",
     sessionId: "ID de session :",
   },
+  thanks: {
+    title: "Merci de votre visite !",
+    message: "Nous apprécions votre intérêt pour Custody Clarity.",
+    referralCode: "Votre code de parrainage/campagne : {code}",
+    startInterview: "Commencez l'entretien pour obtenir votre résultat en quelques minutes.",
+    beginInterview: "Commencer l'entretien",
+  },
   updatePrompt: {
     message: "Une nouvelle version est disponible.",
     later: "Plus tard",

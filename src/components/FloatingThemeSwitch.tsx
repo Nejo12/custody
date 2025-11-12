@@ -73,13 +73,13 @@ export default function FloatingThemeSwitch() {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed bottom-12 right-4 z-[60] inline-flex items-center justify-center w-12 h-12 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm hover:bg-white dark:hover:bg-zinc-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 shadow-lg hover:shadow-xl md:hidden"
+      className="fixed bottom-12 right-4 z-[60] inline-flex items-center justify-center w-12 h-12 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm hover:bg-white dark:hover:bg-zinc-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 focus:ring-offset-2 dark:focus:ring-offset-zinc-800 shadow-lg hover:shadow-xl md:hidden"
       aria-label={getLabel()}
       title={getLabel()}
       type="button"
     >
       <span className="sr-only">{getLabel()}</span>
-      <span className="text-zinc-700 dark:text-zinc-500 transition-transform duration-200 hover:scale-110">
+      <span className="dark:text-zinc-200 transition-transform duration-200 hover:scale-110">
         {getIcon()}
       </span>
     </button>
