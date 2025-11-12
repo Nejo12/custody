@@ -2,101 +2,101 @@
   "categories": [
     {
       "id": "getting-started",
-      "title": "Getting Started",
+      "title": "Başlangıç",
       "questions": [
         {
-          "question": "How do I know my custody rights in Germany?",
-          "answer": "Take our free 6-minute guided interview. Answer questions about your situation, and get instant results with legal citations from the German Civil Code (BGB). The tool evaluates your specific circumstances and provides relevant legal information."
+          "question": "Almanya'daki velayet haklarımı nasıl öğrenebilirim?",
+          "answer": "Ücretsiz 6 dakikalık rehberli görüşmemize katılın. Durumunuz hakkındaki soruları yanıtlayın ve Alman Medeni Kanunu'ndan (BGB) yasal alıntılarla anında sonuçlar alın. Araç, özel koşullarınızı değerlendirir ve ilgili yasal bilgiler sağlar."
         },
         {
-          "question": "Is this legal advice?",
-          "answer": "No. Custody Clarity provides general legal information only, not individualized legal advice. The tool helps you understand your rights and prepare documents, but you should consult with a qualified family law attorney for advice specific to your situation."
+          "question": "Bu yasal tavsiye midir?",
+          "answer": "Hayır. Custody Clarity yalnızca genel yasal bilgiler sağlar, bireyselleştirilmiş yasal tavsiye değil. Araç, haklarınızı anlamanıza ve belgeler hazırlamanıza yardımcı olur, ancak durumunuza özel tavsiye için nitelikli bir aile hukuku avukatına danışmalısınız."
         },
         {
-          "question": "What languages is the tool available in?",
-          "answer": "Custody Clarity is available in 7 languages: English, German, Arabic, Polish, French, Turkish, and Russian. This makes legal information accessible to diverse communities in Germany."
+          "question": "Araç hangi dillerde mevcuttur?",
+          "answer": "Custody Clarity 7 dilde mevcuttur: İngilizce, Almanca, Arapça, Lehçe, Fransızca, Türkçe ve Rusça. Bu, yasal bilgileri Almanya'daki çeşitli topluluklar için erişilebilir kılar."
         },
         {
-          "question": "Is my data private?",
-          "answer": "Yes. All data is stored locally in your browser. We don't track you, collect personal information, or send your data to external servers. You can export your data at any time, and you can use the 'Quick Wipe' feature in settings to erase everything."
+          "question": "Verilerim gizli mi?",
+          "answer": "Evet. Tüm veriler tarayıcınızda yerel olarak saklanır. Sizi takip etmiyoruz, kişisel bilgi toplamıyoruz veya verilerinizi harici sunuculara göndermiyoruz. Verilerinizi istediğiniz zaman dışa aktarabilir ve her şeyi silmek için ayarlardaki 'Hızlı Silme' özelliğini kullanabilirsiniz."
         },
         {
-          "question": "Do I need to create an account?",
-          "answer": "No. The tool works completely without registration. All your data stays on your device. You can use it offline once loaded."
+          "question": "Hesap oluşturmam gerekiyor mu?",
+          "answer": "Hayır. Araç tamamen kayıt olmadan çalışır. Tüm verileriniz cihazınızda kalır. Yüklendikten sonra çevrimdışı kullanabilirsiniz."
         }
       ]
     },
     {
       "id": "legal-process",
-      "title": "Legal Process",
+      "title": "Yasal Süreç",
       "questions": [
         {
-          "question": "What is joint custody in Germany?",
-          "answer": "Joint custody (gemeinsame Sorge) means both parents share decision-making rights for their child. In Germany, married parents automatically have joint custody. Unmarried parents can apply for joint custody under §1626a BGB if paternity is acknowledged."
+          "question": "Almanya'da ortak velayet nedir?",
+          "answer": "Ortak velayet (gemeinsame Sorge), her iki ebeveynin çocukları için karar verme haklarını paylaştığı anlamına gelir. Almanya'da evli ebeveynler otomatik olarak ortak velayete sahiptir. Evli olmayan ebeveynler, babalık tanınırsa §1626a BGB kapsamında ortak velayet için başvurabilir."
         },
         {
-          "question": "Can I get contact rights if the other parent blocks contact?",
-          "answer": "Yes. Under §1684 BGB, you have the right to contact with your child. If contact is being blocked, you can apply to the family court (Familiengericht) for a contact order (Umgangsregelung). Our tool helps you understand your rights and prepare the necessary documents."
+          "question": "Diğer ebeveyn teması engellerse temas hakları alabilir miyim?",
+          "answer": "Evet. §1684 BGB'ye göre, çocuğunuzla temas kurma hakkınız vardır. Temas engelleniyorsa, aile mahkemesine (Familiengericht) temas kararı (Umgangsregelung) için başvurabilirsiniz. Aracımız haklarınızı anlamanıza ve gerekli belgeleri hazırlamanıza yardımcı olur."
         },
         {
-          "question": "How long does a custody application take?",
-          "answer": "Processing times vary by court and case complexity. Simple joint custody applications can take 2-4 weeks, while contact orders may take 1-3 months. The court will schedule a hearing if needed."
+          "question": "Bir velayet başvurusu ne kadar sürer?",
+          "answer": "İşleme süreleri mahkeme ve dava karmaşıklığına göre değişir. Basit ortak velayet başvuruları 2-4 hafta sürebilirken, temas kararları 1-3 ay sürebilir. Mahkeme gerekirse bir duruşma planlayacaktır."
         },
         {
-          "question": "Do I need a lawyer?",
-          "answer": "For simple joint custody applications, you may not need a lawyer. However, for contested cases or contact orders, legal representation is recommended. You can also get free initial consultations from legal aid organizations."
+          "question": "Avukata ihtiyacım var mı?",
+          "answer": "Basit ortak velayet başvuruları için avukata ihtiyacınız olmayabilir. Ancak tartışmalı davalar veya temas kararları için yasal temsil önerilir. Ayrıca yasal yardım kuruluşlarından ücretsiz ilk danışmanlık alabilirsiniz."
         },
         {
-          "question": "What documents do I need to file?",
-          "answer": "Typically: birth certificate, paternity acknowledgment (if applicable), marriage certificate (if married), and any existing court orders. Our tool generates a checklist and cover letter tailored to your situation."
+          "question": "Hangi belgeleri dosyalamam gerekiyor?",
+          "answer": "Tipik olarak: doğum belgesi, babalık tanıma (varsa), evlilik belgesi (evliyseniz) ve mevcut mahkeme kararları. Aracımız durumunuza özel bir kontrol listesi ve ön yazı oluşturur."
         },
         {
-          "question": "What is the Jugendamt and do I need to involve them?",
-          "answer": "The Jugendamt (Youth Welfare Office) provides free counseling and mediation services. You don't have to involve them, but they can help mediate disputes and provide support. Courts often suggest involving the Jugendamt before or during proceedings."
+          "question": "Jugendamt nedir ve onları dahil etmem gerekiyor mu?",
+          "answer": "Jugendamt (Gençlik Refah Dairesi) ücretsiz danışmanlık ve arabuluculuk hizmetleri sağlar. Onları dahil etmek zorunda değilsiniz, ancak anlaşmazlıkları arabuluculuk yapmaya ve destek sağlamaya yardımcı olabilirler. Mahkemeler genellikle işlemlerden önce veya sırasında Jugendamt'i dahil etmeyi önerir."
         }
       ]
     },
     {
       "id": "documents",
-      "title": "Documents & Forms",
+      "title": "Belgeler ve Formlar",
       "questions": [
         {
-          "question": "What documents can I generate?",
-          "answer": "You can generate joint custody applications (gemeinsame Sorge) and contact order applications (Umgangsregelung). The tool also creates cover letters, checklists, and can compile everything into a downloadable pack."
+          "question": "Hangi belgeleri oluşturabilirim?",
+          "answer": "Ortak velayet başvuruları (gemeinsame Sorge) ve temas kararı başvuruları (Umgangsregelung) oluşturabilirsiniz. Araç ayrıca ön yazılar, kontrol listeleri oluşturur ve her şeyi indirilebilir bir pakete derleyebilir."
         },
         {
-          "question": "Are the generated documents legally valid?",
-          "answer": "The documents are based on standard legal forms and include proper citations. However, you should review them carefully and may want a lawyer to check them before filing. They serve as a starting point, not a final legal document."
+          "question": "Oluşturulan belgeler yasal olarak geçerli mi?",
+          "answer": "Belgeler standart yasal formlara dayanır ve uygun alıntılar içerir. Ancak bunları dikkatle gözden geçirmeli ve dosyalamadan önce bir avukatın kontrol etmesini isteyebilirsiniz. Bunlar başlangıç noktası olarak hizmet eder, nihai yasal belge değildir."
         },
         {
-          "question": "Can I edit the generated documents?",
-          "answer": "Yes. The PDFs can be edited with PDF editing software. However, we recommend using the tool's forms to regenerate documents if you need to make changes, as this ensures all information stays consistent."
+          "question": "Oluşturulan belgeleri düzenleyebilir miyim?",
+          "answer": "Evet. PDF'ler PDF düzenleme yazılımı ile düzenlenebilir. Ancak değişiklik yapmanız gerekiyorsa, tüm bilgilerin tutarlı kalmasını sağlamak için aracın formlarını kullanarak belgeleri yeniden oluşturmanızı öneririz."
         },
         {
-          "question": "What is the Vault feature?",
-          "answer": "The Vault is a secure, local storage space for your documents, notes, and payment records. Everything stays on your device. You can scan documents, take notes, and export everything as a ZIP file."
+          "question": "Vault özelliği nedir?",
+          "answer": "Vault, belgeleriniz, notlarınız ve ödeme kayıtlarınız için güvenli, yerel bir depolama alanıdır. Her şey cihazınızda kalır. Belgeleri tarayabilir, notlar alabilir ve her şeyi ZIP dosyası olarak dışa aktarabilirsiniz."
         }
       ]
     },
     {
       "id": "practical",
-      "title": "Practical Questions",
+      "title": "Pratik Sorular",
       "questions": [
         {
-          "question": "What if I'm not sure about some answers?",
-          "answer": "That's normal. You can select 'Not sure' for any question. The tool will still provide guidance based on what you do know. You can always update your answers later or file documents and add details as you learn more."
+          "question": "Bazı cevaplardan emin değilsem ne yapmalıyım?",
+          "answer": "Bu normal. Herhangi bir soru için 'Emin değilim' seçeneğini seçebilirsiniz. Araç yine de bildiklerinize dayalı rehberlik sağlayacaktır. Cevaplarınızı daha sonra güncelleyebilir veya belgeler dosyalayabilir ve daha fazla öğrendikçe detaylar ekleyebilirsiniz."
         },
         {
-          "question": "Can I use this if I'm not in Germany?",
-          "answer": "The tool is designed for German family law. If you're outside Germany, the laws may be different. However, if you have a connection to Germany (e.g., child lives there, German citizenship), the tool may still be relevant."
+          "question": "Almanya'da değilsem bunu kullanabilir miyim?",
+          "answer": "Araç Alman aile hukuku için tasarlanmıştır. Almanya dışındaysanız, yasalar farklı olabilir. Ancak Almanya ile bir bağlantınız varsa (örneğin, çocuk orada yaşıyor, Alman vatandaşlığı), araç yine de ilgili olabilir."
         },
         {
-          "question": "What if there's a history of violence?",
-          "answer": "Safety comes first. The tool includes safety warnings and can help you understand options like supervised contact. If you're in immediate danger, contact local authorities or support services. The tool provides resources for finding help."
+          "question": "Şiddet geçmişi varsa ne yapmalıyım?",
+          "answer": "Güvenlik önce gelir. Araç güvenlik uyarıları içerir ve denetimli temas gibi seçenekleri anlamanıza yardımcı olabilir. Acil bir tehlikedeyse, yerel yetkililere veya destek hizmetlerine başvurun. Araç yardım bulmak için kaynaklar sağlar."
         },
         {
-          "question": "How do I find a court or Jugendamt near me?",
-          "answer": "Use our Directory feature to search by city and postcode. It includes courts, Jugendämter, mediation services, and legal aid organizations across Berlin, Hamburg, and NRW."
+          "question": "Yakınımdaki bir mahkeme veya Jugendamt'i nasıl bulabilirim?",
+          "answer": "Şehir ve posta kodu ile aramak için Dizin özelliğimizi kullanın. Berlin, Hamburg ve NRW'deki mahkemeler, Jugendämter, arabuluculuk hizmetleri ve yasal yardım kuruluşlarını içerir."
         }
       ]
     }

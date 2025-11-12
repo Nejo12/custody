@@ -4,106 +4,106 @@
       "term": "BGB",
       "fullForm": "Bürgerliches Gesetzbuch",
       "english": "German Civil Code",
-      "definition": "The main civil code of Germany that contains family law provisions, including custody and contact rights.",
-      "context": "References like 'BGB §1626' refer to specific sections of the German Civil Code.",
+      "definition": "Основной гражданский кодекс Германии, содержащий положения семейного права, включая опеку и права на контакт.",
+      "context": "Ссылки типа 'BGB §1626' относятся к конкретным разделам немецкого гражданского кодекса.",
       "citation": "https://gesetze-im-internet.de/bgb/"
     },
     {
       "term": "Familiengericht",
       "english": "Family Court",
-      "definition": "The court responsible for family law matters, including custody and contact orders. Usually part of the Amtsgericht (local court).",
-      "context": "You file custody and contact applications at the Familiengericht in your area.",
+      "definition": "Суд, ответственный за вопросы семейного права, включая опеку и постановления о контакте. Обычно является частью Amtsgericht (местного суда).",
+      "context": "Вы подаете заявления об опеке и контакте в Familiengericht в вашем районе.",
       "citation": "https://www.familienportal.de/"
     },
     {
       "term": "Jugendamt",
       "english": "Youth Welfare Office",
-      "definition": "Local government office that provides support, counseling, and mediation services for families. Can help with custody matters and contact arrangements.",
-      "context": "The Jugendamt offers free counseling and can help mediate custody and contact disputes.",
+      "definition": "Местное правительственное учреждение, предоставляющее услуги поддержки, консультирования и медиации для семей. Может помочь в вопросах опеки и договоренностей о контакте.",
+      "context": "Jugendamt предлагает бесплатные консультации и может помочь в медиации споров об опеке и контакте.",
       "citation": "https://www.familienportal.de/"
     },
     {
       "term": "gemeinsame Sorge",
       "english": "Joint Custody",
-      "definition": "When both parents share decision-making rights and responsibilities for their child.",
-      "context": "Married parents automatically have gemeinsame Sorge. Unmarried parents can establish it through a joint declaration or court application.",
+      "definition": "Когда оба родителя разделяют права и обязанности по принятию решений для своего ребенка.",
+      "context": "Супружеские родители автоматически имеют gemeinsame Sorge. Не состоящие в браке родители могут установить это через совместное заявление или заявление в суд.",
       "citation": "https://gesetze-im-internet.de/bgb/__1626.html"
     },
     {
       "term": "Umgangsregelung",
       "english": "Contact Order",
-      "definition": "A court order that sets out when and how a parent (or other person) can have contact with a child.",
-      "context": "If contact is being blocked, you can apply to the Familiengericht for an Umgangsregelung.",
+      "definition": "Судебное постановление, определяющее, когда и как родитель (или другое лицо) может иметь контакт с ребенком.",
+      "context": "Если контакт блокируется, вы можете подать заявление в Familiengericht на Umgangsregelung.",
       "citation": "https://gesetze-im-internet.de/bgb/__1684.html"
     },
     {
       "term": "Umgang",
       "english": "Contact / Visitation",
-      "definition": "The right of a parent (or other person) to have contact with a child. Protected by law.",
-      "context": "Under BGB §1684, children have the right to contact with both parents, and parents have the right and duty to have contact with their child.",
+      "definition": "Право родителя (или другого лица) на контакт с ребенком. Защищено законом.",
+      "context": "Согласно BGB §1684, дети имеют право на контакт с обоими родителями, а родители имеют право и обязанность иметь контакт со своим ребенком.",
       "citation": "https://gesetze-im-internet.de/bgb/__1684.html"
     },
     {
       "term": "Vaterschaftsanerkennung",
       "english": "Paternity Acknowledgment",
-      "definition": "A formal declaration by a man that he is the father of a child. Required for unmarried fathers to have parental rights.",
-      "context": "Paternity acknowledgment typically happens at the Standesamt or Jugendamt before or after the child's birth.",
+      "definition": "Формальное заявление мужчины о том, что он является отцом ребенка. Требуется для отцов, не состоящих в браке, чтобы иметь родительские права.",
+      "context": "Признание отцовства обычно происходит в Standesamt или Jugendamt до или после рождения ребенка.",
       "citation": "https://gesetze-im-internet.de/bgb/__1592.html"
     },
     {
       "term": "Sorgeerklärung",
       "english": "Custody Declaration",
-      "definition": "A joint declaration by unmarried parents to establish joint custody. Can be signed at the Jugendamt or Standesamt.",
-      "context": "For unmarried parents, a Sorgeerklärung can establish gemeinsame Sorge without going to court.",
+      "definition": "Совместное заявление родителей, не состоящих в браке, для установления совместной опеки. Может быть подписано в Jugendamt или Standesamt.",
+      "context": "Для родителей, не состоящих в браке, Sorgeerklärung может установить gemeinsame Sorge без обращения в суд.",
       "citation": "https://gesetze-im-internet.de/bgb/__1626a.html"
     },
     {
       "term": "Amtsgericht",
       "english": "Local Court / District Court",
-      "definition": "The lowest level of court in Germany. Family matters are handled by the Familiengericht division of the Amtsgericht.",
-      "context": "You file custody and contact applications at the Amtsgericht in your city or district.",
+      "definition": "Самый низкий уровень суда в Германии. Семейные вопросы рассматриваются отделением Familiengericht в Amtsgericht.",
+      "context": "Вы подаете заявления об опеке и контакте в Amtsgericht в вашем городе или районе.",
       "citation": "https://www.justiz.de/"
     },
     {
       "term": "Standesamt",
       "english": "Registry Office",
-      "definition": "Local government office that handles civil registration, including birth certificates, marriages, and paternity acknowledgments.",
-      "context": "You can acknowledge paternity or sign custody declarations at the Standesamt.",
+      "definition": "Местное правительственное учреждение, занимающееся гражданской регистрацией, включая свидетельства о рождении, браке и признании отцовства.",
+      "context": "Вы можете признать отцовство или подписать заявления об опеке в Standesamt.",
       "citation": "https://www.familienportal.de/"
     },
     {
       "term": "Beschluss",
       "english": "Court Order / Ruling",
-      "definition": "A formal decision or order issued by a court, especially in family law matters.",
-      "context": "A Beschluss from the Familiengericht can change custody arrangements or set contact schedules.",
+      "definition": "Формальное решение или постановление, вынесенное судом, особенно в вопросах семейного права.",
+      "context": "Beschluss от Familiengericht может изменить договоренности об опеке или установить графики контакта.",
       "citation": ""
     },
     {
       "term": "Urteil",
       "english": "Judgment",
-      "definition": "A formal court judgment, typically after a full hearing. More formal than a Beschluss.",
-      "context": "An Urteil is a final court decision, while a Beschluss is often an interim or procedural order.",
+      "definition": "Формальное судебное решение, обычно после полного слушания. Более формальное, чем Beschluss.",
+      "context": "Urteil - это окончательное решение суда, в то время как Beschluss часто является временным или процедурным постановлением.",
       "citation": ""
     },
     {
       "term": "Kindeswohl",
       "english": "Child's Best Interests",
-      "definition": "The central principle in German family law. All custody and contact decisions must prioritize the child's welfare.",
-      "context": "Courts always consider Kindeswohl when making decisions about custody and contact.",
+      "definition": "Центральный принцип немецкого семейного права. Все решения об опеке и контакте должны приоритизировать благополучие ребенка.",
+      "context": "Суды всегда учитывают Kindeswohl при принятии решений об опеке и контакте.",
       "citation": "https://gesetze-im-internet.de/bgb/__1697a.html"
     },
     {
       "term": "alleinige Sorge",
       "english": "Sole Custody",
-      "definition": "When only one parent has custody rights and decision-making authority for the child.",
-      "context": "Sole custody is only granted in exceptional circumstances, such as when the other parent is unable to care for the child.",
+      "definition": "Когда только один родитель имеет права опеки и полномочия по принятию решений для ребенка.",
+      "context": "Единоличная опека предоставляется только в исключительных обстоятельствах, например, когда другой родитель не может заботиться о ребенке.",
       "citation": "https://gesetze-im-internet.de/bgb/__1671.html"
     },
     {
       "term": "Mediation",
       "english": "Mediation",
-      "definition": "A process where a neutral third party helps parents reach an agreement about custody or contact arrangements.",
-      "context": "Many Jugendämter offer free or low-cost mediation services to help parents resolve disputes without going to court.",
+      "definition": "Процесс, в котором нейтральная третья сторона помогает родителям достичь соглашения об опеке или договоренностях о контакте.",
+      "context": "Многие Jugendämter предлагают бесплатные или недорогие услуги медиации, чтобы помочь родителям разрешить споры без обращения в суд.",
       "citation": "https://www.familienportal.de/"
     }
   ]

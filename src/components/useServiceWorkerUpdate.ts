@@ -120,10 +120,24 @@ export function useServiceWorkerUpdate(): ServiceWorkerUpdateState {
     };
     setup();
 
-    // Set up periodic checks (every 60 seconds)
+    // Set up periodic checks (every 30 seconds for faster update detection)
     checkIntervalRef.current = window.setInterval(() => {
       checkForUpdate();
-    }, 60000);
+    }, 30000);
+
+    // Check for updates when page becomes visible (user switches back to tab)
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        checkForUpdate();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    // Check for updates when page gains focus (user returns to tab)
+    const handleFocus = () => {
+      checkForUpdate();
+    };
+    window.addEventListener("focus", handleFocus);
 
     // Listen for controller change (when update is activated)
     const handleControllerChange = () => {
@@ -137,6 +151,8 @@ export function useServiceWorkerUpdate(): ServiceWorkerUpdateState {
       if (checkIntervalRef.current) {
         clearInterval(checkIntervalRef.current);
       }
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("focus", handleFocus);
       navigator.serviceWorker.removeEventListener("controllerchange", handleControllerChange);
       if (updateListenerCleanup) {
         updateListenerCleanup();

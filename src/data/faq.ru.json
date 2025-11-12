@@ -2,101 +2,101 @@
   "categories": [
     {
       "id": "getting-started",
-      "title": "Getting Started",
+      "title": "Начало работы",
       "questions": [
         {
-          "question": "How do I know my custody rights in Germany?",
-          "answer": "Take our free 6-minute guided interview. Answer questions about your situation, and get instant results with legal citations from the German Civil Code (BGB). The tool evaluates your specific circumstances and provides relevant legal information."
+          "question": "Как узнать мои права опеки в Германии?",
+          "answer": "Пройдите наше бесплатное 6-минутное руководящее интервью. Ответьте на вопросы о вашей ситуации и получите мгновенные результаты с правовыми ссылками из немецкого гражданского кодекса (BGB). Инструмент оценивает ваши конкретные обстоятельства и предоставляет соответствующую правовую информацию."
         },
         {
-          "question": "Is this legal advice?",
-          "answer": "No. Custody Clarity provides general legal information only, not individualized legal advice. The tool helps you understand your rights and prepare documents, but you should consult with a qualified family law attorney for advice specific to your situation."
+          "question": "Это юридическая консультация?",
+          "answer": "Нет. Custody Clarity предоставляет только общую правовую информацию, а не индивидуальную юридическую консультацию. Инструмент помогает вам понять ваши права и подготовить документы, но вам следует проконсультироваться с квалифицированным адвокатом по семейному праву для получения совета, специфичного для вашей ситуации."
         },
         {
-          "question": "What languages is the tool available in?",
-          "answer": "Custody Clarity is available in 7 languages: English, German, Arabic, Polish, French, Turkish, and Russian. This makes legal information accessible to diverse communities in Germany."
+          "question": "На каких языках доступен инструмент?",
+          "answer": "Custody Clarity доступен на 7 языках: английском, немецком, арабском, польском, французском, турецком и русском. Это делает правовую информацию доступной для различных сообществ в Германии."
         },
         {
-          "question": "Is my data private?",
-          "answer": "Yes. All data is stored locally in your browser. We don't track you, collect personal information, or send your data to external servers. You can export your data at any time, and you can use the 'Quick Wipe' feature in settings to erase everything."
+          "question": "Являются ли мои данные конфиденциальными?",
+          "answer": "Да. Все данные хранятся локально в вашем браузере. Мы не отслеживаем вас, не собираем личную информацию и не отправляем ваши данные на внешние серверы. Вы можете экспортировать свои данные в любое время и можете использовать функцию 'Быстрое удаление' в настройках, чтобы стереть все."
         },
         {
-          "question": "Do I need to create an account?",
-          "answer": "No. The tool works completely without registration. All your data stays on your device. You can use it offline once loaded."
+          "question": "Нужно ли мне создавать учетную запись?",
+          "answer": "Нет. Инструмент работает полностью без регистрации. Все ваши данные остаются на вашем устройстве. Вы можете использовать его в автономном режиме после загрузки."
         }
       ]
     },
     {
       "id": "legal-process",
-      "title": "Legal Process",
+      "title": "Правовой процесс",
       "questions": [
         {
-          "question": "What is joint custody in Germany?",
-          "answer": "Joint custody (gemeinsame Sorge) means both parents share decision-making rights for their child. In Germany, married parents automatically have joint custody. Unmarried parents can apply for joint custody under §1626a BGB if paternity is acknowledged."
+          "question": "Что такое совместная опека в Германии?",
+          "answer": "Совместная опека (gemeinsame Sorge) означает, что оба родителя разделяют права на принятие решений для своего ребенка. В Германии супружеские родители автоматически имеют совместную опеку. Не состоящие в браке родители могут подать заявление на совместную опеку в соответствии с §1626a BGB, если отцовство признано."
         },
         {
-          "question": "Can I get contact rights if the other parent blocks contact?",
-          "answer": "Yes. Under §1684 BGB, you have the right to contact with your child. If contact is being blocked, you can apply to the family court (Familiengericht) for a contact order (Umgangsregelung). Our tool helps you understand your rights and prepare the necessary documents."
+          "question": "Могу ли я получить права на контакт, если другой родитель блокирует контакт?",
+          "answer": "Да. В соответствии с §1684 BGB вы имеете право на контакт с вашим ребенком. Если контакт блокируется, вы можете подать заявление в семейный суд (Familiengericht) на постановление о контакте (Umgangsregelung). Наш инструмент помогает вам понять ваши права и подготовить необходимые документы."
         },
         {
-          "question": "How long does a custody application take?",
-          "answer": "Processing times vary by court and case complexity. Simple joint custody applications can take 2-4 weeks, while contact orders may take 1-3 months. The court will schedule a hearing if needed."
+          "question": "Сколько времени занимает заявление об опеке?",
+          "answer": "Время обработки варьируется в зависимости от суда и сложности дела. Простые заявления о совместной опеке могут занять 2-4 недели, в то время как постановления о контакте могут занять 1-3 месяца. Суд назначит слушание при необходимости."
         },
         {
-          "question": "Do I need a lawyer?",
-          "answer": "For simple joint custody applications, you may not need a lawyer. However, for contested cases or contact orders, legal representation is recommended. You can also get free initial consultations from legal aid organizations."
+          "question": "Нужен ли мне адвокат?",
+          "answer": "Для простых заявлений о совместной опеке вам может не понадобиться адвокат. Однако для спорных дел или постановлений о контакте рекомендуется юридическое представительство. Вы также можете получить бесплатные первоначальные консультации от организаций юридической помощи."
         },
         {
-          "question": "What documents do I need to file?",
-          "answer": "Typically: birth certificate, paternity acknowledgment (if applicable), marriage certificate (if married), and any existing court orders. Our tool generates a checklist and cover letter tailored to your situation."
+          "question": "Какие документы мне нужно подать?",
+          "answer": "Обычно: свидетельство о рождении, признание отцовства (если применимо), свидетельство о браке (если состоите в браке) и любые существующие судебные постановления. Наш инструмент генерирует контрольный список и сопроводительное письмо, адаптированные к вашей ситуации."
         },
         {
-          "question": "What is the Jugendamt and do I need to involve them?",
-          "answer": "The Jugendamt (Youth Welfare Office) provides free counseling and mediation services. You don't have to involve them, but they can help mediate disputes and provide support. Courts often suggest involving the Jugendamt before or during proceedings."
+          "question": "Что такое Jugendamt и нужно ли мне его привлекать?",
+          "answer": "Jugendamt (Управление по делам молодежи) предоставляет бесплатные консультационные и медиационные услуги. Вам не обязательно их привлекать, но они могут помочь в медиации споров и оказать поддержку. Суды часто предлагают привлечь Jugendamt до или во время разбирательства."
         }
       ]
     },
     {
       "id": "documents",
-      "title": "Documents & Forms",
+      "title": "Документы и формы",
       "questions": [
         {
-          "question": "What documents can I generate?",
-          "answer": "You can generate joint custody applications (gemeinsame Sorge) and contact order applications (Umgangsregelung). The tool also creates cover letters, checklists, and can compile everything into a downloadable pack."
+          "question": "Какие документы я могу создать?",
+          "answer": "Вы можете создать заявления о совместной опеке (gemeinsame Sorge) и заявления о постановлении о контакте (Umgangsregelung). Инструмент также создает сопроводительные письма, контрольные списки и может скомпилировать все в загружаемый пакет."
         },
         {
-          "question": "Are the generated documents legally valid?",
-          "answer": "The documents are based on standard legal forms and include proper citations. However, you should review them carefully and may want a lawyer to check them before filing. They serve as a starting point, not a final legal document."
+          "question": "Являются ли созданные документы юридически действительными?",
+          "answer": "Документы основаны на стандартных правовых формах и включают соответствующие ссылки. Однако вы должны тщательно их просмотреть и можете захотеть, чтобы адвокат проверил их перед подачей. Они служат отправной точкой, а не окончательным правовым документом."
         },
         {
-          "question": "Can I edit the generated documents?",
-          "answer": "Yes. The PDFs can be edited with PDF editing software. However, we recommend using the tool's forms to regenerate documents if you need to make changes, as this ensures all information stays consistent."
+          "question": "Могу ли я редактировать созданные документы?",
+          "answer": "Да. PDF-файлы можно редактировать с помощью программного обеспечения для редактирования PDF. Однако мы рекомендуем использовать формы инструмента для повторной генерации документов, если вам нужно внести изменения, так как это гарантирует, что вся информация остается согласованной."
         },
         {
-          "question": "What is the Vault feature?",
-          "answer": "The Vault is a secure, local storage space for your documents, notes, and payment records. Everything stays on your device. You can scan documents, take notes, and export everything as a ZIP file."
+          "question": "Что такое функция Vault?",
+          "answer": "Vault - это безопасное локальное хранилище для ваших документов, заметок и записей о платежах. Все остается на вашем устройстве. Вы можете сканировать документы, делать заметки и экспортировать все как ZIP-файл."
         }
       ]
     },
     {
       "id": "practical",
-      "title": "Practical Questions",
+      "title": "Практические вопросы",
       "questions": [
         {
-          "question": "What if I'm not sure about some answers?",
-          "answer": "That's normal. You can select 'Not sure' for any question. The tool will still provide guidance based on what you do know. You can always update your answers later or file documents and add details as you learn more."
+          "question": "Что делать, если я не уверен в некоторых ответах?",
+          "answer": "Это нормально. Вы можете выбрать 'Не уверен' для любого вопроса. Инструмент все равно предоставит рекомендации на основе того, что вы знаете. Вы всегда можете обновить свои ответы позже или подать документы и добавить детали по мере того, как узнаете больше."
         },
         {
-          "question": "Can I use this if I'm not in Germany?",
-          "answer": "The tool is designed for German family law. If you're outside Germany, the laws may be different. However, if you have a connection to Germany (e.g., child lives there, German citizenship), the tool may still be relevant."
+          "question": "Могу ли я использовать это, если я не в Германии?",
+          "answer": "Инструмент разработан для немецкого семейного права. Если вы находитесь вне Германии, законы могут отличаться. Однако, если у вас есть связь с Германией (например, ребенок живет там, немецкое гражданство), инструмент все еще может быть актуальным."
         },
         {
-          "question": "What if there's a history of violence?",
-          "answer": "Safety comes first. The tool includes safety warnings and can help you understand options like supervised contact. If you're in immediate danger, contact local authorities or support services. The tool provides resources for finding help."
+          "question": "Что делать, если есть история насилия?",
+          "answer": "Безопасность прежде всего. Инструмент включает предупреждения о безопасности и может помочь вам понять такие варианты, как контролируемый контакт. Если вы находитесь в непосредственной опасности, обратитесь в местные органы власти или службы поддержки. Инструмент предоставляет ресурсы для поиска помощи."
         },
         {
-          "question": "How do I find a court or Jugendamt near me?",
-          "answer": "Use our Directory feature to search by city and postcode. It includes courts, Jugendämter, mediation services, and legal aid organizations across Berlin, Hamburg, and NRW."
+          "question": "Как найти суд или Jugendamt рядом со мной?",
+          "answer": "Используйте нашу функцию Справочника для поиска по городу и почтовому индексу. Он включает суды, Jugendämter, службы медиации и организации юридической помощи в Берлине, Гамбурге и NRW."
         }
       ]
     }

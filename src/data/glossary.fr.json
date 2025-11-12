@@ -4,106 +4,106 @@
       "term": "BGB",
       "fullForm": "Bürgerliches Gesetzbuch",
       "english": "German Civil Code",
-      "definition": "The main civil code of Germany that contains family law provisions, including custody and contact rights.",
-      "context": "References like 'BGB §1626' refer to specific sections of the German Civil Code.",
+      "definition": "Le code civil principal de l'Allemagne qui contient les dispositions du droit de la famille, y compris la garde et les droits de contact.",
+      "context": "Les références comme 'BGB §1626' renvoient à des sections spécifiques du code civil allemand.",
       "citation": "https://gesetze-im-internet.de/bgb/"
     },
     {
       "term": "Familiengericht",
       "english": "Family Court",
-      "definition": "The court responsible for family law matters, including custody and contact orders. Usually part of the Amtsgericht (local court).",
-      "context": "You file custody and contact applications at the Familiengericht in your area.",
+      "definition": "Le tribunal responsable des questions de droit de la famille, y compris la garde et les ordonnances de contact. Fait généralement partie de l'Amtsgericht (tribunal local).",
+      "context": "Vous déposez les demandes de garde et de contact au Familiengericht de votre région.",
       "citation": "https://www.familienportal.de/"
     },
     {
       "term": "Jugendamt",
       "english": "Youth Welfare Office",
-      "definition": "Local government office that provides support, counseling, and mediation services for families. Can help with custody matters and contact arrangements.",
-      "context": "The Jugendamt offers free counseling and can help mediate custody and contact disputes.",
+      "definition": "Bureau du gouvernement local qui fournit des services de soutien, de conseil et de médiation pour les familles. Peut aider dans les questions de garde et les arrangements de contact.",
+      "context": "Le Jugendamt offre des conseils gratuits et peut aider à médier les conflits de garde et de contact.",
       "citation": "https://www.familienportal.de/"
     },
     {
       "term": "gemeinsame Sorge",
       "english": "Joint Custody",
-      "definition": "When both parents share decision-making rights and responsibilities for their child.",
-      "context": "Married parents automatically have gemeinsame Sorge. Unmarried parents can establish it through a joint declaration or court application.",
+      "definition": "Lorsque les deux parents partagent les droits et responsabilités de prise de décision pour leur enfant.",
+      "context": "Les parents mariés ont automatiquement la gemeinsame Sorge. Les parents non mariés peuvent l'établir par une déclaration conjointe ou une demande au tribunal.",
       "citation": "https://gesetze-im-internet.de/bgb/__1626.html"
     },
     {
       "term": "Umgangsregelung",
       "english": "Contact Order",
-      "definition": "A court order that sets out when and how a parent (or other person) can have contact with a child.",
-      "context": "If contact is being blocked, you can apply to the Familiengericht for an Umgangsregelung.",
+      "definition": "Une ordonnance du tribunal qui définit quand et comment un parent (ou une autre personne) peut avoir contact avec un enfant.",
+      "context": "Si le contact est bloqué, vous pouvez demander une Umgangsregelung au Familiengericht.",
       "citation": "https://gesetze-im-internet.de/bgb/__1684.html"
     },
     {
       "term": "Umgang",
       "english": "Contact / Visitation",
-      "definition": "The right of a parent (or other person) to have contact with a child. Protected by law.",
-      "context": "Under BGB §1684, children have the right to contact with both parents, and parents have the right and duty to have contact with their child.",
+      "definition": "Le droit d'un parent (ou d'une autre personne) d'avoir contact avec un enfant. Protégé par la loi.",
+      "context": "Selon le BGB §1684, les enfants ont le droit d'avoir contact avec les deux parents, et les parents ont le droit et le devoir d'avoir contact avec leur enfant.",
       "citation": "https://gesetze-im-internet.de/bgb/__1684.html"
     },
     {
       "term": "Vaterschaftsanerkennung",
       "english": "Paternity Acknowledgment",
-      "definition": "A formal declaration by a man that he is the father of a child. Required for unmarried fathers to have parental rights.",
-      "context": "Paternity acknowledgment typically happens at the Standesamt or Jugendamt before or after the child's birth.",
+      "definition": "Une déclaration formelle par un homme qu'il est le père d'un enfant. Requis pour que les pères non mariés aient des droits parentaux.",
+      "context": "La reconnaissance de paternité se fait généralement au Standesamt ou au Jugendamt avant ou après la naissance de l'enfant.",
       "citation": "https://gesetze-im-internet.de/bgb/__1592.html"
     },
     {
       "term": "Sorgeerklärung",
       "english": "Custody Declaration",
-      "definition": "A joint declaration by unmarried parents to establish joint custody. Can be signed at the Jugendamt or Standesamt.",
-      "context": "For unmarried parents, a Sorgeerklärung can establish gemeinsame Sorge without going to court.",
+      "definition": "Une déclaration conjointe des parents non mariés pour établir la garde conjointe. Peut être signée au Jugendamt ou au Standesamt.",
+      "context": "Pour les parents non mariés, une Sorgeerklärung peut établir la gemeinsame Sorge sans aller au tribunal.",
       "citation": "https://gesetze-im-internet.de/bgb/__1626a.html"
     },
     {
       "term": "Amtsgericht",
       "english": "Local Court / District Court",
-      "definition": "The lowest level of court in Germany. Family matters are handled by the Familiengericht division of the Amtsgericht.",
-      "context": "You file custody and contact applications at the Amtsgericht in your city or district.",
+      "definition": "Le niveau de tribunal le plus bas en Allemagne. Les questions familiales sont traitées par la division Familiengericht de l'Amtsgericht.",
+      "context": "Vous déposez les demandes de garde et de contact à l'Amtsgericht de votre ville ou district.",
       "citation": "https://www.justiz.de/"
     },
     {
       "term": "Standesamt",
       "english": "Registry Office",
-      "definition": "Local government office that handles civil registration, including birth certificates, marriages, and paternity acknowledgments.",
-      "context": "You can acknowledge paternity or sign custody declarations at the Standesamt.",
+      "definition": "Bureau du gouvernement local qui gère l'état civil, y compris les actes de naissance, les mariages et les reconnaissances de paternité.",
+      "context": "Vous pouvez reconnaître la paternité ou signer des déclarations de garde au Standesamt.",
       "citation": "https://www.familienportal.de/"
     },
     {
       "term": "Beschluss",
       "english": "Court Order / Ruling",
-      "definition": "A formal decision or order issued by a court, especially in family law matters.",
-      "context": "A Beschluss from the Familiengericht can change custody arrangements or set contact schedules.",
+      "definition": "Une décision ou ordonnance formelle émise par un tribunal, en particulier dans les questions de droit de la famille.",
+      "context": "Un Beschluss du Familiengericht peut modifier les arrangements de garde ou établir des horaires de contact.",
       "citation": ""
     },
     {
       "term": "Urteil",
       "english": "Judgment",
-      "definition": "A formal court judgment, typically after a full hearing. More formal than a Beschluss.",
-      "context": "An Urteil is a final court decision, while a Beschluss is often an interim or procedural order.",
+      "definition": "Un jugement formel du tribunal, généralement après une audience complète. Plus formel qu'un Beschluss.",
+      "context": "Un Urteil est une décision finale du tribunal, tandis qu'un Beschluss est souvent une ordonnance provisoire ou procédurale.",
       "citation": ""
     },
     {
       "term": "Kindeswohl",
       "english": "Child's Best Interests",
-      "definition": "The central principle in German family law. All custody and contact decisions must prioritize the child's welfare.",
-      "context": "Courts always consider Kindeswohl when making decisions about custody and contact.",
+      "definition": "Le principe central du droit de la famille allemand. Toutes les décisions de garde et de contact doivent prioriser le bien-être de l'enfant.",
+      "context": "Les tribunaux considèrent toujours le Kindeswohl lors des décisions concernant la garde et le contact.",
       "citation": "https://gesetze-im-internet.de/bgb/__1697a.html"
     },
     {
       "term": "alleinige Sorge",
       "english": "Sole Custody",
-      "definition": "When only one parent has custody rights and decision-making authority for the child.",
-      "context": "Sole custody is only granted in exceptional circumstances, such as when the other parent is unable to care for the child.",
+      "definition": "Lorsqu'un seul parent a les droits de garde et l'autorité de prise de décision pour l'enfant.",
+      "context": "La garde exclusive n'est accordée que dans des circonstances exceptionnelles, comme lorsque l'autre parent est incapable de s'occuper de l'enfant.",
       "citation": "https://gesetze-im-internet.de/bgb/__1671.html"
     },
     {
       "term": "Mediation",
       "english": "Mediation",
-      "definition": "A process where a neutral third party helps parents reach an agreement about custody or contact arrangements.",
-      "context": "Many Jugendämter offer free or low-cost mediation services to help parents resolve disputes without going to court.",
+      "definition": "Un processus où un tiers neutre aide les parents à parvenir à un accord sur les arrangements de garde ou de contact.",
+      "context": "De nombreux Jugendämter offrent des services de médiation gratuits ou à faible coût pour aider les parents à résoudre les conflits sans aller au tribunal.",
       "citation": "https://www.familienportal.de/"
     }
   ]

@@ -35,6 +35,76 @@
       "definition": "Ein Gerichtsbeschluss, der festlegt, wann und wie ein Elternteil (oder eine andere Person) Kontakt zu einem Kind haben kann.",
       "context": "Wenn der Umgang blockiert wird, können Sie beim Familiengericht eine Umgangsregelung beantragen.",
       "citation": "https://gesetze-im-internet.de/bgb/__1684.html"
+    },
+    {
+      "term": "Umgang",
+      "english": "Contact / Visitation",
+      "definition": "Das Recht eines Elternteils (oder einer anderen Person), Kontakt zu einem Kind zu haben. Gesetzlich geschützt.",
+      "context": "Nach BGB §1684 haben Kinder das Recht auf Umgang mit beiden Elternteilen, und Elternteile haben das Recht und die Pflicht, Umgang mit ihrem Kind zu haben.",
+      "citation": "https://gesetze-im-internet.de/bgb/__1684.html"
+    },
+    {
+      "term": "Vaterschaftsanerkennung",
+      "english": "Paternity Acknowledgment",
+      "definition": "Eine formelle Erklärung eines Mannes, dass er der Vater eines Kindes ist. Erforderlich für unverheiratete Väter, um elterliche Rechte zu haben.",
+      "context": "Die Vaterschaftsanerkennung erfolgt typischerweise beim Standesamt oder Jugendamt vor oder nach der Geburt des Kindes.",
+      "citation": "https://gesetze-im-internet.de/bgb/__1592.html"
+    },
+    {
+      "term": "Sorgeerklärung",
+      "english": "Custody Declaration",
+      "definition": "Eine gemeinsame Erklärung unverheirateter Eltern zur Begründung der gemeinsamen Sorge. Kann beim Jugendamt oder Standesamt unterzeichnet werden.",
+      "context": "Für unverheiratete Eltern kann eine Sorgeerklärung die gemeinsame Sorge ohne Gerichtsverfahren begründen.",
+      "citation": "https://gesetze-im-internet.de/bgb/__1626a.html"
+    },
+    {
+      "term": "Amtsgericht",
+      "english": "Local Court / District Court",
+      "definition": "Das niedrigste Gerichtsniveau in Deutschland. Familiensachen werden von der Familiengericht-Abteilung des Amtsgerichts bearbeitet.",
+      "context": "Sie stellen Anträge auf Sorgerecht und Umgang beim Amtsgericht in Ihrer Stadt oder Ihrem Bezirk.",
+      "citation": "https://www.justiz.de/"
+    },
+    {
+      "term": "Standesamt",
+      "english": "Registry Office",
+      "definition": "Lokale Behörde, die die zivile Registrierung bearbeitet, einschließlich Geburtsurkunden, Ehen und Vaterschaftsanerkennungen.",
+      "context": "Sie können die Vaterschaft anerkennen oder Sorgeerklärungen beim Standesamt unterzeichnen.",
+      "citation": "https://www.familienportal.de/"
+    },
+    {
+      "term": "Beschluss",
+      "english": "Court Order / Ruling",
+      "definition": "Eine formelle Entscheidung oder Anordnung, die von einem Gericht erlassen wird, insbesondere in familienrechtlichen Angelegenheiten.",
+      "context": "Ein Beschluss vom Familiengericht kann Sorgerechtsregelungen ändern oder Umgangszeiten festlegen.",
+      "citation": ""
+    },
+    {
+      "term": "Urteil",
+      "english": "Judgment",
+      "definition": "Ein formelles Gerichtsurteil, typischerweise nach einer vollständigen Anhörung. Formeller als ein Beschluss.",
+      "context": "Ein Urteil ist eine endgültige Gerichtsentscheidung, während ein Beschluss oft eine vorläufige oder verfahrensrechtliche Anordnung ist.",
+      "citation": ""
+    },
+    {
+      "term": "Kindeswohl",
+      "english": "Child's Best Interests",
+      "definition": "Das zentrale Prinzip im deutschen Familienrecht. Alle Sorgerechts- und Umgangsentscheidungen müssen das Wohl des Kindes priorisieren.",
+      "context": "Gerichte berücksichtigen immer das Kindeswohl bei Entscheidungen über Sorgerecht und Umgang.",
+      "citation": "https://gesetze-im-internet.de/bgb/__1697a.html"
+    },
+    {
+      "term": "alleinige Sorge",
+      "english": "Sole Custody",
+      "definition": "Wenn nur ein Elternteil Sorgerechte und Entscheidungsbefugnis für das Kind hat.",
+      "context": "Alleinige Sorge wird nur in außergewöhnlichen Umständen gewährt, z. B. wenn der andere Elternteil nicht in der Lage ist, sich um das Kind zu kümmern.",
+      "citation": "https://gesetze-im-internet.de/bgb/__1671.html"
+    },
+    {
+      "term": "Mediation",
+      "english": "Mediation",
+      "definition": "Ein Prozess, bei dem eine neutrale dritte Partei Eltern hilft, eine Einigung über Sorgerechts- oder Umgangsregelungen zu erzielen.",
+      "context": "Viele Jugendämter bieten kostenlose oder kostengünstige Mediationsdienste an, um Eltern zu helfen, Streitigkeiten ohne Gerichtsverfahren zu lösen.",
+      "citation": "https://www.familienportal.de/"
     }
   ]
 }

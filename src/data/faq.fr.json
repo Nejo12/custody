@@ -2,101 +2,101 @@
   "categories": [
     {
       "id": "getting-started",
-      "title": "Getting Started",
+      "title": "Pour commencer",
       "questions": [
         {
-          "question": "How do I know my custody rights in Germany?",
-          "answer": "Take our free 6-minute guided interview. Answer questions about your situation, and get instant results with legal citations from the German Civil Code (BGB). The tool evaluates your specific circumstances and provides relevant legal information."
+          "question": "Comment connaître mes droits de garde en Allemagne ?",
+          "answer": "Répondez à notre interview guidée gratuite de 6 minutes. Répondez aux questions sur votre situation et obtenez des résultats instantanés avec des citations légales du code civil allemand (BGB). L'outil évalue vos circonstances spécifiques et fournit des informations juridiques pertinentes."
         },
         {
-          "question": "Is this legal advice?",
-          "answer": "No. Custody Clarity provides general legal information only, not individualized legal advice. The tool helps you understand your rights and prepare documents, but you should consult with a qualified family law attorney for advice specific to your situation."
+          "question": "Est-ce un conseil juridique ?",
+          "answer": "Non. Custody Clarity fournit uniquement des informations juridiques générales, pas des conseils juridiques individualisés. L'outil vous aide à comprendre vos droits et à préparer des documents, mais vous devriez consulter un avocat spécialisé en droit de la famille qualifié pour des conseils spécifiques à votre situation."
         },
         {
-          "question": "What languages is the tool available in?",
-          "answer": "Custody Clarity is available in 7 languages: English, German, Arabic, Polish, French, Turkish, and Russian. This makes legal information accessible to diverse communities in Germany."
+          "question": "Dans quelles langues l'outil est-il disponible ?",
+          "answer": "Custody Clarity est disponible en 7 langues : anglais, allemand, arabe, polonais, français, turc et russe. Cela rend les informations juridiques accessibles aux diverses communautés en Allemagne."
         },
         {
-          "question": "Is my data private?",
-          "answer": "Yes. All data is stored locally in your browser. We don't track you, collect personal information, or send your data to external servers. You can export your data at any time, and you can use the 'Quick Wipe' feature in settings to erase everything."
+          "question": "Mes données sont-elles privées ?",
+          "answer": "Oui. Toutes les données sont stockées localement dans votre navigateur. Nous ne vous suivons pas, ne collectons pas d'informations personnelles et n'envoyons pas vos données à des serveurs externes. Vous pouvez exporter vos données à tout moment et utiliser la fonctionnalité 'Effacement rapide' dans les paramètres pour tout effacer."
         },
         {
-          "question": "Do I need to create an account?",
-          "answer": "No. The tool works completely without registration. All your data stays on your device. You can use it offline once loaded."
+          "question": "Dois-je créer un compte ?",
+          "answer": "Non. L'outil fonctionne complètement sans inscription. Toutes vos données restent sur votre appareil. Vous pouvez l'utiliser hors ligne une fois chargé."
         }
       ]
     },
     {
       "id": "legal-process",
-      "title": "Legal Process",
+      "title": "Processus juridique",
       "questions": [
         {
-          "question": "What is joint custody in Germany?",
-          "answer": "Joint custody (gemeinsame Sorge) means both parents share decision-making rights for their child. In Germany, married parents automatically have joint custody. Unmarried parents can apply for joint custody under §1626a BGB if paternity is acknowledged."
+          "question": "Qu'est-ce que la garde conjointe en Allemagne ?",
+          "answer": "La garde conjointe (gemeinsame Sorge) signifie que les deux parents partagent les droits de prise de décision pour leur enfant. En Allemagne, les parents mariés ont automatiquement la garde conjointe. Les parents non mariés peuvent demander la garde conjointe en vertu du §1626a BGB si la paternité est reconnue."
         },
         {
-          "question": "Can I get contact rights if the other parent blocks contact?",
-          "answer": "Yes. Under §1684 BGB, you have the right to contact with your child. If contact is being blocked, you can apply to the family court (Familiengericht) for a contact order (Umgangsregelung). Our tool helps you understand your rights and prepare the necessary documents."
+          "question": "Puis-je obtenir des droits de contact si l'autre parent bloque le contact ?",
+          "answer": "Oui. En vertu du §1684 BGB, vous avez le droit d'avoir contact avec votre enfant. Si le contact est bloqué, vous pouvez demander une ordonnance de contact (Umgangsregelung) au tribunal de la famille (Familiengericht). Notre outil vous aide à comprendre vos droits et à préparer les documents nécessaires."
         },
         {
-          "question": "How long does a custody application take?",
-          "answer": "Processing times vary by court and case complexity. Simple joint custody applications can take 2-4 weeks, while contact orders may take 1-3 months. The court will schedule a hearing if needed."
+          "question": "Combien de temps prend une demande de garde ?",
+          "answer": "Les délais de traitement varient selon le tribunal et la complexité de l'affaire. Les demandes simples de garde conjointe peuvent prendre 2 à 4 semaines, tandis que les ordonnances de contact peuvent prendre 1 à 3 mois. Le tribunal programmera une audience si nécessaire."
         },
         {
-          "question": "Do I need a lawyer?",
-          "answer": "For simple joint custody applications, you may not need a lawyer. However, for contested cases or contact orders, legal representation is recommended. You can also get free initial consultations from legal aid organizations."
+          "question": "Ai-je besoin d'un avocat ?",
+          "answer": "Pour les demandes simples de garde conjointe, vous n'avez peut-être pas besoin d'un avocat. Cependant, pour les affaires contestées ou les ordonnances de contact, une représentation juridique est recommandée. Vous pouvez également obtenir des consultations initiales gratuites auprès d'organisations d'aide juridique."
         },
         {
-          "question": "What documents do I need to file?",
-          "answer": "Typically: birth certificate, paternity acknowledgment (if applicable), marriage certificate (if married), and any existing court orders. Our tool generates a checklist and cover letter tailored to your situation."
+          "question": "Quels documents dois-je déposer ?",
+          "answer": "Typiquement : acte de naissance, reconnaissance de paternité (le cas échéant), certificat de mariage (si marié) et toute ordonnance judiciaire existante. Notre outil génère une checklist et une lettre de motivation adaptées à votre situation."
         },
         {
-          "question": "What is the Jugendamt and do I need to involve them?",
-          "answer": "The Jugendamt (Youth Welfare Office) provides free counseling and mediation services. You don't have to involve them, but they can help mediate disputes and provide support. Courts often suggest involving the Jugendamt before or during proceedings."
+          "question": "Qu'est-ce que le Jugendamt et dois-je l'impliquer ?",
+          "answer": "Le Jugendamt (Bureau de protection de la jeunesse) fournit des services de conseil et de médiation gratuits. Vous n'êtes pas obligé de les impliquer, mais ils peuvent aider à médier les conflits et fournir un soutien. Les tribunaux suggèrent souvent d'impliquer le Jugendamt avant ou pendant les procédures."
         }
       ]
     },
     {
       "id": "documents",
-      "title": "Documents & Forms",
+      "title": "Documents et formulaires",
       "questions": [
         {
-          "question": "What documents can I generate?",
-          "answer": "You can generate joint custody applications (gemeinsame Sorge) and contact order applications (Umgangsregelung). The tool also creates cover letters, checklists, and can compile everything into a downloadable pack."
+          "question": "Quels documents puis-je générer ?",
+          "answer": "Vous pouvez générer des demandes de garde conjointe (gemeinsame Sorge) et des demandes d'ordonnance de contact (Umgangsregelung). L'outil crée également des lettres de motivation, des listes de contrôle et peut compiler le tout dans un pack téléchargeable."
         },
         {
-          "question": "Are the generated documents legally valid?",
-          "answer": "The documents are based on standard legal forms and include proper citations. However, you should review them carefully and may want a lawyer to check them before filing. They serve as a starting point, not a final legal document."
+          "question": "Les documents générés sont-ils juridiquement valides ?",
+          "answer": "Les documents sont basés sur des formulaires juridiques standard et incluent des citations appropriées. Cependant, vous devriez les examiner attentivement et vous voudrez peut-être qu'un avocat les vérifie avant de les déposer. Ils servent de point de départ, pas d'un document juridique final."
         },
         {
-          "question": "Can I edit the generated documents?",
-          "answer": "Yes. The PDFs can be edited with PDF editing software. However, we recommend using the tool's forms to regenerate documents if you need to make changes, as this ensures all information stays consistent."
+          "question": "Puis-je modifier les documents générés ?",
+          "answer": "Oui. Les PDF peuvent être modifiés avec un logiciel d'édition PDF. Cependant, nous recommandons d'utiliser les formulaires de l'outil pour régénérer les documents si vous devez apporter des modifications, car cela garantit que toutes les informations restent cohérentes."
         },
         {
-          "question": "What is the Vault feature?",
-          "answer": "The Vault is a secure, local storage space for your documents, notes, and payment records. Everything stays on your device. You can scan documents, take notes, and export everything as a ZIP file."
+          "question": "Qu'est-ce que la fonctionnalité Vault ?",
+          "answer": "Le Vault est un espace de stockage local sécurisé pour vos documents, notes et enregistrements de paiement. Tout reste sur votre appareil. Vous pouvez scanner des documents, prendre des notes et tout exporter sous forme de fichier ZIP."
         }
       ]
     },
     {
       "id": "practical",
-      "title": "Practical Questions",
+      "title": "Questions pratiques",
       "questions": [
         {
-          "question": "What if I'm not sure about some answers?",
-          "answer": "That's normal. You can select 'Not sure' for any question. The tool will still provide guidance based on what you do know. You can always update your answers later or file documents and add details as you learn more."
+          "question": "Que faire si je ne suis pas sûr de certaines réponses ?",
+          "answer": "C'est normal. Vous pouvez sélectionner 'Pas sûr' pour toute question. L'outil fournira toujours des conseils basés sur ce que vous savez. Vous pouvez toujours mettre à jour vos réponses plus tard ou déposer des documents et ajouter des détails au fur et à mesure que vous en apprenez plus."
         },
         {
-          "question": "Can I use this if I'm not in Germany?",
-          "answer": "The tool is designed for German family law. If you're outside Germany, the laws may be different. However, if you have a connection to Germany (e.g., child lives there, German citizenship), the tool may still be relevant."
+          "question": "Puis-je utiliser cela si je ne suis pas en Allemagne ?",
+          "answer": "L'outil est conçu pour le droit de la famille allemand. Si vous êtes en dehors de l'Allemagne, les lois peuvent être différentes. Cependant, si vous avez un lien avec l'Allemagne (par exemple, l'enfant y vit, citoyenneté allemande), l'outil peut toujours être pertinent."
         },
         {
-          "question": "What if there's a history of violence?",
-          "answer": "Safety comes first. The tool includes safety warnings and can help you understand options like supervised contact. If you're in immediate danger, contact local authorities or support services. The tool provides resources for finding help."
+          "question": "Que faire s'il y a des antécédents de violence ?",
+          "answer": "La sécurité avant tout. L'outil inclut des avertissements de sécurité et peut vous aider à comprendre des options comme le contact supervisé. Si vous êtes en danger immédiat, contactez les autorités locales ou les services de soutien. L'outil fournit des ressources pour trouver de l'aide."
         },
         {
-          "question": "How do I find a court or Jugendamt near me?",
-          "answer": "Use our Directory feature to search by city and postcode. It includes courts, Jugendämter, mediation services, and legal aid organizations across Berlin, Hamburg, and NRW."
+          "question": "Comment trouver un tribunal ou un Jugendamt près de chez moi ?",
+          "answer": "Utilisez notre fonctionnalité Répertoire pour rechercher par ville et code postal. Il comprend les tribunaux, les Jugendämter, les services de médiation et les organisations d'aide juridique à Berlin, Hambourg et en NRW."
         }
       ]
     }

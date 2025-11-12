@@ -2,101 +2,101 @@
   "categories": [
     {
       "id": "getting-started",
-      "title": "Getting Started",
+      "title": "البدء",
       "questions": [
         {
-          "question": "How do I know my custody rights in Germany?",
-          "answer": "Take our free 6-minute guided interview. Answer questions about your situation, and get instant results with legal citations from the German Civil Code (BGB). The tool evaluates your specific circumstances and provides relevant legal information."
+          "question": "كيف أعرف حقوق الحضانة الخاصة بي في ألمانيا؟",
+          "answer": "أجب على مقابلة موجهة مجانية مدتها 6 دقائق. أجب على الأسئلة حول وضعك واحصل على نتائج فورية مع اقتباسات قانونية من القانون المدني الألماني (BGB). تقوم الأداة بتقييم ظروفك المحددة وتقديم معلومات قانونية ذات صلة."
         },
         {
-          "question": "Is this legal advice?",
-          "answer": "No. Custody Clarity provides general legal information only, not individualized legal advice. The tool helps you understand your rights and prepare documents, but you should consult with a qualified family law attorney for advice specific to your situation."
+          "question": "هل هذه استشارة قانونية؟",
+          "answer": "لا. يوفر Custody Clarity معلومات قانونية عامة فقط، وليس استشارة قانونية فردية. تساعدك الأداة على فهم حقوقك وإعداد المستندات، ولكن يجب عليك استشارة محامٍ متخصص في قانون الأسرة للحصول على نصيحة محددة لحالتك."
         },
         {
-          "question": "What languages is the tool available in?",
-          "answer": "Custody Clarity is available in 7 languages: English, German, Arabic, Polish, French, Turkish, and Russian. This makes legal information accessible to diverse communities in Germany."
+          "question": "ما هي اللغات المتاحة للأداة؟",
+          "answer": "Custody Clarity متاح بـ 7 لغات: الإنجليزية والألمانية والعربية والبولندية والفرنسية والتركية والروسية. هذا يجعل المعلومات القانونية في متناول المجتمعات المتنوعة في ألمانيا."
         },
         {
-          "question": "Is my data private?",
-          "answer": "Yes. All data is stored locally in your browser. We don't track you, collect personal information, or send your data to external servers. You can export your data at any time, and you can use the 'Quick Wipe' feature in settings to erase everything."
+          "question": "هل بياناتي خاصة؟",
+          "answer": "نعم. يتم تخزين جميع البيانات محليًا في متصفحك. نحن لا نتتبعك أو نجمع معلومات شخصية أو نرسل بياناتك إلى خوادم خارجية. يمكنك تصدير بياناتك في أي وقت ويمكنك استخدام ميزة 'المسح السريع' في الإعدادات لمحو كل شيء."
         },
         {
-          "question": "Do I need to create an account?",
-          "answer": "No. The tool works completely without registration. All your data stays on your device. You can use it offline once loaded."
+          "question": "هل أحتاج إلى إنشاء حساب؟",
+          "answer": "لا. تعمل الأداة بالكامل دون تسجيل. تبقى جميع بياناتك على جهازك. يمكنك استخدامها دون اتصال بمجرد تحميلها."
         }
       ]
     },
     {
       "id": "legal-process",
-      "title": "Legal Process",
+      "title": "العملية القانونية",
       "questions": [
         {
-          "question": "What is joint custody in Germany?",
-          "answer": "Joint custody (gemeinsame Sorge) means both parents share decision-making rights for their child. In Germany, married parents automatically have joint custody. Unmarried parents can apply for joint custody under §1626a BGB if paternity is acknowledged."
+          "question": "ما هي الحضانة المشتركة في ألمانيا؟",
+          "answer": "الحضانة المشتركة (gemeinsame Sorge) تعني أن كلا الوالدين يشاركان حقوق اتخاذ القرارات لطفلهما. في ألمانيا، يكون للوالدين المتزوجين تلقائيًا الحضانة المشتركة. يمكن للوالدين غير المتزوجين التقدم بطلب للحضانة المشتركة بموجب §1626a BGB إذا تم الاعتراف بالأبوة."
         },
         {
-          "question": "Can I get contact rights if the other parent blocks contact?",
-          "answer": "Yes. Under §1684 BGB, you have the right to contact with your child. If contact is being blocked, you can apply to the family court (Familiengericht) for a contact order (Umgangsregelung). Our tool helps you understand your rights and prepare the necessary documents."
+          "question": "هل يمكنني الحصول على حقوق الاتصال إذا منع الوالد الآخر الاتصال؟",
+          "answer": "نعم. بموجب §1684 BGB، لديك الحق في الاتصال بطفلك. إذا تم حظر الاتصال، يمكنك التقدم بطلب إلى محكمة الأسرة (Familiengericht) للحصول على أمر اتصال (Umgangsregelung). تساعدك أداتنا على فهم حقوقك وإعداد المستندات اللازمة."
         },
         {
-          "question": "How long does a custody application take?",
-          "answer": "Processing times vary by court and case complexity. Simple joint custody applications can take 2-4 weeks, while contact orders may take 1-3 months. The court will schedule a hearing if needed."
+          "question": "كم من الوقت تستغرق طلب الحضانة؟",
+          "answer": "تختلف أوقات المعالجة حسب المحكمة وتعقيد القضية. يمكن أن تستغرق طلبات الحضانة المشتركة البسيطة من 2 إلى 4 أسابيع، بينما قد تستغرق أوامر الاتصال من 1 إلى 3 أشهر. ستحدد المحكمة جلسة استماع إذا لزم الأمر."
         },
         {
-          "question": "Do I need a lawyer?",
-          "answer": "For simple joint custody applications, you may not need a lawyer. However, for contested cases or contact orders, legal representation is recommended. You can also get free initial consultations from legal aid organizations."
+          "question": "هل أحتاج إلى محامٍ؟",
+          "answer": "لطلبات الحضانة المشتركة البسيطة، قد لا تحتاج إلى محامٍ. ومع ذلك، للحالات المتنازع عليها أو أوامر الاتصال، يُنصح بالتمثيل القانوني. يمكنك أيضًا الحصول على استشارات أولية مجانية من منظمات المساعدة القانونية."
         },
         {
-          "question": "What documents do I need to file?",
-          "answer": "Typically: birth certificate, paternity acknowledgment (if applicable), marriage certificate (if married), and any existing court orders. Our tool generates a checklist and cover letter tailored to your situation."
+          "question": "ما هي المستندات التي أحتاج إلى تقديمها؟",
+          "answer": "عادة: شهادة الميلاد، والاعتراف بالأبوة (إن أمكن)، وشهادة الزواج (إذا كنت متزوجًا)، وأي أوامر محكمة موجودة. تقوم أداتنا بإنشاء قائمة مرجعية وخطاب تغطية مخصص لحالتك."
         },
         {
-          "question": "What is the Jugendamt and do I need to involve them?",
-          "answer": "The Jugendamt (Youth Welfare Office) provides free counseling and mediation services. You don't have to involve them, but they can help mediate disputes and provide support. Courts often suggest involving the Jugendamt before or during proceedings."
+          "question": "ما هو Jugendamt وهل أحتاج إلى إشراكه؟",
+          "answer": "يوفر Jugendamt (مكتب رعاية الشباب) خدمات استشارية ووساطة مجانية. لا يتعين عليك إشراكهم، لكن يمكنهم المساعدة في الوساطة في النزاعات وتقديم الدعم. غالبًا ما تقترح المحاكم إشراك Jugendamt قبل أو أثناء الإجراءات."
         }
       ]
     },
     {
       "id": "documents",
-      "title": "Documents & Forms",
+      "title": "المستندات والنماذج",
       "questions": [
         {
-          "question": "What documents can I generate?",
-          "answer": "You can generate joint custody applications (gemeinsame Sorge) and contact order applications (Umgangsregelung). The tool also creates cover letters, checklists, and can compile everything into a downloadable pack."
+          "question": "ما هي المستندات التي يمكنني إنشاؤها؟",
+          "answer": "يمكنك إنشاء طلبات الحضانة المشتركة (gemeinsame Sorge) وطلبات أمر الاتصال (Umgangsregelung). تقوم الأداة أيضًا بإنشاء خطابات تغطية وقوائم مرجعية ويمكنها تجميع كل شيء في حزمة قابلة للتنزيل."
         },
         {
-          "question": "Are the generated documents legally valid?",
-          "answer": "The documents are based on standard legal forms and include proper citations. However, you should review them carefully and may want a lawyer to check them before filing. They serve as a starting point, not a final legal document."
+          "question": "هل المستندات المُنشأة صالحة قانونيًا؟",
+          "answer": "المستندات مبنية على نماذج قانونية قياسية وتتضمن اقتباسات مناسبة. ومع ذلك، يجب عليك مراجعتها بعناية وقد ترغب في أن يتحقق منها محامٍ قبل تقديمها. إنها بمثابة نقطة انطلاق، وليست مستندًا قانونيًا نهائيًا."
         },
         {
-          "question": "Can I edit the generated documents?",
-          "answer": "Yes. The PDFs can be edited with PDF editing software. However, we recommend using the tool's forms to regenerate documents if you need to make changes, as this ensures all information stays consistent."
+          "question": "هل يمكنني تعديل المستندات المُنشأة؟",
+          "answer": "نعم. يمكن تعديل ملفات PDF باستخدام برنامج تحرير PDF. ومع ذلك، نوصي باستخدام نماذج الأداة لإعادة إنشاء المستندات إذا كنت بحاجة إلى إجراء تغييرات، حيث يضمن ذلك بقاء جميع المعلومات متسقة."
         },
         {
-          "question": "What is the Vault feature?",
-          "answer": "The Vault is a secure, local storage space for your documents, notes, and payment records. Everything stays on your device. You can scan documents, take notes, and export everything as a ZIP file."
+          "question": "ما هي ميزة Vault؟",
+          "answer": "Vault هو مساحة تخزين محلية آمنة لمستنداتك وملاحظاتك وسجلات الدفع. يبقى كل شيء على جهازك. يمكنك مسح المستندات ضوئيًا وتدوين الملاحظات وتصدير كل شيء كملف ZIP."
         }
       ]
     },
     {
       "id": "practical",
-      "title": "Practical Questions",
+      "title": "أسئلة عملية",
       "questions": [
         {
-          "question": "What if I'm not sure about some answers?",
-          "answer": "That's normal. You can select 'Not sure' for any question. The tool will still provide guidance based on what you do know. You can always update your answers later or file documents and add details as you learn more."
+          "question": "ماذا لو لم أكن متأكدًا من بعض الإجابات؟",
+          "answer": "هذا طبيعي. يمكنك اختيار 'لست متأكدًا' لأي سؤال. ستوفر الأداة إرشادات بناءً على ما تعرفه. يمكنك دائمًا تحديث إجاباتك لاحقًا أو تقديم مستندات وإضافة تفاصيل كلما تعلمت المزيد."
         },
         {
-          "question": "Can I use this if I'm not in Germany?",
-          "answer": "The tool is designed for German family law. If you're outside Germany, the laws may be different. However, if you have a connection to Germany (e.g., child lives there, German citizenship), the tool may still be relevant."
+          "question": "هل يمكنني استخدام هذا إذا لم أكن في ألمانيا؟",
+          "answer": "تم تصميم الأداة لقانون الأسرة الألماني. إذا كنت خارج ألمانيا، فقد تكون القوانين مختلفة. ومع ذلك، إذا كان لديك ارتباط بألمانيا (على سبيل المثال، يعيش الطفل هناك، الجنسية الألمانية)، فقد تكون الأداة لا تزال ذات صلة."
         },
         {
-          "question": "What if there's a history of violence?",
-          "answer": "Safety comes first. The tool includes safety warnings and can help you understand options like supervised contact. If you're in immediate danger, contact local authorities or support services. The tool provides resources for finding help."
+          "question": "ماذا لو كان هناك تاريخ من العنف؟",
+          "answer": "الأمان أولاً. تتضمن الأداة تحذيرات أمان ويمكن أن تساعدك على فهم خيارات مثل الاتصال الخاضع للإشراف. إذا كنت في خطر فوري، اتصل بالسلطات المحلية أو خدمات الدعم. توفر الأداة موارد للعثور على المساعدة."
         },
         {
-          "question": "How do I find a court or Jugendamt near me?",
-          "answer": "Use our Directory feature to search by city and postcode. It includes courts, Jugendämter, mediation services, and legal aid organizations across Berlin, Hamburg, and NRW."
+          "question": "كيف أجد محكمة أو Jugendamt بالقرب مني؟",
+          "answer": "استخدم ميزة الدليل للبحث حسب المدينة والرمز البريدي. يتضمن المحاكم وJugendämter وخدمات الوساطة ومنظمات المساعدة القانونية في برلين وهامبورغ وNRW."
         }
       ]
     }
