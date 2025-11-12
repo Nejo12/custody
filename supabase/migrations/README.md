@@ -143,8 +143,10 @@ After running migrations:
 
    ```bash
    # In your project root
-   node -e "const {supabase} = require('./src/lib/supabase'); supabase.from('queue_records').select('count').then(console.log)"
+   node scripts/test-db-connection.mjs
    ```
+
+   This will verify that all 4 tables are accessible and show their row counts.
 
 2. **Set up the cron job** for court reminders (see `/docs/CRON_JOB_SETUP.md`)
 
