@@ -174,6 +174,18 @@ const ar = {
     lastVerified: "آخر تحقق:",
     snapshot: "لقطة:",
   },
+  newsletter: {
+    title: "ابق على اطلاع",
+    description: "احصل على تحديثات حول حقوق الحضانة والتغييرات القانونية والميزات الجديدة.",
+    emailPlaceholder: "عنوان بريدك الإلكتروني",
+    subscribe: "اشترك",
+    subscribing: "جاري الاشتراك…",
+    subscribed: "تم الاشتراك!",
+    successMessage: "شكراً لك! يرجى التحقق من بريدك الإلكتروني للتأكيد.",
+    errorInvalidEmail: "يرجى إدخال عنوان بريد إلكتروني صالح",
+    errorFailed: "فشل الاشتراك",
+    errorGeneric: "حدث خطأ ما",
+  },
   learn: {
     findSupportByCity: "العثور على الدعم حسب المدينة",
     allServices: "جميع الخدمات",

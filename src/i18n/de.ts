@@ -174,6 +174,19 @@ const de = {
     lastVerified: "Zuletzt verifiziert:",
     snapshot: "Snapshot:",
   },
+  newsletter: {
+    title: "Bleiben Sie informiert",
+    description:
+      "Erhalten Sie Updates zu Sorgerechten, rechtlichen Änderungen und neuen Funktionen.",
+    emailPlaceholder: "Ihre E-Mail-Adresse",
+    subscribe: "Abonnieren",
+    subscribing: "Wird abonniert…",
+    subscribed: "Abonniert!",
+    successMessage: "Vielen Dank! Bitte prüfen Sie Ihre E-Mail zur Bestätigung.",
+    errorInvalidEmail: "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    errorFailed: "Abonnement fehlgeschlagen",
+    errorGeneric: "Etwas ist schief gelaufen",
+  },
   learn: {
     findSupportByCity: "Hilfe nach Stadt finden",
     allServices: "Alle Dienste",

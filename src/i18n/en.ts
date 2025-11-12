@@ -191,6 +191,9 @@ const en = {
     subscribing: "Subscribing...",
     subscribed: "Subscribed!",
     successMessage: "Thank you! Check your email for confirmation.",
+    errorInvalidEmail: "Please enter a valid email address",
+    errorFailed: "Failed to subscribe",
+    errorGeneric: "Something went wrong",
   },
   learn: {
     findSupportByCity: "Find support by city",

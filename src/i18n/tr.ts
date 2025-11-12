@@ -173,6 +173,19 @@ const tr = {
     lastVerified: "Son doğrulama:",
     snapshot: "Anlık görüntü:",
   },
+  newsletter: {
+    title: "Güncel Kalın",
+    description:
+      "Vesayet hakları, yasal değişiklikler ve yeni özellikler hakkında güncellemeler alın.",
+    emailPlaceholder: "E-posta adresiniz",
+    subscribe: "Abone Ol",
+    subscribing: "Abone olunuyor…",
+    subscribed: "Abone olundu!",
+    successMessage: "Teşekkürler! Lütfen onay için e-postanızı kontrol edin.",
+    errorInvalidEmail: "Lütfen geçerli bir e-posta adresi girin",
+    errorFailed: "Abonelik başarısız oldu",
+    errorGeneric: "Bir şeyler yanlış gitti",
+  },
   learn: {
     findSupportByCity: "Şehre göre destek bul",
     allServices: "Tüm hizmetler",

@@ -177,6 +177,18 @@ const pl = {
     lastVerified: "Ostatnio zweryfikowano:",
     snapshot: "Migawka:",
   },
+  newsletter: {
+    title: "Bądź na bieżąco",
+    description: "Otrzymuj aktualizacje dotyczące praw opieki, zmian prawnych i nowych funkcji.",
+    emailPlaceholder: "Twój adres e-mail",
+    subscribe: "Subskrybuj",
+    subscribing: "Subskrybowanie…",
+    subscribed: "Subskrybowano!",
+    successMessage: "Dziękujemy! Sprawdź swoją pocztę e-mail w celu potwierdzenia.",
+    errorInvalidEmail: "Proszę podać prawidłowy adres e-mail",
+    errorFailed: "Subskrypcja nie powiodła się",
+    errorGeneric: "Coś poszło nie tak",
+  },
   learn: {
     findSupportByCity: "Znajdź wsparcie według miasta",
     allServices: "Wszystkie usługi",

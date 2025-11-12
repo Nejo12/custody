@@ -179,6 +179,19 @@ const fr = {
     lastVerified: "Dernière vérification:",
     snapshot: "Instantané:",
   },
+  newsletter: {
+    title: "Restez informé",
+    description:
+      "Recevez des mises à jour sur les droits de garde, les changements juridiques et les nouvelles fonctionnalités.",
+    emailPlaceholder: "Votre adresse e-mail",
+    subscribe: "S'abonner",
+    subscribing: "Abonnement en cours…",
+    subscribed: "Abonné !",
+    successMessage: "Merci ! Vérifiez votre e-mail pour confirmation.",
+    errorInvalidEmail: "Veuillez entrer une adresse e-mail valide",
+    errorFailed: "Échec de l'abonnement",
+    errorGeneric: "Quelque chose s'est mal passé",
+  },
   learn: {
     findSupportByCity: "Trouver du soutien par ville",
     allServices: "Tous les services",

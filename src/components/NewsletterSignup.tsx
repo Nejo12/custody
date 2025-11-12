@@ -31,7 +31,7 @@ export default function NewsletterSignup({
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email || !emailRegex.test(email.trim())) {
       setStatus("error");
-      setErrorMessage("Please enter a valid email address");
+      setErrorMessage(t.newsletter?.errorInvalidEmail || "Please enter a valid email address");
       return;
     }
 
@@ -55,7 +55,7 @@ export default function NewsletterSignup({
       };
 
       if (!response.ok || !data.success) {
-        throw new Error(data.error || "Failed to subscribe");
+        throw new Error(data.error || t.newsletter?.errorFailed || "Failed to subscribe");
       }
 
       setStatus("success");
@@ -70,7 +70,11 @@ export default function NewsletterSignup({
       }
     } catch (error) {
       setStatus("error");
-      setErrorMessage(error instanceof Error ? error.message : "Something went wrong");
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : t.newsletter?.errorGeneric || "Something went wrong"
+      );
     } finally {
       setLoading(false);
     }
