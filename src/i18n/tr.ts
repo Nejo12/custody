@@ -32,6 +32,7 @@ const tr = {
     installApp: "Uygulamayı yükle",
     settings: "Ayarlar",
     more: "Daha fazla",
+    discreetAppName: "Belgeler",
   },
   interview: {
     title: "Görüşme",

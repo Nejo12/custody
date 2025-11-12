@@ -43,7 +43,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
             href="/"
             className="font-semibold tracking-tight text-base sm:text-lg whitespace-nowrap truncate flex-shrink-0"
           >
-            {discreetMode ? "Notes" : t.appName}
+            {discreetMode ? t.header?.discreetAppName || "Documents" : t.appName}
           </Link>
           {/* Right actions */}
           <div className="flex items-center gap-2 flex-shrink-0">

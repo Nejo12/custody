@@ -32,6 +32,7 @@ const ru = {
     installApp: "Установить приложение",
     settings: "Настройки",
     more: "Ещё",
+    discreetAppName: "Документы",
   },
   interview: {
     title: "Опрос",

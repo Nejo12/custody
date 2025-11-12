@@ -32,6 +32,7 @@ const de = {
     installApp: "App installieren",
     settings: "Einstellungen",
     more: "Mehr",
+    discreetAppName: "Dokumente",
   },
   interview: {
     title: "Interview",

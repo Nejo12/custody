@@ -29,9 +29,10 @@ const fr = {
     findHelp: "Trouver de l'aide",
     quickExit: "Quitter rapidement",
     exit: "Quitter",
-    installApp: "Installer l’app",
+    installApp: "Installer l'app",
     settings: "Paramètres",
     more: "Plus",
+    discreetAppName: "Documents",
   },
   interview: {
     title: "Entretien",

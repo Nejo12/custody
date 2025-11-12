@@ -32,6 +32,7 @@ const ar = {
     installApp: "تثبيت التطبيق",
     settings: "الإعدادات",
     more: "المزيد",
+    discreetAppName: "مستندات",
   },
   interview: {
     title: "المقابلة",

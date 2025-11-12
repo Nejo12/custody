@@ -51,6 +51,7 @@ describe("Header", () => {
           settings: "Settings",
           installApp: "Install App",
           more: "More",
+          discreetAppName: "Documents",
         },
       },
     });
@@ -149,7 +150,7 @@ describe("Header", () => {
       discreetMode: true,
     });
     render(<Header />);
-    expect(screen.getByText("Notes")).toBeInTheDocument();
+    expect(screen.getByText("Documents")).toBeInTheDocument();
   });
 
   it("opens mobile menu when more button clicked", () => {
