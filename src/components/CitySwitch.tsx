@@ -25,12 +25,14 @@ export default function CitySwitch({ buttonClassName }: { buttonClassName?: stri
     return () => document.removeEventListener("mousedown", onClick);
   }, [open]);
 
+  const isMobile = !!buttonClassName;
+
   return (
     <div ref={containerRef} className="relative text-sm">
       <button
         className={
           buttonClassName ||
-          "inline-flex items-center justify-center px-4 h-10 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900"
+          "inline-flex items-center justify-center w-10 h-10 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900"
         }
         aria-haspopup="listbox"
         aria-expanded={open}
@@ -38,9 +40,31 @@ export default function CitySwitch({ buttonClassName }: { buttonClassName?: stri
         onClick={() => setOpen((v) => !v)}
         title={active ? `Region: ${active.label}` : "Change region"}
       >
-        <span className="text-sm font-medium text-zinc-700 dark:text-zinc-500">
-          {active?.label || "City"}
-        </span>
+        {isMobile ? (
+          <span className="text-sm text-zinc-500 dark:text-zinc-400">
+            {active?.label || "City"}
+          </span>
+        ) : (
+          <svg
+            className="w-4 h-4 text-zinc-700 dark:text-zinc-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
+        )}
       </button>
       {open && (
         <ul

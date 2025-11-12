@@ -135,17 +135,17 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                 onClick={() => setMenuOpen((v) => !v)}
                 aria-haspopup="menu"
                 aria-expanded={menuOpen}
-                className="inline-flex items-center justify-center h-10 px-4 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 text-sm"
+                className="inline-flex items-center justify-center h-10 px-4 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 text-sm text-zinc-700 dark:text-zinc-300"
               >
                 {t.header?.more || "More"}
               </button>
               {menuOpen && (
                 <div
                   role="menu"
-                  className="menu-panel fixed right-0 mt-2 w-56 rounded-xl border bg-white dark:bg-zinc-900 shadow-xl p-2 z-50 divide-y divide-zinc-200 dark:divide-zinc-800"
+                  className="menu-panel fixed right-0 mt-2 w-56 rounded-xl border bg-white dark:bg-zinc-900 shadow-xl p-2 z-50 space-y-1"
                 >
                   <button
-                    className="w-full h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="w-full flex items-center h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border border-zinc-200 dark:border-zinc-700"
                     onClick={() => {
                       setMenuOpen(false);
                       onOpenHelp?.();
@@ -155,7 +155,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                   </button>
                   {canInstall && (
                     <button
-                      className="w-full h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                      className="w-full flex items-center h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border border-zinc-200 dark:border-zinc-700"
                       onClick={() => {
                         setMenuOpen(false);
                         void promptInstall();
@@ -166,23 +166,20 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                   )}
                   <Link
                     href="/pricing"
-                    className="block h-9 rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="w-full flex items-center h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border border-zinc-200 dark:border-zinc-700"
                     onClick={() => setMenuOpen(false)}
                   >
                     Pro Documents
                   </Link>
                   <Link
                     href="/settings"
-                    className="block h-9 rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="w-full flex items-center h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border border-zinc-200 dark:border-zinc-700"
                     onClick={() => setMenuOpen(false)}
                   >
                     {t.header?.settings || "Settings"}
                   </Link>
-                  <div className="pt-2" />
-                  <div className="px-1 py-2 space-y-2">
-                    <CitySwitch buttonClassName="w-full justify-start rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 px-3 h-9" />
-                    <LanguageSwitch buttonClassName="w-full justify-start rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 px-3 h-9" />
-                  </div>
+                  <CitySwitch buttonClassName="w-full flex items-center justify-start h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border border-zinc-200 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900" />
+                  <LanguageSwitch buttonClassName="w-full flex items-center justify-start h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border border-zinc-200 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900" />
                 </div>
               )}
             </div>

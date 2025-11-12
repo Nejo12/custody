@@ -30,6 +30,8 @@ export default function LanguageSwitch({ buttonClassName }: { buttonClassName?: 
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open]);
 
+  const isMobile = !!buttonClassName;
+
   return (
     <div ref={containerRef} className="relative text-sm">
       <button
@@ -43,34 +45,57 @@ export default function LanguageSwitch({ buttonClassName }: { buttonClassName?: 
         onClick={() => setOpen((v) => !v)}
         title={active ? `${active.label} (${active.shortCode})` : "Change language"}
       >
-        <span className="text-sm font-medium text-zinc-700 dark:text-zinc-500">
-          {active?.label || locale.toUpperCase().slice(0, 2)}
-        </span>
+        {isMobile ? (
+          <span className="text-sm text-zinc-500 dark:text-zinc-400">
+            {active?.label || locale.toUpperCase().slice(0, 2)}
+          </span>
+        ) : (
+          <svg
+            className="w-4 h-4 text-zinc-700 dark:text-zinc-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+            />
+          </svg>
+        )}
       </button>
       {open && (
         <ul
           role="listbox"
           className="menu-panel absolute right-0 mt-1 w-48 rounded-lg border bg-white dark:bg-zinc-900 shadow-xl z-50 overflow-hidden divide-y divide-zinc-200 dark:divide-zinc-800"
         >
-          {locales.map((l) => (
-            <li
-              key={l.code}
-              role="option"
-              aria-selected={locale === l.code}
-              className={locale === l.code ? "bg-zinc-50 dark:bg-zinc-800" : ""}
-            >
-              <button
-                onClick={() => {
-                  setLocale(l.code);
-                  setOpen(false);
-                }}
-                className={`w-full text-left px-3 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${locale === l.code ? "font-medium" : ""}`}
-                aria-label={`Select ${l.label}`}
+          {locales.map((l) => {
+            const handleSelect = () => {
+              setLocale(l.code);
+              setOpen(false);
+            };
+            return (
+              <li
+                key={l.code}
+                role="option"
+                aria-selected={locale === l.code}
+                className={locale === l.code ? "bg-zinc-50 dark:bg-zinc-800" : ""}
+                onClick={handleSelect}
               >
-                {l.label}
-              </button>
-            </li>
-          ))}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSelect();
+                  }}
+                  className={`w-full text-left px-3 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${locale === l.code ? "font-medium" : ""}`}
+                  aria-label={`Select ${l.label}`}
+                >
+                  {l.label}
+                </button>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

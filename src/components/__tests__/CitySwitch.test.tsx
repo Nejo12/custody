@@ -12,7 +12,7 @@ describe("CitySwitch", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (useAppStore as ReturnType<typeof vi.fn>).mockReturnValue({
+    (useAppStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
       preferredCity: "berlin",
       setPreferredCity: mockSetPreferredCity,
     });
@@ -22,7 +22,8 @@ describe("CitySwitch", () => {
     render(<CitySwitch />);
     const button = screen.getByRole("button", { name: /Change region/i });
     expect(button).toBeInTheDocument();
-    expect(button).toHaveTextContent("Berlin");
+    // Desktop shows icon, mobile shows text - check aria-label contains city name
+    expect(button).toHaveAttribute("aria-label", expect.stringContaining("Berlin"));
   });
 
   it("displays current city in aria-label", () => {
@@ -88,7 +89,7 @@ describe("CitySwitch", () => {
   });
 
   it("marks current city as selected", () => {
-    (useAppStore as ReturnType<typeof vi.fn>).mockReturnValue({
+    (useAppStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
       preferredCity: "hamburg",
       setPreferredCity: mockSetPreferredCity,
     });

@@ -22,10 +22,11 @@ describe("LanguageSwitch", () => {
   it("renders current locale button and opens list on click", async () => {
     const user = userEvent.setup();
     render(<LanguageSwitch />);
-    // Button shows short code (En)
-    expect(screen.getByText(/En/i)).toBeInTheDocument();
+    // Button shows icon on desktop, check aria-label contains language
+    const button = screen.getByRole("button", { name: /Change language/i });
+    expect(button).toHaveAttribute("aria-label", expect.stringContaining("English"));
     // Open list
-    await user.click(screen.getByRole("button"));
+    await user.click(button);
     // List contains language labels
     expect(screen.getByRole("option", { name: /English/i })).toBeInTheDocument();
     expect(screen.getByRole("option", { name: /Deutsch/i })).toBeInTheDocument();
