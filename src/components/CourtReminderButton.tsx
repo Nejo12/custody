@@ -123,15 +123,17 @@ export default function CourtReminderButton({
     <div className={`space-y-2 ${className}`}>
       <div className="flex gap-2">
         <button
+          type="button"
           onClick={handleDownloadICS}
-          className="text-xs underline text-zinc-300 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
+          className="text-xs underline text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors"
         >
           {t.result.addFilingReminder || "Add filing reminder"}
         </button>
         {!email && (
           <button
+            type="button"
             onClick={() => setShowEmailInput(!showEmailInput)}
-            className="text-xs underline text-zinc-300 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
+            className="text-xs underline text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors"
           >
             {showEmailInput
               ? t.result.cancelEmailReminder || "Cancel"
@@ -155,7 +157,7 @@ export default function CourtReminderButton({
               value={reminderEmail}
               onChange={(e) => setReminderEmail(e.target.value)}
               placeholder="your@email.com"
-              className="w-full rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1 text-xs text-zinc-500 dark:text-zinc-400 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:focus:ring-zinc-600"
+              className="w-full rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2 py-1 text-xs text-zinc-500 dark:text-zinc-400 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:focus:ring-zinc-600"
               required
             />
           </div>
@@ -176,6 +178,7 @@ export default function CourtReminderButton({
             />
           </div>
           <button
+            type="button"
             onClick={handleScheduleEmailReminder}
             disabled={loading || status === "success"}
             className="w-full rounded bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700 px-3 py-1.5 text-xs font-medium hover:bg-black dark:hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
@@ -201,9 +204,10 @@ export default function CourtReminderButton({
       {email && !showEmailInput && (
         <div className="space-y-2">
           <button
+            type="button"
             onClick={handleScheduleEmailReminder}
             disabled={loading || status === "success"}
-            className="text-xs underline text-zinc-300 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors disabled:opacity-50"
+            className="text-xs underline text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors disabled:opacity-50"
           >
             {loading
               ? t.result.scheduling || "Scheduling..."

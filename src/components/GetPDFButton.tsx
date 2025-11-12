@@ -27,6 +27,7 @@ export default function GetPDFButton({
   return (
     <>
       <button
+        type="button"
         onClick={() => setIsModalOpen(true)}
         className={`${baseClasses} ${variantClasses} ${className}`}
       >

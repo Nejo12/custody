@@ -219,6 +219,8 @@ export default function Interview() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               className="rounded-lg border border-zinc-300 dark:border-zinc-700 p-3 bg-zinc-50 dark:bg-zinc-900"
+              role="status"
+              aria-live="polite"
             >
               <div className="text-sm text-zinc-500 dark:text-zinc-400">
                 {(t.result?.answerNow || "Answer now:") + " "}
@@ -240,12 +242,14 @@ export default function Interview() {
               )}
               <div className="mt-2 flex gap-2">
                 <button
+                  type="button"
                   onClick={() => onSelect(clarify.data!.suggestion)}
                   className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-700"
                 >
                   {t.result?.accept || "Accept"}
                 </button>
                 <button
+                  type="button"
                   onClick={() => setClarify({ loading: false })}
                   className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-700"
                 >
@@ -260,16 +264,18 @@ export default function Interview() {
 
           <div className="flex justify-between items-center pt-2">
             <button
+              type="button"
               onClick={() => setStep((s) => Math.max(0, s - 1))}
-              className="text-sm text-zinc-700 dark:text-zinc-400 underline hover:text-zinc-700 dark:hover:text-zinc-200 disabled:text-zinc-300 dark:disabled:text-zinc-700"
+              className="text-sm text-zinc-700 dark:text-zinc-400 underline hover:text-zinc-900 dark:hover:text-zinc-200 disabled:text-zinc-400 dark:disabled:text-zinc-600"
               disabled={step === 0}
             >
               {t.common.back}
             </button>
             <div className="flex items-center gap-3">
               <button
+                type="button"
                 onClick={() => onSelect("unsure")}
-                className="text-sm text-zinc-700 dark:text-zinc-400 underline hover:text-zinc-700 dark:hover:text-zinc-200"
+                className="text-sm text-zinc-700 dark:text-zinc-400 underline hover:text-zinc-900 dark:hover:text-zinc-200"
               >
                 {t.common?.unsure || "Not sure"}
               </button>

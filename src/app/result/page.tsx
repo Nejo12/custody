@@ -211,7 +211,7 @@ export default function Result() {
       <div className="rounded-lg border p-3 bg-white dark:bg-zinc-900">
         <div className="flex items-center justify-between text-sm">
           <div className="text-sm">
-            <span className="font-medium text-zinc-300 dark:text-zinc-500">
+            <span className="font-medium text-zinc-600 dark:text-zinc-400">
               {allMissing.length > 0
                 ? t.result.needQuickDetails?.replace("{count}", allMissing.length.toString()) ||
                   `We need ${allMissing.length} quick details to confirm`
@@ -242,7 +242,7 @@ export default function Result() {
                 {steps.map((s, i) => (
                   <span
                     key={s.label}
-                    className={`px-2 py-1 rounded-full border ${s.done ? "bg-green-100 border-green-300 text-green-800" : "bg-white dark:bg-zinc-900"}`}
+                    className={`px-2 py-1 rounded-full border ${s.done ? "bg-green-100 dark:bg-green-900/30 border-green-300 dark:border-green-700 text-green-800 dark:text-green-200" : "bg-white dark:bg-zinc-900"}`}
                   >
                     {s.done ? "✓" : i + 1}. {s.label}
                   </span>
@@ -795,7 +795,7 @@ export default function Result() {
         transition={{ duration: 0.3, delay: 0.4 }}
         className="rounded-lg border p-3"
       >
-        <div className="text-sm font-medium text-zinc-300 dark:text-zinc-400">
+        <div className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
           {t.result.regionalTips}
         </div>
         <div className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">

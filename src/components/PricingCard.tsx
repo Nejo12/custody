@@ -130,13 +130,14 @@ export default function PricingCard({
             }}
             autoComplete="off"
             data-tier={tier}
-            className="w-full px-3 py-2 text-sm border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 bg-white dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
+            className="w-full px-3 py-2 text-sm border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 bg-white dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
             disabled={loading}
           />
 
           {error && <p className="text-red-600 dark:text-red-400 text-xs">{error}</p>}
 
           <button
+            type="button"
             onClick={handlePurchase}
             disabled={loading}
             className="w-full py-2.5 px-4 rounded-lg text-sm font-medium transition-colors bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-700 hover:bg-black dark:hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"

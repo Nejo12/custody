@@ -316,7 +316,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                       value={postcode}
                       onChange={(e) => setPostcode(e.target.value)}
                       placeholder={t.helpSheet.postcodePlaceholder}
-                      className="flex-1 rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 placeholder:text-zinc-500 dark:placeholder:text-zinc-400"
+                      className="flex-1 rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
                     />
                     <button
                       type="button"

@@ -23,6 +23,7 @@ export default function EducationPanel({ item }: { item: EducationItem }) {
   return (
     <div className="rounded-lg border p-4 bg-white dark:bg-zinc-900">
       <button
+        type="button"
         className="w-full text-left font-medium flex items-center justify-between text-zinc-500 dark:text-zinc-400"
         onClick={() => setOpen((v) => !v)}
       >
