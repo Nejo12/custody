@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/i18n";
 import HeaderWithHelp from "@/components/HeaderWithHelp";
@@ -10,16 +9,6 @@ import ThemeInit from "@/components/ThemeInit";
 import FloatingThemeSwitch from "@/components/FloatingThemeSwitch";
 import Analytics from "@/components/Analytics";
 import ReferralTracker from "@/components/ReferralTracker";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Custody Clarity",
@@ -48,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className="antialiased">
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>

@@ -1,6 +1,6 @@
 "use client";
 import { useAppStore } from "@/store/app";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 
 type City = "berlin" | "hamburg" | "nrw";
 
@@ -13,8 +13,20 @@ const CITIES: Array<{ code: City; label: string }> = [
 export default function CitySwitch({ buttonClassName }: { buttonClassName?: string }) {
   const { preferredCity, setPreferredCity } = useAppStore();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const active = CITIES.find((c) => c.code === preferredCity);
+
+  // Track mount state to avoid hydration mismatch
+  // Server always renders desktop version, then client updates after mount
+  // This setState in effect is necessary to prevent hydration mismatches
+  useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  // Compute isMobile only after mount to ensure server/client consistency
+  const isMobile = mounted && !!buttonClassName;
 
   useEffect(() => {
     if (!open) return;
@@ -24,8 +36,6 @@ export default function CitySwitch({ buttonClassName }: { buttonClassName?: stri
     document.addEventListener("mousedown", onClick);
     return () => document.removeEventListener("mousedown", onClick);
   }, [open]);
-
-  const isMobile = !!buttonClassName;
 
   return (
     <div ref={containerRef} className="relative text-sm">

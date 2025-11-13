@@ -1,12 +1,7 @@
 import { vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 
-vi.mock("next/font/google", () => {
-  return {
-    Geist: () => ({ className: "geist", variable: "--font-geist-sans" }),
-    Geist_Mono: () => ({ className: "geist-mono", variable: "--font-geist-mono" }),
-  };
-});
+// Font mocks no longer needed - using system fonts
 
 vi.mock("next/link", () => ({
   default: ({ href, children }: { href: string; children: React.ReactNode }) => {

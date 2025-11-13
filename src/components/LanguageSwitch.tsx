@@ -1,6 +1,6 @@
 "use client";
 import { useI18n } from "@/i18n";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 
 type Locale = "en" | "de" | "ar" | "pl" | "fr" | "tr" | "ru";
 const locales: Array<{ code: Locale; label: string; shortCode: string }> = [
@@ -16,8 +16,20 @@ const locales: Array<{ code: Locale; label: string; shortCode: string }> = [
 export default function LanguageSwitch({ buttonClassName }: { buttonClassName?: string }) {
   const { locale, setLocale } = useI18n();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const active = locales.find((l) => l.code === (locale as Locale));
+
+  // Track mount state to avoid hydration mismatch
+  // Server always renders desktop version, then client updates after mount
+  // This setState in effect is necessary to prevent hydration mismatches
+  useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  // Compute isMobile only after mount to ensure server/client consistency
+  const isMobile = mounted && !!buttonClassName;
 
   useEffect(() => {
     if (!open) return;
@@ -29,8 +41,6 @@ export default function LanguageSwitch({ buttonClassName }: { buttonClassName?: 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open]);
-
-  const isMobile = !!buttonClassName;
 
   return (
     <div ref={containerRef} className="relative text-sm">
