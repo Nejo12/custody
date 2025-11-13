@@ -62,7 +62,7 @@ export default function GlossaryPage() {
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-6 space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold mb-2 text-zinc-600">
+        <h1 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-50">
           {t.glossary?.title || "Glossary of Custody Terms"}
         </h1>
         <p className="text-sm text-zinc-700 dark:text-zinc-400">
@@ -95,7 +95,7 @@ export default function GlossaryPage() {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-baseline gap-2 flex-wrap">
-                    <h2 className="text-lg font-semibold text-zinc-500 dark:text-zinc-400">
+                    <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-400">
                       {term.term}
                     </h2>
                     {term.fullForm && (
@@ -110,7 +110,7 @@ export default function GlossaryPage() {
                 </div>
               </div>
 
-              <div className="text-sm text-zinc-800 dark:text-zinc-200 space-y-2">
+              <div className="text-sm text-zinc-800 dark:text-zinc-300 space-y-2">
                 <p>
                   <strong>{t.glossary?.definition || "Definition"}:</strong> {term.definition}
                 </p>

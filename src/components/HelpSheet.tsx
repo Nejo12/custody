@@ -279,7 +279,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                     <div className="text-xs font-medium mb-1">
                       {t.helpSheet?.transliterationLabel || "Transliteration"}
                     </div>
-                    <div className="text-xs text-zinc-800 dark:text-zinc-200 whitespace-pre-wrap">
+                    <div className="text-xs text-zinc-800 dark:text-zinc-300 whitespace-pre-wrap">
                       {translit}
                     </div>
                     <div className="mt-2">

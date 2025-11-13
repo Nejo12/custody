@@ -46,7 +46,7 @@ export default function PricingModal({
 
           {/* Header */}
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold mb-2 text-zinc-500 dark:text-zinc-400">
+            <h2 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-400">
               Get Your Pro Document
             </h2>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto">

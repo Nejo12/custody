@@ -133,11 +133,11 @@ export default function BlogPostPage({ params }: Props) {
             >
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="bg-zinc-50 dark:bg-zinc-800">
+                  <tr className="bg-zinc-500 dark:bg-zinc-800">
                     {tableData.headers.map((header, i) => (
                       <th
                         key={i}
-                        className="px-4 py-3 text-left text-sm font-semibold text-zinc-700 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-700"
+                        className="px-4 py-3 text-left text-sm font-semibold text-zinc-700 dark:text-zinc-500 border-b border-zinc-200 dark:border-zinc-700"
                       >
                         {processCell(header)}
                       </th>
@@ -187,7 +187,7 @@ export default function BlogPostPage({ params }: Props) {
         elements.push(
           <h2
             key={`h2-${idx}`}
-            className="text-xl font-semibold mt-6 mb-3 text-zinc-900 dark:text-zinc-100"
+            className="text-xl font-semibold mt-6 mb-3 text-zinc-900 dark:text-zinc-300"
           >
             {line.replace("## ", "")}
           </h2>
@@ -211,7 +211,7 @@ export default function BlogPostPage({ params }: Props) {
         elements.push(
           <h3
             key={`h3-${idx}`}
-            className="text-lg font-semibold mt-4 mb-2 text-zinc-800 dark:text-zinc-200"
+            className="text-lg font-semibold mt-4 mb-2 text-zinc-900 dark:text-zinc-300"
           >
             {line.replace("### ", "")}
           </h3>
@@ -322,11 +322,11 @@ export default function BlogPostPage({ params }: Props) {
           >
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-zinc-50 dark:bg-zinc-800">
+                <tr className="bg-zinc-500 dark:bg-zinc-800">
                   {tableData.headers.map((header, i) => (
                     <th
                       key={i}
-                      className="px-4 py-3 text-left text-sm font-semibold text-zinc-700 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-700"
+                      className="px-4 py-3 text-left text-sm font-semibold text-zinc-700 dark:text-zinc-500 border-b border-zinc-200 dark:border-zinc-700"
                     >
                       {processCell(header)}
                     </th>
@@ -368,11 +368,11 @@ export default function BlogPostPage({ params }: Props) {
         >
           {t.blog.backToBlog}
         </Link>
-        <h1 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-50">
+        <h1 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-500">
           {post.title}
         </h1>
         <div className="flex items-center gap-4 text-sm text-zinc-700 dark:text-zinc-300 mb-4">
-          <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200">
+          <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
             {categories[post.category as keyof typeof categories] || post.category}
           </span>
           <span className="text-zinc-700 dark:text-zinc-300">{post.readTime}</span>
@@ -387,7 +387,7 @@ export default function BlogPostPage({ params }: Props) {
       </div>
 
       {t.blog.languageNote && (
-        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm text-zinc-800 dark:text-zinc-200">
+        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm text-zinc-800 dark:text-zinc-300">
           <p>{t.blog.languageNote}</p>
         </div>
       )}
@@ -398,12 +398,12 @@ export default function BlogPostPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-800 dark:text-zinc-200">
+      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-500 dark:bg-zinc-900 p-4 text-sm text-zinc-800 dark:text-zinc-300">
         <p>{t.blog.postDisclaimer}</p>
       </div>
 
       <div className="border-t border-zinc-300 dark:border-zinc-700 pt-6">
-        <h3 className="text-lg font-semibold mb-3 text-zinc-900 dark:text-zinc-100">
+        <h3 className="text-lg font-semibold mb-3 text-zinc-900 dark:text-zinc-500">
           {t.blog.aboutAuthor}
         </h3>
         <p className="text-sm text-zinc-700 dark:text-zinc-300">

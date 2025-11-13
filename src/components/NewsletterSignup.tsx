@@ -148,7 +148,7 @@ export default function NewsletterSignup({
     <div
       className={`rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 ${className}`}
     >
-      <h3 className="text-lg font-semibold mb-2 text-zinc-500 dark:text-zinc-400">
+      <h3 className="text-lg font-semibold mb-2 text-zinc-900 dark:text-zinc-400">
         {t.newsletter?.title || "Stay Updated"}
       </h3>
       <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">

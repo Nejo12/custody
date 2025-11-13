@@ -92,7 +92,7 @@ export default function GuidePage({ params }: Props) {
         elements.push(
           <h2
             key={`h2-${idx}`}
-            className="text-xl font-semibold mt-6 mb-3 text-zinc-900 dark:text-zinc-100"
+            className="text-xl font-semibold mt-6 mb-3 text-zinc-900 dark:text-zinc-300"
           >
             {line.replace("## ", "")}
           </h2>
@@ -116,7 +116,7 @@ export default function GuidePage({ params }: Props) {
         elements.push(
           <h3
             key={`h3-${idx}`}
-            className="text-lg font-semibold mt-4 mb-2 text-zinc-800 dark:text-zinc-200"
+            className="text-lg font-semibold mt-4 mb-2 text-zinc-900 dark:text-zinc-300"
           >
             {line.replace("### ", "")}
           </h3>
@@ -222,7 +222,7 @@ export default function GuidePage({ params }: Props) {
           {guide.title}
         </h1>
         <div className="flex items-center gap-4 text-sm mb-4">
-          <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200">
+          <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
             {categories[guide.category as keyof typeof categories] || guide.category}
           </span>
           <span className="text-zinc-700 dark:text-zinc-300">{guide.readTime}</span>
@@ -232,7 +232,7 @@ export default function GuidePage({ params }: Props) {
       </div>
 
       {t.guides?.languageNote && (
-        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm text-zinc-800 dark:text-zinc-200">
+        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm text-zinc-800 dark:text-zinc-300">
           <p>{t.guides.languageNote}</p>
         </div>
       )}
@@ -243,7 +243,7 @@ export default function GuidePage({ params }: Props) {
         </div>
       </div>
 
-      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-800 dark:text-zinc-200">
+      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-800 dark:text-zinc-300">
         <p>
           {t.guides?.disclaimer ||
             "Disclaimer: This guide provides general information only, not individualized legal advice. Consult a qualified family law attorney for advice specific to your situation."}

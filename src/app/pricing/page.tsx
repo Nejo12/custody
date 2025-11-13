@@ -25,7 +25,7 @@ export default function PricingPage() {
   return (
     <div className="w-full max-w-5xl mx-auto px-4 py-10">
       <div className="text-center mb-8">
-        <h1 className="text-2xl font-semibold text-zinc-500 dark:text-zinc-400">
+        <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
           Choose Your Package
         </h1>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto mt-2">

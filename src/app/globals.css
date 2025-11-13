@@ -106,7 +106,7 @@ body {
 /* Ensure dropdown menus and dialog text are readable in light mode */
 .menu-panel,
 .dialog-panel {
-  @apply text-zinc-800 dark:text-zinc-200;
+  @apply text-zinc-800 dark:text-zinc-300;
 }
 
 /* Skip link for screen readers and keyboard users */
@@ -228,6 +228,49 @@ select option {
 
 .header-surface {
   @apply bg-white/80 dark:bg-zinc-950/60 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b border-zinc-200 dark:border-zinc-800;
+}
+
+/* Global fix: Override text-zinc-500 and text-zinc-300 in light mode for better contrast */
+:root:not(.dark) .text-zinc-500,
+:root:not(.dark) [class*="text-zinc-500"] {
+  color: rgb(82 82 91) !important; /* zinc-600 - better contrast on white */
+}
+
+:root:not(.dark) .text-zinc-300,
+:root:not(.dark) [class*="text-zinc-300"] {
+  color: rgb(63 63 70) !important; /* zinc-700 - better contrast on white */
+}
+
+/* Fix headings with text-zinc-400 in light mode - ensure they're readable */
+:root:not(.dark) h1.text-zinc-400,
+:root:not(.dark) h2.text-zinc-400,
+:root:not(.dark) h3.text-zinc-400,
+:root:not(.dark) h4.text-zinc-400,
+:root:not(.dark) h5.text-zinc-400,
+:root:not(.dark) h6.text-zinc-400,
+:root:not(.dark) h1[class*="text-zinc-400"],
+:root:not(.dark) h2[class*="text-zinc-400"],
+:root:not(.dark) h3[class*="text-zinc-400"],
+:root:not(.dark) h4[class*="text-zinc-400"],
+:root:not(.dark) h5[class*="text-zinc-400"],
+:root:not(.dark) h6[class*="text-zinc-400"] {
+  color: rgb(24 24 27) !important; /* zinc-900 - maximum contrast for headings */
+}
+
+/* Ensure all headings in blog posts and guides are dark in light mode */
+:root:not(.dark) article h1,
+:root:not(.dark) article h2,
+:root:not(.dark) article h3,
+:root:not(.dark) article h4,
+:root:not(.dark) article h5,
+:root:not(.dark) article h6,
+:root:not(.dark) .prose h1,
+:root:not(.dark) .prose h2,
+:root:not(.dark) .prose h3,
+:root:not(.dark) .prose h4,
+:root:not(.dark) .prose h5,
+:root:not(.dark) .prose h6 {
+  color: rgb(24 24 27) !important; /* zinc-900 - ensure all blog/guide headings are readable */
 }
 
 /* Print-friendly styles for Worker page */

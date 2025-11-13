@@ -133,7 +133,7 @@ export default function Interview() {
               <summary className="cursor-pointer font-medium text-zinc-800 dark:text-zinc-200">
                 {t.education?.headings?.why || "Why this question matters"}
               </summary>
-              <div className="mt-1 text-zinc-500 dark:text-zinc-400">
+              <div className="mt-1 text-zinc-500 dark:text-zinc-300">
                 {questionData?.help || t.interview.help}
               </div>
             </details>
@@ -147,7 +147,7 @@ export default function Interview() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                   onClick={() => onSelect("yes")}
-                  className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-left text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                  className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-left hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 >
                   {t.common.yes}
                 </motion.button>
@@ -156,7 +156,7 @@ export default function Interview() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 }}
                   onClick={() => onSelect("no")}
-                  className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-left text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                  className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-left text-zinc-500 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 >
                   {t.common.no}
                 </motion.button>
@@ -177,7 +177,7 @@ export default function Interview() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 + i * 0.05 }}
                       onClick={() => onSelect(o.value)}
-                      className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-left text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                      className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 text-left text-zinc-500 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                     >
                       {translatedLabel}
                     </motion.button>
@@ -222,7 +222,7 @@ export default function Interview() {
               role="status"
               aria-live="polite"
             >
-              <div className="text-sm text-zinc-500 dark:text-zinc-400">
+              <div className="text-sm text-zinc-500 dark:text-zinc-300">
                 {(t.result?.answerNow || "Answer now:") + " "}
                 <b>
                   {clarify.data.suggestion === "yes"
@@ -236,7 +236,7 @@ export default function Interview() {
                 </span>
               </div>
               {clarify.data.followup && (
-                <div className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+                <div className="text-sm text-zinc-500 dark:text-zinc-300 mt-1">
                   {clarify.data.followup}
                 </div>
               )}
@@ -244,14 +244,14 @@ export default function Interview() {
                 <button
                   type="button"
                   onClick={() => onSelect(clarify.data!.suggestion)}
-                  className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-700"
+                  className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1 text-sm text-zinc-500 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700"
                 >
                   {t.result?.accept || "Accept"}
                 </button>
                 <button
                   type="button"
                   onClick={() => setClarify({ loading: false })}
-                  className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-700"
+                  className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1 text-sm text-zinc-500 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700"
                 >
                   {t.helpSheet?.close || "Close"}
                 </button>

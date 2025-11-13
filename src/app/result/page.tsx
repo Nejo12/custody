@@ -283,7 +283,7 @@ export default function Result() {
                       </span>
                     )}
                   </summary>
-                  <div className="mt-1 rounded border px-3 py-2 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-800 dark:text-zinc-200">
+                  <div className="mt-1 rounded border px-3 py-2 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-800 dark:text-zinc-300">
                     <div className="mb-1">
                       {(t as TranslationDict).ruleExplain?.[
                         r.id as keyof TranslationDict["ruleExplain"]

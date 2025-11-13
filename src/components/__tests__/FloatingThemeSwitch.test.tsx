@@ -55,4 +55,18 @@ describe("FloatingThemeSwitch", () => {
     fireEvent.click(button);
     expect(useAppStore.getState().theme).toBe("light");
   });
+
+  it("is visible on desktop (not hidden with md:hidden)", () => {
+    render(
+      <I18nProvider>
+        <FloatingThemeSwitch />
+      </I18nProvider>
+    );
+    const button = screen.getByRole("button");
+    // Verify button has responsive positioning classes
+    expect(button.className).toContain("bottom-12");
+    // expect(button.className).toContain("md:top-[4rem]");
+    // Verify it does NOT have md:hidden
+    expect(button.className).not.toContain("md:hidden");
+  });
 });

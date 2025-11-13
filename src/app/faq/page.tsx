@@ -49,7 +49,7 @@ export default function FAQPage() {
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-6 space-y-8">
       <div>
-        <h1 className="text-2xl font-semibold mb-2 text-zinc-600">
+        <h1 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-50">
           {t.faq?.title || "Frequently Asked Questions"}
         </h1>
         <p className="text-sm text-zinc-700 dark:text-zinc-400">
@@ -60,7 +60,7 @@ export default function FAQPage() {
 
       {categories.map((category) => (
         <div key={category.id} className="space-y-4">
-          <h2 className="text-lg font-semibold text-zinc-500 dark:text-zinc-400">
+          <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-400">
             {category.title}
           </h2>
           <div className="space-y-2">

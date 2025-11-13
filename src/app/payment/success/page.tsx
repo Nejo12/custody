@@ -56,7 +56,7 @@ function PaymentSuccessContent() {
     return (
       <div className="container mx-auto px-4 py-16 max-w-2xl text-center">
         <div className="text-6xl mb-4">⚠️</div>
-        <h1 className="text-3xl font-bold mb-4 text-zinc-500 dark:text-zinc-400">
+        <h1 className="text-3xl font-bold mb-4 text-zinc-900 dark:text-zinc-400">
           {t.paymentSuccess.verificationFailed}
         </h1>
         <p className="text-zinc-500 dark:text-zinc-400 mb-8">
@@ -84,7 +84,7 @@ function PaymentSuccessContent() {
     <div className="container mx-auto px-4 py-16 max-w-2xl">
       <div className="text-center mb-8">
         <div className="text-6xl mb-4">✅</div>
-        <h1 className="text-4xl font-bold mb-4 text-zinc-500 dark:text-zinc-400">
+        <h1 className="text-4xl font-bold mb-4 text-zinc-900 dark:text-zinc-400">
           {paymentInfo.paymentMethod === "sepa_debit"
             ? t.paymentSuccess.paymentInitiated
             : t.paymentSuccess.paymentSuccessful}
@@ -113,7 +113,7 @@ function PaymentSuccessContent() {
       )}
 
       <div className="bg-white dark:bg-zinc-900 rounded-xl p-8 border border-zinc-200 dark:border-zinc-800 mb-8">
-        <h2 className="text-2xl font-bold mb-4 text-zinc-500 dark:text-zinc-400">
+        <h2 className="text-2xl font-bold mb-4 text-zinc-900 dark:text-zinc-400">
           {t.paymentSuccess.whatHappensNext}
         </h2>
         <ol className="space-y-4">

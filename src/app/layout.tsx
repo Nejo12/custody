@@ -38,6 +38,25 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
+        {/* Blocking script to set theme before React hydrates - prevents FOUC */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const theme = localStorage.getItem('theme') || 'system';
+                  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const resolvedTheme = theme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : theme;
+                  document.documentElement.classList.remove('light', 'dark');
+                  document.documentElement.classList.add(resolvedTheme);
+                } catch (e) {
+                  // Fallback to light mode if localStorage fails
+                  document.documentElement.classList.add('light');
+                }
+              })();
+            `,
+          }}
+        />
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>

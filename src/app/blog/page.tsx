@@ -27,7 +27,7 @@ export default function BlogPage() {
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-6 space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold mb-2 text-zinc-500 dark:text-zinc-400">
+        <h1 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-300">
           {t.blog.title}
         </h1>
         <p className="text-sm text-zinc-700 dark:text-zinc-500">{t.blog.description}</p>
@@ -36,10 +36,10 @@ export default function BlogPage() {
       <div className="space-y-6">
         {posts.map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
-            <article className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-5 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all hover:scale-[1.01] cursor-pointer">
+            <article className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-5 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all hover:scale-[1.01] cursor-pointer">
               <div className="flex items-start justify-between gap-4 mb-2">
                 <div className="flex-1">
-                  <h2 className="text-lg font-semibold text-zinc-200 dark:text-zinc-200 group-hover:text-blue-300 dark:group-hover:text-blue-800 transition-colors block mb-2">
+                  <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors block mb-2">
                     {post.title}
                   </h2>
                   <p className="text-sm text-zinc-700 dark:text-zinc-500 mb-3">{post.excerpt}</p>
