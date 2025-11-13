@@ -5,6 +5,7 @@ import { useI18n } from "@/i18n";
 import blogData from "@/data/blog.json";
 import { formatDate } from "@/lib/utils";
 import { use, useMemo } from "react";
+import { useScrollThreshold } from "@/lib/hooks";
 
 type BlogPost = {
   slug: string;
@@ -28,6 +29,7 @@ export default function BlogPostPage({ params }: Props) {
   const { slug } = resolvedParams;
   const posts = blogData.posts as BlogPost[];
   const post = posts.find((p) => p.slug === slug);
+  const showFloatingButton = useScrollThreshold(200);
 
   if (!post) {
     notFound();
@@ -360,56 +362,82 @@ export default function BlogPostPage({ params }: Props) {
   }, [post.content]);
 
   return (
-    <article className="w-full max-w-2xl mx-auto px-4 py-6 space-y-6">
-      <div>
+    <>
+      <article className="w-full max-w-2xl mx-auto px-4 py-6 space-y-6">
+        <div>
+          <Link
+            href="/blog"
+            className="text-sm text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 hover:underline transition-colors mb-4 inline-block"
+          >
+            {t.blog.backToBlog}
+          </Link>
+          <h1 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-500">
+            {post.title}
+          </h1>
+          <div className="flex items-center gap-4 text-sm text-zinc-700 dark:text-zinc-300 mb-4">
+            <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
+              {categories[post.category as keyof typeof categories] || post.category}
+            </span>
+            <span className="text-zinc-700 dark:text-zinc-300">{post.readTime}</span>
+            <span className="text-zinc-700 dark:text-zinc-300">{formattedDate}</span>
+            {post.author && (
+              <span className="text-zinc-700 dark:text-zinc-300">
+                {t.blog.by} {post.author}
+              </span>
+            )}
+          </div>
+          <p className="text-zinc-700 dark:text-zinc-300 mb-6 italic">{post.excerpt}</p>
+        </div>
+
+        {t.blog.languageNote && (
+          <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm text-zinc-800 dark:text-zinc-300">
+            <p>{t.blog.languageNote}</p>
+          </div>
+        )}
+
+        <div className="prose prose-zinc dark:prose-invert max-w-none">
+          <div className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+            {renderedContent}
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-800 dark:bg-zinc-400 p-4 text-sm text-zinc-300 dark:text-zinc-800">
+          <p>{t.blog.postDisclaimer}</p>
+        </div>
+
+        <div className="border-t border-zinc-300 dark:border-zinc-700 pt-6">
+          <h3 className="text-lg font-semibold mb-3 text-zinc-900 dark:text-zinc-500">
+            {t.blog.aboutAuthor}
+          </h3>
+          <p className="text-sm text-zinc-700 dark:text-zinc-300">
+            {t.blog.authorDescription.replace("{author}", post.author || "")}
+          </p>
+        </div>
+      </article>
+
+      {showFloatingButton && (
         <Link
           href="/blog"
-          className="text-sm text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 hover:underline transition-colors mb-4 inline-block"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg shadow-lg hover:bg-zinc-700 dark:hover:bg-zinc-600 hover:text-zinc-100 transition-all duration-300 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium hover:shadow-xl"
+          aria-label={t.blog.backToBlog}
         >
-          {t.blog.backToBlog}
+          <svg
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          <span className="hidden sm:inline">{t.blog.backToBlog.replace("← ", "")}</span>
+          <span className="sm:hidden">Back</span>
         </Link>
-        <h1 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-500">
-          {post.title}
-        </h1>
-        <div className="flex items-center gap-4 text-sm text-zinc-700 dark:text-zinc-300 mb-4">
-          <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
-            {categories[post.category as keyof typeof categories] || post.category}
-          </span>
-          <span className="text-zinc-700 dark:text-zinc-300">{post.readTime}</span>
-          <span className="text-zinc-700 dark:text-zinc-300">{formattedDate}</span>
-          {post.author && (
-            <span className="text-zinc-700 dark:text-zinc-300">
-              {t.blog.by} {post.author}
-            </span>
-          )}
-        </div>
-        <p className="text-zinc-700 dark:text-zinc-300 mb-6 italic">{post.excerpt}</p>
-      </div>
-
-      {t.blog.languageNote && (
-        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4 text-sm text-zinc-800 dark:text-zinc-300">
-          <p>{t.blog.languageNote}</p>
-        </div>
       )}
-
-      <div className="prose prose-zinc dark:prose-invert max-w-none">
-        <div className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
-          {renderedContent}
-        </div>
-      </div>
-
-      <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-500 dark:bg-zinc-900 p-4 text-sm text-zinc-800 dark:text-zinc-300">
-        <p>{t.blog.postDisclaimer}</p>
-      </div>
-
-      <div className="border-t border-zinc-300 dark:border-zinc-700 pt-6">
-        <h3 className="text-lg font-semibold mb-3 text-zinc-900 dark:text-zinc-500">
-          {t.blog.aboutAuthor}
-        </h3>
-        <p className="text-sm text-zinc-700 dark:text-zinc-300">
-          {t.blog.authorDescription.replace("{author}", post.author || "")}
-        </p>
-      </div>
-    </article>
+    </>
   );
 }

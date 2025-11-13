@@ -68,7 +68,7 @@ export default function GuidesPage() {
       <div className="space-y-6">
         {guides.map((guide) => (
           <Link key={guide.slug} href={`/guides/${guide.slug}`} className="group block">
-            <article className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-5 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all hover:scale-[1.01] cursor-pointer">
+            <article className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-700 p-5 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all hover:scale-[1.01] cursor-pointer">
               <div className="flex items-start justify-between gap-4 mb-2">
                 <div className="flex-1">
                   <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors block mb-2">
