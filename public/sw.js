@@ -1,6 +1,7 @@
-const CACHE_NAME = 'custody-clarity-v3';
+const CACHE_NAME = 'custody-clarity-v4';
 const STATIC_ASSETS = [
-  '/',
+  // NOTE: Removed '/' - we should NOT cache HTML pages
+  // HTML pages must come from network to avoid hydration errors
   '/manifest.webmanifest',
   '/favicon.ico',
   '/icons/icon-192-maskable.png',
@@ -53,9 +54,59 @@ function isApi(req) {
   return new URL(req.url).pathname.startsWith('/api/');
 }
 
+/**
+ * Check if request is for an HTML page
+ * HTML pages should NEVER be cached to prevent hydration errors
+ * when old HTML tries to hydrate with new React code
+ */
+function isHtml(request) {
+  // Navigation requests are always HTML pages
+  if (request.mode === 'navigate') return true;
+  // Check if it's a same-origin request that might be HTML
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return false;
+  // If it's not an API, data, or Next.js asset, it's likely HTML
+  return (
+    !url.pathname.startsWith('/api/') &&
+    !url.pathname.startsWith('/data/') &&
+    !url.pathname.startsWith('/content/') &&
+    !url.pathname.startsWith('/_next/') &&
+    !url.pathname.startsWith('/icons/') &&
+    !url.pathname.includes('.')
+  );
+}
+
+/**
+ * Check if request is for Next.js assets
+ * Next.js assets are versioned and should NEVER be cached
+ * to prevent mismatches between HTML and JS bundles
+ */
+function isNextAsset(url) {
+  return url.pathname.startsWith('/_next/');
+}
+
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
+  
+  // CRITICAL: Never cache HTML pages or Next.js assets
+  // This prevents hydration errors when old HTML tries to hydrate with new React code
+  if (isHtml(event.request) || isNextAsset(url)) {
+    // Network-first for HTML and Next.js assets - NEVER cache
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // Don't cache HTML or Next.js assets
+          return response;
+        })
+        .catch(() => {
+          // Only use cache as offline fallback
+          return caches.match(event.request);
+        })
+    );
+    return;
+  }
+  
   const isContent = url.pathname.startsWith('/data/') || url.pathname.startsWith('/content/snapshots/');
   if (isApi(event.request)) {
     // Cache-first for directory; network-first otherwise

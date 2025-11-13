@@ -60,14 +60,44 @@ export default function ServiceWorkerRegister() {
           });
         };
 
+        // Check for updates on navigation (when user navigates to new page)
+        // This is critical for detecting updates after deployment
+        const handleNavigation = () => {
+          if (!mounted) return;
+          registration.update().catch((error: Error) => {
+            console.warn("Service worker update check on navigation failed (non-critical):", error);
+          });
+        };
+
+        // Listen for Next.js navigation events
+        // Next.js uses pushState/replaceState for client-side navigation
+        const originalPushState = history.pushState;
+        const originalReplaceState = history.replaceState;
+
+        history.pushState = function (...args) {
+          originalPushState.apply(history, args);
+          handleNavigation();
+        };
+
+        history.replaceState = function (...args) {
+          originalReplaceState.apply(history, args);
+          handleNavigation();
+        };
+
         window.addEventListener("focus", handleFocus);
         document.addEventListener("visibilitychange", handleVisibilityChange);
+        // Also listen for popstate (back/forward navigation)
+        window.addEventListener("popstate", handleNavigation);
 
         // Store cleanup function
         cleanupFn = () => {
           mounted = false;
           window.removeEventListener("focus", handleFocus);
           document.removeEventListener("visibilitychange", handleVisibilityChange);
+          window.removeEventListener("popstate", handleNavigation);
+          // Restore original history methods
+          history.pushState = originalPushState;
+          history.replaceState = originalReplaceState;
         };
       } catch (err) {
         // Silently fail - service worker is optional

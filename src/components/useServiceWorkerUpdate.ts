@@ -139,6 +139,29 @@ export function useServiceWorkerUpdate(): ServiceWorkerUpdateState {
     };
     window.addEventListener("focus", handleFocus);
 
+    // Check for updates on navigation (when user navigates to new page)
+    // This is critical for detecting updates after deployment
+    const handleNavigation = () => {
+      checkForUpdate();
+    };
+
+    // Listen for Next.js navigation events
+    // Next.js uses pushState/replaceState for client-side navigation
+    const originalPushState = history.pushState;
+    const originalReplaceState = history.replaceState;
+
+    history.pushState = function (...args: Parameters<typeof history.pushState>) {
+      originalPushState.apply(history, args);
+      handleNavigation();
+    };
+
+    history.replaceState = function (...args: Parameters<typeof history.replaceState>) {
+      originalReplaceState.apply(history, args);
+      handleNavigation();
+    };
+
+    window.addEventListener("popstate", handleNavigation);
+
     // Listen for controller change (when update is activated)
     const handleControllerChange = () => {
       if (document.hasFocus()) {
@@ -153,7 +176,11 @@ export function useServiceWorkerUpdate(): ServiceWorkerUpdateState {
       }
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("focus", handleFocus);
+      window.removeEventListener("popstate", handleNavigation);
       navigator.serviceWorker.removeEventListener("controllerchange", handleControllerChange);
+      // Restore original history methods
+      history.pushState = originalPushState;
+      history.replaceState = originalReplaceState;
       if (updateListenerCleanup) {
         updateListenerCleanup();
       }
