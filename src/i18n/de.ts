@@ -266,7 +266,7 @@ const de = {
     dataExport: "Datenexport",
     safety: "Sicherheit",
     safetyMode: "Sicherheitsmodus (Schnellverlassen‑Tastenkombi)",
-    discreetMode: "Dezenter App‑Name in der Kopfzeile",
+    discreetMode: "App-Name im Header ausblenden",
     blurThumbnails: "Vorschaubilder weichzeichnen",
     quickWipe: "Schnell löschen (Panik)",
     quickWipeConfirm:

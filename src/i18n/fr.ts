@@ -271,7 +271,7 @@ const fr = {
     dataExport: "Exportation de données",
     safety: "Sécurité",
     safetyMode: "Mode sécurité (raccourci de sortie rapide)",
-    discreetMode: "Nom d'application discret dans l'en‑tête",
+    discreetMode: "Masquer le nom de l'application dans l'en-tête",
     blurThumbnails: "Flouter les miniatures/prévisualisations",
     quickWipe: "Effacement rapide (panique)",
     quickWipeConfirm:

@@ -418,7 +418,7 @@ const en = {
     dataExport: "Data export",
     safety: "Safety",
     safetyMode: "Safety Mode (enable quick-exit shortcut)",
-    discreetMode: "Discreet app name in header",
+    discreetMode: "Hide app name in header",
     blurThumbnails: "Blur thumbnails/previews",
     quickWipe: "Quick Wipe (panic erase)",
     quickWipeConfirm: "Erase local data and cached files? This cannot be undone.",

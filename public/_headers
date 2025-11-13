@@ -5,3 +5,30 @@
   Pragma: no-cache
   Expires: 0
 
+# Next.js static chunks - CSS files
+/_next/static/chunks/*.css
+  Content-Type: text/css; charset=utf-8
+
+# Next.js static chunks - JavaScript files
+/_next/static/chunks/*.js
+  Content-Type: application/javascript; charset=utf-8
+
+# Next.js static chunks - Source maps
+/_next/static/chunks/*.js.map
+  Content-Type: application/json; charset=utf-8
+
+# Next.js static CSS files (root level)
+/_next/static/css/*.css
+  Content-Type: text/css; charset=utf-8
+
+# Next.js static media files
+/_next/static/media/*
+  Content-Type: application/octet-stream
+
+# Web fonts
+/_next/static/fonts/*
+  Content-Type: font/woff2
+
+# All Next.js static assets - ensure proper MIME type detection
+/_next/static/*
+  X-Content-Type-Options: nosniff

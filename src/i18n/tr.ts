@@ -263,7 +263,7 @@ const tr = {
     dataExport: "Veri dışa aktarma",
     safety: "Güvenlik",
     safetyMode: "Güvenlik Modu (hızlı çıkış kısayolu)",
-    discreetMode: "Başlıkta sade uygulama adı",
+    discreetMode: "Başlıkta uygulama adını gizle",
     blurThumbnails: "Küçük resimleri/bakışları bulanıklaştır",
     quickWipe: "Hızlı silme (panik)",
     quickWipeConfirm:

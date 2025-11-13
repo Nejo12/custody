@@ -268,7 +268,7 @@ const pl = {
     dataExport: "Eksport danych",
     safety: "Bezpieczeństwo",
     safetyMode: "Tryb bezpieczeństwa (skrót szybkiego wyjścia)",
-    discreetMode: "Dyskretny tytuł aplikacji w nagłówku",
+    discreetMode: "Ukryj nazwę aplikacji w nagłówku",
     blurThumbnails: "Rozmyj miniatury/podglądy",
     quickWipe: "Szybkie wymazanie (panika)",
     quickWipeConfirm:

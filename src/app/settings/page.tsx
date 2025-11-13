@@ -142,7 +142,7 @@ export default function SettingsPage() {
             checked={discreetMode}
             onChange={(e) => setDiscreetMode(e.target.checked)}
           />
-          {t.settings?.discreetMode || "Discreet app name in header"}
+          {t.settings?.discreetMode || "Hide app name in header"}
         </label>
         <label className="flex items-center gap-2 text-sm">
           <input
