@@ -20,6 +20,7 @@ const en = {
     features: "WCAG AA · Privacy‑first · Offline‑ready",
   },
   footer: {
+    planning: "Planning",
     guides: "Guides",
     blog: "Blog",
     impressum: "Impressum",
@@ -516,6 +517,231 @@ const en = {
     authorDescription:
       "{author} is a father who has navigated the German custody system. This tool was built to help other parents facing similar challenges.",
     by: "by",
+    languageNote: "",
+  },
+  planning: {
+    title: "Planning & Prevention",
+    subtitle: "Protect Your Parental Rights Before Problems Arise",
+    description:
+      "Essential legal steps for expectant parents and families. Establish custody rights, understand German family law, and prevent custody disputes before they happen.",
+    backToPlanning: "← Back to Planning",
+    hero: {
+      title: "Your Journey to Secure Parental Rights",
+      description:
+        "Whether you're expecting a baby, just had a child, or facing relationship challenges, taking the right legal steps NOW can prevent months of stress and legal battles later.",
+      cta: "Get Your Personalized Checklist",
+    },
+    stages: {
+      expecting: {
+        title: "Expecting",
+        shortTitle: "Expecting",
+        description: "Pregnant or planning pregnancy",
+        fullDescription:
+          "Critical legal steps to complete before baby arrives. Establish paternity and custody rights while your relationship is stable.",
+        icon: "🤰",
+      },
+      atBirth: {
+        title: "At Birth",
+        shortTitle: "At Birth",
+        description: "Birth registration and immediate steps",
+        fullDescription:
+          "What happens at the hospital, required documents, and how to register your baby's birth in Germany.",
+        icon: "👶",
+      },
+      firstYear: {
+        title: "First Year",
+        shortTitle: "First Year",
+        description: "Legal protections in baby's first year",
+        fullDescription:
+          "Complete these administrative tasks and secure financial benefits. Don't miss critical deadlines!",
+        icon: "🍼",
+      },
+      earlyWarning: {
+        title: "Relationship Trouble",
+        shortTitle: "Early Warning",
+        description: "Secure your rights NOW",
+        fullDescription:
+          "If your relationship is showing cracks, take these legal steps immediately to protect your access to your children.",
+        icon: "⚠️",
+      },
+    },
+    categories: {
+      expecting: "Expecting",
+      atBirth: "At Birth",
+      firstYear: "First Year",
+      earlyWarning: "Relationship Trouble",
+    },
+    urgency: {
+      critical: "Critical",
+      high: "High Priority",
+      medium: "Medium Priority",
+      low: "Important",
+    },
+    cta: {
+      getStarted: "Get Started",
+      viewGuide: "Read Guide",
+      viewAllGuides: "View All Guides",
+      downloadChecklist: "Download Checklist",
+      findResources: "Find Local Resources",
+      getPersonalizedPlan: "Get Your Personalized Plan",
+    },
+    checklist: {
+      title: "Your Prevention Checklist",
+      description:
+        "Track your progress through essential legal and administrative tasks. Never miss a critical deadline.",
+      completed: "Completed",
+      pending: "To Do",
+      inProgress: "In Progress",
+      markComplete: "Mark as Complete",
+      markPending: "Mark as Pending",
+      filterByStage: "Filter by Stage",
+      allStages: "All Stages",
+      showCompleted: "Show Completed",
+      hideCompleted: "Hide Completed",
+    },
+    personalizedTool: {
+      title: "Get Your Personalized Action Plan",
+      description:
+        "Answer a few questions about your situation, and we'll generate a customized checklist with exactly what you need to do, when, and where.",
+      startQuiz: "Start Assessment",
+      questions: {
+        relationshipStatus: {
+          label: "What is your relationship status?",
+          options: {
+            married: "Married",
+            unmarried: "Unmarried / Living Together",
+            separated: "Separated",
+            other: "Other",
+          },
+        },
+        pregnancyStage: {
+          label: "What stage are you at?",
+          options: {
+            planning: "Planning pregnancy",
+            firstTrimester: "First trimester (weeks 1-13)",
+            secondTrimester: "Second trimester (weeks 14-27)",
+            thirdTrimester: "Third trimester (weeks 28-40)",
+            postpartum: "Baby already born",
+          },
+        },
+        childAge: {
+          label: "How old is your child?",
+          options: {
+            notBorn: "Not yet born",
+            zeroToThree: "0-3 months",
+            threeToSix: "3-6 months",
+            sixToTwelve: "6-12 months",
+            oneToTwo: "1-2 years",
+            older: "Older than 2 years",
+          },
+        },
+        hasPaternityCertificate: {
+          label: "Has paternity been legally acknowledged (Vaterschaftsanerkennung)?",
+        },
+        hasJointCustody: {
+          label: "Do both parents have joint custody (Sorgeerklärung)?",
+        },
+        relationshipStable: {
+          label: "Is your relationship currently stable?",
+          help: "Be honest—this helps us prioritize urgent legal protections.",
+        },
+        city: {
+          label: "Which city do you live in? (Optional)",
+          placeholder: "e.g., Berlin, Hamburg, Munich",
+          help: "We'll provide local Jugendamt and Standesamt information.",
+        },
+      },
+      results: {
+        title: "Your Personalized Action Plan",
+        priorityTasks: "Priority Tasks",
+        recommendedGuides: "Recommended Guides",
+        localResources: "Local Resources",
+        nextSteps: "Next Steps",
+        timeline: "Suggested Timeline",
+        downloadPDF: "Download as PDF",
+        emailPlan: "Email This Plan",
+      },
+    },
+    cityResources: {
+      title: "Find Local Resources",
+      description:
+        "Find your local Jugendamt, Standesamt, and other family services. Search by city or postcode.",
+      searchPlaceholder: "Enter city name or postcode",
+      search: "Search",
+      standesamt: {
+        title: "Standesamt (Registry Office)",
+        description: "Birth registration, marriage, paternity acknowledgment",
+      },
+      jugendamt: {
+        title: "Jugendamt (Youth Welfare Office)",
+        description: "Custody declarations, mediation, family counseling",
+      },
+      contact: "Contact",
+      address: "Address",
+      phone: "Phone",
+      email: "Email",
+      website: "Website",
+      hours: "Hours",
+      appointmentRequired: "Appointment Required",
+      appointmentRecommended: "Appointment Recommended",
+      walkInsAccepted: "Walk-ins Accepted",
+      notes: "Notes",
+      noResultsFound: "No resources found for this location",
+      tryDifferentSearch: "Try a different city or postcode",
+    },
+    whyThisMatters: {
+      title: "Why This Matters",
+      subtitle: "Real stories from parents who wish they'd acted sooner",
+      story1: {
+        quote:
+          "I spent 10 years in a relationship. When we separated, I discovered I had no legal custody rights. I couldn't see my daughters for months while going through court.",
+        author: "Father, Berlin",
+      },
+      story2: {
+        quote:
+          "We thought 'we trust each other, we don't need paperwork.' Then the relationship ended, and suddenly trust wasn't enough. The legal battle took 9 months.",
+        author: "Parent, Munich",
+      },
+      takeaway:
+        "Establishing custody rights takes one hour at the Jugendamt while your relationship is stable. Fighting for them in court takes months, costs thousands, and causes immense stress.",
+    },
+    faq: {
+      title: "Common Questions",
+      q1: {
+        question: "We're not married. Does the father automatically have custody?",
+        answer:
+          "No. In Germany, unmarried fathers have ZERO automatic custody rights. The mother has sole custody by default. Fathers must complete paternity acknowledgment (Vaterschaftsanerkennung) and joint custody declaration (Sorgeerklärung) to have legal rights.",
+      },
+      q2: {
+        question: "When should we establish paternity and custody?",
+        answer:
+          "As soon as possible—ideally during pregnancy. This can be done at any Jugendamt for FREE. Don't wait until after birth or until relationship problems arise.",
+      },
+      q3: {
+        question: "What if my partner refuses joint custody?",
+        answer:
+          "You can apply through Familiengericht (family court). Courts usually grant joint custody unless there are serious concerns about child welfare. But this takes 3-9 months and can be expensive. It's always better to establish custody cooperatively.",
+      },
+      q4: {
+        question: "We trust each other. Do we really need legal paperwork?",
+        answer:
+          "Yes. Trust is not a legal right. If your partner changes their mind, blocks contact, or the relationship ends, you have no recourse without legal custody. Paperwork takes 1 hour and is free. Legal battles take months and cost thousands.",
+      },
+      q5: {
+        question: "Does joint custody mean 50/50 time with the child?",
+        answer:
+          "No. Joint custody (Sorgerecht) means equal legal authority to make decisions about the child's welfare (medical care, school, residence). Physical time with the child (Umgangsrecht) is separate and can be negotiated or decided by a court.",
+      },
+      q6: {
+        question: "How much does this cost?",
+        answer:
+          "Paternity acknowledgment and joint custody declaration are FREE at Jugendamt. Birth certificate costs €10-15. If you have to go to court later, expect €2,000-6,000+ in legal fees.",
+      },
+    },
+    disclaimer:
+      "Note: This information provides general guidance only, not individualized legal advice. For advice specific to your situation, consult a qualified family law attorney.",
+    guideDisclaimer:
+      "Disclaimer: This guide provides general information only, not individualized legal advice. German family law can be complex, and every situation is unique. For advice specific to your circumstances, consult a qualified family law attorney (Fachanwalt für Familienrecht).",
     languageNote: "",
   },
   impressum: {

@@ -9,6 +9,12 @@ export default function Footer() {
       <p>{t.home?.disclaimer || "Information only. Not individualized legal advice."}</p>
       <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1">
         <Link
+          href="/planning"
+          className="underline hover:text-zinc-700 dark:hover:text-zinc-600 transition-colors"
+        >
+          {t.footer?.planning || "Planning"}
+        </Link>
+        <Link
           href="/guides"
           className="underline hover:text-zinc-700 dark:hover:text-zinc-600 transition-colors"
         >
