@@ -132,4 +132,47 @@ describe("Planning Checklist Page", () => {
     expect(fileContent).toMatch(/\/\*\*[\s\S]*Interactive Checklist Page/);
     expect(fileContent).toMatch(/\/\*\*[\s\S]*Toggle completion status/);
   });
+
+  it("should integrate progress tracking library", () => {
+    const filePath = join(process.cwd(), "src/app/planning/checklist/page.tsx");
+    const fileContent = readFileSync(filePath, "utf-8");
+
+    // Verify progress tracking imports
+    expect(fileContent).toMatch(/@\/lib\/planning-progress/);
+    expect(fileContent).toMatch(/generateChecklistId/);
+    expect(fileContent).toMatch(/saveProgress/);
+    expect(fileContent).toMatch(/loadProgress/);
+    expect(fileContent).toMatch(/progressToSet/);
+    expect(fileContent).toMatch(/setToProgress/);
+  });
+
+  it("should load progress on mount", () => {
+    const filePath = join(process.cwd(), "src/app/planning/checklist/page.tsx");
+    const fileContent = readFileSync(filePath, "utf-8");
+
+    // Verify useEffect for loading progress
+    expect(fileContent).toMatch(/useEffect/);
+    expect(fileContent).toMatch(/loadProgress/);
+    expect(fileContent).toMatch(/isLoadingProgress/);
+  });
+
+  it("should save progress when items change", () => {
+    const filePath = join(process.cwd(), "src/app/planning/checklist/page.tsx");
+    const fileContent = readFileSync(filePath, "utf-8");
+
+    // Verify useEffect for saving progress
+    expect(fileContent).toMatch(/useEffect/);
+    expect(fileContent).toMatch(/saveProgress/);
+    expect(fileContent).toMatch(/setToProgress/);
+  });
+
+  it("should have checklist ID persistence", () => {
+    const filePath = join(process.cwd(), "src/app/planning/checklist/page.tsx");
+    const fileContent = readFileSync(filePath, "utf-8");
+
+    // Verify checklist ID generation and storage
+    expect(fileContent).toMatch(/checklistId.*useState/);
+    expect(fileContent).toMatch(/localStorage\.getItem.*planning_checklist_id/);
+    expect(fileContent).toMatch(/localStorage\.setItem.*planning_checklist_id/);
+  });
 });

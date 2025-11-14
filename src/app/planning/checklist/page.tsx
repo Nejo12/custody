@@ -1,18 +1,42 @@
 "use client";
 import Link from "next/link";
 import { useI18n } from "@/i18n";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import planningData from "@/data/planning.json";
 import type { ChecklistItem, PlanningStage } from "@/types/planning";
+import {
+  generateChecklistId,
+  saveProgress,
+  loadProgress,
+  progressToSet,
+  setToProgress,
+} from "@/lib/planning-progress";
 
 /**
  * Interactive Checklist Page
  * Allows users to track their progress through essential legal steps
  * Includes filtering by stage and completion status
+ * Progress is persisted to localStorage and optionally synced to Supabase
  */
 export default function ChecklistPage() {
   // Get i18n translation function
   const { t } = useI18n();
+
+  // Generate or load checklist ID (persisted across sessions)
+  const [checklistId] = useState<string>(() => {
+    if (typeof window === "undefined") {
+      return generateChecklistId();
+    }
+    // Try to load existing checklist ID from localStorage
+    const storedId = localStorage.getItem("planning_checklist_id");
+    if (storedId) {
+      return storedId;
+    }
+    // Generate new ID and store it
+    const newId = generateChecklistId();
+    localStorage.setItem("planning_checklist_id", newId);
+    return newId;
+  });
 
   // State for completed items (stored as Set of item IDs)
   const [completedItems, setCompletedItems] = useState<Set<string>>(new Set());
@@ -23,13 +47,66 @@ export default function ChecklistPage() {
   // State for showing/hiding completed items
   const [showCompleted, setShowCompleted] = useState<boolean>(true);
 
+  // State for loading progress
+  const [isLoadingProgress, setIsLoadingProgress] = useState<boolean>(true);
+
   // Get checklist items from planning data
   const checklistItems = planningData.checklist as ChecklistItem[];
 
   /**
+   * Load progress from localStorage on mount
+   */
+  useEffect(() => {
+    const loadSavedProgress = async (): Promise<void> => {
+      try {
+        setIsLoadingProgress(true);
+        const savedProgress = await loadProgress(checklistId);
+        if (savedProgress) {
+          setCompletedItems(progressToSet(savedProgress));
+        }
+      } catch (error) {
+        console.error("Error loading progress:", error);
+      } finally {
+        setIsLoadingProgress(false);
+      }
+    };
+
+    loadSavedProgress();
+  }, [checklistId]);
+
+  /**
+   * Save progress whenever completed items change
+   */
+  useEffect(() => {
+    if (isLoadingProgress) {
+      return; // Don't save while loading
+    }
+
+    const saveProgressDebounced = async (): Promise<void> => {
+      try {
+        const progress = setToProgress(checklistId, completedItems, checklistItems);
+        await saveProgress(progress, {
+          syncToSupabase: false, // Can be enabled when user is authenticated
+        });
+      } catch (error) {
+        console.error("Error saving progress:", error);
+      }
+    };
+
+    // Debounce saves to avoid excessive localStorage writes
+    const timeoutId = setTimeout(() => {
+      saveProgressDebounced();
+    }, 500);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [checklistId, completedItems, checklistItems, isLoadingProgress]);
+
+  /**
    * Toggle completion status of a checklist item
    */
-  const toggleItem = (itemId: string): void => {
+  const toggleItem = useCallback((itemId: string): void => {
     setCompletedItems((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(itemId)) {
@@ -39,7 +116,7 @@ export default function ChecklistPage() {
       }
       return newSet;
     });
-  };
+  }, []);
 
   /**
    * Filter and sort checklist items
@@ -328,8 +405,8 @@ export default function ChecklistPage() {
       {/* Help text */}
       <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-400">
         <p className="mb-2">
-          <strong>💡 Tip:</strong> Your progress is saved locally in your browser. Clear your
-          browser data to reset the checklist.
+          <strong>💡 Tip:</strong> Your progress is automatically saved in your browser. It will
+          persist across sessions, so you can come back anytime to continue where you left off.
         </p>
         <p>
           Click on any item to mark it as complete or incomplete. Use the filters to focus on
