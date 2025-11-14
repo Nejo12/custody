@@ -1,20 +1,49 @@
 "use client";
 import Link from "next/link";
 import { useI18n } from "@/i18n";
-import { useState } from "react";
-import planningData from "@/data/planning.json";
+import { useState, useEffect } from "react";
+import planningDataEn from "@/data/planning.json";
 import type { CityResource } from "@/types/planning";
+
+/**
+ * Lazy load locale-specific planning data
+ * Loads translated city resources based on current locale
+ * Falls back to English if translation unavailable
+ */
+const loadPlanning = async (locale: string) => {
+  // Only load German for now, other languages fall back to English
+  // TODO: Add other language files as they become available
+  if (locale === "de") {
+    try {
+      return (await import("@/data/planning.de.json")).default;
+    } catch {
+      console.warn("German planning data not found, falling back to English");
+      return planningDataEn;
+    }
+  }
+
+  // Default to English for all other locales
+  return planningDataEn;
+};
 
 /**
  * City Resources Page
  * Allows users to search for local Jugendamt and Standesamt by city or postcode
  */
 export default function ResourcesPage() {
-  // Get i18n translation function
-  const { t } = useI18n();
+  // Get i18n translation function and current locale
+  const { t, locale } = useI18n();
+
+  // State for locale-specific planning data
+  const [planningData, setPlanningData] = useState(planningDataEn);
 
   // State for search query
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+  // Load locale-specific data when locale changes
+  useEffect(() => {
+    loadPlanning(locale).then((data) => setPlanningData(data));
+  }, [locale]);
 
   // Get city resources from planning data
   const cityResources = planningData.cityResources as CityResource[];

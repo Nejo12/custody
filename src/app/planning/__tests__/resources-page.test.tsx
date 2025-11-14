@@ -113,7 +113,7 @@ describe("Planning Resources Page", () => {
     const fileContent = readFileSync(filePath, "utf-8");
 
     // Verify i18n usage
-    expect(fileContent).toMatch(/const { t } = useI18n\(\)/);
+    expect(fileContent).toMatch(/const { t.*} = useI18n\(\)/);
     expect(fileContent).toMatch(/t\.planning\?\.cityResources\?\.title/);
     expect(fileContent).toMatch(/t\.planning\?\.cityResources\?\.standesamt/);
     expect(fileContent).toMatch(/t\.planning\?\.cityResources\?\.jugendamt/);

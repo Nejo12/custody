@@ -719,6 +719,53 @@ const pl = {
       description:
         "Odpowiedz na kilka pytań o swoją sytuację, a wygenerujemy spersonalizowaną listę kontrolną z dokładnie tym, co musisz zrobić, kiedy i gdzie.",
       startQuiz: "Rozpocznij Ocena",
+      questions: {
+        relationshipStatus: {
+          label: "Jaki jest Twój status związku?",
+          options: {
+            married: "W związku małżeńskim",
+            unmarried: "Nie w związku małżeńskim / Mieszkamy razem",
+            separated: "Rozdzieleni",
+            other: "Inne",
+          },
+        },
+        pregnancyStage: {
+          label: "Na jakim etapie jesteś?",
+          options: {
+            planning: "Planowanie ciąży",
+            firstTrimester: "Pierwszy trymestr (tygodnie 1-13)",
+            secondTrimester: "Drugi trymestr (tygodnie 14-27)",
+            thirdTrimester: "Trzeci trymestr (tygodnie 28-40)",
+            postpartum: "Dziecko już się urodziło",
+          },
+        },
+        childAge: {
+          label: "Ile lat ma Twoje dziecko?",
+          options: {
+            notBorn: "Jeszcze się nie urodziło",
+            zeroToThree: "0-3 miesiące",
+            threeToSix: "3-6 miesięcy",
+            sixToTwelve: "6-12 miesięcy",
+            oneToTwo: "1-2 lata",
+            older: "Starsze niż 2 lata",
+          },
+        },
+        hasPaternityCertificate: {
+          label: "Czy ojcostwo zostało prawnie uznane (Vaterschaftsanerkennung)?",
+        },
+        hasJointCustody: {
+          label: "Czy oboje rodzice mają wspólną opiekę (Sorgeerklärung)?",
+        },
+        relationshipStable: {
+          label: "Czy Twój związek jest obecnie stabilny?",
+          help: "Bądź szczery—pomoże nam to ustalić priorytety pilnej ochrony prawnej.",
+        },
+        city: {
+          label: "W którym mieście mieszkasz? (Opcjonalne)",
+          placeholder: "np. Berlin, Hamburg, Monachium",
+          help: "Udostępnimy informacje o lokalnym Jugendamt i Standesamt.",
+        },
+      },
       results: {
         title: "Twój Spersonalizowany Plan Działania",
         priorityTasks: "Zadania Priorytetowe",

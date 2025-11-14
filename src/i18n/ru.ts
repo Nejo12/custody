@@ -721,6 +721,53 @@ const ru = {
       description:
         "Ответьте на несколько вопросов о вашей ситуации, и мы создадим персонализированный чеклист с тем, что именно вам нужно сделать, когда и где.",
       startQuiz: "Начать Оценку",
+      questions: {
+        relationshipStatus: {
+          label: "Какой у вас семейный статус?",
+          options: {
+            married: "В браке",
+            unmarried: "Не в браке / Живем вместе",
+            separated: "В разводе",
+            other: "Другое",
+          },
+        },
+        pregnancyStage: {
+          label: "На каком этапе вы находитесь?",
+          options: {
+            planning: "Планируем беременность",
+            firstTrimester: "Первый триместр (недели 1-13)",
+            secondTrimester: "Второй триместр (недели 14-27)",
+            thirdTrimester: "Третий триместр (недели 28-40)",
+            postpartum: "Ребенок уже родился",
+          },
+        },
+        childAge: {
+          label: "Сколько лет вашему ребенку?",
+          options: {
+            notBorn: "Еще не родился",
+            zeroToThree: "0-3 месяца",
+            threeToSix: "3-6 месяцев",
+            sixToTwelve: "6-12 месяцев",
+            oneToTwo: "1-2 года",
+            older: "Старше 2 лет",
+          },
+        },
+        hasPaternityCertificate: {
+          label: "Было ли отцовство юридически признано (Vaterschaftsanerkennung)?",
+        },
+        hasJointCustody: {
+          label: "Есть ли у обоих родителей совместная опека (Sorgeerklärung)?",
+        },
+        relationshipStable: {
+          label: "Стабильны ли ваши отношения в настоящее время?",
+          help: "Будьте честны—это поможет нам расставить приоритеты в срочной правовой защите.",
+        },
+        city: {
+          label: "В каком городе вы живете? (Необязательно)",
+          placeholder: "например, Берлин, Гамбург, Мюнхен",
+          help: "Мы предоставим информацию о местном Jugendamt и Standesamt.",
+        },
+      },
       results: {
         title: "Ваш Персонализированный План Действий",
         priorityTasks: "Приоритетные Задачи",
