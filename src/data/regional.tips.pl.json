@@ -1,0 +1,17 @@
+{
+  "berlin": {
+    "text": "Niektóre sądy preferują wizyty w rejestrze wczesnym rankiem w celu złożenia dokumentów. Amtsgericht Mitte często oczekuje krótkich listów przewodnich i zaakceptuje standardowe załączniki z listy.",
+    "lastVerified": "2025‑01‑03",
+    "snapshotId": "berlin-registry-2025-01"
+  },
+  "hamburg": {
+    "text": "Rejestr sądowy może poprosić o podstawowy zarys harmonogramu nawet w przypadku początkowych wniosków o kontakt. Przynieś wydrukowane dowody tożsamości.",
+    "lastVerified": "2025‑01‑02",
+    "snapshotId": "hamburg-registry-2025-01"
+  },
+  "nrw": {
+    "text": "Biura Jugendamt czasami wymagają rezerwacji online w celu uznania ojcostwa. Sprawdź godziny otwarcia i zarezerwuj z wyprzedzeniem, gdzie to możliwe.",
+    "lastVerified": "2025‑01‑02",
+    "snapshotId": "nrw-jugendamt-2025-01"
+  }
+}

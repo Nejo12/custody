@@ -20,6 +20,7 @@ const fr = {
     features: "WCAG AA · Confidentialité d'abord · Prêt hors ligne",
   },
   footer: {
+    planning: "Planification",
     guides: "Guides",
     blog: "Blog",
     impressum: "Mentions légales",
@@ -606,6 +607,189 @@ const fr = {
     later: "Plus tard",
     updateNow: "Mettre à jour maintenant",
     updating: "Mise à jour...",
+  },
+  planning: {
+    title: "Planification et Prévention",
+    subtitle: "Protégez vos droits parentaux avant que les problèmes n'apparaissent",
+    description:
+      "Étapes légales essentielles pour les futurs parents et les familles. Établissez les droits de garde, comprenez le droit de la famille allemand et prévenez les conflits de garde avant qu'ils ne se produisent.",
+    backToPlanning: "← Retour à la Planification",
+    hero: {
+      title: "Votre parcours vers des droits parentaux sécurisés",
+      description:
+        "Que vous attendiez un bébé, que vous veniez d'avoir un enfant ou que vous rencontriez des difficultés relationnelles, prendre les bonnes mesures légales MAINTENANT peut éviter des mois de stress et de batailles juridiques plus tard.",
+      cta: "Obtenez votre liste de contrôle personnalisée",
+    },
+    stages: {
+      expecting: {
+        title: "En Attente",
+        shortTitle: "En Attente",
+        description: "Enceinte ou planification de grossesse",
+        fullDescription:
+          "Étapes légales critiques à compléter avant l'arrivée du bébé. Établissez la paternité et les droits de garde pendant que votre relation est stable.",
+        icon: "🤰",
+      },
+      atBirth: {
+        title: "À la Naissance",
+        shortTitle: "À la Naissance",
+        description: "Enregistrement de naissance et étapes immédiates",
+        fullDescription:
+          "Ce qui se passe à l'hôpital, les documents requis et comment enregistrer la naissance de votre bébé en Allemagne.",
+        icon: "👶",
+      },
+      firstYear: {
+        title: "Première Année",
+        shortTitle: "Première Année",
+        description: "Protections légales dans la première année du bébé",
+        fullDescription:
+          "Complétez ces tâches administratives et sécurisez les avantages financiers. Ne manquez pas les délais critiques !",
+        icon: "🍼",
+      },
+      earlyWarning: {
+        title: "Problèmes Relationnels",
+        shortTitle: "Alerte Précoce",
+        description: "Sécurisez vos droits MAINTENANT",
+        fullDescription:
+          "Si votre relation montre des fissures, prenez ces mesures légales immédiatement pour protéger votre accès à vos enfants.",
+        icon: "⚠️",
+      },
+    },
+    categories: {
+      expecting: "En Attente",
+      atBirth: "À la Naissance",
+      firstYear: "Première Année",
+      earlyWarning: "Problèmes Relationnels",
+    },
+    urgency: {
+      critical: "Critique",
+      high: "Haute Priorité",
+      medium: "Priorité Moyenne",
+      low: "Important",
+    },
+    chooseStage: "Choisissez Votre Étape",
+    allGuides: "Tous les Guides",
+    guidesForThisStage: "Guides pour Cette Étape",
+    guide: "guide",
+    guides: "guides",
+    noGuidesAvailable: "Aucun guide disponible pour cette étape pour le moment.",
+    checkBackSoon: "Revenez bientôt, nous ajoutons plus de contenu !",
+    getPersonalizedPlanDescription:
+      "Répondez à quelques questions pour obtenir votre liste de contrôle personnalisée",
+    interactiveChecklist: "Liste de Contrôle Interactive",
+    interactiveChecklistDescription: "Suivez vos progrès dans les étapes légales essentielles",
+    interactiveChecklistDescriptionShort: "Suivez vos progrès dans les étapes essentielles",
+    findResourcesDescription: "Emplacements Jugendamt et Standesamt près de chez vous",
+    findResourcesDescriptionShort: "Jugendamt et Standesamt près de chez vous",
+    cta: {
+      getStarted: "Commencer",
+      viewGuide: "Lire le Guide",
+      viewAllGuides: "Voir Tous les Guides",
+      downloadChecklist: "Télécharger la Liste",
+      findResources: "Trouver des Ressources Locales",
+      getPersonalizedPlan: "Obtenir un Plan Personnalisé",
+    },
+    checklist: {
+      title: "Votre Liste de Contrôle de Prévention",
+      description:
+        "Suivez vos progrès dans les tâches légales et administratives essentielles. Ne manquez jamais une échéance critique.",
+      overallProgress: "Progrès Global",
+      completed: "terminé",
+      complete: "terminé",
+      completedStatus: "Terminé",
+      pending: "À Faire",
+      inProgress: "En Cours",
+      markComplete: "Marquer comme Terminé",
+      markPending: "Marquer comme En Attente",
+      filterByStage: "Filtrer par Étape",
+      allStages: "Toutes les Étapes",
+      showCompleted: "Afficher les Terminés",
+      hideCompleted: "Masquer les Terminés",
+      enableNotifications: "Activer les Notifications du Navigateur",
+      notificationsEnabled: "Notifications Activées",
+      notificationsDisabled: "Notifications Désactivées",
+      shareProgress: "Partager le Progrès",
+      shareLink: "Partager le Lien",
+      shareLinkCopied: "Lien copié dans le presse-papiers !",
+      shareLinkExpires: "Le lien expire dans {days} jours",
+      createShareLink: "Créer un Lien Partageable",
+      shareWithPartner: "Partager avec le Partenaire",
+      shareDescription:
+        "Créez un lien partageable pour montrer vos progrès à votre partenaire ou conseiller.",
+      tip: "Astuce",
+      progressTip:
+        "Vos progrès sont automatiquement enregistrés dans votre navigateur. Ils persistent entre les sessions, vous pouvez donc revenir à tout moment pour continuer là où vous vous êtes arrêté.",
+      instructions:
+        "Cliquez sur un élément pour le marquer comme terminé ou non terminé. Utilisez les filtres pour vous concentrer sur des étapes spécifiques ou masquer les tâches terminées.",
+    },
+    personalizedTool: {
+      title: "Obtenez votre Plan d'Action Personnalisé",
+      description:
+        "Répondez à quelques questions sur votre situation, et nous générerons une liste de contrôle personnalisée avec exactement ce que vous devez faire, quand et où.",
+      startQuiz: "Commencer l'Évaluation",
+      results: {
+        title: "Votre Plan d'Action Personnalisé",
+        priorityTasks: "Tâches Prioritaires",
+        recommendedGuides: "Guides Recommandés",
+        localResources: "Ressources Locales",
+        nextSteps: "Prochaines Étapes",
+        timeline: "Calendrier Suggéré",
+        downloadPDF: "Télécharger en PDF",
+        emailPlan: "Envoyer ce Plan par E-mail",
+      },
+    },
+    cityResources: {
+      title: "Trouver des Ressources Locales",
+      description:
+        "Trouvez votre Jugendamt local, Standesamt et autres services familiaux. Recherchez par ville ou code postal.",
+      searchPlaceholder: "Entrez le nom de la ville ou le code postal",
+      search: "Rechercher",
+      standesamt: {
+        title: "Standesamt (Bureau d'État Civil)",
+        description: "Enregistrement des naissances, mariage, reconnaissance de paternité",
+      },
+      jugendamt: {
+        title: "Jugendamt (Bureau de la Jeunesse)",
+        description: "Déclarations de garde, médiation, conseil familial",
+      },
+      contact: "Contact",
+      address: "Adresse",
+      phone: "Téléphone",
+      email: "E-mail",
+      website: "Site Web",
+      hours: "Heures",
+      appointmentRequired: "Rendez-vous Requis",
+      appointmentRecommended: "Rendez-vous Recommandé",
+      walkInsAccepted: "Visites Sans Rendez-vous Acceptées",
+      notes: "Notes",
+      noResultsFound: "Aucune ressource trouvée pour cet emplacement",
+      tryDifferentSearch: "Essayez une autre ville ou code postal",
+      cityNotFoundTip:
+        "Vous ne trouvez pas votre ville ? Ce sont des exemples de ressources pour les grandes villes.",
+      cityNotFoundHelp:
+        'Contactez votre administration municipale locale (Bürgeramt) ou recherchez en ligne "Jugendamt [votre ville]" ou "Standesamt [votre ville]" pour trouver vos bureaux locaux.',
+    },
+    whyThisMatters: {
+      title: "Pourquoi c'est important",
+      subtitle: "Vraies histoires de parents qui auraient aimé agir plus tôt",
+      story1: {
+        quote:
+          "J'ai passé 10 ans dans une relation. Quand nous nous sommes séparés, j'ai découvert que je n'avais aucun droit de garde légal. Je n'ai pas pu voir mes filles pendant des mois pendant que je passais devant les tribunaux.",
+        author: "Père, Berlin",
+      },
+      story2: {
+        quote:
+          "Nous pensions 'nous nous faisons confiance, nous n'avons pas besoin de papiers.' Puis la relation s'est terminée, et soudainement la confiance n'était plus suffisante. La bataille juridique a duré 9 mois.",
+        author: "Parent, Munich",
+      },
+      takeaway:
+        "Établir les droits de garde prend une heure au Jugendamt pendant que votre relation est stable. Se battre pour eux devant les tribunaux prend des mois, coûte des milliers et cause un stress immense.",
+    },
+    disclaimer:
+      "Note : Ces informations fournissent uniquement des conseils généraux, pas des conseils juridiques individualisés. Pour des conseils spécifiques à votre situation, consultez un avocat spécialisé en droit de la famille qualifié.",
+    guideDisclaimer:
+      "Avertissement : Ce guide fournit uniquement des informations générales, pas des conseils juridiques individualisés. Le droit de la famille allemand peut être complexe, et chaque situation est unique. Pour des conseils spécifiques à votre situation, consultez un avocat spécialisé en droit de la famille qualifié (Fachanwalt für Familienrecht).",
+    languageNote:
+      "Note : Les guides de planification ne sont actuellement disponibles qu'en anglais.",
   },
 };
 

@@ -1,0 +1,17 @@
+{
+  "berlin": {
+    "text": "Certains tribunaux préfèrent les visites matinales au greffe pour les dépôts. L'Amtsgericht Mitte attend souvent des lettres de couverture courtes et acceptera les pièces jointes standard listées.",
+    "lastVerified": "2025‑01‑03",
+    "snapshotId": "berlin-registry-2025-01"
+  },
+  "hamburg": {
+    "text": "Le greffe du tribunal peut demander un aperçu de l'horaire de base même pour les demandes de contact initiales. Apportez des pièces d'identité imprimées.",
+    "lastVerified": "2025‑01‑02",
+    "snapshotId": "hamburg-registry-2025-01"
+  },
+  "nrw": {
+    "text": "Les bureaux du Jugendamt exigent parfois une réservation en ligne pour les reconnaissances. Vérifiez les heures d'ouverture et réservez à l'avance lorsque c'est possible.",
+    "lastVerified": "2025‑01‑02",
+    "snapshotId": "nrw-jugendamt-2025-01"
+  }
+}

@@ -249,7 +249,7 @@ export default function PlanningInterviewPage() {
         <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t">
           <Link
             href="/planning/checklist"
-            className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center font-semibold"
+            className="flex-1 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg shadow-lg bg-zinc-800 dark:bg-zinc-700 text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 transition-all duration-300 text-center text-xs sm:text-sm font-medium hover:shadow-xl"
           >
             View Full Checklist
           </Link>
@@ -263,7 +263,7 @@ export default function PlanningInterviewPage() {
                 // Could show an error toast here
               }
             }}
-            className="flex-1 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
+            className="flex-1 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg shadow-lg bg-zinc-800 dark:bg-zinc-700 text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 transition-all duration-300 text-xs sm:text-sm font-medium hover:shadow-xl"
           >
             {t.planning.personalizedTool.results.downloadPDF}
           </button>
@@ -272,7 +272,7 @@ export default function PlanningInterviewPage() {
             onClick={() => {
               setChecklist(null);
             }}
-            className="flex-1 px-6 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors font-semibold"
+            className="flex-1 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg shadow-lg bg-zinc-800 dark:bg-zinc-700 text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 transition-all duration-300 text-xs sm:text-sm font-medium hover:shadow-xl"
           >
             Start Over
           </button>

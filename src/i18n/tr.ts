@@ -20,6 +20,7 @@ const tr = {
     features: "WCAG AA · Gizlilik öncelikli · Çevrimdışı hazır",
   },
   footer: {
+    planning: "Planlama",
     guides: "Kılavuzlar",
     blog: "Blog",
     impressum: "Yasal Bilgiler",
@@ -589,6 +590,188 @@ const tr = {
     later: "Sonra",
     updateNow: "Şimdi güncelle",
     updating: "Güncelleniyor...",
+  },
+  planning: {
+    title: "Planlama ve Önleme",
+    subtitle: "Sorunlar Ortaya Çıkmadan Önce Ebeveyn Haklarınızı Koruyun",
+    description:
+      "Bekleyen ebeveynler ve aileler için temel yasal adımlar. Velayet haklarını oluşturun, Alman aile hukukunu anlayın ve velayet anlaşmazlıklarını ortaya çıkmadan önce önleyin.",
+    backToPlanning: "← Planlamaya Dön",
+    hero: {
+      title: "Güvenli Ebeveyn Haklarına Giden Yolunuz",
+      description:
+        "Bir bebek bekliyor, yeni bir çocuk sahibi oldu veya ilişki zorlukları yaşıyor olun, şimdi doğru yasal adımları atmak daha sonra aylarca stres ve yasal savaşları önleyebilir.",
+      cta: "Kişiselleştirilmiş Kontrol Listenizi Alın",
+    },
+    stages: {
+      expecting: {
+        title: "Bekliyor",
+        shortTitle: "Bekliyor",
+        description: "Hamile veya hamilelik planlıyor",
+        fullDescription:
+          "Bebek gelmeden önce tamamlanması gereken kritik yasal adımlar. İlişkiniz stabilken babalık ve velayet haklarını oluşturun.",
+        icon: "🤰",
+      },
+      atBirth: {
+        title: "Doğumda",
+        shortTitle: "Doğumda",
+        description: "Doğum kaydı ve acil adımlar",
+        fullDescription:
+          "Hastanede ne olur, gerekli belgeler ve bebeğinizin doğumunu Almanya'da nasıl kaydedersiniz.",
+        icon: "👶",
+      },
+      firstYear: {
+        title: "İlk Yıl",
+        shortTitle: "İlk Yıl",
+        description: "Bebeğin ilk yılında yasal korumalar",
+        fullDescription:
+          "Bu idari görevleri tamamlayın ve mali faydaları güvence altına alın. Kritik son tarihleri kaçırmayın!",
+        icon: "🍼",
+      },
+      earlyWarning: {
+        title: "İlişki Sorunları",
+        shortTitle: "Erken Uyarı",
+        description: "Haklarınızı ŞİMDİ güvence altına alın",
+        fullDescription:
+          "İlişkiniz çatlaklar gösteriyorsa, çocuklarınıza erişiminizi korumak için bu yasal adımları hemen atın.",
+        icon: "⚠️",
+      },
+    },
+    categories: {
+      expecting: "Bekliyor",
+      atBirth: "Doğumda",
+      firstYear: "İlk Yıl",
+      earlyWarning: "İlişki Sorunları",
+    },
+    urgency: {
+      critical: "Kritik",
+      high: "Yüksek Öncelik",
+      medium: "Orta Öncelik",
+      low: "Önemli",
+    },
+    chooseStage: "Aşamanızı Seçin",
+    allGuides: "Tüm Rehberler",
+    guidesForThisStage: "Bu Aşama için Rehberler",
+    guide: "rehber",
+    guides: "rehberler",
+    noGuidesAvailable: "Bu aşama için henüz rehber mevcut değil.",
+    checkBackSoon: "Yakında tekrar kontrol edin, daha fazla içerik ekliyoruz!",
+    getPersonalizedPlanDescription:
+      "Özelleştirilmiş kontrol listenizi almak için birkaç soru yanıtlayın",
+    interactiveChecklist: "İnteraktif Kontrol Listesi",
+    interactiveChecklistDescription: "Temel yasal adımlarda ilerlemenizi takip edin",
+    interactiveChecklistDescriptionShort: "Temel adımlarda ilerlemenizi takip edin",
+    findResourcesDescription: "Yakınınızdaki Jugendamt ve Standesamt konumları",
+    findResourcesDescriptionShort: "Yakınınızdaki Jugendamt ve Standesamt",
+    cta: {
+      getStarted: "Başlayın",
+      viewGuide: "Rehberi Okuyun",
+      viewAllGuides: "Tüm Rehberleri Görüntüle",
+      downloadChecklist: "Kontrol Listesini İndir",
+      findResources: "Yerel Kaynakları Bul",
+      getPersonalizedPlan: "Kişiselleştirilmiş Plan Alın",
+    },
+    checklist: {
+      title: "Önleme Kontrol Listeniz",
+      description:
+        "Temel yasal ve idari görevlerde ilerlemenizi takip edin. Kritik bir son tarihi asla kaçırmayın.",
+      overallProgress: "Genel İlerleme",
+      completed: "tamamlandı",
+      complete: "tamamlandı",
+      completedStatus: "Tamamlandı",
+      pending: "Yapılacak",
+      inProgress: "Devam Ediyor",
+      markComplete: "Tamamlandı Olarak İşaretle",
+      markPending: "Beklemede Olarak İşaretle",
+      filterByStage: "Aşamaya Göre Filtrele",
+      allStages: "Tüm Aşamalar",
+      showCompleted: "Tamamlananları Göster",
+      hideCompleted: "Tamamlananları Gizle",
+      enableNotifications: "Tarayıcı Bildirimlerini Etkinleştir",
+      notificationsEnabled: "Bildirimler Etkin",
+      notificationsDisabled: "Bildirimler Devre Dışı",
+      shareProgress: "İlerlemeyi Paylaş",
+      shareLink: "Bağlantıyı Paylaş",
+      shareLinkCopied: "Bağlantı panoya kopyalandı!",
+      shareLinkExpires: "Bağlantı {days} gün içinde sona eriyor",
+      createShareLink: "Paylaşılabilir Bağlantı Oluştur",
+      shareWithPartner: "Partner ile Paylaş",
+      shareDescription:
+        "İlerlemenizi partnerinize veya danışmanınıza göstermek için paylaşılabilir bir bağlantı oluşturun.",
+      tip: "İpucu",
+      progressTip:
+        "İlerlemeniz tarayıcınızda otomatik olarak kaydedilir. Oturumlar arasında kalıcıdır, böylece kaldığınız yerden devam etmek için istediğiniz zaman geri dönebilirsiniz.",
+      instructions:
+        "Herhangi bir öğeyi tamamlandı veya tamamlanmadı olarak işaretlemek için üzerine tıklayın. Belirli aşamalara odaklanmak veya tamamlanan görevleri gizlemek için filtreleri kullanın.",
+    },
+    personalizedTool: {
+      title: "Kişiselleştirilmiş Eylem Planınızı Alın",
+      description:
+        "Durumunuz hakkında birkaç soru yanıtlayın ve tam olarak ne yapmanız gerektiğini, ne zaman ve nerede özelleştirilmiş bir kontrol listesi oluşturalım.",
+      startQuiz: "Değerlendirmeyi Başlat",
+      results: {
+        title: "Kişiselleştirilmiş Eylem Planınız",
+        priorityTasks: "Öncelikli Görevler",
+        recommendedGuides: "Önerilen Rehberler",
+        localResources: "Yerel Kaynaklar",
+        nextSteps: "Sonraki Adımlar",
+        timeline: "Önerilen Zaman Çizelgesi",
+        downloadPDF: "PDF Olarak İndir",
+        emailPlan: "Bu Planı E-posta ile Gönder",
+      },
+    },
+    cityResources: {
+      title: "Yerel Kaynakları Bul",
+      description:
+        "Yerel Jugendamt, Standesamt ve diğer aile hizmetlerinizi bulun. Şehir veya posta kodu ile arayın.",
+      searchPlaceholder: "Şehir adı veya posta kodu girin",
+      search: "Ara",
+      standesamt: {
+        title: "Standesamt (Nüfus Müdürlüğü)",
+        description: "Doğum kaydı, evlilik, babalık tanıma",
+      },
+      jugendamt: {
+        title: "Jugendamt (Gençlik Dairesi)",
+        description: "Velayet beyanları, arabuluculuk, aile danışmanlığı",
+      },
+      contact: "İletişim",
+      address: "Adres",
+      phone: "Telefon",
+      email: "E-posta",
+      website: "Web Sitesi",
+      hours: "Çalışma Saatleri",
+      appointmentRequired: "Randevu Gerekli",
+      appointmentRecommended: "Randevu Önerilir",
+      walkInsAccepted: "Randevusuz Kabul Edilir",
+      notes: "Notlar",
+      noResultsFound: "Bu konum için kaynak bulunamadı",
+      tryDifferentSearch: "Farklı bir şehir veya posta kodu deneyin",
+      cityNotFoundTip:
+        "Şehrinizi bulamıyor musunuz? Bunlar büyük şehirler için örnek kaynaklardır.",
+      cityNotFoundHelp:
+        'Yerel şehir yönetiminizle (Bürgeramt) iletişime geçin veya yerel ofislerinizi bulmak için çevrimiçi olarak "Jugendamt [şehriniz]" veya "Standesamt [şehriniz]" araması yapın.',
+    },
+    whyThisMatters: {
+      title: "Neden Bu Önemli",
+      subtitle: "Daha erken harekete geçmeyi dileyen ebeveynlerden gerçek hikayeler",
+      story1: {
+        quote:
+          "10 yıl bir ilişkide geçirdim. Ayrıldığımızda, hiçbir yasal velayet hakkım olmadığını keşfettim. Mahkeme sürecinden geçerken aylarca kızlarımı göremedim.",
+        author: "Baba, Berlin",
+      },
+      story2: {
+        quote:
+          "'Birbirimize güveniyoruz, evraka ihtiyacımız yok' diye düşündük. Sonra ilişki bitti ve aniden güven yeterli değildi. Yasal savaş 9 ay sürdü.",
+        author: "Ebeveyn, Münih",
+      },
+      takeaway:
+        "Velayet haklarını oluşturmak, ilişkiniz stabilken Jugendamt'te bir saat sürer. Onlar için mahkemede savaşmak aylar sürer, binlerce maliyete mal olur ve muazzam stres yaratır.",
+    },
+    disclaimer:
+      "Not: Bu bilgiler yalnızca genel rehberlik sağlar, bireysel yasal tavsiye değildir. Durumunuza özel tavsiye için nitelikli bir aile hukuku avukatına danışın.",
+    guideDisclaimer:
+      "Sorumluluk Reddi: Bu rehber yalnızca genel bilgi sağlar, bireysel yasal tavsiye değildir. Alman aile hukuku karmaşık olabilir ve her durum benzersizdir. Koşullarınıza özel tavsiye için nitelikli bir aile hukuku avukatına (Fachanwalt für Familienrecht) danışın.",
+    languageNote: "Not: Planlama rehberleri şu anda yalnızca İngilizce olarak mevcuttur.",
   },
 };
 

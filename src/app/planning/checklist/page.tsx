@@ -293,10 +293,11 @@ export default function ChecklistPage() {
       <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-6">
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-            Overall Progress
+            {t.planning?.checklist?.overallProgress || "Overall Progress"}
           </span>
           <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-            {completedItems.size} / {checklistItems.length} completed
+            {completedItems.size} / {checklistItems.length}{" "}
+            {t.planning?.checklist?.completed || "completed"}
           </span>
         </div>
         <div className="w-full bg-zinc-200 dark:bg-zinc-700 rounded-full h-3 overflow-hidden">
@@ -307,11 +308,11 @@ export default function ChecklistPage() {
             aria-valuenow={completionPercentage}
             aria-valuemin={0}
             aria-valuemax={100}
-            aria-label={`${completionPercentage}% complete`}
+            aria-label={`${completionPercentage}% ${t.planning?.checklist?.complete || "complete"}`}
           />
         </div>
         <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-2">
-          {completionPercentage}% complete
+          {completionPercentage}% {t.planning?.checklist?.complete || "complete"}
         </p>
       </div>
 
@@ -495,12 +496,13 @@ export default function ChecklistPage() {
       {/* Help text */}
       <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-400">
         <p className="mb-2">
-          <strong>💡 Tip:</strong> Your progress is automatically saved in your browser. It will
-          persist across sessions, so you can come back anytime to continue where you left off.
+          <strong>💡 {t.planning?.checklist?.tip || "Tip"}:</strong>{" "}
+          {t.planning?.checklist?.progressTip ||
+            "Your progress is automatically saved in your browser. It will persist across sessions, so you can come back anytime to continue where you left off."}
         </p>
         <p>
-          Click on any item to mark it as complete or incomplete. Use the filters to focus on
-          specific stages or hide completed tasks.
+          {t.planning?.checklist?.instructions ||
+            "Click on any item to mark it as complete or incomplete. Use the filters to focus on specific stages or hide completed tasks."}
         </p>
       </div>
     </div>

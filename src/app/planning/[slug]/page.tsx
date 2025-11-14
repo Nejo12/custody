@@ -498,10 +498,12 @@ export default function PlanningGuidePage({ params }: Props) {
           >
             <div className="text-xl mb-1">✅</div>
             <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-              Interactive Checklist
+              {t.planning?.interactiveChecklist || "Interactive Checklist"}
             </h3>
             <p className="text-sm text-zinc-600 dark:text-zinc-400">
-              Track your progress through essential steps
+              {t.planning?.interactiveChecklistDescriptionShort ||
+                t.planning?.interactiveChecklistDescription ||
+                "Track your progress through essential steps"}
             </p>
           </Link>
 
@@ -511,10 +513,12 @@ export default function PlanningGuidePage({ params }: Props) {
           >
             <div className="text-xl mb-1">📍</div>
             <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-              Find Local Resources
+              {t.planning?.cta?.findResources || "Find Local Resources"}
             </h3>
             <p className="text-sm text-zinc-600 dark:text-zinc-400">
-              Jugendamt and Standesamt near you
+              {t.planning?.findResourcesDescriptionShort ||
+                t.planning?.findResourcesDescription ||
+                "Jugendamt and Standesamt near you"}
             </p>
           </Link>
         </div>
