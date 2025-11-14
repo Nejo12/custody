@@ -331,12 +331,13 @@ export default function ResourcesPage() {
       {/* Help text */}
       <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-400">
         <p className="mb-2">
-          <strong>💡 Tip:</strong> Can&apos;t find your city? These are sample resources for major
-          cities.
+          <strong>💡 {t.planning?.checklist?.tip || "Tip"}:</strong>{" "}
+          {t.planning?.cityResources?.cityNotFoundTip ||
+            "Can't find your city? These are sample resources for major cities."}
         </p>
         <p>
-          Contact your local city administration (Bürgeramt) or search online for &quot;Jugendamt
-          [your city]&quot; or &quot;Standesamt [your city]&quot; to find your local offices.
+          {t.planning?.cityResources?.cityNotFoundHelp ||
+            'Contact your local city administration (Bürgeramt) or search online for "Jugendamt [your city]" or "Standesamt [your city]" to find your local offices.'}
         </p>
       </div>
     </div>

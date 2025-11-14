@@ -20,6 +20,7 @@ const pl = {
     features: "WCAG AA · Prywatność przede wszystkim · Gotowe do pracy offline",
   },
   footer: {
+    planning: "Planowanie",
     guides: "Przewodniki",
     blog: "Blog",
     impressum: "Informacje prawne",
@@ -599,6 +600,188 @@ const pl = {
     later: "Później",
     updateNow: "Zaktualizuj teraz",
     updating: "Aktualizowanie...",
+  },
+  planning: {
+    title: "Planowanie i Zapobieganie",
+    subtitle: "Chroń swoje Prawa Rodzicielskie, zanim Powstaną Problemy",
+    description:
+      "Niezbędne kroki prawne dla przyszłych rodziców i rodzin. Ustanów prawa do opieki, zrozum niemieckie prawo rodzinne i zapobiegaj sporom o opiekę, zanim się pojawią.",
+    backToPlanning: "← Powrót do Planowania",
+    hero: {
+      title: "Twoja Droga do Zabezpieczenia Praw Rodzicielskich",
+      description:
+        "Czy spodziewasz się dziecka, właśnie urodziłeś dziecko lub zmagasz się z problemami w związku - podjęcie właściwych kroków prawnych TERAZ może zapobiec miesiącom stresu i walk prawnych później.",
+      cta: "Uzyskaj Spersonalizowaną Listę Kontrolną",
+    },
+    stages: {
+      expecting: {
+        title: "Oczekiwanie",
+        shortTitle: "Oczekiwanie",
+        description: "W ciąży lub planowanie ciąży",
+        fullDescription:
+          "Krytyczne kroki prawne do ukończenia przed przyjściem dziecka na świat. Ustanów ojcostwo i prawa do opieki, gdy Twój związek jest stabilny.",
+        icon: "🤰",
+      },
+      atBirth: {
+        title: "Przy Narodzinach",
+        shortTitle: "Przy Narodzinach",
+        description: "Rejestracja urodzenia i natychmiastowe kroki",
+        fullDescription:
+          "Co dzieje się w szpitalu, wymagane dokumenty i jak zarejestrować narodziny dziecka w Niemczech.",
+        icon: "👶",
+      },
+      firstYear: {
+        title: "Pierwszy Rok",
+        shortTitle: "Pierwszy Rok",
+        description: "Ochrona prawna w pierwszym roku życia dziecka",
+        fullDescription:
+          "Ukończ te zadania administracyjne i zabezpiecz korzyści finansowe. Nie przegap krytycznych terminów!",
+        icon: "🍼",
+      },
+      earlyWarning: {
+        title: "Problemy w Związku",
+        shortTitle: "Wczesne Ostrzeżenie",
+        description: "Zabezpiecz swoje Prawa TERAZ",
+        fullDescription:
+          "Jeśli Twój związek wykazuje pęknięcia, podejmij te kroki prawne natychmiast, aby chronić swój dostęp do dzieci.",
+        icon: "⚠️",
+      },
+    },
+    categories: {
+      expecting: "Oczekiwanie",
+      atBirth: "Przy Narodzinach",
+      firstYear: "Pierwszy Rok",
+      earlyWarning: "Problemy w Związku",
+    },
+    urgency: {
+      critical: "Krytyczne",
+      high: "Wysoki Priorytet",
+      medium: "Średni Priorytet",
+      low: "Ważne",
+    },
+    chooseStage: "Wybierz Swój Etap",
+    allGuides: "Wszystkie Przewodniki",
+    guidesForThisStage: "Przewodniki dla Tego Etapu",
+    guide: "przewodnik",
+    guides: "przewodniki",
+    noGuidesAvailable: "Dla tego etapu nie ma jeszcze dostępnych przewodników.",
+    checkBackSoon: "Sprawdź wkrótce, dodajemy więcej treści!",
+    getPersonalizedPlanDescription:
+      "Odpowiedz na kilka pytań, aby uzyskać spersonalizowaną listę kontrolną",
+    interactiveChecklist: "Interaktywna Lista Kontrolna",
+    interactiveChecklistDescription: "Śledź swój postęp w niezbędnych krokach prawnych",
+    interactiveChecklistDescriptionShort: "Śledź swój postęp w niezbędnych krokach",
+    findResourcesDescription: "Lokalizacje Jugendamt i Standesamt w pobliżu",
+    findResourcesDescriptionShort: "Jugendamt i Standesamt w pobliżu",
+    cta: {
+      getStarted: "Zacznij",
+      viewGuide: "Przeczytaj Przewodnik",
+      viewAllGuides: "Zobacz Wszystkie Przewodniki",
+      downloadChecklist: "Pobierz Listę Kontrolną",
+      findResources: "Znajdź Lokalne Zasoby",
+      getPersonalizedPlan: "Uzyskaj Spersonalizowany Plan",
+    },
+    checklist: {
+      title: "Twoja Lista Kontrolna Zapobiegania",
+      description:
+        "Śledź swój postęp w niezbędnych zadaniach prawnych i administracyjnych. Nigdy nie przegap krytycznego terminu.",
+      overallProgress: "Ogólny Postęp",
+      completed: "ukończone",
+      complete: "ukończone",
+      completedStatus: "Ukończone",
+      pending: "Do Zrobienia",
+      inProgress: "W Trakcie",
+      markComplete: "Oznacz jako Ukończone",
+      markPending: "Oznacz jako Oczekujące",
+      filterByStage: "Filtruj według Etapu",
+      allStages: "Wszystkie Etapy",
+      showCompleted: "Pokaż Ukończone",
+      hideCompleted: "Ukryj Ukończone",
+      enableNotifications: "Włącz Powiadomienia Przeglądarki",
+      notificationsEnabled: "Powiadomienia Włączone",
+      notificationsDisabled: "Powiadomienia Wyłączone",
+      shareProgress: "Udostępnij Postęp",
+      shareLink: "Udostępnij Link",
+      shareLinkCopied: "Link skopiowany do schowka!",
+      shareLinkExpires: "Link wygasa za {days} dni",
+      createShareLink: "Utwórz Link do Udostępnienia",
+      shareWithPartner: "Udostępnij Partnerowi",
+      shareDescription:
+        "Utwórz link do udostępnienia, aby pokazać swój postęp partnerowi lub doradcy.",
+      tip: "Wskazówka",
+      progressTip:
+        "Twój postęp jest automatycznie zapisywany w przeglądarce. Będzie utrzymywał się między sesjami, więc możesz wrócić w dowolnym momencie, aby kontynuować od miejsca, w którym skończyłeś.",
+      instructions:
+        "Kliknij dowolny element, aby oznaczyć go jako ukończony lub nieukończony. Użyj filtrów, aby skupić się na określonych etapach lub ukryć ukończone zadania.",
+    },
+    personalizedTool: {
+      title: "Uzyskaj Spersonalizowany Plan Działania",
+      description:
+        "Odpowiedz na kilka pytań o swoją sytuację, a wygenerujemy spersonalizowaną listę kontrolną z dokładnie tym, co musisz zrobić, kiedy i gdzie.",
+      startQuiz: "Rozpocznij Ocena",
+      results: {
+        title: "Twój Spersonalizowany Plan Działania",
+        priorityTasks: "Zadania Priorytetowe",
+        recommendedGuides: "Zalecane Przewodniki",
+        localResources: "Lokalne Zasoby",
+        nextSteps: "Następne Kroki",
+        timeline: "Sugerowany Harmonogram",
+        downloadPDF: "Pobierz jako PDF",
+        emailPlan: "Wyślij ten Plan E-mailem",
+      },
+    },
+    cityResources: {
+      title: "Znajdź Lokalne Zasoby",
+      description:
+        "Znajdź swoje lokalne Jugendamt, Standesamt i inne usługi rodzinne. Wyszukaj według miasta lub kodu pocztowego.",
+      searchPlaceholder: "Wpisz nazwę miasta lub kod pocztowy",
+      search: "Szukaj",
+      standesamt: {
+        title: "Standesamt (Urząd Stanu Cywilnego)",
+        description: "Rejestracja urodzeń, małżeństwo, uznanie ojcostwa",
+      },
+      jugendamt: {
+        title: "Jugendamt (Urząd ds. Młodzieży)",
+        description: "Oświadczenia o opiece, mediacja, poradnictwo rodzinne",
+      },
+      contact: "Kontakt",
+      address: "Adres",
+      phone: "Telefon",
+      email: "E-mail",
+      website: "Strona Internetowa",
+      hours: "Godziny",
+      appointmentRequired: "Wymagana Rezerwacja",
+      appointmentRecommended: "Rezerwacja Zalecana",
+      walkInsAccepted: "Przyjmowane Bez Rezerwacji",
+      notes: "Notatki",
+      noResultsFound: "Nie znaleziono zasobów dla tej lokalizacji",
+      tryDifferentSearch: "Spróbuj innego miasta lub kodu pocztowego",
+      cityNotFoundTip:
+        "Nie możesz znaleźć swojego miasta? To są przykładowe zasoby dla dużych miast.",
+      cityNotFoundHelp:
+        'Skontaktuj się z lokalną administracją miasta (Bürgeramt) lub wyszukaj online "Jugendamt [twoje miasto]" lub "Standesamt [twoje miasto]", aby znaleźć lokalne urzędy.',
+    },
+    whyThisMatters: {
+      title: "Dlaczego to ma znaczenie",
+      subtitle: "Prawdziwe historie rodziców, którzy żałują, że nie działali wcześniej",
+      story1: {
+        quote:
+          "Spędziłem 10 lat w związku. Gdy się rozstaliśmy, odkryłem, że nie mam żadnych prawnych praw do opieki. Nie mogłem widzieć moich córek przez miesiące podczas procesu sądowego.",
+        author: "Ojciec, Berlin",
+      },
+      story2: {
+        quote:
+          "Myśleliśmy 'ufamy sobie, nie potrzebujemy dokumentów.' Potem związek się skończył i nagle zaufanie nie wystarczyło. Walka prawna trwała 9 miesięcy.",
+        author: "Rodzic, Monachium",
+      },
+      takeaway:
+        "Ustanowienie praw do opieki zajmuje godzinę w Jugendamt, gdy Twój związek jest stabilny. Walka o nie w sądzie zajmuje miesiące, kosztuje tysiące i powoduje ogromny stres.",
+    },
+    disclaimer:
+      "Uwaga: Te informacje zapewniają jedynie ogólne wskazówki, a nie indywidualną poradę prawną. W przypadku porady specyficznej dla Twojej sytuacji skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym.",
+    guideDisclaimer:
+      "Zastrzeżenie: Ten przewodnik zapewnia jedynie ogólne informacje, a nie indywidualną poradę prawną. Niemieckie prawo rodzinne może być złożone, a każda sytuacja jest wyjątkowa. W przypadku porady specyficznej dla Twoich okoliczności skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym (Fachanwalt für Familienrecht).",
+    languageNote: "Uwaga: Przewodniki planowania są obecnie dostępne tylko w języku angielskim.",
   },
 };
 

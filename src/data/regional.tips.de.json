@@ -1,0 +1,17 @@
+{
+  "berlin": {
+    "text": "Einige Gerichte bevorzugen frühmorgendliche Besuche im Gerichtsregister für Anträge. Das Amtsgericht Mitte erwartet oft kurze Anschreiben und akzeptiert die aufgeführten Standardanlagen.",
+    "lastVerified": "2025‑01‑03",
+    "snapshotId": "berlin-registry-2025-01"
+  },
+  "hamburg": {
+    "text": "Das Gerichtsregister kann auch bei ersten Umgangsanträgen eine grundlegende Zeitplanübersicht verlangen. Bringen Sie ausgedruckte Ausweise mit.",
+    "lastVerified": "2025‑01‑02",
+    "snapshotId": "hamburg-registry-2025-01"
+  },
+  "nrw": {
+    "text": "Jugendamt-Büros erfordern manchmal eine Online-Buchung für Anerkennungen. Prüfen Sie die Öffnungszeiten und buchen Sie im Voraus, wo möglich.",
+    "lastVerified": "2025‑01‑02",
+    "snapshotId": "nrw-jugendamt-2025-01"
+  }
+}

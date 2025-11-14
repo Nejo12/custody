@@ -20,6 +20,7 @@ const de = {
     features: "WCAG AA · Datenschutzorientiert · Offlinefähig",
   },
   footer: {
+    planning: "Planung",
     guides: "Leitfäden",
     blog: "Blog",
     impressum: "Impressum",
@@ -599,6 +600,189 @@ const de = {
     later: "Später",
     updateNow: "Jetzt aktualisieren",
     updating: "Wird aktualisiert...",
+  },
+  planning: {
+    title: "Planung & Prävention",
+    subtitle: "Schützen Sie Ihre Elternrechte, bevor Probleme entstehen",
+    description:
+      "Wichtige rechtliche Schritte für werdende Eltern und Familien. Etablieren Sie Sorgerechte, verstehen Sie das deutsche Familienrecht und verhindern Sie Sorgerechtsstreitigkeiten, bevor sie entstehen.",
+    backToPlanning: "← Zurück zur Planung",
+    hero: {
+      title: "Ihr Weg zu sicheren Elternrechten",
+      description:
+        "Ob Sie ein Baby erwarten, gerade ein Kind bekommen haben oder Beziehungsprobleme haben - die richtigen rechtlichen Schritte JETZT können Monate von Stress und Rechtsstreitigkeiten später verhindern.",
+      cta: "Erhalten Sie Ihre personalisierte Checkliste",
+    },
+    stages: {
+      expecting: {
+        title: "Schwangerschaft",
+        shortTitle: "Schwangerschaft",
+        description: "Schwanger oder Schwangerschaft planen",
+        fullDescription:
+          "Kritische rechtliche Schritte, die vor der Geburt des Babys abgeschlossen werden müssen. Etablieren Sie Vaterschaft und Sorgerechte, während Ihre Beziehung stabil ist.",
+        icon: "🤰",
+      },
+      atBirth: {
+        title: "Bei der Geburt",
+        shortTitle: "Bei der Geburt",
+        description: "Geburtsregistrierung und sofortige Schritte",
+        fullDescription:
+          "Was im Krankenhaus passiert, erforderliche Dokumente und wie Sie die Geburt Ihres Babys in Deutschland registrieren.",
+        icon: "👶",
+      },
+      firstYear: {
+        title: "Erstes Jahr",
+        shortTitle: "Erstes Jahr",
+        description: "Rechtlicher Schutz im ersten Lebensjahr des Babys",
+        fullDescription:
+          "Vervollständigen Sie diese Verwaltungsaufgaben und sichern Sie finanzielle Leistungen. Verpassen Sie keine kritischen Fristen!",
+        icon: "🍼",
+      },
+      earlyWarning: {
+        title: "Beziehungsprobleme",
+        shortTitle: "Frühwarnung",
+        description: "Sichern Sie Ihre Rechte JETZT",
+        fullDescription:
+          "Wenn Ihre Beziehung Risse zeigt, unternehmen Sie diese rechtlichen Schritte sofort, um Ihren Zugang zu Ihren Kindern zu schützen.",
+        icon: "⚠️",
+      },
+    },
+    categories: {
+      expecting: "Schwangerschaft",
+      atBirth: "Bei der Geburt",
+      firstYear: "Erstes Jahr",
+      earlyWarning: "Beziehungsprobleme",
+    },
+    urgency: {
+      critical: "Kritisch",
+      high: "Hohe Priorität",
+      medium: "Mittlere Priorität",
+      low: "Wichtig",
+    },
+    chooseStage: "Wählen Sie Ihr Stadium",
+    allGuides: "Alle Leitfäden",
+    guidesForThisStage: "Leitfäden für dieses Stadium",
+    guide: "Leitfaden",
+    guides: "Leitfäden",
+    noGuidesAvailable: "Für dieses Stadium sind noch keine Leitfäden verfügbar.",
+    checkBackSoon: "Schauen Sie bald wieder vorbei, wir fügen weitere Inhalte hinzu!",
+    getPersonalizedPlanDescription:
+      "Beantworten Sie ein paar Fragen, um Ihre maßgeschneiderte Checkliste zu erhalten",
+    interactiveChecklist: "Interaktive Checkliste",
+    interactiveChecklistDescription:
+      "Verfolgen Sie Ihren Fortschritt durch wesentliche rechtliche Schritte",
+    interactiveChecklistDescriptionShort:
+      "Verfolgen Sie Ihren Fortschritt durch wesentliche Schritte",
+    findResourcesDescription: "Jugendamt und Standesamt Standorte in Ihrer Nähe",
+    findResourcesDescriptionShort: "Jugendamt und Standesamt in Ihrer Nähe",
+    cta: {
+      getStarted: "Loslegen",
+      viewGuide: "Leitfaden lesen",
+      viewAllGuides: "Alle Leitfäden anzeigen",
+      downloadChecklist: "Checkliste herunterladen",
+      findResources: "Lokale Ressourcen finden",
+      getPersonalizedPlan: "Personalisierten Plan erhalten",
+    },
+    checklist: {
+      title: "Ihre Präventions-Checkliste",
+      description:
+        "Verfolgen Sie Ihren Fortschritt durch wesentliche rechtliche und administrative Aufgaben. Verpassen Sie nie eine kritische Frist.",
+      overallProgress: "Gesamtfortschritt",
+      completed: "abgeschlossen",
+      complete: "abgeschlossen",
+      completedStatus: "Abgeschlossen",
+      pending: "Zu erledigen",
+      inProgress: "In Bearbeitung",
+      markComplete: "Als abgeschlossen markieren",
+      markPending: "Als ausstehend markieren",
+      filterByStage: "Nach Stadium filtern",
+      allStages: "Alle Stadien",
+      showCompleted: "Abgeschlossene anzeigen",
+      hideCompleted: "Abgeschlossene ausblenden",
+      enableNotifications: "Browser-Benachrichtigungen aktivieren",
+      notificationsEnabled: "Benachrichtigungen aktiviert",
+      notificationsDisabled: "Benachrichtigungen deaktiviert",
+      shareProgress: "Fortschritt teilen",
+      shareLink: "Link teilen",
+      shareLinkCopied: "Link in die Zwischenablage kopiert!",
+      shareLinkExpires: "Link läuft in {days} Tagen ab",
+      createShareLink: "Teilbaren Link erstellen",
+      shareWithPartner: "Mit Partner teilen",
+      shareDescription:
+        "Erstellen Sie einen teilbaren Link, um Ihren Fortschritt Ihrem Partner oder Berater zu zeigen.",
+      tip: "Tipp",
+      progressTip:
+        "Ihr Fortschritt wird automatisch in Ihrem Browser gespeichert. Er bleibt über Sitzungen hinweg erhalten, sodass Sie jederzeit zurückkehren können, um dort fortzufahren, wo Sie aufgehört haben.",
+      instructions:
+        "Klicken Sie auf ein Element, um es als abgeschlossen oder unvollständig zu markieren. Verwenden Sie die Filter, um sich auf bestimmte Stadien zu konzentrieren oder abgeschlossene Aufgaben auszublenden.",
+    },
+    personalizedTool: {
+      title: "Erhalten Sie Ihren personalisierten Aktionsplan",
+      description:
+        "Beantworten Sie ein paar Fragen zu Ihrer Situation, und wir erstellen eine maßgeschneiderte Checkliste mit genau dem, was Sie tun müssen, wann und wo.",
+      startQuiz: "Bewertung starten",
+      results: {
+        title: "Ihr personalisierter Aktionsplan",
+        priorityTasks: "Prioritätsaufgaben",
+        recommendedGuides: "Empfohlene Leitfäden",
+        localResources: "Lokale Ressourcen",
+        nextSteps: "Nächste Schritte",
+        timeline: "Vorgeschlagener Zeitplan",
+        downloadPDF: "Als PDF herunterladen",
+        emailPlan: "Diesen Plan per E-Mail senden",
+      },
+    },
+    cityResources: {
+      title: "Lokale Ressourcen finden",
+      description:
+        "Finden Sie Ihr lokales Jugendamt, Standesamt und andere Familiendienste. Suchen Sie nach Stadt oder Postleitzahl.",
+      searchPlaceholder: "Stadtname oder Postleitzahl eingeben",
+      search: "Suchen",
+      standesamt: {
+        title: "Standesamt (Standesamt)",
+        description: "Geburtsregistrierung, Heirat, Vaterschaftsanerkennung",
+      },
+      jugendamt: {
+        title: "Jugendamt (Jugendamt)",
+        description: "Sorgerechtserklärungen, Mediation, Familienberatung",
+      },
+      contact: "Kontakt",
+      address: "Adresse",
+      phone: "Telefon",
+      email: "E-Mail",
+      website: "Website",
+      hours: "Öffnungszeiten",
+      appointmentRequired: "Termin erforderlich",
+      appointmentRecommended: "Termin empfohlen",
+      walkInsAccepted: "Spontanbesuche möglich",
+      notes: "Notizen",
+      noResultsFound: "Keine Ressourcen für diesen Standort gefunden",
+      tryDifferentSearch: "Versuchen Sie eine andere Stadt oder Postleitzahl",
+      cityNotFoundTip: "Ihre Stadt nicht gefunden? Dies sind Beispielressourcen für große Städte.",
+      cityNotFoundHelp:
+        'Kontaktieren Sie Ihre örtliche Stadtverwaltung (Bürgeramt) oder suchen Sie online nach "Jugendamt [Ihre Stadt]" oder "Standesamt [Ihre Stadt]", um Ihre örtlichen Ämter zu finden.',
+    },
+    whyThisMatters: {
+      title: "Warum das wichtig ist",
+      subtitle: "Echte Geschichten von Eltern, die sich wünschen, sie hätten früher gehandelt",
+      story1: {
+        quote:
+          "Ich war 10 Jahre in einer Beziehung. Als wir uns trennten, stellte ich fest, dass ich keine rechtlichen Sorgerechte hatte. Ich konnte meine Töchter monatelang nicht sehen, während ich vor Gericht ging.",
+        author: "Vater, Berlin",
+      },
+      story2: {
+        quote:
+          "Wir dachten 'wir vertrauen einander, wir brauchen keine Papiere.' Dann endete die Beziehung, und plötzlich war Vertrauen nicht genug. Der Rechtsstreit dauerte 9 Monate.",
+        author: "Elternteil, München",
+      },
+      takeaway:
+        "Die Etablierung von Sorgerechten dauert eine Stunde beim Jugendamt, während Ihre Beziehung stabil ist. Der Kampf vor Gericht dauert Monate, kostet Tausende und verursacht immensen Stress.",
+    },
+    disclaimer:
+      "Hinweis: Diese Informationen bieten nur allgemeine Anleitung, keine individuelle Rechtsberatung. Für eine auf Ihre Situation zugeschnittene Beratung konsultieren Sie einen qualifizierten Familienrechtsanwalt.",
+    guideDisclaimer:
+      "Hinweis: Dieser Leitfaden bietet nur allgemeine Informationen, keine individuelle Rechtsberatung. Das deutsche Familienrecht kann komplex sein, und jede Situation ist einzigartig. Für eine auf Ihre Umstände zugeschnittene Beratung konsultieren Sie einen qualifizierten Familienrechtsanwalt (Fachanwalt für Familienrecht).",
+    languageNote: "Hinweis: Die Planungsleitfäden sind derzeit nur auf Englisch verfügbar.",
   },
 };
 

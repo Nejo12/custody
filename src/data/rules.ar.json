@@ -1,0 +1,148 @@
+[
+  {
+    "id": "custody.married.default",
+    "inputs": { "married_at_birth": "yes" },
+    "outcome": {
+      "status": "joint_custody_default",
+      "message": "تشارك الحضانة تلقائيًا ما لم يحكم المحكمة بخلاف ذلك.",
+      "citations": [
+        {
+          "label": "BGB §1626",
+          "url": "https://gesetze-im-internet.de/bgb/__1626.html",
+          "snapshotId": "bgb-1626-2025-01"
+        }
+      ]
+    }
+  },
+  {
+    "id": "custody.unmarried.paternity_acknowledged",
+    "inputs": {
+      "married_at_birth": "no",
+      "paternity_ack": "yes",
+      "joint_declaration": "no"
+    },
+    "outcome": {
+      "status": "eligible_joint_custody",
+      "message": "يمكنك التقدم بطلب للحضانة المشتركة (§1626a BGB).",
+      "actions": ["file_joint_custody_court"],
+      "citations": [
+        {
+          "label": "BGB §1626a",
+          "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+          "snapshotId": "bgb-1626a-2025-01"
+        }
+      ]
+    }
+  },
+  {
+    "id": "contact.right",
+    "inputs": { "blocked_contact": "yes" },
+    "outcome": {
+      "status": "apply_contact_order",
+      "message": "يمكنك طلب أمر زيارة (§1684 BGB).",
+      "actions": ["file_contact_request_court"],
+      "citations": [
+        {
+          "label": "BGB §1684",
+          "url": "https://gesetze-im-internet.de/bgb/__1684.html",
+          "snapshotId": "bgb-1684-2025-01"
+        }
+      ]
+    }
+  },
+  {
+    "id": "contact.safety.supervised",
+    "version": "2025-01-01",
+    "logic": {
+      "all": [{ "==": [{ "var": "history_of_violence" }, "yes"] }]
+    },
+    "outcome": {
+      "status": "consider_supervised_contact",
+      "message": "نظرًا لمخاوف السلامة، فكر في الاتصال الخاضع للإشراف وتخطيط السلامة.",
+      "actions": ["consider_supervised_contact", "seek_legal_advice"],
+      "citations": [
+        {
+          "label": "BGB §1684",
+          "url": "https://gesetze-im-internet.de/bgb/__1684.html",
+          "snapshotId": "bgb-1684-2025-01"
+        }
+      ]
+    }
+  },
+  {
+    "id": "custody.unmarried.path_to_joint",
+    "version": "2025-01-01",
+    "logic": {
+      "all": [
+        { "==": [{ "var": "married_at_birth" }, "no"] },
+        { "==": [{ "var": "paternity_ack" }, "yes"] },
+        { "==": [{ "var": "joint_declaration" }, "no"] },
+        { "==": [{ "var": "court_order" }, "none"] }
+      ]
+    },
+    "outcome": {
+      "status": "eligible_joint_custody",
+      "actions": ["file_joint_custody_court"],
+      "citations": [
+        {
+          "label": "BGB §1626a",
+          "url": "https://gesetze-im-internet.de/bgb/__1626a.html",
+          "snapshotId": "bgb-1626a-2025-01"
+        }
+      ]
+    }
+  },
+  {
+    "id": "contact.young_child.schedule",
+    "version": "2025-01-01",
+    "logic": { "all": [{ "==": [{ "var": "child_age_under_three" }, "yes"] }] },
+    "outcome": {
+      "status": "schedule_short_weekday",
+      "message": "يُنصح بفترات اتصال قصيرة في أيام الأسبوع للأطفال دون سن 3 سنوات.",
+      "citations": [
+        {
+          "label": "BGB §1684",
+          "url": "https://gesetze-im-internet.de/bgb/__1684.html",
+          "snapshotId": "bgb-1684-2025-01"
+        }
+      ]
+    }
+  },
+  {
+    "id": "contact.distance.far",
+    "version": "2025-01-01",
+    "logic": { "all": [{ "==": [{ "var": "distance_km" }, "far"] }] },
+    "outcome": {
+      "status": "schedule_weekend_only",
+      "message": "يُنصح بجدول يركز على عطلة نهاية الأسبوع/العطلات بسبب المسافة.",
+      "citations": [
+        {
+          "label": "BGB §1684",
+          "url": "https://gesetze-im-internet.de/bgb/__1684.html",
+          "snapshotId": "bgb-1684-2025-01"
+        }
+      ]
+    }
+  },
+  {
+    "id": "mediation.suggest",
+    "version": "2025-01-01",
+    "logic": {
+      "all": [
+        { "==": [{ "var": "mediation_tried" }, "no"] },
+        { "==": [{ "var": "parental_agreement_possible" }, "yes"] }
+      ]
+    },
+    "outcome": {
+      "status": "suggest_mediation",
+      "message": "قد تساعد وساطة Jugendamt في الوصول إلى اتفاق.",
+      "citations": [
+        {
+          "label": "Familienportal",
+          "url": "https://www.familienportal.de/",
+          "snapshotId": "familienportal-2025-01"
+        }
+      ]
+    }
+  }
+]

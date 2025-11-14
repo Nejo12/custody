@@ -1,0 +1,17 @@
+{
+  "berlin": {
+    "text": "Bazı mahkemeler başvurular için sabah erken saatlerdeki sicil ziyaretlerini tercih eder. Amtsgericht Mitte genellikle kısa ön yazılar bekler ve listelenen standart ekleri kabul eder.",
+    "lastVerified": "2025‑01‑03",
+    "snapshotId": "berlin-registry-2025-01"
+  },
+  "hamburg": {
+    "text": "Mahkeme sicili, ilk temas talepleri için bile temel bir program özeti isteyebilir. Yazdırılmış kimlik belgeleri getirin.",
+    "lastVerified": "2025‑01‑02",
+    "snapshotId": "hamburg-registry-2025-01"
+  },
+  "nrw": {
+    "text": "Jugendamt ofisleri bazen tanımalar için çevrimiçi rezervasyon gerektirir. Çalışma saatlerini kontrol edin ve mümkün olduğunda önceden rezervasyon yapın.",
+    "lastVerified": "2025‑01‑02",
+    "snapshotId": "nrw-jugendamt-2025-01"
+  }
+}

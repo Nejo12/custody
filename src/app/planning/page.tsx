@@ -77,7 +77,7 @@ export default function PlanningPage() {
         </p>
         <Link
           href="/planning/checklist"
-          className="inline-block px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+          className="inline-block px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg shadow-lg bg-zinc-800 dark:bg-zinc-700 text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 transition-all duration-300 text-xs sm:text-sm font-medium hover:shadow-xl"
         >
           {t.planning?.hero?.cta || "Get Your Personalized Checklist"}
         </Link>
@@ -86,7 +86,7 @@ export default function PlanningPage() {
       {/* Stage Navigation */}
       <div>
         <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-4">
-          Choose Your Stage
+          {t.planning?.chooseStage || "Choose Your Stage"}
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
           <button
@@ -98,7 +98,9 @@ export default function PlanningPage() {
             }`}
           >
             <div className="text-2xl mb-1">📋</div>
-            <div className="text-sm font-medium text-zinc-900 dark:text-zinc-200">All Guides</div>
+            <div className="text-sm font-medium text-zinc-900 dark:text-zinc-200">
+              {t.planning?.allGuides || "All Guides"}
+            </div>
           </button>
           {stages.map((stage) => (
             <button
@@ -111,16 +113,18 @@ export default function PlanningPage() {
               }`}
             >
               <div className="text-2xl mb-1">{stage.icon}</div>
-              <div className="text-sm font-medium text-zinc-900 dark:text-zinc-200">
-                {t.planning?.stages?.[
-                  stage.id === "at-birth"
-                    ? "atBirth"
-                    : stage.id === "first-year"
-                      ? "firstYear"
-                      : stage.id === "early-warning"
-                        ? "earlyWarning"
-                        : stage.id
-                ]?.shortTitle || stage.id}
+              <div className="text-sm font-medium text-zinc-900 dark:text-zinc-200 uppercase">
+                {(
+                  t.planning?.stages?.[
+                    stage.id === "at-birth"
+                      ? "atBirth"
+                      : stage.id === "first-year"
+                        ? "firstYear"
+                        : stage.id === "early-warning"
+                          ? "earlyWarning"
+                          : stage.id
+                  ]?.shortTitle || stage.id
+                ).replace(/-/g, " ")}
               </div>
             </button>
           ))}
@@ -159,10 +163,15 @@ export default function PlanningPage() {
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-            {selectedStage === "all" ? "All Guides" : "Guides for This Stage"}
+            {selectedStage === "all"
+              ? t.planning?.allGuides || "All Guides"
+              : t.planning?.guidesForThisStage || "Guides for This Stage"}
           </h2>
           <span className="text-sm text-zinc-600 dark:text-zinc-400">
-            {filteredGuides.length} {filteredGuides.length === 1 ? "guide" : "guides"}
+            {filteredGuides.length}{" "}
+            {filteredGuides.length === 1
+              ? t.planning?.guide || "guide"
+              : t.planning?.guides || "guides"}
           </span>
         </div>
 
@@ -215,8 +224,10 @@ export default function PlanningPage() {
 
         {filteredGuides.length === 0 && (
           <div className="text-center py-12 text-zinc-500 dark:text-zinc-400">
-            <p>No guides available for this stage yet.</p>
-            <p className="text-sm mt-2">Check back soon as we add more content!</p>
+            <p>{t.planning?.noGuidesAvailable || "No guides available for this stage yet."}</p>
+            <p className="text-sm mt-2">
+              {t.planning?.checkBackSoon || "Check back soon as we add more content!"}
+            </p>
           </div>
         )}
       </div>
@@ -269,10 +280,11 @@ export default function PlanningPage() {
         >
           <div className="text-2xl mb-2">🎯</div>
           <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-            Get Personalized Plan
+            {t.planning?.cta?.getPersonalizedPlan || "Get Personalized Plan"}
           </h3>
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            Answer a few questions to get your customized checklist
+            {t.planning?.getPersonalizedPlanDescription ||
+              "Answer a few questions to get your customized checklist"}
           </p>
         </Link>
 
@@ -282,10 +294,11 @@ export default function PlanningPage() {
         >
           <div className="text-2xl mb-2">✅</div>
           <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-            Interactive Checklist
+            {t.planning?.interactiveChecklist || "Interactive Checklist"}
           </h3>
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            Track your progress through essential legal steps
+            {t.planning?.interactiveChecklistDescription ||
+              "Track your progress through essential legal steps"}
           </p>
         </Link>
 
@@ -295,10 +308,10 @@ export default function PlanningPage() {
         >
           <div className="text-2xl mb-2">📍</div>
           <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-            Find Local Resources
+            {t.planning?.cta?.findResources || "Find Local Resources"}
           </h3>
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            Jugendamt and Standesamt locations near you
+            {t.planning?.findResourcesDescription || "Jugendamt and Standesamt locations near you"}
           </p>
         </Link>
       </div>
