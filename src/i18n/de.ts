@@ -721,6 +721,53 @@ const de = {
       description:
         "Beantworten Sie ein paar Fragen zu Ihrer Situation, und wir erstellen eine maßgeschneiderte Checkliste mit genau dem, was Sie tun müssen, wann und wo.",
       startQuiz: "Bewertung starten",
+      questions: {
+        relationshipStatus: {
+          label: "Wie ist Ihr Beziehungsstatus?",
+          options: {
+            married: "Verheiratet",
+            unmarried: "Nicht verheiratet / Zusammenlebend",
+            separated: "Getrennt",
+            other: "Andere",
+          },
+        },
+        pregnancyStage: {
+          label: "In welchem Stadium befinden Sie sich?",
+          options: {
+            planning: "Schwangerschaft planen",
+            firstTrimester: "Erstes Trimester (Woche 1-13)",
+            secondTrimester: "Zweites Trimester (Woche 14-27)",
+            thirdTrimester: "Drittes Trimester (Woche 28-40)",
+            postpartum: "Baby bereits geboren",
+          },
+        },
+        childAge: {
+          label: "Wie alt ist Ihr Kind?",
+          options: {
+            notBorn: "Noch nicht geboren",
+            zeroToThree: "0-3 Monate",
+            threeToSix: "3-6 Monate",
+            sixToTwelve: "6-12 Monate",
+            oneToTwo: "1-2 Jahre",
+            older: "Älter als 2 Jahre",
+          },
+        },
+        hasPaternityCertificate: {
+          label: "Wurde die Vaterschaft rechtlich anerkannt (Vaterschaftsanerkennung)?",
+        },
+        hasJointCustody: {
+          label: "Haben beide Elternteile das gemeinsame Sorgerecht (Sorgeerklärung)?",
+        },
+        relationshipStable: {
+          label: "Ist Ihre Beziehung derzeit stabil?",
+          help: "Seien Sie ehrlich—das hilft uns, dringende rechtliche Schutzmaßnahmen zu priorisieren.",
+        },
+        city: {
+          label: "In welcher Stadt leben Sie? (Optional)",
+          placeholder: "z.B. Berlin, Hamburg, München",
+          help: "Wir stellen Ihnen Informationen zu lokalen Jugendamt und Standesamt zur Verfügung.",
+        },
+      },
       results: {
         title: "Ihr personalisierter Aktionsplan",
         priorityTasks: "Prioritätsaufgaben",
@@ -782,7 +829,6 @@ const de = {
       "Hinweis: Diese Informationen bieten nur allgemeine Anleitung, keine individuelle Rechtsberatung. Für eine auf Ihre Situation zugeschnittene Beratung konsultieren Sie einen qualifizierten Familienrechtsanwalt.",
     guideDisclaimer:
       "Hinweis: Dieser Leitfaden bietet nur allgemeine Informationen, keine individuelle Rechtsberatung. Das deutsche Familienrecht kann komplex sein, und jede Situation ist einzigartig. Für eine auf Ihre Umstände zugeschnittene Beratung konsultieren Sie einen qualifizierten Familienrechtsanwalt (Fachanwalt für Familienrecht).",
-    languageNote: "Hinweis: Die Planungsleitfäden sind derzeit nur auf Englisch verfügbar.",
   },
 };
 

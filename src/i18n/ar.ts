@@ -702,6 +702,53 @@ const ar = {
       description:
         "أجب على بضع أسئلة حول وضعك، وسنقوم بإنشاء قائمة تحقق مخصصة مع بالضبط ما تحتاج إلى فعله، ومتى وأين.",
       startQuiz: "بدء التقييم",
+      questions: {
+        relationshipStatus: {
+          label: "ما هي حالة علاقتك؟",
+          options: {
+            married: "متزوج",
+            unmarried: "غير متزوج / تعيش معًا",
+            separated: "منفصل",
+            other: "أخرى",
+          },
+        },
+        pregnancyStage: {
+          label: "في أي مرحلة أنت؟",
+          options: {
+            planning: "تخطيط الحمل",
+            firstTrimester: "الثلث الأول (الأسابيع 1-13)",
+            secondTrimester: "الثلث الثاني (الأسابيع 14-27)",
+            thirdTrimester: "الثلث الثالث (الأسابيع 28-40)",
+            postpartum: "الطفل ولد بالفعل",
+          },
+        },
+        childAge: {
+          label: "كم عمر طفلك؟",
+          options: {
+            notBorn: "لم يولد بعد",
+            zeroToThree: "0-3 أشهر",
+            threeToSix: "3-6 أشهر",
+            sixToTwelve: "6-12 شهرًا",
+            oneToTwo: "1-2 سنة",
+            older: "أكبر من سنتين",
+          },
+        },
+        hasPaternityCertificate: {
+          label: "هل تم الاعتراف بالأبوة قانونيًا (Vaterschaftsanerkennung)؟",
+        },
+        hasJointCustody: {
+          label: "هل لدى كلا الوالدين الحضانة المشتركة (Sorgeerklärung)؟",
+        },
+        relationshipStable: {
+          label: "هل علاقتك مستقرة حاليًا؟",
+          help: "كن صادقًا—هذا يساعدنا في تحديد أولويات الحماية القانونية العاجلة.",
+        },
+        city: {
+          label: "في أي مدينة تعيش؟ (اختياري)",
+          placeholder: "مثل: برلين، هامبورغ، ميونخ",
+          help: "سنوفر معلومات عن Jugendamt و Standesamt المحليين.",
+        },
+      },
       results: {
         title: "خطة العمل المخصصة الخاصة بك",
         priorityTasks: "المهام ذات الأولوية",

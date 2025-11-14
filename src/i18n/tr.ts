@@ -709,6 +709,53 @@ const tr = {
       description:
         "Durumunuz hakkında birkaç soru yanıtlayın ve tam olarak ne yapmanız gerektiğini, ne zaman ve nerede özelleştirilmiş bir kontrol listesi oluşturalım.",
       startQuiz: "Değerlendirmeyi Başlat",
+      questions: {
+        relationshipStatus: {
+          label: "İlişki durumunuz nedir?",
+          options: {
+            married: "Evli",
+            unmarried: "Evli değil / Birlikte yaşıyor",
+            separated: "Ayrılmış",
+            other: "Diğer",
+          },
+        },
+        pregnancyStage: {
+          label: "Hangi aşamadasınız?",
+          options: {
+            planning: "Hamilelik planlama",
+            firstTrimester: "İlk üç ay (hafta 1-13)",
+            secondTrimester: "İkinci üç ay (hafta 14-27)",
+            thirdTrimester: "Üçüncü üç ay (hafta 28-40)",
+            postpartum: "Bebek zaten doğdu",
+          },
+        },
+        childAge: {
+          label: "Çocuğunuz kaç yaşında?",
+          options: {
+            notBorn: "Henüz doğmadı",
+            zeroToThree: "0-3 ay",
+            threeToSix: "3-6 ay",
+            sixToTwelve: "6-12 ay",
+            oneToTwo: "1-2 yaş",
+            older: "2 yaşından büyük",
+          },
+        },
+        hasPaternityCertificate: {
+          label: "Babalık yasal olarak kabul edildi mi (Vaterschaftsanerkennung)?",
+        },
+        hasJointCustody: {
+          label: "Her iki ebeveynin ortak velayeti var mı (Sorgeerklärung)?",
+        },
+        relationshipStable: {
+          label: "İlişkiniz şu anda istikrarlı mı?",
+          help: "Dürüst olun—bu, acil yasal korumaları önceliklendirmemize yardımcı olur.",
+        },
+        city: {
+          label: "Hangi şehirde yaşıyorsunuz? (İsteğe bağlı)",
+          placeholder: "örn. Berlin, Hamburg, Münih",
+          help: "Yerel Jugendamt ve Standesamt bilgilerini sağlayacağız.",
+        },
+      },
       results: {
         title: "Kişiselleştirilmiş Eylem Planınız",
         priorityTasks: "Öncelikli Görevler",

@@ -10,10 +10,22 @@ import type { PlanningGuide } from "@/types/planning";
 
 /**
  * Lazy load locale-specific planning data
- * Currently only English is available, other languages fall back to English
- * TODO: Add other language files in Phase 4
+ * Loads translated planning guides based on current locale
+ * Falls back to English if translation unavailable
  */
-const loadPlanning = async (_locale: string) => {
+const loadPlanning = async (locale: string) => {
+  // Only load German for now, other languages fall back to English
+  // TODO: Add other language files as they become available
+  if (locale === "de") {
+    try {
+      return (await import("@/data/planning.de.json")).default;
+    } catch {
+      console.warn("German planning data not found, falling back to English");
+      return planningDataEn;
+    }
+  }
+
+  // Default to English for all other locales
   return planningDataEn;
 };
 

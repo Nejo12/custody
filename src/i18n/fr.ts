@@ -726,6 +726,53 @@ const fr = {
       description:
         "Répondez à quelques questions sur votre situation, et nous générerons une liste de contrôle personnalisée avec exactement ce que vous devez faire, quand et où.",
       startQuiz: "Commencer l'Évaluation",
+      questions: {
+        relationshipStatus: {
+          label: "Quel est votre statut relationnel?",
+          options: {
+            married: "Marié(e)",
+            unmarried: "Non marié(e) / Vivant ensemble",
+            separated: "Séparé(e)",
+            other: "Autre",
+          },
+        },
+        pregnancyStage: {
+          label: "À quel stade êtes-vous?",
+          options: {
+            planning: "Planification de la grossesse",
+            firstTrimester: "Premier trimestre (semaines 1-13)",
+            secondTrimester: "Deuxième trimestre (semaines 14-27)",
+            thirdTrimester: "Troisième trimestre (semaines 28-40)",
+            postpartum: "Bébé déjà né",
+          },
+        },
+        childAge: {
+          label: "Quel âge a votre enfant?",
+          options: {
+            notBorn: "Pas encore né",
+            zeroToThree: "0-3 mois",
+            threeToSix: "3-6 mois",
+            sixToTwelve: "6-12 mois",
+            oneToTwo: "1-2 ans",
+            older: "Plus de 2 ans",
+          },
+        },
+        hasPaternityCertificate: {
+          label: "La paternité a-t-elle été légalement reconnue (Vaterschaftsanerkennung)?",
+        },
+        hasJointCustody: {
+          label: "Les deux parents ont-ils la garde conjointe (Sorgeerklärung)?",
+        },
+        relationshipStable: {
+          label: "Votre relation est-elle actuellement stable?",
+          help: "Soyez honnête—cela nous aide à prioriser les protections juridiques urgentes.",
+        },
+        city: {
+          label: "Dans quelle ville vivez-vous? (Optionnel)",
+          placeholder: "par ex. Berlin, Hambourg, Munich",
+          help: "Nous fournirons des informations sur le Jugendamt et le Standesamt locaux.",
+        },
+      },
       results: {
         title: "Votre Plan d'Action Personnalisé",
         priorityTasks: "Tâches Prioritaires",

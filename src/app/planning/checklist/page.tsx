@@ -2,8 +2,29 @@
 import Link from "next/link";
 import { useI18n } from "@/i18n";
 import { useState, useMemo, useEffect, useCallback } from "react";
-import planningData from "@/data/planning.json";
+import planningDataEn from "@/data/planning.json";
 import type { ChecklistItem, PlanningStage } from "@/types/planning";
+
+/**
+ * Lazy load locale-specific planning data
+ * Loads translated planning checklist based on current locale
+ * Falls back to English if translation unavailable
+ */
+const loadPlanning = async (locale: string) => {
+  // Only load German for now, other languages fall back to English
+  // TODO: Add other language files as they become available
+  if (locale === "de") {
+    try {
+      return (await import("@/data/planning.de.json")).default;
+    } catch {
+      console.warn("German planning data not found, falling back to English");
+      return planningDataEn;
+    }
+  }
+
+  // Default to English for all other locales
+  return planningDataEn;
+};
 import {
   generateChecklistId,
   saveProgress,
@@ -27,8 +48,16 @@ import ProgressShareButton from "@/components/planning/ProgressShareButton";
  * Progress is persisted to localStorage and optionally synced to Supabase
  */
 export default function ChecklistPage() {
-  // Get i18n translation function
-  const { t } = useI18n();
+  // Get i18n translation function and current locale
+  const { t, locale } = useI18n();
+
+  // State for locale-specific planning data
+  const [planningData, setPlanningData] = useState(planningDataEn);
+
+  // Load locale-specific data when locale changes
+  useEffect(() => {
+    loadPlanning(locale).then((data) => setPlanningData(data));
+  }, [locale]);
 
   // Generate or load checklist ID (persisted across sessions)
   const [checklistId] = useState<string>(() => {
