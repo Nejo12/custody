@@ -10,6 +10,7 @@ import { useI18n } from "@/i18n";
 import Link from "next/link";
 import InterviewForm from "@/components/planning/InterviewForm";
 import { generatePersonalizedChecklist } from "@/lib/checklist-generator";
+import { downloadChecklistPDF } from "@/components/planning/ChecklistPDF";
 import type { UserSituation, PersonalizedChecklist } from "@/types/planning";
 
 /**
@@ -252,6 +253,20 @@ export default function PlanningInterviewPage() {
           >
             View Full Checklist
           </Link>
+          <button
+            type="button"
+            onClick={async () => {
+              try {
+                await downloadChecklistPDF(checklist, "en");
+              } catch (error) {
+                console.error("Failed to download PDF:", error);
+                // Could show an error toast here
+              }
+            }}
+            className="flex-1 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
+          >
+            {t.planning.personalizedTool.results.downloadPDF}
+          </button>
           <button
             type="button"
             onClick={() => {
