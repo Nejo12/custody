@@ -91,15 +91,134 @@ export default function PlanningGuidePage({ params }: Props) {
 
   /**
    * Render markdown-like content with proper HTML structure
-   * Supports: headings (##, ###), lists (-, 1.), paragraphs, and line breaks
+   * Supports: headings (##, ###), lists (-, 1.), paragraphs, tables, and line breaks
    */
   const renderedContent = useMemo(() => {
     const lines = guide.content.split("\n");
     const elements: React.ReactNode[] = [];
     let currentList: string[] = [];
     let listType: "ul" | "ol" | null = null;
+    let currentTable: string[] = [];
+    let inTable = false;
+
+    // Helper to parse markdown table
+    const parseTable = (tableLines: string[]) => {
+      if (tableLines.length < 2) return null;
+      const headerLine = tableLines[0];
+      const separatorLine = tableLines[1];
+      if (!separatorLine.match(/^[\s|:\-]+$/)) return null;
+
+      const headers = headerLine
+        .split("|")
+        .map((h) => h.trim())
+        .filter((h) => h);
+      const rows: string[][] = [];
+
+      for (let i = 2; i < tableLines.length; i++) {
+        const row = tableLines[i]
+          .split("|")
+          .map((c) => c.trim())
+          .filter((c) => c);
+        if (row.length > 0) rows.push(row);
+      }
+
+      return { headers, rows };
+    };
+
+    // Helper to process bold text in cells
+    const processCell = (cell: string) => {
+      const parts: React.ReactNode[] = [];
+      let lastIndex = 0;
+      const regex = /\*\*(.*?)\*\*/g;
+      let match;
+
+      while ((match = regex.exec(cell)) !== null) {
+        if (match.index > lastIndex) {
+          parts.push(cell.substring(lastIndex, match.index));
+        }
+        parts.push(<strong key={match.index}>{match[1]}</strong>);
+        lastIndex = regex.lastIndex;
+      }
+      if (lastIndex < cell.length) {
+        parts.push(cell.substring(lastIndex));
+      }
+      return parts.length > 0 ? parts : [cell];
+    };
 
     lines.forEach((line, idx) => {
+      // Check if line is a table row (starts with | and contains multiple |)
+      const trimmedLine = line.trim();
+      const isTableRow = trimmedLine.startsWith("|") && trimmedLine.split("|").length >= 3;
+      const isTableSeparator = trimmedLine.match(/^[\s|:\-]+$/);
+
+      if (isTableRow || isTableSeparator) {
+        if (!inTable) {
+          // Close any open list
+          if (currentList.length > 0) {
+            const ListTag = listType === "ol" ? "ol" : "ul";
+            elements.push(
+              <ListTag
+                key={`list-${idx}`}
+                className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4 text-zinc-700 dark:text-zinc-300`}
+              >
+                {currentList.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ListTag>
+            );
+            currentList = [];
+            listType = null;
+          }
+          inTable = true;
+        }
+        currentTable.push(line);
+        return;
+      } else if (inTable && currentTable.length > 0) {
+        // End of table, render it
+        const tableData = parseTable(currentTable);
+        if (tableData) {
+          elements.push(
+            <div
+              key={`table-${idx}`}
+              className="my-6 overflow-x-auto rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900"
+            >
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="bg-zinc-100 dark:bg-zinc-800">
+                    {tableData.headers.map((header, i) => (
+                      <th
+                        key={i}
+                        className="px-4 py-3 text-left text-sm font-semibold text-zinc-900 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-700"
+                      >
+                        {processCell(header)}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {tableData.rows.map((row, rowIdx) => (
+                    <tr
+                      key={rowIdx}
+                      className="border-b border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+                    >
+                      {tableData.headers.map((_, colIdx) => (
+                        <td
+                          key={colIdx}
+                          className="px-4 py-3 text-sm text-zinc-500 dark:text-zinc-400"
+                        >
+                          {row[colIdx] ? processCell(row[colIdx]) : ""}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+        currentTable = [];
+        inTable = false;
+      }
       // H2 heading (##)
       if (line.startsWith("## ")) {
         // Flush any pending list
@@ -228,10 +347,14 @@ export default function PlanningGuidePage({ params }: Props) {
           currentList = [];
           listType = null;
         }
+        // Handle bold text with **text**
+        const processedLine = line.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
         elements.push(
-          <p key={`p-${idx}`} className="mb-3 text-zinc-700 dark:text-zinc-300">
-            {line}
-          </p>
+          <p
+            key={`p-${idx}`}
+            className="mb-3 text-zinc-700 dark:text-zinc-300"
+            dangerouslySetInnerHTML={{ __html: processedLine }}
+          />
         );
       }
     });
@@ -242,13 +365,58 @@ export default function PlanningGuidePage({ params }: Props) {
       elements.push(
         <ListTag
           key="list-final"
-          className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4`}
+          className={`${listType === "ol" ? "list-decimal" : "list-disc"} list-inside mb-3 space-y-1 ml-4 text-zinc-700 dark:text-zinc-300`}
         >
           {currentList.map((item, i) => (
             <li key={i}>{item}</li>
           ))}
         </ListTag>
       );
+    }
+
+    // Handle table at end of content
+    if (inTable && currentTable.length > 0) {
+      const tableData = parseTable(currentTable);
+      if (tableData) {
+        elements.push(
+          <div
+            key="table-final"
+            className="my-6 overflow-x-auto rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900"
+          >
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="bg-zinc-100 dark:bg-zinc-800">
+                  {tableData.headers.map((header, i) => (
+                    <th
+                      key={i}
+                      className="px-4 py-3 text-left text-sm font-semibold text-zinc-900 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-700"
+                    >
+                      {processCell(header)}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {tableData.rows.map((row, rowIdx) => (
+                  <tr
+                    key={rowIdx}
+                    className="border-b border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+                  >
+                    {tableData.headers.map((_, colIdx) => (
+                      <td
+                        key={colIdx}
+                        className="px-4 py-3 text-sm text-zinc-500 dark:text-zinc-400"
+                      >
+                        {row[colIdx] ? processCell(row[colIdx]) : ""}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      }
     }
 
     return elements;

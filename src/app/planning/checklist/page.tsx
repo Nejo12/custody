@@ -11,6 +11,14 @@ import {
   progressToSet,
   setToProgress,
 } from "@/lib/planning-progress";
+import {
+  checkNotificationSupport,
+  requestNotificationPermission,
+  scheduleDeadlineNotifications,
+  cancelDeadlineNotifications,
+  getNotificationPermission,
+} from "@/lib/planning-notifications";
+import ProgressShareButton from "@/components/planning/ProgressShareButton";
 
 /**
  * Interactive Checklist Page
@@ -50,8 +58,21 @@ export default function ChecklistPage() {
   // State for loading progress
   const [isLoadingProgress, setIsLoadingProgress] = useState<boolean>(true);
 
+  // State for notification permission
+  const [notificationPermission, setNotificationPermission] =
+    useState<NotificationPermission | null>(null);
+
   // Get checklist items from planning data
   const checklistItems = planningData.checklist as ChecklistItem[];
+
+  /**
+   * Check notification support and permission on mount
+   */
+  useEffect(() => {
+    if (typeof window !== "undefined" && checkNotificationSupport()) {
+      setNotificationPermission(getNotificationPermission());
+    }
+  }, []);
 
   /**
    * Load progress from localStorage on mount
@@ -73,6 +94,52 @@ export default function ChecklistPage() {
 
     loadSavedProgress();
   }, [checklistId]);
+
+  /**
+   * Schedule deadline notifications for incomplete items with deadlines
+   */
+  useEffect(() => {
+    if (notificationPermission !== "granted" || isLoadingProgress) {
+      return;
+    }
+
+    // Schedule notifications for items with deadlines that are not completed
+    checklistItems.forEach((item) => {
+      if (item.deadline && !completedItems.has(item.id)) {
+        const deadlineDate = new Date(item.deadline);
+        if (deadlineDate > new Date()) {
+          scheduleDeadlineNotifications({
+            itemId: item.id,
+            title: item.title,
+            deadline: deadlineDate,
+            description: item.description,
+            reminderDaysBefore: [7, 1, 0], // 7 days before, 1 day before, and on deadline
+          });
+        }
+      }
+    });
+
+    // Cleanup: cancel notifications for completed items
+    return () => {
+      checklistItems.forEach((item) => {
+        if (completedItems.has(item.id)) {
+          cancelDeadlineNotifications(item.id);
+        }
+      });
+    };
+  }, [checklistItems, completedItems, notificationPermission, isLoadingProgress]);
+
+  /**
+   * Handle notification permission request
+   */
+  const handleRequestNotificationPermission = async (): Promise<void> => {
+    try {
+      const permission = await requestNotificationPermission();
+      setNotificationPermission(permission);
+    } catch (error) {
+      console.error("Error requesting notification permission:", error);
+    }
+  };
 
   /**
    * Save progress whenever completed items change
@@ -246,6 +313,29 @@ export default function ChecklistPage() {
         <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-2">
           {completionPercentage}% complete
         </p>
+      </div>
+
+      {/* Actions: Notifications and Sharing */}
+      <div className="flex flex-col sm:flex-row gap-4">
+        {/* Notification permission button */}
+        {checkNotificationSupport() && notificationPermission !== "granted" && (
+          <button
+            onClick={handleRequestNotificationPermission}
+            className="px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors text-sm font-medium"
+          >
+            {t.planning?.checklist?.enableNotifications || "Enable Browser Notifications"}
+          </button>
+        )}
+        {notificationPermission === "granted" && (
+          <div className="px-4 py-2 rounded-lg border border-green-300 dark:border-green-700 bg-green-50 dark:bg-green-900/10 text-green-800 dark:text-green-400 text-sm font-medium">
+            {t.planning?.checklist?.notificationsEnabled || "Notifications Enabled"}
+          </div>
+        )}
+
+        {/* Progress sharing */}
+        <div className="flex-1">
+          <ProgressShareButton checklistId={checklistId} />
+        </div>
       </div>
 
       {/* Filters */}

@@ -82,8 +82,8 @@ describe("send-reminders Netlify Function", () => {
   });
 
   it("should call the API endpoint with correct authentication", async () => {
-    // Mock successful fetch response
-    const mockResponse = {
+    // Mock successful fetch responses for both endpoints
+    const mockCourtResponse = {
       ok: true,
       status: 200,
       json: async () => ({
@@ -94,14 +94,29 @@ describe("send-reminders Netlify Function", () => {
       }),
     };
 
-    global.fetch = vi.fn().mockResolvedValue(mockResponse);
+    const mockPlanningResponse = {
+      ok: true,
+      status: 200,
+      json: async () => ({
+        success: true,
+        message: "No reminders to send",
+        count: 0,
+        sent: 0,
+        failed: 0,
+      }),
+    };
+
+    global.fetch = vi
+      .fn()
+      .mockResolvedValueOnce(mockCourtResponse)
+      .mockResolvedValueOnce(mockPlanningResponse);
 
     const event = createMockEvent();
     const context = createMockContext();
 
     const response = await handler(event, context);
 
-    // Verify fetch was called with correct parameters
+    // Verify fetch was called for both endpoints
     expect(global.fetch).toHaveBeenCalledWith("https://custodyclarity.com/api/reminders/send", {
       method: "POST",
       headers: {
@@ -109,6 +124,16 @@ describe("send-reminders Netlify Function", () => {
         Authorization: "Bearer test-secret-key-12345",
       },
     });
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://custodyclarity.com/api/planning/reminders/send",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer test-secret-key-12345",
+        },
+      }
+    );
 
     // Verify response
     expect(response.statusCode).toBe(200);
@@ -117,14 +142,14 @@ describe("send-reminders Netlify Function", () => {
     if (response.body) {
       const body = JSON.parse(response.body);
       expect(body.success).toBe(true);
-      expect(body.sent).toBe(2);
-      expect(body.failed).toBe(1);
+      expect(body.total.sent).toBe(2);
+      expect(body.total.failed).toBe(1);
       expect(body.timestamp).toBeDefined();
     }
   });
 
   it("should handle API endpoint returning no reminders", async () => {
-    // Mock response with no reminders
+    // Mock responses with no reminders for both endpoints
     const mockResponse = {
       ok: true,
       status: 200,
@@ -132,6 +157,8 @@ describe("send-reminders Netlify Function", () => {
         success: true,
         message: "No reminders to send",
         count: 0,
+        sent: 0,
+        failed: 0,
       }),
     };
 
@@ -148,14 +175,14 @@ describe("send-reminders Netlify Function", () => {
     if (response.body) {
       const body = JSON.parse(response.body);
       expect(body.success).toBe(true);
-      expect(body.sent).toBe(0);
-      expect(body.failed).toBe(0);
+      expect(body.total.sent).toBe(0);
+      expect(body.total.failed).toBe(0);
     }
   });
 
   it("should handle API endpoint errors", async () => {
-    // Mock failed API response
-    const mockResponse = {
+    // Mock failed API response for court reminders
+    const mockCourtResponse = {
       ok: false,
       status: 401,
       json: async () => ({
@@ -164,39 +191,73 @@ describe("send-reminders Netlify Function", () => {
       }),
     };
 
-    global.fetch = vi.fn().mockResolvedValue(mockResponse);
+    // Mock successful planning reminders response
+    const mockPlanningResponse = {
+      ok: true,
+      status: 200,
+      json: async () => ({
+        success: true,
+        message: "No reminders to send",
+        sent: 0,
+        failed: 0,
+      }),
+    };
+
+    global.fetch = vi
+      .fn()
+      .mockResolvedValueOnce(mockCourtResponse)
+      .mockResolvedValueOnce(mockPlanningResponse);
 
     const event = createMockEvent();
     const context = createMockContext();
 
     const response = await handler(event, context);
 
-    expect(response.statusCode).toBe(401);
+    // Should return 207 (Multi-Status) when one endpoint fails
+    expect(response.statusCode).toBe(207);
     expect(response.body).toBeDefined();
 
     if (response.body) {
       const body = JSON.parse(response.body);
       expect(body.success).toBe(false);
-      expect(body.error).toBe("Unauthorized");
+      expect(body.errors).toBeDefined();
+      expect(Array.isArray(body.errors)).toBe(true);
     }
   });
 
   it("should handle network errors", async () => {
-    // Mock fetch throwing an error
-    global.fetch = vi.fn().mockRejectedValue(new Error("Network error"));
+    // Mock fetch throwing an error for court reminders
+    // Planning reminders should still be called
+    const mockPlanningResponse = {
+      ok: true,
+      status: 200,
+      json: async () => ({
+        success: true,
+        message: "No reminders to send",
+        sent: 0,
+        failed: 0,
+      }),
+    };
+
+    global.fetch = vi
+      .fn()
+      .mockRejectedValueOnce(new Error("Network error"))
+      .mockResolvedValueOnce(mockPlanningResponse);
 
     const event = createMockEvent();
     const context = createMockContext();
 
     const response = await handler(event, context);
 
-    expect(response.statusCode).toBe(500);
+    // Should return 207 (Multi-Status) when one endpoint has network error
+    expect(response.statusCode).toBe(207);
     expect(response.body).toBeDefined();
 
     if (response.body) {
       const body = JSON.parse(response.body);
       expect(body.success).toBe(false);
-      expect(body.error).toBe("Network error");
+      expect(body.errors).toBeDefined();
+      expect(Array.isArray(body.errors)).toBe(true);
       expect(body.timestamp).toBeDefined();
     }
   });
@@ -223,9 +284,15 @@ describe("send-reminders Netlify Function", () => {
 
     await handler(event, context);
 
-    // Verify fetch was called with custom domain
+    // Verify fetch was called with custom domain for both endpoints
     expect(global.fetch).toHaveBeenCalledWith(
       "https://custom-domain.com/api/reminders/send",
+      expect.objectContaining({
+        method: "POST",
+      })
+    );
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://custom-domain.com/api/planning/reminders/send",
       expect.objectContaining({
         method: "POST",
       })
@@ -255,9 +322,15 @@ describe("send-reminders Netlify Function", () => {
 
     await handler(event, context);
 
-    // Should use default custodyclarity.com domain
+    // Should use default custodyclarity.com domain for both endpoints
     expect(global.fetch).toHaveBeenCalledWith(
       "https://custodyclarity.com/api/reminders/send",
+      expect.objectContaining({
+        method: "POST",
+      })
+    );
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://custodyclarity.com/api/planning/reminders/send",
       expect.objectContaining({
         method: "POST",
       })
@@ -290,6 +363,7 @@ describe("send-reminders Netlify Function", () => {
       expect(body.timestamp).toBeDefined();
       // Verify timestamp is a valid ISO date string
       expect(() => new Date(body.timestamp)).not.toThrow();
+      expect(body.total).toBeDefined();
     }
   });
 });
