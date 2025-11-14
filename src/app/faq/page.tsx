@@ -60,7 +60,7 @@ export default function FAQPage() {
 
       {categories.map((category) => (
         <div key={category.id} className="space-y-4">
-          <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-400">
+          <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
             {category.title}
           </h2>
           <div className="space-y-2">

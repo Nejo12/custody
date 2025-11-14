@@ -225,7 +225,7 @@ export default function GuidePage({ params }: Props) {
             {guide.title}
           </h1>
           <div className="flex items-center gap-4 text-sm mb-4">
-            <span className="px-2 py-1 rounded bg-zinc-800 dark:bg-zinc-600 text-zinc-800 dark:text-zinc-100">
+            <span className="px-2 py-1 rounded bg-zinc-800 dark:bg-zinc-600 text-zinc-100 dark:text-zinc-100">
               {categories[guide.category as keyof typeof categories] || guide.category}
             </span>
             <span className="text-zinc-700 dark:text-zinc-300">{guide.readTime}</span>

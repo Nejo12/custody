@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/**
+ * Tailwind CSS v4 Dark Mode Configuration
+ *
+ * In Tailwind v4, dark mode needs to be explicitly configured using the @variant directive.
+ * This enables class-based dark mode (e.g., <html class="dark">) which is required for next-themes.
+ * The &:where(.dark, .dark *) selector applies dark mode styles when the .dark class is present
+ * on any parent element (including <html>).
+ */
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Base colors */
   --background: #ffffff;
@@ -53,13 +63,6 @@
   --status-error-text: #fca5a5; /* red-300 */
   --status-warning-text: #fdba74; /* orange-300 */
   --status-info-text: #7dd3fc; /* sky-300 */
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 @theme inline {

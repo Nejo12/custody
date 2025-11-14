@@ -23,19 +23,19 @@ Object.defineProperty(window, "localStorage", {
   value: localStorageMock,
 });
 
-// Setup matchMedia mock before importing store
-Object.defineProperty(window, "matchMedia", {
-  writable: true,
-  value: vi.fn().mockImplementation((query: string) => ({
-    matches: query === "(prefers-color-scheme: dark)",
-    media: query,
-    onchange: null,
-    addEventListener: vi.fn(),
-    removeEventListener: vi.fn(),
-    dispatchEvent: vi.fn(),
-  })),
-});
-
+/**
+ * Application Store Tests
+ *
+ * Tests the Zustand store functionality including:
+ * - Locale management
+ * - Interview state
+ * - Vault/document storage
+ * - User preferences
+ * - Data export
+ * - Wipe all functionality
+ *
+ * Note: Theme management is handled by next-themes and not tested here
+ */
 describe("useAppStore", () => {
   beforeEach(() => {
     localStorageMock.clear();
@@ -44,10 +44,22 @@ describe("useAppStore", () => {
     // Reset store state
     useAppStore.setState({
       locale: "en",
-      theme: "system",
-      resolvedTheme: "light",
       interview: { version: "2025-01-01", answers: {} },
       vault: { entries: [] },
+      preferredCity: "berlin",
+      preferredCourtTemplate: "",
+      includeTimelineInPack: false,
+      preferredOcrNoteId: "",
+      socialWorkerMode: false,
+      safetyMode: false,
+      discreetMode: false,
+      blurThumbnails: false,
+      milestones: {
+        answeredCore: false,
+        courtSelected: false,
+        senderSelected: false,
+        pdfGenerated: false,
+      },
     });
   });
 
@@ -76,43 +88,6 @@ describe("useAppStore", () => {
         useAppStore.getState().setLocale(locale);
         expect(useAppStore.getState().locale).toBe(locale);
       });
-    });
-  });
-
-  describe("Theme", () => {
-    it("defaults to system theme", () => {
-      const theme = useAppStore.getState().theme;
-      expect(theme).toBe("system");
-    });
-
-    it("sets theme correctly", () => {
-      useAppStore.getState().setTheme("dark");
-      expect(useAppStore.getState().theme).toBe("dark");
-    });
-
-    it("computes resolved theme for light", () => {
-      useAppStore.getState().setTheme("light");
-      useAppStore.getState().updateResolvedTheme();
-      expect(useAppStore.getState().resolvedTheme).toBe("light");
-    });
-
-    it("computes resolved theme for dark", () => {
-      useAppStore.getState().setTheme("dark");
-      useAppStore.getState().updateResolvedTheme();
-      expect(useAppStore.getState().resolvedTheme).toBe("dark");
-    });
-
-    it("computes resolved theme from system preference", () => {
-      useAppStore.getState().setTheme("system");
-      useAppStore.getState().updateResolvedTheme();
-      const resolved = useAppStore.getState().resolvedTheme;
-      expect(["light", "dark"]).toContain(resolved);
-    });
-
-    it("updates document class when theme changes", () => {
-      useAppStore.getState().setTheme("dark");
-      useAppStore.getState().updateResolvedTheme();
-      expect(document.documentElement.classList.contains("dark")).toBe(true);
     });
   });
 
@@ -236,7 +211,6 @@ describe("useAppStore", () => {
   describe("Export Data", () => {
     it("exports data correctly", () => {
       useAppStore.getState().setLocale("de");
-      useAppStore.getState().setTheme("dark");
       useAppStore.getState().setAnswer("question1", "yes");
       const entry: Entry = {
         id: "id1",
@@ -251,7 +225,6 @@ describe("useAppStore", () => {
       const parsed = JSON.parse(exported);
 
       expect(parsed.locale).toBe("de");
-      expect(parsed.theme).toBe("dark");
       expect(parsed.interview.answers.question1).toBe("yes");
       expect(parsed.vault.entries).toHaveLength(1);
     });
@@ -406,10 +379,13 @@ describe("useAppStore", () => {
   describe("Wipe All", () => {
     it("resets all state to defaults", () => {
       useAppStore.getState().setLocale("de");
-      useAppStore.getState().setTheme("dark");
       useAppStore.getState().setAnswer("question1", "yes");
       useAppStore.getState().setPreferredCity("hamburg");
       useAppStore.getState().setMilestone("answeredCore", true);
+      useAppStore.getState().setSocialWorkerMode(true);
+      useAppStore.getState().setSafetyMode(true);
+      useAppStore.getState().setDiscreetMode(true);
+      useAppStore.getState().setBlurThumbnails(true);
 
       useAppStore.getState().wipeAll();
 
@@ -420,6 +396,10 @@ describe("useAppStore", () => {
       expect(useAppStore.getState().preferredCourtTemplate).toBe("");
       expect(useAppStore.getState().includeTimelineInPack).toBe(false);
       expect(useAppStore.getState().vault.entries).toEqual([]);
+      expect(useAppStore.getState().socialWorkerMode).toBe(false);
+      expect(useAppStore.getState().safetyMode).toBe(false);
+      expect(useAppStore.getState().discreetMode).toBe(false);
+      expect(useAppStore.getState().blurThumbnails).toBe(false);
     });
 
     it("clears localStorage", () => {

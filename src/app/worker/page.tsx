@@ -219,7 +219,6 @@ function CaseZipPanel({ kinds }: { kinds: { joint: boolean; contact: boolean } }
             // Redacted export JSON
             const raw = {
               locale: state.locale,
-              theme: state.theme,
               preferredCity: state.preferredCity,
               preferredCourtTemplate: state.preferredCourtTemplate,
               includeTimelineInPack: state.includeTimelineInPack,

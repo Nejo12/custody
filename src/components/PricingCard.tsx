@@ -83,7 +83,7 @@ export default function PricingCard({
 
       <div className="space-y-4">
         <div>
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-400 mb-1">
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-1">
             {pricing.name}
           </h3>
           <p className="text-xs text-zinc-500 dark:text-zinc-400">{pricing.description}</p>

@@ -15,24 +15,29 @@ export type InterviewState = {
   answers: Record<string, string>;
 };
 
+/**
+ * Application State Type Definition
+ *
+ * Defines the shape of the global application state managed by Zustand.
+ * Theme management is handled separately by next-themes.
+ */
 type AppState = {
+  // Locale/Language settings
   locale: "en" | "de" | "ar" | "pl" | "fr" | "tr" | "ru";
   setLocale: (l: "en" | "de" | "ar" | "pl" | "fr" | "tr" | "ru") => void;
 
-  theme: "light" | "dark" | "system";
-  setTheme: (t: "light" | "dark" | "system") => void;
-  resolvedTheme: "light" | "dark";
-  updateResolvedTheme: () => void;
-
+  // Interview state
   interview: InterviewState;
   setAnswer: (key: string, value: string) => void;
   resetInterview: () => void;
 
+  // Vault/Document storage
   vault: { entries: Entry[] };
   addEntry: (e: Entry) => void;
   removeEntry: (id: string) => void;
   exportData: () => string;
 
+  // User preferences
   preferredCity: "berlin" | "hamburg" | "nrw";
   setPreferredCity: (c: "berlin" | "hamburg" | "nrw") => void;
   preferredCourtTemplate?: string;
@@ -43,6 +48,7 @@ type AppState = {
   setPreferredOcrNoteId: (id: string) => void;
   socialWorkerMode: boolean;
   setSocialWorkerMode: (v: boolean) => void;
+
   // Safety & privacy
   safetyMode: boolean;
   setSafetyMode: (v: boolean) => void;
@@ -50,6 +56,8 @@ type AppState = {
   setDiscreetMode: (v: boolean) => void;
   blurThumbnails: boolean;
   setBlurThumbnails: (v: boolean) => void;
+
+  // Milestones tracking
   milestones: {
     answeredCore: boolean;
     courtSelected: boolean;
@@ -58,29 +66,20 @@ type AppState = {
     lastUpdated?: number;
   };
   setMilestone: (key: keyof AppState["milestones"], value: boolean) => void;
+
+  // Data management
   wipeAll: () => void;
 };
 
-const getSystemTheme = (): "light" | "dark" => {
-  if (typeof window === "undefined") return "light";
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-};
-
+/**
+ * Zustand Store for Application State
+ *
+ * Manages global application state with persistence to localStorage.
+ * Theme management is intentionally excluded and handled by next-themes.
+ */
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => {
-      const getInitialTheme = (): "light" | "dark" | "system" => {
-        if (typeof window === "undefined") return "system";
-        return (localStorage.getItem("theme") as "light" | "dark" | "system") || "system";
-      };
-
-      const computeResolvedTheme = (theme: "light" | "dark" | "system"): "light" | "dark" => {
-        return theme === "system" ? getSystemTheme() : theme;
-      };
-
-      const initialTheme = getInitialTheme();
-      const initialResolvedTheme = computeResolvedTheme(initialTheme);
-
       return {
         locale:
           (typeof window !== "undefined" &&
@@ -116,22 +115,6 @@ export const useAppStore = create<AppState>()(
         },
         setMilestone: (key, value) =>
           set((s) => ({ milestones: { ...s.milestones, [key]: value, lastUpdated: Date.now() } })),
-        theme: initialTheme,
-        setTheme: (t) => {
-          set({ theme: t });
-          get().updateResolvedTheme();
-        },
-        resolvedTheme: initialResolvedTheme,
-        updateResolvedTheme: () => {
-          const theme = get().theme;
-          const resolved = computeResolvedTheme(theme);
-          set({ resolvedTheme: resolved });
-          if (typeof window !== "undefined") {
-            const html = document.documentElement;
-            html.classList.remove("light", "dark");
-            html.classList.add(resolved);
-          }
-        },
         interview: {
           version: "2025-01-01",
           answers: {},
@@ -148,7 +131,6 @@ export const useAppStore = create<AppState>()(
         exportData: () => {
           const data = {
             locale: get().locale,
-            theme: get().theme,
             preferredCity: get().preferredCity,
             preferredCourtTemplate: get().preferredCourtTemplate,
             includeTimelineInPack: get().includeTimelineInPack,
@@ -164,18 +146,19 @@ export const useAppStore = create<AppState>()(
               localStorage.removeItem("custody-clarity");
             }
           } catch {
-            // ignore
+            // Silently fail if localStorage is not available
           }
           // Reset in‑memory state to initial defaults
           set({
             locale: "en",
-            theme: initialTheme,
-            resolvedTheme: initialResolvedTheme,
             preferredCity: "berlin",
             preferredCourtTemplate: "",
             includeTimelineInPack: false,
             preferredOcrNoteId: "",
             socialWorkerMode: false,
+            safetyMode: false,
+            discreetMode: false,
+            blurThumbnails: false,
             milestones: {
               answeredCore: false,
               courtSelected: false,
@@ -194,7 +177,6 @@ export const useAppStore = create<AppState>()(
       storage: createJSONStorage(() => localStorage),
       partialize: (s) => ({
         locale: s.locale,
-        theme: s.theme,
         preferredCity: s.preferredCity,
         preferredCourtTemplate: s.preferredCourtTemplate,
         includeTimelineInPack: s.includeTimelineInPack,

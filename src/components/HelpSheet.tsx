@@ -94,6 +94,17 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
     setPostcode("");
   }, [city]);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (open) {
+      const originalStyle = window.getComputedStyle(document.body).overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalStyle;
+      };
+    }
+  }, [open]);
+
   // Translate script when language changes or sheet opens
   useEffect(() => {
     if (!open) return;
@@ -161,9 +172,9 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
             }}
           />
           {/* Layout: bottom sheet on mobile, centered on desktop */}
-          <div className="absolute inset-0 flex items-end sm:items-center justify-center p-0 sm:p-4">
+          <div className="absolute inset-0 flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-hidden">
             <motion.div
-              className="dialog-panel w-full sm:max-w-lg bg-white dark:bg-zinc-950 rounded-t-2xl sm:rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 p-4 space-y-3 max-h-[90vh] overflow-y-auto flex flex-col"
+              className="dialog-panel w-full sm:max-w-lg bg-white dark:bg-zinc-950 rounded-t-2xl sm:rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 p-4 sm:p-6 space-y-4 max-h-[90vh] overflow-y-auto flex flex-col"
               initial={{ y: prefersReduced ? 0 : 56, opacity: prefersReduced ? 1 : 0 }}
               animate={{
                 y: 0,
@@ -179,6 +190,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                   ? { duration: 0 }
                   : { type: "spring", stiffness: 320, damping: 30 },
               }}
+              onClick={(e) => e.stopPropagation()}
             >
               {/* Drag handle for mobile */}
               <div className="md:hidden flex justify-center -mt-2 mb-1 flex-shrink-0">
@@ -188,9 +200,12 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                 />
               </div>
               <div className="flex items-center justify-between flex-shrink-0">
-                <div id="help-sheet-title" className="font-medium text-zinc-500 dark:text-zinc-400">
+                <h2
+                  id="help-sheet-title"
+                  className="text-lg font-semibold text-zinc-900 dark:text-zinc-100"
+                >
                   {t.helpSheet.title}
-                </div>
+                </h2>
                 <button
                   className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 text-zinc-700 dark:text-zinc-500"
                   onClick={onClose}
@@ -212,18 +227,18 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                   </svg>
                 </button>
               </div>
-              <div className="text-sm text-zinc-700 dark:text-zinc-500 flex-shrink-0">
+              <div className="text-sm text-zinc-700 dark:text-zinc-400 flex-shrink-0">
                 {t.helpSheet.description}
               </div>
-              <div className="rounded-lg border p-3 flex-shrink-0 space-y-2">
+              <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 p-4 flex-shrink-0 space-y-3 bg-zinc-50 dark:bg-zinc-900/50">
                 <div className="flex items-center gap-2 text-xs">
-                  <label className="text-zinc-700 dark:text-zinc-500">
+                  <label className="text-zinc-700 dark:text-zinc-400 font-medium">
                     {t.helpSheet?.scriptLanguage || "Script language"}
                   </label>
                   <select
                     value={scriptLang}
                     onChange={(e) => setScriptLang(e.target.value as typeof scriptLang)}
-                    className="rounded border px-2 py-1 text-xs bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
+                    className="rounded border border-zinc-300 dark:border-zinc-700 px-2 py-1 text-xs bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300"
                   >
                     <option value="de">Deutsch</option>
                     <option value="en">English</option>
@@ -236,16 +251,16 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                   {scriptError && <span className="text-[11px] text-red-600">{scriptError}</span>}
                 </div>
                 <textarea
-                  className="w-full rounded border p-2 text-sm bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
+                  className="w-full rounded border border-zinc-300 dark:border-zinc-700 p-3 text-sm bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 resize-none"
                   rows={4}
                   readOnly
                   onClick={(e) => (e.target as HTMLTextAreaElement).select()}
                   value={translatedScript || t.helpSheet.scriptText}
                   aria-label={t.helpSheet.scriptAriaLabel}
                 ></textarea>
-                <div className="mt-2 flex gap-2">
+                <div className="flex gap-2">
                   <button
-                    className="rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="rounded border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors"
                     onClick={() =>
                       navigator.clipboard.writeText(translatedScript || t.helpSheet.scriptText)
                     }
@@ -254,7 +269,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                     {t.helpSheet.copy}
                   </button>
                   <button
-                    className="rounded border px-3 py-1 text-sm bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="rounded border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors"
                     onClick={() => {
                       const ics = buildICS({
                         summary: t.helpSheet.callJugendamtCalendarSummary,
@@ -293,8 +308,8 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                   </div>
                 )}
               </div>
-              <div className="rounded-lg border p-3 space-y-2 flex-1 min-h-0 overflow-hidden flex flex-col">
-                <div className="text-xs uppercase text-zinc-500 dark:text-zinc-400">
+              <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 p-4 space-y-3 flex-1 min-h-0 overflow-hidden flex flex-col">
+                <div className="text-xs uppercase tracking-wide font-semibold text-zinc-600 dark:text-zinc-400 flex-shrink-0">
                   {t.helpSheet.nearbyServices}
                 </div>
                 <div className="flex flex-col sm:flex-row gap-2">
@@ -409,14 +424,19 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                     </div>
                   )}
                   {filteredServices.slice(0, 6).map((s) => (
-                    <div key={s.id} className="rounded border p-2">
-                      <div className="text-xs uppercase text-zinc-500 dark:text-zinc-400">
+                    <div
+                      key={s.id}
+                      className="rounded border border-zinc-200 dark:border-zinc-800 p-3 bg-white dark:bg-zinc-900"
+                    >
+                      <div className="text-xs uppercase text-zinc-500 dark:text-zinc-400 mb-1">
                         {s.type}
                       </div>
-                      <div className="font-medium text-sm text-zinc-500 dark:text-zinc-400">
+                      <div className="font-semibold text-sm text-zinc-900 dark:text-zinc-100 mb-1">
                         {s.name}
                       </div>
-                      <div className="text-sm text-zinc-700 dark:text-zinc-500">{s.address}</div>
+                      <div className="text-sm text-zinc-700 dark:text-zinc-400 mb-2">
+                        {s.address}
+                      </div>
                       {s.phone && (
                         <a
                           className="text-sm underline text-zinc-700 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-600"
@@ -529,7 +549,7 @@ export default function HelpSheet({ open, onClose }: { open: boolean; onClose: (
                   ))}
                 </div>
               </div>
-              <div className="text-xs text-zinc-500 dark:text-zinc-400 flex-shrink-0">
+              <div className="text-xs text-zinc-500 dark:text-zinc-400 flex-shrink-0 pt-2 border-t border-zinc-200 dark:border-zinc-800">
                 {t.helpSheet.disclaimer}
               </div>
             </motion.div>

@@ -95,7 +95,7 @@ export default function GlossaryPage() {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-baseline gap-2 flex-wrap">
-                    <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-400">
+                    <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
                       {term.term}
                     </h2>
                     {term.fullForm && (

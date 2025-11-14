@@ -39,16 +39,16 @@ export default function DatenschutzPage() {
 
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-8 space-y-6">
-      <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-500">
+      <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
         {t.datenschutz?.title || "Datenschutzerklärung"}
       </h1>
 
-      <section className="space-y-4 text-sm text-zinc-900 dark:text-zinc-500">
+      <section className="space-y-4 text-sm text-zinc-700 dark:text-zinc-300">
         <div>
-          <h2 className="font-semibold text-zinc-900 dark:text-zinc-400 mb-2">
+          <h2 className="font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
             {t.datenschutz?.section1Title || "1. Datenschutz auf einen Blick"}
           </h2>
-          <h3 className="font-medium text-zinc-900 dark:text-zinc-400 mt-3 mb-2">
+          <h3 className="font-medium text-zinc-900 dark:text-zinc-50 mt-3 mb-2">
             {t.datenschutz?.generalNotes || "Allgemeine Hinweise"}
           </h3>
           <p>

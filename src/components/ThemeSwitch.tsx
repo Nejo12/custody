@@ -1,24 +1,39 @@
 "use client";
-import { useEffect } from "react";
-import { useAppStore } from "@/store/app";
+
+import { useTheme } from "next-themes";
+import { useState, useLayoutEffect, type JSX } from "react";
 import { useI18n } from "@/i18n";
 
+/**
+ * ThemeSwitch Component
+ *
+ * A button that toggles between light, dark, and system themes.
+ * Displays an appropriate icon based on the current theme setting.
+ *
+ * Theme cycle: light → dark → system → light
+ *
+ * Features:
+ * - Visual icons for each theme state (sun, moon, computer)
+ * - Accessible labels and screen reader support
+ * - Smooth transitions between theme states
+ * - Properly handles mounted state to prevent hydration errors
+ */
 export default function ThemeSwitch() {
-  const { theme, setTheme, resolvedTheme, updateResolvedTheme } = useAppStore();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const { t } = useI18n();
+  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    updateResolvedTheme();
+  // Prevent hydration mismatch by only rendering after mount
+  // This is intentional to prevent hydration mismatches with next-themes
+  useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
 
-    if (theme === "system") {
-      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      const handleChange = () => updateResolvedTheme();
-      mediaQuery.addEventListener("change", handleChange);
-      return () => mediaQuery.removeEventListener("change", handleChange);
-    }
-  }, [theme, updateResolvedTheme]);
-
-  const toggleTheme = () => {
+  /**
+   * Toggles through theme options in order: light → dark → system → light
+   */
+  const toggleTheme = (): void => {
     if (theme === "light") {
       setTheme("dark");
     } else if (theme === "dark") {
@@ -28,10 +43,22 @@ export default function ThemeSwitch() {
     }
   };
 
-  const getIcon = () => {
+  /**
+   * Returns the appropriate icon based on current theme setting
+   * - System: Computer/monitor icon
+   * - Dark: Moon icon
+   * - Light: Sun icon
+   */
+  const getIcon = (): JSX.Element => {
     if (theme === "system") {
       return (
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -43,7 +70,13 @@ export default function ThemeSwitch() {
     }
     if (resolvedTheme === "dark") {
       return (
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -54,7 +87,13 @@ export default function ThemeSwitch() {
       );
     }
     return (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg
+        className="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -65,10 +104,27 @@ export default function ThemeSwitch() {
     );
   };
 
-  const getLabel = () => {
+  /**
+   * Returns accessible label text for the current theme
+   */
+  const getLabel = (): string => {
     if (theme === "system") return t.settings.themeSystem;
     return resolvedTheme === "dark" ? t.settings.themeDark : t.settings.themeLight;
   };
+
+  // Prevent rendering until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <button
+        className="relative inline-flex items-center justify-center w-10 h-10 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900"
+        aria-label="Loading theme"
+        type="button"
+        disabled
+      >
+        <span className="sr-only">Loading theme</span>
+      </button>
+    );
+  }
 
   return (
     <button

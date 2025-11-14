@@ -135,11 +135,11 @@ export default function BlogPostPage({ params }: Props) {
             >
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="bg-zinc-500 dark:bg-zinc-800">
+                  <tr className="bg-zinc-100 dark:bg-zinc-800">
                     {tableData.headers.map((header, i) => (
                       <th
                         key={i}
-                        className="px-4 py-3 text-left text-sm font-semibold text-zinc-700 dark:text-zinc-500 border-b border-zinc-200 dark:border-zinc-700"
+                        className="px-4 py-3 text-left text-sm font-semibold text-zinc-900 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-700"
                       >
                         {processCell(header)}
                       </th>
@@ -324,11 +324,11 @@ export default function BlogPostPage({ params }: Props) {
           >
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-zinc-500 dark:bg-zinc-800">
+                <tr className="bg-zinc-100 dark:bg-zinc-800">
                   {tableData.headers.map((header, i) => (
                     <th
                       key={i}
-                      className="px-4 py-3 text-left text-sm font-semibold text-zinc-700 dark:text-zinc-500 border-b border-zinc-200 dark:border-zinc-700"
+                      className="px-4 py-3 text-left text-sm font-semibold text-zinc-900 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-700"
                     >
                       {processCell(header)}
                     </th>
@@ -371,7 +371,7 @@ export default function BlogPostPage({ params }: Props) {
           >
             {t.blog.backToBlog}
           </Link>
-          <h1 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-500">
+          <h1 className="text-2xl font-semibold mb-2 text-zinc-900 dark:text-zinc-50">
             {post.title}
           </h1>
           <div className="flex items-center gap-4 text-sm text-zinc-700 dark:text-zinc-300 mb-4">
@@ -401,12 +401,12 @@ export default function BlogPostPage({ params }: Props) {
           </div>
         </div>
 
-        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-800 dark:bg-zinc-400 p-4 text-sm text-zinc-300 dark:text-zinc-800">
+        <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 p-4 text-sm text-zinc-800 dark:text-zinc-300">
           <p>{t.blog.postDisclaimer}</p>
         </div>
 
         <div className="border-t border-zinc-300 dark:border-zinc-700 pt-6">
-          <h3 className="text-lg font-semibold mb-3 text-zinc-900 dark:text-zinc-500">
+          <h3 className="text-lg font-semibold mb-3 text-zinc-900 dark:text-zinc-50">
             {t.blog.aboutAuthor}
           </h3>
           <p className="text-sm text-zinc-700 dark:text-zinc-300">

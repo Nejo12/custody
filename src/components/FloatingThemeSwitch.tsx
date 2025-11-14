@@ -1,24 +1,42 @@
 "use client";
-import { useEffect } from "react";
-import { useAppStore } from "@/store/app";
+
+import { useTheme } from "next-themes";
+import { useState, useLayoutEffect, type JSX } from "react";
 import { useI18n } from "@/i18n";
 
+/**
+ * FloatingThemeSwitch Component
+ *
+ * A floating action button (FAB) that toggles between light, dark, and system themes.
+ * Positioned fixed on the page for easy access from anywhere.
+ * Displays an appropriate icon based on the current theme setting.
+ *
+ * Theme cycle: light → dark → system → light
+ *
+ * Features:
+ * - Fixed positioning with responsive placement (bottom on mobile, top on desktop)
+ * - Visual icons for each theme state (sun, moon, computer)
+ * - Backdrop blur and semi-transparent background
+ * - Accessible labels and screen reader support
+ * - Smooth transitions and hover effects
+ * - Properly handles mounted state to prevent hydration errors
+ */
 export default function FloatingThemeSwitch() {
-  const { theme, setTheme, resolvedTheme, updateResolvedTheme } = useAppStore();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const { t } = useI18n();
+  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    updateResolvedTheme();
+  // Prevent hydration mismatch by only rendering after mount
+  // This is intentional to prevent hydration mismatches with next-themes
+  useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
 
-    if (theme === "system") {
-      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      const handleChange = () => updateResolvedTheme();
-      mediaQuery.addEventListener("change", handleChange);
-      return () => mediaQuery.removeEventListener("change", handleChange);
-    }
-  }, [theme, updateResolvedTheme]);
-
-  const toggleTheme = () => {
+  /**
+   * Toggles through theme options in order: light → dark → system → light
+   */
+  const toggleTheme = (): void => {
     if (theme === "light") {
       setTheme("dark");
     } else if (theme === "dark") {
@@ -28,10 +46,22 @@ export default function FloatingThemeSwitch() {
     }
   };
 
-  const getIcon = () => {
+  /**
+   * Returns the appropriate icon based on current theme setting
+   * - System: Computer/monitor icon
+   * - Dark: Moon icon
+   * - Light: Sun icon
+   */
+  const getIcon = (): JSX.Element => {
     if (theme === "system") {
       return (
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -43,7 +73,13 @@ export default function FloatingThemeSwitch() {
     }
     if (resolvedTheme === "dark") {
       return (
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -54,7 +90,13 @@ export default function FloatingThemeSwitch() {
       );
     }
     return (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg
+        className="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -65,10 +107,27 @@ export default function FloatingThemeSwitch() {
     );
   };
 
-  const getLabel = () => {
+  /**
+   * Returns accessible label text for the current theme
+   */
+  const getLabel = (): string => {
     if (theme === "system") return t.settings.themeSystem;
     return resolvedTheme === "dark" ? t.settings.themeDark : t.settings.themeLight;
   };
+
+  // Prevent rendering until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <button
+        className="fixed bottom-12 md:top-[4rem] right-4 z-[60] inline-flex items-center justify-center w-12 h-12 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm shadow-lg"
+        aria-label="Loading theme"
+        type="button"
+        disabled
+      >
+        <span className="sr-only">Loading theme</span>
+      </button>
+    );
+  }
 
   return (
     <button
