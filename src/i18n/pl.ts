@@ -666,6 +666,7 @@ const pl = {
     guides: "przewodniki",
     noGuidesAvailable: "Dla tego etapu nie ma jeszcze dostępnych przewodników.",
     checkBackSoon: "Sprawdź wkrótce, dodajemy więcej treści!",
+    requiredDocuments: "Wymagane dokumenty",
     getPersonalizedPlanDescription:
       "Odpowiedz na kilka pytań, aby uzyskać spersonalizowaną listę kontrolną",
     interactiveChecklist: "Interaktywna Lista Kontrolna",
@@ -713,6 +714,7 @@ const pl = {
         "Twój postęp jest automatycznie zapisywany w przeglądarce. Będzie utrzymywał się między sesjami, więc możesz wrócić w dowolnym momencie, aby kontynuować od miejsca, w którym skończyłeś.",
       instructions:
         "Kliknij dowolny element, aby oznaczyć go jako ukończony lub nieukończony. Użyj filtrów, aby skupić się na określonych etapach lub ukryć ukończone zadania.",
+      learnMore: "Dowiedz się więcej",
     },
     personalizedTool: {
       title: "Uzyskaj Spersonalizowany Plan Działania",
@@ -768,12 +770,20 @@ const pl = {
       },
       results: {
         title: "Twój Spersonalizowany Plan Działania",
+        description: "Na podstawie Twojej sytuacji, oto Twój spersonalizowany plan działania",
         priorityTasks: "Zadania Priorytetowe",
         recommendedGuides: "Zalecane Przewodniki",
         localResources: "Lokalne Zasoby",
         nextSteps: "Następne Kroki",
         timeline: "Sugerowany Harmonogram",
         downloadPDF: "Pobierz jako PDF",
+        startOver: "Zacznij od nowa",
+        viewFullChecklist: "Zobacz Pełną Listę",
+        generatingPlan: "Generowanie Twojego spersonalizowanego planu...",
+        loadingInterview: "Ładowanie wywiadu...",
+        time: "Czas",
+        location: "Lokalizacja",
+        cost: "Koszt",
         emailPlan: "Wyślij ten Plan E-mailem",
       },
     },

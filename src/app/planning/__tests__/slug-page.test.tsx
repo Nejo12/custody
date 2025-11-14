@@ -42,7 +42,7 @@ describe("Planning Guide Detail Page", () => {
 
     // Verify required documents rendering
     expect(fileContent).toMatch(/guide\.requiredDocuments/);
-    expect(fileContent).toMatch(/📄 Required Documents/);
+    expect(fileContent).toMatch(/requiredDocuments/);
   });
 
   it("should have urgency badge with proper colors", () => {

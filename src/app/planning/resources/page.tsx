@@ -4,6 +4,7 @@ import { useI18n } from "@/i18n";
 import { useState, useEffect } from "react";
 import planningDataEn from "@/data/planning.json";
 import type { CityResource } from "@/types/planning";
+import { trackEvent } from "@/components/Analytics";
 
 /**
  * Lazy load locale-specific planning data
@@ -11,13 +12,20 @@ import type { CityResource } from "@/types/planning";
  * Falls back to English if translation unavailable
  */
 const loadPlanning = async (locale: string) => {
-  // Only load German for now, other languages fall back to English
-  // TODO: Add other language files as they become available
   if (locale === "de") {
     try {
       return (await import("@/data/planning.de.json")).default;
     } catch {
       console.warn("German planning data not found, falling back to English");
+      return planningDataEn;
+    }
+  }
+
+  if (locale === "ar") {
+    try {
+      return (await import("@/data/planning.ar.json")).default;
+    } catch {
+      console.warn("Arabic planning data not found, falling back to English");
       return planningDataEn;
     }
   }
@@ -58,6 +66,33 @@ export default function ResourcesPage() {
 
     return resource.city.toLowerCase().includes(query) || resource.postcode.includes(query);
   });
+
+  /**
+   * Track search analytics when search query changes
+   */
+  useEffect(() => {
+    if (searchQuery.trim()) {
+      const debounceTimer = setTimeout(() => {
+        trackEvent("planning_resource_searched", {
+          query: searchQuery.trim(),
+          resultsCount: filteredResources.length,
+          locale,
+        });
+      }, 1000); // Debounce for 1 second
+
+      return () => clearTimeout(debounceTimer);
+    }
+  }, [searchQuery, filteredResources.length, locale]);
+
+  /**
+   * Track page view on mount
+   */
+  useEffect(() => {
+    trackEvent("planning_resources_page_viewed", {
+      locale,
+      totalCities: cityResources.length,
+    });
+  }, [locale, cityResources.length]);
 
   return (
     <div className="w-full max-w-3xl mx-auto px-4 py-6 space-y-6">

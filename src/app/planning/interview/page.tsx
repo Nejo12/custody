@@ -5,32 +5,64 @@
  * Personalized checklist generator based on user situation
  */
 
-import { useState } from "react";
+import { useState, useEffect, Suspense, lazy } from "react";
 import { useI18n } from "@/i18n";
 import Link from "next/link";
-import InterviewForm from "@/components/planning/InterviewForm";
 import { generatePersonalizedChecklist } from "@/lib/checklist-generator";
 import { downloadChecklistPDF } from "@/components/planning/ChecklistPDF";
 import type { UserSituation, PersonalizedChecklist } from "@/types/planning";
+import { trackEvent } from "@/components/Analytics";
+
+// Lazy load heavy components
+const InterviewForm = lazy(() => import("@/components/planning/InterviewForm"));
 
 /**
  * Interview page for generating personalized planning checklist
  */
 export default function PlanningInterviewPage() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [checklist, setChecklist] = useState<PersonalizedChecklist | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
 
   /**
+   * Track page view on mount
+   */
+  useEffect(() => {
+    trackEvent("planning_interview_page_viewed", {
+      locale,
+    });
+  }, [locale]);
+
+  /**
    * Handle interview completion
+   * Generates personalized checklist and tracks analytics
    */
   const handleInterviewComplete = (situation: UserSituation): void => {
     setIsGenerating(true);
+
+    // Track interview completion with metadata
+    trackEvent("planning_interview_started", {
+      relationshipStatus: situation.relationshipStatus,
+      childAge: situation.childAge,
+      hasPaternityCertificate: situation.hasPaternityCertificate,
+      hasJointCustody: situation.hasJointCustody,
+      relationshipStable: situation.relationshipStable,
+      locale,
+    });
+
     // Simulate async operation (in case we add async logic later)
     setTimeout(() => {
       const personalizedChecklist = generatePersonalizedChecklist(situation);
       setChecklist(personalizedChecklist);
       setIsGenerating(false);
+
+      // Track checklist generation
+      trackEvent("planning_checklist_generated", {
+        itemCount: personalizedChecklist.priorityItems.length,
+        priorityCount: personalizedChecklist.priorityItems.filter((i) => i.urgency === "critical")
+          .length,
+        locale,
+      });
     }, 100);
   };
 
@@ -64,7 +96,8 @@ export default function PlanningInterviewPage() {
         <div className="text-center">
           <h1 className="text-3xl font-bold mb-4">{t.planning.personalizedTool.results.title}</h1>
           <p className="text-gray-600 dark:text-gray-400">
-            Based on your situation, here&apos;s your personalized action plan
+            {t.planning?.personalizedTool?.results?.description ||
+              "Based on your situation, here's your personalized action plan"}
           </p>
         </div>
 
@@ -94,17 +127,22 @@ export default function PlanningInterviewPage() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                     {item.estimatedTime && (
                       <div>
-                        <strong>Time:</strong> {item.estimatedTime}
+                        <strong>{t.planning?.personalizedTool?.results?.time || "Time"}:</strong>{" "}
+                        {item.estimatedTime}
                       </div>
                     )}
                     {item.location && (
                       <div>
-                        <strong>Location:</strong> {item.location}
+                        <strong>
+                          {t.planning?.personalizedTool?.results?.location || "Location"}:
+                        </strong>{" "}
+                        {item.location}
                       </div>
                     )}
                     {item.cost && (
                       <div>
-                        <strong>Cost:</strong> {item.cost}
+                        <strong>{t.planning?.personalizedTool?.results?.cost || "Cost"}:</strong>{" "}
+                        {item.cost}
                       </div>
                     )}
                   </div>
@@ -113,7 +151,7 @@ export default function PlanningInterviewPage() {
                       href={item.helpLink}
                       className="text-blue-600 dark:text-blue-400 hover:underline mt-4 inline-block"
                     >
-                      Learn more →
+                      {t.planning?.checklist?.learnMore || "Learn more"} →
                     </Link>
                   )}
                 </div>
@@ -251,7 +289,7 @@ export default function PlanningInterviewPage() {
             href="/planning/checklist"
             className="flex-1 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg shadow-lg bg-zinc-800 dark:bg-zinc-700 text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 transition-all duration-300 text-center text-xs sm:text-sm font-medium hover:shadow-xl"
           >
-            View Full Checklist
+            {t.planning?.personalizedTool?.results?.viewFullChecklist || "View Full Checklist"}
           </Link>
           <button
             type="button"
@@ -274,7 +312,7 @@ export default function PlanningInterviewPage() {
             }}
             className="flex-1 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg shadow-lg bg-zinc-800 dark:bg-zinc-700 text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 transition-all duration-300 text-xs sm:text-sm font-medium hover:shadow-xl"
           >
-            Start Over
+            {t.planning?.personalizedTool?.results?.startOver || "Start Over"}
           </button>
         </div>
       </div>
@@ -288,7 +326,10 @@ export default function PlanningInterviewPage() {
     return (
       <div className="max-w-2xl mx-auto text-center py-12">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-        <p className="text-gray-600 dark:text-gray-400">Generating your personalized plan...</p>
+        <p className="text-gray-600 dark:text-gray-400">
+          {t.planning?.personalizedTool?.results?.generatingPlan ||
+            "Generating your personalized plan..."}
+        </p>
       </div>
     );
   }
@@ -307,8 +348,19 @@ export default function PlanningInterviewPage() {
         </p>
       </div>
 
-      {/* Interview Form */}
-      <InterviewForm onComplete={handleInterviewComplete} />
+      {/* Interview Form with lazy loading */}
+      <Suspense
+        fallback={
+          <div className="max-w-2xl mx-auto text-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-zinc-600 dark:text-zinc-400">
+              {t.planning?.personalizedTool?.results?.loadingInterview || "Loading interview..."}
+            </p>
+          </div>
+        }
+      >
+        <InterviewForm onComplete={handleInterviewComplete} />
+      </Suspense>
 
       {/* Back link */}
       <div className="text-center mt-8">

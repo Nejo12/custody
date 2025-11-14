@@ -89,18 +89,27 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
   
-  // CRITICAL: Never cache HTML pages or Next.js assets
+  // CRITICAL: Don't intercept Next.js assets at all
+  // Let the browser handle them natively to avoid ERR_FAILED errors
+  // when chunks are missing or network fails
+  // We don't cache them anyway, so no need to intercept
+  if (isNextAsset(url)) {
+    // Don't intercept - let browser handle natively
+    return;
+  }
+  
+  // CRITICAL: Never cache HTML pages
   // This prevents hydration errors when old HTML tries to hydrate with new React code
-  if (isHtml(event.request) || isNextAsset(url)) {
-    // Network-first for HTML and Next.js assets - NEVER cache
+  if (isHtml(event.request)) {
+    // Network-first for HTML - NEVER cache
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          // Don't cache HTML or Next.js assets
+          // Don't cache HTML
           return response;
         })
         .catch(() => {
-          // Only use cache as offline fallback
+          // Only use cache as offline fallback for HTML
           return caches.match(event.request);
         })
     );

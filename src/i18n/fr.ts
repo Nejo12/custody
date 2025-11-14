@@ -673,6 +673,7 @@ const fr = {
     guides: "guides",
     noGuidesAvailable: "Aucun guide disponible pour cette étape pour le moment.",
     checkBackSoon: "Revenez bientôt, nous ajoutons plus de contenu !",
+    requiredDocuments: "Documents requis",
     getPersonalizedPlanDescription:
       "Répondez à quelques questions pour obtenir votre liste de contrôle personnalisée",
     interactiveChecklist: "Liste de Contrôle Interactive",
@@ -720,6 +721,7 @@ const fr = {
         "Vos progrès sont automatiquement enregistrés dans votre navigateur. Ils persistent entre les sessions, vous pouvez donc revenir à tout moment pour continuer là où vous vous êtes arrêté.",
       instructions:
         "Cliquez sur un élément pour le marquer comme terminé ou non terminé. Utilisez les filtres pour vous concentrer sur des étapes spécifiques ou masquer les tâches terminées.",
+      learnMore: "En savoir plus",
     },
     personalizedTool: {
       title: "Obtenez votre Plan d'Action Personnalisé",
@@ -775,12 +777,20 @@ const fr = {
       },
       results: {
         title: "Votre Plan d'Action Personnalisé",
+        description: "Basé sur votre situation, voici votre plan d'action personnalisé",
         priorityTasks: "Tâches Prioritaires",
         recommendedGuides: "Guides Recommandés",
         localResources: "Ressources Locales",
         nextSteps: "Prochaines Étapes",
         timeline: "Calendrier Suggéré",
         downloadPDF: "Télécharger en PDF",
+        startOver: "Recommencer",
+        viewFullChecklist: "Voir la Liste Complète",
+        generatingPlan: "Génération de votre plan personnalisé...",
+        loadingInterview: "Chargement de l'entretien...",
+        time: "Temps",
+        location: "Lieu",
+        cost: "Coût",
         emailPlan: "Envoyer ce Plan par E-mail",
       },
     },

@@ -656,6 +656,7 @@ const tr = {
     guides: "rehberler",
     noGuidesAvailable: "Bu aşama için henüz rehber mevcut değil.",
     checkBackSoon: "Yakında tekrar kontrol edin, daha fazla içerik ekliyoruz!",
+    requiredDocuments: "Gerekli Belgeler",
     getPersonalizedPlanDescription:
       "Özelleştirilmiş kontrol listenizi almak için birkaç soru yanıtlayın",
     interactiveChecklist: "İnteraktif Kontrol Listesi",
@@ -703,6 +704,7 @@ const tr = {
         "İlerlemeniz tarayıcınızda otomatik olarak kaydedilir. Oturumlar arasında kalıcıdır, böylece kaldığınız yerden devam etmek için istediğiniz zaman geri dönebilirsiniz.",
       instructions:
         "Herhangi bir öğeyi tamamlandı veya tamamlanmadı olarak işaretlemek için üzerine tıklayın. Belirli aşamalara odaklanmak veya tamamlanan görevleri gizlemek için filtreleri kullanın.",
+      learnMore: "Daha fazla bilgi",
     },
     personalizedTool: {
       title: "Kişiselleştirilmiş Eylem Planınızı Alın",
@@ -758,12 +760,20 @@ const tr = {
       },
       results: {
         title: "Kişiselleştirilmiş Eylem Planınız",
+        description: "Durumunuza göre, işte kişiselleştirilmiş eylem planınız",
         priorityTasks: "Öncelikli Görevler",
         recommendedGuides: "Önerilen Rehberler",
         localResources: "Yerel Kaynaklar",
         nextSteps: "Sonraki Adımlar",
         timeline: "Önerilen Zaman Çizelgesi",
         downloadPDF: "PDF Olarak İndir",
+        startOver: "Yeniden Başla",
+        viewFullChecklist: "Tam Listeyi Görüntüle",
+        generatingPlan: "Kişiselleştirilmiş planınız oluşturuluyor...",
+        loadingInterview: "Görüşme yükleniyor...",
+        time: "Süre",
+        location: "Konum",
+        cost: "Maliyet",
         emailPlan: "Bu Planı E-posta ile Gönder",
       },
     },

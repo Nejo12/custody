@@ -4,6 +4,7 @@ import { useI18n } from "@/i18n";
 import { useState, useEffect } from "react";
 import planningDataEn from "@/data/planning.json";
 import type { PlanningGuide, PlanningStage } from "@/types/planning";
+import { trackEvent } from "@/components/Analytics";
 
 /**
  * Lazy load locale-specific planning data
@@ -11,13 +12,20 @@ import type { PlanningGuide, PlanningStage } from "@/types/planning";
  * Falls back to English if translation unavailable
  */
 const loadPlanning = async (locale: string) => {
-  // Only load German for now, other languages fall back to English
-  // TODO: Add other language files as they become available
   if (locale === "de") {
     try {
       return (await import("@/data/planning.de.json")).default;
     } catch {
       console.warn("German planning data not found, falling back to English");
+      return planningDataEn;
+    }
+  }
+
+  if (locale === "ar") {
+    try {
+      return (await import("@/data/planning.ar.json")).default;
+    } catch {
+      console.warn("Arabic planning data not found, falling back to English");
       return planningDataEn;
     }
   }
@@ -31,9 +39,18 @@ export default function PlanningPage() {
   const [planningData, setPlanningData] = useState(planningDataEn);
   const [selectedStage, setSelectedStage] = useState<PlanningStage | "all">("all");
 
+  // Load locale-specific planning data
   useEffect(() => {
     loadPlanning(locale).then((data) => setPlanningData(data));
   }, [locale]);
+
+  // Track page view on mount
+  useEffect(() => {
+    trackEvent("planning_page_viewed", {
+      locale,
+      stage: selectedStage,
+    });
+  }, [locale, selectedStage]);
 
   const guides = planningData.guides as PlanningGuide[];
 
