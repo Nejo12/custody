@@ -47,6 +47,8 @@ export interface ChecklistItem {
   location?: string; // Where to do this (e.g., "Standesamt", "Jugendamt", "Online")
   cost?: string; // If there's a cost (e.g., "Free", "€25-50")
   helpLink?: string; // Link to guide or resource
+  deadline?: string; // ISO date string for deadline (e.g., calculated based on stage or user situation)
+  deadlineDaysAfter?: number; // Days after a reference date (e.g., birth date) when this becomes due
 }
 
 /**

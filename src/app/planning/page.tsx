@@ -262,7 +262,20 @@ export default function PlanningPage() {
       </div>
 
       {/* Additional CTAs */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-3 gap-4">
+        <Link
+          href="/planning/interview"
+          className="block p-5 rounded-lg border-2 border-blue-500 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-all group"
+        >
+          <div className="text-2xl mb-2">🎯</div>
+          <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+            Get Personalized Plan
+          </h3>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            Answer a few questions to get your customized checklist
+          </p>
+        </Link>
+
         <Link
           href="/planning/checklist"
           className="block p-5 rounded-lg border-2 border-zinc-300 dark:border-zinc-700 hover:border-blue-500 dark:hover:border-blue-500 bg-white dark:bg-zinc-800 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all group"
