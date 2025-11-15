@@ -12,7 +12,7 @@ const fr = {
   },
   home: {
     tagline: "Connaissez vos droits de garde et de contact.",
-    heroTitle: "Comprenez vos droits de garde en 6 minutes",
+    heroTitle: "Connaissez vos droits de garde et de contact en 6 minutes",
     heroSubtitle: "Entretien guidé gratuit avec résultats juridiques instantanés et citations BGB",
     check: "Vérifier ma situation",
     checkDescription:

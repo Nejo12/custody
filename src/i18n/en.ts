@@ -12,7 +12,7 @@ const en = {
   },
   home: {
     tagline: "Know your custody and contact rights.",
-    heroTitle: "Understand Your Custody Rights in 6 Minutes",
+    heroTitle: "Know Your Custody & Contact Rights in 6 Minutes",
     heroSubtitle: "Free guided interview with instant legal results and BGB citations",
     check: "Check My Situation",
     checkDescription: "Answer simple questions about your situation and get instant results",

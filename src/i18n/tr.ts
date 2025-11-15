@@ -12,7 +12,7 @@ const tr = {
   },
   home: {
     tagline: "Vesayet ve iletişim haklarınızı öğrenin.",
-    heroTitle: "6 Dakikada Vesayet Haklarınızı Anlayın",
+    heroTitle: "6 Dakikada Vesayet ve İletişim Haklarınızı Öğrenin",
     heroSubtitle: "Anında yasal sonuçlar ve BGB alıntıları ile ücretsiz rehberli görüşme",
     check: "Durumumu kontrol et",
     checkDescription: "Durumunuz hakkında basit soruları yanıtlayın ve anında sonuçlar alın",

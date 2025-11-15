@@ -65,7 +65,7 @@ describe("HomeClient", () => {
       t: {
         home: {
           tagline: "Know your custody rights",
-          heroTitle: "Understand Your Custody Rights in 6 Minutes",
+          heroTitle: "Know Your Custody & Contact Rights in 6 Minutes",
           heroSubtitle: "Free guided interview with instant legal results and BGB citations",
           subline: "Takes 6 minutes. No signup.",
           features: "WCAG AA · Privacy‑first · Offline‑ready",
@@ -85,7 +85,7 @@ describe("HomeClient", () => {
 
   it("renders hero title", () => {
     render(<HomeClient />);
-    expect(screen.getByText("Understand Your Custody Rights in 6 Minutes")).toBeInTheDocument();
+    expect(screen.getByText("Know Your Custody & Contact Rights in 6 Minutes")).toBeInTheDocument();
   });
 
   it("renders hero subtitle", () => {

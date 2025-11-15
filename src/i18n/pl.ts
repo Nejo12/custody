@@ -12,7 +12,7 @@ const pl = {
   },
   home: {
     tagline: "Poznaj swoje prawa dotyczące opieki i kontaktu.",
-    heroTitle: "Zrozum swoje prawa do opieki w 6 minut",
+    heroTitle: "Poznaj swoje prawa dotyczące opieki i kontaktu w 6 minut",
     heroSubtitle: "Darmowy przewodnik z natychmiastowymi wynikami prawnymi i cytatami z BGB",
     check: "Sprawdź moją sytuację",
     checkDescription:

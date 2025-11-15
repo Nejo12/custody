@@ -12,7 +12,7 @@ const de = {
   },
   home: {
     tagline: "Kenne deine Sorge- und Umgangsrechte.",
-    heroTitle: "Verstehe deine Sorgerechte in 6 Minuten",
+    heroTitle: "Kenne deine Sorge- und Umgangsrechte in 6 Minuten",
     heroSubtitle:
       "Kostenloses geführtes Interview mit sofortigen rechtlichen Ergebnissen und BGB-Zitaten",
     check: "Meine Situation prüfen",
