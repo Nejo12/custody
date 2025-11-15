@@ -22,7 +22,8 @@ export default function HomeClient() {
             {t.home?.heroTitle || "Understand Your Custody Rights in 6 Minutes"}
           </h1>
           <p className="text-base text-zinc-700 dark:text-zinc-400 max-w-lg mx-auto">
-            {t.home?.heroSubtitle || "Free guided interview with instant legal results and BGB citations"}
+            {t.home?.heroSubtitle ||
+              "Free guided interview with instant legal results and BGB citations"}
           </p>
           <div className="flex flex-wrap justify-center items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400">
             <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800">
@@ -105,7 +106,8 @@ export default function HomeClient() {
                   {t.home.learn}
                 </div>
                 <div className="text-xs text-zinc-600 dark:text-zinc-400 mt-0.5">
-                  {t.home?.learnDescription || "Access legal guides and official resources to understand your rights"}
+                  {t.home?.learnDescription ||
+                    "Access legal guides and official resources to understand your rights"}
                 </div>
               </div>
             </div>
@@ -142,7 +144,8 @@ export default function HomeClient() {
                   {t.home.support}
                 </div>
                 <div className="text-xs text-zinc-600 dark:text-zinc-400 mt-0.5">
-                  {t.home?.supportDescription || "Find local Jugendamt, courts, and support services near you"}
+                  {t.home?.supportDescription ||
+                    "Find local Jugendamt, courts, and support services near you"}
                 </div>
               </div>
             </div>

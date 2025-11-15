@@ -12,12 +12,51 @@ const pl = {
   },
   home: {
     tagline: "Poznaj swoje prawa dotyczące opieki i kontaktu.",
+    heroTitle: "Zrozum swoje prawa do opieki w 6 minut",
+    heroSubtitle: "Darmowy przewodnik z natychmiastowymi wynikami prawnymi i cytatami z BGB",
     check: "Sprawdź moją sytuację",
+    checkDescription:
+      "Odpowiedz na proste pytania dotyczące swojej sytuacji i uzyskaj natychmiastowe wyniki",
     learn: "Poznaj prawo",
+    learnDescription:
+      "Dostęp do przewodników prawnych i oficjalnych zasobów, aby zrozumieć swoje prawa",
     support: "Znajdź wsparcie",
+    supportDescription: "Znajdź lokalne urzędy Jugendamt, sądy i usługi wsparcia w pobliżu",
     subline: "Zajmuje 6 minut. Bez rejestracji.",
     disclaimer: "Tylko informacja. Nie jest to indywidualna porada prawna.",
     features: "WCAG AA · Prywatność przede wszystkim · Gotowe do pracy offline",
+    howItWorksTitle: "Jak to działa",
+    howItWorksStep1Title: "Odpowiedz na pytania",
+    howItWorksStep1Description: "Odpowiedz na proste pytania dotyczące swojej sytuacji",
+    howItWorksStep2Title: "Uzyskaj wyniki",
+    howItWorksStep2Description: "Uzyskaj natychmiastowe wyniki z cytatami prawnymi z BGB",
+    howItWorksStep3Title: "Pobierz PDF",
+    howItWorksStep3Description: "Pobierz swój spersonalizowany dokument PDF",
+    howItWorksStep4Title: "Podejmij działanie",
+    howItWorksStep4Description: "Działaj świadomie i z pewnością siebie",
+    featuresTitle: "Dlaczego wybrać Custody Clarity",
+    feature6MinutesTitle: "6-minutowy wywiad",
+    feature6MinutesDescription: "Szybkie i proste pytania, aby zrozumieć swoją sytuację",
+    featureLegalCitationsTitle: "Cytaty prawne",
+    featureLegalCitationsDescription:
+      "Wszystkie wyniki zawierają cytaty z prawa niemieckiego (BGB)",
+    featurePrivacyFirstTitle: "Prywatność przede wszystkim",
+    featurePrivacyFirstDescription:
+      "Twoje dane pozostają na Twoim urządzeniu. Brak śledzenia, brak potrzeby rejestracji",
+    featureOfflineReadyTitle: "Gotowe do pracy offline",
+    featureOfflineReadyDescription: "Działa bez połączenia internetowego po załadowaniu",
+    feature7LanguagesTitle: "7 języków",
+    feature7LanguagesDescription:
+      "Dostępne w języku angielskim, niemieckim, arabskim, polskim, francuskim, tureckim i rosyjskim",
+    featureWcagAATitle: "Zgodne z WCAG AA",
+    featureWcagAADescription:
+      "Dostępne dla wszystkich, spełnia międzynarodowe standardy dostępności",
+    trustIndicators: {
+      legalCitations: "Cytaty prawne z BGB",
+      noSignup: "Brak potrzeby rejestracji",
+      privacyFirst: "Prywatność przede wszystkim",
+      free: "Bezpłatne w użyciu",
+    },
   },
   footer: {
     planning: "Planowanie",

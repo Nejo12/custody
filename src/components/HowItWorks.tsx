@@ -11,7 +11,8 @@ export default function HowItWorks() {
   const steps = [
     {
       title: t.home?.howItWorksStep1Title || "Answer Questions",
-      description: t.home?.howItWorksStep1Description || "Answer simple questions about your situation",
+      description:
+        t.home?.howItWorksStep1Description || "Answer simple questions about your situation",
       icon: (
         <svg
           className="w-6 h-6"
@@ -31,7 +32,8 @@ export default function HowItWorks() {
     },
     {
       title: t.home?.howItWorksStep2Title || "Get Results",
-      description: t.home?.howItWorksStep2Description || "Get instant results with legal citations from BGB",
+      description:
+        t.home?.howItWorksStep2Description || "Get instant results with legal citations from BGB",
       icon: (
         <svg
           className="w-6 h-6"

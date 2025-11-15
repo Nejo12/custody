@@ -11,7 +11,9 @@ export default function FeatureGrid() {
   const features = [
     {
       title: t.home?.feature6MinutesTitle || "6-Minute Interview",
-      description: t.home?.feature6MinutesDescription || "Quick and straightforward questions to understand your situation",
+      description:
+        t.home?.feature6MinutesDescription ||
+        "Quick and straightforward questions to understand your situation",
       icon: (
         <svg
           className="w-5 h-5"
@@ -31,7 +33,9 @@ export default function FeatureGrid() {
     },
     {
       title: t.home?.featureLegalCitationsTitle || "Legal Citations",
-      description: t.home?.featureLegalCitationsDescription || "All results include citations from German law (BGB)",
+      description:
+        t.home?.featureLegalCitationsDescription ||
+        "All results include citations from German law (BGB)",
       icon: (
         <svg
           className="w-5 h-5"
@@ -51,7 +55,9 @@ export default function FeatureGrid() {
     },
     {
       title: t.home?.featurePrivacyFirstTitle || "Privacy-First",
-      description: t.home?.featurePrivacyFirstDescription || "Your data stays on your device. No tracking, no signup required",
+      description:
+        t.home?.featurePrivacyFirstDescription ||
+        "Your data stays on your device. No tracking, no signup required",
       icon: (
         <svg
           className="w-5 h-5"
@@ -71,7 +77,8 @@ export default function FeatureGrid() {
     },
     {
       title: t.home?.featureOfflineReadyTitle || "Offline-Ready",
-      description: t.home?.featureOfflineReadyDescription || "Works without internet connection once loaded",
+      description:
+        t.home?.featureOfflineReadyDescription || "Works without internet connection once loaded",
       icon: (
         <svg
           className="w-5 h-5"
@@ -91,7 +98,9 @@ export default function FeatureGrid() {
     },
     {
       title: t.home?.feature7LanguagesTitle || "7 Languages",
-      description: t.home?.feature7LanguagesDescription || "Available in English, German, Arabic, Polish, French, Turkish, and Russian",
+      description:
+        t.home?.feature7LanguagesDescription ||
+        "Available in English, German, Arabic, Polish, French, Turkish, and Russian",
       icon: (
         <svg
           className="w-5 h-5"
@@ -111,7 +120,9 @@ export default function FeatureGrid() {
     },
     {
       title: t.home?.featureWcagAATitle || "WCAG AA Compliant",
-      description: t.home?.featureWcagAADescription || "Accessible to everyone, meeting international accessibility standards",
+      description:
+        t.home?.featureWcagAADescription ||
+        "Accessible to everyone, meeting international accessibility standards",
       icon: (
         <svg
           className="w-5 h-5"
