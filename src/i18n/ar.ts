@@ -22,7 +22,7 @@ const ar = {
     supportDescription: "ابحث عن مكاتب Jugendamt والمحاكم وخدمات الدعم المحلية بالقرب منك",
     planning: "التخطيط والوقاية",
     planningDescription: "احمِ حقوقك الأبوية قبل ظهور المشاكل",
-    latestStoriesTitle: "أحدث القصص",
+    latestStoriesTitle: "أحدث المدونات",
     subline: "يستغرق 6 دقائق. لا تسجيل.",
     disclaimer: "معلومات فقط. ليست نصيحة قانونية فردية.",
     features: "WCAG AA · الخصوصية أولاً · جاهز للعمل دون اتصال",

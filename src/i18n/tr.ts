@@ -23,7 +23,7 @@ const tr = {
       "Yakınınızdaki yerel Jugendamt ofisleri, mahkemeler ve destek hizmetlerini bulun",
     planning: "Planlama ve Önleme",
     planningDescription: "Sorunlar ortaya çıkmadan önce ebeveyn haklarınızı koruyun",
-    latestStoriesTitle: "Son Hikayeler",
+    latestStoriesTitle: "Son Bloglar",
     subline: "6 dakika sürer. Kayıt yok.",
     disclaimer: "Yalnızca bilgi. Bireysel hukuki tavsiye değildir.",
     features: "WCAG AA · Gizlilik öncelikli · Çevrimdışı hazır",

@@ -24,7 +24,7 @@ const pl = {
     supportDescription: "Znajdź lokalne urzędy Jugendamt, sądy i usługi wsparcia w pobliżu",
     planning: "Planowanie i Zapobieganie",
     planningDescription: "Chroń swoje prawa rodzicielskie, zanim pojawią się problemy",
-    latestStoriesTitle: "Najnowsze Historie",
+    latestStoriesTitle: "Najnowsze Blogi",
     subline: "Zajmuje 6 minut. Bez rejestracji.",
     disclaimer: "Tylko informacja. Nie jest to indywidualna porada prawna.",
     features: "WCAG AA · Prywatność przede wszystkim · Gotowe do pracy offline",

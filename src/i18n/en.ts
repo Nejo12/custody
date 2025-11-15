@@ -22,7 +22,7 @@ const en = {
     supportDescription: "Find local Jugendamt, courts, and support services near you",
     planning: "Planning & Prevention",
     planningDescription: "Protect your parental rights before problems arise",
-    latestStoriesTitle: "Latest Stories",
+    latestStoriesTitle: "Latest Blogs",
     subline: "Takes 6 minutes. No signup.",
     disclaimer: "Information only. Not individualized legal advice.",
     features: "WCAG AA · Privacy‑first · Offline‑ready",

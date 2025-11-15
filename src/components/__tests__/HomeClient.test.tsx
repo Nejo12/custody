@@ -77,7 +77,7 @@ describe("HomeClient", () => {
           supportDescription: "Find local Jugendamt, courts, and support services near you",
           planning: "Planning & Prevention",
           planningDescription: "Protect your parental rights before problems arise",
-          latestStoriesTitle: "Latest Stories",
+          latestStoriesTitle: "Latest Blogs",
         },
       },
     });
@@ -162,9 +162,9 @@ describe("HomeClient", () => {
     expect(screen.getByTestId("newsletter-signup")).toBeInTheDocument();
   });
 
-  it("renders Latest Stories section with 2 most recent posts", () => {
+  it("renders Latest Blogs section with 2 most recent posts", () => {
     render(<HomeClient />);
-    expect(screen.getByText("Latest Stories")).toBeInTheDocument();
+    expect(screen.getByText("Latest Blogs")).toBeInTheDocument();
     expect(screen.getByText("Recent Post 1")).toBeInTheDocument();
     expect(screen.getByText("Recent Post 2")).toBeInTheDocument();
     expect(screen.queryByText("Older Post")).not.toBeInTheDocument();
