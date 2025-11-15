@@ -6,6 +6,17 @@ import NewsletterSignup from "@/components/NewsletterSignup";
 import HowItWorks from "@/components/HowItWorks";
 import FeatureGrid from "@/components/FeatureGrid";
 import TrustIndicators from "@/components/TrustIndicators";
+import blogData from "@/data/blog.json";
+
+/**
+ * Type definition for blog post structure
+ */
+type BlogPost = {
+  slug: string;
+  title: string;
+  readTime: string;
+  published: string;
+};
 
 /**
  * HomeClient Component
@@ -13,6 +24,11 @@ import TrustIndicators from "@/components/TrustIndicators";
  */
 export default function HomeClient() {
   const { t } = useI18n();
+
+  // Get 2 most recent blog posts sorted by published date (descending)
+  const recentPosts = (blogData.posts as BlogPost[])
+    .sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime())
+    .slice(0, 2);
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-10 space-y-12">
       {/* Enhanced Hero Section */}
@@ -150,6 +166,38 @@ export default function HomeClient() {
               </div>
             </div>
           </Link>
+          <Link
+            href="/planning"
+            className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
+                <svg
+                  className="w-4 h-4 text-zinc-700 dark:text-zinc-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-sm font-medium text-zinc-900 dark:text-zinc-50">
+                  {t.home?.planning || "Planning & Prevention"}
+                </div>
+                <div className="text-xs text-zinc-600 dark:text-zinc-400 mt-0.5">
+                  {t.home?.planningDescription ||
+                    "Protect your parental rights before problems arise"}
+                </div>
+              </div>
+            </div>
+          </Link>
         </div>
       </FadeIn>
 
@@ -159,6 +207,36 @@ export default function HomeClient() {
           <NewsletterSignup variant="default" />
         </div>
       </FadeIn>
+
+      {/* Latest Stories Section */}
+      {recentPosts.length > 0 && (
+        <FadeIn delay={0.35}>
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold text-center text-zinc-900 dark:text-zinc-50">
+              {t.home?.latestStoriesTitle || "Latest Stories"}
+            </h2>
+            <ul className="space-y-2">
+              {recentPosts.map((post) => (
+                <li key={post.slug}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="block rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-sm font-medium text-zinc-900 dark:text-zinc-50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                        {post.title}
+                      </span>
+                      <span className="text-xs text-zinc-600 dark:text-zinc-400 flex-shrink-0">
+                        {post.readTime}
+                      </span>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </FadeIn>
+      )}
     </div>
   );
 }

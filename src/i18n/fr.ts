@@ -23,6 +23,9 @@ const fr = {
     support: "Trouver du soutien",
     supportDescription:
       "Trouvez les bureaux Jugendamt locaux, les tribunaux et les services de soutien près de chez vous",
+    planning: "Planification et Prévention",
+    planningDescription: "Protégez vos droits parentaux avant que les problèmes n'apparaissent",
+    latestStoriesTitle: "Dernières Histoires",
     subline: "Prend 6 minutes. Pas d'inscription.",
     disclaimer: "Information uniquement. Pas de conseil juridique individualisé.",
     features: "WCAG AA · Confidentialité d'abord · Prêt hors ligne",

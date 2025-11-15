@@ -24,6 +24,9 @@ const de = {
     support: "Hilfe finden",
     supportDescription:
       "Finde lokale Jugendämter, Gerichte und Unterstützungsdienste in deiner Nähe",
+    planning: "Planung & Prävention",
+    planningDescription: "Schütze deine elterlichen Rechte, bevor Probleme entstehen",
+    latestStoriesTitle: "Neueste Geschichten",
     subline: "Dauert 6 Minuten. Keine Anmeldung.",
     disclaimer: "Nur Information – keine individuelle Rechtsberatung.",
     features: "WCAG AA · Datenschutzorientiert · Offlinefähig",

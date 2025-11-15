@@ -33,6 +33,31 @@ vi.mock("../NewsletterSignup", () => ({
   default: () => <div data-testid="newsletter-signup">Newsletter Signup</div>,
 }));
 
+vi.mock("@/data/blog.json", () => ({
+  default: {
+    posts: [
+      {
+        slug: "post-1",
+        title: "Recent Post 1",
+        readTime: "5 min read",
+        published: "2025-01-15",
+      },
+      {
+        slug: "post-2",
+        title: "Recent Post 2",
+        readTime: "8 min read",
+        published: "2025-01-10",
+      },
+      {
+        slug: "post-3",
+        title: "Older Post",
+        readTime: "10 min read",
+        published: "2025-01-01",
+      },
+    ],
+  },
+}));
+
 describe("HomeClient", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -50,6 +75,9 @@ describe("HomeClient", () => {
           learnDescription: "Access legal guides and official resources to understand your rights",
           support: "Find Support",
           supportDescription: "Find local Jugendamt, courts, and support services near you",
+          planning: "Planning & Prevention",
+          planningDescription: "Protect your parental rights before problems arise",
+          latestStoriesTitle: "Latest Stories",
         },
       },
     });
@@ -104,6 +132,16 @@ describe("HomeClient", () => {
     ).toBeInTheDocument();
   });
 
+  it("renders planning link with description", () => {
+    render(<HomeClient />);
+    const link = screen.getByText("Planning & Prevention");
+    expect(link).toBeInTheDocument();
+    expect(link.closest("a")).toHaveAttribute("href", "/planning");
+    expect(
+      screen.getByText("Protect your parental rights before problems arise")
+    ).toBeInTheDocument();
+  });
+
   it("renders HowItWorks component", () => {
     render(<HomeClient />);
     expect(screen.getByTestId("how-it-works")).toBeInTheDocument();
@@ -122,6 +160,28 @@ describe("HomeClient", () => {
   it("renders NewsletterSignup component", () => {
     render(<HomeClient />);
     expect(screen.getByTestId("newsletter-signup")).toBeInTheDocument();
+  });
+
+  it("renders Latest Stories section with 2 most recent posts", () => {
+    render(<HomeClient />);
+    expect(screen.getByText("Latest Stories")).toBeInTheDocument();
+    expect(screen.getByText("Recent Post 1")).toBeInTheDocument();
+    expect(screen.getByText("Recent Post 2")).toBeInTheDocument();
+    expect(screen.queryByText("Older Post")).not.toBeInTheDocument();
+  });
+
+  it("renders blog post links with correct hrefs", () => {
+    render(<HomeClient />);
+    const post1Link = screen.getByText("Recent Post 1").closest("a");
+    const post2Link = screen.getByText("Recent Post 2").closest("a");
+    expect(post1Link).toHaveAttribute("href", "/blog/post-1");
+    expect(post2Link).toHaveAttribute("href", "/blog/post-2");
+  });
+
+  it("renders blog post read times", () => {
+    render(<HomeClient />);
+    expect(screen.getByText("5 min read")).toBeInTheDocument();
+    expect(screen.getByText("8 min read")).toBeInTheDocument();
   });
 
   it("handles missing optional fields", () => {
