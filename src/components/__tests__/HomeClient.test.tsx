@@ -17,6 +17,22 @@ vi.mock("../FadeIn", () => ({
   default: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
 
+vi.mock("../HowItWorks", () => ({
+  default: () => <div data-testid="how-it-works">How It Works</div>,
+}));
+
+vi.mock("../FeatureGrid", () => ({
+  default: () => <div data-testid="feature-grid">Feature Grid</div>,
+}));
+
+vi.mock("../TrustIndicators", () => ({
+  default: () => <div data-testid="trust-indicators">Trust Indicators</div>,
+}));
+
+vi.mock("../NewsletterSignup", () => ({
+  default: () => <div data-testid="newsletter-signup">Newsletter Signup</div>,
+}));
+
 describe("HomeClient", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -24,19 +40,31 @@ describe("HomeClient", () => {
       t: {
         home: {
           tagline: "Know your custody rights",
+          heroTitle: "Understand Your Custody Rights in 6 Minutes",
+          heroSubtitle: "Free guided interview with instant legal results and BGB citations",
           subline: "Takes 6 minutes. No signup.",
           features: "WCAG AA · Privacy‑first · Offline‑ready",
-          check: "Check your rights",
-          learn: "Learn more",
-          support: "Find support",
+          check: "Check My Situation",
+          checkDescription: "Answer simple questions about your situation and get instant results",
+          learn: "Learn the Law",
+          learnDescription: "Access legal guides and official resources to understand your rights",
+          support: "Find Support",
+          supportDescription: "Find local Jugendamt, courts, and support services near you",
         },
       },
     });
   });
 
-  it("renders tagline", () => {
+  it("renders hero title", () => {
     render(<HomeClient />);
-    expect(screen.getByText("Know your custody rights")).toBeInTheDocument();
+    expect(screen.getByText("Understand Your Custody Rights in 6 Minutes")).toBeInTheDocument();
+  });
+
+  it("renders hero subtitle", () => {
+    render(<HomeClient />);
+    expect(
+      screen.getByText("Free guided interview with instant legal results and BGB citations")
+    ).toBeInTheDocument();
   });
 
   it("renders subline", () => {
@@ -49,36 +77,64 @@ describe("HomeClient", () => {
     expect(screen.getByText("WCAG AA · Privacy‑first · Offline‑ready")).toBeInTheDocument();
   });
 
-  it("renders check link", () => {
+  it("renders primary CTA link", () => {
     render(<HomeClient />);
-    const link = screen.getByText("Check your rights");
+    const link = screen.getByText("Check My Situation");
     expect(link).toBeInTheDocument();
     expect(link.closest("a")).toHaveAttribute("href", "/interview");
   });
 
-  it("renders learn link", () => {
+  it("renders learn link with description", () => {
     render(<HomeClient />);
-    const link = screen.getByText("Learn more");
+    const link = screen.getByText("Learn the Law");
     expect(link).toBeInTheDocument();
     expect(link.closest("a")).toHaveAttribute("href", "/learn");
+    expect(
+      screen.getByText("Access legal guides and official resources to understand your rights")
+    ).toBeInTheDocument();
   });
 
-  it("renders support link", () => {
+  it("renders support link with description", () => {
     render(<HomeClient />);
-    const link = screen.getByText("Find support");
+    const link = screen.getByText("Find Support");
     expect(link).toBeInTheDocument();
     expect(link.closest("a")).toHaveAttribute("href", "/directory");
+    expect(
+      screen.getByText("Find local Jugendamt, courts, and support services near you")
+    ).toBeInTheDocument();
+  });
+
+  it("renders HowItWorks component", () => {
+    render(<HomeClient />);
+    expect(screen.getByTestId("how-it-works")).toBeInTheDocument();
+  });
+
+  it("renders FeatureGrid component", () => {
+    render(<HomeClient />);
+    expect(screen.getByTestId("feature-grid")).toBeInTheDocument();
+  });
+
+  it("renders TrustIndicators component", () => {
+    render(<HomeClient />);
+    expect(screen.getByTestId("trust-indicators")).toBeInTheDocument();
+  });
+
+  it("renders NewsletterSignup component", () => {
+    render(<HomeClient />);
+    expect(screen.getByTestId("newsletter-signup")).toBeInTheDocument();
   });
 
   it("handles missing optional fields", () => {
     (useI18n as ReturnType<typeof vi.fn>).mockReturnValue({
       t: {
         home: {
-          tagline: "Test",
+          heroTitle: "Test Title",
+          heroSubtitle: "Test Subtitle",
+          check: "Check",
         },
       },
     });
     render(<HomeClient />);
-    expect(screen.getByText("Test")).toBeInTheDocument();
+    expect(screen.getByText("Test Title")).toBeInTheDocument();
   });
 });

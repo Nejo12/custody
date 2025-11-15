@@ -150,11 +150,12 @@ describe("I18nProvider", () => {
     await user.click(switchButton);
 
     // Wait for dictionary to load and useEffect to run
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0));
-    });
-
-    expect(document.title).toBe("ElternWeg");
+    await waitFor(
+      () => {
+        expect(document.title).toBe("ElternWeg");
+      },
+      { timeout: 1000 }
+    );
   });
 
   it("persists locale to localStorage", async () => {

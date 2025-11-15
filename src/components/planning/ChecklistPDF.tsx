@@ -7,6 +7,7 @@
 
 import { PDFDocument, StandardFonts, PageSizes, rgb } from "pdf-lib";
 import type { PersonalizedChecklist } from "@/types/planning";
+import { trackEvent } from "@/components/Analytics";
 
 /**
  * Generate PDF from personalized checklist
@@ -394,6 +395,14 @@ export async function downloadChecklistPDF(
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+
+    // Track PDF download analytics
+    trackEvent("planning_pdf_downloaded", {
+      type: "personalized-checklist",
+      itemCount: checklist.priorityItems.length,
+      priorityCount: checklist.priorityItems.filter((item) => item.urgency === "critical").length,
+      locale,
+    });
   } catch (error) {
     console.error("Error generating PDF:", error);
     throw error;

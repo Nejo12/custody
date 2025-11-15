@@ -27,8 +27,9 @@ describe("Planning Checklist Page", () => {
     expect(fileContent).toMatch(/useState<Set<string>>/);
     expect(fileContent).toMatch(/completedItems.*setCompletedItems/);
 
-    // Verify toggle function with proper typing
-    expect(fileContent).toMatch(/toggleItem.*itemId: string.*: void/);
+    // Verify toggle function with proper typing (wrapped in useCallback)
+    expect(fileContent).toMatch(/toggleItem.*=.*useCallback/);
+    expect(fileContent).toMatch(/\(itemId: string\): void/);
   });
 
   it("should have filtering by stage functionality", () => {

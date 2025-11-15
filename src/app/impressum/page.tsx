@@ -65,7 +65,7 @@ export default function ImpressumPage() {
             {t.impressum?.contact || "Kontakt"}
           </h2>
           <p>
-            {t.impressum?.email || "E-Mail:"} {/* TODO: Replace with actual email */}
+            {t.impressum?.email || "E-Mail:"}
             <a
               href="mailto:contact@custodyclarity.com"
               className="underline text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors ml-1"

@@ -12,12 +12,54 @@ const de = {
   },
   home: {
     tagline: "Kenne deine Sorge- und Umgangsrechte.",
+    heroTitle: "Verstehe deine Sorgerechte in 6 Minuten",
+    heroSubtitle:
+      "Kostenloses geführtes Interview mit sofortigen rechtlichen Ergebnissen und BGB-Zitaten",
     check: "Meine Situation prüfen",
+    checkDescription:
+      "Beantworte einfache Fragen zu deiner Situation und erhalte sofortige Ergebnisse",
     learn: "Gesetz verstehen",
+    learnDescription:
+      "Zugriff auf Rechtsleitfäden und offizielle Ressourcen, um deine Rechte zu verstehen",
     support: "Hilfe finden",
+    supportDescription:
+      "Finde lokale Jugendämter, Gerichte und Unterstützungsdienste in deiner Nähe",
     subline: "Dauert 6 Minuten. Keine Anmeldung.",
     disclaimer: "Nur Information – keine individuelle Rechtsberatung.",
     features: "WCAG AA · Datenschutzorientiert · Offlinefähig",
+    howItWorksTitle: "So funktioniert es",
+    howItWorksStep1Title: "Fragen beantworten",
+    howItWorksStep1Description: "Beantworte einfache Fragen zu deiner Situation",
+    howItWorksStep2Title: "Ergebnisse erhalten",
+    howItWorksStep2Description: "Erhalte sofortige Ergebnisse mit rechtlichen Zitaten aus dem BGB",
+    howItWorksStep3Title: "PDF herunterladen",
+    howItWorksStep3Description: "Lade dein personalisiertes PDF-Dokument herunter",
+    howItWorksStep4Title: "Handeln",
+    howItWorksStep4Description: "Handle informiert und selbstbewusst",
+    featuresTitle: "Warum ElternWeg wählen",
+    feature6MinutesTitle: "6-Minuten-Interview",
+    feature6MinutesDescription:
+      "Schnelle und unkomplizierte Fragen, um deine Situation zu verstehen",
+    featureLegalCitationsTitle: "Rechtliche Zitate",
+    featureLegalCitationsDescription:
+      "Alle Ergebnisse enthalten Zitate aus dem deutschen Recht (BGB)",
+    featurePrivacyFirstTitle: "Datenschutz zuerst",
+    featurePrivacyFirstDescription:
+      "Deine Daten bleiben auf deinem Gerät. Kein Tracking, keine Anmeldung erforderlich",
+    featureOfflineReadyTitle: "Offlinefähig",
+    featureOfflineReadyDescription: "Funktioniert ohne Internetverbindung, sobald es geladen ist",
+    feature7LanguagesTitle: "7 Sprachen",
+    feature7LanguagesDescription:
+      "Verfügbar in Englisch, Deutsch, Arabisch, Polnisch, Französisch, Türkisch und Russisch",
+    featureWcagAATitle: "WCAG AA konform",
+    featureWcagAADescription:
+      "Zugänglich für alle, erfüllt internationale Barrierefreiheitsstandards",
+    trustIndicators: {
+      legalCitations: "Rechtliche Zitate aus dem BGB",
+      noSignup: "Keine Anmeldung erforderlich",
+      privacyFirst: "Datenschutz zuerst",
+      free: "Kostenlos nutzbar",
+    },
   },
   footer: {
     planning: "Planung",
@@ -666,6 +708,7 @@ const de = {
     guides: "Leitfäden",
     noGuidesAvailable: "Für dieses Stadium sind noch keine Leitfäden verfügbar.",
     checkBackSoon: "Schauen Sie bald wieder vorbei, wir fügen weitere Inhalte hinzu!",
+    requiredDocuments: "Erforderliche Dokumente",
     getPersonalizedPlanDescription:
       "Beantworten Sie ein paar Fragen, um Ihre maßgeschneiderte Checkliste zu erhalten",
     interactiveChecklist: "Interaktive Checkliste",
@@ -715,6 +758,7 @@ const de = {
         "Ihr Fortschritt wird automatisch in Ihrem Browser gespeichert. Er bleibt über Sitzungen hinweg erhalten, sodass Sie jederzeit zurückkehren können, um dort fortzufahren, wo Sie aufgehört haben.",
       instructions:
         "Klicken Sie auf ein Element, um es als abgeschlossen oder unvollständig zu markieren. Verwenden Sie die Filter, um sich auf bestimmte Stadien zu konzentrieren oder abgeschlossene Aufgaben auszublenden.",
+      learnMore: "Mehr erfahren",
     },
     personalizedTool: {
       title: "Erhalten Sie Ihren personalisierten Aktionsplan",
@@ -770,12 +814,20 @@ const de = {
       },
       results: {
         title: "Ihr personalisierter Aktionsplan",
+        description: "Basierend auf Ihrer Situation, hier ist Ihr personalisierter Aktionsplan",
         priorityTasks: "Prioritätsaufgaben",
         recommendedGuides: "Empfohlene Leitfäden",
         localResources: "Lokale Ressourcen",
         nextSteps: "Nächste Schritte",
         timeline: "Vorgeschlagener Zeitplan",
         downloadPDF: "Als PDF herunterladen",
+        startOver: "Neu starten",
+        viewFullChecklist: "Vollständige Checkliste anzeigen",
+        generatingPlan: "Ihr personalisierter Plan wird erstellt...",
+        loadingInterview: "Interview wird geladen...",
+        time: "Zeit",
+        location: "Ort",
+        cost: "Kosten",
         emailPlan: "Diesen Plan per E-Mail senden",
       },
     },

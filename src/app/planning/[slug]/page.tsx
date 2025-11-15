@@ -7,6 +7,7 @@ import { formatDate } from "@/lib/utils";
 import { use, useMemo, useState, useEffect } from "react";
 import { useScrollThreshold } from "@/lib/hooks";
 import type { PlanningGuide } from "@/types/planning";
+import { trackEvent } from "@/components/Analytics";
 
 /**
  * Lazy load locale-specific planning data
@@ -14,13 +15,20 @@ import type { PlanningGuide } from "@/types/planning";
  * Falls back to English if translation unavailable
  */
 const loadPlanning = async (locale: string) => {
-  // Only load German for now, other languages fall back to English
-  // TODO: Add other language files as they become available
   if (locale === "de") {
     try {
       return (await import("@/data/planning.de.json")).default;
     } catch {
       console.warn("German planning data not found, falling back to English");
+      return planningDataEn;
+    }
+  }
+
+  if (locale === "ar") {
+    try {
+      return (await import("@/data/planning.ar.json")).default;
+    } catch {
+      console.warn("Arabic planning data not found, falling back to English");
       return planningDataEn;
     }
   }
@@ -67,6 +75,16 @@ export default function PlanningGuidePage({ params }: Props) {
   if (!guide) {
     notFound();
   }
+
+  // Track guide view with metadata
+  useEffect(() => {
+    trackEvent("planning_guide_viewed", {
+      slug: guide.slug,
+      stage: guide.stage,
+      urgency: guide.urgency,
+      locale,
+    });
+  }, [guide.slug, guide.stage, guide.urgency, locale]);
 
   // Map stage IDs to translated category labels
   const stageLabels: Record<string, string> = {
@@ -467,7 +485,7 @@ export default function PlanningGuidePage({ params }: Props) {
         {guide.requiredDocuments && guide.requiredDocuments.length > 0 && (
           <div className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-blue-50 dark:bg-blue-900/20 p-4">
             <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
-              📄 Required Documents
+              📄 {t.planning?.requiredDocuments || "Required Documents"}
             </h3>
             <ul className="text-sm text-zinc-700 dark:text-zinc-300 space-y-1">
               {guide.requiredDocuments.map((doc, idx) => (
@@ -559,7 +577,7 @@ export default function PlanningGuidePage({ params }: Props) {
           <span className="hidden sm:inline">
             {(t.planning?.backToPlanning || "← Back to Planning").replace("← ", "")}
           </span>
-          <span className="sm:hidden">Back</span>
+          <span className="sm:hidden">{t.common?.back || "Back"}</span>
         </Link>
       )}
     </>

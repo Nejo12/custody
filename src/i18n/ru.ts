@@ -12,12 +12,51 @@ const ru = {
   },
   home: {
     tagline: "Узнайте свои права на опеку и контакт.",
+    heroTitle: "Поймите свои права на опеку за 6 минут",
+    heroSubtitle:
+      "Бесплатное руководство с мгновенными юридическими результатами и цитатами из BGB",
     check: "Проверить мою ситуацию",
+    checkDescription:
+      "Ответьте на простые вопросы о вашей ситуации и получите мгновенные результаты",
     learn: "Изучить закон",
+    learnDescription:
+      "Доступ к юридическим руководствам и официальным ресурсам для понимания ваших прав",
     support: "Найти поддержку",
+    supportDescription: "Найдите местные офисы Jugendamt, суды и службы поддержки рядом с вами",
     subline: "Занимает 6 минут. Без регистрации.",
     disclaimer: "Только информация. Не индивидуальная юридическая консультация.",
     features: "WCAG AA · Конфиденциальность прежде всего · Готово к работе offline",
+    howItWorksTitle: "Как это работает",
+    howItWorksStep1Title: "Ответить на вопросы",
+    howItWorksStep1Description: "Ответьте на простые вопросы о вашей ситуации",
+    howItWorksStep2Title: "Получить результаты",
+    howItWorksStep2Description: "Получите мгновенные результаты с юридическими цитатами из BGB",
+    howItWorksStep3Title: "Скачать PDF",
+    howItWorksStep3Description: "Скачайте ваш персонализированный PDF-документ",
+    howItWorksStep4Title: "Действовать",
+    howItWorksStep4Description: "Действуйте осознанно и уверенно",
+    featuresTitle: "Почему выбрать Custody Clarity",
+    feature6MinutesTitle: "6-минутное интервью",
+    feature6MinutesDescription: "Быстрые и простые вопросы для понимания вашей ситуации",
+    featureLegalCitationsTitle: "Юридические цитаты",
+    featureLegalCitationsDescription: "Все результаты включают цитаты из немецкого права (BGB)",
+    featurePrivacyFirstTitle: "Конфиденциальность прежде всего",
+    featurePrivacyFirstDescription:
+      "Ваши данные остаются на вашем устройстве. Нет отслеживания, регистрация не требуется",
+    featureOfflineReadyTitle: "Готово к работе offline",
+    featureOfflineReadyDescription: "Работает без подключения к интернету после загрузки",
+    feature7LanguagesTitle: "7 языков",
+    feature7LanguagesDescription:
+      "Доступно на английском, немецком, арабском, польском, французском, турецком и русском языках",
+    featureWcagAATitle: "Соответствует WCAG AA",
+    featureWcagAADescription:
+      "Доступно для всех, соответствует международным стандартам доступности",
+    trustIndicators: {
+      legalCitations: "Юридические цитаты из BGB",
+      noSignup: "Регистрация не требуется",
+      privacyFirst: "Конфиденциальность прежде всего",
+      free: "Бесплатно для использования",
+    },
   },
   footer: {
     planning: "Планирование",
@@ -667,6 +706,7 @@ const ru = {
     guides: "руководства",
     noGuidesAvailable: "Для этого этапа пока нет доступных руководств.",
     checkBackSoon: "Загляните позже, мы добавляем больше контента!",
+    requiredDocuments: "Необходимые документы",
     getPersonalizedPlanDescription:
       "Ответьте на несколько вопросов, чтобы получить персонализированный чеклист",
     interactiveChecklist: "Интерактивный Чеклист",
@@ -715,6 +755,7 @@ const ru = {
         "Ваш прогресс автоматически сохраняется в вашем браузере. Он сохраняется между сеансами, поэтому вы можете вернуться в любое время, чтобы продолжить с того места, где остановились.",
       instructions:
         "Нажмите на любой элемент, чтобы отметить его как выполненный или невыполненный. Используйте фильтры, чтобы сосредоточиться на конкретных этапах или скрыть выполненные задачи.",
+      learnMore: "Узнать больше",
     },
     personalizedTool: {
       title: "Получите свой Персонализированный План Действий",
@@ -770,12 +811,20 @@ const ru = {
       },
       results: {
         title: "Ваш Персонализированный План Действий",
+        description: "Основываясь на вашей ситуации, вот ваш персонализированный план действий",
         priorityTasks: "Приоритетные Задачи",
         recommendedGuides: "Рекомендуемые Руководства",
         localResources: "Местные Ресурсы",
         nextSteps: "Следующие Шаги",
         timeline: "Предлагаемый График",
         downloadPDF: "Скачать как PDF",
+        startOver: "Начать заново",
+        viewFullChecklist: "Посмотреть Полный Список",
+        generatingPlan: "Создание вашего персонализированного плана...",
+        loadingInterview: "Загрузка интервью...",
+        time: "Время",
+        location: "Место",
+        cost: "Стоимость",
         emailPlan: "Отправить этот План по Email",
       },
     },

@@ -4,6 +4,7 @@ import { useI18n } from "@/i18n";
 import { useState, useMemo, useEffect, useCallback } from "react";
 import planningDataEn from "@/data/planning.json";
 import type { ChecklistItem, PlanningStage } from "@/types/planning";
+import { trackEvent } from "@/components/Analytics";
 
 /**
  * Lazy load locale-specific planning data
@@ -11,13 +12,20 @@ import type { ChecklistItem, PlanningStage } from "@/types/planning";
  * Falls back to English if translation unavailable
  */
 const loadPlanning = async (locale: string) => {
-  // Only load German for now, other languages fall back to English
-  // TODO: Add other language files as they become available
   if (locale === "de") {
     try {
       return (await import("@/data/planning.de.json")).default;
     } catch {
       console.warn("German planning data not found, falling back to English");
+      return planningDataEn;
+    }
+  }
+
+  if (locale === "ar") {
+    try {
+      return (await import("@/data/planning.ar.json")).default;
+    } catch {
+      console.warn("Arabic planning data not found, falling back to English");
       return planningDataEn;
     }
   }
@@ -51,6 +59,9 @@ export default function ChecklistPage() {
   // Get i18n translation function and current locale
   const { t, locale } = useI18n();
 
+  // Track mounted state to prevent hydration mismatch
+  const [isMounted, setIsMounted] = useState(false);
+
   // State for locale-specific planning data
   const [planningData, setPlanningData] = useState(planningDataEn);
 
@@ -60,20 +71,26 @@ export default function ChecklistPage() {
   }, [locale]);
 
   // Generate or load checklist ID (persisted across sessions)
-  const [checklistId] = useState<string>(() => {
-    if (typeof window === "undefined") {
-      return generateChecklistId();
+  // Always initialize to empty string to prevent hydration mismatch
+  // Will be set from localStorage in useEffect after mount
+  const [checklistId, setChecklistId] = useState<string>("");
+
+  // Initialize checklistId on mount to prevent hydration mismatch
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Load existing checklist ID from localStorage or generate new one
+      const storedId = localStorage.getItem("planning_checklist_id");
+      if (storedId) {
+        setChecklistId(storedId);
+      } else {
+        const newId = generateChecklistId();
+        localStorage.setItem("planning_checklist_id", newId);
+        setChecklistId(newId);
+      }
     }
-    // Try to load existing checklist ID from localStorage
-    const storedId = localStorage.getItem("planning_checklist_id");
-    if (storedId) {
-      return storedId;
-    }
-    // Generate new ID and store it
-    const newId = generateChecklistId();
-    localStorage.setItem("planning_checklist_id", newId);
-    return newId;
-  });
+    // Always set mounted after first render
+    setIsMounted(true);
+  }, []); // Only run once on mount
 
   // State for completed items (stored as Set of item IDs)
   const [completedItems, setCompletedItems] = useState<Set<string>>(new Set());
@@ -95,6 +112,16 @@ export default function ChecklistPage() {
   const checklistItems = planningData.checklist as ChecklistItem[];
 
   /**
+   * Track page view analytics
+   */
+  useEffect(() => {
+    trackEvent("planning_checklist_page_viewed", {
+      locale,
+      totalItems: checklistItems.length,
+    });
+  }, [locale, checklistItems.length]);
+
+  /**
    * Check notification support and permission on mount
    */
   useEffect(() => {
@@ -105,8 +132,13 @@ export default function ChecklistPage() {
 
   /**
    * Load progress from localStorage on mount
+   * Only load after component is mounted to prevent hydration mismatch
    */
   useEffect(() => {
+    if (!isMounted || !checklistId) {
+      return;
+    }
+
     const loadSavedProgress = async (): Promise<void> => {
       try {
         setIsLoadingProgress(true);
@@ -122,7 +154,7 @@ export default function ChecklistPage() {
     };
 
     loadSavedProgress();
-  }, [checklistId]);
+  }, [checklistId, isMounted]);
 
   /**
    * Schedule deadline notifications for incomplete items with deadlines
@@ -201,18 +233,35 @@ export default function ChecklistPage() {
 
   /**
    * Toggle completion status of a checklist item
+   * Tracks analytics when items are completed
    */
-  const toggleItem = useCallback((itemId: string): void => {
-    setCompletedItems((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(itemId)) {
-        newSet.delete(itemId);
-      } else {
-        newSet.add(itemId);
-      }
-      return newSet;
-    });
-  }, []);
+  const toggleItem = useCallback(
+    (itemId: string): void => {
+      setCompletedItems((prev) => {
+        const newSet = new Set(prev);
+        const wasCompleted = newSet.has(itemId);
+
+        if (wasCompleted) {
+          newSet.delete(itemId);
+        } else {
+          newSet.add(itemId);
+
+          // Track completion analytics
+          const item = checklistItems.find((i) => i.id === itemId);
+          if (item) {
+            trackEvent("planning_checklist_item_completed", {
+              itemId: item.id,
+              stage: item.stage,
+              urgency: item.urgency,
+              locale,
+            });
+          }
+        }
+        return newSet;
+      });
+    },
+    [checklistItems, locale]
+  );
 
   /**
    * Filter and sort checklist items
@@ -296,6 +345,19 @@ export default function ChecklistPage() {
     { id: "first-year", label: stageLabels["first-year"] },
     { id: "early-warning", label: stageLabels["early-warning"] },
   ];
+
+  // During SSR and initial hydration, render a minimal skeleton
+  // This prevents content flash when data loads from localStorage
+  if (!isMounted || !checklistId) {
+    return (
+      <div className="w-full max-w-3xl mx-auto px-4 py-6 space-y-6">
+        <div className="h-6 w-32 bg-zinc-200 dark:bg-zinc-800 animate-pulse rounded" />
+        <div className="h-8 w-64 bg-zinc-200 dark:bg-zinc-800 animate-pulse rounded" />
+        <div className="h-4 w-full bg-zinc-100 dark:bg-zinc-800 animate-pulse rounded" />
+        <div className="h-24 bg-zinc-100 dark:bg-zinc-800 animate-pulse rounded-lg" />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-3xl mx-auto px-4 py-6 space-y-6">
@@ -498,7 +560,7 @@ export default function ChecklistPage() {
                         href={item.helpLink}
                         className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
                       >
-                        Learn more →
+                        {t.planning?.checklist?.learnMore || "Learn more"} →
                       </Link>
                     )}
                   </div>

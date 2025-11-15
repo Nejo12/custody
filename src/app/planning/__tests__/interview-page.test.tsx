@@ -96,43 +96,49 @@ describe("PlanningInterviewPage", () => {
     });
   });
 
-  it("renders the interview form initially", () => {
+  it("renders the interview form initially", async () => {
     render(<PlanningInterviewPage />);
 
     expect(screen.getByText("Get Your Personalized Action Plan")).toBeInTheDocument();
     expect(screen.getByText("Answer a few questions about your situation")).toBeInTheDocument();
-    expect(screen.getByTestId("interview-form")).toBeInTheDocument();
+
+    // Wait for lazy-loaded InterviewForm to load
+    await waitFor(() => {
+      expect(screen.getByTestId("interview-form")).toBeInTheDocument();
+    });
   });
 
   it("shows loading state when generating checklist", async () => {
     const { generatePersonalizedChecklist } = await import("@/lib/checklist-generator");
-    vi.mocked(generatePersonalizedChecklist).mockImplementation(
-      () =>
-        new Promise((resolve) => {
-          setTimeout(() => {
-            resolve({
-              situation: {
-                relationshipStatus: "unmarried",
-                pregnancyStage: "first-trimester",
-                hasPaternityCertificate: false,
-                hasJointCustody: false,
-                relationshipStable: true,
-                city: "Berlin",
-              },
-              priorityItems: [],
-              recommendedGuides: [],
-              nextSteps: [],
-            });
-          }, 100);
-        })
-    );
+    vi.mocked(generatePersonalizedChecklist).mockReturnValue({
+      situation: {
+        relationshipStatus: "unmarried",
+        pregnancyStage: "first-trimester",
+        hasPaternityCertificate: false,
+        hasJointCustody: false,
+        relationshipStable: true,
+        city: "Berlin",
+      },
+      priorityItems: [],
+      recommendedGuides: [],
+      nextSteps: [],
+    });
 
     render(<PlanningInterviewPage />);
 
     const completeButton = screen.getByText("Complete Interview");
     await userEvent.click(completeButton);
 
+    // Check loading state appears
     expect(screen.getByText("Generating your personalized plan...")).toBeInTheDocument();
+
+    // Wait for setTimeout to complete (100ms delay in component)
+    await waitFor(
+      () => {
+        expect(screen.queryByText("Generating your personalized plan...")).not.toBeInTheDocument();
+      },
+      { timeout: 200 }
+    );
   });
 
   it("displays results after interview completion", async () => {
@@ -287,6 +293,8 @@ describe("PlanningInterviewPage", () => {
       situation: {
         relationshipStatus: "married" as const,
         relationshipStable: true,
+        hasPaternityCertificate: false,
+        hasJointCustody: false,
       },
       priorityItems: [],
       recommendedGuides: [],

@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
 
 /**
  * Placeholder for PDF generation
- * TODO: Integrate with your existing PDF generation logic from src/app/api/pdf/*
+ * TODO: Integrate with existing PDF generation logic from src/app/api/pdf/*
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function generatePDF(metadata: Record<string, string>, tier: PricingTier): Promise<Buffer> {

@@ -12,12 +12,53 @@ const fr = {
   },
   home: {
     tagline: "Connaissez vos droits de garde et de contact.",
+    heroTitle: "Comprenez vos droits de garde en 6 minutes",
+    heroSubtitle: "Entretien guidé gratuit avec résultats juridiques instantanés et citations BGB",
     check: "Vérifier ma situation",
+    checkDescription:
+      "Répondez à des questions simples sur votre situation et obtenez des résultats instantanés",
     learn: "Apprendre la loi",
+    learnDescription:
+      "Accédez aux guides juridiques et aux ressources officielles pour comprendre vos droits",
     support: "Trouver du soutien",
+    supportDescription:
+      "Trouvez les bureaux Jugendamt locaux, les tribunaux et les services de soutien près de chez vous",
     subline: "Prend 6 minutes. Pas d'inscription.",
     disclaimer: "Information uniquement. Pas de conseil juridique individualisé.",
     features: "WCAG AA · Confidentialité d'abord · Prêt hors ligne",
+    howItWorksTitle: "Comment ça fonctionne",
+    howItWorksStep1Title: "Répondre aux questions",
+    howItWorksStep1Description: "Répondez à des questions simples sur votre situation",
+    howItWorksStep2Title: "Obtenir les résultats",
+    howItWorksStep2Description:
+      "Obtenez des résultats instantanés avec des citations juridiques du BGB",
+    howItWorksStep3Title: "Télécharger le PDF",
+    howItWorksStep3Description: "Téléchargez votre document PDF personnalisé",
+    howItWorksStep4Title: "Agir",
+    howItWorksStep4Description: "Agissez en toute connaissance de cause et avec confiance",
+    featuresTitle: "Pourquoi choisir Custody Clarity",
+    feature6MinutesTitle: "Entretien de 6 minutes",
+    feature6MinutesDescription: "Questions rapides et simples pour comprendre votre situation",
+    featureLegalCitationsTitle: "Citations juridiques",
+    featureLegalCitationsDescription:
+      "Tous les résultats incluent des citations du droit allemand (BGB)",
+    featurePrivacyFirstTitle: "Confidentialité d'abord",
+    featurePrivacyFirstDescription:
+      "Vos données restent sur votre appareil. Pas de suivi, pas besoin de s'inscrire",
+    featureOfflineReadyTitle: "Prêt hors ligne",
+    featureOfflineReadyDescription: "Fonctionne sans connexion Internet une fois chargé",
+    feature7LanguagesTitle: "7 langues",
+    feature7LanguagesDescription:
+      "Disponible en anglais, allemand, arabe, polonais, français, turc et russe",
+    featureWcagAATitle: "Conforme WCAG AA",
+    featureWcagAADescription:
+      "Accessible à tous, répond aux normes internationales d'accessibilité",
+    trustIndicators: {
+      legalCitations: "Citations juridiques du BGB",
+      noSignup: "Pas d'inscription requise",
+      privacyFirst: "Confidentialité d'abord",
+      free: "Gratuit à utiliser",
+    },
   },
   footer: {
     planning: "Planification",
@@ -673,6 +714,7 @@ const fr = {
     guides: "guides",
     noGuidesAvailable: "Aucun guide disponible pour cette étape pour le moment.",
     checkBackSoon: "Revenez bientôt, nous ajoutons plus de contenu !",
+    requiredDocuments: "Documents requis",
     getPersonalizedPlanDescription:
       "Répondez à quelques questions pour obtenir votre liste de contrôle personnalisée",
     interactiveChecklist: "Liste de Contrôle Interactive",
@@ -720,6 +762,7 @@ const fr = {
         "Vos progrès sont automatiquement enregistrés dans votre navigateur. Ils persistent entre les sessions, vous pouvez donc revenir à tout moment pour continuer là où vous vous êtes arrêté.",
       instructions:
         "Cliquez sur un élément pour le marquer comme terminé ou non terminé. Utilisez les filtres pour vous concentrer sur des étapes spécifiques ou masquer les tâches terminées.",
+      learnMore: "En savoir plus",
     },
     personalizedTool: {
       title: "Obtenez votre Plan d'Action Personnalisé",
@@ -775,12 +818,20 @@ const fr = {
       },
       results: {
         title: "Votre Plan d'Action Personnalisé",
+        description: "Basé sur votre situation, voici votre plan d'action personnalisé",
         priorityTasks: "Tâches Prioritaires",
         recommendedGuides: "Guides Recommandés",
         localResources: "Ressources Locales",
         nextSteps: "Prochaines Étapes",
         timeline: "Calendrier Suggéré",
         downloadPDF: "Télécharger en PDF",
+        startOver: "Recommencer",
+        viewFullChecklist: "Voir la Liste Complète",
+        generatingPlan: "Génération de votre plan personnalisé...",
+        loadingInterview: "Chargement de l'entretien...",
+        time: "Temps",
+        location: "Lieu",
+        cost: "Coût",
         emailPlan: "Envoyer ce Plan par E-mail",
       },
     },
