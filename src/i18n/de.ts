@@ -79,6 +79,12 @@ const de = {
     settings: "Einstellungen",
     more: "Mehr",
     discreetAppName: "Dokumente",
+    tagline: "Datenbasierte Klarheit für deutsches Sorgerecht.",
+    trustIndicator: "Vertrauenswürdig für deutsches Familienrecht",
+    howItWorks: "So funktioniert es",
+    guides: "Leitfäden",
+    faq: "FAQ",
+    proDocuments: "Pro-Dokumente",
   },
   interview: {
     title: "Interview",
@@ -549,6 +555,28 @@ const de = {
     note: "Hinweis",
     noteText:
       "Diese Website dient ausschließlich Informationszwecken und stellt keine individuelle Rechtsberatung dar. Bei rechtlichen Fragen sollten Sie sich an einen qualifizierten Rechtsanwalt oder eine Beratungsstelle wenden.",
+  },
+  disclaimer: {
+    title: "DIES IST KEINE RECHTSBERATUNG",
+    subtitle: "ERGEBNISSE SIND NUR ZU INFORMATIONSZWECKEN",
+    noAttorneyRelation:
+      "Dieses Tool begründet KEIN Mandatsverhältnis. Sie erhalten KEINE Rechtsberatung.",
+    sections: [
+      "Dieses Tool bietet allgemeine Informationen zum deutschen Familienrecht basierend auf Ihren Antworten. Es ist KEIN Ersatz für eine persönliche Rechtsberatung.",
+      "Jede Sorge- und Umgangssituation ist einzigartig. Gerichte berücksichtigen viele Faktoren, die dieses Tool nicht bewerten kann.",
+      "Die bereitgestellten Informationen können unvollständig, veraltet oder auf Ihre spezifischen Umstände nicht anwendbar sein.",
+      "Die Nutzung dieses Tools begründet KEINE Rechtsvertretung oder ein Mandatsverhältnis.",
+      "Für tatsächliche, auf Ihre Situation zugeschnittene Rechtsberatung MÜSSEN Sie einen qualifizierten Fachanwalt für Familienrecht konsultieren.",
+      "Die Ersteller dieses Tools haften NICHT für Entscheidungen, die Sie auf Grundlage der bereitgestellten Informationen treffen.",
+    ],
+    context:
+      "Dieses Tool soll Ihnen helfen, allgemeine Rechtsprinzipien zu verstehen und sich auf Gespräche mit Rechtsexperten vorzubereiten. Es ist KEIN Ersatz für professionelle Rechtsberatung. Wenn Sie mit einem Sorgerechtsstreit, verweigertem Umgang oder einer dringenden rechtlichen Angelegenheit konfrontiert sind, konsultieren Sie sofort einen qualifizierten Anwalt.",
+    acknowledgment:
+      "Ich verstehe und stimme zu, dass dies nur zu Informationszwecken dient, keine Rechtsberatung darstellt und kein Mandatsverhältnis begründet. Ich werde für meine spezifische Situation professionelle Rechtsberatung einholen.",
+    continue: "Ich verstehe - Weiter zu den Ergebnissen",
+    continueDisabled: "Sie müssen den Haftungsausschluss bestätigen, um fortzufahren",
+    checkboxRequired:
+      "Bitte aktivieren Sie das Kontrollkästchen oben, um zu bestätigen und fortzufahren",
   },
   datenschutz: {
     title: "Datenschutzerklärung",

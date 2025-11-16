@@ -19,8 +19,10 @@ import {
 } from "../planning-notifications";
 
 describe("planning-notifications", () => {
-  // Mock Notification API
-  const mockNotification = vi.fn();
+  // Mock Notification API - needs to be a constructor
+  const mockNotification = vi.fn(function (this: unknown) {
+    return this || {};
+  });
   const mockRequestPermission = vi.fn();
   let mockPermission: NotificationPermission = "default";
 
@@ -28,14 +30,22 @@ describe("planning-notifications", () => {
     // Reset mocks
     vi.clearAllMocks();
     mockPermission = "default";
+    mockNotification.mockClear();
+    mockNotification.mockImplementation(function (this: unknown) {
+      return this || {};
+    });
 
-    // Mock window.Notification
-    global.Notification = mockNotification as unknown as typeof Notification;
-    (global.Notification as unknown as { permission: NotificationPermission }).permission =
-      mockPermission;
-    (
-      global.Notification as unknown as { requestPermission: () => Promise<NotificationPermission> }
-    ).requestPermission = mockRequestPermission;
+    // Mock window.Notification as a constructor using stubGlobal
+    vi.stubGlobal("Notification", mockNotification);
+    // Set up static properties
+    Object.defineProperty(global.Notification, "permission", {
+      get: () => mockPermission,
+      configurable: true,
+    });
+    Object.defineProperty(global.Notification, "requestPermission", {
+      value: mockRequestPermission,
+      configurable: true,
+    });
 
     // Mock window.setTimeout and clearTimeout
     vi.useFakeTimers();
@@ -75,8 +85,6 @@ describe("planning-notifications", () => {
 
     it("should return current permission status", () => {
       mockPermission = "granted";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       expect(getNotificationPermission()).toBe("granted");
     });
@@ -97,8 +105,6 @@ describe("planning-notifications", () => {
 
     it("should return granted if already granted", async () => {
       mockPermission = "granted";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       const permission = await requestNotificationPermission();
       expect(permission).toBe("granted");
@@ -107,8 +113,6 @@ describe("planning-notifications", () => {
 
     it("should return denied if already denied", async () => {
       mockPermission = "denied";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       const permission = await requestNotificationPermission();
       expect(permission).toBe("denied");
@@ -117,8 +121,6 @@ describe("planning-notifications", () => {
 
     it("should request permission when default", async () => {
       mockPermission = "default";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
       mockRequestPermission.mockResolvedValue("granted");
 
       const permission = await requestNotificationPermission();
@@ -145,8 +147,6 @@ describe("planning-notifications", () => {
 
     it("should return null when permission not granted", () => {
       mockPermission = "denied";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       const result = scheduleBrowserNotification("Test", {
         body: "Test body",
@@ -158,8 +158,6 @@ describe("planning-notifications", () => {
 
     it("should show notification immediately if delay is 0 or negative", () => {
       mockPermission = "granted";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       const pastDate = new Date(Date.now() - 1000);
       const result = scheduleBrowserNotification("Test", {
@@ -178,8 +176,6 @@ describe("planning-notifications", () => {
 
     it("should schedule notification for future date", () => {
       mockPermission = "granted";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       const futureDate = new Date(Date.now() + 5000);
       const result = scheduleBrowserNotification("Test", {
@@ -232,8 +228,6 @@ describe("planning-notifications", () => {
 
     it("should not show notification when permission denied", () => {
       mockPermission = "denied";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       showNotification("Test", { body: "Test body" });
 
@@ -242,8 +236,6 @@ describe("planning-notifications", () => {
 
     it("should show notification when permission granted", () => {
       mockPermission = "granted";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       showNotification("Test", { body: "Test body", icon: "/icon.png" });
 
@@ -275,8 +267,6 @@ describe("planning-notifications", () => {
 
     it("should not schedule when permission not granted", () => {
       mockPermission = "denied";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       const notification: DeadlineNotification = {
         itemId: "item-1",
@@ -291,10 +281,13 @@ describe("planning-notifications", () => {
 
     it("should schedule multiple reminders", () => {
       mockPermission = "granted";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
-      const deadline = new Date(Date.now() + 8 * 86400000); // 8 days from now
+      // Set current time to a known time (e.g., midnight) to make calculations predictable
+      const now = new Date();
+      now.setHours(0, 0, 0, 0);
+      vi.setSystemTime(now);
+
+      const deadline = new Date(now.getTime() + 8 * 86400000); // 8 days from now
       const notification: DeadlineNotification = {
         itemId: "item-1",
         title: "Test Item",
@@ -306,23 +299,26 @@ describe("planning-notifications", () => {
       scheduleDeadlineNotifications(notification, "/icon.png");
 
       // Should schedule 3 reminders (7 days, 1 day, 0 days before)
-      // Fast-forward to first reminder (7 days before = 1 day from now)
-      vi.advanceTimersByTime(86400000);
+      // Reminders are set to 9 AM on the reminder day
+      // First reminder: 7 days before = 1 day from now at 9 AM = 33 hours from now (midnight + 1 day + 9 hours)
+      vi.advanceTimersByTime(33 * 3600000);
       expect(mockNotification).toHaveBeenCalledTimes(1);
 
-      // Fast-forward to second reminder (1 day before = 7 days from now)
+      // Second reminder: 1 day before = 7 days from now at 9 AM
+      // Advance 6 more days (144 hours) to reach 7 days from start
       vi.advanceTimersByTime(6 * 86400000);
       expect(mockNotification).toHaveBeenCalledTimes(2);
 
-      // Fast-forward to deadline (0 days before = 8 days from now)
+      // Third reminder: 0 days before = 8 days from now at 9 AM
+      // Advance 1 more day (24 hours)
       vi.advanceTimersByTime(86400000);
       expect(mockNotification).toHaveBeenCalledTimes(3);
+
+      vi.useRealTimers();
     });
 
     it("should cancel existing notifications before scheduling new ones", () => {
       mockPermission = "granted";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       const deadline = new Date(Date.now() + 86400000);
       const notification: DeadlineNotification = {
@@ -346,8 +342,6 @@ describe("planning-notifications", () => {
   describe("cancelDeadlineNotifications", () => {
     it("should cancel all notifications for an item", () => {
       mockPermission = "granted";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       const deadline = new Date(Date.now() + 86400000);
       const notification: DeadlineNotification = {
@@ -369,8 +363,6 @@ describe("planning-notifications", () => {
   describe("cancelAllDeadlineNotifications", () => {
     it("should cancel all scheduled notifications", () => {
       mockPermission = "granted";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       const deadline1 = new Date(Date.now() + 86400000);
       const deadline2 = new Date(Date.now() + 2 * 86400000);
@@ -398,8 +390,6 @@ describe("planning-notifications", () => {
   describe("restoreDeadlineNotifications", () => {
     it("should restore and schedule notifications", () => {
       mockPermission = "granted";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       const notifications: DeadlineNotification[] = [
         {
@@ -425,8 +415,6 @@ describe("planning-notifications", () => {
 
     it("should not restore when permission not granted", () => {
       mockPermission = "denied";
-      (global.Notification as unknown as { permission: NotificationPermission }).permission =
-        mockPermission;
 
       const notifications: DeadlineNotification[] = [
         {

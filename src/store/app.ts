@@ -67,6 +67,11 @@ type AppState = {
   };
   setMilestone: (key: keyof AppState["milestones"], value: boolean) => void;
 
+  // Disclaimer acknowledgment
+  disclaimerAcknowledged: boolean;
+  disclaimerAcknowledgedTimestamp?: number;
+  setDisclaimerAcknowledged: (value: boolean) => void;
+
   // Data management
   wipeAll: () => void;
 };
@@ -115,6 +120,10 @@ export const useAppStore = create<AppState>()(
         },
         setMilestone: (key, value) =>
           set((s) => ({ milestones: { ...s.milestones, [key]: value, lastUpdated: Date.now() } })),
+        disclaimerAcknowledged: false,
+        disclaimerAcknowledgedTimestamp: undefined,
+        setDisclaimerAcknowledged: (value) =>
+          set({ disclaimerAcknowledged: value, disclaimerAcknowledgedTimestamp: Date.now() }),
         interview: {
           version: "2025-01-01",
           answers: {},
@@ -166,6 +175,8 @@ export const useAppStore = create<AppState>()(
               pdfGenerated: false,
               lastUpdated: Date.now(),
             },
+            disclaimerAcknowledged: false,
+            disclaimerAcknowledgedTimestamp: undefined,
             interview: { version: "2025-01-01", answers: {} },
             vault: { entries: [] },
           });
@@ -186,6 +197,8 @@ export const useAppStore = create<AppState>()(
         discreetMode: s.discreetMode,
         blurThumbnails: s.blurThumbnails,
         milestones: s.milestones,
+        disclaimerAcknowledged: s.disclaimerAcknowledged,
+        disclaimerAcknowledgedTimestamp: s.disclaimerAcknowledgedTimestamp,
         interview: s.interview,
         vault: s.vault,
       }),

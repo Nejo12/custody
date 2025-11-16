@@ -9,6 +9,7 @@ import type { ClarifyResponse } from "@/types/ai";
 import type { TranslationDict } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
 import VoiceInput from "@/components/VoiceInput";
+import DisclaimerAcknowledgmentModal from "@/components/DisclaimerAcknowledgmentModal";
 
 type Q = { id: string; type?: "yn" | "enum"; options?: { value: string; label: string }[] };
 
@@ -17,8 +18,11 @@ type QuestionKey = keyof TranslationDict["interview"]["questions"];
 export default function Interview() {
   const { t, locale } = useI18n();
   const router = useRouter();
-  const { setAnswer, interview } = useAppStore();
+  const { setAnswer, interview, setDisclaimerAcknowledged } = useAppStore();
   const [step, setStep] = useState(0);
+
+  // Disclaimer modal state
+  const [showDisclaimerModal, setShowDisclaimerModal] = useState(false);
 
   // Deep link support: /interview?q=questionId (useEffect to avoid hydration mismatch)
   useEffect(() => {
@@ -44,11 +48,29 @@ export default function Interview() {
     setClarify({ loading: false });
   }, [step]);
 
+  /**
+   * Handle answer selection
+   * On the final question, shows disclaimer modal instead of navigating directly to results
+   */
   function onSelect(value: string) {
     setClarify({ loading: false });
     setAnswer(current.id, value);
-    if (step < questions.length - 1) setStep(step + 1);
-    else router.push("/result");
+    if (step < questions.length - 1) {
+      setStep(step + 1);
+    } else {
+      // Last question answered - show disclaimer modal before results
+      setShowDisclaimerModal(true);
+    }
+  }
+
+  /**
+   * Handle disclaimer acknowledgment
+   * Stores acknowledgment in state and navigates to results page
+   */
+  function handleDisclaimerAcknowledged() {
+    setDisclaimerAcknowledged(true);
+    setShowDisclaimerModal(false);
+    router.push("/result");
   }
 
   function normalize(s: string): string {
@@ -286,6 +308,12 @@ export default function Interview() {
           </div>
         </motion.div>
       </AnimatePresence>
+
+      {/* Disclaimer Acknowledgment Modal - shown after completing all questions */}
+      <DisclaimerAcknowledgmentModal
+        open={showDisclaimerModal}
+        onAcknowledge={handleDisclaimerAcknowledged}
+      />
     </div>
   );
 }

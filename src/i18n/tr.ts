@@ -73,6 +73,12 @@ const tr = {
     settings: "Ayarlar",
     more: "Daha fazla",
     discreetAppName: "Belgeler",
+    tagline: "Alman vesayeti için veri odaklı netlik.",
+    trustIndicator: "Alman aile hukuku için güvenilir",
+    howItWorks: "Nasıl çalışır",
+    guides: "Kılavuzlar",
+    faq: "SSS",
+    proDocuments: "Pro Belgeler",
   },
   interview: {
     title: "Görüşme",
@@ -537,6 +543,26 @@ const tr = {
     note: "Not",
     noteText:
       "Bu web sitesi yalnızca bilgilendirme amaçlıdır ve bireysel hukuki tavsiye oluşturmaz. Hukuki sorular için nitelikli bir avukata veya danışmanlık hizmetine başvurmalısınız.",
+  },
+  disclaimer: {
+    title: "BU BİR HUKUKİ TAVSİYE DEĞİLDİR",
+    subtitle: "SONUÇLAR YALNIZCA BİLGİLENDİRME AMAÇLIDIR",
+    noAttorneyRelation: "Bu araç avukat-müvekkil ilişkisi oluşturmaz. Hukuki tavsiye almıyorsunuz.",
+    sections: [
+      "Bu araç, cevaplarınıza göre Alman aile hukuku hakkında genel bilgiler sağlar. Kişiselleştirilmiş hukuki danışmanlığın yerini TUTMAZ.",
+      "Her velayet ve iletişim durumu benzersizdir. Mahkemeler, bu aracın değerlendiremeyeceği birçok faktörü dikkate alır.",
+      "Sağlanan bilgiler eksik, güncel olmayan veya özel koşullarınıza uygulanamaz olabilir.",
+      "Bu aracı kullanmak herhangi bir hukuki temsil veya avukat-müvekkil ilişkisi oluşturmaz.",
+      "Durumunuza özel gerçek hukuki tavsiye için, nitelikli bir aile hukuku avukatına (Fachanwalt für Familienrecht) DANIŞMALISINIZ.",
+      "Bu aracın yaratıcıları, sağlanan bilgilere dayanarak verdiğiniz kararlardan sorumlu DEĞİLDİR.",
+    ],
+    context:
+      "Bu araç, genel hukuki ilkeleri anlamanıza ve hukuk uzmanlarıyla yapacağınız görüşmelere hazırlanmanıza yardımcı olmak için tasarlanmıştır. Profesyonel hukuki danışmanlığın yerini TUTMAZ. Velayet anlaşmazlığı, engellenmiş iletişim veya acil bir hukuki meseyle karşı karşıyaysanız, hemen nitelikli bir avukata danışın.",
+    acknowledgment:
+      "Bunun yalnızca bilgilendirme amaçlı olduğunu, hukuki tavsiye oluşturmadığını ve avukat-müvekkil ilişkisi oluşturmadığını anlıyor ve kabul ediyorum. Özel durumum için profesyonel hukuki danışmanlık alacağım.",
+    continue: "Anlıyorum - Sonuçlara Devam Et",
+    continueDisabled: "Devam etmek için feragatnameyi onaylamalısınız",
+    checkboxRequired: "Onaylamak ve devam etmek için lütfen yukarıdaki kutuyu işaretleyin",
   },
   datenschutz: {
     title: "Gizlilik Politikası",

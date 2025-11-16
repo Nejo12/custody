@@ -1,12 +1,13 @@
-export default function Logo() {
+export default function Logo({ appName = "Custody Clarity" }: { appName?: string }) {
+  // Split appName into two parts if it contains a space (e.g., "Custody Clarity")
+  // Otherwise display as single line (e.g., "ElternWeg")
+  const parts = appName.split(" ");
+  const isTwoPart = parts.length === 2;
+
   return (
     <div className="flex items-center gap-2">
       <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 shadow-sm ring-1 ring-slate-900/40">
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 32 32"
-          className="h-5 w-5 text-slate-100"
-        >
+        <svg aria-hidden="true" viewBox="0 0 32 32" className="h-5 w-5 text-slate-100">
           <defs>
             <linearGradient id="logoAccent" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#7dd3fc" />
@@ -33,12 +34,20 @@ export default function Logo() {
           />
         </svg>
       </div>
-      <div className="flex flex-col leading-tight">
-        <span className="text-[0.78rem] uppercase tracking-[0.18em] text-slate-500">Custody</span>
+      {isTwoPart ? (
+        <div className="flex flex-col leading-tight">
+          <span className="text-[0.78rem] uppercase tracking-[0.18em] text-slate-500">
+            {parts[0]}
+          </span>
+          <span className="text-sm font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+            {parts[1]}
+          </span>
+        </div>
+      ) : (
         <span className="text-sm font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-          Clarity
+          {appName}
         </span>
-      </div>
+      )}
     </div>
   );
 }

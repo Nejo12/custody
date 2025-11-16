@@ -40,10 +40,12 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
     <header className="sticky top-0 z-40 w-full header-surface">
       <div className="bg-zinc-50/80 dark:bg-zinc-950/80 border-b border-zinc-200/80 dark:border-zinc-800/80">
         <div className="max-w-xl mx-auto px-4 h-7 flex items-center justify-between text-[11px] text-zinc-500 dark:text-zinc-400">
-          <span className="truncate">Data-driven clarity for German custody.</span>
+          <span className="truncate">
+            {t.header?.tagline || "Data-driven clarity for German custody."}
+          </span>
           <span className="hidden sm:inline-flex items-center gap-1">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            <span>Trusted for German family law</span>
+            <span>{t.header?.trustIndicator || "Trusted for German family law"}</span>
           </span>
         </div>
       </div>
@@ -59,7 +61,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                 {t.header?.discreetAppName || "Documents"}
               </span>
             ) : (
-              <Logo />
+              <Logo appName={t.appName} />
             )}
           </Link>
           {/* Right actions */}
@@ -186,28 +188,28 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                     className="w-full flex items-center h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border border-zinc-200 dark:border-zinc-700"
                     onClick={() => setMenuOpen(false)}
                   >
-                    How it works
+                    {t.header?.howItWorks || "How it works"}
                   </Link>
                   <Link
                     href="/guides"
                     className="w-full flex items-center h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border border-zinc-200 dark:border-zinc-700"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Guides
+                    {t.header?.guides || "Guides"}
                   </Link>
                   <Link
                     href="/faq"
                     className="w-full flex items-center h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border border-zinc-200 dark:border-zinc-700"
                     onClick={() => setMenuOpen(false)}
                   >
-                    FAQ
+                    {t.header?.faq || "FAQ"}
                   </Link>
                   <Link
                     href="/pricing"
                     className="w-full flex items-center h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border border-zinc-200 dark:border-zinc-700"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Pro Documents
+                    {t.header?.proDocuments || "Pro Documents"}
                   </Link>
                   <Link
                     href="/settings"

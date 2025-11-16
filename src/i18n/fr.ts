@@ -78,6 +78,12 @@ const fr = {
     settings: "Paramètres",
     more: "Plus",
     discreetAppName: "Documents",
+    tagline: "Clarté basée sur les données pour la garde allemande.",
+    trustIndicator: "Fiable pour le droit de la famille allemand",
+    howItWorks: "Comment ça fonctionne",
+    guides: "Guides",
+    faq: "FAQ",
+    proDocuments: "Documents Pro",
   },
   interview: {
     title: "Entretien",
@@ -557,6 +563,27 @@ const fr = {
     note: "Note",
     noteText:
       "Ce site Web est à des fins informatives uniquement et ne constitue pas un conseil juridique individualisé. Pour les questions juridiques, vous devriez consulter un avocat qualifié ou un service de conseil.",
+  },
+  disclaimer: {
+    title: "CECI N'EST PAS UN CONSEIL JURIDIQUE",
+    subtitle: "LES RÉSULTATS SONT À TITRE INFORMATIF UNIQUEMENT",
+    noAttorneyRelation:
+      "Cet outil ne crée PAS de relation avocat-client. Vous ne recevez PAS de conseil juridique.",
+    sections: [
+      "Cet outil fournit des informations générales sur le droit de la famille allemand basées sur vos réponses. Il ne remplace PAS un conseil juridique personnalisé.",
+      "Chaque situation de garde et de contact est unique. Les tribunaux tiennent compte de nombreux facteurs que cet outil ne peut pas évaluer.",
+      "Les informations fournies peuvent être incomplètes, obsolètes ou ne pas s'appliquer à vos circonstances spécifiques.",
+      "L'utilisation de cet outil n'établit AUCUNE représentation juridique ou relation avocat-client.",
+      "Pour un conseil juridique réel adapté à votre situation, vous DEVEZ consulter un avocat qualifié en droit de la famille (Fachanwalt für Familienrecht).",
+      "Les créateurs de cet outil ne sont PAS responsables des décisions que vous prenez sur la base des informations fournies.",
+    ],
+    context:
+      "Cet outil est conçu pour vous aider à comprendre les principes juridiques généraux et à vous préparer aux conversations avec des professionnels du droit. Il ne remplace PAS un conseil juridique professionnel. Si vous êtes confronté à un litige de garde, à un contact bloqué ou à toute question juridique urgente, consultez immédiatement un avocat qualifié.",
+    acknowledgment:
+      "Je comprends et accepte que ceci est à titre informatif uniquement, ne constitue pas un conseil juridique et ne crée pas de relation avocat-client. Je rechercherai un conseil juridique professionnel pour ma situation spécifique.",
+    continue: "Je comprends - Continuer vers les résultats",
+    continueDisabled: "Vous devez reconnaître l'avertissement pour continuer",
+    checkboxRequired: "Veuillez cocher la case ci-dessus pour reconnaître et continuer",
   },
   datenschutz: {
     title: "Politique de confidentialité",

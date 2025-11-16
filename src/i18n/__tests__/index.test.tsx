@@ -85,7 +85,7 @@ describe("I18nProvider", () => {
   it("switches locale correctly", async () => {
     localStorageMock.getItem.mockReturnValue(null); // Start fresh
     const user = await import("@testing-library/user-event").then((m) => m.default.setup());
-    const { rerender } = render(
+    render(
       <I18nProvider>
         <TestComponent />
       </I18nProvider>
@@ -95,15 +95,21 @@ describe("I18nProvider", () => {
     const switchButton = screen.getByText("Switch to DE");
     await user.click(switchButton);
 
-    // Re-render to see the change
-    rerender(
-      <I18nProvider>
-        <TestComponent />
-      </I18nProvider>
+    // Wait for locale to update and dictionary to load
+    await waitFor(
+      () => {
+        expect(screen.getByTestId("locale")).toHaveTextContent("de");
+      },
+      { timeout: 1000 }
     );
 
-    expect(screen.getByTestId("locale")).toHaveTextContent("de");
-    expect(screen.getByTestId("appName")).toHaveTextContent("ElternWeg");
+    // Wait for dictionary to load asynchronously
+    await waitFor(
+      () => {
+        expect(screen.getByTestId("appName")).toHaveTextContent("ElternWeg");
+      },
+      { timeout: 1000 }
+    );
   });
 
   it("sets document lang attribute", () => {

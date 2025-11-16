@@ -64,12 +64,15 @@ describe("Header", () => {
 
   it("renders app name", () => {
     render(<Header />);
-    expect(screen.getByText("Custody Clarity")).toBeInTheDocument();
+    // App name is split into two spans, so check for both parts
+    expect(screen.getByText("Custody")).toBeInTheDocument();
+    expect(screen.getByText("Clarity")).toBeInTheDocument();
   });
 
   it("renders app name link to home", () => {
     render(<Header />);
-    const link = screen.getByText("Custody Clarity").closest("a");
+    // Find the link by aria-label which contains the full app name
+    const link = screen.getByLabelText("Custody Clarity");
     expect(link).toHaveAttribute("href", "/");
   });
 
@@ -99,6 +102,7 @@ describe("Header", () => {
     });
 
     render(<Header />);
+    // Single-word app names are displayed as one span
     expect(screen.getByText("ElternWeg")).toBeInTheDocument();
   });
 

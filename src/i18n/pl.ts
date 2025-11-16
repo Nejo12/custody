@@ -76,6 +76,12 @@ const pl = {
     settings: "Ustawienia",
     more: "Więcej",
     discreetAppName: "Dokumenty",
+    tagline: "Przejrzystość oparta na danych dla niemieckiej opieki.",
+    trustIndicator: "Godny zaufania w niemieckim prawie rodzinnym",
+    howItWorks: "Jak to działa",
+    guides: "Przewodniki",
+    faq: "FAQ",
+    proDocuments: "Dokumenty Pro",
   },
   interview: {
     title: "Wywiad",
@@ -546,6 +552,27 @@ const pl = {
     note: "Uwaga",
     noteText:
       "Ta strona internetowa służy wyłącznie celom informacyjnym i nie stanowi indywidualnej porady prawnej. W przypadku pytań prawnych należy skonsultować się z wykwalifikowanym prawnikiem lub usługą doradczą.",
+  },
+  disclaimer: {
+    title: "TO NIE JEST PORADA PRAWNA",
+    subtitle: "WYNIKI MAJĄ CHARAKTER WYŁĄCZNIE INFORMACYJNY",
+    noAttorneyRelation:
+      "To narzędzie NIE tworzy relacji prawnik-klient. NIE otrzymujesz porady prawnej.",
+    sections: [
+      "To narzędzie dostarcza ogólnych informacji o niemieckim prawie rodzinnym na podstawie Twoich odpowiedzi. NIE jest to substytut spersonalizowanej porady prawnej.",
+      "Każda sytuacja dotycząca opieki i kontaktów jest wyjątkowa. Sądy biorą pod uwagę wiele czynników, których to narzędzie nie może ocenić.",
+      "Dostarczone informacje mogą być niekompletne, nieaktualne lub nie mieć zastosowania do Twoich konkretnych okoliczności.",
+      "Korzystanie z tego narzędzia NIE ustanawia żadnej reprezentacji prawnej ani relacji prawnik-klient.",
+      "Aby uzyskać rzeczywistą poradę prawną dostosowaną do Twojej sytuacji, MUSISZ skonsultować się z wykwalifikowanym prawnikiem prawa rodzinnego (Fachanwalt für Familienrecht).",
+      "Twórcy tego narzędzia NIE ponoszą odpowiedzialności za żadne decyzje podejmowane na podstawie dostarczonych informacji.",
+    ],
+    context:
+      "To narzędzie ma na celu pomóc Ci zrozumieć ogólne zasady prawne i przygotować się do rozmów z profesjonalistami prawnymi. NIE jest to zamiennik profesjonalnej porady prawnej. Jeśli masz do czynienia ze sporem o opiekę, zablokowanym kontaktem lub jakąkolwiek pilną sprawą prawną, natychmiast skonsultuj się z wykwalifikowanym prawnikiem.",
+    acknowledgment:
+      "Rozumiem i zgadzam się, że ma to charakter wyłącznie informacyjny, nie stanowi porady prawnej i nie tworzy relacji prawnik-klient. Będę szukać profesjonalnej porady prawnej dotyczącej mojej konkretnej sytuacji.",
+    continue: "Rozumiem - Przejdź do wyników",
+    continueDisabled: "Musisz zaakceptować zastrzeżenie, aby kontynuować",
+    checkboxRequired: "Zaznacz pole powyżej, aby zaakceptować i kontynuować",
   },
   datenschutz: {
     title: "Polityka prywatności",

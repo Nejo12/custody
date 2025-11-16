@@ -73,6 +73,12 @@ const en = {
     settings: "Settings",
     more: "More",
     discreetAppName: "Documents",
+    tagline: "Data-driven clarity for German custody.",
+    trustIndicator: "Trusted for German family law",
+    howItWorks: "How it works",
+    guides: "Guides",
+    faq: "FAQ",
+    proDocuments: "Pro Documents",
   },
   interview: {
     title: "Interview",
@@ -858,6 +864,27 @@ const en = {
     note: "Note",
     noteText:
       "This website is for informational purposes only and does not constitute individualized legal advice. For legal questions, you should consult a qualified attorney or counseling service.",
+  },
+  disclaimer: {
+    title: "THIS IS NOT LEGAL ADVICE",
+    subtitle: "RESULTS ARE INFORMATIONAL ONLY",
+    noAttorneyRelation:
+      "This tool does NOT create an attorney-client relationship. You are NOT receiving legal advice.",
+    sections: [
+      "This tool provides general information about German family law based on your answers. It is NOT a substitute for personalized legal counsel.",
+      "Every custody and contact situation is unique. Courts consider many factors beyond what this tool can assess.",
+      "The information provided may be incomplete, outdated, or not applicable to your specific circumstances.",
+      "Using this tool does NOT establish any legal representation or attorney-client relationship.",
+      "For actual legal advice tailored to your situation, you MUST consult a qualified family law attorney (Fachanwalt für Familienrecht).",
+      "The creators of this tool are NOT liable for any decisions you make based on the information provided.",
+    ],
+    context:
+      "This tool is designed to help you understand general legal principles and prepare for conversations with legal professionals. It is NOT a replacement for professional legal advice. If you are facing a custody dispute, blocked contact, or any urgent legal matter, consult a qualified attorney immediately.",
+    acknowledgment:
+      "I understand and agree that this is informational only, does not constitute legal advice, and does not create an attorney-client relationship. I will seek professional legal counsel for my specific situation.",
+    continue: "I Understand - Continue to Results",
+    continueDisabled: "You must acknowledge the disclaimer to continue",
+    checkboxRequired: "Please check the box above to acknowledge and continue",
   },
   datenschutz: {
     title: "Privacy Policy",
