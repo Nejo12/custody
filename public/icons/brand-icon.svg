@@ -1,0 +1,47 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  role="img"
+  aria-hidden="true"
+>
+  <defs>
+    <linearGradient id="brandIconBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020617" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="brandIconAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7dd3fc" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+  </defs>
+  <!-- Rounded square container to echo the in-app logo badge -->
+  <rect
+    x="8"
+    y="8"
+    width="48"
+    height="48"
+    rx="14"
+    fill="url(#brandIconBg)"
+  />
+  <!-- Document / clarity lines -->
+  <g
+    fill="none"
+    stroke="#e5e7eb"
+    stroke-linecap="round"
+    stroke-width="2.4"
+  >
+    <path d="M22 26h12" />
+    <path d="M22 32h9" />
+    <path d="M22 38h12" />
+  </g>
+  <!-- Dynamic diagonal accent to suggest movement/progress -->
+  <path
+    d="M34 22L46 20l-1.8 15.2c-.26 2.1-1.5 3.9-3.4 4.7L30 44"
+    fill="url(#brandIconAccent)"
+    stroke="#bae6fd"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
+

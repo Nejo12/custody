@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   icons: {
     icon: [
+      { url: "/icons/brand-icon.svg", type: "image/svg+xml" },
       { url: "/icons/icon-192-maskable.png", sizes: "192x192", type: "image/png" },
       { url: "/icons/icon-512-maskable.png", sizes: "512x512", type: "image/png" },
     ],

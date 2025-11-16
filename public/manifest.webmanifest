@@ -9,6 +9,12 @@
   "scope": "/",
   "icons": [
     {
+      "src": "/icons/brand-icon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
       "src": "/icons/icon-192-maskable.png",
       "sizes": "192x192",
       "type": "image/png",
