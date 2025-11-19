@@ -91,13 +91,9 @@ export default function LanguageSwitch({ buttonClassName }: { buttonClassName?: 
                 role="option"
                 aria-selected={locale === l.code}
                 className={locale === l.code ? "bg-zinc-50 dark:bg-zinc-800" : ""}
-                onClick={handleSelect}
               >
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleSelect();
-                  }}
+                  onClick={handleSelect}
                   className={`w-full text-left px-3 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${locale === l.code ? "font-medium" : ""}`}
                   aria-label={`Select ${l.label}`}
                 >

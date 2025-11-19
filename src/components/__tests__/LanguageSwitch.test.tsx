@@ -39,4 +39,20 @@ describe("LanguageSwitch", () => {
     await user.click(screen.getByText(/Deutsch/i));
     expect(mockSetLocale).toHaveBeenCalledWith("de");
   });
+
+  it("closes dropdown after selecting a language", async () => {
+    const user = userEvent.setup();
+    render(<LanguageSwitch />);
+    const button = screen.getByRole("button");
+
+    // Open dropdown
+    await user.click(button);
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+
+    // Select a language
+    await user.click(screen.getByText(/Deutsch/i));
+
+    // Dropdown should be closed (listbox should not be in the document)
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  });
 });

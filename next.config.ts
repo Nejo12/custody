@@ -1,6 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ["image/webp"],
+  },
   turbopack: {
     root: process.cwd(),
   },
@@ -33,7 +46,7 @@ const nextConfig: NextConfig = {
       "default-src 'self'",
       `script-src ${scriptSrc}`,
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob:",
+      "img-src 'self' data: blob: https://images.unsplash.com",
       "font-src 'self' data:",
       `connect-src ${connectSrc}`,
       "frame-src 'self' https://js.stripe.com https://hooks.stripe.com",
