@@ -66,9 +66,16 @@ describe("HomeClient", () => {
         home: {
           tagline: "Know your custody rights",
           heroTitle: "Know Your Custody & Contact Rights in 6 Minutes",
-          heroSubtitle: "Free guided interview with instant legal results and BGB citations",
+          heroSubtitle:
+            "Guided interview, instant outcome with § references, and a court-ready PDF pack you can act on today.",
           subline: "Takes 6 minutes. No signup.",
           features: "WCAG AA · Privacy‑first · Offline‑ready",
+          heroRibbon: "Built from real family-law frustration",
+          heroCitationsBadge: "BGB citations on every recommendation",
+          heroPrivacyBadge: "Privacy-first · No signup",
+          heroSpeedBadge: "6-minute guided interview",
+          heroSupporting: "No signup. No tracking. Built for stressed parents.",
+          heroSecondaryCta: "See a sample checklist",
           check: "Check My Situation",
           checkDescription: "Answer simple questions about your situation and get instant results",
           learn: "Learn the Law",
@@ -91,18 +98,22 @@ describe("HomeClient", () => {
   it("renders hero subtitle", () => {
     render(<HomeClient />);
     expect(
-      screen.getByText("Free guided interview with instant legal results and BGB citations")
+      screen.getByText(
+        "Guided interview, instant outcome with § references, and a court-ready PDF pack you can act on today."
+      )
     ).toBeInTheDocument();
   });
 
-  it("renders subline", () => {
+  it("renders supporting hero line", () => {
     render(<HomeClient />);
-    expect(screen.getByText("Takes 6 minutes. No signup.")).toBeInTheDocument();
+    expect(
+      screen.getByText("No signup. No tracking. Built for stressed parents.")
+    ).toBeInTheDocument();
   });
 
   it("renders features", () => {
     render(<HomeClient />);
-    expect(screen.getByText("WCAG AA · Privacy‑first · Offline‑ready")).toBeInTheDocument();
+    expect(screen.getByText("BGB citations on every recommendation")).toBeInTheDocument();
   });
 
   it("renders primary CTA link", () => {

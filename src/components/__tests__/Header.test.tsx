@@ -89,7 +89,7 @@ describe("Header", () => {
 
   it("has container with max width inside header", () => {
     render(<Header />);
-    const container = screen.getByRole("banner").querySelector(".max-w-xl");
+    const container = screen.getByRole("banner").querySelector(".max-w-6xl");
     expect(container).toBeInTheDocument();
   });
 

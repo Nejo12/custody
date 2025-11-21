@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import { I18nProvider } from "@/i18n";
 import PhotoHero from "../PhotoHero";
 
 /**
@@ -32,99 +33,52 @@ describe("PhotoHero", () => {
     vi.clearAllMocks();
   });
 
-  it("should render photo container", () => {
-    const { container } = render(<PhotoHero />);
+  const renderWithProvider = () =>
+    render(
+      <I18nProvider>
+        <PhotoHero />
+      </I18nProvider>
+    );
 
-    const photoContainer = container.querySelector(".relative.w-full.h-full");
-    expect(photoContainer).toBeInTheDocument();
+  it("renders preview cards and timeline copy", () => {
+    renderWithProvider();
+
+    expect(screen.getByText(/Outcome preview/i)).toBeInTheDocument();
+    expect(screen.getByText(/Court-ready PDF pack/i)).toBeInTheDocument();
+    expect(screen.getByText(/Action timeline/i)).toBeInTheDocument();
+    expect(screen.getByText(/Timeline & reminders/i)).toBeInTheDocument();
   });
 
-  it("should render Next.js Image component", () => {
-    const { container } = render(<PhotoHero />);
-
-    // Next.js Image renders as an img tag
-    const image = container.querySelector("img");
-    expect(image).toBeInTheDocument();
+  it("renders floating legal markers", () => {
+    const { container } = renderWithProvider();
+    const markers = Array.from(container.querySelectorAll("div")).filter((el) =>
+      el.textContent?.match(/§|BGB|Art\.|1626/)
+    );
+    expect(markers.length).toBeGreaterThan(0);
   });
 
-  it("should have proper alt text for accessibility", () => {
-    const { container } = render(<PhotoHero />);
-
-    const image = container.querySelector("img");
-    expect(image).toHaveAttribute("alt", expect.stringContaining("Parent and child"));
-  });
-
-  it("should have photo frame with border and shadow", () => {
-    const { container } = render(<PhotoHero />);
-
-    const frame = container.querySelector(".rounded-3xl.overflow-hidden.shadow-2xl");
-    expect(frame).toBeInTheDocument();
-  });
-
-  it("should render decorative gradient backgrounds", () => {
-    const { container } = render(<PhotoHero />);
-
-    const gradients = container.querySelectorAll('[class*="bg-gradient"]');
-    expect(gradients.length).toBeGreaterThan(0);
-  });
-
-  it("should have dark mode overlay", () => {
-    const { container } = render(<PhotoHero />);
-
-    const overlay = container.querySelector(".mix-blend-overlay");
-    expect(overlay).toBeInTheDocument();
-  });
-
-  it("should render decorative corner accents", () => {
-    const { container } = render(<PhotoHero />);
-
-    const accents = container.querySelectorAll(".rounded-full.blur-2xl");
-    expect(accents.length).toBeGreaterThanOrEqual(2);
-  });
-
-  it("should support dark mode with appropriate classes", () => {
-    const { container } = render(<PhotoHero />);
-
-    const darkModeElements = container.querySelectorAll('[class*="dark:"]');
-    expect(darkModeElements.length).toBeGreaterThan(0);
-  });
-
-  it("should listen for prefers-reduced-motion changes", () => {
-    render(<PhotoHero />);
+  it("attaches prefers-reduced-motion listener", () => {
+    renderWithProvider();
 
     expect(window.matchMedia).toHaveBeenCalledWith("(prefers-reduced-motion: reduce)");
     expect(mockMediaQuery.addEventListener).toHaveBeenCalledWith("change", expect.any(Function));
   });
 
-  it("should clean up event listener on unmount", () => {
-    const { unmount } = render(<PhotoHero />);
-
+  it("cleans up media query listener on unmount", () => {
+    const { unmount } = renderWithProvider();
     unmount();
 
     expect(mockMediaQuery.removeEventListener).toHaveBeenCalledWith("change", expect.any(Function));
   });
 
-  it("should respect prefers-reduced-motion preference", () => {
+  it("respects prefers-reduced-motion preference", () => {
     mockMediaQuery.matches = true;
-
-    render(<PhotoHero />);
-
-    // Component should render without animations when prefers-reduced-motion is true
-    // This is verified by the component not crashing and rendering successfully
+    renderWithProvider();
     expect(window.matchMedia).toHaveBeenCalledWith("(prefers-reduced-motion: reduce)");
   });
 
-  it("should have proper aspect ratio container", () => {
-    const { container } = render(<PhotoHero />);
-
-    const aspectContainer = container.querySelector(".aspect-\\[3\\/4\\]");
-    expect(aspectContainer).toBeInTheDocument();
-  });
-
-  it("should render with responsive padding", () => {
-    const { container } = render(<PhotoHero />);
-
-    const wrapper = container.querySelector(".p-4.sm\\:p-8");
-    expect(wrapper).toBeInTheDocument();
+  it("renders gradient background container", () => {
+    const { container } = renderWithProvider();
+    expect(container.querySelector('[class*="bg-gradient-to-br"]')).toBeInTheDocument();
   });
 });

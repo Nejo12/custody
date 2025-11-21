@@ -173,7 +173,11 @@ function FloatingElement({
   );
 }
 
-export default function FloatingElements() {
+export default function FloatingElements({
+  forceReduceMotion = false,
+}: {
+  forceReduceMotion?: boolean;
+}) {
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
 
@@ -192,8 +196,10 @@ export default function FloatingElements() {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
+  const shouldReduceMotion = forceReduceMotion || prefersReducedMotion;
+
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (shouldReduceMotion) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
@@ -204,7 +210,7 @@ export default function FloatingElements() {
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY, prefersReducedMotion]);
+  }, [mouseX, mouseY, shouldReduceMotion]);
 
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -214,7 +220,7 @@ export default function FloatingElements() {
           element={element}
           mouseX={mouseX}
           mouseY={mouseY}
-          prefersReducedMotion={prefersReducedMotion}
+          prefersReducedMotion={shouldReduceMotion}
         />
       ))}
     </div>

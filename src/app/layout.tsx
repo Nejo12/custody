@@ -9,6 +9,7 @@ import UpdatePrompt from "@/components/UpdatePrompt";
 import FloatingThemeSwitch from "@/components/FloatingThemeSwitch";
 import Analytics from "@/components/Analytics";
 import ReferralTracker from "@/components/ReferralTracker";
+import { Manrope, Playfair_Display } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Custody Clarity",
@@ -31,6 +32,20 @@ export const viewport: Viewport = {
   themeColor: "#0a0a0a",
 };
 
+const bodyFont = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
+});
+
+const headingFont = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-heading",
+  weight: ["600", "700"],
+});
+
 /**
  * Root Layout Component
  *
@@ -50,7 +65,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${bodyFont.variable} ${headingFont.variable}`}
+    >
       <body className="antialiased">
         <a href="#main-content" className="skip-link">
           Skip to content

@@ -39,7 +39,7 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
   return (
     <header className="sticky top-0 z-40 w-full header-surface">
       <div className="bg-zinc-50/80 dark:bg-zinc-950/80 border-b border-zinc-200/80 dark:border-zinc-800/80">
-        <div className="max-w-xl mx-auto px-4 h-7 flex items-center justify-between text-[11px] text-zinc-500 dark:text-zinc-400">
+        <div className="max-w-6xl mx-auto px-4 h-8 flex items-center justify-between text-[12px] tracking-tight text-zinc-600 dark:text-zinc-400">
           <span className="truncate">
             {t.header?.tagline || "Data-driven clarity for German custody."}
           </span>
@@ -49,8 +49,8 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
           </span>
         </div>
       </div>
-      <div className="max-w-xl mx-auto px-4">
-        <div className="h-14 flex items-center justify-between gap-2 min-w-0">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="h-16 flex items-center justify-between gap-3 min-w-0">
           <Link
             href="/"
             className="flex items-center gap-3 min-w-0 flex-shrink-0"

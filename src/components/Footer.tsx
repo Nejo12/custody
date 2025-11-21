@@ -5,9 +5,11 @@ import { useI18n } from "@/i18n";
 export default function Footer() {
   const { t } = useI18n();
   return (
-    <footer className="w-full max-w-xl mx-auto text-center text-xs text-zinc-700 dark:text-zinc-400 py-6 px-4 space-y-2">
-      <p>{t.home?.disclaimer || "Information only. Not individualized legal advice."}</p>
-      <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1">
+    <footer className="w-full max-w-6xl mx-auto text-center text-sm text-zinc-700 dark:text-zinc-400 py-8 px-4 space-y-3">
+      <p className="text-base font-medium text-zinc-800 dark:text-zinc-200">
+        {t.home?.disclaimer || "Information only. Not individualized legal advice."}
+      </p>
+      <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2">
         <Link
           href="/planning"
           className="underline hover:text-zinc-700 dark:hover:text-zinc-600 transition-colors"

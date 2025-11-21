@@ -13,21 +13,25 @@
 :root {
   /* Base colors */
   --background: #ffffff;
-  --foreground: #171717;
-  --brand: #2563eb;
+  --foreground: #0f172a;
+  --brand: #0f172a;
+  --brand-amber: #f59e0b;
+  --brand-teal: #0ea5e9;
   --card: #ffffff;
-  --card-border: rgba(0, 0, 0, 0.08);
+  --card-border: rgba(15, 23, 42, 0.08);
+  --muted-surface: #f8fafc;
+  --glow: rgba(14, 165, 233, 0.15);
 
   /* Semantic text colors - optimized for contrast */
-  --text-primary: #18181b; /* zinc-900 - Main text */
-  --text-secondary: #3f3f46; /* zinc-700 - Secondary text */
-  --text-tertiary: #52525b; /* zinc-600 - Tertiary text */
-  --text-muted: #71717a; /* zinc-500 - Muted text */
-  --text-placeholder: #a1a1aa; /* zinc-400 - Placeholder text */
+  --text-primary: #0f172a; /* slate-900 */
+  --text-secondary: #1f2937; /* slate-800 */
+  --text-tertiary: #334155; /* slate-700 */
+  --text-muted: #475569; /* slate-600 */
+  --text-placeholder: #94a3b8; /* slate-400 */
 
   /* Border colors */
-  --border-default: #e4e4e7; /* zinc-200 */
-  --border-strong: #d4d4d8; /* zinc-300 */
+  --border-default: #e2e8f0; /* slate-200 */
+  --border-strong: #cbd5e1; /* slate-300 */
 
   /* Status colors - light mode */
   --status-success-bg: #dcfce7; /* green-100 */
@@ -42,19 +46,24 @@
   /* Base colors */
   --background: #0a0a0a;
   --foreground: #ededed;
+  --brand: #e2e8f0;
+  --brand-amber: #fbbf24;
+  --brand-teal: #22d3ee;
   --card: #0d0d0d;
   --card-border: rgba(255, 255, 255, 0.14);
+  --muted-surface: #111827;
+  --glow: rgba(15, 23, 42, 0.3);
 
   /* Semantic text colors - optimized for contrast */
-  --text-primary: #fafafa; /* zinc-50 - Main text */
-  --text-secondary: #d4d4d8; /* zinc-300 - Secondary text */
-  --text-tertiary: #a1a1aa; /* zinc-400 - Tertiary text */
-  --text-muted: #71717a; /* zinc-500 - Muted text */
-  --text-placeholder: #71717a; /* zinc-500 - Placeholder text */
+  --text-primary: #f8fafc; /* slate-50 */
+  --text-secondary: #e2e8f0; /* slate-200 */
+  --text-tertiary: #cbd5e1; /* slate-300 */
+  --text-muted: #94a3b8; /* slate-400 */
+  --text-placeholder: #94a3b8; /* slate-400 */
 
   /* Border colors */
-  --border-default: #27272a; /* zinc-800 */
-  --border-strong: #3f3f46; /* zinc-700 */
+  --border-default: #1f2937; /* slate-800 */
+  --border-strong: #334155; /* slate-700 */
 
   /* Status colors - dark mode */
   --status-success-bg: rgba(34, 197, 94, 0.2); /* green-900/30 */
@@ -92,8 +101,9 @@
 
   /* Fonts */
   --font-sans:
-    "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    sans-serif;
+    var(--font-body), "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+    Arial, sans-serif;
+  --font-heading: var(--font-heading), "Playfair Display", "Georgia", "Times New Roman", serif;
   --font-mono: "Menlo", "Monaco", "Courier New", monospace;
 }
 
@@ -101,9 +111,19 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
 }
 
 /* Ensure dropdown menus and dialog text are readable in light mode */

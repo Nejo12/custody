@@ -12,12 +12,20 @@ const de = {
   },
   home: {
     tagline: "Kenne deine Sorge- und Umgangsrechte.",
+    heroRibbon: "Aus echter Familienrechts-Erfahrung gebaut",
     heroTitle: "Kenne deine Sorge- und Umgangsrechte in 6 Minuten",
     heroSubtitle:
-      "Kostenloses geführtes Interview mit sofortigen rechtlichen Ergebnissen und BGB-Zitaten",
+      "Geführtes Interview, sofortiges Ergebnis mit §§ und ein gerichtsreifes PDF-Paket, das du sofort nutzen kannst.",
     check: "Meine Situation prüfen",
     checkDescription:
       "Beantworte einfache Fragen zu deiner Situation und erhalte sofortige Ergebnisse",
+    heroSecondaryCta: "Beispiel-Checkliste ansehen",
+    heroSupporting: "Keine Anmeldung. Kein Tracking. Für gestresste Eltern gemacht.",
+    heroCitationsBadge: "BGB-Zitate bei jeder Empfehlung",
+    heroPrivacyBadge: "Datenschutz zuerst · Keine Anmeldung",
+    heroSpeedBadge: "Geführtes 6-Minuten-Interview",
+    motionEnabled: "Animation aus — zum Aktivieren tippen",
+    motionDisabled: "Ruhe bevorzugt? Animationen deaktivieren",
     learn: "Gesetz verstehen",
     learnDescription:
       "Zugriff auf Rechtsleitfäden und offizielle Ressourcen, um deine Rechte zu verstehen",
@@ -30,6 +38,66 @@ const de = {
     subline: "Dauert 6 Minuten. Keine Anmeldung.",
     disclaimer: "Nur Information – keine individuelle Rechtsberatung.",
     features: "WCAG AA · Datenschutzorientiert · Offlinefähig",
+    outcome: {
+      eyebrow: "Ergebnis zuerst",
+      title: "Sieh, was du erhältst",
+      subtitle:
+        "Mehr als nur ein Status. Jede Antwort formt das PDF-Paket, die Zeitleiste und die Checkliste, die du sofort nutzen kannst.",
+      previewHeader: "Vorschau",
+      previewPrimary: "Status mit §-Verweisen",
+      previewSecondary: "Anschreiben fürs Gericht ausgefüllt",
+      previewTertiary: "Checkliste mit Fristen & Dokumenten",
+      cardStatus: "Status",
+      cardStatusValue: "Gemeinsames Sorgerecht möglich",
+      cardStatusCopy: "Beinhaltet §1626a BGB und deine Angaben.",
+      cardChecklist: "Checkliste",
+      cardItemOne: "Jugendamt-Termin buchen",
+      cardItemTwo: "Ausweise + Geburtsurkunde mitbringen",
+      cardItemThree: "Anschreiben drucken & unterschreiben",
+      documentsTag: "Gerichtsreifes PDF",
+      documentsTitle: "Personalisierte Schreiben mit passenden §§",
+      documentsDescription:
+        "Sauberes PDF-Paket mit Anschreiben, Anlagenliste und den benötigten Zitaten.",
+      checklistTag: "Checkliste",
+      checklistTitle: "Schritte, die zu deiner Situation passen",
+      checklistDescription:
+        "Sieh, was du diese Woche tun solltest, wen du anrufen musst und was du mitnimmst.",
+      timelineTag: "Zeitleiste",
+      timelineTitle: "Zeitleiste, die dich auf Kurs hält",
+      timelineDescription:
+        "Wichtige Daten, Erinnerungen und optionaler Kalender-Export, damit du keine Frist verpasst.",
+    },
+    story: {
+      eyebrow: "Warum es das gibt",
+      title: "Ich habe das gebaut, nachdem ich meine Kinder nicht sehen konnte",
+      body: "Ich war monatelang ohne meine Kinder, weil ich die genauen Schritte nicht kannte. Dieses Tool nimmt das Rätselraten: die richtigen §§, die richtigen Formulare, die richtige Reihenfolge.",
+      note: "Wenn du überfordert bist, starte mit dem Interview. Du bekommst sofort umsetzbare nächste Schritte.",
+    },
+    proof: {
+      legal: "Basiert auf deutschem Familienrecht (BGB)",
+      legalDescription:
+        "Jedes Ergebnis zitiert die relevanten §§, damit du mit Jugendamt oder Gericht sicher sprechen kannst.",
+      accessibility: "WCAG AA, mehrsprachig, offlinefähig",
+      accessibilityDescription:
+        "Sieben Sprachen, Dark Mode, Modus mit weniger Bewegung und funktioniert nach dem Laden auch ohne Verbindung.",
+      privacy: "Datenschutz zuerst",
+      privacyDescription:
+        "Keine Anmeldung erforderlich. Deine Antworten bleiben auf deinem Gerät, bis du sie teilst.",
+    },
+    heroPreview: {
+      header: "Ergebnis-Vorschau",
+      lead: "Das Interview baut diese Elemente währenddessen. Keine Demo-Bilder – echte, nutzbare Bausteine.",
+      packTitle: "Gerichtsreifes PDF-Paket",
+      packLineOne: "Anschreiben mit §-Verweisen",
+      packLineTwo: "Checkliste für Anlagen",
+      packLineThree: "Unterschriftsfertiger Download",
+      timelineTitle: "Aktions-Zeitleiste",
+      timelineLineOne: "Jugendamt besuchen",
+      timelineLineTwo: "Anschreiben drucken & unterschreiben",
+      timelineLineThree: "Kalender-Erinnerungen inklusive",
+      timeline: "Zeitleiste & Erinnerungen",
+      timelineCopy: "Wichtige Termine, Fristen und eine einfache Reihenfolge – auch ohne Anwalt.",
+    },
     howItWorksTitle: "So funktioniert es",
     howItWorksStep1Title: "Fragen beantworten",
     howItWorksStep1Description: "Beantworte einfache Fragen zu deiner Situation",

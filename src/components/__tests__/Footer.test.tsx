@@ -68,7 +68,7 @@ describe("Footer", () => {
   it("has correct styling classes", () => {
     render(<Footer />);
     const footer = screen.getByRole("contentinfo");
-    expect(footer).toHaveClass("w-full", "max-w-xl", "mx-auto", "text-center");
+    expect(footer).toHaveClass("w-full", "max-w-6xl", "mx-auto", "text-center");
   });
 
   it("includes Pro Documents link", () => {

@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import AnimatedHero from "../AnimatedHero";
+import { I18nProvider } from "@/i18n";
 
 /**
  * Test suite for AnimatedHero component
@@ -10,10 +11,12 @@ import AnimatedHero from "../AnimatedHero";
 describe("AnimatedHero", () => {
   it("should render children content", () => {
     render(
-      <AnimatedHero>
-        <h1>Test Hero Title</h1>
-        <p>Test hero description</p>
-      </AnimatedHero>
+      <I18nProvider>
+        <AnimatedHero>
+          <h1>Test Hero Title</h1>
+          <p>Test hero description</p>
+        </AnimatedHero>
+      </I18nProvider>
     );
 
     expect(screen.getByText("Test Hero Title")).toBeInTheDocument();
@@ -22,9 +25,11 @@ describe("AnimatedHero", () => {
 
   it("should have correct layout structure", () => {
     const { container } = render(
-      <AnimatedHero>
-        <div data-testid="hero-content">Content</div>
-      </AnimatedHero>
+      <I18nProvider>
+        <AnimatedHero>
+          <div data-testid="hero-content">Content</div>
+        </AnimatedHero>
+      </I18nProvider>
     );
 
     // Check for grid layout
@@ -35,32 +40,23 @@ describe("AnimatedHero", () => {
 
   it("should render PhotoHero component", () => {
     const { container } = render(
-      <AnimatedHero>
-        <div>Content</div>
-      </AnimatedHero>
+      <I18nProvider>
+        <AnimatedHero>
+          <div>Content</div>
+        </AnimatedHero>
+      </I18nProvider>
     );
 
-    // Check for img element (from PhotoHero with Next.js Image)
-    const img = container.querySelector("img");
-    expect(img).toBeInTheDocument();
-  });
-
-  it("should have responsive height classes", () => {
-    const { container } = render(
-      <AnimatedHero>
-        <div>Content</div>
-      </AnimatedHero>
-    );
-
-    const illustrationContainer = container.querySelector(".h-\\[400px\\]");
-    expect(illustrationContainer).toBeInTheDocument();
+    expect(container.textContent).toContain("Outcome preview");
   });
 
   it("should apply gradient background", () => {
     const { container } = render(
-      <AnimatedHero>
-        <div>Content</div>
-      </AnimatedHero>
+      <I18nProvider>
+        <AnimatedHero>
+          <div>Content</div>
+        </AnimatedHero>
+      </I18nProvider>
     );
 
     const gradient = container.querySelector(".bg-gradient-to-br");

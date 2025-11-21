@@ -88,11 +88,11 @@ export default function TrustIndicators() {
   ];
 
   return (
-    <div className="flex flex-wrap justify-center items-center gap-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+    <div className="flex flex-wrap justify-center items-center gap-4 pt-5 border-t border-zinc-200 dark:border-zinc-800">
       {indicators.map((indicator, index) => (
         <div
           key={index}
-          className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400"
+          className="flex items-center gap-2 text-sm text-zinc-700 dark:text-zinc-300"
         >
           <div className="flex-shrink-0 text-zinc-500 dark:text-zinc-500">{indicator.icon}</div>
           <span>{indicator.label}</span>

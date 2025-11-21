@@ -12,11 +12,20 @@ const fr = {
   },
   home: {
     tagline: "Connaissez vos droits de garde et de contact.",
+    heroRibbon: "Né d'une vraie frustration en droit de la famille",
     heroTitle: "Connaissez vos droits de garde et de contact en 6 minutes",
-    heroSubtitle: "Entretien guidé gratuit avec résultats juridiques instantanés et citations BGB",
+    heroSubtitle:
+      "Entretien guidé, résultat instantané avec références aux articles et un pack PDF prêt pour le tribunal.",
     check: "Vérifier ma situation",
     checkDescription:
       "Répondez à des questions simples sur votre situation et obtenez des résultats instantanés",
+    heroSecondaryCta: "Voir un exemple de checklist",
+    heroSupporting: "Pas d'inscription. Pas de suivi. Conçu pour les parents stressés.",
+    heroCitationsBadge: "Citations BGB pour chaque recommandation",
+    heroPrivacyBadge: "Confidentialité d'abord · Pas d'inscription",
+    heroSpeedBadge: "Entretien guidé de 6 minutes",
+    motionEnabled: "Animation désactivée — appuyez pour activer",
+    motionDisabled: "Vous préférez le calme ? Désactivez les animations",
     learn: "Apprendre la loi",
     learnDescription:
       "Accédez aux guides juridiques et aux ressources officielles pour comprendre vos droits",
@@ -29,6 +38,66 @@ const fr = {
     subline: "Prend 6 minutes. Pas d'inscription.",
     disclaimer: "Information uniquement. Pas de conseil juridique individualisé.",
     features: "WCAG AA · Confidentialité d'abord · Prêt hors ligne",
+    outcome: {
+      eyebrow: "Résultat en premier",
+      title: "Voyez ce que vous obtenez",
+      subtitle:
+        "Plus qu'un statut. Chaque réponse façonne le pack PDF, la chronologie et la checklist utilisables immédiatement.",
+      previewHeader: "Aperçu",
+      previewPrimary: "Statut avec références aux articles",
+      previewSecondary: "Lettre de couverture préremplie",
+      previewTertiary: "Checklist avec échéances et documents",
+      cardStatus: "Statut",
+      cardStatusValue: "Garde conjointe possible",
+      cardStatusCopy: "Inclut la référence au §1626a BGB et vos informations.",
+      cardChecklist: "Checklist",
+      cardItemOne: "Prendre rendez-vous au Jugendamt",
+      cardItemTwo: "Apporter pièces d'identité + acte de naissance",
+      cardItemThree: "Imprimer & signer la lettre",
+      documentsTag: "PDF prêt pour le tribunal",
+      documentsTitle: "Courriers personnalisés avec les bons articles",
+      documentsDescription:
+        "Pack PDF propre avec lettre, liste des pièces jointes et références nécessaires.",
+      checklistTag: "Checklist",
+      checklistTitle: "Étapes adaptées à votre situation",
+      checklistDescription:
+        "Sachez quoi faire cette semaine, qui appeler et quoi apporter au Jugendamt ou au tribunal.",
+      timelineTag: "Chronologie",
+      timelineTitle: "Chronologie qui vous garde sur la voie",
+      timelineDescription:
+        "Dates clés, rappels et export calendrier pour ne manquer aucune échéance.",
+    },
+    story: {
+      eyebrow: "Pourquoi cela existe",
+      title: "J'ai créé ceci après avoir été éloigné de mes enfants",
+      body: "Je suis resté des mois sans voir mes enfants car je ne connaissais pas les étapes exactes. Cet outil enlève l'incertitude : les bons articles, les bons formulaires, le bon ordre.",
+      note: "Si vous êtes dépassé, commencez par l'entretien. Vous repartirez avec des étapes immédiatement actionnables.",
+    },
+    proof: {
+      legal: "Fondé sur le droit de la famille allemand (BGB)",
+      legalDescription:
+        "Chaque résultat cite les articles pertinents pour parler en confiance au Jugendamt ou au tribunal.",
+      accessibility: "WCAG AA, multilingue, fonctionne hors ligne",
+      accessibilityDescription:
+        "Sept langues, mode sombre, mode à faible mouvement et fonctionne même sans réseau une fois chargé.",
+      privacy: "Confidentialité d'abord",
+      privacyDescription:
+        "Aucune inscription nécessaire. Vos réponses restent sur votre appareil sauf si vous les partagez.",
+    },
+    heroPreview: {
+      header: "Aperçu du résultat",
+      lead: "L'entretien construit ces éléments pendant que vous répondez. Pas de fausses captures, des pièces prêtes à l'emploi.",
+      packTitle: "Pack PDF prêt",
+      packLineOne: "Lettre avec références aux articles",
+      packLineTwo: "Checklist des pièces jointes",
+      packLineThree: "Téléchargement prêt à signer",
+      timelineTitle: "Chronologie d'action",
+      timelineLineOne: "Prendre rendez-vous au Jugendamt",
+      timelineLineTwo: "Imprimer et signer la lettre",
+      timelineLineThree: "Rappels calendrier inclus",
+      timeline: "Chronologie & rappels",
+      timelineCopy: "Dates clés, échéances et séquence simple que vous pouvez suivre sans avocat.",
+    },
     howItWorksTitle: "Comment ça fonctionne",
     howItWorksStep1Title: "Répondre aux questions",
     howItWorksStep1Description: "Répondez à des questions simples sur votre situation",

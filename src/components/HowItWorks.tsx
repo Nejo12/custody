@@ -95,7 +95,7 @@ export default function HowItWorks() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-semibold text-center text-zinc-900 dark:text-zinc-50">
+      <h2 className="text-2xl font-semibold text-center text-zinc-900 dark:text-zinc-50">
         {t.home?.howItWorksTitle || "How It Works"}
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -109,12 +109,12 @@ export default function HowItWorks() {
                 {step.icon}
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-50">
                   {step.title}
                 </h3>
               </div>
             </div>
-            <p className="text-xs text-zinc-600 dark:text-zinc-400 pl-[52px]">{step.description}</p>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300 pl-[52px]">{step.description}</p>
           </div>
         ))}
       </div>
