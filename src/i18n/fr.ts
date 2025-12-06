@@ -153,6 +153,7 @@ const fr = {
     guides: "Guides",
     faq: "FAQ",
     proDocuments: "Documents Pro",
+    parenthoodPrepMenu: "📘 Préparation parentale",
   },
   interview: {
     title: "Entretien",
@@ -602,6 +603,7 @@ const fr = {
       personalStory: "Histoire personnelle",
       legalGuide: "Guide juridique",
       resource: "Ressource",
+      parenthoodPrep: "Préparation à la parentalité",
     },
     disclaimer:
       "Note : Les articles de blog reflètent des expériences et opinions personnelles. Pour des conseils juridiques spécifiques à votre situation, consultez un avocat spécialisé en droit de la famille.",
@@ -987,6 +989,59 @@ const fr = {
       "Avertissement : Ce guide fournit uniquement des informations générales, pas des conseils juridiques individualisés. Le droit de la famille allemand peut être complexe, et chaque situation est unique. Pour des conseils spécifiques à votre situation, consultez un avocat spécialisé en droit de la famille qualifié (Fachanwalt für Familienrecht).",
     languageNote:
       "Note : Les guides de planification ne sont actuellement disponibles qu'en anglais.",
+  },
+  parenthoodPrep: {
+    badge: "Préparation à la parentalité",
+    title: "Préparation à la parentalité",
+    subtitle: "Bien commencer. Rester informé. Protéger l'avenir de votre enfant.",
+    description:
+      "Devenir parent en Allemagne n'est pas seulement émotionnel — c'est aussi juridique. Que vous attendiez un enfant, prépariez la naissance ou naviguiez pour la première fois avec le Jugendamt, les décisions que vous prenez maintenant façonnent vos droits pour les années à venir. Cette section fournit des conseils clairs pour aider les parents — en particulier les pères non mariés — à comprendre le paysage juridique tôt et à éviter les erreurs douloureuses.",
+    mission: {
+      label: "Mission",
+      title: "Notre mission : Autonomiser les parents avant que les problèmes ne surviennent",
+      description:
+        "La plupart des crises du droit de la famille commencent bien avant le premier dépôt au tribunal. Elles commencent par un manque d'information, des documents manquants et l'hypothèse que l'amour seul suffit à établir les droits parentaux. La préparation à la parentalité existe pour changer cela.",
+      bullets: {
+        bullet1: "Éduquer les nouveaux parents et futurs parents sur leurs droits et obligations.",
+        bullet2: "Prévenir les conflits de garde avant qu'ils ne surviennent.",
+        bullet3: "Guider les pères non mariés à travers les premières étapes essentielles.",
+        bullet4: "Renforcer les familles par la connaissance plutôt que par la confusion.",
+        bullet5:
+          "S'assurer qu'aucun parent ne découvre trop tard qu'il manque de reconnaissance légale.",
+      },
+      conclusion:
+        "Avec clarté, préparation et les bons outils, chaque parent peut construire une base solide pour l'avenir de son enfant — bien avant que le conflit n'entre en jeu.",
+    },
+    section: {
+      label: "Préparez-vous tôt",
+      title: "📘 Préparation parentale : Apprendre avant que les problèmes ne surviennent",
+      description:
+        "Guides ciblés pour les futurs parents, les nouveaux pères et les couples planifiant ensemble les premières étapes de la garde.",
+      viewAllPosts: "Voir tous les articles du blog",
+      readArticle: "Lire l'article",
+    },
+    faq: {
+      label: "FAQ",
+      title: "Préparation à la parentalité en Allemagne",
+      items: {
+        q1: "Pourquoi les pères non mariés doivent-ils reconnaître la paternité ?",
+        a1: "Parce que sans reconnaissance, ils ne sont pas légalement reconnus comme le père. Sans cela, il n'y a pas de garde et aucun mot à dire dans les décisions importantes.",
+        q2: "Quelle est la différence entre la reconnaissance de paternité et une déclaration de garde ?",
+        a2: "La reconnaissance de paternité (Anerkennung) confirme la paternité. La déclaration de garde (Sorgeerklärung) établit la garde conjointe. Les deux sont nécessaires si les parents non mariés veulent des droits égaux.",
+        q3: "Où puis-je faire une reconnaissance de paternité ?",
+        a3: "Au Jugendamt (bureau de protection de la jeunesse), au Standesamt (bureau d'état civil) ou chez un notaire. La plupart des parents le font gratuitement au Jugendamt.",
+        q4: "Quand devez-vous soumettre la déclaration de garde ?",
+        a4: "Idéalement pendant que la relation est stable, car les conflits ultérieurs rendent le processus beaucoup plus difficile.",
+        q5: "À quoi dois-je m'attendre lors de mon premier rendez-vous au Jugendamt ?",
+        a5: "Une conversation sur les devoirs, les droits et la situation de votre enfant. Une communication calme et factuelle est essentielle.",
+        q6: "Quels documents les nouveaux parents doivent-ils organiser immédiatement ?",
+        a6: "Acte de naissance, documents d'assurance, carnet de vaccination, U-Heft (carnet de santé de l'enfant), reconnaissance de paternité, déclaration de garde, documents Kindergeld/Elterngeld.",
+        q7: "Que se passe-t-il si vous ne complétez pas ces étapes tôt ?",
+        a7: "Les droits parentaux sont limités, les demandes sont retardées et les conflits peuvent s'intensifier inutilement.",
+        q8: "CustodyClarity soutient-il aussi les parents sans problèmes juridiques ?",
+        a8: "Oui — toute la section Préparation à la parentalité a été spécialement conçue pour prévenir les problèmes avant qu'ils ne surviennent.",
+      },
+    },
   },
 };
 

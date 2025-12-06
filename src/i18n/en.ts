@@ -148,6 +148,7 @@ const en = {
     guides: "Guides",
     faq: "FAQ",
     proDocuments: "Pro Documents",
+    parenthoodPrepMenu: "📘 Parenthood Prep",
   },
   interview: {
     title: "Interview",
@@ -622,6 +623,7 @@ const en = {
       personalStory: "Personal Story",
       legalGuide: "Legal Guide",
       resource: "Resource",
+      parenthoodPrep: "Parenthood Preparation",
     },
     disclaimer:
       "Note: Blog posts reflect personal experiences and opinions. For legal advice specific to your situation, consult a qualified family law attorney.",
@@ -632,6 +634,58 @@ const en = {
       "{author} is a father who has navigated the German custody system. This tool was built to help other parents facing similar challenges.",
     by: "by",
     languageNote: "",
+  },
+  parenthoodPrep: {
+    badge: "Parenthood Preparation",
+    title: "Parenthood Preparation",
+    subtitle: "Start strong. Stay informed. Protect your child's future.",
+    description:
+      "Becoming a parent in Germany is not just emotional — it's legal. Whether you're expecting a child, preparing for birth, or navigating the Jugendamt for the first time, the decisions you make now shape your rights for years to come. This section provides clear guidance to help parents — especially unmarried fathers — understand the legal landscape early and avoid the painful mistakes so many learn too late.",
+    mission: {
+      label: "Mission",
+      title: "Our Mission: Empower Parents Before Problems Begin",
+      description:
+        "Most family-law crises begin long before the first court filing. They begin with a lack of information, missing documents, and assumptions that love alone is enough to establish parental rights. Parenthood Preparation exists to change that.",
+      bullets: {
+        bullet1: "Educate new and expecting parents about their rights and obligations.",
+        bullet2: "Prevent custody conflicts before they arise.",
+        bullet3: "Guide unmarried fathers through essential early steps.",
+        bullet4: "Strengthen families with knowledge rather than confusion.",
+        bullet5: "Ensure no parent discovers too late that they lack legal recognition.",
+      },
+      conclusion:
+        "With clarity, preparation, and the right tools, every parent can build a strong foundation for their child's future — long before conflict enters the picture.",
+    },
+    section: {
+      label: "Prepare Early",
+      title: "📘 Parenthood Prep: Learn Before Trouble Starts",
+      description:
+        "Focused guides for expecting parents, new fathers, and couples planning early custody steps together.",
+      viewAllPosts: "View all blog posts",
+      readArticle: "Read article",
+    },
+    faq: {
+      label: "FAQ",
+      title: "Parenthood Preparation in Germany",
+      items: {
+        q1: "Why must unmarried fathers acknowledge paternity?",
+        a1: "Because without acknowledgment, they are not legally recognized as the father. Without it, there is no custody and no say in important decisions.",
+        q2: "What is the difference between paternity acknowledgment and a custody declaration?",
+        a2: "Paternity acknowledgment (Anerkennung) confirms fatherhood. The custody declaration (Sorgeerklärung) establishes joint custody. Both are necessary if unmarried parents want equal rights.",
+        q3: "Where can I do a paternity acknowledgment?",
+        a3: "At the Jugendamt (youth welfare office), Standesamt (registry office), or a notary. Most parents do it free of charge at the Jugendamt.",
+        q4: "When should you submit the custody declaration?",
+        a4: "Ideally while the relationship is stable, as later conflicts make the process significantly harder.",
+        q5: "What should I expect at my first Jugendamt appointment?",
+        a5: "A conversation about duties, rights, and your child's situation. Calm, factual communication is essential.",
+        q6: "Which documents should new parents organize immediately?",
+        a6: "Birth certificate, insurance documents, vaccination record, U-Heft (child health booklet), paternity acknowledgment, custody declaration, Kindergeld/Elterngeld paperwork.",
+        q7: "What happens if you don't complete these steps early?",
+        a7: "Parental rights are limited, applications are delayed, and conflicts can escalate unnecessarily.",
+        q8: "Does CustodyClarity also support parents without legal problems?",
+        a8: "Yes — the entire Parenthood Preparation section was specifically designed to prevent problems before they arise.",
+      },
+    },
   },
   planning: {
     title: "Planning & Prevention",

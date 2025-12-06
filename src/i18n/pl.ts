@@ -150,6 +150,7 @@ const pl = {
     guides: "Przewodniki",
     faq: "FAQ",
     proDocuments: "Dokumenty Pro",
+    parenthoodPrepMenu: "📘 Przygotowanie rodzicielskie",
   },
   interview: {
     title: "Wywiad",
@@ -590,6 +591,7 @@ const pl = {
       personalStory: "Historia osobista",
       legalGuide: "Przewodnik prawny",
       resource: "Zasób",
+      parenthoodPrep: "Przygotowanie do rodzicielstwa",
     },
     disclaimer:
       "Uwaga: Posty na blogu odzwierciedlają osobiste doświadczenia i opinie. W celu uzyskania porady prawnej dotyczącej Twojej konkretnej sytuacji skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym.",
@@ -976,6 +978,59 @@ const pl = {
     guideDisclaimer:
       "Zastrzeżenie: Ten przewodnik zapewnia jedynie ogólne informacje, a nie indywidualną poradę prawną. Niemieckie prawo rodzinne może być złożone, a każda sytuacja jest wyjątkowa. W przypadku porady specyficznej dla Twoich okoliczności skonsultuj się z wykwalifikowanym prawnikiem specjalizującym się w prawie rodzinnym (Fachanwalt für Familienrecht).",
     languageNote: "Uwaga: Przewodniki planowania są obecnie dostępne tylko w języku angielskim.",
+  },
+  parenthoodPrep: {
+    badge: "Przygotowanie do rodzicielstwa",
+    title: "Przygotowanie do rodzicielstwa",
+    subtitle: "Zacznij mocno. Bądź na bieżąco. Chroń przyszłość swojego dziecka.",
+    description:
+      "Zostanie rodzicem w Niemczech to nie tylko kwestia emocjonalna — to także kwestia prawna. Niezależnie od tego, czy spodziewasz się dziecka, przygotowujesz się do porodu, czy po raz pierwszy masz do czynienia z Jugendamt, decyzje, które podejmujesz teraz, kształtują Twoje prawa na lata. Ta sekcja zawiera jasne wskazówki, aby pomóc rodzicom — zwłaszcza nieżonatym ojcom — zrozumieć krajobraz prawny wcześnie i uniknąć bolesnych błędów.",
+    mission: {
+      label: "Misja",
+      title: "Nasza misja: Wzmocnić rodziców zanim pojawią się problemy",
+      description:
+        "Większość kryzysów prawa rodzinnego zaczyna się na długo przed pierwszym złożeniem dokumentów w sądzie. Zaczynają się od braku informacji, brakujących dokumentów i założenia, że sama miłość wystarczy do ustanowienia praw rodzicielskich. Przygotowanie do rodzicielstwa istnieje, aby to zmienić.",
+      bullets: {
+        bullet1: "Edukować nowych i przyszłych rodziców o ich prawach i obowiązkach.",
+        bullet2: "Zapobiegać konfliktom o opiekę zanim powstaną.",
+        bullet3: "Prowadzić nieżonatych ojców przez niezbędne pierwsze kroki.",
+        bullet4: "Wzmacniać rodziny wiedzą, a nie zamieszaniem.",
+        bullet5:
+          "Zapewnić, że żaden rodzic nie odkryje zbyt późno, że brakuje mu prawnego uznania.",
+      },
+      conclusion:
+        "Z jasnością, przygotowaniem i odpowiednimi narzędziami każdy rodzic może zbudować solidny fundament dla przyszłości swojego dziecka — na długo zanim pojawi się konflikt.",
+    },
+    section: {
+      label: "Przygotuj się wcześnie",
+      title: "📘 Przygotowanie rodzicielskie: Ucz się zanim pojawią się problemy",
+      description:
+        "Ukierunkowane przewodniki dla przyszłych rodziców, młodych ojców i par planujących wspólnie wczesne kroki dotyczące opieki.",
+      viewAllPosts: "Zobacz wszystkie posty na blogu",
+      readArticle: "Przeczytaj artykuł",
+    },
+    faq: {
+      label: "FAQ",
+      title: "Przygotowanie do rodzicielstwa w Niemczech",
+      items: {
+        q1: "Dlaczego nieżonaci ojcowie muszą uznać ojcostwo?",
+        a1: "Ponieważ bez uznania nie są prawnie uznawani za ojca. Bez tego nie ma opieki i nie ma głosu w ważnych decyzjach.",
+        q2: "Jaka jest różnica między uznaniem ojcostwa a oświadczeniem o opiece?",
+        a2: "Uznanie ojcostwa (Anerkennung) potwierdza ojcostwo. Oświadczenie o opiece (Sorgeerklärung) ustanawia wspólną opiekę. Oba są konieczne, jeśli nieżonaci rodzice chcą równych praw.",
+        q3: "Gdzie mogę złożyć uznanie ojcostwa?",
+        a3: "W Jugendamt (urząd ds. młodzieży), Standesamt (urząd stanu cywilnego) lub u notariusza. Większość rodziców robi to bezpłatnie w Jugendamt.",
+        q4: "Kiedy należy złożyć oświadczenie o opiece?",
+        a4: "Najlepiej gdy związek jest stabilny, ponieważ późniejsze konflikty znacznie utrudniają proces.",
+        q5: "Czego powinienem się spodziewać na pierwszej wizycie w Jugendamt?",
+        a5: "Rozmowy o obowiązkach, prawach i sytuacji Twojego dziecka. Spokojna, rzeczowa komunikacja jest niezbędna.",
+        q6: "Jakie dokumenty nowi rodzice powinni natychmiast uporządkować?",
+        a6: "Akt urodzenia, dokumenty ubezpieczeniowe, książeczka szczepień, U-Heft (książeczka zdrowia dziecka), uznanie ojcostwa, oświadczenie o opiece, dokumenty Kindergeld/Elterngeld.",
+        q7: "Co się stanie, jeśli nie wykonasz tych kroków wcześnie?",
+        a7: "Prawa rodzicielskie są ograniczone, wnioski są opóźnione, a konflikty mogą niepotrzebnie eskalować.",
+        q8: "Czy CustodyClarity wspiera również rodziców bez problemów prawnych?",
+        a8: "Tak — cała sekcja Przygotowanie do rodzicielstwa została specjalnie zaprojektowana, aby zapobiegać problemom zanim powstaną.",
+      },
+    },
   },
 };
 

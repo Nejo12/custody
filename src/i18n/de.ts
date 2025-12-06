@@ -153,6 +153,7 @@ const de = {
     guides: "Leitfäden",
     faq: "FAQ",
     proDocuments: "Pro-Dokumente",
+    parenthoodPrepMenu: "📘 Elternschaftsvorbereitung",
   },
   interview: {
     title: "Interview",
@@ -593,6 +594,7 @@ const de = {
       personalStory: "Persönliche Geschichte",
       legalGuide: "Rechtlicher Leitfaden",
       resource: "Ressource",
+      parenthoodPrep: "Vorbereitung auf die Elternschaft",
     },
     disclaimer:
       "Hinweis: Blogbeiträge spiegeln persönliche Erfahrungen und Meinungen wider. Für rechtliche Beratung zu Ihrer spezifischen Situation konsultieren Sie einen qualifizierten Familienrechtsanwalt.",
@@ -980,6 +982,59 @@ const de = {
       "Hinweis: Diese Informationen bieten nur allgemeine Anleitung, keine individuelle Rechtsberatung. Für eine auf Ihre Situation zugeschnittene Beratung konsultieren Sie einen qualifizierten Familienrechtsanwalt.",
     guideDisclaimer:
       "Hinweis: Dieser Leitfaden bietet nur allgemeine Informationen, keine individuelle Rechtsberatung. Das deutsche Familienrecht kann komplex sein, und jede Situation ist einzigartig. Für eine auf Ihre Umstände zugeschnittene Beratung konsultieren Sie einen qualifizierten Familienrechtsanwalt (Fachanwalt für Familienrecht).",
+  },
+  parenthoodPrep: {
+    badge: "Vorbereitung auf die Elternschaft",
+    title: "Vorbereitung auf die Elternschaft",
+    subtitle: "Gut vorbereitet. Gut informiert. Die Zukunft Ihres Kindes schützen.",
+    description:
+      "Eltern werden in Deutschland ist nicht nur emotional — es ist auch rechtlich. Ob Sie ein Kind erwarten, sich auf die Geburt vorbereiten oder zum ersten Mal beim Jugendamt sind: Die Entscheidungen, die Sie jetzt treffen, prägen Ihre Rechte für Jahre. Dieser Bereich bietet klare Orientierung, damit Eltern — besonders unverheiratete Väter — die rechtliche Lage früh verstehen und schmerzhafte Fehler vermeiden.",
+    mission: {
+      label: "Mission",
+      title: "Unsere Mission: Eltern stärken, bevor Probleme entstehen",
+      description:
+        "Die meisten familienrechtlichen Krisen beginnen lange vor dem ersten Gerichtstermin. Sie beginnen mit fehlendem Wissen, fehlenden Dokumenten und der Annahme, dass Liebe allein genügt, um Elternrechte zu begründen. Die Vorbereitung auf die Elternschaft existiert, um das zu ändern.",
+      bullets: {
+        bullet1: "Neue und werdende Eltern über ihre Rechte und Pflichten aufklären.",
+        bullet2: "Sorgerechtsstreitigkeiten verhindern, bevor sie entstehen.",
+        bullet3: "Unverheiratete Väter durch wichtige erste Schritte begleiten.",
+        bullet4: "Familien mit Wissen statt Verwirrung stärken.",
+        bullet5:
+          "Sicherstellen, dass kein Elternteil zu spät erfährt, dass ihm rechtliche Anerkennung fehlt.",
+      },
+      conclusion:
+        "Mit Klarheit, Vorbereitung und den richtigen Werkzeugen kann jeder Elternteil ein starkes Fundament für die Zukunft seines Kindes legen — lange bevor Konflikte entstehen.",
+    },
+    section: {
+      label: "Früh vorbereiten",
+      title: "📘 Vorbereitung auf die Elternschaft: Lernen, bevor Probleme entstehen",
+      description:
+        "Fokussierte Leitfäden für werdende Eltern, junge Väter und Paare, die gemeinsam frühe Sorgerechtschritte planen.",
+      viewAllPosts: "Alle Blogbeiträge anzeigen",
+      readArticle: "Artikel lesen",
+    },
+    faq: {
+      label: "FAQ",
+      title: "Vorbereitung auf die Elternschaft in Deutschland",
+      items: {
+        q1: "Warum müssen unverheiratete Väter die Vaterschaft anerkennen?",
+        a1: "Weil sie ohne die Anerkennung rechtlich nicht als Vater gelten. Ohne sie gibt es kein Sorgerecht und keine Mitsprache bei wichtigen Entscheidungen.",
+        q2: "Was ist der Unterschied zwischen Anerkennung und Sorgeerklärung?",
+        a2: "Die Anerkennung bestätigt die Vaterschaft. Die Sorgeerklärung regelt das gemeinsame Sorgerecht. Beides ist notwendig, wenn unverheiratete Eltern gleiche Rechte haben wollen.",
+        q3: "Wo kann ich eine Vaterschaftsanerkennung machen?",
+        a3: "Beim Jugendamt, Standesamt oder Notar. Die meisten Eltern machen es kostenlos beim Jugendamt.",
+        q4: "Wann sollte man die Sorgeerklärung abgeben?",
+        a4: "Am besten während die Beziehung stabil ist, da spätere Konflikte den Prozess deutlich erschweren.",
+        q5: "Was erwartet mich beim ersten Jugendamt-Termin?",
+        a5: "Ein Gespräch über Pflichten, Rechte und die Situation Ihres Kindes. Sachliche, ruhige Kommunikation ist entscheidend.",
+        q6: "Welche Dokumente sollten neue Eltern sofort organisieren?",
+        a6: "Geburtsurkunde, Versicherungsunterlagen, Impfpass, U-Heft, Vaterschaftsanerkennung, Sorgeerklärung, Kindergeld-/Elterngeldunterlagen.",
+        q7: "Was passiert, wenn man diese Schritte nicht früh erledigt?",
+        a7: "Elterliche Rechte sind eingeschränkt, Anträge verzögern sich, und Konflikte können sich unnötig verschärfen.",
+        q8: "Unterstützt CustodyClarity auch Eltern ohne rechtliche Probleme?",
+        a8: "Ja — der gesamte Bereich 'Vorbereitung auf die Elternschaft' wurde speziell entwickelt, um Probleme zu verhindern, bevor sie entstehen.",
+      },
+    },
   },
 };
 

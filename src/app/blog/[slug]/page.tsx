@@ -39,6 +39,7 @@ export default function BlogPostPage({ params }: Props) {
     "personal-story": t.blog.categories.personalStory,
     "legal-guide": t.blog.categories.legalGuide,
     resource: t.blog.categories.resource,
+    "parenthood-prep": t.blog.categories.parenthoodPrep,
   };
 
   const formattedDate = formatDate(post.published);

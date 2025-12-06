@@ -146,6 +146,7 @@ const tr = {
     guides: "Kılavuzlar",
     faq: "SSS",
     proDocuments: "Pro Belgeler",
+    parenthoodPrepMenu: "📘 Ebeveynlik Hazırlığı",
   },
   interview: {
     title: "Görüşme",
@@ -580,6 +581,7 @@ const tr = {
       personalStory: "Kişisel Hikaye",
       legalGuide: "Hukuki Kılavuz",
       resource: "Kaynak",
+      parenthoodPrep: "Ebeveynlik Hazırlığı",
     },
     disclaimer:
       "Not: Blog yazıları kişisel deneyimleri ve görüşleri yansıtır. Durumunuza özel hukuki tavsiye için nitelikli bir aile hukuku avukatına danışın.",
@@ -961,6 +963,59 @@ const tr = {
     guideDisclaimer:
       "Sorumluluk Reddi: Bu rehber yalnızca genel bilgi sağlar, bireysel yasal tavsiye değildir. Alman aile hukuku karmaşık olabilir ve her durum benzersizdir. Koşullarınıza özel tavsiye için nitelikli bir aile hukuku avukatına (Fachanwalt für Familienrecht) danışın.",
     languageNote: "Not: Planlama rehberleri şu anda yalnızca İngilizce olarak mevcuttur.",
+  },
+  parenthoodPrep: {
+    badge: "Ebeveynlik Hazırlığı",
+    title: "Ebeveynlik Hazırlığı",
+    subtitle: "Güçlü başlayın. Bilgili kalın. Çocuğunuzun geleceğini koruyun.",
+    description:
+      "Almanya'da ebeveyn olmak sadece duygusal değil — aynı zamanda hukuki bir konudur. İster bir çocuk bekliyor olun, ister doğuma hazırlanıyor olun, ister ilk kez Jugendamt ile muhatap olun, şimdi aldığınız kararlar yıllarca haklarınızı şekillendirir. Bu bölüm, ebeveynlerin — özellikle evli olmayan babaların — yasal manzarayı erken anlamalarına ve acı verici hatalardan kaçınmalarına yardımcı olmak için net rehberlik sağlar.",
+    mission: {
+      label: "Misyon",
+      title: "Misyonumuz: Sorunlar Ortaya Çıkmadan Ebeveynleri Güçlendirmek",
+      description:
+        "Çoğu aile hukuku krizi, ilk mahkeme başvurusundan çok önce başlar. Bilgi eksikliği, eksik belgeler ve tek başına sevginin ebeveynlik haklarını kurmaya yeteceği varsayımıyla başlarlar. Ebeveynlik Hazırlığı bunu değiştirmek için var.",
+      bullets: {
+        bullet1: "Yeni ve bekleyen ebeveynleri hakları ve yükümlülükleri hakkında eğitmek.",
+        bullet2: "Velayet çatışmalarını ortaya çıkmadan önce önlemek.",
+        bullet3: "Evli olmayan babaları temel ilk adımlarda yönlendirmek.",
+        bullet4: "Aileleri kafa karışıklığı yerine bilgiyle güçlendirmek.",
+        bullet5:
+          "Hiçbir ebeveynin yasal tanınırlıktan yoksun olduğunu çok geç keşfetmemesini sağlamak.",
+      },
+      conclusion:
+        "Netlik, hazırlık ve doğru araçlarla her ebeveyn, çocuğunun geleceği için sağlam bir temel inşa edebilir — çatışma ortaya çıkmadan çok önce.",
+    },
+    section: {
+      label: "Erken Hazırlanın",
+      title: "📘 Ebeveynlik Hazırlığı: Sorunlar Başlamadan Önce Öğrenin",
+      description:
+        "Bekleyen ebeveynler, yeni babalar ve birlikte erken velayet adımları planlayan çiftler için odaklanmış rehberler.",
+      viewAllPosts: "Tüm blog yazılarını görüntüle",
+      readArticle: "Makaleyi oku",
+    },
+    faq: {
+      label: "SSS",
+      title: "Almanya'da Ebeveynlik Hazırlığı",
+      items: {
+        q1: "Evli olmayan babalar neden babalığı tanımak zorunda?",
+        a1: "Çünkü tanıma olmadan yasal olarak baba olarak tanınmazlar. Bu olmadan velayet ve önemli kararlarda söz hakkı yoktur.",
+        q2: "Babalık tanıma ile velayet beyanı arasındaki fark nedir?",
+        a2: "Babalık tanıma (Anerkennung) babalığı onaylar. Velayet beyanı (Sorgeerklärung) ortak velayeti kurar. Evli olmayan ebeveynler eşit haklar istiyorsa her ikisi de gereklidir.",
+        q3: "Babalık tanıma işlemini nerede yapabilirim?",
+        a3: "Jugendamt'ta (gençlik dairesi), Standesamt'ta (nüfus müdürlüğü) veya noterde. Çoğu ebeveyn bunu Jugendamt'ta ücretsiz yapar.",
+        q4: "Velayet beyanını ne zaman vermelisiniz?",
+        a4: "İdeal olarak ilişki istikrarlıyken, çünkü daha sonraki çatışmalar süreci önemli ölçüde zorlaştırır.",
+        q5: "İlk Jugendamt randevumda ne beklemeliyim?",
+        a5: "Görevler, haklar ve çocuğunuzun durumu hakkında bir konuşma. Sakin, gerçeklere dayalı iletişim esastır.",
+        q6: "Yeni ebeveynler hangi belgeleri hemen düzenlemelidir?",
+        a6: "Doğum belgesi, sigorta belgeleri, aşı kayıtları, U-Heft (çocuk sağlık karnesi), babalık tanıma, velayet beyanı, Kindergeld/Elterngeld evrakları.",
+        q7: "Bu adımları erken tamamlamazsanız ne olur?",
+        a7: "Ebeveynlik hakları sınırlıdır, başvurular gecikir ve çatışmalar gereksiz yere tırmanabilir.",
+        q8: "CustodyClarity yasal sorunları olmayan ebeveynleri de destekliyor mu?",
+        a8: "Evet — tüm Ebeveynlik Hazırlığı bölümü, sorunları ortaya çıkmadan önce önlemek için özel olarak tasarlandı.",
+      },
+    },
   },
 };
 

@@ -110,6 +110,14 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
               </svg>
             </button>
             <div className="hidden sm:flex items-center gap-2">
+              <Link
+                href="/blog/parenthood-prep"
+                className="inline-flex items-center justify-center h-10 px-4 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 text-sm font-medium text-zinc-700 dark:text-zinc-200"
+                title={t.header?.parenthoodPrepMenu || "📘 Parenthood Prep"}
+                aria-label={t.header?.parenthoodPrepMenu || "📘 Parenthood Prep"}
+              >
+                {t.header?.parenthoodPrepMenu || "📘 Parenthood Prep"}
+              </Link>
               <CitySwitch />
               <LanguageSwitch />
               <Link
@@ -172,6 +180,13 @@ export default function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
                   >
                     {t.header?.findHelp ?? "Need help?"}
                   </button>
+                  <Link
+                    href="/blog/parenthood-prep"
+                    className="w-full flex items-center h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border border-zinc-200 dark:border-zinc-700"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {t.header?.parenthoodPrepMenu || "📘 Parenthood Prep"}
+                  </Link>
                   {canInstall && (
                     <button
                       className="w-full flex items-center h-9 text-left rounded-md px-3 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border border-zinc-200 dark:border-zinc-700"

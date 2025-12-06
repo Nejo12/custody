@@ -22,6 +22,7 @@ export default function BlogPage() {
     "personal-story": t.blog.categories.personalStory,
     "legal-guide": t.blog.categories.legalGuide,
     resource: t.blog.categories.resource,
+    "parenthood-prep": t.blog.categories.parenthoodPrep,
   };
 
   return (
