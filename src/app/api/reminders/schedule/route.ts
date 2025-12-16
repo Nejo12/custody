@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
 import { getClientKey, rateLimit, rateLimitResponse } from "@/lib/ratelimit";
 
 interface ScheduleReminderRequest {
@@ -39,7 +38,7 @@ export async function POST(req: NextRequest) {
 
     // Parse and validate request body
     const body = (await req.json()) as ScheduleReminderRequest;
-    const { email, reminderDate, summary, description, metadata } = body;
+    const { email, reminderDate, summary } = body;
 
     // Validate required fields
     if (!email || typeof email !== "string" || !email.includes("@")) {
@@ -77,48 +76,8 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-
-    // Normalize email
-    const normalizedEmail = email.toLowerCase().trim();
-
-    // Insert reminder
-    const { data, error: insertError } = await supabase
-      .from("court_reminders")
-      .insert({
-        email: normalizedEmail,
-        reminder_date: reminderDateTime.toISOString(),
-        summary: summary.trim(),
-        description: description?.trim() || null,
-        metadata: metadata || null,
-        status: "pending",
-      })
-      .select()
-      .single();
-
-    if (insertError) {
-      console.error("Error inserting court reminder:", insertError);
-      return NextResponse.json(
-        {
-          success: false,
-          error: "Failed to schedule reminder. Please try again later.",
-        },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: "Reminder scheduled successfully",
-      reminderId: data.id,
-    });
   } catch (error) {
-    console.error("Error in schedule reminder:", error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: "Internal server error",
-      },
-      { status: 500 }
-    );
+    console.error("Error in POST /api/reminders/schedule:", error);
+    return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });
   }
 }
